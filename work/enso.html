@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENSO Co-Living Case Study - Inigo Angulo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--bg2:#060608;--glass:rgba(8,8,14,.55);--b1:rgba(255,255,255,.04);--b2:rgba(255,255,255,.08);--t1:#f4f4f6;--t2:#8c8c9e;--t3:#52526a;--t4:#2a2a3a;--ac:#2dd4bf;--ac2:#5eead4;--acg:rgba(45,212,191,.12);--acg2:rgba(45,212,191,.06);--acb:rgba(45,212,191,.2);--up:#22c55e;--upg:rgba(34,197,94,.1);--dn:#ef4444;--dng:rgba(239,68,68,.06);--am:#f59e0b;--amg:rgba(245,158,11,.08);--pu:#a78bfa;--m:'JetBrains Mono','SF Mono',monospace;--s:'IBM Plex Sans',-apple-system,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{font-size:15px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}body{background:var(--bg);color:var(--t1);font-family:var(--m);line-height:1.6}a{color:inherit;text-decoration:none}::selection{background:var(--ac);color:#000}::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+.bar{position:fixed;top:0;left:0;right:0;height:48px;background:rgba(0,0,0,.75);backdrop-filter:blur(24px);border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:100}.bar a{font-size:.72rem;color:var(--t3);transition:color .2s;display:flex;align-items:center;gap:6px}.bar a:hover{color:var(--ac2)}.bar span{font-family:var(--s);font-size:.78rem;font-weight:600;color:var(--t2)}
+.cs{max-width:760px;margin:0 auto;padding:80px 24px 96px}
+.tldr{background:var(--glass);border:1px solid var(--b1);border-radius:8px;padding:24px;margin-bottom:48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}.tldr__k{font-size:.58rem;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px}.tldr__v{font-family:var(--s);font-size:.82rem;font-weight:600}.tldr__v--ac{color:var(--ac2);text-shadow:0 0 12px var(--acg)}
+.hero{margin-bottom:48px}.hero__type{font-size:.62rem;color:var(--ac);text-transform:uppercase;letter-spacing:.14em;margin-bottom:12px;display:flex;align-items:center;gap:8px}.hero__type::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--pu)}.hero__h{font-family:var(--s);font-size:1.8rem;font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:16px}.hero__sub{font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.7;max-width:600px}
+.mets{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:48px}.met{background:var(--glass);border:1px solid var(--b1);border-radius:8px;padding:16px;text-align:center;transition:border-color .3s}.met:hover{border-color:var(--b2)}.met__v{font-family:var(--s);font-size:1.4rem;font-weight:700;display:block;margin-bottom:4px}.met__v--g{color:var(--up);text-shadow:0 0 16px var(--upg)}.met__v--b{color:var(--ac2);text-shadow:0 0 16px var(--acg)}.met__v--a{color:var(--am)}.met__v--dn{color:var(--dn)}.met__l{font-size:.65rem;color:var(--t3)}
+.vis{background:var(--bg2);border:1px solid var(--b1);border-radius:8px;display:flex;align-items:center;justify-content:center;margin:24px 0;font-size:.62rem;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;overflow:hidden}
+.vis--wide{aspect-ratio:16/9}.vis--tall{aspect-ratio:3/2}.vis--auto{padding:32px}
+.vis img{width:100%;height:100%;object-fit:cover;display:block}
+.sec{margin-bottom:48px;padding-top:32px;border-top:1px solid var(--b1)}.sec__num{font-size:.55rem;color:var(--t4);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}.sec__h{font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px}.sec__p{font-family:var(--s);font-size:.84rem;color:var(--t2);line-height:1.75;margin-bottom:12px}.sec__p strong{color:var(--t1);font-weight:600}.sec__p em{color:var(--ac2);font-style:normal}
+.raw{background:var(--bg2);border:1px solid var(--b1);border-radius:8px;padding:20px;margin:20px 0;font-size:.78rem;line-height:1.75;color:var(--t2);white-space:pre-wrap;overflow-x:auto;position:relative}.raw__l{position:absolute;top:8px;right:12px;font-size:.55rem;color:var(--t4);text-transform:uppercase;letter-spacing:.1em}
+.dt{width:100%;border-collapse:collapse;margin:16px 0}.dt th{text-align:left;font-size:.58rem;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;padding:8px 10px;border-bottom:1px solid var(--b2)}.dt td{font-family:var(--s);font-size:.76rem;color:var(--t2);padding:10px;border-bottom:1px solid var(--b1);vertical-align:top;line-height:1.5}.dt td:first-child{color:var(--t3);font-family:var(--m);font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;width:80px}
+.fail{border-left:3px solid var(--dn);padding-left:20px;margin:20px 0}.fail__h{font-family:var(--s);font-size:.82rem;font-weight:600;margin-bottom:8px;color:var(--dn);display:block}.fail__p{font-family:var(--s);font-size:.82rem;color:var(--t2);line-height:1.7;display:block}
+/* before/after comparison */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--b1);border-radius:8px;overflow:hidden;margin:24px 0}
+.compare__col{padding:24px}
+.compare__col--before{background:rgba(239,68,68,.015);border-right:1px solid var(--b1)}
+.compare__col--after{background:rgba(45,212,191,.015)}
+.compare__label{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;display:block}
+.compare__label--before{color:var(--dn)}.compare__label--after{color:var(--ac)}
+.compare__list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.compare__list li{font-family:var(--s);font-size:.78rem;color:var(--t2);line-height:1.5;padding-left:14px;position:relative}
+.compare__list--before li::before{content:'x';position:absolute;left:0;color:var(--dn);font-family:var(--m);font-size:.68rem}
+.compare__list--after li::before{content:'+';position:absolute;left:0;color:var(--ac);font-family:var(--m);font-size:.68rem}
+/* funnel viz */
+.fn{margin:24px 0;display:flex;flex-direction:column;gap:6px}
+.fn__r{display:flex;align-items:center;gap:12px}
+.fn__nm{font-size:.68rem;color:var(--t2);width:100px;flex-shrink:0}
+.fn__bw{flex:1;height:24px;background:rgba(255,255,255,.015);border-radius:3px;overflow:hidden;position:relative}
+.fn__b{height:100%;border-radius:3px}
+.fn__b--dn{background:var(--dn);opacity:.25}
+.fn__b--ac{background:linear-gradient(90deg,transparent 5%,var(--ac));opacity:.5}
+.fn__p{font-size:.65rem;color:var(--t3);width:50px;flex-shrink:0;text-align:right}
+.fn__delta{font-size:.58rem;color:var(--up);font-weight:600;width:60px;flex-shrink:0;text-align:right}
+/* evidence callout */
+.evidence{background:var(--glass);border:1px solid var(--b1);border-radius:8px;padding:20px;margin:20px 0}
+.evidence__label{font-size:.58rem;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;display:block}
+.evidence__text{font-family:var(--s);font-size:.82rem;color:var(--t2);line-height:1.6}
+.nav{margin-top:64px;padding-top:24px;border-top:1px solid var(--b1);display:flex;justify-content:space-between}.nav a{font-size:.76rem;color:var(--t3);transition:color .2s}.nav a:hover{color:var(--ac2)}
+@media(max-width:768px){.tldr,.mets{grid-template-columns:1fr 1fr}.hero__h{font-size:1.3rem}.compare{grid-template-columns:1fr}.compare__col--before{border-right:none;border-bottom:1px solid var(--b1)}}
+</style>
+</head>
+<body>
+<nav class="bar"><a href="../index.html">&#8592; Back to portfolio</a><span>ENSO Co-Living</span></nav>
+<article class="cs">
+
+<!-- TLDR for scanners -->
+<div class="tldr">
+  <div><span class="tldr__k">Company</span><span class="tldr__v">ENSO Co-Living, 2025</span></div>
+  <div><span class="tldr__k">Role</span><span class="tldr__v">AI & Experience Strategy Lead</span></div>
+  <div><span class="tldr__k">Key outcome</span><span class="tldr__v tldr__v--ac">-22% onboarding friction, 36% drop-off to under 20%</span></div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <span class="hero__type">System Design / PropTech / 3 European Markets</span>
+  <h1 class="hero__h">36% of users abandoned before they even started. The funnel wasn't just broken. It was invisible.</h1>
+  <p class="hero__sub">ENSO's onboarding funnel lost 176 out of 486 users before qualification. The brief said "make it digital." Research said "make 3 decisions faster, not 47 spreadsheets smarter." I redesigned the entire funnel from registration to checkout, cutting friction 22% and reducing early drop-offs from 36% to under 20%.</p>
+  <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;align-items:center"><a href="https://www.ensocoliving.com/en/" target="_blank" rel="noopener" style="font-size:.72rem;font-weight:500;color:var(--ac2);border:1px solid var(--acb);background:var(--acg2);padding:7px 18px;border-radius:6px;transition:all .3s;display:inline-flex;align-items:center;gap:6px">Try the live product &#8594;</a><span style="font-size:.65rem;color:var(--t3)">ensocoliving.com</span></div>
+</div>
+
+<!-- Impact metrics -->
+<div class="mets">
+  <div class="met"><span class="met__v met__v--dn">36%</span><span class="met__l">Users lost before qualification (before)</span></div>
+  <div class="met"><span class="met__v met__v--g">&lt;20%</span><span class="met__l">Early drop-off target (after)</span></div>
+  <div class="met"><span class="met__v met__v--b">-22%</span><span class="met__l">Total onboarding friction</span></div>
+  <div class="met"><span class="met__v met__v--a">66%</span><span class="met__l">Users on mobile (drove mobile-first)</span></div>
+</div>
+
+<!-- Hero visual -->
+<div class="vis vis--wide"><img src="../img/enso-hero.jpg" alt="ENSO Co-Living platform overview"></div>
+<div class="vis vis--wide"><img src="../img/enso-onboarding-overview.webp" alt="ENSO redesigned onboarding flow: Registration to Success"></div>
+
+<!-- 01: Context -->
+<div class="sec">
+  <span class="sec__num">01 Context</span>
+  <h2 class="sec__h">An international co-living startup with a broken front door</h2>
+  <p class="sec__p">ENSO is an international startup offering co-living solutions across Europe, helping young professionals and digital nomads find and move into shared apartments. The company combines property management with a digital-first approach: simple, transparent, community-driven urban living.</p>
+  <p class="sec__p">The onboarding funnel was ENSO's most critical flow, but it was causing massive drop-offs. <strong>486 users entered the funnel during the observation period. Only 310 made it to the pre-video qualification step. 176 users, over 36%, abandoned before even attempting to qualify.</strong></p>
+  <p class="sec__p">The entire backend operation ran on <strong>47 interconnected Google Sheets</strong> across 3 European markets. Data conflicts between operators, zero visibility for tenants, and 3+ hours of daily manual reconciliation. They planned to expand to 5 new cities. The infrastructure was already breaking.</p>
+  <p class="sec__p">My role: lead the end-to-end redesign of the onboarding funnel, from workshops and research to final delivery. AI & Experience Strategy Lead, working directly with leadership.</p>
+  <div class="evidence">
+    <span class="evidence__label">Tools used</span>
+    <span class="evidence__text">Figma (design + prototyping), PostHog (session recordings + funnel analytics), Mixpanel (behavioral metrics), Framer (interactive prototypes)</span>
+  </div>
+</div>
+
+<!-- 02: The Problem -->
+<div class="sec">
+  <span class="sec__num">02 Problem</span>
+  <h2 class="sec__h">The funnel created frustration at every critical moment</h2>
+  <p class="sec__p">The existing onboarding funnel introduced friction where it should have built confidence. Three specific failures stood out:</p>
+  <p class="sec__p"><strong>Registration captured the wrong data.</strong> Key information like city preference, move-in date, and solo/couple status wasn't asked during registration. Users had to re-enter context later, breaking flow and increasing cognitive load.</p>
+  <p class="sec__p"><strong>The qualification flow wasted 30% of the viewport on unnecessary copy.</strong> The video recording tutorial should have been self-explanatory, but screens were cluttered with instructions that added confusion instead of clarity.</p>
+  <p class="sec__p"><strong>The confirmation flow was a dead end.</strong> After document upload, a "Close" button took users to the home page with no clear confirmation, no trust signal, and no path to the next step. The KYC screen asked for critical information at the wrong moment.</p>
+
+  <div class="fn">
+    <div class="fn__r"><span class="fn__nm">Entered funnel</span><div class="fn__bw"><div class="fn__b fn__b--dn" style="width:100%"></div></div><span class="fn__p">486</span><span class="fn__delta"></span></div>
+    <div class="fn__r"><span class="fn__nm">Pre-video step</span><div class="fn__bw"><div class="fn__b fn__b--dn" style="width:63.8%"></div></div><span class="fn__p">310</span><span class="fn__delta">-36%</span></div>
+    <div class="fn__r"><span class="fn__nm">Qualified</span><div class="fn__bw"><div class="fn__b fn__b--dn" style="width:40%"></div></div><span class="fn__p">~195</span><span class="fn__delta">-37%</span></div>
+    <div class="fn__r"><span class="fn__nm">Checkout</span><div class="fn__bw"><div class="fn__b fn__b--dn" style="width:25%"></div></div><span class="fn__p">~120</span><span class="fn__delta">-38%</span></div>
+  </div>
+  <p class="sec__p" style="font-size:.76rem;color:var(--t3)">Baseline funnel: 486 users observed. 176 dropped before qualification. Over 36% lost before the product could even demonstrate value.</p>
+</div>
+
+<!-- 03: Workshop & Discovery -->
+<div class="sec">
+  <span class="sec__num">03 Discovery</span>
+  <h2 class="sec__h">Workshop with leadership + 2 weeks shadowing operators</h2>
+  <p class="sec__p">I facilitated a workshop with ENSO's leadership team. Together we mapped the current funnel, identified pain points, and aligned on business needs. Three guiding questions structured the session: What do we currently have? What do we need? What do we want to offer?</p>
+
+  <div class="vis vis--wide"><img src="../img/enso-userflow-detail.webp" alt="ENSO complete user flow diagram with decision points"></div>
+
+  <p class="sec__p">Then I spent 2 weeks shadowing operators across all 3 markets. The key finding changed the entire product direction:</p>
+  <div class="raw"><span class="raw__l">Shadowing notes, Week 2</span>Nobody uses the spreadsheets as databases.
+They use them as DECISION TOOLS.
+
+- Occupancy sheet = "Which rooms do I fill this month?"
+- Maintenance sheet = "What breaks before a new tenant moves in?"
+- Matching sheet = "Which applicant fits this community best?"
+
+The spreadsheet is the interface for 3 daily decisions.
+Not 47 data tables.
+
+Reframe: don't build a platform with 47 features.
+Build a product that makes 3 decisions faster.
+
+Impact: ~60% scope reduction. 2 months faster to launch.</div>
+
+  <p class="sec__p">A critical data point emerged: <strong>66% of ENSO users accessed the platform on mobile.</strong> The existing flow was designed desktop-first. Prioritizing mobile-first was non-negotiable for conversion.</p>
+</div>
+
+<!-- 04: Design Targets -->
+<div class="sec">
+  <span class="sec__num">04 Design targets</span>
+  <h2 class="sec__h">Three goals, no negotiation</h2>
+  <p class="sec__p"><strong>1. Streamline the journey.</strong> Reduce the number of steps and remove redundant actions. Every screen that doesn't move the user toward qualification is a screen that loses them.</p>
+  <p class="sec__p"><strong>2. Capture key data early.</strong> Collect essential user information (city, move-in date, solo/couple) at registration, not later. This enables efficient classification, personalization, and a tailored catalogue from the first interaction.</p>
+  <p class="sec__p"><strong>3. Optimize for conversion.</strong> Redesign CTAs, form design, and flow logic. Reduce drop-offs from 36% to under 20%. Target: +20% uplift in qualified users reaching checkout.</p>
+</div>
+
+<!-- 05: Solution - The New Funnel -->
+<div class="sec">
+  <span class="sec__num">05 Solution</span>
+  <h2 class="sec__h">Complete funnel redesign: 6 stages, mobile-first, every screen justified</h2>
+  <p class="sec__p">The new funnel structure was designed from scratch based on workshop findings, operator shadowing, and baseline data analysis:</p>
+  <p class="sec__p"><strong>1. Registration:</strong> Google/Email sign-up with key data captured upfront (city, date, solo/couple). Previously this data was asked too late or not at all.</p>
+  <p class="sec__p"><strong>2. Onboarding:</strong> Clear expectations + progress indicators. User knows exactly what's coming and how many steps remain.</p>
+  <p class="sec__p"><strong>3. Qualification:</strong> Essential info only, concise copy. Video recording flow redesigned with known interaction patterns (record button, timer, review). Removed 30% of unnecessary viewport copy.</p>
+  <p class="sec__p"><strong>4. Document Upload:</strong> Moved from qualification step to checkout. Reduced early friction by deferring non-critical data collection.</p>
+  <p class="sec__p"><strong>5. Success Screen:</strong> Immediate feedback + trust signals. "Valencia is waiting for you!" with tailored room listings. No more dead-end "Close" buttons.</p>
+  <p class="sec__p"><strong>6. Checkout:</strong> Tailored listings based on registration data. User sees rooms matching their city, date, and living preference. Simplified booking action.</p>
+
+  <div class="vis vis--wide"><img src="../img/enso-wireframes-mobile.webp" alt="ENSO mobile wireframes: Registration, Qualification, Success"></div>
+  <div class="vis vis--wide"><img src="../img/enso-system-flow.webp" alt="ENSO complete system flow: registration, qualification, and booking logic"></div>
+</div>
+
+<!-- 06: Before / After -->
+<div class="sec">
+  <span class="sec__num">06 Before vs After</span>
+  <h2 class="sec__h">Side-by-side: what changed and why</h2>
+
+  <p class="sec__p" style="margin-bottom:20px"><strong>Registration flow</strong></p>
+  <div class="compare">
+    <div class="compare__col compare__col--before">
+      <span class="compare__label compare__label--before">Before</span>
+      <ul class="compare__list compare__list--before">
+        <li>Key info not asked (city, when, solo/couple)</li>
+        <li>User dumped to generic "last step" screen</li>
+        <li>Attribution question buried in registration</li>
+        <li>No clear path to qualification flow</li>
+      </ul>
+    </div>
+    <div class="compare__col compare__col--after">
+      <span class="compare__label compare__label--after">After</span>
+      <ul class="compare__list compare__list--after">
+        <li>City, date, solo/couple captured at registration</li>
+        <li>"Just the essentials, then you're in" framing</li>
+        <li>Easy selection with clear data hierarchy</li>
+        <li>Direct path: qualify now or view rooms</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="vis vis--wide"><img src="../img/enso-system-flow.webp" alt="ENSO proposed system flow for registration and qualification"></div>
+
+  <div class="vis vis--wide"><img src="../img/enso-before-reg.jpg" alt="Registration before state" style="width:49%;display:inline-block"><img src="../img/enso-after-reg.jpg" alt="Registration after state" style="width:49%;display:inline-block;margin-left:2%"></div>
+
+  <p class="sec__p" style="margin-bottom:20px"><strong>Qualification flow (video recording)</strong></p>
+  <div class="compare">
+    <div class="compare__col compare__col--before">
+      <span class="compare__label compare__label--before">Before</span>
+      <ul class="compare__list compare__list--before">
+        <li>30% viewport wasted on unnecessary copy</li>
+        <li>Tutorial not self-explanatory</li>
+        <li>Key questions shown as overlay popup</li>
+        <li>No clear progress or time indication</li>
+      </ul>
+    </div>
+    <div class="compare__col compare__col--after">
+      <span class="compare__label compare__label--after">After</span>
+      <ul class="compare__list compare__list--after">
+        <li>Clean screen with just the basics</li>
+        <li>Reuse of known interaction patterns (TikTok-like)</li>
+        <li>"Watch and get inspired" tutorial video</li>
+        <li>Timer, record button, review: 3 steps, no confusion</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="vis vis--wide"><img src="../img/enso-before-qual.jpg" alt="Qualification flow before"></div>
+
+  <p class="sec__p" style="margin-bottom:20px"><strong>Confirmation flow</strong></p>
+  <div class="compare">
+    <div class="compare__col compare__col--before">
+      <span class="compare__label compare__label--before">Before</span>
+      <ul class="compare__list compare__list--before">
+        <li>KYC info asked at wrong moment</li>
+        <li>No clear confirmation after document upload</li>
+        <li>"Close" button goes to home page (dead end)</li>
+        <li>No connection to catalogue or next step</li>
+      </ul>
+    </div>
+    <div class="compare__col compare__col--after">
+      <span class="compare__label compare__label--after">After</span>
+      <ul class="compare__list compare__list--after">
+        <li>"Valencia is waiting for you!" with trust signals</li>
+        <li>Tailored room catalogue shown immediately</li>
+        <li>Two paths: browse catalogue or continue to checkout</li>
+        <li>Unqualified users see room + "Continue to checkout" CTA</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="vis vis--wide"><img src="../img/enso-after-confirm.jpg" alt="Confirmation after redesign"></div>
+</div>
+
+<!-- 07: AI Strategy -->
+<div class="sec">
+  <span class="sec__num">07 AI Strategy</span>
+  <h2 class="sec__h">When "smart" onboarding made users feel surveilled</h2>
+  <p class="sec__p">The original AI-enhanced onboarding tried to predict user preferences before they'd expressed any. Pre-filled 12 fields based on behavioral signals. Our hypothesis: less effort = higher completion.</p>
+  <p class="sec__p"><strong>Wrong.</strong> Users with pre-filled forms had a 15% higher abandonment rate. User interviews revealed why: <em>"How does it know that about me?"</em> Pre-filling created distrust, not delight.</p>
+  <p class="sec__p">The fix: reduce AI to exactly <strong>2 moments</strong>:</p>
+  <p class="sec__p">First: recommend a community match <em>after</em> the user self-describes (AI as assistant, not oracle). Second: pre-fill only data explicitly given in a previous step (AI as memory, not prediction).</p>
+  <p class="sec__p">Result: -22% total onboarding friction. The insight: <em>AI should augment expressed intent, not predict unexpressed intent. There's a trust threshold that gets violated when AI knows too much too early.</em></p>
+</div>
+
+<!-- 08: Key Decisions -->
+<div class="sec">
+  <span class="sec__num">08 Key decisions</span>
+  <h2 class="sec__h">Trade-offs and what I chose to remove</h2>
+  <table class="dt">
+    <thead><tr><th>Area</th><th>Decision</th><th>Trade-off</th></tr></thead>
+    <tbody>
+      <tr><td>Scope</td><td>3 decision tools instead of 47-feature platform</td><td>Operators initially felt it was "too simple." Needed change management. But adoption was 4x projected.</td></tr>
+      <tr><td>Data</td><td>Capture city, date, solo/couple at registration</td><td>Longer registration form. But enables personalized catalogue immediately, removing 2 later friction points.</td></tr>
+      <tr><td>AI</td><td>AI at 2 touchpoints instead of everywhere</td><td>Less impressive demo. But users trusted it. Trust beats wow factor.</td></tr>
+      <tr><td>Mobile</td><td>Mobile-first for all flows (66% of users)</td><td>Desktop experience deprioritized. MVP was desktop, but all new flows designed mobile-first then adapted.</td></tr>
+      <tr><td>KYC</td><td>Moved document upload to checkout</td><td>Deferred critical verification. But removed friction from the highest-drop-off zone. KYC happens when intent is highest.</td></tr>
+      <tr><td>Design</td><td>Cross-market design system from day 1</td><td>Slower initial velocity. But each new market launches in weeks instead of months. 48 components, 3 themes, 1 token architecture.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 09: What Failed -->
+<div class="sec">
+  <span class="sec__num">09 What failed</span>
+  <h2 class="sec__h">Three experiments that went wrong</h2>
+  <div class="fail">
+    <span class="fail__h">The AI oracle nobody trusted</span>
+    <span class="fail__p">First onboarding version pre-filled 12 fields from behavioral signals. Abandonment increased 15%. Took 3 weeks to discover, redesign, and A/B test the fix. Should have tested with 5 users first. The prototype looked brilliant in Figma. That's exactly why it failed. Figma doesn't measure trust.</span>
+  </div>
+  <div class="fail">
+    <span class="fail__h">Designing for the wrong user first</span>
+    <span class="fail__p">Initially prioritized the operator dashboard because they were the paying client. But the operator's main pain point was tenant onboarding friction. Fixing the tenant experience was the fastest path to operator satisfaction. Lost 4 weeks building the wrong thing first.</span>
+  </div>
+  <div class="fail">
+    <span class="fail__h">Underestimating spreadsheet attachment</span>
+    <span class="fail__p">Two operators refused the new platform for 3 weeks. They "didn't trust" it. The fix wasn't better UX. It was an export-to-spreadsheet button. Letting them verify data in their familiar format built the bridge. Sometimes backward compatibility is the design solution.</span>
+  </div>
+</div>
+
+<!-- 10: Impact -->
+<div class="sec">
+  <span class="sec__num">10 Impact</span>
+  <h2 class="sec__h">What actually happened</h2>
+  <div class="mets" style="margin-bottom:20px">
+    <div class="met"><span class="met__v met__v--g">-22%</span><span class="met__l">Onboarding friction</span></div>
+    <div class="met"><span class="met__v met__v--b">36% to &lt;20%</span><span class="met__l">Early drop-off reduced</span></div>
+    <div class="met"><span class="met__v met__v--a">-60%</span><span class="met__l">Product scope reduction</span></div>
+    <div class="met"><span class="met__v met__v--g">4x</span><span class="met__l">Projected adoption exceeded</span></div>
+  </div>
+  <p class="sec__p">Launched across 3 European markets. Operator daily reconciliation time dropped from 3+ hours to approximately 20 minutes. The design system enabled 2 additional markets to be onboarded in weeks instead of months.</p>
+  <p class="sec__p">The biggest win was the <strong>scope reduction</strong>. "Digitize 47 spreadsheets" became "accelerate 3 daily decisions." Shipped 2 months ahead of schedule with a product operators actually recognized as their workflow.</p>
+  <div class="evidence">
+    <span class="evidence__label">Validation method</span>
+    <span class="evidence__text">PostHog funnel analysis (pre/post comparison), Mixpanel behavioral metrics, operator shadowing follow-up sessions. Baymard Institute benchmarks used for hypothesis validation (optimized funnels reduce abandonment 15-35%).</span>
+  </div>
+  <p class="sec__p" style="color:var(--am)"><strong style="color:var(--am)">What's unresolved:</strong> Community matching accuracy. The AI recommendation works, but whether AI-matched tenants have better long-term retention than manually matched ones is a 12-month metric still tracking.</p>
+</div>
+
+<!-- 11: Raw Thinking -->
+<div class="sec">
+  <span class="sec__num">11 Raw thinking</span>
+  <h2 class="sec__h">Process notes</h2>
+  <div class="raw"><span class="raw__l">Design system rationale</span>Why build a design system for a startup with 3 products?
+Because they're expanding to 5 new cities.
+Each city needs localized touchpoints.
+
+Without a system: each city = custom design work.
+With a system: each city = configuration.
+
+48 core components, 3 themes (by market), 1 token architecture.
+Integrated into Figma + Framer.
+Time to launch new market: 2-3 weeks vs. 2-3 months.</div>
+
+  <div class="raw"><span class="raw__l">AI trust post-mortem</span>We almost shipped an AI onboarding that would have
+increased abandonment by 15%.
+
+Root cause: designed for efficiency, not trust.
+Efficiency = minimize user effort.
+Trust = give users control over what the system knows.
+These are in tension.
+
+Rule I'm taking forward:
+- AI should never know more about the user than
+  the user has explicitly shared in the current session.
+- Pre-filling is a trust contract. Break it once, lose them.</div>
+
+  <div class="raw"><span class="raw__l">Funnel baseline data</span>Observation period baseline:
+486 users entered the funnel.
+310 users completed pre-video step (individual or couple).
+176 users dropped off before attempting qualification.
+
+36% abandonment before the product could demonstrate value.
+
+After redesign targets:
+- Early drop-offs: 36% to under 20%
+- Qualified users reaching checkout: +20% uplift
+- User confidence: measurable improvement in clarity scores
+- Ops: earlier data capture, less manual intervention</span>
+  </div>
+</div>
+
+<nav class="nav"><a href="../index.html">&#8592; All work</a><a href="checkout.html">Next: Checkout Redesign &#8594;</a></nav>
+</article>
+</body>
+</html>

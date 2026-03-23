@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[PROJECT NAME] · Inigo Angulo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000;--bg2:#060608;--bg3:#0a0a0e;
+  --glass:rgba(8,8,14,.55);
+  --b1:rgba(255,255,255,.04);--b2:rgba(255,255,255,.08);
+  --t1:#f4f4f6;--t2:#8c8c9e;--t3:#52526a;--t4:#2a2a3a;
+  --ac:#2dd4bf;--ac2:#5eead4;--acg:rgba(45,212,191,.12);--acg2:rgba(45,212,191,.06);--acb:rgba(45,212,191,.2);
+  --up:#22c55e;--upg:rgba(34,197,94,.1);--dn:#ef4444;--dng:rgba(239,68,68,.06);
+  --am:#f59e0b;--amg:rgba(245,158,11,.08);
+  --m:'JetBrains Mono','SF Mono',monospace;--s:'IBM Plex Sans',-apple-system,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:15px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:var(--m);line-height:1.6}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--ac);color:#000}
+
+.cs-bar{position:fixed;top:0;left:0;right:0;height:48px;background:rgba(0,0,0,.75);backdrop-filter:blur(24px);border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 24px;z-index:100}
+.cs-bar a{font-size:.72rem;color:var(--t3);transition:color .2s;display:flex;align-items:center;gap:6px}.cs-bar a:hover{color:var(--ac2)}
+.cs-bar__title{margin-left:auto;font-family:var(--s);font-size:.78rem;font-weight:600;color:var(--t2)}
+
+.cs{max-width:760px;margin:0 auto;padding:80px 24px 96px}
+
+/* TLDR strip at the top - for scanners */
+.cs__tldr{background:var(--glass);border:1px solid var(--b1);border-radius:8px;padding:24px;margin-bottom:48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.cs__tldr-item{display:flex;flex-direction:column;gap:4px}
+.cs__tldr-label{font-size:.58rem;color:var(--t3);text-transform:uppercase;letter-spacing:.1em}
+.cs__tldr-value{font-family:var(--s);font-size:.82rem;font-weight:600;color:var(--t1)}
+.cs__tldr-value--ac{color:var(--ac2);text-shadow:0 0 12px var(--acg)}
+
+.cs__hero{margin-bottom:48px}
+.cs__type{font-size:.62rem;color:var(--ac);text-transform:uppercase;letter-spacing:.14em;margin-bottom:12px}
+.cs__h{font-family:var(--s);font-size:1.8rem;font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:16px}
+.cs__sub{font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.7;max-width:600px}
+
+/* Sections */
+.cs__section{margin-bottom:48px;padding-top:32px;border-top:1px solid var(--b1)}
+.cs__section-num{font-size:.55rem;color:var(--t4);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}
+.cs__section-h{font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px;letter-spacing:-.01em}
+.cs__section-text{font-family:var(--s);font-size:.84rem;color:var(--t2);line-height:1.75}
+.cs__section-text p{margin-bottom:12px}
+
+/* Evidence blocks */
+.cs__evidence{background:var(--glass);border:1px solid var(--b1);border-radius:8px;padding:20px;margin:20px 0}
+.cs__evidence-label{font-size:.58rem;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;display:block}
+
+/* Image/visual placeholders */
+.cs__visual{background:var(--bg2);border:1px solid var(--b1);border-radius:8px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;margin:24px 0;font-size:.62rem;color:var(--t4);text-transform:uppercase;letter-spacing:.1em}
+
+/* Decisions table */
+.cs__decisions{width:100%;border-collapse:collapse;margin:16px 0}
+.cs__decisions th{text-align:left;font-size:.6rem;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;padding:8px 12px;border-bottom:1px solid var(--b2)}
+.cs__decisions td{font-family:var(--s);font-size:.78rem;color:var(--t2);padding:10px 12px;border-bottom:1px solid var(--b1);vertical-align:top;line-height:1.5}
+
+/* Metrics grid */
+.cs__metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.cs__metric{background:var(--glass);border:1px solid var(--b1);border-radius:8px;padding:16px;text-align:center}
+.cs__metric-val{font-family:var(--s);font-size:1.3rem;font-weight:700;color:var(--ac2);text-shadow:0 0 16px var(--acg);display:block;margin-bottom:4px}
+.cs__metric-label{font-size:.65rem;color:var(--t3)}
+
+/* Reflection/failure block */
+.cs__reflection{border-left:3px solid var(--am);padding-left:20px;margin:20px 0}
+.cs__reflection-h{font-family:var(--s);font-size:.82rem;font-weight:600;margin-bottom:8px;color:var(--am)}
+.cs__reflection-text{font-family:var(--s);font-size:.82rem;color:var(--t2);line-height:1.7}
+
+/* Next project link */
+.cs__next{margin-top:64px;padding-top:32px;border-top:1px solid var(--b1);display:flex;justify-content:space-between;align-items:center}
+.cs__next-label{font-size:.6rem;color:var(--t3);text-transform:uppercase;letter-spacing:.1em}
+.cs__next-link{font-family:var(--s);font-size:.88rem;font-weight:600;color:var(--ac2);display:flex;align-items:center;gap:8px;transition:gap .2s}.cs__next-link:hover{gap:12px}
+
+@media(max-width:768px){
+  .cs__tldr{grid-template-columns:1fr}.cs__h{font-size:1.3rem}
+  .cs__metrics{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation bar -->
+<nav class="cs-bar">
+  <a href="../index.html">&#8592; Back to portfolio</a>
+  <span class="cs-bar__title">[PROJECT NAME]</span>
+</nav>
+
+<article class="cs">
+
+  <!-- TLDR: For the scanning hiring manager who has 15 seconds -->
+  <div class="cs__tldr">
+    <div class="cs__tldr-item"><span class="cs__tldr-label">Company</span><span class="cs__tldr-value">[Company], [Year]</span></div>
+    <div class="cs__tldr-item"><span class="cs__tldr-label">My role</span><span class="cs__tldr-value">[Role / scope]</span></div>
+    <div class="cs__tldr-item"><span class="cs__tldr-label">Key outcome</span><span class="cs__tldr-value cs__tldr-value--ac">[+XX% metric]</span></div>
+  </div>
+
+  <!-- Hero -->
+  <div class="cs__hero">
+    <span class="cs__type">[Category] / [Company] / [Year]</span>
+    <h1 class="cs__h">[Problem-first title that creates tension]</h1>
+    <p class="cs__sub">[2-3 sentences. What was the situation, what did you do, what happened. This is your elevator pitch for this project.]</p>
+  </div>
+
+  <!-- HERO VISUAL -->
+  <div class="cs__visual">[ Hero image: final product or key screen ]</div>
+
+  <!-- 01: CONTEXT -->
+  <div class="cs__section">
+    <span class="cs__section-num">01 Context</span>
+    <h2 class="cs__section-h">What was the situation?</h2>
+    <div class="cs__section-text">
+      <p>[Company context. Size, stage, market. What was at stake. Why this project existed. Be specific: "GetYourGuide processes X million bookings/year across Y markets" not "a leading travel company."]</p>
+      <p>[Your role. Who you reported to. What constraints existed. What had been tried before.]</p>
+    </div>
+  </div>
+
+  <!-- 02: PROBLEM -->
+  <div class="cs__section">
+    <span class="cs__section-num">02 Problem</span>
+    <h2 class="cs__section-h">What was actually broken?</h2>
+    <div class="cs__section-text">
+      <p>[NOT "the checkout experience needed improvement." INSTEAD "38% of converting users left checkout at least once before completing. There was no re-entry path. The team was optimizing payment forms. The real problem was invisible."]</p>
+    </div>
+    <div class="cs__visual">[ Visual: the problem. Before state, funnel data, screenshot of the broken experience ]</div>
+  </div>
+
+  <!-- 03: INSIGHT -->
+  <div class="cs__section">
+    <span class="cs__section-num">03 Insight</span>
+    <h2 class="cs__section-h">What did you see that others missed?</h2>
+    <div class="cs__section-text">
+      <p>[This is the most important section. What was your unique contribution? What data did you look at? What reframe changed the problem?]</p>
+    </div>
+    <div class="cs__evidence">
+      <span class="cs__evidence-label">Evidence</span>
+      <span style="font-family:var(--s);font-size:.82rem;color:var(--t2);line-height:1.6;display:block">[PostHog session recording showed X. GA4 funnel analysis revealed Y. User shadowing uncovered Z.]</span>
+    </div>
+  </div>
+
+  <!-- 04: SOLUTION -->
+  <div class="cs__section">
+    <span class="cs__section-num">04 Solution</span>
+    <h2 class="cs__section-h">What did you ship?</h2>
+    <div class="cs__section-text">
+      <p>[System-level description. Not "I designed a new checkout." Instead "I redesigned the re-entry experience: persistent cart state, price-lock messaging, and a 'welcome back' flow that recovered 38% of abandoning users."]</p>
+    </div>
+    <div class="cs__visual">[ Visual: the solution. Key screens, system diagram, flow ]</div>
+    <div class="cs__visual">[ Visual: detail. Component close-up, interaction, or before/after comparison ]</div>
+  </div>
+
+  <!-- 05: DECISIONS -->
+  <div class="cs__section">
+    <span class="cs__section-num">05 Key decisions</span>
+    <h2 class="cs__section-h">What trade-offs did you make?</h2>
+    <div class="cs__section-text">
+      <p>[This is what separates senior from staff. Show the decisions you made AND what you chose not to do.]</p>
+    </div>
+    <table class="cs__decisions">
+      <thead><tr><th>Decision</th><th>What we chose</th><th>What we rejected</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>[Decision 1]</td><td>[Chosen approach]</td><td>[Rejected approach]</td><td>[Reasoning]</td></tr>
+        <tr><td>[Decision 2]</td><td>[Chosen approach]</td><td>[Rejected approach]</td><td>[Reasoning]</td></tr>
+        <tr><td>[Decision 3]</td><td>[Chosen approach]</td><td>[Rejected approach]</td><td>[Reasoning]</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 06: IMPACT -->
+  <div class="cs__section">
+    <span class="cs__section-num">06 Impact</span>
+    <h2 class="cs__section-h">What happened?</h2>
+    <div class="cs__metrics">
+      <div class="cs__metric"><span class="cs__metric-val">[+XX%]</span><span class="cs__metric-label">[Primary metric]</span></div>
+      <div class="cs__metric"><span class="cs__metric-val">[YY]</span><span class="cs__metric-label">[Secondary metric]</span></div>
+      <div class="cs__metric"><span class="cs__metric-val">[ZZ]</span><span class="cs__metric-label">[Tertiary metric]</span></div>
+    </div>
+    <div class="cs__evidence">
+      <span class="cs__evidence-label">Validation method</span>
+      <span style="font-family:var(--s);font-size:.82rem;color:var(--t2);line-height:1.6;display:block">[How was this measured? A/B test via PostHog. GA4 funnel tracking. Pre/post comparison across X weeks. Statistical significance noted.]</span>
+    </div>
+  </div>
+
+  <!-- 07: REFLECTION -->
+  <div class="cs__section">
+    <span class="cs__section-num">07 Reflection</span>
+    <h2 class="cs__section-h">What I learned</h2>
+    <div class="cs__reflection">
+      <span class="cs__reflection-h">What I would do differently</span>
+      <span class="cs__reflection-text">[Be honest. This section is where hiring managers decide if you're senior or not. Generic answers kill you here. Be specific.]</span>
+    </div>
+    <div class="cs__reflection" style="border-color:var(--dn)">
+      <span class="cs__reflection-h" style="color:var(--dn)">What failed</span>
+      <span class="cs__reflection-text">[At least one failure. What went wrong, why, and what you learned. This is the most important signal of seniority in a portfolio.]</span>
+    </div>
+  </div>
+
+  <!-- Next project -->
+  <div class="cs__next">
+    <span class="cs__next-label">Next case study</span>
+    <a href="[next-project].html" class="cs__next-link">[Next project name] &#8594;</a>
+  </div>
+
+</article>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout Funnel Redesign - Inigo Angulo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--bg2:#060608;--glass:rgba(8,8,14,.55);--b1:rgba(255,255,255,.04);--b2:rgba(255,255,255,.08);--t1:#f4f4f6;--t2:#8c8c9e;--t3:#52526a;--t4:#2a2a3a;--ac:#2dd4bf;--ac2:#5eead4;--acg:rgba(45,212,191,.12);--acg2:rgba(45,212,191,.06);--acb:rgba(45,212,191,.2);--up:#22c55e;--upg:rgba(34,197,94,.1);--dn:#ef4444;--am:#f59e0b;--pu:#a78bfa;--m:'JetBrains Mono','SF Mono',monospace;--s:'IBM Plex Sans',-apple-system,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{font-size:15px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}body{background:var(--bg);color:var(--t1);font-family:var(--m);line-height:1.6}a{color:inherit;text-decoration:none}::selection{background:var(--ac);color:#000}::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+.bar{position:fixed;top:0;left:0;right:0;height:48px;background:rgba(0,0,0,.75);backdrop-filter:blur(24px);border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:100}.bar a{font-size:.72rem;color:var(--t3);transition:color .2s;display:flex;align-items:center;gap:6px}.bar a:hover{color:var(--ac2)}.bar span{font-family:var(--s);font-size:.78rem;font-weight:600;color:var(--t2)}
+.cs{max-width:760px;margin:0 auto;padding:80px 24px 96px}
+.tldr{background:var(--glass);border:1px solid var(--b1);border-radius:8px;padding:24px;margin-bottom:48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}.tldr__k{font-size:.58rem;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px}.tldr__v{font-family:var(--s);font-size:.82rem;font-weight:600}.tldr__v--ac{color:var(--ac2);text-shadow:0 0 12px var(--acg)}
+.hero{margin-bottom:48px}.hero__type{font-size:.62rem;color:var(--ac);text-transform:uppercase;letter-spacing:.14em;margin-bottom:12px;display:flex;align-items:center;gap:8px}.hero__type::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--up)}.hero__h{font-family:var(--s);font-size:1.8rem;font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:16px}.hero__sub{font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.7;max-width:600px}
+.mets{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:48px}.met{background:var(--glass);border:1px solid var(--b1);border-radius:8px;padding:16px;text-align:center;transition:border-color .3s}.met:hover{border-color:var(--b2)}.met__v{font-family:var(--s);font-size:1.4rem;font-weight:700;display:block;margin-bottom:4px}.met__v--g{color:var(--up);text-shadow:0 0 16px var(--upg)}.met__v--b{color:var(--ac2);text-shadow:0 0 16px var(--acg)}.met__v--p{color:var(--pu)}.met__l{font-size:.65rem;color:var(--t3)}
+.vis{background:var(--bg2);border:1px solid var(--b1);border-radius:8px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;margin:24px 0;font-size:.62rem;color:var(--t4);text-transform:uppercase;letter-spacing:.1em}
+.sec{margin-bottom:48px;padding-top:32px;border-top:1px solid var(--b1)}.sec__num{font-size:.55rem;color:var(--t4);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}.sec__h{font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px}.sec__p{font-family:var(--s);font-size:.84rem;color:var(--t2);line-height:1.75;margin-bottom:12px}.sec__p strong{color:var(--t1);font-weight:600}.sec__p em{color:var(--ac2);font-style:normal}
+.raw{background:var(--bg2);border:1px solid var(--b1);border-radius:8px;padding:20px;margin:20px 0;font-size:.78rem;line-height:1.75;color:var(--t2);white-space:pre-wrap;overflow-x:auto;position:relative}.raw__l{position:absolute;top:8px;right:12px;font-size:.55rem;color:var(--t4);text-transform:uppercase;letter-spacing:.1em}
+.fn{margin:24px 0;display:flex;flex-direction:column;gap:6px}.fn__r{display:flex;align-items:center;gap:12px}.fn__nm{font-size:.68rem;color:var(--t2);width:80px;flex-shrink:0}.fn__bw{flex:1;height:28px;background:rgba(255,255,255,.015);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;gap:2px;padding:2px}.fn__b{height:50%;border-radius:2px}.fn__b--o{background:var(--t4);opacity:.5}.fn__b--n{background:linear-gradient(90deg,transparent 10%,var(--ac));opacity:.6}.fn__p{font-size:.65rem;color:var(--t3);width:90px;flex-shrink:0;text-align:right}.fn__lg{display:flex;gap:16px;margin-top:8px;font-size:.62rem;color:var(--t3)}.fn__dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px;vertical-align:middle}.fn__dot--o{background:var(--t4)}.fn__dot--n{background:var(--ac)}
+.dt{width:100%;border-collapse:collapse;margin:16px 0}.dt th{text-align:left;font-size:.58rem;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;padding:8px 10px;border-bottom:1px solid var(--b2)}.dt td{font-family:var(--s);font-size:.76rem;color:var(--t2);padding:10px;border-bottom:1px solid var(--b1);vertical-align:top;line-height:1.5}.dt td:first-child{color:var(--t3);font-family:var(--m);font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;width:70px}
+.fail{border-left:3px solid var(--dn);padding-left:20px;margin:20px 0}.fail__h{font-family:var(--s);font-size:.82rem;font-weight:600;margin-bottom:8px;color:var(--dn);display:block}.fail__p{font-family:var(--s);font-size:.82rem;color:var(--t2);line-height:1.7;display:block}
+.ba{display:flex;align-items:center;gap:24px;justify-content:center;margin:24px 0;padding:24px;background:var(--glass);border:1px solid var(--b1);border-radius:8px}.ba__col{text-align:center}.ba__v{font-family:var(--s);font-size:2.2rem;font-weight:700;display:block}.ba__v--o{color:var(--t4)}.ba__v--n{color:var(--up);text-shadow:0 0 20px var(--upg)}.ba__sub{font-size:.68rem;color:var(--t3);display:block;margin-top:2px}.ba__delta{font-size:.72rem;color:var(--up);font-weight:600;display:block;margin-top:4px}.ba__arrow{color:var(--t4);font-size:1.2rem}
+.nav{margin-top:64px;padding-top:24px;border-top:1px solid var(--b1);display:flex;justify-content:space-between}.nav a{font-size:.76rem;color:var(--t3);transition:color .2s}.nav a:hover{color:var(--ac2)}
+@media(max-width:768px){.tldr,.mets{grid-template-columns:1fr}.hero__h{font-size:1.3rem}.ba{flex-direction:column;gap:12px}.ba__arrow{transform:rotate(90deg)}.fn__nm{width:60px;font-size:.62rem}}
+</style>
+</head>
+<body>
+<nav class="bar"><a href="../index.html">&#8592; Back to portfolio</a><span>GetYourGuide / Checkout</span></nav>
+<article class="cs">
+<div class="tldr"><div><span class="tldr__k">Company</span><span class="tldr__v">GetYourGuide, 2024-2025</span></div><div><span class="tldr__k">Role</span><span class="tldr__v">Conversion & Experience Optimization</span></div><div><span class="tldr__k">Key outcome</span><span class="tldr__v tldr__v--ac">+11% checkout completion</span></div></div>
+<div class="hero"><span class="hero__type">Shipped / +11% conversion / 4 EU markets</span><h1 class="hero__h">The drop-off was where nobody looked</h1><p class="hero__sub">Everyone optimized the payment form. The real friction was at re-entry: 38% of buyers left checkout and came back, but no return path existed. Fixing that single gap drove millions in incremental revenue.</p></div>
+<div class="mets"><div class="met"><span class="met__v met__v--g">+11%</span><span class="met__l">Checkout completion rate</span></div><div class="met"><span class="met__v met__v--b">7-figure</span><span class="met__l">Est. annual revenue impact</span></div><div class="met"><span class="met__v met__v--p">4 markets</span><span class="met__l">Consistent uplift across EU</span></div></div>
+<div style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,.04);margin:24px 0;overflow:hidden">
+<svg viewBox="0 0 760 320" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#060608">
+<!-- Before side -->
+<text x="190" y="30" text-anchor="middle" fill="#52526a" font-size="10" font-family="JetBrains Mono">before</text>
+<rect x="30" y="45" width="320" height="230" rx="6" stroke="rgba(255,255,255,.04)" fill="rgba(255,255,255,.01)"/>
+<!-- Linear funnel assumption -->
+<rect x="60" y="65" width="260" height="20" rx="2" fill="rgba(255,255,255,.03)"/>
+<text x="70" y="79" fill="#2a2a3a" font-size="7" font-family="JetBrains Mono">browse 100%</text>
+<rect x="60" y="95" width="195" height="20" rx="2" fill="rgba(255,255,255,.025)"/>
+<text x="70" y="109" fill="#2a2a3a" font-size="7" font-family="JetBrains Mono">select 72%</text>
+<rect x="60" y="125" width="140" height="20" rx="2" fill="rgba(255,255,255,.02)"/>
+<text x="70" y="139" fill="#2a2a3a" font-size="7" font-family="JetBrains Mono">checkout 54%</text>
+<rect x="60" y="155" width="80" height="20" rx="2" fill="rgba(239,68,68,.06)" stroke="rgba(239,68,68,.15)" stroke-width=".5"/>
+<text x="70" y="169" fill="#ef4444" font-size="7" font-family="JetBrains Mono" opacity=".5">re-entry 31%</text>
+<rect x="60" y="185" width="161" height="20" rx="2" fill="rgba(255,255,255,.015)"/>
+<text x="70" y="199" fill="#2a2a3a" font-size="7" font-family="JetBrains Mono">payment 62%</text>
+<text x="190" y="240" text-anchor="middle" fill="#2a2a3a" font-size="8" font-family="JetBrains Mono">nobody measured re-entry</text>
+<!-- Arrow -->
+<line x1="365" y1="160" x2="395" y2="160" stroke="#2dd4bf" stroke-opacity=".3" stroke-width="1"/>
+<polygon points="393,156 403,160 393,164" fill="#2dd4bf" opacity=".3"/>
+<!-- After side -->
+<text x="570" y="30" text-anchor="middle" fill="#8c8c9e" font-size="10" font-family="JetBrains Mono">after</text>
+<rect x="410" y="45" width="320" height="230" rx="6" stroke="rgba(45,212,191,.1)" fill="rgba(45,212,191,.01)"/>
+<rect x="440" y="65" width="260" height="20" rx="2" fill="rgba(45,212,191,.04)"/>
+<text x="450" y="79" fill="#52526a" font-size="7" font-family="JetBrains Mono">browse 100%</text>
+<rect x="440" y="95" width="198" height="20" rx="2" fill="rgba(45,212,191,.035)"/>
+<text x="450" y="109" fill="#52526a" font-size="7" font-family="JetBrains Mono">select 76%</text>
+<rect x="440" y="125" width="159" height="20" rx="2" fill="rgba(45,212,191,.03)"/>
+<text x="450" y="139" fill="#52526a" font-size="7" font-family="JetBrains Mono">checkout 61%</text>
+<rect x="440" y="155" width="135" height="24" rx="3" fill="rgba(45,212,191,.06)" stroke="#2dd4bf" stroke-width="1" stroke-opacity=".3"/>
+<text x="450" y="171" fill="#2dd4bf" font-size="8" font-family="JetBrains Mono" font-weight="600" opacity=".7">re-entry 52%</text>
+<text x="594" y="171" fill="#22c55e" font-size="7" font-family="JetBrains Mono">+21pts</text>
+<rect x="440" y="189" width="190" height="20" rx="2" fill="rgba(34,197,94,.05)"/>
+<text x="450" y="203" fill="#22c55e" font-size="7" font-family="JetBrains Mono" opacity=".7">payment 73%</text>
+<text x="570" y="240" text-anchor="middle" fill="#2dd4bf" font-size="9" font-family="IBM Plex Sans" font-weight="600" opacity=".5">+11 pts total uplift</text>
+</svg></div>
+
+<div class="sec"><span class="sec__num">01 Context</span><h2 class="sec__h">The checkout wasn't broken where everyone thought</h2><p class="sec__p">GetYourGuide processes millions of travel bookings per year. The checkout funnel was the company's highest-leverage surface: small improvements translate directly to significant revenue.</p><p class="sec__p">When I joined, the team had spent 6 months optimizing the <strong>payment form</strong>: button colors, field order, trust badges, copy variations. Results were flat. Single-digit basis point improvements that barely cleared significance.</p><p class="sec__p">The assumption was: <em>the payment step is where we lose people</em>. Everyone believed it. The dashboards seemed to confirm it. But nobody had looked at the full behavioral picture.</p></div>
+
+<div class="sec"><span class="sec__num">02 Insight</span><h2 class="sec__h">What the data actually showed</h2><div class="raw"><span class="raw__l">Week 1 notes</span>The checkout drop-off isn't a payment problem. It's a re-entry problem.
+
+PostHog session recordings show something nobody's measuring:
+38% of converting users leave checkout at least once before buying.
+They compare prices, check calendars, text friends, come back days later.
+
+The funnel isn't linear. It's a loop.
+
+Hypothesis: fixing the re-entry experience will drive more uplift 
+than any further payment optimization.</div><p class="sec__p">I set up a PostHog + GA4 experimentation program to track <strong>non-linear checkout behavior</strong>: something the existing analytics wasn't capturing because it assumed linear funnel progression.</p></div>
+
+<div class="sec"><span class="sec__num">03 Discovery</span><h2 class="sec__h">Funnel: before vs after</h2><div class="fn"><div class="fn__r"><span class="fn__nm">Browse</span><div class="fn__bw"><div class="fn__b fn__b--o" style="width:100%"></div><div class="fn__b fn__b--n" style="width:100%"></div></div><span class="fn__p">100% / 100%</span></div><div class="fn__r"><span class="fn__nm">Select</span><div class="fn__bw"><div class="fn__b fn__b--o" style="width:72%"></div><div class="fn__b fn__b--n" style="width:76%"></div></div><span class="fn__p">72% / 76%</span></div><div class="fn__r"><span class="fn__nm">Checkout</span><div class="fn__bw"><div class="fn__b fn__b--o" style="width:54%"></div><div class="fn__b fn__b--n" style="width:61%"></div></div><span class="fn__p">54% / 61%</span></div><div class="fn__r"><span class="fn__nm">Re-entry ★</span><div class="fn__bw"><div class="fn__b fn__b--o" style="width:31%"></div><div class="fn__b fn__b--n" style="width:52%"></div></div><span class="fn__p">31% / 52%</span></div><div class="fn__r"><span class="fn__nm">Payment</span><div class="fn__bw"><div class="fn__b fn__b--o" style="width:62%"></div><div class="fn__b fn__b--n" style="width:73%"></div></div><span class="fn__p">62% / 73%</span></div><div class="fn__lg"><span><span class="fn__dot fn__dot--o"></span>Before</span><span><span class="fn__dot fn__dot--n"></span>After</span><span style="color:var(--up)">★ highest-leverage</span></div></div><p class="sec__p">Re-entry recovery rate: <strong>31% to 52%</strong>. This single intervention drove roughly 7 of the 11 points of total uplift.</p><p class="sec__p">The discovery wasn't tactical. It was architectural: <em>if your mental model of user behavior is wrong, every optimization built on it is wasted effort.</em></p></div>
+
+<div style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,.04);margin:24px 0;overflow:hidden">
+<svg viewBox="0 0 760 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#060608">
+<text x="30" y="25" fill="#52526a" font-size="8" font-family="JetBrains Mono">NON-LINEAR FUNNEL: ACTUAL USER BEHAVIOR</text>
+<!-- Linear assumption (faded) -->
+<path d="M 80 80 L 200 80 L 320 80 L 440 80 L 560 80" stroke="#2a2a3a" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="80" y="72" fill="#2a2a3a" font-size="7" font-family="JetBrains Mono">assumed linear path</text>
+<!-- Actual paths: loops -->
+<path d="M 80 140 C 130 140, 160 120, 200 120 C 240 120, 260 160, 320 170 C 360 175, 380 100, 300 90 C 240 82, 280 140, 340 140 C 400 140, 420 130, 440 120 C 470 110, 500 100, 560 100" stroke="#2dd4bf" stroke-width="1" fill="none" opacity=".4"/>
+<path d="M 80 160 C 140 160, 180 150, 220 145 C 260 140, 280 190, 240 200 C 200 210, 250 160, 320 155 C 380 150, 420 140, 440 135 C 460 130, 520 120, 560 115" stroke="#2dd4bf" stroke-width=".8" fill="none" opacity=".3"/>
+<path d="M 80 180 C 150 180, 200 170, 260 165 C 300 162, 320 200, 280 210 C 250 218, 260 180, 340 170 C 400 162, 460 148, 560 130" stroke="#2dd4bf" stroke-width=".6" fill="none" opacity=".2"/>
+<!-- Loop zones -->
+<circle cx="290" cy="160" r="40" stroke="#2dd4bf" stroke-width=".5" fill="none" opacity=".1" stroke-dasharray="3 3"><animate attributeName="r" values="38;44;38" dur="4s" repeatCount="indefinite"/></circle>
+<text x="290" y="215" text-anchor="middle" fill="#2dd4bf" font-size="8" font-family="JetBrains Mono" opacity=".5">re-entry loop</text>
+<text x="290" y="228" text-anchor="middle" fill="#52526a" font-size="7" font-family="JetBrains Mono">38% of converters</text>
+<!-- Nodes -->
+<circle cx="80" cy="140" r="5" fill="#2dd4bf" opacity=".4"/>
+<text x="80" y="133" text-anchor="middle" fill="#8c8c9e" font-size="7" font-family="JetBrains Mono">enter</text>
+<circle cx="560" cy="100" r="6" fill="#22c55e" opacity=".5"><animate attributeName="opacity" values=".3;.6;.3" dur="2s" repeatCount="indefinite"/></circle>
+<text x="560" y="93" text-anchor="middle" fill="#22c55e" font-size="7" font-family="JetBrains Mono">convert</text>
+<!-- Legend -->
+<text x="620" y="180" fill="#2a2a3a" font-size="7" font-family="JetBrains Mono">--- assumed</text>
+<text x="620" y="195" fill="#2dd4bf" font-size="7" font-family="JetBrains Mono" opacity=".5">--- actual</text>
+</svg></div>
+
+<div class="sec"><span class="sec__num">04 Solution</span><h2 class="sec__h">What I shipped</h2><p class="sec__p"><strong>Persistent cart with 72h expiry + price-lock guarantee.</strong> Users returning saw their selection preserved with a clear "price locked" indicator. Addressed the #1 re-entry anxiety.</p><p class="sec__p"><strong>"Welcome back" state.</strong> Returning users saw what changed since their last visit (nothing / price change / availability update). Rebuilt confidence instantly.</p><p class="sec__p"><strong>Non-linear funnel tracking (PostHog + GA4).</strong> Instrumented checkout to measure loops, not linear progression. This framework became the standard after I left.</p></div>
+
+<div style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,.04);margin:24px 0;overflow:hidden">
+<svg viewBox="0 0 760 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#060608">
+<!-- 3 intervention cards -->
+<!-- Card 1: Persistent Cart -->
+<rect x="30" y="30" width="220" height="240" rx="8" stroke="rgba(255,255,255,.06)" fill="rgba(255,255,255,.015)"/>
+<text x="140" y="60" text-anchor="middle" fill="#2dd4bf" font-size="9" font-family="JetBrains Mono" opacity=".6">INTERVENTION 01</text>
+<text x="140" y="82" text-anchor="middle" fill="#f4f4f6" font-size="11" font-family="IBM Plex Sans" font-weight="600">Persistent Cart</text>
+<rect x="55" y="100" width="170" height="8" rx="2" fill="rgba(45,212,191,.08)"/>
+<rect x="55" y="115" width="130" height="8" rx="2" fill="rgba(45,212,191,.05)"/>
+<rect x="55" y="135" width="170" height="30" rx="4" stroke="rgba(45,212,191,.2)" fill="rgba(45,212,191,.03)"/>
+<text x="140" y="154" text-anchor="middle" fill="#2dd4bf" font-size="7" font-family="JetBrains Mono" opacity=".6">price locked 72h</text>
+<text x="140" y="195" text-anchor="middle" fill="#52526a" font-size="7" font-family="JetBrains Mono">cart survives</text>
+<text x="140" y="208" text-anchor="middle" fill="#52526a" font-size="7" font-family="JetBrains Mono">across sessions</text>
+<text x="140" y="250" text-anchor="middle" fill="#22c55e" font-size="8" font-family="JetBrains Mono" opacity=".6">anxiety eliminated</text>
+<!-- Card 2: Welcome Back -->
+<rect x="270" y="30" width="220" height="240" rx="8" stroke="rgba(255,255,255,.06)" fill="rgba(255,255,255,.015)"/>
+<text x="380" y="60" text-anchor="middle" fill="#2dd4bf" font-size="9" font-family="JetBrains Mono" opacity=".6">INTERVENTION 02</text>
+<text x="380" y="82" text-anchor="middle" fill="#f4f4f6" font-size="11" font-family="IBM Plex Sans" font-weight="600">Welcome Back</text>
+<rect x="295" y="100" width="170" height="55" rx="4" stroke="rgba(255,255,255,.04)" fill="rgba(255,255,255,.01)"/>
+<text x="380" y="120" text-anchor="middle" fill="#8c8c9e" font-size="8" font-family="IBM Plex Sans">Welcome back!</text>
+<text x="380" y="135" text-anchor="middle" fill="#52526a" font-size="7" font-family="JetBrains Mono">nothing changed since Tuesday</text>
+<text x="380" y="148" text-anchor="middle" fill="#22c55e" font-size="7" font-family="JetBrains Mono" opacity=".5">your price is still locked</text>
+<text x="380" y="195" text-anchor="middle" fill="#52526a" font-size="7" font-family="JetBrains Mono">context rebuilt</text>
+<text x="380" y="208" text-anchor="middle" fill="#52526a" font-size="7" font-family="JetBrains Mono">in one screen</text>
+<text x="380" y="250" text-anchor="middle" fill="#22c55e" font-size="8" font-family="JetBrains Mono" opacity=".6">confidence restored</text>
+<!-- Card 3: Non-linear tracking -->
+<rect x="510" y="30" width="220" height="240" rx="8" stroke="rgba(255,255,255,.06)" fill="rgba(255,255,255,.015)"/>
+<text x="620" y="60" text-anchor="middle" fill="#2dd4bf" font-size="9" font-family="JetBrains Mono" opacity=".6">INTERVENTION 03</text>
+<text x="620" y="82" text-anchor="middle" fill="#f4f4f6" font-size="11" font-family="IBM Plex Sans" font-weight="600">Loop Tracking</text>
+<path d="M 560 120 C 580 120, 600 110, 620 115 C 640 120, 650 140, 630 145 C 610 150, 620 125, 650 120 C 670 116, 680 112, 690 110" stroke="#2dd4bf" stroke-width=".8" fill="none" opacity=".4"/>
+<circle cx="630" cy="135" r="15" stroke="#2dd4bf" stroke-width=".5" fill="none" opacity=".15" stroke-dasharray="2 2"/>
+<text x="620" y="195" text-anchor="middle" fill="#52526a" font-size="7" font-family="JetBrains Mono">PostHog + GA4</text>
+<text x="620" y="208" text-anchor="middle" fill="#52526a" font-size="7" font-family="JetBrains Mono">measuring loops, not lines</text>
+<text x="620" y="250" text-anchor="middle" fill="#22c55e" font-size="8" font-family="JetBrains Mono" opacity=".6">right problem found</text>
+</svg></div>
+
+<div class="sec"><span class="sec__num">05 Key decisions</span><h2 class="sec__h">Trade-offs</h2><table class="dt"><thead><tr><th>Area</th><th>Decision</th><th>Trade-off</th></tr></thead><tbody><tr><td>Cart</td><td>Persistent cart + 72h price-lock</td><td>Higher infra cost. Backend changes to reservation system. But addressed #1 re-entry anxiety.</td></tr><tr><td>Re-entry</td><td>"Welcome back" with change detection</td><td>Complex state management. Edge cases with price/availability. Worth it for context confidence.</td></tr><tr><td>Payment</td><td>Stopped optimizing payment form</td><td>Controversial. Team had momentum. But data showed diminishing returns. Reallocated to re-entry.</td></tr><tr><td>Analytics</td><td>Built non-linear funnel tracking</td><td>3 weeks to build. Slower start. Without it, we'd optimize the wrong thing forever.</td></tr><tr><td>Rollout</td><td>Phased by market, not global</td><td>Slower to show full impact. But independent validation per market built confidence.</td></tr></tbody></table></div>
+
+<div class="sec"><span class="sec__num">06 What failed</span><h2 class="sec__h">Three experiments that went wrong</h2><div class="fail"><span class="fail__h">Urgency timers killed conversion</span><span class="fail__p">Added countdown timers. Conversion dropped 4%. Users felt manipulated. Killed after 5 days. Urgency tactics from e-commerce don't work for 200+ euro experiences.</span></div><div class="fail"><span class="fail__h">Personalized recs at checkout backfired</span><span class="fail__p">First "welcome back" showed recommendations alongside saved cart. Users clicked recs instead of completing. Simplified to cart-only. Completion for returning users jumped 18%. At checkout: reduce choices, don't add them.</span></div><div class="fail"><span class="fail__h">Mobile is not small desktop</span><span class="fail__p">First redesign was responsive desktop. PostHog showed mobile users re-enter via email/push, not URLs. Redesigned for deep-link entry. Mobile re-entry rate doubled.</span></div></div>
+
+<div class="sec"><span class="sec__num">07 Impact</span><h2 class="sec__h">Final outcome</h2><div class="ba"><div class="ba__col"><span class="ba__v ba__v--o">62%</span><span class="ba__sub">Before: completion</span></div><span class="ba__arrow">&#8594;</span><div class="ba__col"><span class="ba__v ba__v--n">73%</span><span class="ba__sub">After: completion</span><span class="ba__delta">+11 percentage points</span></div></div><p class="sec__p">Validated across 4 EU markets over 3 months. Seven-figure annual revenue impact. The CRO framework became the checkout team standard after I left.</p><p class="sec__p" style="color:var(--am)"><strong style="color:var(--am)">What I'd do differently:</strong> Track cross-device re-entry from day one. Users start mobile, return desktop. We caught this late. Cost a month of learnings.</p></div>
+
+<div class="sec"><span class="sec__num">08 Raw thinking</span><h2 class="sec__h">Process notes</h2><div class="raw"><span class="raw__l">PostHog analysis</span>Session recording sample: 200 converting users, 200 abandoners.
+
+Converting: 62% one session, 38% left and returned 1-3 times.
+Average return time: 1.8 days.
+Return trigger: direct URL (desktop), email/push (mobile).
+
+Abandoners: 44% never past activity selection.
+31% reached checkout, bounced at cart review (NOT payment).
+25% reached payment, failed (declined cards, wrong details).
+
+The 31% at cart review: this is the gold.
+Intent existed. Confidence broke.
+Not a "payment UX" problem. A "trust in persistence" problem.</div><div class="raw"><span class="raw__l">CRO framework</span>Built a framework the team still uses:
+
+1. Map actual behavior (not assumed funnel)
+2. Identify highest-friction transition
+3. Categorize: cognitive / emotional / structural / technical
+4. Design intervention for specific friction type
+5. Measure with behavioral validation
+
+This caught the re-entry problem because step 1
+revealed the funnel was non-linear.</div></div>
+
+<nav class="nav"><a href="../index.html">&#8592; All work</a><a href="enso.html">Next: ENSO Co-Living &#8594;</a></nav>
+</article>
+</body>
+</html>
