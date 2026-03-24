@@ -179,15 +179,19 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .cd__tag--result{color:#7cc88e;background:rgba(80,180,100,.06);border:1px solid rgba(80,180,100,.12)}
 .cd__tag--live{color:#d4a84b;background:rgba(212,168,75,.06);border:1px solid rgba(212,168,75,.12)}
 
-/* cards */
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+/* cards – masonry layout */
+.cards{display:grid;grid-template-columns:2fr 1fr;gap:12px}
 .cd{background:var(--glass);border:1px solid var(--b1);border-radius:10px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;position:relative;transition:border-color .3s,box-shadow .4s var(--e)}
 .cd:hover{border-color:var(--acb);box-shadow:0 0 40px var(--acg2),0 20px 60px rgba(0,0,0,.3)}
 .cd:hover .cd__img svg,.cd:hover .cd__img img{transform:scale(1.03);transition:transform .5s var(--e)}
 .cd__img svg,.cd__img img{transition:transform .5s var(--e)}
 .cd--f{grid-column:1/-1}
 .cd__img{width:100%;aspect-ratio:16/9;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.cd--f .cd__img{aspect-ratio:16/9}
+.cd--f .cd__img{aspect-ratio:21/9}
+.cards__side{display:flex;flex-direction:column;gap:12px}
+.cards__side .cd__img{aspect-ratio:16/10}
+.cd--hero{flex:1}
+.cd--hero .cd__img{aspect-ratio:auto;flex:1;min-height:200px}
 .cd__img .ph{font-size:.62rem;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;z-index:1}
 .cd--1 .cd__img{background:linear-gradient(135deg,#020810,#051228 60%,#081840)}.cd--2 .cd__img{background:linear-gradient(135deg,#020a02,#041808 60%,#082a10)}.cd--3 .cd__img{background:linear-gradient(135deg,#08020f,#140828 60%,#1e0c40)}.cd--4 .cd__img{background:linear-gradient(135deg,#0a0802,#1a1408 60%,#2a2010)}
 .cd__badge{display:none}
@@ -391,6 +395,8 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   /* Cards: single column, consistent */
   .cards{grid-template-columns:1fr !important;gap:16px}
   .cd--f{grid-column:auto}
+  .cd--hero .cd__img{aspect-ratio:16/10;flex:none;min-height:0}
+  .cards__side{gap:16px}
   .cd--f .cd__img,.cd__img{aspect-ratio:16/10}
   .cd__body{padding:16px 20px 20px}
   .cd__name{font-size:1.15rem}
@@ -463,9 +469,10 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   .footer__bottom{flex-direction:column;gap:6px;text-align:center;padding:16px 0 0}
   .footer__copy,.footer__built{font-size:.6rem}
 
-  /* Logs */
+  /* Logs / About me */
   .log__title{font-size:.82rem}
   .log__excerpt{font-size:.76rem}
+  #v-logs .mx > div{grid-template-columns:1fr !important;gap:32px}
 }
 
 /* ═══ SMALL MOBILE: 420px ═══ */
@@ -484,17 +491,17 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 </head>
 <body>
 <div class="ambient"><i></i><i></i></div>
-<header class="bar"><span class="bar__name">Inigo Angulo</span><nav class="bar__nav"><button class="bar__btn on" onclick="go('index')" data-v="index">Index</button><button class="bar__btn" onclick="go('work')" data-v="work">Work</button><button class="bar__btn" onclick="go('about')" data-v="about">Philosophy</button><button class="bar__btn" onclick="go('logs')" data-v="logs">Logs</button></nav><button class="bar__cta" onclick="go('index');setTimeout(function(){document.getElementById('contact').scrollIntoView({behavior:'smooth'})},100)">Let's talk</button><div class="bar__ham" id="hamBtn" onclick="toggleMenu()"><span></span><span></span><span></span></div></header>
+<header class="bar"><span class="bar__name">Inigo Angulo</span><nav class="bar__nav"><button class="bar__btn on" onclick="go('index')" data-v="index">Index</button><button class="bar__btn" onclick="go('work')" data-v="work">Work</button><button class="bar__btn" onclick="go('about')" data-v="about">Thinking</button><button class="bar__btn" onclick="go('logs')" data-v="logs">About me</button></nav><button class="bar__cta" onclick="go('index');setTimeout(function(){document.getElementById('contact').scrollIntoView({behavior:'smooth'})},100)">Let's talk</button><div class="bar__ham" id="hamBtn" onclick="toggleMenu()"><span></span><span></span><span></span></div></header>
 
 <div class="mob-menu" id="mobMenu">
 <div class="mob-menu__bg" onclick="toggleMenu()"></div>
 <div class="mob-menu__inner">
 <div class="mob-menu__link on" onclick="mgo('index')"><span>Index</span><span class="mob-menu__link-num">01</span></div>
 <div class="mob-menu__link" onclick="mgo('work')"><span>Work</span><span class="mob-menu__link-num">02</span></div>
-<div class="mob-menu__link" onclick="mgo('about')"><span>Philosophy</span><span class="mob-menu__link-num">03</span></div>
-<div class="mob-menu__link" onclick="mgo('logs')"><span>Logs</span><span class="mob-menu__link-num">04</span></div>
+<div class="mob-menu__link" onclick="mgo('about')"><span>Thinking</span><span class="mob-menu__link-num">03</span></div>
+<div class="mob-menu__link" onclick="mgo('logs')"><span>About me</span><span class="mob-menu__link-num">04</span></div>
 <div class="mob-menu__cta"><a onclick="mgo('_contact')">Get in touch &#8594;</a></div>
-<div class="mob-menu__contact"><a href="/cdn-cgi/l/email-protection#2e47404749414f40495b42416e49434f4742004d4143">Email</a><a href="https://www.linkedin.com/in/InigoAngulo" target="_blank">LinkedIn</a><a href="tel:+41799528321">Phone</a></div>
+<div class="mob-menu__contact"><a href="/cdn-cgi/l/email-protection#2e47404749414f40495b42416e49434f4742004d4143">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank">LinkedIn</a><a href="tel:+41799528321">Phone</a></div>
 </div>
 </div>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -516,7 +523,7 @@ function go(n){
 <p class="hero__tag">Product Design + Systems Thinking</p>
 <h1 class="hero__h">I design complex systems<br>and ship them.</h1>
 <span class="hero__keyword">Inigo <em>Angulo.</em></span>
-<p class="hero__p">I turn ambiguous, data-heavy problems into products that move business metrics. Commerce intelligence, conversion systems, trading interfaces. I use AI as an execution layer to go from concept to live product without waiting for an engineering team. Three of my last four projects are in production.</p>
+<p class="hero__p">I turn ambiguous, data-heavy problems into products that move business metrics. Commerce intelligence, conversion systems, trading interfaces. I use AI to accelerate execution and close the gap between validated concept and live product. Three of my last four projects are in production.</p>
 <div class="hero__proof">
 <div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">+11%</span><span class="hero__proof-label">Checkout conversion</span><span class="hero__proof-ctx">GetYourGuide, 4 EU markets</span></div>
 <div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--b">40x</span><span class="hero__proof-label">Reporting speed</span><span class="hero__proof-ctx">RetailNorm, live in production</span></div>
@@ -528,124 +535,67 @@ function go(n){
 
 <div class="clients"><div class="clients__inner"><p class="clients__label">Trusted by teams at</p><div class="clients__grid"><span class="clients__item">WPP</span><span class="clients__item">GetYourGuide</span><span class="clients__item">ING Bank</span><span class="clients__item">Adecco Group</span><span class="clients__item">Ferrari Switzerland</span><span class="clients__item">Moderna</span><span class="clients__item">Schneider Electric</span></div></div></div>
 
-<div class="layer"><div class="mx"><div class="sh"><span>// approach</span><span onclick="go('about')" data-v="about" style="cursor:pointer">Read more</span></div>
+<div class="layer"><div class="mx"><div class="sh"><span>// approach</span></div>
+
+<div style="position:relative;margin-bottom:36px;padding:48px 0 40px;overflow:hidden;border-radius:10px;background:var(--bg2);border:1px solid var(--b1)">
+<svg viewBox="0 0 1100 260" fill="none" style="width:100%;height:100%;display:block">
+<style>
+@keyframes draw{from{stroke-dashoffset:12000}to{stroke-dashoffset:0}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:.8}}
+</style>
+<path d="M60,150 C40,60 100,240 80,40 C70,10 120,250 90,80 C70,20 140,230 110,30 C90,0 160,250 120,60 C100,10 170,240 130,80 C115,30 180,230 145,50 C130,5 190,250 155,90 C140,20 205,240 170,40 C150,0 220,250 180,70 C160,15 230,240 195,100 C175,30 240,230 210,60 C195,10 260,240 225,90 C210,30 270,220 240,70 C225,20 285,230 255,100 C240,40 295,210 270,80 C255,30 310,220 285,110 C270,50 325,200 300,90 C285,40 340,210 315,110 C300,55 355,195 335,100 C320,60 370,190 350,115 C340,70 380,180 365,110 C355,75 395,175 385,118 C375,85 410,168 400,122 C395,95 425,160 420,125 C415,105 440,155 440,128 C438,112 460,150 460,130 C460,120 480,142 485,132 C490,128 510,138 520,134 C530,132 550,136 570,134 C590,133 620,135 660,134 L1040,134" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".5" fill="none" style="stroke-dasharray:12000;stroke-dashoffset:12000;animation:draw 6s cubic-bezier(.22,.61,.36,1) forwards"/>
+<path d="M60,150 C40,60 100,240 80,40 C70,10 120,250 90,80 C70,20 140,230 110,30 C90,0 160,250 120,60 C100,10 170,240 130,80 C115,30 180,230 145,50 C130,5 190,250 155,90 C140,20 205,240 170,40 C150,0 220,250 180,70 C160,15 230,240 195,100 C175,30 240,230 210,60 C195,10 260,240 225,90 C210,30 270,220 240,70 C225,20 285,230 255,100 C240,40 295,210 270,80 C255,30 310,220 285,110 C270,50 325,200 300,90 C285,40 340,210 315,110 C300,55 355,195 335,100 C320,60 370,190 350,115 C340,70 380,180 365,110 C355,75 395,175 385,118 C375,85 410,168 400,122 C395,95 425,160 420,125 C415,105 440,155 440,128 C438,112 460,150 460,130 C460,120 480,142 485,132 C490,128 510,138 520,134 C530,132 550,136 570,134 C590,133 620,135 660,134 L1040,134" stroke="#2dd4bf" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".03" fill="none" style="stroke-dasharray:12000;stroke-dashoffset:12000;animation:draw 6s cubic-bezier(.22,.61,.36,1) forwards"/>
+<circle cx="60" cy="150" r="3.5" fill="#6e6e88" style="animation:fadeIn .3s .2s both"/>
+<text x="60" y="192" text-anchor="middle" fill="#6e6e88" font-size="9" font-family="JetBrains Mono" style="animation:fadeIn .5s .3s both">Problem</text>
+<line x1="1040" y1="50" x2="1040" y2="126" stroke="#6e6e88" stroke-width=".8" stroke-dasharray="3 3" style="animation:fadeIn .5s 5.2s both"/>
+<circle cx="1040" cy="134" r="6" fill="none" stroke="#2dd4bf" stroke-width="1" style="animation:fadeIn .5s 5.5s both,pulse 2.5s 6s infinite"/>
+<circle cx="1040" cy="134" r="2.5" fill="#2dd4bf" style="animation:fadeIn .3s 5.5s both"/>
+<text x="1040" y="40" text-anchor="middle" fill="#2dd4bf" font-size="9" font-family="JetBrains Mono" font-weight="600" style="animation:fadeIn .5s 5.2s both">Outcome</text>
+</svg>
+</div>
+
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start">
 <div>
-<p style="font-family:var(--s);font-size:1.15rem;font-weight:600;line-height:1.4;margin-bottom:14px;letter-spacing:-.02em">Most product teams ship screens and hope the business follows. I start at the other end: what decision does this system need to produce? Then I remove everything that doesn't serve that decision.</p>
-<p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.7">I've never found the real problem in a brief. It's always in session recordings, funnel data, or operator shadowing. What gets called a 'UX problem' is usually a trust problem or a measurement problem wearing a UI costume.</p>
+<p style="font-family:var(--s);font-size:1.15rem;font-weight:600;line-height:1.4;margin-bottom:14px;letter-spacing:-.02em">I design backwards. Start with the decision the business needs to make, then build the system that produces it. Everything that doesn't serve that decision gets removed.</p>
+<p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.7;margin-bottom:20px">The real problem rarely lives in the brief. I find it in session recordings, funnel data, and operator shadowing. Most of what looks like a UX problem turns out to be a trust gap or a measurement gap.</p>
+<button onclick="go('about')" style="font-family:var(--s);font-size:.78rem;font-weight:500;color:var(--ac2);border:1px solid var(--acb);background:var(--acg2);padding:8px 20px;border-radius:6px;transition:all .3s var(--e);letter-spacing:.02em;cursor:pointer" onmouseover="this.style.background='var(--ac)';this.style.color='#000';this.style.borderColor='var(--ac)';this.style.boxShadow='0 0 20px var(--acg),0 0 60px var(--acg2)'" onmouseout="this.style.background='var(--acg2)';this.style.color='var(--ac2)';this.style.borderColor='var(--acb)';this.style.boxShadow='none'">See my process &#8594;</button>
 </div>
 <div style="display:flex;flex-direction:column;gap:12px">
-<div style="display:flex;align-items:baseline;gap:12px;padding:12px 0;border-bottom:1px solid var(--b1)"><span style="font-family:var(--s);font-size:.82rem;font-weight:600;min-width:24px">01</span><span style="font-family:var(--s);font-size:.84rem;color:var(--t2)">The screen is the least interesting part</span></div>
-<div style="display:flex;align-items:baseline;gap:12px;padding:12px 0;border-bottom:1px solid var(--b1)"><span style="font-family:var(--s);font-size:.82rem;font-weight:600;min-width:24px">02</span><span style="font-family:var(--s);font-size:.84rem;color:var(--t2)">If you're adding features, you missed the problem</span></div>
-<div style="display:flex;align-items:baseline;gap:12px;padding:12px 0;border-bottom:1px solid var(--b1)"><span style="font-family:var(--s);font-size:.82rem;font-weight:600;min-width:24px">03</span><span style="font-family:var(--s);font-size:.84rem;color:var(--t2)">User interviews lie. Session recordings don't.</span></div>
-<div style="display:flex;align-items:baseline;gap:12px;padding:12px 0"><span style="font-family:var(--s);font-size:.82rem;font-weight:600;min-width:24px">04</span><span style="font-family:var(--s);font-size:.84rem;color:var(--t2)">Ship the measurement before the solution</span></div>
+<div style="display:flex;align-items:baseline;gap:12px;padding:12px 0;border-bottom:1px solid var(--b1)"><span style="font-family:var(--s);font-size:.82rem;font-weight:600;min-width:24px">01</span><span style="font-family:var(--s);font-size:.84rem;color:var(--t2)">Decisions first, screens second</span></div>
+<div style="display:flex;align-items:baseline;gap:12px;padding:12px 0;border-bottom:1px solid var(--b1)"><span style="font-family:var(--s);font-size:.82rem;font-weight:600;min-width:24px">02</span><span style="font-family:var(--s);font-size:.84rem;color:var(--t2)">Fewer features, sharper outcomes</span></div>
+<div style="display:flex;align-items:baseline;gap:12px;padding:12px 0;border-bottom:1px solid var(--b1)"><span style="font-family:var(--s);font-size:.82rem;font-weight:600;min-width:24px">03</span><span style="font-family:var(--s);font-size:.84rem;color:var(--t2)">Data over assumptions, always</span></div>
+<div style="display:flex;align-items:baseline;gap:12px;padding:12px 0"><span style="font-family:var(--s);font-size:.82rem;font-weight:600;min-width:24px">04</span><span style="font-family:var(--s);font-size:.84rem;color:var(--t2)">Measure before you build</span></div>
 </div>
 </div>
 </div></div>
 
 <div class="layer layer--raised"><div class="mx"><div class="sh"><span>// selected work</span><span onclick="go('work')" style="cursor:pointer">View all</span></div>
 <div class="cards">
-<a href="work/retailnorm.html" class="cd cd--f cd--1"><div class="cd__img"><span class="cd__badge cd__badge--b">Live</span><div class="cd__chips"><span class="cd__chip cd__chip--b">WPP</span><span class="cd__chip cd__chip--g">Live</span></div><img src="img/retailnorm-hero.jpg" alt="RetailNorm dashboard" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__peek"><span class="cd__peek-l">The hook</span><span class="cd__peek-t">14 data sources. 3 hours daily spent reconciling them. Nobody trusted the numbers enough to decide anything. We built the single source of truth.</span></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--what">Commerce</span><span class="cd__tag cd__tag--what">Dashboards</span><span class="cd__tag cd__tag--live">Live</span></div><h3 class="cd__name">RetailNorm</h3><p class="cd__desc">Agencies were moving six-figure budgets using data they knew was incomparable. Nobody fixed it because the problem sits between platforms, not inside them. I designed the system that made the data trustworthy. 40x faster. Live.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
-<a href="work/kodo.html" class="cd cd--2"><div class="cd__img"><span class="cd__badge cd__badge--a">Private client</span><div class="cd__chips"><span class="cd__chip cd__chip--a">Live capital</span><span class="cd__chip cd__chip--g">24/7 autonomous</span></div><img src="img/kodo-hero.png" alt="KŌDO Arbitrage trading interface" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__peek"><span class="cd__peek-l">The hook</span><span class="cd__peek-t">v1 had 23 metrics and looked beautiful. I went live with real money and couldn't tell within 30 minutes if I was safe. Redesigned from scratch.</span></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">Private Client</span><span class="cd__tag cd__tag--what">Trading Interface</span><span class="cd__tag cd__tag--result">24/7 Live Capital</span></div><h3 class="cd__name">KŌDO Arbitrage</h3><p class="cd__desc">My own money. 24/7 autonomous execution. v1 had 23 metrics and I couldn't decide in under 30 minutes. That's a design failure with financial consequences. v2 answers one question. Running live.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
-<a href="work/checkout.html" class="cd cd--3"><div class="cd__img"><span class="cd__badge cd__badge--g">+11% conversion</span><div class="cd__chips"><span class="cd__chip cd__chip--g">GetYourGuide</span><span class="cd__chip cd__chip--p">4 EU markets</span></div><svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0">
+<a href="work/retailnorm.html" class="cd cd--f cd--1"><div class="cd__img"><img src="img/retailnorm-hero.jpg" alt="RetailNorm dashboard" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--what">Commerce</span><span class="cd__tag cd__tag--what">Dashboards</span><span class="cd__tag cd__tag--live">Live</span></div><h3 class="cd__name">RetailNorm</h3><p class="cd__desc">Agencies were moving six-figure budgets using data they knew was incomparable. Nobody fixed it because the problem sits between platforms, not inside them. I designed the system that made the data trustworthy. 40x faster. Live.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
+<a href="work/checkout.html" class="cd cd--3 cd--hero"><div class="cd__img"><svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0">
 <rect width="400" height="300" fill="#08020f"/>
-<!-- Funnel bars -->
-<rect x="50" y="40" width="300" height="24" rx="3" fill="rgba(255,255,255,.03)"/><rect x="50" y="40" width="300" height="24" rx="3" fill="rgba(45,212,191,.08)"/>
+<rect x="50" y="40" width="300" height="24" rx="3" fill="rgba(45,212,191,.08)"/>
 <text x="60" y="56" fill="#52526a" font-size="7" font-family="JetBrains Mono">browse 100%</text>
 <rect x="50" y="72" width="228" height="24" rx="3" fill="rgba(255,255,255,.025)"/>
 <text x="60" y="88" fill="#52526a" font-size="7" font-family="JetBrains Mono">select 76%</text>
 <rect x="50" y="104" width="183" height="24" rx="3" fill="rgba(255,255,255,.02)"/>
 <text x="60" y="120" fill="#52526a" font-size="7" font-family="JetBrains Mono">checkout 61%</text>
-<!-- Re-entry: highlighted -->
 <rect x="50" y="140" width="156" height="28" rx="4" stroke="#2dd4bf" stroke-width="1" fill="rgba(45,212,191,.06)" stroke-opacity=".4"><animate attributeName="stroke-opacity" values=".2;.5;.2" dur="3s" repeatCount="indefinite"/></rect>
 <text x="60" y="158" fill="#2dd4bf" font-size="8" font-family="JetBrains Mono" font-weight="600" opacity=".7">re-entry 52% ★</text>
 <text x="215" y="158" fill="#22c55e" font-size="7" font-family="JetBrains Mono">was 31%</text>
 <rect x="50" y="180" width="219" height="24" rx="3" fill="rgba(34,197,94,.06)"/>
 <text x="60" y="196" fill="#22c55e" font-size="7" font-family="JetBrains Mono" opacity=".7">payment 73%</text>
 <text x="185" y="196" fill="#52526a" font-size="7" font-family="JetBrains Mono">was 62%</text>
-<!-- Label -->
 <text x="200" y="240" text-anchor="middle" fill="#52526a" font-size="8" font-family="JetBrains Mono">the gap nobody measured</text>
 <text x="200" y="255" text-anchor="middle" fill="#2dd4bf" font-size="9" font-family="IBM Plex Sans" font-weight="600" opacity=".5">+11 pts</text>
-</svg></div><div class="cd__peek"><span class="cd__peek-l">The hook</span><span class="cd__peek-t">Everyone was optimizing the payment form. PostHog showed 38% of converters left checkout at least once. The real problem was re-entry, not payment.</span></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">GetYourGuide</span><span class="cd__tag cd__tag--what">Growth &amp; CRO</span><span class="cd__tag cd__tag--result">+11% Conversion</span></div><h3 class="cd__name">Checkout Funnel Redesign</h3><p class="cd__desc">The team was optimizing the wrong step. 38% of converters left checkout and came back with no re-entry experience. The problem wasn't payment. It was the gap nobody measured. +11 pts, 4 EU markets.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
-<a href="work/enso.html" class="cd cd--4"><div class="cd__img"><span class="cd__badge cd__badge--p">-22% friction</span><div class="cd__chips"><span class="cd__chip cd__chip--g">3 countries</span><span class="cd__chip cd__chip--b">PropTech</span></div><svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0">
-<rect width="400" height="300" fill="#0a0802"/>
-<!-- Ambient green glow -->
-<circle cx="200" cy="150" r="120" fill="#1a6b45" opacity=".04"/>
-<!-- 5 mobile screens flowing left to right, getting brighter -->
-<!-- Screen 1: Registration (faded) -->
-<g transform="translate(30,50)" opacity=".3">
-<rect width="52" height="92" rx="6" fill="#111" stroke="#2a2a3a" stroke-width=".5"/>
-<rect x="8" y="12" width="36" height="4" rx="1" fill="#2a2a3a"/>
-<rect x="8" y="20" width="28" height="4" rx="1" fill="#2a2a3a"/>
-<rect x="8" y="32" width="36" height="8" rx="2" fill="none" stroke="#2a2a3a" stroke-width=".5"/>
-<rect x="8" y="44" width="36" height="8" rx="2" fill="none" stroke="#2a2a3a" stroke-width=".5"/>
-<rect x="8" y="60" width="36" height="10" rx="3" fill="#1a6b45" opacity=".4"/>
-<text x="26" y="68" text-anchor="middle" fill="#fff" font-size="4" font-family="IBM Plex Sans" opacity=".5">Continue</text>
-</g>
-<!-- Screen 2: Preferences -->
-<g transform="translate(95,40)" opacity=".45">
-<rect width="56" height="98" rx="6" fill="#111" stroke="#2a2a3a" stroke-width=".5"/>
-<text x="28" y="16" text-anchor="middle" fill="#2dd4bf" font-size="5" font-family="IBM Plex Sans" font-weight="600" opacity=".6">enso</text>
-<rect x="8" y="24" width="18" height="18" rx="4" fill="none" stroke="#2a2a3a" stroke-width=".5"/>
-<rect x="30" y="24" width="18" height="18" rx="4" fill="none" stroke="#2dd4bf" stroke-width=".8" opacity=".4"/>
-<circle cx="39" cy="33" r="3" fill="#2dd4bf" opacity=".3"/>
-<rect x="8" y="48" width="40" height="6" rx="1.5" fill="#2a2a3a" opacity=".5"/>
-<rect x="8" y="58" width="40" height="6" rx="1.5" fill="#2a2a3a" opacity=".3"/>
-<rect x="8" y="72" width="40" height="10" rx="3" fill="#1a6b45" opacity=".5"/>
-</g>
-<!-- Screen 3: Video qualification (center, prominent) -->
-<g transform="translate(165,28)">
-<rect width="62" height="108" rx="7" fill="#0d2818" stroke="#2dd4bf" stroke-width=".8" stroke-opacity=".25"/>
-<!-- Video recording area -->
-<rect x="6" y="10" width="50" height="50" rx="4" fill="#1a3d28"/>
-<circle cx="31" cy="35" r="8" fill="#2dd4bf" opacity=".15"><animate attributeName="opacity" values=".1;.2;.1" dur="3s" repeatCount="indefinite"/></circle>
-<circle cx="31" cy="35" r="3" fill="#ef4444" opacity=".6"><animate attributeName="opacity" values=".4;.8;.4" dur="1.5s" repeatCount="indefinite"/></circle>
-<text x="31" y="70" text-anchor="middle" fill="#8c8c9e" font-size="4" font-family="JetBrains Mono">Record intro</text>
-<rect x="6" y="78" width="50" height="4" rx="1" fill="#2dd4bf" opacity=".1"/>
-<rect x="6" y="78" width="30" height="4" rx="1" fill="#2dd4bf" opacity=".25"><animate attributeName="width" values="0;50" dur="4s" repeatCount="indefinite"/></rect>
-<rect x="6" y="88" width="50" height="10" rx="3" fill="#2dd4bf" opacity=".15"/>
-<text x="31" y="96" text-anchor="middle" fill="#2dd4bf" font-size="4" font-family="IBM Plex Sans" font-weight="600" opacity=".7">Submit</text>
-</g>
-<!-- Screen 4: Matching -->
-<g transform="translate(245,40)" opacity=".5">
-<rect width="56" height="98" rx="6" fill="#111" stroke="#2a2a3a" stroke-width=".5"/>
-<circle cx="28" cy="22" r="6" fill="#1a6b45" opacity=".4"/>
-<text x="28" y="25" text-anchor="middle" fill="#2dd4bf" font-size="5" opacity=".5">&#10003;</text>
-<text x="28" y="38" text-anchor="middle" fill="#8c8c9e" font-size="4" font-family="IBM Plex Sans">Matched!</text>
-<rect x="6" y="46" width="44" height="28" rx="3" fill="#1a2a1e" opacity=".5"/>
-<rect x="10" y="50" width="20" height="3" rx="1" fill="#52526a"/>
-<rect x="10" y="56" width="30" height="3" rx="1" fill="#52526a" opacity=".5"/>
-<rect x="10" y="62" width="36" height="6" rx="2" fill="#22c55e" opacity=".2"/>
-<text x="28" y="67" text-anchor="middle" fill="#22c55e" font-size="3.5" font-family="JetBrains Mono" opacity=".6">449 EUR</text>
-</g>
-<!-- Screen 5: Success (bright) -->
-<g transform="translate(315,50)" opacity=".4">
-<rect width="52" height="92" rx="6" fill="#111" stroke="#22c55e" stroke-width=".5" stroke-opacity=".2"/>
-<circle cx="26" cy="28" r="10" fill="#22c55e" opacity=".08"/>
-<text x="26" y="32" text-anchor="middle" fill="#22c55e" font-size="8" opacity=".5">&#10003;</text>
-<text x="26" y="48" text-anchor="middle" fill="#8c8c9e" font-size="4" font-family="IBM Plex Sans">Valencia awaits</text>
-<rect x="6" y="56" width="40" height="22" rx="3" fill="#1a2a1e" opacity=".3"/>
-<rect x="6" y="82" width="40" height="6" rx="2" fill="#22c55e" opacity=".15"/>
-</g>
-<!-- Flow arrows connecting screens -->
-<line x1="84" y1="96" x2="93" y2="90" stroke="#2dd4bf" stroke-opacity=".12" stroke-width=".5"/>
-<line x1="153" y1="88" x2="163" y2="82" stroke="#2dd4bf" stroke-opacity=".15" stroke-width=".5"/>
-<line x1="229" y1="82" x2="243" y2="88" stroke="#2dd4bf" stroke-opacity=".12" stroke-width=".5"/>
-<line x1="303" y1="88" x2="313" y2="96" stroke="#2dd4bf" stroke-opacity=".1" stroke-width=".5"/>
-<!-- Progress bar at bottom -->
-<rect x="80" y="250" width="240" height="2" rx="1" fill="#2a2a3a"/>
-<rect x="80" y="250" width="168" height="2" rx="1" fill="#2dd4bf" opacity=".3"/>
-<circle cx="248" cy="251" r="3" fill="#2dd4bf" opacity=".4"><animate attributeName="opacity" values=".2;.5;.2" dur="2s" repeatCount="indefinite"/></circle>
-<!-- Labels -->
-<text x="55" y="270" fill="#2a2a3a" font-size="6" font-family="JetBrains Mono">register</text>
-<text x="165" y="270" fill="#2dd4bf" font-size="6" font-family="JetBrains Mono" opacity=".4">qualify</text>
-<text x="288" y="270" fill="#22c55e" font-size="6" font-family="JetBrains Mono" opacity=".3">book</text>
-<!-- Metric -->
-<text x="200" y="290" text-anchor="middle" fill="#52526a" font-size="7" font-family="JetBrains Mono">36% drop-off &#8594; &lt;20%</text>
-</svg></div><div class="cd__peek"><span class="cd__peek-l">The hook</span><span class="cd__peek-t">Everyone wanted to digitize 47 spreadsheets. 2 weeks of operator shadowing revealed the real product was 3 daily decisions. Scope cut 60%. Adoption 4x projected.</span></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">ENSO Co-Living</span><span class="cd__tag cd__tag--what">PropTech</span><span class="cd__tag cd__tag--result">-22% Friction</span><a href="https://www.ensocoliving.com/en/" target="_blank" onclick="event.stopPropagation()" class="cd__tag cd__tag--who" style="text-decoration:none">ensocoliving.com &#8599;</a></div><h3 class="cd__name">ENSO Co-Living</h3><p class="cd__desc">The brief was wrong. Operator shadowing revealed the product wasn't 47 spreadsheets, it was 3 daily decisions. Killed 60% of planned scope. -22% friction, 4x adoption.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
+</svg></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">GetYourGuide</span><span class="cd__tag cd__tag--what">Growth &amp; CRO</span><span class="cd__tag cd__tag--result">+11% Conversion</span></div><h3 class="cd__name">Checkout Funnel Redesign</h3><p class="cd__desc">The team was optimizing the wrong step. 38% of converters left checkout and came back with no re-entry experience. The problem wasn't payment. It was the gap nobody measured. +11 pts, 4 EU markets.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
+<div class="cards__side">
+<a href="work/kodo.html" class="cd cd--2"><div class="cd__img"><img src="img/kodo-hero.png" alt="KŌDO Arbitrage trading interface" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">Private Client</span><span class="cd__tag cd__tag--what">Trading Interface</span><span class="cd__tag cd__tag--result">24/7 Live Capital</span></div><h3 class="cd__name">KŌDO Arbitrage</h3><p class="cd__desc">My own money. 24/7 autonomous execution. v1 had 23 metrics and I couldn't decide in under 30 minutes. That's a design failure with financial consequences. v2 answers one question. Running live.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
+<a href="work/enso.html" class="cd cd--4"><div class="cd__img"><img src="img/enso-hero.jpg" alt="ENSO Co-Living platform" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">ENSO Co-Living</span><span class="cd__tag cd__tag--what">PropTech</span><span class="cd__tag cd__tag--result">-22% Friction</span><span class="cd__tag cd__tag--who">ensocoliving.com &#8599;</span></div><h3 class="cd__name">ENSO Co-Living</h3><p class="cd__desc">The brief was wrong. Operator shadowing revealed the product wasn't 47 spreadsheets, it was 3 daily decisions. Killed 60% of planned scope. -22% friction, 4x adoption.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
+</div>
 </div></div></div>
 
-<div class="layer"><div class="mx"><div class="sh"><span>// validated impact</span></div><div class="imp-grid"><div class="imp"><span class="imp__l">GetYourGuide / Checkout completion / GA4 + PostHog A/B</span><span class="imp__h">Completion rate: before vs after redesign</span><div class="ba"><div class="ba__c"><span class="ba__v ba__v--o">62%</span><span class="ba__s">baseline</span></div><span class="ba__a">&#8594;</span><div class="ba__c"><span class="ba__v ba__v--n">73%</span><span class="ba__s">post-launch</span></div></div><span class="imp__n">+11 pts, 4 EU markets, statistically significant. Primary intervention: re-entry UX, not payment optimization.</span></div><div class="imp"><span class="imp__l">ENSO Co-Living / Onboarding funnel / Mixpanel</span><span class="imp__h">Step-by-step drop-off: original vs redesigned</span><div class="fn"><div class="fn__r"><span class="fn__nm">Landing</span><div class="fn__bw"><div class="fn__b fn__b--b" style="width:100%"></div></div><span class="fn__p">100%</span></div><div class="fn__r"><span class="fn__nm">Profile</span><div class="fn__bw"><div class="fn__b fn__b--b" style="width:74%"></div></div><span class="fn__p">74%</span></div><div class="fn__r"><span class="fn__nm">Matching</span><div class="fn__bw"><div class="fn__b fn__b--g" style="width:71%"></div><span class="fn__d">+13%</span></div><span class="fn__p">71%</span></div><div class="fn__r"><span class="fn__nm">Booking</span><div class="fn__bw"><div class="fn__b fn__b--g" style="width:62%"></div></div><span class="fn__p">62%</span></div></div><span class="imp__n">AI matching redesign was the single biggest lever. First version (pre-filled 12 fields) increased abandonment 15%. Fixed by reducing AI to 2 touchpoints.</span></div></div></div></div>
 
 <div class="layer layer--raised"><div class="mx"><div class="sh"><span>// how I work</span></div>
 <div class="flow">
@@ -667,342 +617,161 @@ function go(n){
 <div class="flow__num">03</div>
 <div class="flow__icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4 L26 10 L26 22 L16 28 L6 22 L6 10 Z" stroke="#a78bfa" stroke-width="1.5" opacity=".35"/><circle cx="16" cy="16" r="4" fill="#a78bfa" opacity=".4"/></svg></div>
 <h3 class="flow__h">Ship</h3>
-<p class="flow__p">AI compressed the distance between my design and a live product to near zero. This portfolio, RetailNorm, and KŌDO went from validated concept to production without an engineering team. The bottleneck between idea and shipped product is now a choice, not a constraint.</p>
+<p class="flow__p">AI compressed the distance between design and production. This portfolio, RetailNorm, and KŌDO went from validated concept to live product faster than any traditional timeline. The gap between idea and shipped product keeps shrinking.</p>
 </div>
 </div>
 </div></div>
 
 <div class="layer"><div class="mx"><div class="sh"><span>// curriculum vitae</span></div><div class="cv__box"><div><span class="cv__t" style="display:flex;align-items:center;gap:10px"><svg width="20" height="24" viewBox="0 0 20 24" fill="none" style="flex-shrink:0"><rect x="1" y="1" width="18" height="22" rx="2" stroke="#2dd4bf" stroke-width="1.5" fill="none" opacity=".5"/><line x1="5" y1="8" x2="15" y2="8" stroke="#2dd4bf" stroke-width="1" opacity=".3"/><line x1="5" y1="12" x2="13" y2="12" stroke="#2dd4bf" stroke-width="1" opacity=".3"/><line x1="5" y1="16" x2="11" y2="16" stroke="#2dd4bf" stroke-width="1" opacity=".3"/></svg>Download my CV</span><br><span class="cv__m">PDF, Updated March 2026</span></div><a href="Inigo_Angulo_CV_2026.pdf" download class="cv__btn">Download PDF</a></div></div></div>
 
-<div class="layer layer--raised" id="contact"><div class="mx"><div class="contact__row"><div class="contact__left"><h2>Let's talk about your system.</h2><p style="font-family:var(--s);font-size:.88rem;color:var(--t2);line-height:1.65;max-width:380px;margin-bottom:24px">I work on complex product problems where design directly impacts revenue, decision quality, or operational efficiency. Commerce, fintech, data-heavy systems.</p><div class="cl"><a href="/cdn-cgi/l/email-protection#771e191e1018161910021b1837101a161e1b5914181a"><span>Email</span><span class="__cf_email__" data-cfemail="61080f08060e000f06140d0e21060c00080d4f020e0c">[email&#160;protected]</span></a><a href="https://www.linkedin.com/in/InigoAngulo" target="_blank"><span>LinkedIn</span>/InigoAngulo</a><a href="tel:+41799528321"><span>Phone</span>+41 79 952 83 21</a></div><p style="font-family:var(--s);font-size:.76rem;color:var(--t3);margin-top:20px;line-height:1.6">Based in Zurich. Remote or hybrid.</p></div><div class="contact__right"><p class="contact__ft">// reach out</p><div class="ff"><label>Name</label><input placeholder="Your name"></div><div class="ff"><label>Email</label><input type="email" placeholder="your@email.com"></div><div class="ff"><label>What are you working on?</label><textarea placeholder="Tell me about the system you're building, the problem you're stuck on, or the role you're hiring for."></textarea></div><button class="form-go">Send message</button></div></div></div></div>
+<div class="layer layer--raised" id="contact"><div class="mx"><div class="contact__row"><div class="contact__left"><h2>Let's talk about your system.</h2><p style="font-family:var(--s);font-size:.88rem;color:var(--t2);line-height:1.65;max-width:380px;margin-bottom:24px">I work on complex product problems where design directly impacts revenue, decision quality, or operational efficiency. Commerce, fintech, data-heavy systems.</p><div class="cl"><a href="/cdn-cgi/l/email-protection#771e191e1018161910021b1837101a161e1b5914181a"><span>Email</span><span class="__cf_email__" data-cfemail="61080f08060e000f06140d0e21060c00080d4f020e0c">[email&#160;protected]</span></a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank"><span>LinkedIn</span>/inigo-angulo</a><a href="tel:+41799528321"><span>Phone</span>+41 79 952 83 21</a></div><p style="font-family:var(--s);font-size:.76rem;color:var(--t3);margin-top:20px;line-height:1.6">Based in Zurich. Remote or hybrid.</p></div><div class="contact__right"><p class="contact__ft">// reach out</p><div class="ff"><label>Name</label><input placeholder="Your name"></div><div class="ff"><label>Email</label><input type="email" placeholder="your@email.com"></div><div class="ff"><label>What are you working on?</label><textarea placeholder="Tell me about the system you're building, the problem you're stuck on, or the role you're hiring for."></textarea></div><button class="form-go">Send message</button></div></div></div></div>
 </section>
 
 <!-- ████ WORK ████ -->
 <section class="v" id="v-work"><div class="layer"><div class="mx"><div class="vh"><h2>Case Studies</h2><p>Each one follows the same structure: what was broken, what I found, what I shipped, and what the data said afterward.</p></div>
 <div class="cards">
-<a href="work/retailnorm.html" class="cd cd--f cd--1"><div class="cd__img"><span class="cd__badge cd__badge--b">Live in production</span><div class="cd__chips"><span class="cd__chip cd__chip--b">WPP</span><span class="cd__chip cd__chip--g">Live</span></div><img src="img/retailnorm-hero.jpg" alt="RetailNorm dashboard" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--what">Commerce</span><span class="cd__tag cd__tag--what">Dashboards</span><span class="cd__tag cd__tag--live">Live</span></div><h3 class="cd__name">RetailNorm</h3><p class="cd__desc">Budget decisions worth six figures on data that can't be compared. Designed the system that fixed it. Concept to production.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
-<a href="work/kodo.html" class="cd cd--2"><div class="cd__img"><span class="cd__badge cd__badge--a">Private client</span><div class="cd__chips"><span class="cd__chip cd__chip--a">Live capital</span><span class="cd__chip cd__chip--g">24/7</span></div><img src="img/kodo-hero.png" alt="KŌDO Arbitrage trading interface" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">Private Client</span><span class="cd__tag cd__tag--what">Trading Interface</span><span class="cd__tag cd__tag--result">24/7 Live Capital</span></div><h3 class="cd__name">KŌDO Arbitrage</h3><p class="cd__desc">The only project where a design failure costs me real money. 23 metrics became 1 question. Live, 24/7.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
-<a href="work/checkout.html" class="cd cd--3"><div class="cd__img"><span class="cd__badge cd__badge--g">+11% conversion</span><div class="cd__chips"><span class="cd__chip cd__chip--g">GetYourGuide</span><span class="cd__chip cd__chip--p">4 EU markets</span></div><svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0">
+<a href="work/retailnorm.html" class="cd cd--f cd--1"><div class="cd__img"><img src="img/retailnorm-hero.jpg" alt="RetailNorm dashboard" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--what">Commerce</span><span class="cd__tag cd__tag--what">Dashboards</span><span class="cd__tag cd__tag--live">Live</span></div><h3 class="cd__name">RetailNorm</h3><p class="cd__desc">Budget decisions worth six figures on data that can't be compared. Designed the system that fixed it. Concept to production.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
+<a href="work/checkout.html" class="cd cd--3 cd--hero"><div class="cd__img"><svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0">
 <rect width="400" height="300" fill="#08020f"/>
-<!-- Funnel bars -->
-<rect x="50" y="40" width="300" height="24" rx="3" fill="rgba(255,255,255,.03)"/><rect x="50" y="40" width="300" height="24" rx="3" fill="rgba(45,212,191,.08)"/>
+<rect x="50" y="40" width="300" height="24" rx="3" fill="rgba(45,212,191,.08)"/>
 <text x="60" y="56" fill="#52526a" font-size="7" font-family="JetBrains Mono">browse 100%</text>
 <rect x="50" y="72" width="228" height="24" rx="3" fill="rgba(255,255,255,.025)"/>
 <text x="60" y="88" fill="#52526a" font-size="7" font-family="JetBrains Mono">select 76%</text>
 <rect x="50" y="104" width="183" height="24" rx="3" fill="rgba(255,255,255,.02)"/>
 <text x="60" y="120" fill="#52526a" font-size="7" font-family="JetBrains Mono">checkout 61%</text>
-<!-- Re-entry: highlighted -->
 <rect x="50" y="140" width="156" height="28" rx="4" stroke="#2dd4bf" stroke-width="1" fill="rgba(45,212,191,.06)" stroke-opacity=".4"><animate attributeName="stroke-opacity" values=".2;.5;.2" dur="3s" repeatCount="indefinite"/></rect>
 <text x="60" y="158" fill="#2dd4bf" font-size="8" font-family="JetBrains Mono" font-weight="600" opacity=".7">re-entry 52% ★</text>
 <text x="215" y="158" fill="#22c55e" font-size="7" font-family="JetBrains Mono">was 31%</text>
 <rect x="50" y="180" width="219" height="24" rx="3" fill="rgba(34,197,94,.06)"/>
 <text x="60" y="196" fill="#22c55e" font-size="7" font-family="JetBrains Mono" opacity=".7">payment 73%</text>
 <text x="185" y="196" fill="#52526a" font-size="7" font-family="JetBrains Mono">was 62%</text>
-<!-- Label -->
 <text x="200" y="240" text-anchor="middle" fill="#52526a" font-size="8" font-family="JetBrains Mono">the gap nobody measured</text>
 <text x="200" y="255" text-anchor="middle" fill="#2dd4bf" font-size="9" font-family="IBM Plex Sans" font-weight="600" opacity=".5">+11 pts</text>
 </svg></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">GetYourGuide</span><span class="cd__tag cd__tag--what">Growth &amp; CRO</span><span class="cd__tag cd__tag--result">+11% Conversion</span></div><h3 class="cd__name">Checkout Funnel Redesign</h3><p class="cd__desc">The real drop-off was where nobody measured. Found it, fixed it. +11% completion, est. seven-figure revenue impact.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
-<a href="work/enso.html" class="cd cd--4"><div class="cd__img"><span class="cd__badge cd__badge--p">-22% friction</span><div class="cd__chips"><span class="cd__chip cd__chip--g">3 countries</span><span class="cd__chip cd__chip--b">PropTech</span></div><svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0">
-<rect width="400" height="300" fill="#0a0802"/>
-<!-- Ambient green glow -->
-<circle cx="200" cy="150" r="120" fill="#1a6b45" opacity=".04"/>
-<!-- 5 mobile screens flowing left to right, getting brighter -->
-<!-- Screen 1: Registration (faded) -->
-<g transform="translate(30,50)" opacity=".3">
-<rect width="52" height="92" rx="6" fill="#111" stroke="#2a2a3a" stroke-width=".5"/>
-<rect x="8" y="12" width="36" height="4" rx="1" fill="#2a2a3a"/>
-<rect x="8" y="20" width="28" height="4" rx="1" fill="#2a2a3a"/>
-<rect x="8" y="32" width="36" height="8" rx="2" fill="none" stroke="#2a2a3a" stroke-width=".5"/>
-<rect x="8" y="44" width="36" height="8" rx="2" fill="none" stroke="#2a2a3a" stroke-width=".5"/>
-<rect x="8" y="60" width="36" height="10" rx="3" fill="#1a6b45" opacity=".4"/>
-<text x="26" y="68" text-anchor="middle" fill="#fff" font-size="4" font-family="IBM Plex Sans" opacity=".5">Continue</text>
-</g>
-<!-- Screen 2: Preferences -->
-<g transform="translate(95,40)" opacity=".45">
-<rect width="56" height="98" rx="6" fill="#111" stroke="#2a2a3a" stroke-width=".5"/>
-<text x="28" y="16" text-anchor="middle" fill="#2dd4bf" font-size="5" font-family="IBM Plex Sans" font-weight="600" opacity=".6">enso</text>
-<rect x="8" y="24" width="18" height="18" rx="4" fill="none" stroke="#2a2a3a" stroke-width=".5"/>
-<rect x="30" y="24" width="18" height="18" rx="4" fill="none" stroke="#2dd4bf" stroke-width=".8" opacity=".4"/>
-<circle cx="39" cy="33" r="3" fill="#2dd4bf" opacity=".3"/>
-<rect x="8" y="48" width="40" height="6" rx="1.5" fill="#2a2a3a" opacity=".5"/>
-<rect x="8" y="58" width="40" height="6" rx="1.5" fill="#2a2a3a" opacity=".3"/>
-<rect x="8" y="72" width="40" height="10" rx="3" fill="#1a6b45" opacity=".5"/>
-</g>
-<!-- Screen 3: Video qualification (center, prominent) -->
-<g transform="translate(165,28)">
-<rect width="62" height="108" rx="7" fill="#0d2818" stroke="#2dd4bf" stroke-width=".8" stroke-opacity=".25"/>
-<!-- Video recording area -->
-<rect x="6" y="10" width="50" height="50" rx="4" fill="#1a3d28"/>
-<circle cx="31" cy="35" r="8" fill="#2dd4bf" opacity=".15"><animate attributeName="opacity" values=".1;.2;.1" dur="3s" repeatCount="indefinite"/></circle>
-<circle cx="31" cy="35" r="3" fill="#ef4444" opacity=".6"><animate attributeName="opacity" values=".4;.8;.4" dur="1.5s" repeatCount="indefinite"/></circle>
-<text x="31" y="70" text-anchor="middle" fill="#8c8c9e" font-size="4" font-family="JetBrains Mono">Record intro</text>
-<rect x="6" y="78" width="50" height="4" rx="1" fill="#2dd4bf" opacity=".1"/>
-<rect x="6" y="78" width="30" height="4" rx="1" fill="#2dd4bf" opacity=".25"><animate attributeName="width" values="0;50" dur="4s" repeatCount="indefinite"/></rect>
-<rect x="6" y="88" width="50" height="10" rx="3" fill="#2dd4bf" opacity=".15"/>
-<text x="31" y="96" text-anchor="middle" fill="#2dd4bf" font-size="4" font-family="IBM Plex Sans" font-weight="600" opacity=".7">Submit</text>
-</g>
-<!-- Screen 4: Matching -->
-<g transform="translate(245,40)" opacity=".5">
-<rect width="56" height="98" rx="6" fill="#111" stroke="#2a2a3a" stroke-width=".5"/>
-<circle cx="28" cy="22" r="6" fill="#1a6b45" opacity=".4"/>
-<text x="28" y="25" text-anchor="middle" fill="#2dd4bf" font-size="5" opacity=".5">&#10003;</text>
-<text x="28" y="38" text-anchor="middle" fill="#8c8c9e" font-size="4" font-family="IBM Plex Sans">Matched!</text>
-<rect x="6" y="46" width="44" height="28" rx="3" fill="#1a2a1e" opacity=".5"/>
-<rect x="10" y="50" width="20" height="3" rx="1" fill="#52526a"/>
-<rect x="10" y="56" width="30" height="3" rx="1" fill="#52526a" opacity=".5"/>
-<rect x="10" y="62" width="36" height="6" rx="2" fill="#22c55e" opacity=".2"/>
-<text x="28" y="67" text-anchor="middle" fill="#22c55e" font-size="3.5" font-family="JetBrains Mono" opacity=".6">449 EUR</text>
-</g>
-<!-- Screen 5: Success (bright) -->
-<g transform="translate(315,50)" opacity=".4">
-<rect width="52" height="92" rx="6" fill="#111" stroke="#22c55e" stroke-width=".5" stroke-opacity=".2"/>
-<circle cx="26" cy="28" r="10" fill="#22c55e" opacity=".08"/>
-<text x="26" y="32" text-anchor="middle" fill="#22c55e" font-size="8" opacity=".5">&#10003;</text>
-<text x="26" y="48" text-anchor="middle" fill="#8c8c9e" font-size="4" font-family="IBM Plex Sans">Valencia awaits</text>
-<rect x="6" y="56" width="40" height="22" rx="3" fill="#1a2a1e" opacity=".3"/>
-<rect x="6" y="82" width="40" height="6" rx="2" fill="#22c55e" opacity=".15"/>
-</g>
-<!-- Flow arrows connecting screens -->
-<line x1="84" y1="96" x2="93" y2="90" stroke="#2dd4bf" stroke-opacity=".12" stroke-width=".5"/>
-<line x1="153" y1="88" x2="163" y2="82" stroke="#2dd4bf" stroke-opacity=".15" stroke-width=".5"/>
-<line x1="229" y1="82" x2="243" y2="88" stroke="#2dd4bf" stroke-opacity=".12" stroke-width=".5"/>
-<line x1="303" y1="88" x2="313" y2="96" stroke="#2dd4bf" stroke-opacity=".1" stroke-width=".5"/>
-<!-- Progress bar at bottom -->
-<rect x="80" y="250" width="240" height="2" rx="1" fill="#2a2a3a"/>
-<rect x="80" y="250" width="168" height="2" rx="1" fill="#2dd4bf" opacity=".3"/>
-<circle cx="248" cy="251" r="3" fill="#2dd4bf" opacity=".4"><animate attributeName="opacity" values=".2;.5;.2" dur="2s" repeatCount="indefinite"/></circle>
-<!-- Labels -->
-<text x="55" y="270" fill="#2a2a3a" font-size="6" font-family="JetBrains Mono">register</text>
-<text x="165" y="270" fill="#2dd4bf" font-size="6" font-family="JetBrains Mono" opacity=".4">qualify</text>
-<text x="288" y="270" fill="#22c55e" font-size="6" font-family="JetBrains Mono" opacity=".3">book</text>
-<!-- Metric -->
-<text x="200" y="290" text-anchor="middle" fill="#52526a" font-size="7" font-family="JetBrains Mono">36% drop-off &#8594; &lt;20%</text>
-</svg></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">ENSO Co-Living</span><span class="cd__tag cd__tag--what">PropTech</span><span class="cd__tag cd__tag--result">-22% Friction</span><a href="https://www.ensocoliving.com/en/" target="_blank" onclick="event.stopPropagation()" class="cd__tag cd__tag--who" style="text-decoration:none">ensocoliving.com &#8599;</a></div><h3 class="cd__name">ENSO Co-Living</h3><p class="cd__desc">Killed the brief. The product was the decisions, not the spreadsheets. -22% friction, 4x adoption.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
+<div class="cards__side">
+<a href="work/kodo.html" class="cd cd--2"><div class="cd__img"><img src="img/kodo-hero.png" alt="KŌDO Arbitrage trading interface" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">Private Client</span><span class="cd__tag cd__tag--what">Trading Interface</span><span class="cd__tag cd__tag--result">24/7 Live Capital</span></div><h3 class="cd__name">KŌDO Arbitrage</h3><p class="cd__desc">The only project where a design failure costs me real money. 23 metrics became 1 question. Live, 24/7.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
+<a href="work/enso.html" class="cd cd--4"><div class="cd__img"><img src="img/enso-hero.jpg" alt="ENSO Co-Living platform" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">ENSO Co-Living</span><span class="cd__tag cd__tag--what">PropTech</span><span class="cd__tag cd__tag--result">-22% Friction</span><span class="cd__tag cd__tag--who">ensocoliving.com &#8599;</span></div><h3 class="cd__name">ENSO Co-Living</h3><p class="cd__desc">Killed the brief. The product was the decisions, not the spreadsheets. -22% friction, 4x adoption.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
+</div>
 </div></div></div></section>
 
-<!-- ████ PHILOSOPHY ████ -->
+<!-- ████ THINKING ████ -->
 <section class="v" id="v-about">
-<div class="ph">
+<div class="layer"><div class="mx">
 
-  <!-- Background canvas: flowing particles -->
-  <svg class="ph__canvas" viewBox="0 0 1200 3000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <radialGradient id="glow"><stop offset="0%" stop-color="#2dd4bf" stop-opacity=".08"/><stop offset="100%" stop-color="#2dd4bf" stop-opacity="0"/></radialGradient>
-    </defs>
-    <!-- Flowing vertical line -->
-    <line x1="600" y1="200" x2="600" y2="2800" stroke="#2dd4bf" stroke-opacity=".03" stroke-width="1"/>
-    <!-- Ambient glows along the flow -->
-    <circle cx="600" cy="400" r="200" fill="url(#glow)"><animate attributeName="r" values="180;220;180" dur="6s" repeatCount="indefinite"/></circle>
-    <circle cx="600" cy="1000" r="160" fill="url(#glow)"><animate attributeName="r" values="140;180;140" dur="8s" repeatCount="indefinite"/></circle>
-    <circle cx="600" cy="1600" r="180" fill="url(#glow)"><animate attributeName="r" values="160;200;160" dur="7s" repeatCount="indefinite"/></circle>
-    <circle cx="600" cy="2200" r="150" fill="url(#glow)"><animate attributeName="r" values="130;170;130" dur="5s" repeatCount="indefinite"/></circle>
-    <!-- Floating particles -->
-    <circle cx="300" cy="600" r="2" fill="#2dd4bf" opacity=".15"><animate attributeName="cy" values="600;560;600" dur="8s" repeatCount="indefinite"/></circle>
-    <circle cx="900" cy="800" r="1.5" fill="#2dd4bf" opacity=".1"><animate attributeName="cy" values="800;770;800" dur="6s" repeatCount="indefinite"/></circle>
-    <circle cx="400" cy="1200" r="2" fill="#2dd4bf" opacity=".12"><animate attributeName="cy" values="1200;1170;1200" dur="7s" repeatCount="indefinite"/></circle>
-    <circle cx="800" cy="1500" r="1.5" fill="#2dd4bf" opacity=".1"><animate attributeName="cy" values="1500;1465;1500" dur="9s" repeatCount="indefinite"/></circle>
-    <circle cx="350" cy="1900" r="2" fill="#2dd4bf" opacity=".12"><animate attributeName="cy" values="1900;1870;1900" dur="6s" repeatCount="indefinite"/></circle>
-    <circle cx="850" cy="2100" r="1.5" fill="#2dd4bf" opacity=".08"><animate attributeName="cy" values="2100;2075;2100" dur="8s" repeatCount="indefinite"/></circle>
-  </svg>
-
-  <div class="ph__flow">
-
-    <!-- Opening -->
-    <div class="ph__open">
-      <h2 class="ph__h">See the system.<br><span class="hl">Design the decision.</span></h2>
-      <p class="ph__sub">Every product is a decision-making system wearing an interface as a mask. I take the mask off, redesign the system underneath, then put it back on. This is what that looks like.</p>
-    </div>
-
-    <div class="ph__river">
-
-      <!-- Connector -->
-      <div class="ph__connector"><svg viewBox="0 0 2 60"><line x1="1" y1="0" x2="1" y2="60" stroke="#2dd4bf" stroke-opacity=".15" stroke-width="1" stroke-dasharray="2 4"><animate attributeName="stroke-dashoffset" values="0;-12" dur="2s" repeatCount="indefinite"/></line></svg></div>
-
-      <!-- Node 01: See the system -->
-      <div class="ph__node">
-        <div class="ph__node-visual">
-          <svg class="ph__viz-svg" viewBox="0 0 300 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Surface: simple UI boxes, faded -->
-            <rect x="50" y="20" width="60" height="32" rx="4" stroke="#2a2a3a" stroke-width=".8" fill="none"/>
-            <rect x="120" y="20" width="60" height="32" rx="4" stroke="#2a2a3a" stroke-width=".8" fill="none"/>
-            <rect x="190" y="20" width="60" height="32" rx="4" stroke="#2a2a3a" stroke-width=".8" fill="none"/>
-            <!-- Divider with label -->
-            <line x1="30" y1="72" x2="270" y2="72" stroke="#2dd4bf" stroke-opacity=".12" stroke-width=".5" stroke-dasharray="3 3"/>
-            <text x="150" y="86" text-anchor="middle" fill="#2dd4bf" font-size="7" font-family="JetBrains Mono" opacity=".35">what I design</text>
-            <!-- Deep system: living nodes -->
-            <circle cx="80" cy="120" r="4" fill="#2dd4bf" opacity=".3"><animate attributeName="opacity" values=".2;.5;.2" dur="4s" repeatCount="indefinite"/></circle>
-            <circle cx="150" cy="110" r="6" fill="#2dd4bf" opacity=".5"><animate attributeName="opacity" values=".3;.7;.3" dur="3s" repeatCount="indefinite"/></circle>
-            <circle cx="220" cy="125" r="4" fill="#2dd4bf" opacity=".3"><animate attributeName="opacity" values=".25;.45;.25" dur="5s" repeatCount="indefinite"/></circle>
-            <circle cx="110" cy="165" r="3" fill="#2dd4bf" opacity=".2"><animate attributeName="opacity" values=".15;.35;.15" dur="4.5s" repeatCount="indefinite"/></circle>
-            <circle cx="190" cy="158" r="3" fill="#2dd4bf" opacity=".2"><animate attributeName="opacity" values=".1;.3;.1" dur="3.5s" repeatCount="indefinite"/></circle>
-            <circle cx="150" cy="200" r="5" fill="#2dd4bf" opacity=".4"><animate attributeName="opacity" values=".2;.5;.2" dur="4s" repeatCount="indefinite"/></circle>
-            <circle cx="90" cy="230" r="2" fill="#2dd4bf" opacity=".15"/>
-            <circle cx="210" cy="225" r="2" fill="#2dd4bf" opacity=".15"/>
-            <!-- Connections: alive, breathing -->
-            <line x1="84" y1="120" x2="144" y2="112" stroke="#2dd4bf" stroke-opacity=".08" stroke-width=".5"/>
-            <line x1="156" y1="112" x2="216" y2="123" stroke="#2dd4bf" stroke-opacity=".08" stroke-width=".5"/>
-            <line x1="80" y1="124" x2="108" y2="163" stroke="#2dd4bf" stroke-opacity=".06" stroke-width=".5"/>
-            <line x1="150" y1="116" x2="150" y2="195" stroke="#2dd4bf" stroke-opacity=".07" stroke-width=".5"/>
-            <line x1="220" y1="129" x2="192" y2="156" stroke="#2dd4bf" stroke-opacity=".06" stroke-width=".5"/>
-            <line x1="112" y1="167" x2="145" y2="197" stroke="#2dd4bf" stroke-opacity=".05" stroke-width=".5"/>
-            <line x1="188" y1="160" x2="155" y2="197" stroke="#2dd4bf" stroke-opacity=".05" stroke-width=".5"/>
-            <!-- Ghost connections from surface to deep -->
-            <line x1="80" y1="52" x2="80" y2="116" stroke="#2dd4bf" stroke-opacity=".04" stroke-width=".5" stroke-dasharray="2 3"/>
-            <line x1="150" y1="52" x2="150" y2="104" stroke="#2dd4bf" stroke-opacity=".05" stroke-width=".5" stroke-dasharray="2 3"/>
-            <line x1="220" y1="52" x2="220" y2="121" stroke="#2dd4bf" stroke-opacity=".04" stroke-width=".5" stroke-dasharray="2 3"/>
-          </svg>
-        </div>
-        <div class="ph__node-text">
-          <span class="ph__node-num">01</span>
-          <h3 class="ph__node-h">Every interface is a mask over a system</h3>
-          <p class="ph__node-p">Screens are what users see. Underneath is a web of data flows, business rules, edge cases, and human behavior patterns. I start at the network level, not the surface. The system architecture determines the interface. Never the other way around.</p>
-          <span class="ph__node-aside">3 boxes on top, 15 nodes underneath. If you only design the boxes, you're decorating, not designing. <a href="work/enso.html" style="color:var(--ac);border-bottom:1px solid var(--acb)">See how this played out at ENSO</a></span>
-        </div>
-      </div>
-
-      <div class="ph__connector"><svg viewBox="0 0 2 60"><line x1="1" y1="0" x2="1" y2="60" stroke="#2dd4bf" stroke-opacity=".15" stroke-width="1" stroke-dasharray="2 4"><animate attributeName="stroke-dashoffset" values="0;-12" dur="2s" repeatCount="indefinite"/></line></svg></div>
-
-      <!-- Node 02: Subtract -->
-      <div class="ph__node">
-        <div class="ph__node-visual">
-          <svg class="ph__viz-svg" viewBox="0 0 300 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Many fading elements -->
-            <rect x="30" y="30" width="40" height="24" rx="3" stroke="#2a2a3a" stroke-width=".4" fill="none" opacity=".25"><animate attributeName="opacity" values=".25;.1;.25" dur="5s" repeatCount="indefinite"/></rect>
-            <rect x="80" y="15" width="32" height="18" rx="3" stroke="#2a2a3a" stroke-width=".4" fill="none" opacity=".15"/>
-            <rect x="20" y="65" width="48" height="22" rx="3" stroke="#2a2a3a" stroke-width=".4" fill="none" opacity=".1"/>
-            <rect x="180" y="25" width="36" height="20" rx="3" stroke="#2a2a3a" stroke-width=".4" fill="none" opacity=".12"/>
-            <rect x="230" y="50" width="32" height="26" rx="3" stroke="#2a2a3a" stroke-width=".4" fill="none" opacity=".08"/>
-            <rect x="190" y="185" width="44" height="22" rx="3" stroke="#2a2a3a" stroke-width=".4" fill="none" opacity=".1"/>
-            <rect x="25" y="170" width="38" height="20" rx="3" stroke="#2a2a3a" stroke-width=".4" fill="none" opacity=".08"/>
-            <rect x="210" y="130" width="34" height="18" rx="3" stroke="#2a2a3a" stroke-width=".4" fill="none" opacity=".06"/>
-            <rect x="35" y="220" width="44" height="18" rx="3" stroke="#2a2a3a" stroke-width=".4" fill="none" opacity=".05"/>
-            <rect x="170" y="230" width="40" height="16" rx="3" stroke="#2a2a3a" stroke-width=".4" fill="none" opacity=".04"/>
-            <rect x="80" y="240" width="30" height="14" rx="3" stroke="#2a2a3a" stroke-width=".3" fill="none" opacity=".03"/>
-            <!-- The one that matters: breathing -->
-            <rect x="110" y="108" width="80" height="52" rx="8" stroke="#2dd4bf" stroke-width="1.5" fill="rgba(45,212,191,.03)">
-              <animate attributeName="stroke-opacity" values=".3;.7;.3" dur="3s" repeatCount="indefinite"/>
-            </rect>
-            <circle cx="150" cy="134" r="4" fill="#2dd4bf" opacity=".5">
-              <animate attributeName="opacity" values=".3;.6;.3" dur="2.5s" repeatCount="indefinite"/>
-            </circle>
-            <!-- Glow behind the one -->
-            <circle cx="150" cy="134" r="40" fill="#2dd4bf" opacity=".02">
-              <animate attributeName="r" values="35;50;35" dur="4s" repeatCount="indefinite"/>
-            </circle>
-          </svg>
-        </div>
-        <div class="ph__node-text">
-          <span class="ph__node-num">02</span>
-          <h3 class="ph__node-h">The best design is what you remove</h3>
-          <p class="ph__node-p">Every feature, metric, and option fights for cognitive space. 47 spreadsheets became 3 decisions. 23 dashboard metrics became 1 status light. A 6-step checkout became a single re-entry moment. Clarity is not simplicity. Clarity is knowing what to kill.</p>
-          <span class="ph__node-aside">The faded boxes are real features we considered. The glowing one shipped. That ratio is the job. <a href="work/kodo.html" style="color:var(--ac);border-bottom:1px solid var(--acb)">KŌDO went from 23 metrics to 1</a></span>
-        </div>
-      </div>
-
-      <div class="ph__connector"><svg viewBox="0 0 2 60"><line x1="1" y1="0" x2="1" y2="60" stroke="#2dd4bf" stroke-opacity=".15" stroke-width="1" stroke-dasharray="2 4"><animate attributeName="stroke-dashoffset" values="0;-12" dur="2s" repeatCount="indefinite"/></line></svg></div>
-
-      <!-- Node 03: Behavior gap -->
-      <div class="ph__node">
-        <div class="ph__node-visual">
-          <svg class="ph__viz-svg" viewBox="0 0 300 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- "What they say" - smooth predictable curve -->
-            <path d="M 30 120 C 80 120, 110 70, 150 70 C 190 70, 220 120, 270 120" stroke="#2a2a3a" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
-            <text x="275" y="118" fill="#2a2a3a" font-size="7" font-family="JetBrains Mono">expected</text>
-            <!-- "What they do" - erratic, real -->
-            <path d="M 30 120 L 55 115 L 70 150 L 90 85 L 105 130 L 120 70 L 140 160 L 155 95 L 175 135 L 190 65 L 210 115 L 225 145 L 245 80 L 260 125 L 270 120" stroke="#2dd4bf" stroke-width="1" fill="none" opacity=".5"/>
-            <text x="275" y="106" fill="#2dd4bf" font-size="7" font-family="JetBrains Mono" opacity=".5">actual</text>
-            <!-- Insight ripples where divergence is highest -->
-            <circle cx="120" cy="70" r="4" fill="none" stroke="#2dd4bf" stroke-opacity=".25"><animate attributeName="r" values="4;18;4" dur="4s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".25;0;.25" dur="4s" repeatCount="indefinite"/></circle>
-            <circle cx="140" cy="160" r="4" fill="none" stroke="#2dd4bf" stroke-opacity=".2"><animate attributeName="r" values="4;16;4" dur="3.5s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".2;0;.2" dur="3.5s" repeatCount="indefinite"/></circle>
-            <circle cx="190" cy="65" r="4" fill="none" stroke="#2dd4bf" stroke-opacity=".2"><animate attributeName="r" values="4;14;4" dur="4.5s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".2;0;.2" dur="4.5s" repeatCount="indefinite"/></circle>
-            <!-- Label -->
-            <text x="150" y="210" text-anchor="middle" fill="#52526a" font-size="8" font-family="JetBrains Mono">the gap is where insight lives</text>
-            <!-- Arrow pointing to a gap -->
-            <line x1="150" y1="195" x2="140" y2="165" stroke="#2dd4bf" stroke-opacity=".15" stroke-width=".5"/>
-          </svg>
-        </div>
-        <div class="ph__node-text">
-          <span class="ph__node-num">03</span>
-          <h3 class="ph__node-h">Watch what people do, ignore what they say</h3>
-          <p class="ph__node-p">The smooth line is the story stakeholders tell. The erratic one is what actually happens. The ripples mark the moments where the gap is largest. That's where every real design insight is hiding. Session recordings over interviews. Behavioral data over opinions. Always.</p>
-          <span class="ph__node-aside">Everyone said "payment is the problem." PostHog showed re-entry was. That gap was worth +11%. <a href="work/checkout.html" style="color:var(--ac);border-bottom:1px solid var(--acb)">Read the checkout case study</a></span>
-        </div>
-      </div>
-
-      <div class="ph__connector"><svg viewBox="0 0 2 60"><line x1="1" y1="0" x2="1" y2="60" stroke="#2dd4bf" stroke-opacity=".15" stroke-width="1" stroke-dasharray="2 4"><animate attributeName="stroke-dashoffset" values="0;-12" dur="2s" repeatCount="indefinite"/></line></svg></div>
-
-      <!-- Node 04: Convergence through failure -->
-      <div class="ph__node">
-        <div class="ph__node-visual">
-          <svg class="ph__viz-svg" viewBox="0 0 300 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Orbits getting tighter -->
-            <ellipse cx="150" cy="140" rx="120" ry="100" stroke="#ef4444" stroke-width=".5" fill="none" opacity=".08"><animate attributeName="opacity" values=".08;.04;.08" dur="6s" repeatCount="indefinite"/></ellipse>
-            <ellipse cx="150" cy="140" rx="85" ry="70" stroke="#f59e0b" stroke-width=".6" fill="none" opacity=".12"><animate attributeName="opacity" values=".12;.06;.12" dur="5s" repeatCount="indefinite"/></ellipse>
-            <ellipse cx="150" cy="140" rx="50" ry="42" stroke="#2dd4bf" stroke-width=".8" fill="none" opacity=".2"><animate attributeName="opacity" values=".2;.1;.2" dur="4s" repeatCount="indefinite"/></ellipse>
-            <ellipse cx="150" cy="140" rx="22" ry="18" stroke="#2dd4bf" stroke-width="1" fill="none" opacity=".35"/>
-            <!-- Moving dots on orbits -->
-            <circle r="2" fill="#ef4444" opacity=".2"><animateMotion dur="12s" repeatCount="indefinite"><mpath href="#orbit1"/></animateMotion></circle>
-            <circle r="2" fill="#f59e0b" opacity=".3"><animateMotion dur="8s" repeatCount="indefinite"><mpath href="#orbit2"/></animateMotion></circle>
-            <circle r="2.5" fill="#2dd4bf" opacity=".4"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#orbit3"/></animateMotion></circle>
-            <ellipse id="orbit1" cx="150" cy="140" rx="120" ry="100" fill="none"/>
-            <ellipse id="orbit2" cx="150" cy="140" rx="85" ry="70" fill="none"/>
-            <ellipse id="orbit3" cx="150" cy="140" rx="50" ry="42" fill="none"/>
-            <!-- Core -->
-            <circle cx="150" cy="140" r="5" fill="#2dd4bf" opacity=".7"><animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".5;.85;.5" dur="2s" repeatCount="indefinite"/></circle>
-            <circle cx="150" cy="140" r="20" fill="#2dd4bf" opacity=".03"><animate attributeName="r" values="15;25;15" dur="3s" repeatCount="indefinite"/></circle>
-            <!-- Labels -->
-            <text x="270" y="60" fill="#ef4444" font-size="6.5" font-family="JetBrains Mono" opacity=".25">fail</text>
-            <text x="235" y="85" fill="#f59e0b" font-size="6.5" font-family="JetBrains Mono" opacity=".3">learn</text>
-            <text x="200" y="108" fill="#2dd4bf" font-size="6.5" font-family="JetBrains Mono" opacity=".4">converge</text>
-          </svg>
-        </div>
-        <div class="ph__node-text">
-          <span class="ph__node-num">04</span>
-          <h3 class="ph__node-h">Every wrong answer tightens the orbit</h3>
-          <p class="ph__node-p">Failure is not noise. It's signal. Each wrong attempt eliminates a region of possibility and pulls closer to the answer. The red orbit is wide and expensive. The teal one is tight and precise. The core is the shipped product. Getting there fast means failing with intention.</p>
-          <span class="ph__node-aside">I ship failure reports as design artifacts. They're worth more than the final mockup because they contain the reasoning the mockup can't show.</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Closing: the equation -->
-    <div class="ph__close">
-      <div class="ph__eq">
-        <span class="ph__eq-var">See the system</span>
-        <span class="ph__eq-op">+</span>
-        <span class="ph__eq-var">Subtract ruthlessly</span>
-        <span class="ph__eq-op">+</span>
-        <span class="ph__eq-var">Measure behavior</span>
-        <span class="ph__eq-op">+</span>
-        <span class="ph__eq-var">Fail fast</span>
-        <span class="ph__eq-op">=</span>
-        <span class="ph__eq-result">Systems that perform</span>
-      </div>
-      <p class="ph__eq-sub">This is how I've worked for 10 years. The domains change. The principle doesn't.</p>
-    </div>
-
-  </div>
+<div style="text-align:center;max-width:600px;margin:0 auto 56px">
+<p style="font-family:var(--m);font-size:.72rem;color:var(--ac);text-transform:uppercase;letter-spacing:.18em;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:12px"><span style="width:40px;height:1px;background:var(--ac);box-shadow:0 0 8px var(--acg)"></span>How I work</p>
+<h2 style="font-family:var(--s);font-size:2rem;font-weight:800;letter-spacing:-.04em;line-height:1.15;margin-bottom:12px">From ambiguity to outcome</h2>
+<p style="font-family:var(--s);font-size:.88rem;color:var(--t2);line-height:1.7">Every engagement follows this arc. The order matters&mdash;each phase feeds the next. Skipping one means the rest is guesswork.</p>
 </div>
 
-<!-- Background -->
-<div class="layer layer--raised"><div class="mx">
-  <div class="sh"><span>// background</span></div>
-  <div class="about-layout">
-    <div class="about-primary"><div class="ab"><p class="ab__t">Born in Bilbao, Spain. Studied Design and Arts at Universidad del Pais Vasco. MA in Graphic Branding at London College of Communication. Based in Zurich since 2020.</p><p class="ab__t">Art keeps my sense of composition alive. History fuels curiosity about how ideas evolve. Photography helps me observe detail. Swiss trails are where my best ideas start forming.</p></div></div>
-    <div class="about-sidebar"><div class="ab"><div class="mi"><span class="mi__k">Experience</span><span class="mi__v">10 years</span></div><div class="mi"><span class="mi__k">Domain</span><span class="mi__v">Commerce, Fintech, PropTech</span></div><div class="mi"><span class="mi__k">Location</span><span class="mi__v">Zurich, Switzerland</span></div><div class="mi"><span class="mi__k">Education</span><span class="mi__v">MA Branding, LCC London</span></div></div><div class="ab"><span class="ab__l">// languages</span><div class="mi"><span class="mi__k">Spanish</span><span class="mi__v">Native</span></div><div class="mi"><span class="mi__k">English</span><span class="mi__v">Professional</span></div><div class="mi"><span class="mi__k">Russian</span><span class="mi__v">Fluent</span></div><div class="mi"><span class="mi__k">Portuguese</span><span class="mi__v">Fluent</span></div><div class="mi"><span class="mi__k">German</span><span class="mi__v">Basic</span></div></div></div>
-  </div>
-</div></div>
+<div style="position:relative;max-width:860px;margin:0 auto">
+<div style="position:absolute;left:40px;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--ac) 0%,var(--b1) 100%);opacity:.2"></div>
 
+<div style="display:grid;grid-template-columns:80px 1fr;gap:24px;margin-bottom:48px;position:relative" data-reveal>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding-top:4px">
+<div style="width:80px;height:80px;border-radius:10px;background:var(--glass);border:1px solid var(--b1);display:flex;align-items:center;justify-content:center;position:relative;z-index:1">
+<svg viewBox="0 0 40 40" width="40" height="40" fill="none"><circle cx="20" cy="20" r="14" stroke="#2dd4bf" stroke-width="1" opacity=".3"/><circle cx="14" cy="16" r="3" fill="#2dd4bf" opacity=".4"/><circle cx="26" cy="16" r="3" fill="#2dd4bf" opacity=".4"/><path d="M12 26 C12 22,28 22,28 26" stroke="#2dd4bf" stroke-width="1" opacity=".3" fill="none"/><circle cx="20" cy="12" r="2" fill="#2dd4bf" opacity=".2"><animate attributeName="cy" values="12;10;12" dur="3s" repeatCount="indefinite"/></circle></svg>
+</div>
+<span style="font-family:var(--m);font-size:.62rem;color:var(--t4)">01</span>
+</div>
+<div>
+<h3 style="font-family:var(--s);font-size:1.1rem;font-weight:700;margin-bottom:6px;letter-spacing:-.02em">Listen</h3>
+<p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.7;margin-bottom:10px">Before I design anything, I watch. Session recordings, operator shadowing, funnel data. The real problem is almost never what the brief says it is. At ENSO, 2 weeks of shadowing revealed the product wasn't 47 spreadsheets&mdash;it was 3 daily decisions.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">PostHog</span><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">Hotjar</span><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">Operator shadowing</span><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">Stakeholder interviews</span></div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:80px 1fr;gap:24px;margin-bottom:48px;position:relative" data-reveal>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding-top:4px">
+<div style="width:80px;height:80px;border-radius:10px;background:var(--glass);border:1px solid var(--b1);display:flex;align-items:center;justify-content:center;position:relative;z-index:1">
+<svg viewBox="0 0 40 40" width="40" height="40" fill="none"><rect x="8" y="8" width="24" height="24" rx="4" stroke="#2dd4bf" stroke-width="1" opacity=".3"/><line x1="8" y1="20" x2="32" y2="20" stroke="#2dd4bf" stroke-width=".5" opacity=".2"/><line x1="20" y1="8" x2="20" y2="32" stroke="#2dd4bf" stroke-width=".5" opacity=".2"/><circle cx="15" cy="14" r="2" fill="#2dd4bf" opacity=".5"/><circle cx="25" cy="25" r="2" fill="#22c55e" opacity=".5"/><line x1="15" y1="14" x2="25" y2="25" stroke="#2dd4bf" stroke-width=".8" opacity=".3" stroke-dasharray="2 2"><animate attributeName="stroke-dashoffset" values="0;-8" dur="2s" repeatCount="indefinite"/></line></svg>
+</div>
+<span style="font-family:var(--m);font-size:.62rem;color:var(--t4)">02</span>
+</div>
+<div>
+<h3 style="font-family:var(--s);font-size:1.1rem;font-weight:700;margin-bottom:6px;letter-spacing:-.02em">Frame</h3>
+<p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.7;margin-bottom:10px">I redefine the problem as a decision. What does this system need to produce? Who needs to act on it? Every feature, metric, and screen either serves that decision or gets cut. At GetYourGuide, the team was optimising payment&mdash;the real gap was re-entry.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">Service blueprints</span><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">Decision mapping</span><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">Scope definition</span></div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:80px 1fr;gap:24px;margin-bottom:48px;position:relative" data-reveal>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding-top:4px">
+<div style="width:80px;height:80px;border-radius:10px;background:var(--glass);border:1px solid var(--b1);display:flex;align-items:center;justify-content:center;position:relative;z-index:1">
+<svg viewBox="0 0 40 40" width="40" height="40" fill="none"><rect x="6" y="12" width="12" height="18" rx="2" stroke="#2dd4bf" stroke-width="1" opacity=".3"/><rect x="22" y="8" width="12" height="22" rx="2" stroke="#2dd4bf" stroke-width="1" opacity=".3"/><rect x="8" y="16" width="8" height="2" rx="1" fill="#2dd4bf" opacity=".3"/><rect x="8" y="20" width="6" height="2" rx="1" fill="#2dd4bf" opacity=".2"/><rect x="8" y="24" width="8" height="2" rx="1" fill="#2dd4bf" opacity=".15"/><rect x="24" y="12" width="8" height="2" rx="1" fill="#22c55e" opacity=".4"/><rect x="24" y="16" width="6" height="2" rx="1" fill="#22c55e" opacity=".3"/><rect x="24" y="20" width="8" height="2" rx="1" fill="#22c55e" opacity=".2"/><rect x="24" y="24" width="5" height="2" rx="1" fill="#22c55e" opacity=".15"/><path d="M18,20 L22,16" stroke="#2dd4bf" stroke-width=".8" opacity=".25" stroke-dasharray="2 2"/></svg>
+</div>
+<span style="font-family:var(--m);font-size:.62rem;color:var(--t4)">03</span>
+</div>
+<div>
+<h3 style="font-family:var(--s);font-size:1.1rem;font-weight:700;margin-bottom:6px;letter-spacing:-.02em">Build</h3>
+<p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.7;margin-bottom:10px">Systems before screens. I design the information architecture, the component system, and the decision flows before any high-fidelity work. Prototypes go in front of users early. Design systems get built for reuse across markets and products.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">Figma</span><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">Design systems</span><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">Prototyping</span><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">Framer</span></div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:80px 1fr;gap:24px;margin-bottom:48px;position:relative" data-reveal>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding-top:4px">
+<div style="width:80px;height:80px;border-radius:10px;background:var(--glass);border:1px solid var(--b1);display:flex;align-items:center;justify-content:center;position:relative;z-index:1">
+<svg viewBox="0 0 40 40" width="40" height="40" fill="none"><polyline points="8,30 14,22 20,26 26,14 32,10" stroke="#22c55e" stroke-width="1.5" opacity=".5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><polyline points="8,30 14,26 20,28 26,24 32,22" stroke="#6e6e88" stroke-width=".8" opacity=".3" fill="none" stroke-dasharray="2 2"/><circle cx="32" cy="10" r="2.5" fill="#22c55e" opacity=".4"><animate attributeName="opacity" values=".3;.6;.3" dur="2s" repeatCount="indefinite"/></circle><line x1="8" y1="34" x2="34" y2="34" stroke="#6e6e88" stroke-width=".5" opacity=".2"/></svg>
+</div>
+<span style="font-family:var(--m);font-size:.62rem;color:var(--t4)">04</span>
+</div>
+<div>
+<h3 style="font-family:var(--s);font-size:1.1rem;font-weight:700;margin-bottom:6px;letter-spacing:-.02em">Prove</h3>
+<p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.7;margin-bottom:10px">I instrument my own work. Every design ships with the measurement plan already built. I read session recordings before standups and run A/B experiments across markets. The checkout redesign at GetYourGuide was validated across 4 EU markets before scaling.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">GA4</span><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">Mixpanel</span><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">A/B testing</span><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">SQL</span></div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:80px 1fr;gap:24px;position:relative" data-reveal>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding-top:4px">
+<div style="width:80px;height:80px;border-radius:10px;background:var(--glass);border:1px solid var(--b1);display:flex;align-items:center;justify-content:center;position:relative;z-index:1">
+<svg viewBox="0 0 40 40" width="40" height="40" fill="none"><circle cx="20" cy="20" r="12" stroke="#2dd4bf" stroke-width="1" opacity=".2"/><circle cx="20" cy="20" r="6" stroke="#2dd4bf" stroke-width="1" opacity=".3"/><circle cx="20" cy="20" r="2" fill="#2dd4bf" opacity=".6"><animate attributeName="opacity" values=".4;.8;.4" dur="2s" repeatCount="indefinite"/></circle><path d="M20 8 L20 5" stroke="#2dd4bf" stroke-width="1" opacity=".3"/><path d="M20 32 L20 35" stroke="#2dd4bf" stroke-width="1" opacity=".3"/><path d="M8 20 L5 20" stroke="#2dd4bf" stroke-width="1" opacity=".3"/><path d="M32 20 L35 20" stroke="#2dd4bf" stroke-width="1" opacity=".3"/></svg>
+</div>
+<span style="font-family:var(--m);font-size:.62rem;color:var(--t4)">05</span>
+</div>
+<div>
+<h3 style="font-family:var(--s);font-size:1.1rem;font-weight:700;margin-bottom:6px;letter-spacing:-.02em">Ship &amp; iterate</h3>
+<p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.7;margin-bottom:10px">AI accelerates the path from validated design to live product. Three of my last four projects are in production. But shipping is the starting point, not the finish line. Post-launch data feeds back into the next cycle. RetailNorm is live and still evolving.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">AI-assisted development</span><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">Continuous iteration</span><span style="font-family:var(--m);font-size:.6rem;padding:3px 9px;border-radius:3px;color:var(--t2);border:1px solid var(--b1)">Retention loops</span></div>
+</div>
+</div>
+
+</div>
+</div></div>
 </section>
 
-<section class="v" id="v-logs"><div class="layer"><div class="mx"><div class="vh"><h2>Logs</h2><p>Raw thinking. Click to expand.</p></div><div>
-<div class="log" onclick="this.classList.toggle('open')"><div class="log__head"><div class="log__meta"><span class="log__date">2025.12</span><span class="log__tag log__tag--t">thinking</span></div><span class="log__title">AI agents in commerce need decision interfaces, not dashboards</span><span class="log__excerpt">Starting at WPP. Everyone's instinct is to build a monitoring dashboard. Wrong frame.</span><span class="log__tog">Read more</span></div><div class="log__expand"><div class="log__essay">A dashboard assumes the human watches and the machine acts. With AI agents, the machine watches and the human decides.<br><br>Decision-queue model: each item is a decision with context, options, and risk pre-computed. Throughput up 3x vs. dashboard.</div></div></div>
-<div class="log" onclick="this.classList.toggle('open')"><div class="log__head"><div class="log__meta"><span class="log__date">2025.09</span><span class="log__tag log__tag--o">observation</span></div><span class="log__title">AI onboarding: the moment "smart" becomes friction</span><span class="log__excerpt">At ENSO, AI tried to predict preferences before users expressed any. Users felt surveilled.</span><span class="log__tog">Read more</span></div><div class="log__expand"><div class="log__essay">Pre-filled 12 fields. 15% higher abandonment. Fix: AI at exactly 2 moments. Result: -22% friction.<br><br>AI should augment expressed intent, not predict unexpressed intent.</div></div></div>
-<div class="log" onclick="this.classList.toggle('open')"><div class="log__head"><div class="log__meta"><span class="log__date">2025.03</span><span class="log__tag log__tag--e">experiment</span></div><span class="log__title">The checkout funnel isn't a funnel. It's a decision tree.</span><span class="log__excerpt">Everyone assumed linear flow. PostHog showed something completely different.</span><span class="log__tog">Read more</span></div><div class="log__expand"><div class="log__essay">38% left at least once before converting. Biggest drop-off: re-entry, not payment. Persistent cart + "welcome back" state drove ~7 of 11 points of uplift.<br><br>Wrong mental model = every optimization wasted.</div></div></div>
-<div class="log" onclick="this.classList.toggle('open')"><div class="log__head"><div class="log__meta"><span class="log__date">2024.11</span><span class="log__tag log__tag--f">failure</span></div><span class="log__title">KŌDO v1: beautiful interface I couldn't trust with my own money</span><span class="log__excerpt">23 metrics, 4 charts. Went live. Couldn't tell if I was okay within 30 minutes.</span><span class="log__tog">Read more</span></div><div class="log__expand"><div class="log__essay">v2: one question. "Am I okay right now?" Green, amber, red. Everything else: progressive disclosure.<br><br>Removing correct-but-expensive information is harder than adding it.</div></div></div>
-<div class="log" onclick="this.classList.toggle('open')"><div class="log__head"><div class="log__meta"><span class="log__date">2024.06</span><span class="log__tag log__tag--t">thinking</span></div><span class="log__title">From 47 spreadsheets to a platform: the ENSO reframe</span><span class="log__excerpt">Temptation: digitize spreadsheets. Insight: digitize the decisions they enabled.</span><span class="log__tog">Read more</span></div><div class="log__expand"><div class="log__essay">2 weeks shadowing: operators use sheets as decision tools, not databases. 3 decisions, not 47 features. Scope: -60%. Adoption: 4x projected.</div></div></div>
-</div></div></div></section>
+<section class="v" id="v-logs"><div class="layer"><div class="mx">
+<div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start">
+<div>
+<div style="position:relative;width:100%;aspect-ratio:3/4;border-radius:12px;overflow:hidden;border:1px solid var(--b1)">
+<img src="img/inigo-portrait.jpg" alt="Inigo Angulo" style="width:100%;height:100%;object-fit:cover">
+</div>
+<div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap">
+<span style="font-family:var(--m);font-size:.68rem;color:var(--t3)">Zurich, Switzerland</span>
+<span style="font-family:var(--m);font-size:.68rem;color:var(--t3)">Remote / Hybrid</span>
+</div>
+</div>
+<div>
+<div class="sh" style="margin-bottom:24px"><span>// about me</span></div>
+<h2 style="font-family:var(--s);font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:16px">Inigo Angulo</h2>
+<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">Product designer and growth strategist based in Zurich with 8+ years of experience across commerce, fintech, PropTech, and travel. I specialise in transforming complex, data-heavy systems into intelligent experiences that drive measurable business outcomes.</p>
+<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">Currently Experience Lead for Commerce at WPP, where I define end-to-end UX across AI-enabled platforms. Previously I led conversion optimisation at GetYourGuide, designed luxury trading platforms at Crowdhouse AG, and built a multi-country design system for ING Bank.</p>
+<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:24px">My work sits at the intersection of product strategy, behavioural analytics, and experience design. I use tools like PostHog, GA4, and Mixpanel not just to validate decisions, but to find the problems nobody is looking for.</p>
+<div style="display:flex;flex-direction:column;gap:12px;padding:20px 0;border-top:1px solid var(--b1)">
+<div class="sh" style="margin-bottom:4px"><span>// beyond work</span></div>
+<p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.75">Art keeps my sense of composition and balance alive. History fuels my curiosity about how ideas evolve through time. Photography helps me slow down and capture meaning through small details. Hiking through Swiss trails is my way to reset and find clarity&mdash;it's usually in those quiet moments outdoors where new ideas begin to take form.</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--b1)">
+<span style="font-family:var(--m);font-size:.65rem;color:var(--t2);padding:4px 11px;border-radius:4px;border:1px solid var(--b1)">English</span>
+<span style="font-family:var(--m);font-size:.65rem;color:var(--t2);padding:4px 11px;border-radius:4px;border:1px solid var(--b1)">Spanish (native)</span>
+<span style="font-family:var(--m);font-size:.65rem;color:var(--t2);padding:4px 11px;border-radius:4px;border:1px solid var(--b1)">Russian</span>
+<span style="font-family:var(--m);font-size:.65rem;color:var(--t2);padding:4px 11px;border-radius:4px;border:1px solid var(--b1)">Portuguese</span>
+<span style="font-family:var(--m);font-size:.65rem;color:var(--t2);padding:4px 11px;border-radius:4px;border:1px solid var(--b1)">German (basic)</span>
+</div>
+</div>
+</div>
+</div></div></section>
 
 </main>
 
@@ -1010,8 +779,8 @@ function go(n){
 <footer class="footer">
 <div class="footer__inner">
 <div><span class="footer__brand">Inigo Angulo</span><p class="footer__desc">Product designer and growth strategist based in Zurich. 10 years building systems that move metrics.</p></div>
-<div><p class="footer__col-title">Navigation</p><div class="footer__links"><a href="#" onclick="go('index');return false">Index</a><a href="#" onclick="go('work');return false">Work</a><a href="#" onclick="go('about');return false">Philosophy</a><a href="#" onclick="go('logs');return false">Logs</a></div></div>
-<div><p class="footer__col-title">Connect</p><div class="footer__links"><a href="/cdn-cgi/l/email-protection#096067606e6668676e7c6566496e64686065276a6664">Email</a><a href="https://www.linkedin.com/in/InigoAngulo" target="_blank">LinkedIn</a><a href="tel:+41799528321">Phone</a></div></div>
+<div><p class="footer__col-title">Navigation</p><div class="footer__links"><a href="#" onclick="go('index');return false">Index</a><a href="#" onclick="go('work');return false">Work</a><a href="#" onclick="go('about');return false">Thinking</a><a href="#" onclick="go('logs');return false">About me</a></div></div>
+<div><p class="footer__col-title">Connect</p><div class="footer__links"><a href="/cdn-cgi/l/email-protection#096067606e6668676e7c6566496e64686065276a6664">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank">LinkedIn</a><a href="tel:+41799528321">Phone</a></div></div>
 <div><p class="footer__col-title">Resources</p><div class="footer__links"><a href="Inigo_Angulo_CV_2026.pdf" download>Download CV</a></div></div>
 </div>
 <div class="footer__bottom"><span class="footer__copy">2026 Inigo Angulo</span><span class="footer__built">Built with code, not templates</span></div>
