@@ -1,6 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   Case Study — Visual Redesign
-   Wider canvas · Dramatic hero · Visual rhythm · Full-bleed images
+   Case Study — World-Class Visual System
    ═══════════════════════════════════════════════════════════════ */
 
 :root{
@@ -20,6 +19,7 @@
 html{font-size:15px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
 body{background:var(--bg);color:var(--t1);font-family:var(--m);line-height:1.6;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto}
 ::selection{background:var(--ac);color:#000}
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
 
@@ -27,11 +27,13 @@ a{color:inherit;text-decoration:none}
 .cs-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--ac),var(--ac2));z-index:200;width:0%;transition:width .1s linear;box-shadow:0 0 12px var(--acg)}
 
 /* ─── Top bar ─── */
-.cs-bar{position:fixed;top:2px;left:0;right:0;height:48px;background:rgba(0,0,0,.8);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;padding:0 32px;z-index:100}
+.cs-bar{position:fixed;top:2px;left:0;right:0;height:48px;background:rgba(0,0,0,.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;padding:0 32px;z-index:100}
 .cs-bar a{font-size:.72rem;color:var(--t3);transition:color .2s;display:flex;align-items:center;gap:6px}
 .cs-bar a:hover{color:var(--ac2)}
 .cs-bar__title{font-family:var(--s);font-size:.78rem;font-weight:700;color:var(--t2);display:flex;align-items:center;gap:8px}
 .cs-bar__dot{width:6px;height:6px;border-radius:50%;background:var(--ac);box-shadow:0 0 8px var(--acg)}
+.cs-bar__section{font-family:var(--m);font-size:.6rem;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;transition:color .3s,opacity .3s;opacity:0}
+.cs-bar__section.active{color:var(--t3);opacity:1}
 
 /* ─── Main layout ─── */
 .cs{max-width:960px;margin:0 auto;padding:100px 32px 96px;overflow-x:hidden}
@@ -53,9 +55,10 @@ a{color:inherit;text-decoration:none}
 
 /* ─── Metrics strip ─── */
 .cs__metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:32px 0}
-.cs__metric{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:24px 20px;text-align:center;transition:transform .3s var(--e),border-color .3s,box-shadow .3s}
-.cs__metric:hover{transform:translateY(-4px);border-color:var(--b3);box-shadow:0 12px 40px rgba(0,0,0,.3)}
-.cs__metric-val{font-family:var(--s);font-size:1.8rem;font-weight:700;display:block;margin-bottom:6px;letter-spacing:-.03em}
+.cs__metric{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:24px 20px;text-align:center;transition:transform .4s var(--e),border-color .3s,box-shadow .4s}
+.cs__metric:hover{transform:translateY(-6px);border-color:var(--b3);box-shadow:0 16px 48px rgba(0,0,0,.4),0 0 0 1px var(--b3)}
+.cs__metric-val{font-family:var(--s);font-size:1.8rem;font-weight:700;display:block;margin-bottom:6px;letter-spacing:-.03em;transition:text-shadow .4s}
+.cs__metric:hover .cs__metric-val{text-shadow:0 0 32px currentColor}
 .cs__metric-val--g{color:var(--up);text-shadow:0 0 24px var(--upg)}
 .cs__metric-val--ac{color:var(--ac2);text-shadow:0 0 24px var(--acg)}
 .cs__metric-val--am{color:var(--am);text-shadow:0 0 24px var(--amg)}
@@ -87,19 +90,20 @@ a{color:inherit;text-decoration:none}
 .cs__visual{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;margin:32px 0;font-size:.66rem;color:var(--t4);text-transform:uppercase;letter-spacing:.1em}
 
 /* ─── Images ─── */
-.cs__img{border-radius:12px;border:1px solid var(--b2);overflow:hidden;margin:32px 0;transition:border-color .3s,box-shadow .3s;max-width:100%}
-.cs__img:hover{border-color:var(--b3);box-shadow:0 16px 60px rgba(0,0,0,.3)}
+.cs__img{border-radius:12px;border:1px solid var(--b2);overflow:hidden;margin:32px 0;transition:border-color .3s,box-shadow .4s;max-width:100%}
+.cs__img:hover{border-color:var(--b3);box-shadow:0 20px 60px rgba(0,0,0,.35),0 0 0 1px var(--b3)}
 .cs__img img{width:100%;height:auto;display:block}
 .cs__img--wide{margin:40px -60px;border-radius:16px}
 .cs__img-cap{font-size:.66rem;color:var(--t3);text-align:center;padding:12px 0 0;letter-spacing:.04em;line-height:1.5}
 
 /* ─── Screen pairs / grids ─── */
 .cs__screens{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0}
-.cs__screen{border-radius:12px;border:1px solid var(--b2);overflow:hidden;transition:border-color .3s,transform .3s var(--e),box-shadow .3s}
-.cs__screen:hover{border-color:var(--b3);transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,.3)}
+.cs__screen{border-radius:12px;border:1px solid var(--b2);overflow:hidden;transition:border-color .3s,transform .4s var(--e),box-shadow .4s}
+.cs__screen:hover{border-color:var(--b3);transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.35)}
 .cs__screen img{width:100%;height:auto;display:block}
 .cs__screen-label{font-size:.6rem;color:var(--t3);padding:10px 14px;background:var(--bg2);text-align:center;letter-spacing:.06em;text-transform:uppercase}
 
+/* Mobile pairs — horizontal scroll on mobile, centered on desktop */
 .cs__mobile-pair{display:flex;gap:20px;justify-content:center;margin:40px 0}
 .cs__mobile-pair .cs__screen{max-width:240px;flex-shrink:0}
 
@@ -137,15 +141,45 @@ a{color:inherit;text-decoration:none}
 .cs__try-btn{font-size:.8rem;font-weight:600;color:#000;background:var(--ac);padding:12px 28px;border-radius:8px;transition:all .3s var(--e);white-space:nowrap;box-shadow:0 0 16px var(--acg)}
 .cs__try-btn:hover{transform:translateY(-2px);box-shadow:0 4px 24px var(--acg),0 0 60px var(--acg)}
 
-/* ─── Next project ─── */
-.cs__next{margin-top:32px;padding:48px 0;border-top:1px solid var(--b1);display:flex;justify-content:space-between;align-items:center}
+/* ─── Next project — full-width card ─── */
+.cs__next{margin-top:32px;padding:40px 36px;border:1px solid var(--b2);border-radius:16px;background:var(--bg2);display:flex;justify-content:space-between;align-items:center;transition:border-color .3s,box-shadow .4s,transform .4s var(--e)}
+.cs__next:hover{border-color:var(--b3);box-shadow:0 16px 48px rgba(0,0,0,.3);transform:translateY(-4px)}
 .cs__next-label{font-size:.64rem;color:var(--t3);text-transform:uppercase;letter-spacing:.12em}
 .cs__next-link{font-family:var(--s);font-size:1rem;font-weight:600;color:var(--ac2);display:flex;align-items:center;gap:10px;transition:gap .3s var(--e),text-shadow .3s}
-.cs__next-link:hover{gap:16px;text-shadow:0 0 20px var(--acg)}
+.cs__next:hover .cs__next-link{gap:16px;text-shadow:0 0 20px var(--acg)}
 
-/* ─── Scroll reveal ─── */
-.js [data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .8s var(--e),transform .8s var(--e)}
+/* ─── Scroll reveal — staggered children ─── */
+.js [data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s var(--e),transform .7s var(--e)}
 .js [data-reveal].vis{opacity:1;transform:translateY(0)}
+.js [data-reveal].vis>[data-child]{opacity:1;transform:translateY(0)}
+
+/* Stagger children inside revealed sections */
+.js [data-reveal] .cs__metric,
+.js [data-reveal] .cs__list li,
+.js [data-reveal] .cs__decisions tbody tr{
+  opacity:0;transform:translateY(12px);transition:opacity .5s var(--e),transform .5s var(--e)}
+.js [data-reveal].vis .cs__metric,
+.js [data-reveal].vis .cs__list li,
+.js [data-reveal].vis .cs__decisions tbody tr{opacity:1;transform:translateY(0)}
+
+/* Stagger delays for metrics */
+.js [data-reveal].vis .cs__metric:nth-child(1){transition-delay:.05s}
+.js [data-reveal].vis .cs__metric:nth-child(2){transition-delay:.1s}
+.js [data-reveal].vis .cs__metric:nth-child(3){transition-delay:.15s}
+.js [data-reveal].vis .cs__metric:nth-child(4){transition-delay:.2s}
+
+/* Stagger delays for list items */
+.js [data-reveal].vis .cs__list li:nth-child(1){transition-delay:.05s}
+.js [data-reveal].vis .cs__list li:nth-child(2){transition-delay:.1s}
+.js [data-reveal].vis .cs__list li:nth-child(3){transition-delay:.15s}
+.js [data-reveal].vis .cs__list li:nth-child(4){transition-delay:.2s}
+.js [data-reveal].vis .cs__list li:nth-child(5){transition-delay:.25s}
+
+/* Stagger delays for table rows */
+.js [data-reveal].vis .cs__decisions tbody tr:nth-child(1){transition-delay:.05s}
+.js [data-reveal].vis .cs__decisions tbody tr:nth-child(2){transition-delay:.1s}
+.js [data-reveal].vis .cs__decisions tbody tr:nth-child(3){transition-delay:.15s}
+.js [data-reveal].vis .cs__decisions tbody tr:nth-child(4){transition-delay:.2s}
 
 /* ─── Lightbox ─── */
 .cs__img{cursor:zoom-in}.cs__screen{cursor:zoom-in}
@@ -156,9 +190,13 @@ a{color:inherit;text-decoration:none}
 .lb__close{position:absolute;top:16px;right:20px;font-size:1.2rem;color:var(--t3);cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--glass);border:1px solid var(--b1);transition:color .2s,border-color .2s}
 .lb__close:hover{color:var(--t1);border-color:var(--b2)}
 
-/* ─── Responsive ─── */
+/* ═══════════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════════ */
+
 @media(max-width:768px){
   .cs-bar{padding:0 16px}
+  .cs-bar__section{display:none}
   .cs{padding:72px 16px 56px;overflow-x:hidden}
 
   /* TLDR */
@@ -167,41 +205,50 @@ a{color:inherit;text-decoration:none}
   .cs__tldr-item:last-child{border-bottom:none}
 
   /* Hero */
-  .cs__hero{margin-bottom:40px;padding-bottom:40px}
-  .cs__type{font-size:.58rem;padding:5px 12px;letter-spacing:.12em}
+  .cs__hero{margin-bottom:36px;padding-bottom:36px}
+  .cs__type{font-size:.56rem;padding:5px 12px;letter-spacing:.1em}
   .cs__h{font-size:1.5rem;letter-spacing:-.02em}
   .cs__sub{font-size:.88rem;line-height:1.7}
 
-  /* Metrics — 2-col grid on tablet */
+  /* Metrics — 2-col grid */
   .cs__metrics{grid-template-columns:1fr 1fr;gap:10px;margin:24px 0}
   .cs__metric{padding:16px 12px}
   .cs__metric-val{font-size:1.3rem}
-  .cs__metric-label{font-size:.62rem}
+  .cs__metric-label{font-size:.6rem}
 
   /* Sections */
   .cs__section{padding:40px 0}
   .cs__section-h{font-size:1.15rem}
   .cs__section-text{font-size:.85rem}
 
-  /* Images — kill negative margins, constrain to viewport */
-  .cs__img--wide{margin:24px 0;border-radius:12px}
-  .cs__img{margin:24px 0}
+  /* Images — constrain everything */
+  .cs__img--wide{margin:20px 0;border-radius:12px}
+  .cs__img{margin:20px 0}
 
-  /* Screens */
+  /* Screen grids */
   .cs__screens{grid-template-columns:1fr;gap:12px}
-  .cs__mobile-pair{flex-direction:column;align-items:center;gap:16px}
-  .cs__mobile-pair .cs__screen{max-width:220px;width:100%}
+
+  /* Mobile pairs — HORIZONTAL SCROLL with snap */
+  .cs__mobile-pair{
+    flex-wrap:nowrap;justify-content:flex-start;gap:12px;margin:28px -16px;padding:0 16px;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;
+    scrollbar-width:none;-ms-overflow-style:none}
+  .cs__mobile-pair::-webkit-scrollbar{display:none}
+  .cs__mobile-pair .cs__screen{min-width:200px;max-width:200px;scroll-snap-align:start}
+
+  /* Fade-hint for scroll */
+  .cs__mobile-pair::after{content:'';position:sticky;right:0;min-width:32px;height:100%;background:linear-gradient(90deg,transparent,var(--bg));flex-shrink:0;pointer-events:none}
 
   /* Quotes */
-  .cs__quote{padding:24px 20px;margin:28px 0;border-radius:12px}
-  .cs__quote-text{font-size:.95rem}
-  .cs__quote::before{font-size:2.5rem;left:16px;top:-4px}
+  .cs__quote{padding:24px 20px;margin:24px 0;border-radius:12px}
+  .cs__quote-text{font-size:.92rem}
+  .cs__quote::before{font-size:2.5rem;left:14px;top:-4px}
 
   /* Tables */
   .cs__decisions{font-size:.72rem;min-width:420px}
   .cs__decisions th,.cs__decisions td{padding:10px 10px}
 
-  /* Flow SVGs — scrollable */
+  /* Flow SVGs */
   .cs__flow-svg{margin:20px -16px;padding:0 16px}
 
   /* Evidence */
@@ -209,20 +256,35 @@ a{color:inherit;text-decoration:none}
 
   /* CTA */
   .cs__try{flex-direction:column;text-align:center;padding:20px;gap:16px}
+  .cs__try-btn{width:100%;text-align:center}
 
-  /* Next */
-  .cs__next{flex-direction:column;gap:12px;text-align:center}
+  /* Next project card */
+  .cs__next{flex-direction:column;gap:12px;text-align:center;padding:28px 24px}
+
+  /* Reflections */
+  .cs__reflection{padding:16px 20px}
+
+  /* Kill stagger delays on mobile for snappier feel */
+  .js [data-reveal].vis .cs__metric,
+  .js [data-reveal].vis .cs__list li,
+  .js [data-reveal].vis .cs__decisions tbody tr{transition-delay:0s!important}
 }
 
 @media(max-width:480px){
-  .cs__h{font-size:1.3rem}
+  .cs{padding:68px 14px 48px}
+  .cs__h{font-size:1.25rem}
 
-  /* Metrics — single column on small phones */
+  /* Metrics — single column */
   .cs__metrics{grid-template-columns:1fr;gap:8px}
   .cs__metric{display:flex;align-items:center;gap:14px;text-align:left;padding:14px 16px}
   .cs__metric-val{font-size:1.3rem;margin-bottom:0;min-width:60px}
-  .cs__metric-label{font-size:.62rem}
+  .cs__metric-label{font-size:.6rem}
 
-  /* Mobile pair screens smaller */
-  .cs__mobile-pair .cs__screen{max-width:180px}
+  /* Mobile pair screens */
+  .cs__mobile-pair .cs__screen{min-width:170px;max-width:170px}
+
+  /* Even tighter spacing */
+  .cs__section{padding:32px 0}
+  .cs__quote{padding:20px 16px}
+  .cs__quote::before{display:none}
 }
