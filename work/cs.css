@@ -34,7 +34,7 @@ a{color:inherit;text-decoration:none}
 .cs-bar__dot{width:6px;height:6px;border-radius:50%;background:var(--ac);box-shadow:0 0 8px var(--acg)}
 
 /* ─── Main layout ─── */
-.cs{max-width:960px;margin:0 auto;padding:100px 32px 96px}
+.cs{max-width:960px;margin:0 auto;padding:100px 32px 96px;overflow-x:hidden}
 
 /* ─── TLDR strip ─── */
 .cs__tldr{display:flex;gap:0;margin-bottom:56px;border-radius:12px;overflow:hidden;border:1px solid var(--b2)}
@@ -87,9 +87,9 @@ a{color:inherit;text-decoration:none}
 .cs__visual{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;margin:32px 0;font-size:.66rem;color:var(--t4);text-transform:uppercase;letter-spacing:.1em}
 
 /* ─── Images ─── */
-.cs__img{border-radius:12px;border:1px solid var(--b2);overflow:hidden;margin:32px 0;transition:border-color .3s,box-shadow .3s}
+.cs__img{border-radius:12px;border:1px solid var(--b2);overflow:hidden;margin:32px 0;transition:border-color .3s,box-shadow .3s;max-width:100%}
 .cs__img:hover{border-color:var(--b3);box-shadow:0 16px 60px rgba(0,0,0,.3)}
-.cs__img img{width:100%;display:block}
+.cs__img img{width:100%;height:auto;display:block}
 .cs__img--wide{margin:40px -60px;border-radius:16px}
 .cs__img-cap{font-size:.66rem;color:var(--t3);text-align:center;padding:12px 0 0;letter-spacing:.04em;line-height:1.5}
 
@@ -97,7 +97,7 @@ a{color:inherit;text-decoration:none}
 .cs__screens{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0}
 .cs__screen{border-radius:12px;border:1px solid var(--b2);overflow:hidden;transition:border-color .3s,transform .3s var(--e),box-shadow .3s}
 .cs__screen:hover{border-color:var(--b3);transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,.3)}
-.cs__screen img{width:100%;display:block}
+.cs__screen img{width:100%;height:auto;display:block}
 .cs__screen-label{font-size:.6rem;color:var(--t3);padding:10px 14px;background:var(--bg2);text-align:center;letter-spacing:.06em;text-transform:uppercase}
 
 .cs__mobile-pair{display:flex;gap:20px;justify-content:center;margin:40px 0}
@@ -110,11 +110,12 @@ a{color:inherit;text-decoration:none}
 .cs__quote-author{font-size:.72rem;color:var(--t3);margin-top:16px;display:block;letter-spacing:.04em}
 
 /* ─── Flow SVG diagrams ─── */
-.cs__flow-svg{margin:32px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.cs__flow-svg svg{display:block}
+.cs__flow-svg{margin:32px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+.cs__flow-svg svg{display:block;max-width:100%;height:auto}
 
 /* ─── Decisions table ─── */
-.cs__decisions{width:100%;border-collapse:separate;border-spacing:0;margin:24px 0;border-radius:12px;overflow:hidden;border:1px solid var(--b2)}
+.cs__decisions-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:24px 0;border-radius:12px;border:1px solid var(--b2)}
+.cs__decisions{width:100%;border-collapse:separate;border-spacing:0;min-width:500px}
 .cs__decisions th{text-align:left;font-size:.62rem;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;padding:14px 16px;background:var(--bg2);border-bottom:1px solid var(--b2);font-weight:600}
 .cs__decisions td{font-family:var(--s);font-size:.82rem;color:var(--t2);padding:14px 16px;border-bottom:1px solid var(--b1);vertical-align:top;line-height:1.6}
 .cs__decisions tr:last-child td{border-bottom:none}
@@ -157,33 +158,71 @@ a{color:inherit;text-decoration:none}
 
 /* ─── Responsive ─── */
 @media(max-width:768px){
-  .cs{padding:80px 20px 64px}
+  .cs-bar{padding:0 16px}
+  .cs{padding:72px 16px 56px;overflow-x:hidden}
+
+  /* TLDR */
   .cs__tldr{flex-direction:column}
   .cs__tldr-item{border-right:none;border-bottom:1px solid var(--b1);padding:16px 20px}
   .cs__tldr-item:last-child{border-bottom:none}
-  .cs__h{font-size:1.6rem}
-  .cs__sub{font-size:.92rem}
-  .cs__section{padding:48px 0}
-  .cs__section-h{font-size:1.2rem}
-  .cs__metrics{grid-template-columns:1fr 1fr;gap:12px}
-  .cs__metric{padding:18px 14px}
-  .cs__metric-val{font-size:1.4rem}
-  .cs__img--wide{margin:28px -8px;border-radius:12px}
-  .cs__screens{grid-template-columns:1fr}
-  .cs__mobile-pair{flex-direction:column;align-items:center}
-  .cs__mobile-pair .cs__screen{max-width:200px}
-  .cs__quote{padding:28px 24px;margin:32px 0}
-  .cs__quote-text{font-size:1rem}
-  .cs__quote::before{font-size:3rem;left:20px}
-  .cs__decisions{font-size:.72rem}
-  .cs__decisions th,.cs__decisions td{padding:10px 12px}
-  .cs__try{flex-direction:column;text-align:center;padding:24px}
+
+  /* Hero */
+  .cs__hero{margin-bottom:40px;padding-bottom:40px}
+  .cs__type{font-size:.58rem;padding:5px 12px;letter-spacing:.12em}
+  .cs__h{font-size:1.5rem;letter-spacing:-.02em}
+  .cs__sub{font-size:.88rem;line-height:1.7}
+
+  /* Metrics — 2-col grid on tablet */
+  .cs__metrics{grid-template-columns:1fr 1fr;gap:10px;margin:24px 0}
+  .cs__metric{padding:16px 12px}
+  .cs__metric-val{font-size:1.3rem}
+  .cs__metric-label{font-size:.62rem}
+
+  /* Sections */
+  .cs__section{padding:40px 0}
+  .cs__section-h{font-size:1.15rem}
+  .cs__section-text{font-size:.85rem}
+
+  /* Images — kill negative margins, constrain to viewport */
+  .cs__img--wide{margin:24px 0;border-radius:12px}
+  .cs__img{margin:24px 0}
+
+  /* Screens */
+  .cs__screens{grid-template-columns:1fr;gap:12px}
+  .cs__mobile-pair{flex-direction:column;align-items:center;gap:16px}
+  .cs__mobile-pair .cs__screen{max-width:220px;width:100%}
+
+  /* Quotes */
+  .cs__quote{padding:24px 20px;margin:28px 0;border-radius:12px}
+  .cs__quote-text{font-size:.95rem}
+  .cs__quote::before{font-size:2.5rem;left:16px;top:-4px}
+
+  /* Tables */
+  .cs__decisions{font-size:.72rem;min-width:420px}
+  .cs__decisions th,.cs__decisions td{padding:10px 10px}
+
+  /* Flow SVGs — scrollable */
+  .cs__flow-svg{margin:20px -16px;padding:0 16px}
+
+  /* Evidence */
+  .cs__evidence{padding:20px 20px 20px 22px}
+
+  /* CTA */
+  .cs__try{flex-direction:column;text-align:center;padding:20px;gap:16px}
+
+  /* Next */
   .cs__next{flex-direction:column;gap:12px;text-align:center}
 }
 
 @media(max-width:480px){
-  .cs__h{font-size:1.35rem}
-  .cs__metrics{grid-template-columns:1fr}
-  .cs__metric{display:flex;align-items:center;gap:16px;text-align:left;padding:16px 20px}
-  .cs__metric-val{font-size:1.4rem;margin-bottom:0}
+  .cs__h{font-size:1.3rem}
+
+  /* Metrics — single column on small phones */
+  .cs__metrics{grid-template-columns:1fr;gap:8px}
+  .cs__metric{display:flex;align-items:center;gap:14px;text-align:left;padding:14px 16px}
+  .cs__metric-val{font-size:1.3rem;margin-bottom:0;min-width:60px}
+  .cs__metric-label{font-size:.62rem}
+
+  /* Mobile pair screens smaller */
+  .cs__mobile-pair .cs__screen{max-width:180px}
 }
