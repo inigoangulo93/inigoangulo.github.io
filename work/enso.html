@@ -121,6 +121,14 @@ a{color:inherit;text-decoration:none}
 .cs__quote{border-left:2px solid var(--ac);padding:16px 24px;margin:24px 0;background:var(--acg)}
 .cs__quote-text{font-family:var(--s);font-size:.92rem;font-style:italic;color:var(--t1);line-height:1.65}
 .cs__quote-author{font-size:.68rem;color:var(--t3);margin-top:8px;display:block}
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s var(--e);cursor:zoom-out;padding:24px}
+.lb.open{opacity:1;pointer-events:auto}
+.lb img{max-width:95vw;max-height:92vh;border-radius:8px;border:1px solid var(--b2);box-shadow:0 24px 80px rgba(0,0,0,.6);transform:scale(.95);transition:transform .3s var(--e)}
+.lb.open img{transform:scale(1)}
+.lb__close{position:absolute;top:16px;right:20px;font-size:1.2rem;color:var(--t3);cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--glass);border:1px solid var(--b1);transition:color .2s,border-color .2s}
+.lb__close:hover{color:var(--t1);border-color:var(--b2)}
+.cs__img{cursor:zoom-in}.cs__screen{cursor:zoom-in}
 </style>
 </head>
 <body>
@@ -394,7 +402,12 @@ a{color:inherit;text-decoration:none}
 <script>
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.15});
 document.querySelectorAll('[data-reveal]').forEach(el=>obs.observe(el));
+const lb=document.getElementById("lb"),lbi=lb.querySelector("img"),lbc=lb.querySelector(".lb__close");
+document.querySelectorAll(".cs__img img, .cs__screen img").forEach(i=>{i.addEventListener("click",()=>{lbi.src=i.src;lbi.alt=i.alt;lb.classList.add("open");document.body.style.overflow="hidden"})});
+function closeLb(){lb.classList.remove("open");document.body.style.overflow=""}
+lbc.addEventListener("click",closeLb);lb.addEventListener("click",e=>{if(e.target===lb)closeLb()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLb()});
 </script>
 
+<div class="lb" id="lb"><span class="lb__close">&times;</span><img></div>
 </body>
 </html>
