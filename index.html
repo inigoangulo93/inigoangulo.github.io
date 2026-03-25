@@ -6,7 +6,7 @@
 <title>Inigo Angulo · Product Design and Growth</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#000;--bg2:#060608;--bg3:#0a0a0e;--bg4:#0e0e14;
@@ -433,8 +433,8 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 /* ═══ MOBILE: 768px ═══ */
 
 /* ─── Internal Notes panel ─── */
-.fn-trigger{font-family:var(--m);font-size:.65rem;color:var(--t4);cursor:pointer;transition:color .3s;display:inline-flex;align-items:center;gap:4px;margin-top:16px;letter-spacing:.04em}
-.fn-trigger:hover{color:var(--ac)}
+.fn-trigger{font-family:var(--m);font-size:.62rem;color:var(--t4);cursor:pointer;transition:color .4s;display:inline-flex;align-items:center;gap:6px;margin-top:16px;letter-spacing:.06em;text-transform:lowercase;font-style:italic}
+.fn-trigger:hover{color:#c8b078}
 .fn-trigger::before{content:'';width:12px;height:1px;background:currentColor;opacity:.4}
 
 .fn-overlay{position:fixed;inset:0;z-index:998;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .35s}
@@ -1043,13 +1043,15 @@ function go(n){
 <div>
 <div class="sh" style="margin-bottom:24px"><span>// about me</span></div>
 <h2 style="font-family:var(--s);font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:16px">Inigo Angulo</h2>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">Product designer and growth strategist based in Zurich with 8+ years of experience across commerce, fintech, PropTech, and travel. I specialise in transforming complex, data-heavy systems into intelligent experiences that drive measurable business outcomes.</p>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">Currently Experience Lead for Commerce at WPP, where I define end-to-end UX across AI-enabled platforms. Previously I led conversion optimisation at GetYourGuide, designed luxury trading platforms at Crowdhouse AG, and built a multi-country design system for ING Bank.</p>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:24px">My work sits at the intersection of product strategy, behavioural analytics, and experience design. I use tools like PostHog, GA4, and Mixpanel not just to validate decisions, but to find the problems nobody is looking for.</p>
+<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">I&#8217;m a product designer based in Zurich with 10+ years of experience across commerce, fintech, PropTech, and travel.</p>
+<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">I work on complex, data-rich products where clarity, speed, and business impact matter. My focus is turning messy systems into experiences that are easier to use, easier to trust, and better aligned with how people actually make decisions.</p>
+<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">Currently, I&#8217;m Experience Lead for Commerce at WPP, shaping end-to-end UX across AI-enabled platforms. Previously, I led conversion optimisation at GetYourGuide, designed luxury trading platforms at Crowdhouse AG, and contributed to a multi-country design system at ING Bank.</p>
+<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:24px">My work sits between product strategy, behavioural analytics, and experience design. I use tools like PostHog, GA4, and Mixpanel not just to validate decisions, but to uncover friction, blind spots, and patterns that usually go unnoticed.</p>
 <div style="display:flex;flex-direction:column;gap:12px;padding:20px 0;border-top:1px solid var(--b1)">
 <div class="sh" style="margin-bottom:4px"><span>// beyond work</span></div>
-<p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.75">Art keeps my sense of composition and balance alive. History fuels my curiosity about how ideas evolve through time. Photography helps me slow down and capture meaning through small details. Hiking through Swiss trails is my way to reset and find clarity&mdash;it's usually in those quiet moments outdoors where new ideas begin to take form.</p>
-<span class="fn-trigger" onclick="openNotes()">internal notes</span>
+<p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.75;margin-bottom:8px">Outside of work, I&#8217;m deeply drawn to European medieval history, especially the symbolic weight, visual language, and cultural continuity of the period. I have a particular fascination with Gothic typography and the way form can carry identity, authority, and atmosphere across centuries.</p>
+<p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.75">Art keeps my sense of composition and balance alive. Photography helps me slow down and notice what most people miss. Hiking through Swiss trails is how I reset, think clearly, and usually where new ideas begin to take shape.</p>
+<span class="fn-trigger" onclick="openNotes()">scripta privata</span>
 </div>
 <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--b1)">
 <span style="font-family:var(--m);font-size:.65rem;color:var(--t2);padding:4px 11px;border-radius:4px;border:1px solid var(--b1)">English</span>
@@ -1332,26 +1334,26 @@ function mgo(n){
 }
 </script>
 
-<!-- Internal Notes Panel -->
+<!-- Scripta Privata — Medieval Easter Egg -->
 <div class="fn-overlay" id="fnOverlay" onclick="closeNotes()"></div>
-<div class="fn-panel" id="fnPanel" role="dialog" aria-label="Internal Notes">
+<div class="fn-panel" id="fnPanel" role="dialog" aria-label="Scripta Privata">
 <div class="fn-panel__inner">
 <div class="fn-panel__head">
 <div>
-<div class="fn-panel__title">Internal Notes</div>
-<div class="fn-panel__sub">Fragments, principles, and operating assumptions.</div>
+<div class="fn-panel__title">Scripta Privata</div>
+<div class="fn-panel__sub">Fragmenta &#183; Principia &#183; Rationes</div>
 </div>
-<button class="fn-panel__close" onclick="closeNotes()" aria-label="Close">&times;</button>
+<button class="fn-panel__close" onclick="closeNotes()" aria-label="Close">&#10005;</button>
 </div>
-<div class="fn-note"><span class="fn-note__num">Field Note 01</span><span class="fn-note__text">Clarity is rarely a visual problem first. It usually breaks earlier.</span></div>
-<div class="fn-note"><span class="fn-note__num">Field Note 02</span><span class="fn-note__text">Most friction is upstream. Interfaces often just expose it.</span></div>
-<div class="fn-note"><span class="fn-note__num">Field Note 03</span><span class="fn-note__text">AI speeds up execution. Judgment still decides direction.</span></div>
-<div class="fn-note"><span class="fn-note__num">Field Note 04</span><span class="fn-note__text">The real work is often deciding what not to build.</span></div>
-<div class="fn-note"><span class="fn-note__num">Field Note 05</span><span class="fn-note__text">Good systems reduce hesitation at the point of decision.</span></div>
-<div class="fn-note"><span class="fn-note__num">Field Note 06</span><span class="fn-note__text">A clean UI can still hide a confused product.</span></div>
-<div class="fn-note"><span class="fn-note__num">Field Note 07</span><span class="fn-note__text">Signal is usually there. The hard part is knowing what to ignore.</span></div>
-<div class="fn-note"><span class="fn-note__num">Field Note 08</span><span class="fn-note__text">I care a lot about products that hold under pressure.</span></div>
-<div class="fn-panel__status">Private layer</div>
+<div class="fn-note"><span class="fn-note__num">I</span><span class="fn-note__text">Clarity is rarely a visual problem first. It usually breaks earlier.</span></div>
+<div class="fn-note"><span class="fn-note__num">II</span><span class="fn-note__text">Most friction is upstream. Interfaces often just expose it.</span></div>
+<div class="fn-note"><span class="fn-note__num">III</span><span class="fn-note__text">AI speeds up execution. Judgment still decides direction.</span></div>
+<div class="fn-note"><span class="fn-note__num">IV</span><span class="fn-note__text">The real work is often deciding what not to build.</span></div>
+<div class="fn-note"><span class="fn-note__num">V</span><span class="fn-note__text">Good systems reduce hesitation at the point of decision.</span></div>
+<div class="fn-note"><span class="fn-note__num">VI</span><span class="fn-note__text">A clean UI can still hide a confused product.</span></div>
+<div class="fn-note"><span class="fn-note__num">VII</span><span class="fn-note__text">Signal is usually there. The hard part is knowing what to ignore.</span></div>
+<div class="fn-note"><span class="fn-note__num">VIII</span><span class="fn-note__text">I care a lot about products that hold under pressure.</span></div>
+<div class="fn-panel__status">&#8212; Notae Privatae &#8212;</div>
 </div>
 </div>
 
