@@ -297,7 +297,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .tk__p{font-family:var(--s);font-size:.88rem;color:var(--t2);line-height:1.75;margin-top:10px;max-width:620px}
 
 .tk__expand{max-height:0;overflow:hidden;opacity:0;transition:max-height .5s var(--e),opacity .35s .05s}
-.tk.open .tk__expand{max-height:300px;opacity:1;padding-top:14px}
+.tk.open .tk__expand{max-height:500px;opacity:1;padding-top:16px}
 
 .tk__chips{display:flex;flex-wrap:wrap;gap:8px}
 .tk__chip{font-family:var(--s);font-size:.68rem;font-weight:500;padding:5px 14px;border-radius:100px;color:var(--chip-c,var(--t2));background:var(--chip-bg,var(--glass));border:1px solid var(--chip-b,var(--b1));transition:transform .3s var(--e),box-shadow .3s;letter-spacing:.01em}
@@ -479,6 +479,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   /* Signals: 2 col, bigger touch */
   /* philosophy grid stacks on mobile */
   .layer [style*='grid-template-columns:1fr 1fr']{grid-template-columns:1fr !important;gap:24px !important}
+  .layer [style*='grid-template-columns:repeat(4']{grid-template-columns:1fr 1fr !important;gap:12px !important}
 
   /* Cards: single column, consistent */
   .cards{grid-template-columns:1fr !important;gap:16px}
@@ -627,39 +628,49 @@ function go(n){
 
 <div class="clients"><div class="clients__inner"><p class="clients__label">Trusted by teams at</p><div class="clients__grid"><span class="clients__item">WPP</span><span class="clients__item">GetYourGuide</span><span class="clients__item">ING Bank</span><span class="clients__item">Adecco Group</span><span class="clients__item">Ferrari Switzerland</span><span class="clients__item">Moderna</span><span class="clients__item">Schneider Electric</span></div></div></div>
 
-<div class="layer"><div class="mx"><div class="sh"><span>// approach</span></div>
+<div class="layer"><div class="mx">
 
-<div style="position:relative;margin-bottom:36px;padding:48px 0 40px;overflow:hidden;border-radius:10px;background:var(--bg2);border:1px solid var(--b1)">
-<svg viewBox="0 0 1100 260" fill="none" style="width:100%;height:100%;display:block">
-<style>
-@keyframes draw{from{stroke-dashoffset:12000}to{stroke-dashoffset:0}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes pulse{0%,100%{opacity:.4}50%{opacity:.8}}
-</style>
-<path d="M60,150 C40,60 100,240 80,40 C70,10 120,250 90,80 C70,20 140,230 110,30 C90,0 160,250 120,60 C100,10 170,240 130,80 C115,30 180,230 145,50 C130,5 190,250 155,90 C140,20 205,240 170,40 C150,0 220,250 180,70 C160,15 230,240 195,100 C175,30 240,230 210,60 C195,10 260,240 225,90 C210,30 270,220 240,70 C225,20 285,230 255,100 C240,40 295,210 270,80 C255,30 310,220 285,110 C270,50 325,200 300,90 C285,40 340,210 315,110 C300,55 355,195 335,100 C320,60 370,190 350,115 C340,70 380,180 365,110 C355,75 395,175 385,118 C375,85 410,168 400,122 C395,95 425,160 420,125 C415,105 440,155 440,128 C438,112 460,150 460,130 C460,120 480,142 485,132 C490,128 510,138 520,134 C530,132 550,136 570,134 C590,133 620,135 660,134 L1040,134" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".5" fill="none" style="stroke-dasharray:12000;stroke-dashoffset:12000;animation:draw 6s cubic-bezier(.22,.61,.36,1) forwards"/>
-<path d="M60,150 C40,60 100,240 80,40 C70,10 120,250 90,80 C70,20 140,230 110,30 C90,0 160,250 120,60 C100,10 170,240 130,80 C115,30 180,230 145,50 C130,5 190,250 155,90 C140,20 205,240 170,40 C150,0 220,250 180,70 C160,15 230,240 195,100 C175,30 240,230 210,60 C195,10 260,240 225,90 C210,30 270,220 240,70 C225,20 285,230 255,100 C240,40 295,210 270,80 C255,30 310,220 285,110 C270,50 325,200 300,90 C285,40 340,210 315,110 C300,55 355,195 335,100 C320,60 370,190 350,115 C340,70 380,180 365,110 C355,75 395,175 385,118 C375,85 410,168 400,122 C395,95 425,160 420,125 C415,105 440,155 440,128 C438,112 460,150 460,130 C460,120 480,142 485,132 C490,128 510,138 520,134 C530,132 550,136 570,134 C590,133 620,135 660,134 L1040,134" stroke="#2dd4bf" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".03" fill="none" style="stroke-dasharray:12000;stroke-dashoffset:12000;animation:draw 6s cubic-bezier(.22,.61,.36,1) forwards"/>
-<circle cx="60" cy="150" r="3.5" fill="#6e6e88" style="animation:fadeIn .3s .2s both"/>
-<text x="60" y="192" text-anchor="middle" fill="#6e6e88" font-size="9" font-family="JetBrains Mono" style="animation:fadeIn .5s .3s both">Problem</text>
-<line x1="1040" y1="50" x2="1040" y2="126" stroke="#6e6e88" stroke-width=".8" stroke-dasharray="3 3" style="animation:fadeIn .5s 5.2s both"/>
-<circle cx="1040" cy="134" r="6" fill="none" stroke="#2dd4bf" stroke-width="1" style="animation:fadeIn .5s 5.5s both,pulse 2.5s 6s infinite"/>
-<circle cx="1040" cy="134" r="2.5" fill="#2dd4bf" style="animation:fadeIn .3s 5.5s both"/>
-<text x="1040" y="40" text-anchor="middle" fill="#2dd4bf" font-size="9" font-family="JetBrains Mono" font-weight="600" style="animation:fadeIn .5s 5.2s both">Outcome</text>
+<!-- Approach — hero statement -->
+<div style="text-align:center;max-width:700px;margin:0 auto 48px">
+<p style="font-family:var(--m);font-size:.68rem;color:var(--ac);text-transform:uppercase;letter-spacing:.18em;margin-bottom:16px">// approach</p>
+<h2 style="font-family:var(--s);font-size:2.2rem;font-weight:800;letter-spacing:-.04em;line-height:1.12;margin-bottom:16px">I design backwards.<br><span style="color:var(--t2);font-weight:400">From the decision the business needs,<br>back to the screen that produces it.</span></h2>
+<p style="font-family:var(--s);font-size:.9rem;color:var(--t3);line-height:1.7">Everything that doesn't serve that decision gets removed.</p>
+</div>
+
+<!-- Scroll-driven scribble: chaos to clarity -->
+<div id="scribbleWrap" style="position:relative;margin:0 auto 48px;padding:56px 0 48px;overflow:hidden;border-radius:14px;background:var(--bg2);border:1px solid var(--b1)">
+<svg viewBox="0 0 1100 300" fill="none" style="width:100%;display:block">
+<text x="70" y="30" fill="#ef4444" font-size="10" font-family="JetBrains Mono" font-weight="600" opacity=".6">Chaos</text>
+<text x="70" y="44" fill="#6e6e88" font-size="8" font-family="JetBrains Mono" opacity=".4">ambiguity, noise, assumptions</text>
+<path d="M55,80 C50,60 70,100 60,55 C55,40 80,110 65,50 C58,30 90,120 72,45" stroke="#ef4444" stroke-width="1" opacity=".12" fill="none" stroke-linecap="round"/>
+<path d="M85,95 C78,70 100,115 88,60 C82,45 108,120 92,55" stroke="#ef4444" stroke-width=".8" opacity=".08" fill="none" stroke-linecap="round"/>
+<circle cx="60" cy="150" r="5" fill="none" stroke="#ef4444" stroke-width="1" opacity=".25"/>
+<circle cx="60" cy="150" r="2" fill="#ef4444" opacity=".4"/>
+<text x="60" y="175" text-anchor="middle" fill="#6e6e88" font-size="9" font-family="JetBrains Mono">Problem</text>
+<path id="scribblePath" d="M60,150 C35,50 105,260 75,30 C65,5 125,270 85,65 C70,15 145,250 105,25 C88,0 165,265 115,55 C98,10 175,255 130,70 C115,25 190,245 148,50 C133,8 200,260 158,85 C143,25 215,250 172,40 C155,5 230,260 188,75 C170,20 245,248 205,95 C188,35 258,235 220,70 C205,25 272,225 238,100 C222,45 288,215 255,90 C240,40 305,225 275,110 C260,55 320,210 295,100 C280,50 338,215 310,115 C298,60 352,200 330,108 C318,65 368,195 348,118 C340,75 385,188 368,120 C358,82 398,180 388,125 C380,95 415,172 405,128 C400,105 430,162 425,132 C422,115 448,155 448,135 C448,125 470,148 475,138 C480,132 500,142 510,138 C520,135 540,139 560,137 C580,136 610,137 650,136 L1040,136" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity=".6" fill="none"/>
+<path id="scribbleGlow" d="M60,150 C35,50 105,260 75,30 C65,5 125,270 85,65 C70,15 145,250 105,25 C88,0 165,265 115,55 C98,10 175,255 130,70 C115,25 190,245 148,50 C133,8 200,260 158,85 C143,25 215,250 172,40 C155,5 230,260 188,75 C170,20 245,248 205,95 C188,35 258,235 220,70 C205,25 272,225 238,100 C222,45 288,215 255,90 C240,40 305,225 275,110 C260,55 320,210 295,100 C280,50 338,215 310,115 C298,60 352,200 330,108 C318,65 368,195 348,118 C340,75 385,188 368,120 C358,82 398,180 388,125 C380,95 415,172 405,128 C400,105 430,162 425,132 C422,115 448,155 448,135 C448,125 470,148 475,138 C480,132 500,142 510,138 C520,135 540,139 560,137 C580,136 610,137 650,136 L1040,136" stroke="#2dd4bf" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity=".06" fill="none" style="filter:blur(3px)"/>
+<text x="1040" y="30" text-anchor="middle" fill="#2dd4bf" font-size="10" font-family="JetBrains Mono" font-weight="600" opacity=".7">Outcome</text>
+<text x="1040" y="44" text-anchor="middle" fill="#6e6e88" font-size="8" font-family="JetBrains Mono" opacity=".4">clear, measurable, shipped</text>
+<line x1="1040" y1="56" x2="1040" y2="126" stroke="#2dd4bf" stroke-width=".8" stroke-dasharray="3 3" opacity=".2"/>
+<circle cx="1040" cy="136" r="8" fill="none" stroke="#2dd4bf" stroke-width="1" opacity=".2"/>
+<circle cx="1040" cy="136" r="3" fill="#2dd4bf" opacity=".5"/>
+<text x="180" y="280" text-anchor="middle" fill="#3a3a50" font-size="7.5" font-family="JetBrains Mono">research</text>
+<text x="370" y="280" text-anchor="middle" fill="#3a3a50" font-size="7.5" font-family="JetBrains Mono">reframe</text>
+<text x="560" y="280" text-anchor="middle" fill="#3a3a50" font-size="7.5" font-family="JetBrains Mono">converge</text>
+<text x="800" y="280" text-anchor="middle" fill="#3a3a50" font-size="7.5" font-family="JetBrains Mono">ship</text>
+<line x1="60" y1="270" x2="1040" y2="270" stroke="#3a3a50" stroke-width=".5" opacity=".3"/>
 </svg>
+<p style="text-align:center;font-family:var(--m);font-size:.62rem;color:var(--t4);margin-top:12px;letter-spacing:.04em">Scroll to trace the path from chaos to clarity</p>
 </div>
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start">
-<div>
-<p style="font-family:var(--s);font-size:1.15rem;font-weight:600;line-height:1.4;margin-bottom:14px;letter-spacing:-.02em">I design backwards. Start with the decision the business needs to make, then build the system that produces it. Everything that doesn't serve that decision gets removed.</p>
-<p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.7;margin-bottom:20px">The real problem rarely lives in the brief. I find it in session recordings, funnel data, and operator shadowing. Most of what looks like a UX problem turns out to be a trust gap or a measurement gap.</p>
-<button onclick="go('about')" style="font-family:var(--s);font-size:.78rem;font-weight:500;color:var(--ac2);border:1px solid var(--acb);background:var(--acg2);padding:8px 20px;border-radius:6px;transition:all .3s var(--e);letter-spacing:.02em;cursor:pointer" onmouseover="this.style.background='var(--ac)';this.style.color='#000';this.style.borderColor='var(--ac)';this.style.boxShadow='0 0 20px var(--acg),0 0 60px var(--acg2)'" onmouseout="this.style.background='var(--acg2)';this.style.color='var(--ac2)';this.style.borderColor='var(--acb)';this.style.boxShadow='none'">See my process &#8594;</button>
+<!-- Principles grid -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px">
+<div style="padding:20px;background:var(--glass);border:1px solid var(--b1);border-radius:10px;transition:border-color .3s,box-shadow .3s" onmouseover="this.style.borderColor='var(--b2)';this.style.boxShadow='0 8px 32px rgba(0,0,0,.2)'" onmouseout="this.style.borderColor='var(--b1)';this.style.boxShadow='none'"><span style="font-family:var(--s);font-size:1.6rem;font-weight:800;color:var(--t4);opacity:.25;display:block;margin-bottom:6px">01</span><span style="font-family:var(--s);font-size:.82rem;font-weight:600;display:block;margin-bottom:4px">Decisions first</span><span style="font-family:var(--s);font-size:.74rem;color:var(--t3);line-height:1.5">Screens second. Every pixel serves a business decision.</span></div>
+<div style="padding:20px;background:var(--glass);border:1px solid var(--b1);border-radius:10px;transition:border-color .3s,box-shadow .3s" onmouseover="this.style.borderColor='var(--b2)';this.style.boxShadow='0 8px 32px rgba(0,0,0,.2)'" onmouseout="this.style.borderColor='var(--b1)';this.style.boxShadow='none'"><span style="font-family:var(--s);font-size:1.6rem;font-weight:800;color:var(--t4);opacity:.25;display:block;margin-bottom:6px">02</span><span style="font-family:var(--s);font-size:.82rem;font-weight:600;display:block;margin-bottom:4px">Fewer features</span><span style="font-family:var(--s);font-size:.74rem;color:var(--t3);line-height:1.5">Sharper outcomes. Scope discipline is the strategy.</span></div>
+<div style="padding:20px;background:var(--glass);border:1px solid var(--b1);border-radius:10px;transition:border-color .3s,box-shadow .3s" onmouseover="this.style.borderColor='var(--b2)';this.style.boxShadow='0 8px 32px rgba(0,0,0,.2)'" onmouseout="this.style.borderColor='var(--b1)';this.style.boxShadow='none'"><span style="font-family:var(--s);font-size:1.6rem;font-weight:800;color:var(--t4);opacity:.25;display:block;margin-bottom:6px">03</span><span style="font-family:var(--s);font-size:.82rem;font-weight:600;display:block;margin-bottom:4px">Data over opinion</span><span style="font-family:var(--s);font-size:.74rem;color:var(--t3);line-height:1.5">I instrument everything. If you can't measure it, you can't prove it.</span></div>
+<div style="padding:20px;background:var(--glass);border:1px solid var(--b1);border-radius:10px;transition:border-color .3s,box-shadow .3s" onmouseover="this.style.borderColor='var(--b2)';this.style.boxShadow='0 8px 32px rgba(0,0,0,.2)'" onmouseout="this.style.borderColor='var(--b1)';this.style.boxShadow='none'"><span style="font-family:var(--s);font-size:1.6rem;font-weight:800;color:var(--t4);opacity:.25;display:block;margin-bottom:6px">04</span><span style="font-family:var(--s);font-size:.82rem;font-weight:600;display:block;margin-bottom:4px">Ship to learn</span><span style="font-family:var(--s);font-size:.74rem;color:var(--t3);line-height:1.5">Production is the starting point. Post-launch data feeds the next cycle.</span></div>
 </div>
-<div style="display:flex;flex-direction:column;gap:12px">
-<div style="display:flex;align-items:baseline;gap:12px;padding:12px 0;border-bottom:1px solid var(--b1)"><span style="font-family:var(--s);font-size:.82rem;font-weight:600;min-width:24px">01</span><span style="font-family:var(--s);font-size:.84rem;color:var(--t2)">Decisions first, screens second</span></div>
-<div style="display:flex;align-items:baseline;gap:12px;padding:12px 0;border-bottom:1px solid var(--b1)"><span style="font-family:var(--s);font-size:.82rem;font-weight:600;min-width:24px">02</span><span style="font-family:var(--s);font-size:.84rem;color:var(--t2)">Fewer features, sharper outcomes</span></div>
-<div style="display:flex;align-items:baseline;gap:12px;padding:12px 0;border-bottom:1px solid var(--b1)"><span style="font-family:var(--s);font-size:.82rem;font-weight:600;min-width:24px">03</span><span style="font-family:var(--s);font-size:.84rem;color:var(--t2)">Data over assumptions, always</span></div>
-<div style="display:flex;align-items:baseline;gap:12px;padding:12px 0"><span style="font-family:var(--s);font-size:.82rem;font-weight:600;min-width:24px">04</span><span style="font-family:var(--s);font-size:.84rem;color:var(--t2)">Measure before you build</span></div>
-</div>
-</div>
+<div style="text-align:center"><button onclick="go('about')" style="font-family:var(--s);font-size:.82rem;font-weight:600;color:var(--ac2);border:1px solid var(--acb);background:var(--acg2);padding:10px 28px;border-radius:8px;transition:all .3s var(--e);cursor:pointer;letter-spacing:.02em" onmouseover="this.style.background='var(--ac)';this.style.color='#000';this.style.borderColor='var(--ac)';this.style.boxShadow='0 0 24px var(--acg)'" onmouseout="this.style.background='var(--acg2)';this.style.color='var(--ac2)';this.style.borderColor='var(--acb)';this.style.boxShadow='none'">Deep dive into my process &#8594;</button></div>
 </div></div>
 
 <div class="layer layer--raised"><div class="mx"><div class="sh"><span>// selected work</span><span onclick="go('work')" style="cursor:pointer">View all</span></div>
@@ -758,6 +769,7 @@ function go(n){
 </div>
 
 </div>
+<div style="text-align:center;padding-top:20px"><button onclick="go('about')" style="font-family:var(--s);font-size:.82rem;font-weight:600;color:var(--ac2);border:1px solid var(--acb);background:var(--acg2);padding:10px 28px;border-radius:8px;transition:all .3s var(--e);cursor:pointer" onmouseover="this.style.background='var(--ac)';this.style.color='#000';this.style.boxShadow='0 0 24px var(--acg)'" onmouseout="this.style.background='var(--acg2)';this.style.color='var(--ac2)';this.style.boxShadow='none'">See full process &#8594;</button></div>
 </div></div>
 
 <div class="layer"><div class="mx"><div class="sh"><span>// curriculum vitae</span></div><div class="cv__box"><div><span class="cv__t" style="display:flex;align-items:center;gap:10px"><svg width="20" height="24" viewBox="0 0 20 24" fill="none" style="flex-shrink:0"><rect x="1" y="1" width="18" height="22" rx="2" stroke="#2dd4bf" stroke-width="1.5" fill="none" opacity=".5"/><line x1="5" y1="8" x2="15" y2="8" stroke="#2dd4bf" stroke-width="1" opacity=".3"/><line x1="5" y1="12" x2="13" y2="12" stroke="#2dd4bf" stroke-width="1" opacity=".3"/><line x1="5" y1="16" x2="11" y2="16" stroke="#2dd4bf" stroke-width="1" opacity=".3"/></svg>Download my CV</span><br><span class="cv__m">PDF, Updated March 2026</span></div><a href="Inigo_Angulo_CV_2026.pdf" download class="cv__btn">Download PDF</a></div></div></div>
@@ -1006,16 +1018,36 @@ document.querySelectorAll(".flow__step").forEach(function(step){
   });
 });
 
-// Thinking page accordion
+// Thinking page accordion — multiple can be open
 document.querySelectorAll(".tk").forEach(function(tk,i){
-  // Open first by default
   if(i===0)tk.classList.add("open");
   tk.querySelector(".tk__card").addEventListener("click",function(){
-    var wasOpen=tk.classList.contains("open");
-    document.querySelectorAll(".tk.open").forEach(function(t){t.classList.remove("open")});
-    if(!wasOpen)tk.classList.add("open");
+    tk.classList.toggle("open");
   });
 });
+
+// Approach scribble — scroll-driven progress
+var scribble=document.getElementById("scribblePath");
+var scribbleGlow=document.getElementById("scribbleGlow");
+if(scribble){
+  var scribbleWrap=document.getElementById("scribbleWrap");
+  var pathLen=scribble.getTotalLength();
+  scribble.style.strokeDasharray=pathLen;
+  scribble.style.strokeDashoffset=pathLen;
+  if(scribbleGlow){scribbleGlow.style.strokeDasharray=pathLen;scribbleGlow.style.strokeDashoffset=pathLen;}
+  function updateScribble(){
+    var rect=scribbleWrap.getBoundingClientRect();
+    var h=window.innerHeight;
+    var start=rect.top+rect.height*0.15;
+    var end=rect.top+rect.height*0.85;
+    var p=Math.max(0,Math.min(1,(h-start)/(h-start+end-start)));
+    var offset=pathLen*(1-p);
+    scribble.style.strokeDashoffset=offset;
+    if(scribbleGlow)scribbleGlow.style.strokeDashoffset=offset;
+  }
+  window.addEventListener("scroll",updateScribble,{passive:true});
+  updateScribble();
+}
 
 // Hero - flowing grid with organic warp
 (function(){
