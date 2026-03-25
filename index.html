@@ -801,20 +801,36 @@ function go(n){
 <section class="v" id="v-about">
 <div class="layer"><div class="mx">
 
-<!-- Hero -->
-<div style="text-align:center;max-width:660px;margin:0 auto 56px">
-<p style="font-family:var(--m);font-size:.68rem;color:var(--ac);text-transform:uppercase;letter-spacing:.18em;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:12px"><span style="width:40px;height:1px;background:var(--ac);box-shadow:0 0 8px var(--acg)"></span>How I work<span style="width:40px;height:1px;background:var(--ac);box-shadow:0 0 8px var(--acg)"></span></p>
+<!-- Hero — visual, distinct from index -->
+<div style="position:relative;padding:80px 0 64px;margin-bottom:40px;overflow:hidden;border-radius:16px;background:linear-gradient(135deg,rgba(45,212,191,.04),rgba(167,139,250,.03),rgba(245,158,11,.02));border:1px solid var(--b1)">
+<!-- Ambient circles -->
+<div style="position:absolute;top:-60px;left:-40px;width:200px;height:200px;border-radius:50%;background:var(--ac);opacity:.03;filter:blur(60px)"></div>
+<div style="position:absolute;bottom:-40px;right:-20px;width:160px;height:160px;border-radius:50%;background:var(--pu);opacity:.03;filter:blur(50px)"></div>
+<!-- 5 step dots across top -->
+<div style="display:flex;justify-content:center;gap:32px;margin-bottom:32px">
+<span style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--ac);box-shadow:0 0 12px var(--acg)"></span><span style="font-family:var(--m);font-size:.55rem;color:var(--t3);letter-spacing:.06em">Listen</span></span>
+<span style="width:40px;height:1px;background:var(--b2);align-self:center;margin-bottom:16px"></span>
+<span style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--up);box-shadow:0 0 12px var(--upg)"></span><span style="font-family:var(--m);font-size:.55rem;color:var(--t3);letter-spacing:.06em">Frame</span></span>
+<span style="width:40px;height:1px;background:var(--b2);align-self:center;margin-bottom:16px"></span>
+<span style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--pu);box-shadow:0 0 12px var(--pug)"></span><span style="font-family:var(--m);font-size:.55rem;color:var(--t3);letter-spacing:.06em">Build</span></span>
+<span style="width:40px;height:1px;background:var(--b2);align-self:center;margin-bottom:16px"></span>
+<span style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--am);box-shadow:0 0 12px var(--amg)"></span><span style="font-family:var(--m);font-size:.55rem;color:var(--t3);letter-spacing:.06em">Prove</span></span>
+<span style="width:40px;height:1px;background:var(--b2);align-self:center;margin-bottom:16px"></span>
+<span style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--ac2);box-shadow:0 0 12px var(--acg)"></span><span style="font-family:var(--m);font-size:.55rem;color:var(--t3);letter-spacing:.06em">Ship</span></span>
+</div>
+<div style="text-align:center;max-width:580px;margin:0 auto">
 <h2 style="font-family:var(--s);font-size:2.4rem;font-weight:800;letter-spacing:-.04em;line-height:1.1;margin-bottom:16px">From ambiguity<br>to <span style="color:var(--ac2);text-shadow:0 0 40px var(--acg)">outcome</span></h2>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75">Every engagement follows this arc. The order matters&mdash;each phase feeds the next.</p>
+<p style="font-family:var(--s);font-size:.9rem;color:var(--t2);line-height:1.75;margin-bottom:20px">Every engagement follows this arc. The order matters&mdash;each phase feeds the next.</p>
+<!-- Legend -->
+<div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap">
+<span style="font-family:var(--m);font-size:.62rem;display:flex;align-items:center;gap:5px;color:var(--t3)"><span style="width:7px;height:7px;border-radius:50%;background:var(--ac)"></span>Design</span>
+<span style="font-family:var(--m);font-size:.62rem;display:flex;align-items:center;gap:5px;color:var(--t3)"><span style="width:7px;height:7px;border-radius:50%;background:var(--up)"></span>Data</span>
+<span style="font-family:var(--m);font-size:.62rem;display:flex;align-items:center;gap:5px;color:var(--t3)"><span style="width:7px;height:7px;border-radius:50%;background:var(--pu)"></span>Tools</span>
+<span style="font-family:var(--m);font-size:.62rem;display:flex;align-items:center;gap:5px;color:var(--t3)"><span style="width:7px;height:7px;border-radius:50%;background:var(--am)"></span>Methods</span>
+</div>
+</div>
 </div>
 
-<!-- Color legend -->
-<div style="display:flex;justify-content:center;gap:24px;margin-bottom:48px;flex-wrap:wrap">
-<span style="font-family:var(--s);font-size:.68rem;display:flex;align-items:center;gap:6px;color:var(--t3)"><span style="width:8px;height:8px;border-radius:50%;background:var(--ac)"></span>Design</span>
-<span style="font-family:var(--s);font-size:.68rem;display:flex;align-items:center;gap:6px;color:var(--t3)"><span style="width:8px;height:8px;border-radius:50%;background:var(--up)"></span>Data</span>
-<span style="font-family:var(--s);font-size:.68rem;display:flex;align-items:center;gap:6px;color:var(--t3)"><span style="width:8px;height:8px;border-radius:50%;background:var(--pu)"></span>Tools</span>
-<span style="font-family:var(--s);font-size:.68rem;display:flex;align-items:center;gap:6px;color:var(--t3)"><span style="width:8px;height:8px;border-radius:50%;background:var(--am)"></span>Methods</span>
-</div>
 
 <!-- Timeline container -->
 <div style="position:relative;max-width:820px;margin:0 auto">
