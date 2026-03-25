@@ -218,7 +218,10 @@
 
 </article>
 
+<div class="lb" id="lb"><span class="lb__close">&times;</span><img></div>
 <script>
+document.body.classList.add("js");
+
 // Scroll reveal
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("vis");obs.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll("[data-reveal]").forEach(el=>obs.observe(el));
@@ -228,12 +231,12 @@ const prog=document.getElementById("progress");
 window.addEventListener("scroll",()=>{const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-window.innerHeight;prog.style.width=Math.min(100,s/h*100)+"%"},{passive:true});
 
 // Lightbox
-const lb=document.getElementById("lb"),lbi=lb.querySelector("img"),lbc=lb.querySelector(".lb__close");
+const lb=document.getElementById("lb");
+if(lb){const lbi=lb.querySelector("img"),lbc=lb.querySelector(".lb__close");
 document.querySelectorAll(".cs__img img, .cs__screen img").forEach(i=>{i.addEventListener("click",()=>{lbi.src=i.src;lbi.alt=i.alt||"";lb.classList.add("open");document.body.style.overflow="hidden"})});
 function closeLb(){lb.classList.remove("open");document.body.style.overflow=""}
-lbc.addEventListener("click",closeLb);lb.addEventListener("click",e=>{if(e.target===lb)closeLb()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLb()});
+lbc.addEventListener("click",closeLb);lb.addEventListener("click",e=>{if(e.target===lb)closeLb()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLb()});}
 </script>
 
-<div class="lb" id="lb"><span class="lb__close">&times;</span><img></div>
 </body>
 </html>
