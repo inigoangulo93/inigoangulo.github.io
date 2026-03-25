@@ -446,7 +446,8 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .fn-panel__inner{padding:48px 36px 56px;position:relative}
 .fn-panel__inner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(180,150,90,.02) 38px,rgba(180,150,90,.02) 39px);pointer-events:none}
 .fn-panel__head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid rgba(180,150,90,.1)}
-.fn-panel__title{font-family:'UnifrakturCook',cursive;font-size:2.8rem;font-weight:700;color:#dfc070;letter-spacing:.02em;text-shadow:0 0 40px rgba(200,160,80,.15);line-height:1.1}
+.fn-panel__title{font-family:'UnifrakturCook',cursive;font-size:2.8rem;font-weight:700;color:#dfc070;letter-spacing:.02em;text-shadow:0 0 40px rgba(200,160,80,.15);line-height:1.1;display:flex;align-items:center;gap:8px}
+.fn-drop-cap{flex-shrink:0;display:block;margin-right:4px;margin-left:-4px;margin-top:-4px}
 .fn-panel__sub{font-family:var(--m);font-size:.6rem;color:rgba(200,170,100,.4);margin-top:12px;letter-spacing:.1em;text-transform:uppercase}
 .fn-panel__close{width:28px;height:28px;border-radius:0;border:1px solid rgba(180,150,90,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(180,150,90,.4);font-size:.8rem;transition:border-color .2s,color .2s;flex-shrink:0;background:none}
 .fn-panel__close:hover{border-color:rgba(180,150,90,.3);color:#c8b078}
@@ -1340,7 +1341,35 @@ function mgo(n){
 <div class="fn-panel__inner">
 <div class="fn-panel__head">
 <div>
-<div class="fn-panel__title">Scripta Privata</div>
+<div class="fn-panel__title"><span class="fn-drop-cap"><svg viewBox="0 0 120 120" width="72" height="72" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Ornamental frame -->
+<rect x="4" y="4" width="112" height="112" rx="4" stroke="#c8a050" stroke-width="1.5" opacity=".25"/>
+<rect x="10" y="10" width="100" height="100" rx="2" stroke="#c8a050" stroke-width=".5" opacity=".15"/>
+<!-- Corner ornaments -->
+<path d="M4,20 C8,20 12,16 12,4" stroke="#c8a050" stroke-width=".8" opacity=".3" fill="none"/>
+<path d="M116,20 C112,20 108,16 108,4" stroke="#c8a050" stroke-width=".8" opacity=".3" fill="none"/>
+<path d="M4,100 C8,100 12,104 12,116" stroke="#c8a050" stroke-width=".8" opacity=".3" fill="none"/>
+<path d="M116,100 C112,100 108,104 108,116" stroke="#c8a050" stroke-width=".8" opacity=".3" fill="none"/>
+<!-- Vine ornaments -->
+<path d="M18,22 C22,28 18,36 24,38 C18,42 22,50 18,54" stroke="#c8a050" stroke-width=".7" opacity=".2" fill="none"/>
+<path d="M102,22 C98,28 102,36 96,38 C102,42 98,50 102,54" stroke="#c8a050" stroke-width=".7" opacity=".2" fill="none"/>
+<path d="M18,66 C22,70 18,78 24,82 C18,86 22,92 18,98" stroke="#c8a050" stroke-width=".7" opacity=".2" fill="none"/>
+<path d="M102,66 C98,70 102,78 96,82 C102,86 98,92 102,98" stroke="#c8a050" stroke-width=".7" opacity=".2" fill="none"/>
+<!-- Leaf details -->
+<ellipse cx="24" cy="28" rx="3" ry="5" transform="rotate(-20,24,28)" fill="#c8a050" opacity=".08"/>
+<ellipse cx="96" cy="28" rx="3" ry="5" transform="rotate(20,96,28)" fill="#c8a050" opacity=".08"/>
+<ellipse cx="24" cy="82" rx="3" ry="5" transform="rotate(-20,24,82)" fill="#c8a050" opacity=".08"/>
+<ellipse cx="96" cy="82" rx="3" ry="5" transform="rotate(20,96,82)" fill="#c8a050" opacity=".08"/>
+<!-- Top/bottom decorative bars -->
+<line x1="30" y1="14" x2="90" y2="14" stroke="#c8a050" stroke-width=".5" opacity=".15"/>
+<line x1="30" y1="106" x2="90" y2="106" stroke="#c8a050" stroke-width=".5" opacity=".15"/>
+<circle cx="30" cy="14" r="1.5" fill="#c8a050" opacity=".12"/><circle cx="90" cy="14" r="1.5" fill="#c8a050" opacity=".12"/>
+<circle cx="30" cy="106" r="1.5" fill="#c8a050" opacity=".12"/><circle cx="90" cy="106" r="1.5" fill="#c8a050" opacity=".12"/>
+<!-- The S letterform -->
+<text x="60" y="88" text-anchor="middle" font-family="UnifrakturCook,cursive" font-size="72" font-weight="700" fill="#dfc070" opacity=".85">S</text>
+<!-- Inner glow on the S -->
+<text x="60" y="88" text-anchor="middle" font-family="UnifrakturCook,cursive" font-size="72" font-weight="700" fill="#dfc070" opacity=".08" style="filter:blur(4px)">S</text>
+</svg></span>cripta Privata</div>
 <div class="fn-panel__sub">Fragmenta &#183; Principia &#183; Rationes</div>
 </div>
 <button class="fn-panel__close" onclick="closeNotes()" aria-label="Close">&#10005;</button>
