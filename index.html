@@ -12,7 +12,7 @@
   --bg:#000;--bg2:#060608;--bg3:#0a0a0e;--bg4:#0e0e14;
   --glass:rgba(8,8,14,.55);--glass2:rgba(12,12,20,.5);
   --b1:rgba(255,255,255,.04);--b2:rgba(255,255,255,.08);--b3:rgba(255,255,255,.12);
-  --t1:#f4f4f6;--t2:#9a9aae;--t3:#6e6e88;--t4:#3a3a50;
+  --t1:#f4f4f6;--t2:#9a9aae;--t3:#8585a0;--t4:#52526e;
   --ac:#2dd4bf;--ac2:#5eead4;--acg:rgba(45,212,191,.12);--acg2:rgba(45,212,191,.06);--acb:rgba(45,212,191,.2);
   --up:#22c55e;--upg:rgba(34,197,94,.1);--dn:#ef4444;--dng:rgba(239,68,68,.06);
   --am:#f59e0b;--amg:rgba(245,158,11,.08);--pu:#a78bfa;--pug:rgba(167,139,250,.08);
@@ -638,29 +638,25 @@ function go(n){
 </div>
 
 <!-- Scroll-driven scribble: chaos to clarity -->
-<div id="scribbleWrap" style="position:relative;margin:0 auto 48px;padding:56px 0 48px;overflow:hidden;border-radius:14px;background:var(--bg2);border:1px solid var(--b1)">
-<svg viewBox="0 0 1100 300" fill="none" style="width:100%;display:block">
-<text x="70" y="30" fill="#ef4444" font-size="10" font-family="JetBrains Mono" font-weight="600" opacity=".6">Chaos</text>
-<text x="70" y="44" fill="#6e6e88" font-size="8" font-family="JetBrains Mono" opacity=".4">ambiguity, noise, assumptions</text>
-<path d="M55,80 C50,60 70,100 60,55 C55,40 80,110 65,50 C58,30 90,120 72,45" stroke="#ef4444" stroke-width="1" opacity=".12" fill="none" stroke-linecap="round"/>
-<path d="M85,95 C78,70 100,115 88,60 C82,45 108,120 92,55" stroke="#ef4444" stroke-width=".8" opacity=".08" fill="none" stroke-linecap="round"/>
-<circle cx="60" cy="150" r="5" fill="none" stroke="#ef4444" stroke-width="1" opacity=".25"/>
-<circle cx="60" cy="150" r="2" fill="#ef4444" opacity=".4"/>
-<text x="60" y="175" text-anchor="middle" fill="#6e6e88" font-size="9" font-family="JetBrains Mono">Problem</text>
-<path id="scribblePath" d="M60,150 C35,50 105,260 75,30 C65,5 125,270 85,65 C70,15 145,250 105,25 C88,0 165,265 115,55 C98,10 175,255 130,70 C115,25 190,245 148,50 C133,8 200,260 158,85 C143,25 215,250 172,40 C155,5 230,260 188,75 C170,20 245,248 205,95 C188,35 258,235 220,70 C205,25 272,225 238,100 C222,45 288,215 255,90 C240,40 305,225 275,110 C260,55 320,210 295,100 C280,50 338,215 310,115 C298,60 352,200 330,108 C318,65 368,195 348,118 C340,75 385,188 368,120 C358,82 398,180 388,125 C380,95 415,172 405,128 C400,105 430,162 425,132 C422,115 448,155 448,135 C448,125 470,148 475,138 C480,132 500,142 510,138 C520,135 540,139 560,137 C580,136 610,137 650,136 L1040,136" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity=".6" fill="none"/>
-<path id="scribbleGlow" d="M60,150 C35,50 105,260 75,30 C65,5 125,270 85,65 C70,15 145,250 105,25 C88,0 165,265 115,55 C98,10 175,255 130,70 C115,25 190,245 148,50 C133,8 200,260 158,85 C143,25 215,250 172,40 C155,5 230,260 188,75 C170,20 245,248 205,95 C188,35 258,235 220,70 C205,25 272,225 238,100 C222,45 288,215 255,90 C240,40 305,225 275,110 C260,55 320,210 295,100 C280,50 338,215 310,115 C298,60 352,200 330,108 C318,65 368,195 348,118 C340,75 385,188 368,120 C358,82 398,180 388,125 C380,95 415,172 405,128 C400,105 430,162 425,132 C422,115 448,155 448,135 C448,125 470,148 475,138 C480,132 500,142 510,138 C520,135 540,139 560,137 C580,136 610,137 650,136 L1040,136" stroke="#2dd4bf" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity=".06" fill="none" style="filter:blur(3px)"/>
-<text x="1040" y="30" text-anchor="middle" fill="#2dd4bf" font-size="10" font-family="JetBrains Mono" font-weight="600" opacity=".7">Outcome</text>
-<text x="1040" y="44" text-anchor="middle" fill="#6e6e88" font-size="8" font-family="JetBrains Mono" opacity=".4">clear, measurable, shipped</text>
-<line x1="1040" y1="56" x2="1040" y2="126" stroke="#2dd4bf" stroke-width=".8" stroke-dasharray="3 3" opacity=".2"/>
-<circle cx="1040" cy="136" r="8" fill="none" stroke="#2dd4bf" stroke-width="1" opacity=".2"/>
-<circle cx="1040" cy="136" r="3" fill="#2dd4bf" opacity=".5"/>
-<text x="180" y="280" text-anchor="middle" fill="#3a3a50" font-size="7.5" font-family="JetBrains Mono">research</text>
-<text x="370" y="280" text-anchor="middle" fill="#3a3a50" font-size="7.5" font-family="JetBrains Mono">reframe</text>
-<text x="560" y="280" text-anchor="middle" fill="#3a3a50" font-size="7.5" font-family="JetBrains Mono">converge</text>
-<text x="800" y="280" text-anchor="middle" fill="#3a3a50" font-size="7.5" font-family="JetBrains Mono">ship</text>
-<line x1="60" y1="270" x2="1040" y2="270" stroke="#3a3a50" stroke-width=".5" opacity=".3"/>
+<div id="scribbleWrap" style="position:relative;margin:0 auto 48px;overflow:hidden;border-radius:14px">
+<svg viewBox="0 0 1100 420" fill="none" style="width:100%;display:block">
+<!-- Labels -->
+<text x="60" y="24" fill="#ef4444" font-size="11" font-family="IBM Plex Sans" font-weight="700" opacity=".8">Chaos</text>
+<text x="1040" y="24" text-anchor="end" fill="#2dd4bf" font-size="11" font-family="IBM Plex Sans" font-weight="700" opacity=".8">Outcome</text>
+<!-- Start dot -->
+<circle cx="60" cy="210" r="6" fill="none" stroke="#ef4444" stroke-width="1.5" opacity=".4"/>
+<circle cx="60" cy="210" r="2.5" fill="#ef4444" opacity=".6"/>
+<!-- Static chaos scribbles (red, erratic, both up AND down) -->
+<path d="M40,210 C35,120 55,300 45,90 C40,50 65,330 50,80 C42,30 75,350 58,70" stroke="#ef4444" stroke-width="1.2" opacity=".15" fill="none" stroke-linecap="round"/>
+<path d="M70,210 C62,100 85,320 72,70 C65,30 95,340 78,90" stroke="#ef4444" stroke-width="1" opacity=".1" fill="none" stroke-linecap="round"/>
+<path d="M50,210 C55,310 40,110 60,340 C65,380 38,80 55,360" stroke="#ef4444" stroke-width=".8" opacity=".08" fill="none" stroke-linecap="round"/>
+<path id="scribblePath" d="M60,210 C30,40 110,390 70,20 C55,0 130,410 80,50 C60,10 150,400 100,30 C80,0 170,410 115,60 C95,15 185,395 135,50 C118,5 200,400 155,75 C138,20 218,385 175,55 C158,10 235,395 195,80 C178,25 250,380 215,90 C198,35 268,370 235,100 C220,45 285,360 255,110 C240,55 300,350 275,118 C262,65 318,340 298,125 C285,75 335,330 318,130 C308,85 350,320 338,135 C328,95 368,310 358,140 C350,108 385,298 378,148 C372,118 400,288 398,155 C395,130 420,275 418,160 C415,140 442,265 440,165 C438,150 465,255 465,170 C465,160 490,248 490,175 C490,168 520,240 530,180 C540,176 570,230 590,182 C610,180 650,215 700,185 C750,183 820,190 900,186 L1040,186" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity=".65" fill="none"/>
+<path id="scribbleGlow" d="M60,210 C30,40 110,390 70,20 C55,0 130,410 80,50 C60,10 150,400 100,30 C80,0 170,410 115,60 C95,15 185,395 135,50 C118,5 200,400 155,75 C138,20 218,385 175,55 C158,10 235,395 195,80 C178,25 250,380 215,90 C198,35 268,370 235,100 C220,45 285,360 255,110 C240,55 300,350 275,118 C262,65 318,340 298,125 C285,75 335,330 318,130 C308,85 350,320 338,135 C328,95 368,310 358,140 C350,108 385,298 378,148 C372,118 400,288 398,155 C395,130 420,275 418,160 C415,140 442,265 440,165 C438,150 465,255 465,170 C465,160 490,248 490,175 C490,168 520,240 530,180 C540,176 570,230 590,182 C610,180 650,215 700,185 C750,183 820,190 900,186 L1040,186" stroke="#2dd4bf" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity=".07" fill="none" style="filter:blur(4px)"/>
+<!-- End target -->
+<line x1="1040" y1="40" x2="1040" y2="176" stroke="#2dd4bf" stroke-width=".8" stroke-dasharray="3 3" opacity=".25"/>
+<circle cx="1040" cy="186" r="10" fill="none" stroke="#2dd4bf" stroke-width="1.5" opacity=".25"/>
+<circle cx="1040" cy="186" r="4" fill="#2dd4bf" opacity=".6"/>
 </svg>
-<p style="text-align:center;font-family:var(--m);font-size:.62rem;color:var(--t4);margin-top:12px;letter-spacing:.04em">Scroll to trace the path from chaos to clarity</p>
 </div>
 
 <!-- Principles grid -->
@@ -1038,9 +1034,7 @@ if(scribble){
   function updateScribble(){
     var rect=scribbleWrap.getBoundingClientRect();
     var h=window.innerHeight;
-    var start=rect.top+rect.height*0.15;
-    var end=rect.top+rect.height*0.85;
-    var p=Math.max(0,Math.min(1,(h-start)/(h-start+end-start)));
+    var p=Math.max(0,Math.min(1,(h-rect.top)/(rect.height*0.6)));
     var offset=pathLen*(1-p);
     scribble.style.strokeDashoffset=offset;
     if(scribbleGlow)scribbleGlow.style.strokeDashoffset=offset;
