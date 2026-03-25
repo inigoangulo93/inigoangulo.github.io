@@ -27,7 +27,7 @@ img{max-width:100%;height:auto}
 .cs-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--ac),var(--ac2));z-index:200;width:0%;transition:width .1s linear;box-shadow:0 0 12px var(--acg)}
 
 /* ─── Top bar ─── */
-.cs-bar{position:fixed;top:2px;left:0;right:0;height:48px;background:rgba(0,0,0,.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;padding:0 32px;z-index:100}
+.cs-bar{position:fixed;top:2px;left:0;right:0;height:48px;background:rgba(6,6,10,.72);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid var(--b2);display:flex;align-items:center;justify-content:space-between;padding:0 calc(max(32px,(100% - 1200px)/2));z-index:100;box-shadow:0 4px 24px rgba(0,0,0,.3)}
 .cs-bar a{font-size:.72rem;color:var(--t3);transition:color .2s;display:flex;align-items:center;gap:6px}
 .cs-bar a:hover{color:var(--ac2)}
 .cs-bar__title{font-family:var(--s);font-size:.78rem;font-weight:700;color:var(--t2);display:flex;align-items:center;gap:8px}
