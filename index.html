@@ -433,52 +433,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 /* ═══ MOBILE: 768px ═══ */
 
 /* ─── Internal Notes panel ─── */
-.fn-trigger{font-family:var(--m);font-size:.62rem;color:var(--t4);cursor:pointer;transition:color .4s;display:inline-flex;align-items:center;gap:6px;margin-top:16px;letter-spacing:.06em;text-transform:lowercase;font-style:italic}
-.fn-trigger:hover{color:#c8b078}
-.fn-trigger::before{content:'';width:12px;height:1px;background:currentColor;opacity:.4}
 
-.fn-overlay{position:fixed;inset:0;z-index:998;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .35s}
-.fn-overlay.open{opacity:1;pointer-events:auto}
-
-/* ─── Scripta Privata — illuminated manuscript ─── */
-.fn-panel{position:fixed;top:0;right:0;bottom:0;width:500px;max-width:94vw;z-index:999;background:#c4a872;transform:translateX(100%);transition:transform .5s var(--e);overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:-20px 0 80px rgba(0,0,0,.5)}
-.fn-panel.open{transform:translateX(0)}
-
-.fn-panel__inner{padding:0;position:relative;min-height:100%}
-.fn-panel__page{padding:56px 44px 60px;position:relative;background:linear-gradient(175deg,#ddd0aa,#d5c69c 25%,#cdb88e 50%,#c5ae82 75%,#bda478);margin:16px;border:3px double #a0784a;min-height:calc(100% - 32px)}
-.fn-panel__page::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.5' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");pointer-events:none;mix-blend-mode:multiply}
-.fn-panel__page::after{content:'';position:absolute;top:6px;left:6px;right:6px;bottom:6px;border:1px solid rgba(140,90,40,.18);pointer-events:none}
-.fn-panel__border{position:absolute;top:14px;left:14px;right:14px;bottom:14px;border:2px solid #b8863e;pointer-events:none;opacity:.22}
-.fn-panel__border::before{content:'';position:absolute;inset:-7px;border:1px solid #8b4513;opacity:.15}
-.fn-panel__border::after{content:'';position:absolute;inset:4px;border:1px solid #1a3a6e;opacity:.1}
-
-.fn-panel__head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid rgba(140,80,30,.15);position:relative;z-index:1}
-.fn-panel__title{font-family:'Pirata One',cursive;font-size:2.8rem;font-weight:400;color:#3a1a08;letter-spacing:.03em;line-height:1;display:flex;align-items:center;gap:4px}
-.fn-drop-cap{flex-shrink:0;display:block;margin-right:0;margin-left:-8px;margin-top:-6px}
-.fn-panel__sub{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#7a5a2e;margin-top:10px;letter-spacing:.06em;font-variant:small-caps;font-weight:600}
-.fn-panel__close{width:28px;height:28px;border-radius:0;border:1px solid rgba(140,80,30,.2);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#7a5a2e;font-size:.8rem;transition:border-color .2s,color .2s;flex-shrink:0;background:none;position:relative;z-index:1}
-.fn-panel__close:hover{border-color:#8b4513;color:#3a1a08}
-
-.fn-note{padding:20px 0;border-bottom:1px solid rgba(140,80,30,.08);opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s var(--e);position:relative;z-index:1}
-.fn-panel.open .fn-note{opacity:1;transform:translateY(0)}
-.fn-note__num{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;color:#862a22;margin-bottom:8px;display:block;letter-spacing:.04em;font-variant:small-caps}
-.fn-note__text{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-weight:500;color:#2a1808;line-height:1.9;font-style:italic}
-.fn-note:last-child{border-bottom:none}
-.fn-note__sep{display:block;text-align:center;color:#862a22;font-size:.7rem;padding:2px 0;letter-spacing:.3em;opacity:.3;position:relative;z-index:1}
-
-.fn-panel__colophon{margin-top:36px;padding-top:16px;border-top:1px solid rgba(140,80,30,.12);text-align:center;position:relative;z-index:1}
-.fn-panel__colophon-mark{font-family:'Pirata One',cursive;font-size:1.6rem;color:#862a22;margin-bottom:6px;opacity:.45}
-.fn-panel__colophon-text{font-family:'Cormorant Garamond',serif;font-size:.82rem;font-weight:600;color:#4a2a10;letter-spacing:.06em;font-variant:small-caps;line-height:1.7}
-
-/* Stagger delays */
-.fn-panel.open .fn-note:nth-child(1){transition-delay:.08s}
-.fn-panel.open .fn-note:nth-child(2){transition-delay:.12s}
-.fn-panel.open .fn-note:nth-child(3){transition-delay:.16s}
-.fn-panel.open .fn-note:nth-child(4){transition-delay:.2s}
-.fn-panel.open .fn-note:nth-child(5){transition-delay:.24s}
-.fn-panel.open .fn-note:nth-child(6){transition-delay:.28s}
-.fn-panel.open .fn-note:nth-child(7){transition-delay:.32s}
-.fn-panel.open .fn-note:nth-child(8){transition-delay:.36s}
 
 @media(max-width:768px){
   .fn-panel__page{padding:40px 28px 44px;margin:10px}
@@ -505,15 +460,12 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .bf__close:hover{color:#c8864a;border-color:rgba(200,160,100,.3)}
 
 /* Fire glow */
-.bf__fire{width:120px;height:120px;position:relative;margin-bottom:40px;opacity:0;transform:scale(.8);transition:opacity 1s .3s,transform 1s .3s var(--e)}
+.bf__fire{width:280px;position:relative;margin-bottom:36px;opacity:0;transform:scale(.8);transition:opacity 1s .3s,transform 1s .3s var(--e)}
 .bf.open .bf__fire{opacity:1;transform:scale(1)}
-.bf__fire-glow{position:absolute;inset:-40px;background:radial-gradient(circle,rgba(200,120,40,.15),rgba(200,120,40,.05) 50%,transparent 70%);border-radius:50%;animation:bf-breathe 4s ease infinite}
+.bf__fire-glow{position:absolute;inset:-60px;background:radial-gradient(circle,rgba(200,120,40,.12),rgba(200,120,40,.04) 50%,transparent 70%);border-radius:50%;animation:bf-breathe 5s ease infinite}
 .bf__fire-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-/* CSS-only fire */
-.bf__flame{width:40px;height:60px;position:relative}
-.bf__flame::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:36px;height:52px;background:radial-gradient(ellipse at bottom,#c8641e,#e8941a 40%,#f0b830 70%,transparent 100%);border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;animation:bf-flicker 3s ease infinite}
-.bf__flame::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:22px;height:36px;background:radial-gradient(ellipse at bottom,#f8d878,#f0c040 50%,transparent 100%);border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;animation:bf-flicker 2s .5s ease infinite}
-.bf__embers{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:50px;height:8px;background:radial-gradient(ellipse,rgba(200,100,30,.4),transparent 70%);border-radius:50%}
+/* Pixel art bonfire image */
+.bf__img{width:100%;max-width:280px;border-radius:4px;image-rendering:pixelated;image-rendering:crisp-edges}
 
 @keyframes bf-breathe{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.08);opacity:.85}}
 @keyframes bf-flicker{0%,100%{transform:translateX(-50%) scaleY(1) scaleX(1)}25%{transform:translateX(-52%) scaleY(1.05) scaleX(.95)}50%{transform:translateX(-48%) scaleY(.95) scaleX(1.02)}75%{transform:translateX(-51%) scaleY(1.02) scaleX(.98)}}
@@ -527,8 +479,8 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .bf__prompt{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:rgba(200,170,130,.5);text-align:center;margin-bottom:20px;font-style:italic;font-variant:small-caps;opacity:0;transition:opacity .6s .9s}
 .bf.open .bf__prompt{opacity:1}
 
-.bf__options{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:440px;margin-bottom:32px;opacity:0;transform:translateY(8px);transition:opacity .6s 1s,transform .6s 1s var(--e)}
-.bf.open .bf__options{opacity:1;transform:translateY(0)}
+.bf__options{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:440px;margin-bottom:32px;opacity:0;transform:translateY(8px);transition:opacity .6s 1s,transform .6s 1s var(--e);pointer-events:none}
+.bf.open .bf__options{opacity:1;transform:translateY(0);pointer-events:auto}
 
 .bf__opt{font-family:var(--s);font-size:.74rem;color:rgba(200,170,130,.5);padding:8px 18px;border:1px solid rgba(200,160,100,.1);background:none;cursor:pointer;border-radius:0;transition:color .3s,border-color .3s,background .3s;letter-spacing:.02em}
 .bf__opt:hover{color:#d4b88a;border-color:rgba(200,160,100,.25);background:rgba(200,160,100,.04)}
@@ -550,7 +502,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   .bf__sub{font-size:.78rem}
   .bf__opt{font-size:.7rem;padding:7px 14px}
   .bf__wisdom{font-size:.95rem}
-  .bf__fire{width:100px;height:100px;margin-bottom:32px}
+  .bf__fire{width:220px;margin-bottom:28px}
 }
 
 @media(max-width:768px){
@@ -1130,7 +1082,7 @@ function go(n){
 <div class="sh" style="margin-bottom:4px"><span>// beyond work</span></div>
 <p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.75;margin-bottom:8px">Outside of work, I&#8217;m deeply drawn to European medieval history, especially the symbolic weight, visual language, and cultural continuity of the period. I have a particular fascination with Gothic typography and the way form can carry identity, authority, and atmosphere across centuries.</p>
 <p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.75">Art keeps my sense of composition and balance alive. Photography helps me slow down and notice what most people miss. Hiking through Swiss trails is how I reset, think clearly, and usually where new ideas begin to take shape.</p>
-<span class="fn-trigger" onclick="openNotes()">scripta privata</span>
+<span class="bf-trigger" onclick="openBonfire()">rest here</span>
 </div>
 <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--b1)">
 <span style="font-family:var(--m);font-size:.65rem;color:var(--t2);padding:4px 11px;border-radius:4px;border:1px solid var(--b1)">English</span>
@@ -1153,7 +1105,7 @@ function go(n){
 <div><p class="footer__col-title">Connect</p><div class="footer__links"><a href="/cdn-cgi/l/email-protection#096067606e6668676e7c6566496e64686065276a6664">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank">LinkedIn</a><a href="tel:+41799528321">Phone</a></div></div>
 <div><p class="footer__col-title">Resources</p><div class="footer__links"><a href="Inigo_Angulo_CV_2026.pdf" download>Download CV</a></div></div>
 </div>
-<div class="footer__bottom"><span class="footer__copy">2026 Inigo Angulo</span><span class="footer__built">Built with code, not templates</span><span class="bf-trigger" onclick="openBonfire()">rest here</span></div>
+<div class="footer__bottom"><span class="footer__copy">2026 Inigo Angulo</span><span class="footer__built">Built with code, not templates</span></div>
 </footer>
 
 <div class="cmd" id="cmd"><span class="cmd__p">&gt;</span><input class="cmd__i" id="cmdIn" placeholder="Type a view or project name..." autocomplete="off"></div>
@@ -1212,18 +1164,7 @@ if(scribble){
 }
 
 
-// Internal Notes panel
-function openNotes(){
-  document.getElementById("fnOverlay").classList.add("open");
-  document.getElementById("fnPanel").classList.add("open");
-  document.body.style.overflow="hidden";
-}
-function closeNotes(){
-  document.getElementById("fnOverlay").classList.remove("open");
-  document.getElementById("fnPanel").classList.remove("open");
-  document.body.style.overflow="";
-}
-document.addEventListener("keydown",function(e){if(e.key==="Escape")closeNotes()});
+
 
 
 // Bonfire Mode
@@ -1464,82 +1405,16 @@ function mgo(n){
 }
 </script>
 
-<!-- Scripta Privata — Medieval Easter Egg -->
-<div class="fn-overlay" id="fnOverlay" onclick="closeNotes()"></div>
-<div class="fn-panel" id="fnPanel" role="dialog" aria-label="Scripta Privata">
-<div class="fn-panel__inner"><div class="fn-panel__page"><div class="fn-panel__border"></div>
-<div class="fn-panel__head">
-<div>
-<div class="fn-panel__title"><span class="fn-drop-cap"><svg viewBox="0 0 110 120" width="88" height="96" fill="none" xmlns="http://www.w3.org/2000/svg">
-<!-- Outer gold frame -->
-<rect x="2" y="2" width="106" height="116" stroke="#b8863e" stroke-width="2.5" fill="none"/>
-<rect x="6" y="6" width="98" height="108" stroke="#8b4513" stroke-width="1" fill="none" opacity=".4"/>
-<!-- Ultramarine blue field -->
-<rect x="9" y="9" width="92" height="102" fill="#1a3a6e"/>
-<!-- Inner red border -->
-<rect x="12" y="12" width="86" height="96" stroke="#b83228" stroke-width="1.5" fill="none" opacity=".6"/>
-<!-- Gold corner squares -->
-<rect x="9" y="9" width="8" height="8" fill="#c8950a" opacity=".7"/><rect x="93" y="9" width="8" height="8" fill="#c8950a" opacity=".7"/>
-<rect x="9" y="103" width="8" height="8" fill="#c8950a" opacity=".7"/><rect x="93" y="103" width="8" height="8" fill="#c8950a" opacity=".7"/>
-<!-- Vine stems — gold -->
-<path d="M16,22 C22,30 16,40 22,46 C16,52 22,60 16,68 C22,74 16,84 22,92 C16,98 20,104 18,108" stroke="#c8950a" stroke-width="1.2" fill="none" opacity=".7"/>
-<path d="M94,22 C88,30 94,40 88,46 C94,52 88,60 94,68 C88,74 94,84 88,92 C94,98 90,104 92,108" stroke="#c8950a" stroke-width="1.2" fill="none" opacity=".7"/>
-<!-- Leaves — alternating vermillion and emerald -->
-<ellipse cx="20" cy="30" rx="5" ry="7" transform="rotate(-30,20,30)" fill="#c62828" opacity=".75"/>
-<ellipse cx="90" cy="30" rx="5" ry="7" transform="rotate(30,90,30)" fill="#2e7d32" opacity=".65"/>
-<ellipse cx="24" cy="46" rx="4" ry="6" transform="rotate(20,24,46)" fill="#c8950a" opacity=".6"/>
-<ellipse cx="86" cy="46" rx="4" ry="6" transform="rotate(-20,86,46)" fill="#c8950a" opacity=".6"/>
-<ellipse cx="20" cy="68" rx="5" ry="7" transform="rotate(-25,20,68)" fill="#2e7d32" opacity=".6"/>
-<ellipse cx="90" cy="68" rx="5" ry="7" transform="rotate(25,90,68)" fill="#c62828" opacity=".7"/>
-<ellipse cx="24" cy="92" rx="4" ry="6" transform="rotate(15,24,92)" fill="#c8950a" opacity=".55"/>
-<ellipse cx="86" cy="92" rx="4" ry="6" transform="rotate(-15,86,92)" fill="#c8950a" opacity=".55"/>
-<!-- Gold berries -->
-<circle cx="18" cy="38" r="2" fill="#c8950a" opacity=".65"/><circle cx="92" cy="38" r="2" fill="#c8950a" opacity=".65"/>
-<circle cx="18" cy="58" r="1.5" fill="#c8950a" opacity=".5"/><circle cx="92" cy="58" r="1.5" fill="#c8950a" opacity=".5"/>
-<circle cx="18" cy="78" r="2" fill="#c8950a" opacity=".6"/><circle cx="92" cy="78" r="2" fill="#c8950a" opacity=".6"/>
-<circle cx="18" cy="100" r="1.5" fill="#c8950a" opacity=".45"/><circle cx="92" cy="100" r="1.5" fill="#c8950a" opacity=".45"/>
-<!-- The S — serif Roman, vermillion red, gold shadow -->
-<text x="55" y="93" text-anchor="middle" font-family="'Playfair Display',Georgia,serif" font-size="82" font-weight="700" font-style="italic" fill="#c8950a" opacity=".3">S</text>
-<text x="54" y="92" text-anchor="middle" font-family="'Playfair Display',Georgia,serif" font-size="82" font-weight="700" font-style="italic" fill="#f0e8d4">S</text>
-<text x="54" y="92" text-anchor="middle" font-family="'Playfair Display',Georgia,serif" font-size="82" font-weight="700" font-style="italic" fill="none" stroke="#c8950a" stroke-width=".8" opacity=".5">S</text>
-</svg></span>cripta Privata</div>
-<div class="fn-panel__sub">Fragmenta &#183; Principia &#183; Rationes</div>
-</div>
-<button class="fn-panel__close" onclick="closeNotes()" aria-label="Close">&#10005;</button>
-</div>
-<div class="fn-note"><span class="fn-note__num">i &middot; De Claritate</span><span class="fn-note__text">Clarity is rarely a visual problem first. It usually breaks earlier. In the decision architecture, the information flow, the assumptions nobody questioned. By the time it reaches the screen, the damage is structural.</span></div>
-<span class="fn-note__sep">&#10043;</span>
-<div class="fn-note"><span class="fn-note__num">ii &middot; De Frictione</span><span class="fn-note__text">Most friction is upstream. Interfaces often just expose it. The checkout that feels slow, the dashboard nobody trusts, the onboarding that leaks. These are symptoms. The cause is almost always a decision that was never properly framed.</span></div>
-<span class="fn-note__sep">&#10043;</span>
-<div class="fn-note"><span class="fn-note__num">iii &middot; De Iudicio</span><span class="fn-note__text">AI speeds up execution. Judgment still decides direction. The dangerous part isn&#8217;t building the wrong thing slowly. It&#8217;s building the wrong thing fast and calling it progress.</span></div>
-<span class="fn-note__sep">&#10043;</span>
-<div class="fn-note"><span class="fn-note__num">iv &middot; De Disciplina</span><span class="fn-note__text">The real work is often deciding what not to build. Scope discipline isn&#8217;t a constraint. It&#8217;s the strategy. At ENSO, killing 60% of the planned roadmap was the single highest-impact decision.</span></div>
-<span class="fn-note__sep">&#10043;</span>
-<div class="fn-note"><span class="fn-note__num">v &middot; De Certitudine</span><span class="fn-note__text">Good systems reduce hesitation at the point of decision. Every pixel, every interaction, every piece of data shown should make the next action obvious. If the user has to think about the interface, the interface has failed.</span></div>
-<span class="fn-note__sep">&#10043;</span>
-<div class="fn-note"><span class="fn-note__num">vi &middot; De Structura</span><span class="fn-note__text">A clean UI can still hide a confused product. Visual polish is the easiest thing to get right and the most dangerous thing to mistake for quality. Structure comes first. Beauty follows structure.</span></div>
-<span class="fn-note__sep">&#10043;</span>
-<div class="fn-note"><span class="fn-note__num">vii &middot; De Signale</span><span class="fn-note__text">Signal is usually there. The hard part is knowing what to ignore. I read session recordings at a resolution most people skip. The patterns that matter are in the pauses, the loops, the moments where users hesitate.</span></div>
-<span class="fn-note__sep">&#10043;</span>
-<div class="fn-note"><span class="fn-note__num">viii &middot; De Fortitudine</span><span class="fn-note__text">I care deeply about products that hold under pressure. Real users, real stakes, real money. The gap between a prototype and a system someone depends on daily. That gap is where the interesting work lives.</span></div>
 
-<div class="fn-panel__colophon">
-<div class="fn-panel__colophon-mark">&#10087;</div>
-<div class="fn-panel__colophon-text">Notae Privatae<br>Inigo Angulo &middot; Turicum &middot; MMXXVI</div>
-</div>
-</div></div><!-- /page -->
-</div><!-- /inner -->
-</div><!-- /panel -->
 
 
 <!-- Bonfire Mode -->
 <div class="bf-overlay" id="bfOverlay" onclick="closeBonfire()"></div>
-<div class="bf" id="bfPanel">
+<div class="bf" id="bfPanel" onclick="event.stopPropagation()">
 <button class="bf__close" onclick="closeBonfire()">&#10005;</button>
 <div class="bf__fire">
 <div class="bf__fire-glow"></div>
-<div class="bf__fire-inner"><div class="bf__flame"></div></div>
-<div class="bf__embers"></div>
+<div class="bf__fire-inner"><img class="bf__img" src="img/rest-here-weary-traveller.png" alt="Bonfire"></div>
 </div>
 <div class="bf__title">Rest here, weary traveller.</div>
 <div class="bf__sub">No signal to chase. No decisions to make.<br>Just a quiet place between battles.</div>
