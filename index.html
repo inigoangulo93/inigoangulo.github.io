@@ -449,60 +449,69 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .bf-trigger{font-family:var(--m);font-size:.6rem;color:var(--t4);cursor:pointer;transition:color .5s;letter-spacing:.04em;font-style:italic;opacity:.5}
 .bf-trigger:hover{color:#c8864a;opacity:1}
 
-.bf-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0);pointer-events:none;transition:background .8s}
-.bf-overlay.open{background:rgba(0,0,0,.92);pointer-events:auto}
+.bf-wrap{position:fixed;inset:0;z-index:1000;display:none;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.bf-wrap.open{display:block}
+.bf-bg{position:fixed;inset:0;background:rgba(0,0,0,0);transition:background .6s;z-index:0}
+.bf-wrap.open .bf-bg{background:rgba(0,0,0,.94)}
 
-.bf{position:fixed;inset:0;z-index:1001;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .8s .2s;padding:24px;overflow-y:auto}
-.bf.open{opacity:1;pointer-events:auto}
+/* Parchment texture overlay */
+.bf-bg::after{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.4' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;opacity:0;transition:opacity .8s}
+.bf-wrap.open .bf-bg::after{opacity:1}
 
-.bf__close{position:fixed;top:24px;right:28px;z-index:1002;width:32px;height:32px;border:1px solid rgba(200,160,100,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(200,160,100,.3);font-size:.8rem;background:none;transition:color .3s,border-color .3s;border-radius:0;opacity:0;pointer-events:none}
-.bf.open .bf__close{opacity:1;pointer-events:auto;transition-delay:.6s}
-.bf__close:hover{color:#c8864a;border-color:rgba(200,160,100,.3)}
+.bf__body{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:48px 24px 80px;justify-content:center}
 
-/* Fire glow */
-.bf__fire{width:280px;position:relative;margin-bottom:36px;opacity:0;transform:scale(.8);transition:opacity 1s .3s,transform 1s .3s var(--e)}
-.bf.open .bf__fire{opacity:1;transform:scale(1)}
-.bf__fire-glow{position:absolute;inset:-60px;background:radial-gradient(circle,rgba(200,120,40,.12),rgba(200,120,40,.04) 50%,transparent 70%);border-radius:50%;animation:bf-breathe 5s ease infinite}
-.bf__fire-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-/* Pixel art bonfire image */
-.bf__img{width:100%;max-width:280px;border-radius:4px;image-rendering:pixelated;image-rendering:crisp-edges}
+/* Close button */
+.bf__x{position:fixed;top:20px;right:24px;z-index:1001;width:36px;height:36px;border:1px solid rgba(200,160,100,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(200,160,100,.35);font-size:1rem;background:rgba(0,0,0,.3);transition:color .3s,border-color .3s;border-radius:0}
+.bf__x:hover{color:#d4b88a;border-color:rgba(200,160,100,.35)}
 
-@keyframes bf-breathe{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.08);opacity:.85}}
-@keyframes bf-flicker{0%,100%{transform:translateX(-50%) scaleY(1) scaleX(1)}25%{transform:translateX(-52%) scaleY(1.05) scaleX(.95)}50%{transform:translateX(-48%) scaleY(.95) scaleX(1.02)}75%{transform:translateX(-51%) scaleY(1.02) scaleX(.98)}}
+/* Fire image */
+.bf__fire{width:260px;position:relative;margin-bottom:32px;opacity:0;transform:scale(.9);transition:opacity .8s .2s,transform .8s .2s var(--e)}
+.bf-wrap.open .bf__fire{opacity:1;transform:scale(1)}
+.bf__fire-glow{position:absolute;inset:-60px;background:radial-gradient(circle,rgba(200,120,40,.12),transparent 70%);border-radius:50%;animation:bf-breathe 5s ease infinite}
+.bf__fire-inner{position:relative;display:flex;align-items:center;justify-content:center}
+.bf__img{width:100%;border-radius:4px;image-rendering:pixelated;image-rendering:crisp-edges}
+@keyframes bf-breathe{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.06);opacity:.85}}
 
-.bf__title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;font-style:italic;color:#d4b88a;text-align:center;margin-bottom:12px;opacity:0;transform:translateY(12px);transition:opacity .8s .5s,transform .8s .5s var(--e)}
-.bf.open .bf__title{opacity:1;transform:translateY(0)}
+/* Title */
+.bf__title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;font-style:italic;color:#d4b88a;text-align:center;margin-bottom:10px;opacity:0;transform:translateY(10px);transition:opacity .7s .4s,transform .7s .4s var(--e)}
+.bf-wrap.open .bf__title{opacity:1;transform:translateY(0)}
 
-.bf__sub{font-family:var(--s);font-size:.82rem;color:rgba(200,170,130,.4);text-align:center;line-height:1.7;max-width:320px;margin-bottom:40px;opacity:0;transform:translateY(8px);transition:opacity .7s .7s,transform .7s .7s var(--e)}
-.bf.open .bf__sub{opacity:1;transform:translateY(0)}
+.bf__sub{font-family:var(--s);font-size:.82rem;color:rgba(200,170,130,.4);text-align:center;line-height:1.7;max-width:320px;margin-bottom:36px;opacity:0;transition:opacity .6s .6s}
+.bf-wrap.open .bf__sub{opacity:1}
 
-.bf__prompt{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:rgba(200,170,130,.5);text-align:center;margin-bottom:20px;font-style:italic;font-variant:small-caps;opacity:0;transition:opacity .6s .9s}
-.bf.open .bf__prompt{opacity:1}
+.bf__prompt{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:rgba(200,170,130,.5);text-align:center;margin-bottom:18px;font-style:italic;font-variant:small-caps;opacity:0;transition:opacity .5s .75s}
+.bf-wrap.open .bf__prompt{opacity:1}
 
-.bf__options{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:440px;margin-bottom:32px;opacity:0;transform:translateY(8px);transition:opacity .6s 1s,transform .6s 1s var(--e);pointer-events:none}
-.bf.open .bf__options{opacity:1;transform:translateY(0);pointer-events:auto}
+/* Option buttons */
+.bf__options{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:460px;margin-bottom:28px;opacity:0;transition:opacity .5s .9s}
+.bf-wrap.open .bf__options{opacity:1}
 
-.bf__opt{font-family:var(--s);font-size:.74rem;color:rgba(200,170,130,.5);padding:8px 18px;border:1px solid rgba(200,160,100,.1);background:none;cursor:pointer;border-radius:0;transition:color .3s,border-color .3s,background .3s;letter-spacing:.02em}
-.bf__opt:hover{color:#d4b88a;border-color:rgba(200,160,100,.25);background:rgba(200,160,100,.04)}
-.bf__opt.active{color:#d4b88a;border-color:rgba(200,160,100,.3);background:rgba(200,160,100,.06)}
+.bf__opt{font-family:var(--s);font-size:.76rem;color:rgba(200,170,130,.55);padding:9px 20px;border:1px solid rgba(200,160,100,.12);background:rgba(200,160,100,.03);cursor:pointer;border-radius:0;transition:color .3s,border-color .3s,background .3s;letter-spacing:.02em;-webkit-tap-highlight-color:transparent}
+.bf__opt:hover,.bf__opt:active{color:#d4b88a;border-color:rgba(200,160,100,.3);background:rgba(200,160,100,.06)}
+.bf__opt.active{color:#d4b88a;border-color:rgba(200,160,100,.35);background:rgba(200,160,100,.08)}
 
-.bf__response{text-align:center;max-width:380px;min-height:60px;margin-bottom:16px}
-.bf__wisdom{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:500;font-style:italic;color:rgba(200,170,130,.65);line-height:1.7;opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s var(--e)}
+/* Response */
+.bf__response{text-align:center;max-width:380px;min-height:56px;margin-bottom:14px}
+.bf__wisdom{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-weight:500;font-style:italic;color:rgba(200,170,130,.65);line-height:1.7;opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s var(--e)}
 .bf__wisdom.vis{opacity:1;transform:translateY(0)}
 
-.bf__again{font-family:var(--m);font-size:.58rem;color:rgba(200,160,100,.2);cursor:pointer;transition:color .3s;letter-spacing:.04em;opacity:0;transition:opacity .4s .3s,color .3s}
+.bf__again{font-family:var(--m);font-size:.58rem;color:rgba(200,160,100,.22);cursor:pointer;letter-spacing:.04em;opacity:0;transition:opacity .4s .2s,color .3s}
 .bf__again.vis{opacity:1}
-.bf__again:hover{color:rgba(200,160,100,.45)}
+.bf__again:hover{color:rgba(200,160,100,.5)}
 
-.bf__sanctuary{font-family:var(--m);font-size:.5rem;color:rgba(200,160,100,.12);letter-spacing:.15em;text-transform:uppercase;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);opacity:0;transition:opacity .6s 1.2s}
-.bf.open .bf__sanctuary{opacity:1}
+.bf__sanctuary{font-family:var(--m);font-size:.5rem;color:rgba(200,160,100,.12);letter-spacing:.15em;text-transform:uppercase;margin-top:40px;opacity:0;transition:opacity .5s 1.2s}
+.bf-wrap.open .bf__sanctuary{opacity:1}
 
 @media(max-width:768px){
-  .bf__title{font-size:1.5rem}
-  .bf__sub{font-size:.78rem}
-  .bf__opt{font-size:.7rem;padding:7px 14px}
+  .bf__body{padding:32px 20px 60px;justify-content:flex-start;padding-top:60px}
+  .bf__fire{width:200px;margin-bottom:24px}
+  .bf__title{font-size:1.4rem}
+  .bf__sub{font-size:.76rem;margin-bottom:28px}
+  .bf__prompt{font-size:.92rem}
+  .bf__opt{font-size:.7rem;padding:8px 16px}
   .bf__wisdom{font-size:.95rem}
-  .bf__fire{width:220px;margin-bottom:28px}
+  .bf__x{top:14px;right:16px;width:32px;height:32px;font-size:.85rem}
+  .bf__sanctuary{margin-top:28px}
 }
 
 @media(max-width:768px){
@@ -1179,10 +1188,9 @@ var bfLines={
 var bfCat=null,bfIdx=0;
 
 function openBonfire(){
-  document.getElementById("bfOverlay").classList.add("open");
-  document.getElementById("bfPanel").classList.add("open");
+  var w=document.getElementById("bfWrap");
+  w.classList.add("open");
   document.body.style.overflow="hidden";
-  // Reset state
   bfCat=null;bfIdx=0;
   document.getElementById("bfWisdom").className="bf__wisdom";
   document.getElementById("bfWisdom").textContent="";
@@ -1190,17 +1198,22 @@ function openBonfire(){
   document.querySelectorAll(".bf__opt").forEach(function(b){b.classList.remove("active")});
 }
 function closeBonfire(){
-  document.getElementById("bfOverlay").classList.remove("open");
-  document.getElementById("bfPanel").classList.remove("open");
+  document.getElementById("bfWrap").classList.remove("open");
   document.body.style.overflow="";
 }
-document.getElementById("bfOpts").addEventListener("click",function(e){
-  var btn=e.target.closest(".bf__opt");if(!btn)return;
-  bfCat=btn.dataset.bf;bfIdx=Math.floor(Math.random()*bfLines[bfCat].length);
-  document.querySelectorAll(".bf__opt").forEach(function(b){b.classList.remove("active")});
-  btn.classList.add("active");
-  showBfLine();
+
+// Direct click handlers on each button
+document.querySelectorAll(".bf__opt").forEach(function(btn){
+  btn.addEventListener("click",function(e){
+    e.stopPropagation();
+    bfCat=btn.dataset.bf;
+    bfIdx=Math.floor(Math.random()*bfLines[bfCat].length);
+    document.querySelectorAll(".bf__opt").forEach(function(b){b.classList.remove("active")});
+    btn.classList.add("active");
+    showBfLine();
+  });
 });
+
 function showBfLine(){
   var w=document.getElementById("bfWisdom");
   w.classList.remove("vis");
@@ -1409,9 +1422,10 @@ function mgo(n){
 
 
 <!-- Bonfire Mode -->
-<div class="bf-overlay" id="bfOverlay" onclick="closeBonfire()"></div>
-<div class="bf" id="bfPanel" onclick="event.stopPropagation()">
-<button class="bf__close" onclick="closeBonfire()">&#10005;</button>
+<div class="bf-wrap" id="bfWrap">
+<div class="bf-bg" onclick="closeBonfire()"></div>
+<button class="bf__x" onclick="closeBonfire()" aria-label="Close">&#10005;</button>
+<div class="bf__body">
 <div class="bf__fire">
 <div class="bf__fire-glow"></div>
 <div class="bf__fire-inner"><img class="bf__img" src="img/rest-here-weary-traveller.png" alt="Bonfire"></div>
@@ -1420,16 +1434,17 @@ function mgo(n){
 <div class="bf__sub">No signal to chase. No decisions to make.<br>Just a quiet place between battles.</div>
 <div class="bf__prompt">What are you carrying?</div>
 <div class="bf__options" id="bfOpts">
-<button class="bf__opt" data-bf="noise">Too much noise</button>
-<button class="bf__opt" data-bf="decision">A difficult decision</button>
-<button class="bf__opt" data-bf="fatigue">Creative fatigue</button>
-<button class="bf__opt" data-bf="overthinking">Overthinking</button>
-<button class="bf__opt" data-bf="uncertainty">Uncertainty</button>
-<button class="bf__opt" data-bf="nothing">Nothing. Just passing through</button>
+<button class="bf__opt" data-bf="noise" type="button">Too much noise</button>
+<button class="bf__opt" data-bf="decision" type="button">A difficult decision</button>
+<button class="bf__opt" data-bf="fatigue" type="button">Creative fatigue</button>
+<button class="bf__opt" data-bf="overthinking" type="button">Overthinking</button>
+<button class="bf__opt" data-bf="uncertainty" type="button">Uncertainty</button>
+<button class="bf__opt" data-bf="nothing" type="button">Nothing. Just passing through</button>
 </div>
 <div class="bf__response"><div class="bf__wisdom" id="bfWisdom"></div></div>
 <div class="bf__again" id="bfAgain" onclick="bfCycle()">ask the fire again</div>
 <div class="bf__sanctuary">Sanctuary</div>
+</div>
 </div>
 
 </body>
