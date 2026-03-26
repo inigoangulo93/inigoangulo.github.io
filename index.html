@@ -723,49 +723,48 @@ function go(n){
 <p style="font-family:var(--s);font-size:.9rem;color:var(--t3);line-height:1.7">Everything that doesn't serve that decision gets removed.</p>
 </div>
 
-<!-- Scroll-driven scribble: handwritten feel, all teal -->
-<div id="scribbleWrap" style="position:relative;margin:0 auto 48px;overflow:hidden;border-radius:14px;padding:20px 0">
-<svg viewBox="0 0 1100 320" fill="none" style="width:100%;display:block">
-<!-- Subtle labels -->
-<text x="80" y="28" fill="#8585a0" font-size="10" font-family="IBM Plex Sans" font-weight="500" opacity=".6">ambiguity</text>
-<text x="1020" y="28" text-anchor="end" fill="#2dd4bf" font-size="10" font-family="IBM Plex Sans" font-weight="600" opacity=".7">clarity</text>
-<!-- Start dot -->
-<circle cx="60" cy="160" r="5" fill="none" stroke="#2dd4bf" stroke-width="1" opacity=".3"/>
-<circle cx="60" cy="160" r="2" fill="#2dd4bf" opacity=".4"/>
-<!-- THE MAIN PATH — handwritten feel, wide oscillations that go BOTH up and down, all teal -->
-<path id="scribblePath" d="M58,162 C15,310 95,18 42,295 C22,340 82,12 55,310 C32,355 98,8 62,285 C38,330 108,25 72,265 C48,310 118,18 88,300 C62,335 130,30 98,270 C72,305 140,22 112,280 C88,315 155,35 128,258 C102,295 165,28 142,265 C118,305 178,42 155,240 C128,280 185,38 168,248 C145,285 198,48 180,228 C155,268 205,52 195,235 C172,262 218,58 208,218 C185,252 228,65 222,210 C200,242 242,72 235,200 C215,232 252,78 248,195 C228,225 265,85 262,190 C242,218 278,92 278,185 C255,210 292,98 295,182 C272,202 308,105 312,180 C290,196 322,110 330,178 C308,192 338,115 348,177 C325,188 355,120 368,176 C345,184 372,128 388,176 C365,182 395,135 410,176 C392,180 418,142 435,176 C420,178 448,150 468,176 C452,177 480,158 500,176 C488,176 520,165 548,176 C540,176 580,172 620,176 C660,175 720,176 800,176 L1040,176" stroke="#2dd4bf" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity=".5" fill="none"/>
+<!-- Scroll-driven scribble -->
+<div id="scribbleWrap" style="position:relative;margin:0 auto 40px;overflow:hidden;padding:0">
+<svg viewBox="0 0 1000 240" fill="none" style="width:100%;display:block">
+<!-- Labels — large, high contrast -->
+<text x="50" y="22" fill="#9a9aae" font-size="13" font-family="IBM Plex Sans" font-weight="600">ambiguity</text>
+<text x="950" y="22" text-anchor="end" fill="#5eead4" font-size="13" font-family="IBM Plex Sans" font-weight="700">clarity</text>
+<!-- Start dot — on the path start -->
+<circle cx="50" cy="120" r="6" fill="none" stroke="#2dd4bf" stroke-width="1.5" opacity=".5"/>
+<circle cx="50" cy="120" r="2.5" fill="#2dd4bf" opacity=".7"/>
+<!-- Main path — centered vertically at y=120, chaos goes both ways -->
+<path id="scribblePath" d="M50,120 C20,20 95,230 40,210 C15,240 85,10 52,225 C28,250 92,5 60,200 C35,238 100,15 72,210 C48,242 108,8 85,195 C60,228 118,18 98,200 C75,230 128,22 112,190 C88,222 138,28 128,195 C105,218 150,35 142,185 C118,212 160,40 158,188 C135,208 170,48 172,182 C150,202 182,55 188,180 C165,198 195,60 205,178 C180,192 208,68 222,176 C198,188 222,72 240,175 C215,184 238,78 258,174 C232,182 255,82 278,173 C250,180 272,88 298,172 C270,178 292,92 320,171 C292,176 315,96 342,170 C315,174 338,100 365,170 C340,173 360,105 390,170 C362,172 385,110 418,170 C390,171 412,115 448,170 C420,170 445,118 480,170 C455,170 482,120 520,170 C500,170 530,122 570,170 C555,170 590,125 640,170 C630,170 680,130 740,170 C730,170 780,140 850,170 L950,170" stroke="#2dd4bf" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity=".6" fill="none"/>
 <!-- Glow -->
-<path id="scribbleGlow" d="M58,162 C15,310 95,18 42,295 C22,340 82,12 55,310 C32,355 98,8 62,285 C38,330 108,25 72,265 C48,310 118,18 88,300 C62,335 130,30 98,270 C72,305 140,22 112,280 C88,315 155,35 128,258 C102,295 165,28 142,265 C118,305 178,42 155,240 C128,280 185,38 168,248 C145,285 198,48 180,228 C155,268 205,52 195,235 C172,262 218,58 208,218 C185,252 228,65 222,210 C200,242 242,72 235,200 C215,232 252,78 248,195 C228,225 265,85 262,190 C242,218 278,92 278,185 C255,210 292,98 295,182 C272,202 308,105 312,180 C290,196 322,110 330,178 C308,192 338,115 348,177 C325,188 355,120 368,176 C345,184 372,128 388,176 C365,182 395,135 410,176 C392,180 418,142 435,176 C420,178 448,150 468,176 C452,177 480,158 500,176 C488,176 520,165 548,176 C540,176 580,172 620,176 C660,175 720,176 800,176 L1040,176" stroke="#2dd4bf" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity=".05" fill="none" style="filter:blur(4px)"/>
-<!-- Pencil texture -->
-<path d="M58,162 C15,310 95,18 42,295 C22,340 82,12 55,310 C32,355 98,8 62,285 C38,330 108,25 72,265 C48,310 118,18 88,300 C62,335 130,30 98,270 C72,305 140,22 112,280 C88,315 155,35 128,258 C102,295 165,28 142,265 C118,305 178,42 155,240 C128,280 185,38 168,248 C145,285 198,48 180,228 C155,268 205,52 195,235 C172,262 218,58 208,218 C185,252 228,65 222,210 C200,242 242,72 235,200 C215,232 252,78 248,195 C228,225 265,85 262,190 C242,218 278,92 278,185 C255,210 292,98 295,182 C272,202 308,105 312,180 C290,196 322,110 330,178 C308,192 338,115 348,177 C325,188 355,120 368,176 C345,184 372,128 388,176 C365,182 395,135 410,176 C392,180 418,142 435,176 C420,178 448,150 468,176 C452,177 480,158 500,176 C488,176 520,165 548,176 C540,176 580,172 620,176 C660,175 720,176 800,176 L1040,176" stroke="#2dd4bf" stroke-width=".8" stroke-linecap="round" stroke-linejoin="round" opacity=".2" fill="none" transform="translate(1.5,2)" id="scribbleTexture"/>
-<!-- End target -->
-<line x1="1040" y1="40" x2="1040" y2="172" stroke="#2dd4bf" stroke-width=".8" stroke-dasharray="3 3" opacity=".2"/>
-<circle cx="1040" cy="182" r="8" fill="none" stroke="#2dd4bf" stroke-width="1" opacity=".2"/>
-<circle cx="1040" cy="182" r="3" fill="#2dd4bf" opacity=".5"/>
+<path id="scribbleGlow" d="M50,120 C20,20 95,230 40,210 C15,240 85,10 52,225 C28,250 92,5 60,200 C35,238 100,15 72,210 C48,242 108,8 85,195 C60,228 118,18 98,200 C75,230 128,22 112,190 C88,222 138,28 128,195 C105,218 150,35 142,185 C118,212 160,40 158,188 C135,208 170,48 172,182 C150,202 182,55 188,180 C165,198 195,60 205,178 C180,192 208,68 222,176 C198,188 222,72 240,175 C215,184 238,78 258,174 C232,182 255,82 278,173 C250,180 272,88 298,172 C270,178 292,92 320,171 C292,176 315,96 342,170 C315,174 338,100 365,170 C340,173 360,105 390,170 C362,172 385,110 418,170 C390,171 412,115 448,170 C420,170 445,118 480,170 C455,170 482,120 520,170 C500,170 530,122 570,170 C555,170 590,125 640,170 C630,170 680,130 740,170 C730,170 780,140 850,170 L950,170" stroke="#2dd4bf" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity=".06" fill="none" style="filter:blur(5px)"/>
+<!-- Texture stroke -->
+<path d="M50,120 C20,20 95,230 40,210 C15,240 85,10 52,225 C28,250 92,5 60,200 C35,238 100,15 72,210 C48,242 108,8 85,195 C60,228 118,18 98,200 C75,230 128,22 112,190 C88,222 138,28 128,195 C105,218 150,35 142,185 C118,212 160,40 158,188 C135,208 170,48 172,182 C150,202 182,55 188,180 C165,198 195,60 205,178 C180,192 208,68 222,176 C198,188 222,72 240,175 C215,184 238,78 258,174 C232,182 255,82 278,173 C250,180 272,88 298,172 C270,178 292,92 320,171 C292,176 315,96 342,170 C315,174 338,100 365,170 C340,173 360,105 390,170 C362,172 385,110 418,170 C390,171 412,115 448,170 C420,170 445,118 480,170 C455,170 482,120 520,170 C500,170 530,122 570,170 C555,170 590,125 640,170 C630,170 680,130 740,170 C730,170 780,140 850,170 L950,170" stroke="#2dd4bf" stroke-width=".8" stroke-linecap="round" opacity=".2" fill="none" transform="translate(1.5,1.5)" id="scribbleTexture"/>
+<!-- End target — on the path end -->
+<circle cx="950" cy="170" r="8" fill="none" stroke="#2dd4bf" stroke-width="1.5" opacity=".3"/>
+<circle cx="950" cy="170" r="3.5" fill="#2dd4bf" opacity=".6"/>
 </svg>
 </div>
 
-<!-- Principles — arrow-shaped cards -->
-<div style="display:flex;gap:0;margin-bottom:28px;overflow:hidden;border-radius:10px">
-<div style="flex:1;padding:20px 28px 20px 20px;background:rgba(45,212,191,.04);border-right:1px solid var(--b1);position:relative;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%)">
-<span style="font-family:var(--s);font-size:.62rem;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;font-weight:600;display:block;margin-bottom:4px">01</span>
-<span style="font-family:var(--s);font-size:.82rem;font-weight:700;display:block;margin-bottom:2px">Decisions first</span>
-<span style="font-family:var(--s);font-size:.72rem;color:var(--t3);line-height:1.4">Screens second</span>
+<!-- Principles — 4 strong cards -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px">
+<div style="padding:24px;background:var(--bg2);border:1px solid var(--b2);border-radius:12px;border-top:3px solid var(--ac);transition:transform .3s var(--e),box-shadow .3s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(0,0,0,.3)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+<span style="font-family:var(--s);font-size:.72rem;color:var(--ac);font-weight:700;display:block;margin-bottom:8px">01</span>
+<span style="font-family:var(--s);font-size:1rem;font-weight:700;display:block;margin-bottom:6px">Decisions first</span>
+<span style="font-family:var(--s);font-size:.78rem;color:var(--t2);line-height:1.5">Screens second. Every pixel serves a business decision.</span>
 </div>
-<div style="flex:1;padding:20px 28px 20px 24px;background:rgba(34,197,94,.03);border-right:1px solid var(--b1);position:relative;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%)">
-<span style="font-family:var(--s);font-size:.62rem;color:var(--up);text-transform:uppercase;letter-spacing:.1em;font-weight:600;display:block;margin-bottom:4px">02</span>
-<span style="font-family:var(--s);font-size:.82rem;font-weight:700;display:block;margin-bottom:2px">Fewer features</span>
-<span style="font-family:var(--s);font-size:.72rem;color:var(--t3);line-height:1.4">Sharper outcomes</span>
+<div style="padding:24px;background:var(--bg2);border:1px solid var(--b2);border-radius:12px;border-top:3px solid var(--up);transition:transform .3s var(--e),box-shadow .3s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(0,0,0,.3)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+<span style="font-family:var(--s);font-size:.72rem;color:var(--up);font-weight:700;display:block;margin-bottom:8px">02</span>
+<span style="font-family:var(--s);font-size:1rem;font-weight:700;display:block;margin-bottom:6px">Fewer features</span>
+<span style="font-family:var(--s);font-size:.78rem;color:var(--t2);line-height:1.5">Sharper outcomes. Scope discipline is the strategy.</span>
 </div>
-<div style="flex:1;padding:20px 28px 20px 24px;background:rgba(167,139,250,.03);border-right:1px solid var(--b1);position:relative;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%)">
-<span style="font-family:var(--s);font-size:.62rem;color:var(--pu);text-transform:uppercase;letter-spacing:.1em;font-weight:600;display:block;margin-bottom:4px">03</span>
-<span style="font-family:var(--s);font-size:.82rem;font-weight:700;display:block;margin-bottom:2px">Data over opinion</span>
-<span style="font-family:var(--s);font-size:.72rem;color:var(--t3);line-height:1.4">Measure everything</span>
+<div style="padding:24px;background:var(--bg2);border:1px solid var(--b2);border-radius:12px;border-top:3px solid var(--pu);transition:transform .3s var(--e),box-shadow .3s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(0,0,0,.3)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+<span style="font-family:var(--s);font-size:.72rem;color:var(--pu);font-weight:700;display:block;margin-bottom:8px">03</span>
+<span style="font-family:var(--s);font-size:1rem;font-weight:700;display:block;margin-bottom:6px">Data over opinion</span>
+<span style="font-family:var(--s);font-size:.78rem;color:var(--t2);line-height:1.5">Measure everything. If you can&#8217;t prove it, it didn&#8217;t happen.</span>
 </div>
-<div style="flex:1;padding:20px 20px 20px 24px;background:rgba(245,158,11,.03)">
-<span style="font-family:var(--s);font-size:.62rem;color:var(--am);text-transform:uppercase;letter-spacing:.1em;font-weight:600;display:block;margin-bottom:4px">04</span>
-<span style="font-family:var(--s);font-size:.82rem;font-weight:700;display:block;margin-bottom:2px">Ship to learn</span>
-<span style="font-family:var(--s);font-size:.72rem;color:var(--t3);line-height:1.4">Post-launch iteration</span>
+<div style="padding:24px;background:var(--bg2);border:1px solid var(--b2);border-radius:12px;border-top:3px solid var(--am);transition:transform .3s var(--e),box-shadow .3s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(0,0,0,.3)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+<span style="font-family:var(--s);font-size:.72rem;color:var(--am);font-weight:700;display:block;margin-bottom:8px">04</span>
+<span style="font-family:var(--s);font-size:1rem;font-weight:700;display:block;margin-bottom:6px">Ship to learn</span>
+<span style="font-family:var(--s);font-size:.78rem;color:var(--t2);line-height:1.5">Post-launch data feeds the next cycle. Production is the start.</span>
 </div>
 </div>
 <div style="text-align:center"><button onclick="go('about')" style="font-family:var(--s);font-size:.82rem;font-weight:600;color:var(--ac2);border:1px solid var(--acb);background:var(--acg2);padding:10px 28px;border-radius:8px;transition:all .3s var(--e);cursor:pointer;letter-spacing:.02em" onmouseover="this.style.background='var(--ac)';this.style.color='#000';this.style.borderColor='var(--ac)';this.style.boxShadow='0 0 24px var(--acg)'" onmouseout="this.style.background='var(--acg2)';this.style.color='var(--ac2)';this.style.borderColor='var(--acb)';this.style.boxShadow='none'">Deep dive into my process &#8594;</button></div>
