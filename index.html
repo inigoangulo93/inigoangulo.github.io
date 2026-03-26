@@ -489,6 +489,70 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   .fn-note__num{font-size:.72rem}
 }
 
+
+/* ─── Bonfire Mode ─── */
+.bf-trigger{font-family:var(--m);font-size:.6rem;color:var(--t4);cursor:pointer;transition:color .5s;letter-spacing:.04em;font-style:italic;opacity:.5}
+.bf-trigger:hover{color:#c8864a;opacity:1}
+
+.bf-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0);pointer-events:none;transition:background .8s}
+.bf-overlay.open{background:rgba(0,0,0,.92);pointer-events:auto}
+
+.bf{position:fixed;inset:0;z-index:1001;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .8s .2s;padding:24px;overflow-y:auto}
+.bf.open{opacity:1;pointer-events:auto}
+
+.bf__close{position:fixed;top:24px;right:28px;z-index:1002;width:32px;height:32px;border:1px solid rgba(200,160,100,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(200,160,100,.3);font-size:.8rem;background:none;transition:color .3s,border-color .3s;border-radius:0;opacity:0;pointer-events:none}
+.bf.open .bf__close{opacity:1;pointer-events:auto;transition-delay:.6s}
+.bf__close:hover{color:#c8864a;border-color:rgba(200,160,100,.3)}
+
+/* Fire glow */
+.bf__fire{width:120px;height:120px;position:relative;margin-bottom:40px;opacity:0;transform:scale(.8);transition:opacity 1s .3s,transform 1s .3s var(--e)}
+.bf.open .bf__fire{opacity:1;transform:scale(1)}
+.bf__fire-glow{position:absolute;inset:-40px;background:radial-gradient(circle,rgba(200,120,40,.15),rgba(200,120,40,.05) 50%,transparent 70%);border-radius:50%;animation:bf-breathe 4s ease infinite}
+.bf__fire-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+/* CSS-only fire */
+.bf__flame{width:40px;height:60px;position:relative}
+.bf__flame::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:36px;height:52px;background:radial-gradient(ellipse at bottom,#c8641e,#e8941a 40%,#f0b830 70%,transparent 100%);border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;animation:bf-flicker 3s ease infinite}
+.bf__flame::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:22px;height:36px;background:radial-gradient(ellipse at bottom,#f8d878,#f0c040 50%,transparent 100%);border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;animation:bf-flicker 2s .5s ease infinite}
+.bf__embers{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:50px;height:8px;background:radial-gradient(ellipse,rgba(200,100,30,.4),transparent 70%);border-radius:50%}
+
+@keyframes bf-breathe{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.08);opacity:.85}}
+@keyframes bf-flicker{0%,100%{transform:translateX(-50%) scaleY(1) scaleX(1)}25%{transform:translateX(-52%) scaleY(1.05) scaleX(.95)}50%{transform:translateX(-48%) scaleY(.95) scaleX(1.02)}75%{transform:translateX(-51%) scaleY(1.02) scaleX(.98)}}
+
+.bf__title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;font-style:italic;color:#d4b88a;text-align:center;margin-bottom:12px;opacity:0;transform:translateY(12px);transition:opacity .8s .5s,transform .8s .5s var(--e)}
+.bf.open .bf__title{opacity:1;transform:translateY(0)}
+
+.bf__sub{font-family:var(--s);font-size:.82rem;color:rgba(200,170,130,.4);text-align:center;line-height:1.7;max-width:320px;margin-bottom:40px;opacity:0;transform:translateY(8px);transition:opacity .7s .7s,transform .7s .7s var(--e)}
+.bf.open .bf__sub{opacity:1;transform:translateY(0)}
+
+.bf__prompt{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:rgba(200,170,130,.5);text-align:center;margin-bottom:20px;font-style:italic;font-variant:small-caps;opacity:0;transition:opacity .6s .9s}
+.bf.open .bf__prompt{opacity:1}
+
+.bf__options{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:440px;margin-bottom:32px;opacity:0;transform:translateY(8px);transition:opacity .6s 1s,transform .6s 1s var(--e)}
+.bf.open .bf__options{opacity:1;transform:translateY(0)}
+
+.bf__opt{font-family:var(--s);font-size:.74rem;color:rgba(200,170,130,.5);padding:8px 18px;border:1px solid rgba(200,160,100,.1);background:none;cursor:pointer;border-radius:0;transition:color .3s,border-color .3s,background .3s;letter-spacing:.02em}
+.bf__opt:hover{color:#d4b88a;border-color:rgba(200,160,100,.25);background:rgba(200,160,100,.04)}
+.bf__opt.active{color:#d4b88a;border-color:rgba(200,160,100,.3);background:rgba(200,160,100,.06)}
+
+.bf__response{text-align:center;max-width:380px;min-height:60px;margin-bottom:16px}
+.bf__wisdom{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:500;font-style:italic;color:rgba(200,170,130,.65);line-height:1.7;opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s var(--e)}
+.bf__wisdom.vis{opacity:1;transform:translateY(0)}
+
+.bf__again{font-family:var(--m);font-size:.58rem;color:rgba(200,160,100,.2);cursor:pointer;transition:color .3s;letter-spacing:.04em;opacity:0;transition:opacity .4s .3s,color .3s}
+.bf__again.vis{opacity:1}
+.bf__again:hover{color:rgba(200,160,100,.45)}
+
+.bf__sanctuary{font-family:var(--m);font-size:.5rem;color:rgba(200,160,100,.12);letter-spacing:.15em;text-transform:uppercase;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);opacity:0;transition:opacity .6s 1.2s}
+.bf.open .bf__sanctuary{opacity:1}
+
+@media(max-width:768px){
+  .bf__title{font-size:1.5rem}
+  .bf__sub{font-size:.78rem}
+  .bf__opt{font-size:.7rem;padding:7px 14px}
+  .bf__wisdom{font-size:.95rem}
+  .bf__fire{width:100px;height:100px;margin-bottom:32px}
+}
+
 @media(max-width:768px){
   html{font-size:14px}
 
@@ -1089,7 +1153,7 @@ function go(n){
 <div><p class="footer__col-title">Connect</p><div class="footer__links"><a href="/cdn-cgi/l/email-protection#096067606e6668676e7c6566496e64686065276a6664">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank">LinkedIn</a><a href="tel:+41799528321">Phone</a></div></div>
 <div><p class="footer__col-title">Resources</p><div class="footer__links"><a href="Inigo_Angulo_CV_2026.pdf" download>Download CV</a></div></div>
 </div>
-<div class="footer__bottom"><span class="footer__copy">2026 Inigo Angulo</span><span class="footer__built">Built with code, not templates</span></div>
+<div class="footer__bottom"><span class="footer__copy">2026 Inigo Angulo</span><span class="footer__built">Built with code, not templates</span><span class="bf-trigger" onclick="openBonfire()">rest here</span></div>
 </footer>
 
 <div class="cmd" id="cmd"><span class="cmd__p">&gt;</span><input class="cmd__i" id="cmdIn" placeholder="Type a view or project name..." autocomplete="off"></div>
@@ -1160,6 +1224,57 @@ function closeNotes(){
   document.body.style.overflow="";
 }
 document.addEventListener("keydown",function(e){if(e.key==="Escape")closeNotes()});
+
+
+// Bonfire Mode
+var bfLines={
+  noise:["Not every voice deserves a seat at the fire.","Clarity often begins where the noise ends.","A crowded mind mistakes motion for direction."],
+  decision:["A delayed answer is sometimes the wiser one.","Not every path reveals itself before the first step.","Some choices only become clear once the fear quiets."],
+  fatigue:["Even a good blade dulls with use.","Rest is not the enemy of momentum.","A tired hand rarely draws the cleanest line."],
+  overthinking:["Not every problem yields to more force.","Some knots tighten when pulled too hard.","The mind under strain often invents complexity."],
+  uncertainty:["The fog does not mean the road is gone.","Some terrain can only be understood by walking it.","A lack of certainty is not a lack of direction."],
+  nothing:["Then stay a while. The fire asks for nothing.","Not every stop needs a reason.","Even travellers with light packs need warmth."]
+};
+var bfCat=null,bfIdx=0;
+
+function openBonfire(){
+  document.getElementById("bfOverlay").classList.add("open");
+  document.getElementById("bfPanel").classList.add("open");
+  document.body.style.overflow="hidden";
+  // Reset state
+  bfCat=null;bfIdx=0;
+  document.getElementById("bfWisdom").className="bf__wisdom";
+  document.getElementById("bfWisdom").textContent="";
+  document.getElementById("bfAgain").className="bf__again";
+  document.querySelectorAll(".bf__opt").forEach(function(b){b.classList.remove("active")});
+}
+function closeBonfire(){
+  document.getElementById("bfOverlay").classList.remove("open");
+  document.getElementById("bfPanel").classList.remove("open");
+  document.body.style.overflow="";
+}
+document.getElementById("bfOpts").addEventListener("click",function(e){
+  var btn=e.target.closest(".bf__opt");if(!btn)return;
+  bfCat=btn.dataset.bf;bfIdx=Math.floor(Math.random()*bfLines[bfCat].length);
+  document.querySelectorAll(".bf__opt").forEach(function(b){b.classList.remove("active")});
+  btn.classList.add("active");
+  showBfLine();
+});
+function showBfLine(){
+  var w=document.getElementById("bfWisdom");
+  w.classList.remove("vis");
+  setTimeout(function(){
+    w.textContent=bfLines[bfCat][bfIdx];
+    w.classList.add("vis");
+    document.getElementById("bfAgain").classList.add("vis");
+  },200);
+}
+function bfCycle(){
+  if(!bfCat)return;
+  bfIdx=(bfIdx+1)%bfLines[bfCat].length;
+  showBfLine();
+}
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeBonfire()});
 
 // Hero - flowing grid with organic warp
 (function(){
@@ -1415,6 +1530,32 @@ function mgo(n){
 </div></div><!-- /page -->
 </div><!-- /inner -->
 </div><!-- /panel -->
+
+
+<!-- Bonfire Mode -->
+<div class="bf-overlay" id="bfOverlay" onclick="closeBonfire()"></div>
+<div class="bf" id="bfPanel">
+<button class="bf__close" onclick="closeBonfire()">&#10005;</button>
+<div class="bf__fire">
+<div class="bf__fire-glow"></div>
+<div class="bf__fire-inner"><div class="bf__flame"></div></div>
+<div class="bf__embers"></div>
+</div>
+<div class="bf__title">Rest here, weary traveller.</div>
+<div class="bf__sub">No signal to chase. No decisions to make.<br>Just a quiet place between battles.</div>
+<div class="bf__prompt">What are you carrying?</div>
+<div class="bf__options" id="bfOpts">
+<button class="bf__opt" data-bf="noise">Too much noise</button>
+<button class="bf__opt" data-bf="decision">A difficult decision</button>
+<button class="bf__opt" data-bf="fatigue">Creative fatigue</button>
+<button class="bf__opt" data-bf="overthinking">Overthinking</button>
+<button class="bf__opt" data-bf="uncertainty">Uncertainty</button>
+<button class="bf__opt" data-bf="nothing">Nothing. Just passing through</button>
+</div>
+<div class="bf__response"><div class="bf__wisdom" id="bfWisdom"></div></div>
+<div class="bf__again" id="bfAgain" onclick="bfCycle()">ask the fire again</div>
+<div class="bf__sanctuary">Sanctuary</div>
+</div>
 
 </body>
 </html>
