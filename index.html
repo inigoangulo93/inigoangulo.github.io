@@ -440,28 +440,30 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .fn-overlay{position:fixed;inset:0;z-index:998;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .35s}
 .fn-overlay.open{opacity:1;pointer-events:auto}
 
-.fn-panel{position:fixed;top:0;right:0;bottom:0;width:480px;max-width:94vw;z-index:999;background:linear-gradient(170deg,#1a150e,#12100a 40%,#0e0c08);border-left:1px solid rgba(180,150,90,.12);transform:translateX(100%);transition:transform .5s var(--e);overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:-20px 0 60px rgba(0,0,0,.5)}
+/* ─── Scripta Privata — illuminated manuscript ─── */
+.fn-panel{position:fixed;top:0;right:0;bottom:0;width:500px;max-width:94vw;z-index:999;background:#f4ead0;transform:translateX(100%);transition:transform .5s var(--e);overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:-20px 0 80px rgba(0,0,0,.4)}
 .fn-panel.open{transform:translateX(0)}
 
-.fn-panel__inner{padding:48px 36px 56px;position:relative}
-.fn-panel__inner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(180,150,90,.02) 38px,rgba(180,150,90,.02) 39px);pointer-events:none}
-.fn-panel__head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid rgba(180,150,90,.1)}
-.fn-panel__title{font-family:'UnifrakturCook',cursive;font-size:2.8rem;font-weight:700;color:#dfc070;letter-spacing:.02em;text-shadow:0 0 40px rgba(200,160,80,.15);line-height:1.1;display:flex;align-items:center;gap:8px}
-.fn-drop-cap{flex-shrink:0;display:block;margin-right:4px;margin-left:-4px;margin-top:-4px}
-.fn-panel__sub{font-family:var(--m);font-size:.6rem;color:rgba(200,170,100,.4);margin-top:12px;letter-spacing:.1em;text-transform:uppercase}
-.fn-panel__close{width:28px;height:28px;border-radius:0;border:1px solid rgba(180,150,90,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(180,150,90,.4);font-size:.8rem;transition:border-color .2s,color .2s;flex-shrink:0;background:none}
-.fn-panel__close:hover{border-color:rgba(180,150,90,.3);color:#c8b078}
+.fn-panel__inner{padding:48px 40px 56px;position:relative;background:linear-gradient(180deg,#f4ead0,#efe2c4 30%,#e8d9b8 70%,#e0d0ac);min-height:100%}
+.fn-panel__inner::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");pointer-events:none}
+.fn-panel__inner::after{content:'';position:absolute;top:20px;left:20px;right:20px;bottom:20px;border:1px solid rgba(140,80,30,.12);pointer-events:none}
+.fn-panel__head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px;padding-bottom:20px;border-bottom:2px solid rgba(140,80,30,.1)}
+.fn-panel__title{font-family:'UnifrakturCook',cursive;font-size:2.6rem;font-weight:700;color:#5a3520;letter-spacing:.02em;line-height:1.1;display:flex;align-items:center;gap:6px}
+.fn-drop-cap{flex-shrink:0;display:block;margin-right:2px;margin-left:-4px;margin-top:-4px}
+.fn-panel__sub{font-family:var(--s);font-size:.62rem;color:rgba(100,60,30,.4);margin-top:10px;letter-spacing:.1em;text-transform:uppercase;font-variant:small-caps}
+.fn-panel__close{width:28px;height:28px;border-radius:0;border:1px solid rgba(140,80,30,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(100,60,30,.4);font-size:.8rem;transition:border-color .2s,color .2s;flex-shrink:0;background:none}
+.fn-panel__close:hover{border-color:rgba(140,80,30,.4);color:#5a3520}
 
-.fn-note{padding:22px 0;border-bottom:1px solid rgba(180,150,90,.06);opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s var(--e)}
+.fn-note{padding:20px 0;border-bottom:1px solid rgba(140,80,30,.06);opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s var(--e)}
 .fn-panel.open .fn-note{opacity:1;transform:translateY(0)}
-.fn-note__num{font-family:var(--s);font-size:.7rem;font-weight:600;color:rgba(200,170,100,.3);margin-bottom:8px;display:block;letter-spacing:.08em;font-variant:small-caps}
-.fn-note__text{font-family:var(--s);font-size:.9rem;color:rgba(225,210,180,.72);line-height:1.85;font-style:italic}
+.fn-note__num{font-family:var(--s);font-size:.68rem;font-weight:700;color:#8b4513;margin-bottom:8px;display:block;letter-spacing:.06em;font-variant:small-caps}
+.fn-note__text{font-family:var(--s);font-size:.88rem;color:#3a2a18;line-height:1.85;font-style:italic}
 .fn-note:last-child{border-bottom:none}
-.fn-note__sep{display:block;text-align:center;color:rgba(200,170,100,.12);font-size:.7rem;padding:4px 0;letter-spacing:.3em}
+.fn-note__sep{display:block;text-align:center;color:rgba(180,100,40,.2);font-size:.8rem;padding:2px 0;letter-spacing:.3em}
 
-.fn-panel__colophon{margin-top:40px;padding-top:24px;border-top:1px solid rgba(180,150,90,.08);text-align:center}
-.fn-panel__colophon-mark{font-family:'UnifrakturCook',cursive;font-size:1.4rem;color:rgba(200,170,100,.15);margin-bottom:6px}
-.fn-panel__colophon-text{font-family:var(--s);font-size:.6rem;color:rgba(180,150,90,.2);letter-spacing:.1em;font-variant:small-caps;line-height:1.6}
+.fn-panel__colophon{margin-top:40px;padding-top:20px;border-top:2px solid rgba(140,80,30,.1);text-align:center}
+.fn-panel__colophon-mark{font-family:'UnifrakturCook',cursive;font-size:1.6rem;color:rgba(140,80,30,.2);margin-bottom:6px}
+.fn-panel__colophon-text{font-family:var(--s);font-size:.6rem;color:rgba(100,60,30,.35);letter-spacing:.1em;font-variant:small-caps;line-height:1.6}
 
 /* Stagger delays */
 .fn-panel.open .fn-note:nth-child(1){transition-delay:.08s}
@@ -1344,34 +1346,41 @@ function mgo(n){
 <div class="fn-panel__inner">
 <div class="fn-panel__head">
 <div>
-<div class="fn-panel__title"><span class="fn-drop-cap"><svg viewBox="0 0 120 120" width="72" height="72" fill="none" xmlns="http://www.w3.org/2000/svg">
-<!-- Ornamental frame -->
-<rect x="4" y="4" width="112" height="112" rx="4" stroke="#c8a050" stroke-width="1.5" opacity=".25"/>
-<rect x="10" y="10" width="100" height="100" rx="2" stroke="#c8a050" stroke-width=".5" opacity=".15"/>
-<!-- Corner ornaments -->
-<path d="M4,20 C8,20 12,16 12,4" stroke="#c8a050" stroke-width=".8" opacity=".3" fill="none"/>
-<path d="M116,20 C112,20 108,16 108,4" stroke="#c8a050" stroke-width=".8" opacity=".3" fill="none"/>
-<path d="M4,100 C8,100 12,104 12,116" stroke="#c8a050" stroke-width=".8" opacity=".3" fill="none"/>
-<path d="M116,100 C112,100 108,104 108,116" stroke="#c8a050" stroke-width=".8" opacity=".3" fill="none"/>
-<!-- Vine ornaments -->
-<path d="M18,22 C22,28 18,36 24,38 C18,42 22,50 18,54" stroke="#c8a050" stroke-width=".7" opacity=".2" fill="none"/>
-<path d="M102,22 C98,28 102,36 96,38 C102,42 98,50 102,54" stroke="#c8a050" stroke-width=".7" opacity=".2" fill="none"/>
-<path d="M18,66 C22,70 18,78 24,82 C18,86 22,92 18,98" stroke="#c8a050" stroke-width=".7" opacity=".2" fill="none"/>
-<path d="M102,66 C98,70 102,78 96,82 C102,86 98,92 102,98" stroke="#c8a050" stroke-width=".7" opacity=".2" fill="none"/>
-<!-- Leaf details -->
-<ellipse cx="24" cy="28" rx="3" ry="5" transform="rotate(-20,24,28)" fill="#c8a050" opacity=".08"/>
-<ellipse cx="96" cy="28" rx="3" ry="5" transform="rotate(20,96,28)" fill="#c8a050" opacity=".08"/>
-<ellipse cx="24" cy="82" rx="3" ry="5" transform="rotate(-20,24,82)" fill="#c8a050" opacity=".08"/>
-<ellipse cx="96" cy="82" rx="3" ry="5" transform="rotate(20,96,82)" fill="#c8a050" opacity=".08"/>
-<!-- Top/bottom decorative bars -->
-<line x1="30" y1="14" x2="90" y2="14" stroke="#c8a050" stroke-width=".5" opacity=".15"/>
-<line x1="30" y1="106" x2="90" y2="106" stroke="#c8a050" stroke-width=".5" opacity=".15"/>
-<circle cx="30" cy="14" r="1.5" fill="#c8a050" opacity=".12"/><circle cx="90" cy="14" r="1.5" fill="#c8a050" opacity=".12"/>
-<circle cx="30" cy="106" r="1.5" fill="#c8a050" opacity=".12"/><circle cx="90" cy="106" r="1.5" fill="#c8a050" opacity=".12"/>
-<!-- The S letterform -->
-<text x="60" y="88" text-anchor="middle" font-family="UnifrakturCook,cursive" font-size="72" font-weight="700" fill="#dfc070" opacity=".85">S</text>
-<!-- Inner glow on the S -->
-<text x="60" y="88" text-anchor="middle" font-family="UnifrakturCook,cursive" font-size="72" font-weight="700" fill="#dfc070" opacity=".08" style="filter:blur(4px)">S</text>
+<div class="fn-panel__title"><span class="fn-drop-cap"><svg viewBox="0 0 120 130" width="80" height="87" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Gold leaf background -->
+<rect x="4" y="4" width="112" height="122" rx="3" fill="#c8950a" opacity=".12"/>
+<rect x="4" y="4" width="112" height="122" rx="3" stroke="#8b5e14" stroke-width="2" fill="none" opacity=".35"/>
+<rect x="8" y="8" width="104" height="114" rx="1" stroke="#8b5e14" stroke-width=".5" fill="none" opacity=".2"/>
+<!-- Blue panel behind letter (ultramarine like Très Riches Heures) -->
+<rect x="14" y="14" width="92" height="102" rx="2" fill="#1a3a6e" opacity=".85"/>
+<rect x="14" y="14" width="92" height="102" rx="2" stroke="#8b5e14" stroke-width=".8" fill="none" opacity=".3"/>
+<!-- Vine flourishes — red and gold -->
+<path d="M20,20 C28,30 20,42 28,48 C20,54 28,64 20,72 C28,78 20,88 28,96 C20,102 28,110 22,114" stroke="#c8950a" stroke-width="1" opacity=".5" fill="none"/>
+<path d="M100,20 C92,30 100,42 92,48 C100,54 92,64 100,72 C92,78 100,88 92,96 C100,102 92,110 98,114" stroke="#c8950a" stroke-width="1" opacity=".5" fill="none"/>
+<!-- Vine leaves — vermillion red -->
+<ellipse cx="24" cy="30" rx="4" ry="6" transform="rotate(-25,24,30)" fill="#b83228" opacity=".6"/>
+<ellipse cx="96" cy="30" rx="4" ry="6" transform="rotate(25,96,30)" fill="#b83228" opacity=".6"/>
+<ellipse cx="28" cy="48" rx="3" ry="5" transform="rotate(15,28,48)" fill="#c8950a" opacity=".4"/>
+<ellipse cx="92" cy="48" rx="3" ry="5" transform="rotate(-15,92,48)" fill="#c8950a" opacity=".4"/>
+<ellipse cx="24" cy="72" rx="4" ry="6" transform="rotate(-20,24,72)" fill="#b83228" opacity=".5"/>
+<ellipse cx="96" cy="72" rx="4" ry="6" transform="rotate(20,96,72)" fill="#b83228" opacity=".5"/>
+<ellipse cx="28" cy="96" rx="3" ry="5" transform="rotate(10,28,96)" fill="#c8950a" opacity=".35"/>
+<ellipse cx="92" cy="96" rx="3" ry="5" transform="rotate(-10,92,96)" fill="#c8950a" opacity=".35"/>
+<!-- Small gold dots like gilding -->
+<circle cx="24" cy="55" r="1.5" fill="#c8950a" opacity=".5"/>
+<circle cx="96" cy="55" r="1.5" fill="#c8950a" opacity=".5"/>
+<circle cx="24" cy="85" r="1.5" fill="#c8950a" opacity=".5"/>
+<circle cx="96" cy="85" r="1.5" fill="#c8950a" opacity=".5"/>
+<circle cx="20" cy="40" r="1" fill="#c8950a" opacity=".3"/>
+<circle cx="100" cy="40" r="1" fill="#c8950a" opacity=".3"/>
+<!-- Corner fleurons -->
+<circle cx="18" cy="18" r="3" fill="#c8950a" opacity=".35"/>
+<circle cx="102" cy="18" r="3" fill="#c8950a" opacity=".35"/>
+<circle cx="18" cy="112" r="3" fill="#c8950a" opacity=".35"/>
+<circle cx="102" cy="112" r="3" fill="#c8950a" opacity=".35"/>
+<!-- The S — Roman serif, painted vermillion with gold outline -->
+<text x="60" y="96" text-anchor="middle" font-family="'IBM Plex Sans',serif" font-size="78" font-weight="700" fill="#e8e0d0" opacity=".95">S</text>
+<text x="60" y="96" text-anchor="middle" font-family="'IBM Plex Sans',serif" font-size="78" font-weight="700" fill="none" stroke="#c8950a" stroke-width="1" opacity=".4">S</text>
 </svg></span>cripta Privata</div>
 <div class="fn-panel__sub">Fragmenta &#183; Principia &#183; Rationes</div>
 </div>
