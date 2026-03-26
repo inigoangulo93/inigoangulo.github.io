@@ -1163,16 +1163,16 @@ function closeBonfire(){
   document.body.style.overflow="";
 }
 
-// Direct click handlers on each button
-document.querySelectorAll(".bf__opt").forEach(function(btn){
-  btn.addEventListener("click",function(e){
-    e.stopPropagation();
-    bfCat=btn.dataset.bf;
-    bfIdx=Math.floor(Math.random()*bfLines[bfCat].length);
-    document.querySelectorAll(".bf__opt").forEach(function(b){b.classList.remove("active")});
-    btn.classList.add("active");
-    showBfLine();
-  });
+// Delegate click to document — works regardless of DOM order
+document.addEventListener("click",function(e){
+  var btn=e.target.closest(".bf__opt");
+  if(!btn)return;
+  e.stopPropagation();
+  bfCat=btn.dataset.bf;
+  bfIdx=Math.floor(Math.random()*bfLines[bfCat].length);
+  document.querySelectorAll(".bf__opt").forEach(function(b){b.classList.remove("active")});
+  btn.classList.add("active");
+  showBfLine();
 });
 
 function showBfLine(){
