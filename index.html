@@ -6,7 +6,7 @@
 <title>Inigo Angulo · Product Design and Growth</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=UnifrakturCook:wght@700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=UnifrakturCook:wght@700&family=MedievalSharp&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#000;--bg2:#060608;--bg3:#0a0a0e;--bg4:#0e0e14;
@@ -440,37 +440,43 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .fn-overlay{position:fixed;inset:0;z-index:998;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .35s}
 .fn-overlay.open{opacity:1;pointer-events:auto}
 
-/* ─── Scripta Privata — illuminated manuscript ─── */
-.fn-panel{position:fixed;top:0;right:0;bottom:0;width:500px;max-width:94vw;z-index:999;background:#e8dcc2;transform:translateX(100%);transition:transform .5s var(--e);overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:-20px 0 80px rgba(0,0,0,.5)}
+/* ─── Scripta Privata — XII century manuscript ─── */
+.fn-panel{position:fixed;top:0;right:0;bottom:0;width:500px;max-width:94vw;z-index:999;background:#c4a872;transform:translateX(100%);transition:transform .5s var(--e);overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:-20px 0 80px rgba(0,0,0,.6)}
 .fn-panel.open{transform:translateX(0)}
 
 .fn-panel__inner{padding:0;position:relative;min-height:100%}
-/* Parchment bg with stains and age */
-.fn-panel__page{padding:56px 44px 60px;position:relative;background:linear-gradient(175deg,#f2e8ce 0%,#ece0c2 20%,#e5d6b4 50%,#deceaa 80%,#d8c4a0 100%);margin:16px;border:3px double #a0784a;min-height:calc(100% - 32px)}
-.fn-panel__page::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.5' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");pointer-events:none}
-.fn-panel__page::after{content:'';position:absolute;top:6px;left:6px;right:6px;bottom:6px;border:1px solid rgba(140,90,40,.15);pointer-events:none}
-/* Decorative border — inner colored frame */
-.fn-panel__border{position:absolute;top:14px;left:14px;right:14px;bottom:14px;border:2px solid #b8863e;pointer-events:none;opacity:.2}
-.fn-panel__border::before{content:'';position:absolute;inset:-7px;border:1px solid #8b4513;opacity:.15}
-.fn-panel__border::after{content:'';position:absolute;inset:4px;border:1px solid #1a3a6e;opacity:.12}
+.fn-panel__page{padding:52px 40px 56px;position:relative;background:linear-gradient(175deg,#ddd0aa,#d5c69c 25%,#cdb88e 50%,#c5ae82 75%,#bda478);margin:0;min-height:100%}
+/* Heavy parchment texture */
+.fn-panel__page::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.45' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");pointer-events:none;mix-blend-mode:multiply}
+/* Floral/leaf SVG border frame */
+.fn-panel__page::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='40'%3E%3Cellipse cx='50' cy='20' rx='12' ry='8' fill='%23862a22' opacity='.5' transform='rotate(-15,50,20)'/%3E%3Cellipse cx='130' cy='20' rx='10' ry='7' fill='%23266828' opacity='.45' transform='rotate(10,130,20)'/%3E%3Cellipse cx='210' cy='18' rx='11' ry='7' fill='%23b8860a' opacity='.4' transform='rotate(-8,210,18)'/%3E%3Cellipse cx='290' cy='22' rx='12' ry='8' fill='%23862a22' opacity='.45' transform='rotate(12,290,22)'/%3E%3Cellipse cx='370' cy='19' rx='10' ry='7' fill='%23266828' opacity='.4' transform='rotate(-10,370,19)'/%3E%3Cellipse cx='450' cy='21' rx='11' ry='8' fill='%23b8860a' opacity='.35' transform='rotate(15,450,21)'/%3E%3Cline x1='0' y1='20' x2='500' y2='20' stroke='%238b6914' stroke-width='.5' opacity='.2'/%3E%3C/svg%3E") repeat-x top left,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='40'%3E%3Cellipse cx='50' cy='20' rx='12' ry='8' fill='%23266828' opacity='.45' transform='rotate(15,50,20)'/%3E%3Cellipse cx='130' cy='20' rx='10' ry='7' fill='%23862a22' opacity='.5' transform='rotate(-10,130,20)'/%3E%3Cellipse cx='210' cy='22' rx='11' ry='7' fill='%23b8860a' opacity='.35' transform='rotate(8,210,22)'/%3E%3Cellipse cx='290' cy='18' rx='12' ry='8' fill='%23266828' opacity='.4' transform='rotate(-12,290,18)'/%3E%3Cellipse cx='370' cy='21' rx='10' ry='7' fill='%23862a22' opacity='.45' transform='rotate(10,370,21)'/%3E%3Cellipse cx='450' cy='19' rx='11' ry='8' fill='%23b8860a' opacity='.4' transform='rotate(-15,450,19)'/%3E%3Cline x1='0' y1='20' x2='500' y2='20' stroke='%238b6914' stroke-width='.5' opacity='.2'/%3E%3C/svg%3E") repeat-x bottom left,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='500'%3E%3Cellipse cx='20' cy='60' rx='8' ry='12' fill='%23862a22' opacity='.45' transform='rotate(-15,20,60)'/%3E%3Cellipse cx='20' cy='150' rx='7' ry='10' fill='%23266828' opacity='.4' transform='rotate(10,20,150)'/%3E%3Cellipse cx='18' cy='240' rx='7' ry='11' fill='%23b8860a' opacity='.35' transform='rotate(-8,18,240)'/%3E%3Cellipse cx='22' cy='330' rx='8' ry='12' fill='%23862a22' opacity='.4' transform='rotate(12,22,330)'/%3E%3Cellipse cx='20' cy='420' rx='7' ry='10' fill='%23266828' opacity='.45' transform='rotate(-10,20,420)'/%3E%3Cline x1='20' y1='0' x2='20' y2='500' stroke='%238b6914' stroke-width='.5' opacity='.2'/%3E%3C/svg%3E") repeat-y top left,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='500'%3E%3Cellipse cx='20' cy='60' rx='8' ry='12' fill='%23266828' opacity='.4' transform='rotate(15,20,60)'/%3E%3Cellipse cx='20' cy='150' rx='7' ry='10' fill='%23862a22' opacity='.45' transform='rotate(-10,20,150)'/%3E%3Cellipse cx='22' cy='240' rx='7' ry='11' fill='%23b8860a' opacity='.4' transform='rotate(8,22,240)'/%3E%3Cellipse cx='18' cy='330' rx='8' ry='12' fill='%23266828' opacity='.45' transform='rotate(-12,18,330)'/%3E%3Cellipse cx='20' cy='420' rx='7' ry='10' fill='%23862a22' opacity='.4' transform='rotate(10,20,420)'/%3E%3Cline x1='20' y1='0' x2='20' y2='500' stroke='%238b6914' stroke-width='.5' opacity='.2'/%3E%3C/svg%3E") repeat-y top right;
+  background-size:100% 40px,100% 40px,40px 100%,40px 100%}
+/* Decorative border lines */
+.fn-panel__border{position:absolute;top:38px;left:38px;right:38px;bottom:38px;border:2px solid rgba(139,69,19,.18);pointer-events:none}
+.fn-panel__border::before{content:'';position:absolute;inset:-4px;border:1px solid rgba(139,69,19,.1)}
 
-.fn-panel__head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid rgba(140,80,30,.15);position:relative;z-index:1}
-.fn-panel__title{font-family:'UnifrakturCook',cursive;font-size:2.6rem;font-weight:700;color:#4a2810;letter-spacing:.02em;line-height:1.1;display:flex;align-items:center;gap:6px}
-.fn-drop-cap{flex-shrink:0;display:block;margin-right:2px;margin-left:-8px;margin-top:-8px}
-.fn-panel__sub{font-family:var(--s);font-size:.64rem;color:#8a6a3e;margin-top:10px;letter-spacing:.08em;font-variant:small-caps}
-.fn-panel__close{width:28px;height:28px;border-radius:0;border:1px solid rgba(140,80,30,.2);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#8a6a3e;font-size:.8rem;transition:border-color .2s,color .2s;flex-shrink:0;background:none;position:relative;z-index:1}
-.fn-panel__close:hover{border-color:#8b4513;color:#4a2810}
+.fn-panel__head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;padding-bottom:16px;border-bottom:none;position:relative;z-index:1}
+.fn-panel__title{font-family:'MedievalSharp',cursive;font-size:2.4rem;font-weight:400;color:#3a1a08;letter-spacing:.04em;line-height:1.1;display:flex;align-items:center;gap:4px}
+.fn-drop-cap{flex-shrink:0;display:block;margin-right:0;margin-left:-8px;margin-top:-8px}
+.fn-panel__sub{font-family:var(--s);font-size:.64rem;color:#7a5a2e;margin-top:10px;letter-spacing:.08em;font-variant:small-caps}
+.fn-panel__close{width:28px;height:28px;border-radius:0;border:1px solid rgba(139,69,19,.2);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#7a5a2e;font-size:.8rem;transition:border-color .2s,color .2s;flex-shrink:0;background:none;position:relative;z-index:1}
+.fn-panel__close:hover{border-color:#8b4513;color:#3a1a08}
 
-.fn-note{padding:20px 0;border-bottom:1px solid rgba(140,80,30,.08);opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s var(--e);position:relative;z-index:1}
+.fn-note{padding:18px 0;border-bottom:1px solid rgba(139,69,19,.08);opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s var(--e);position:relative;z-index:1}
 .fn-panel.open .fn-note{opacity:1;transform:translateY(0)}
-.fn-note__num{font-family:var(--s);font-size:.78rem;font-weight:700;color:#8b4513;margin-bottom:8px;display:block;letter-spacing:.04em;font-variant:small-caps}
-.fn-note__text{font-family:var(--s);font-size:.88rem;color:#3a2515;line-height:1.85;font-style:italic}
+.fn-note__num{font-family:var(--s);font-size:.8rem;font-weight:700;color:#862a22;margin-bottom:6px;display:block;letter-spacing:.04em;font-variant:small-caps}
+.fn-note__text{font-family:var(--s);font-size:.86rem;color:#2a1a0a;line-height:1.85;font-style:italic}
 .fn-note:last-child{border-bottom:none}
-.fn-note__sep{display:block;text-align:center;color:#b8863e;font-size:.8rem;padding:2px 0;letter-spacing:.3em;opacity:.35;position:relative;z-index:1}
+.fn-note__sep{display:block;text-align:center;color:#862a22;font-size:.7rem;padding:2px 0;letter-spacing:.3em;opacity:.3;position:relative;z-index:1}
 
-.fn-panel__colophon{margin-top:40px;padding-top:20px;border-top:1px solid rgba(140,80,30,.12);text-align:center;position:relative;z-index:1}
-.fn-panel__colophon-mark{font-family:'UnifrakturCook',cursive;font-size:1.8rem;color:#8b4513;margin-bottom:8px;opacity:.4}
-.fn-panel__colophon-text{font-family:var(--s);font-size:.65rem;color:#7a5a30;letter-spacing:.08em;font-variant:small-caps;line-height:1.7}
+.fn-panel__colophon{margin-top:36px;padding-top:16px;border-top:1px solid rgba(139,69,19,.1);text-align:center;position:relative;z-index:1}
+.fn-panel__colophon-mark{font-family:'MedievalSharp',cursive;font-size:1.6rem;color:#862a22;margin-bottom:6px;opacity:.5}
+.fn-panel__colophon-text{font-family:var(--s);font-size:.66rem;color:#5a3a1a;letter-spacing:.08em;font-variant:small-caps;line-height:1.7}
 
 /* Stagger delays */
 .fn-panel.open .fn-note:nth-child(1){transition-delay:.08s}
@@ -483,9 +489,9 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .fn-panel.open .fn-note:nth-child(8){transition-delay:.36s}
 
 @media(max-width:768px){
-  .fn-panel__page{padding:36px 24px 40px;margin:10px;border-width:2px}
-  .fn-panel__page::after{top:4px;left:4px;right:4px;bottom:4px}
-  .fn-panel__border{top:10px;left:10px;right:10px;bottom:10px}
+  .fn-panel__page{padding:36px 24px 40px}
+  
+  .fn-panel__border{top:28px;left:22px;right:22px;bottom:28px}
   .fn-drop-cap svg{width:68px;height:74px}
   .fn-note__text{font-size:.84rem}
   .fn-note__num{font-size:.72rem}
@@ -1394,13 +1400,13 @@ function mgo(n){
 </div>
 <button class="fn-panel__close" onclick="closeNotes()" aria-label="Close">&#10005;</button>
 </div>
-<div class="fn-note"><span class="fn-note__num">i &middot; De Claritate</span><span class="fn-note__text">Clarity is rarely a visual problem first. It usually breaks earlier&mdash;in the decision architecture, the information flow, the assumptions nobody questioned. By the time it reaches the screen, the damage is structural.</span></div>
+<div class="fn-note"><span class="fn-note__num">i &middot; De Claritate</span><span class="fn-note__text">Clarity is rarely a visual problem first. It usually breaks earlier. In the decision architecture, the information flow, the assumptions nobody questioned. By the time it reaches the screen, the damage is structural.</span></div>
 <span class="fn-note__sep">&#10043;</span>
-<div class="fn-note"><span class="fn-note__num">ii &middot; De Frictione</span><span class="fn-note__text">Most friction is upstream. Interfaces often just expose it. The checkout that feels slow, the dashboard nobody trusts, the onboarding that leaks&mdash;these are symptoms. The cause is almost always a decision that was never properly framed.</span></div>
+<div class="fn-note"><span class="fn-note__num">ii &middot; De Frictione</span><span class="fn-note__text">Most friction is upstream. Interfaces often just expose it. The checkout that feels slow, the dashboard nobody trusts, the onboarding that leaks. These are symptoms. The cause is almost always a decision that was never properly framed.</span></div>
 <span class="fn-note__sep">&#10043;</span>
-<div class="fn-note"><span class="fn-note__num">iii &middot; De Iudicio</span><span class="fn-note__text">AI speeds up execution. Judgment still decides direction. The dangerous part isn&#8217;t building the wrong thing slowly&mdash;it&#8217;s building the wrong thing fast and calling it progress.</span></div>
+<div class="fn-note"><span class="fn-note__num">iii &middot; De Iudicio</span><span class="fn-note__text">AI speeds up execution. Judgment still decides direction. The dangerous part isn&#8217;t building the wrong thing slowly. It&#8217;s building the wrong thing fast and calling it progress.</span></div>
 <span class="fn-note__sep">&#10043;</span>
-<div class="fn-note"><span class="fn-note__num">iv &middot; De Disciplina</span><span class="fn-note__text">The real work is often deciding what not to build. Scope discipline isn&#8217;t a constraint&mdash;it&#8217;s the strategy. At ENSO, killing 60% of the planned roadmap was the single highest-impact decision.</span></div>
+<div class="fn-note"><span class="fn-note__num">iv &middot; De Disciplina</span><span class="fn-note__text">The real work is often deciding what not to build. Scope discipline isn&#8217;t a constraint. It&#8217;s the strategy. At ENSO, killing 60% of the planned roadmap was the single highest-impact decision.</span></div>
 <span class="fn-note__sep">&#10043;</span>
 <div class="fn-note"><span class="fn-note__num">v &middot; De Certitudine</span><span class="fn-note__text">Good systems reduce hesitation at the point of decision. Every pixel, every interaction, every piece of data shown should make the next action obvious. If the user has to think about the interface, the interface has failed.</span></div>
 <span class="fn-note__sep">&#10043;</span>
@@ -1408,7 +1414,7 @@ function mgo(n){
 <span class="fn-note__sep">&#10043;</span>
 <div class="fn-note"><span class="fn-note__num">vii &middot; De Signale</span><span class="fn-note__text">Signal is usually there. The hard part is knowing what to ignore. I read session recordings at a resolution most people skip. The patterns that matter are in the pauses, the loops, the moments where users hesitate.</span></div>
 <span class="fn-note__sep">&#10043;</span>
-<div class="fn-note"><span class="fn-note__num">viii &middot; De Fortitudine</span><span class="fn-note__text">I care deeply about products that hold under pressure. Real users, real stakes, real money. The gap between a prototype and a system someone depends on daily&mdash;that gap is where the interesting work lives.</span></div>
+<div class="fn-note"><span class="fn-note__num">viii &middot; De Fortitudine</span><span class="fn-note__text">I care deeply about products that hold under pressure. Real users, real stakes, real money. The gap between a prototype and a system someone depends on daily. That gap is where the interesting work lives.</span></div>
 
 <div class="fn-panel__colophon">
 <div class="fn-panel__colophon-mark">&#10087;</div>
