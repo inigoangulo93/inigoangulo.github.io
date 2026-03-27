@@ -34,6 +34,7 @@
 <a href="#s04" class="cs-nav__link"><span class="cs-nav__num">04</span>Solution</a>
 <a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>Decisions</a>
 <a href="#s05b" class="cs-nav__link"><span class="cs-nav__num">05b</span>Blueprint</a>
+<a href="#s05c" class="cs-nav__link"><span class="cs-nav__num">05c</span>Journeys</a>
 <a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>Results</a>
 <a href="#s07" class="cs-nav__link"><span class="cs-nav__num">07</span>Takeaway</a>
 <a href="#" class="cs-nav__top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">&#8593; Top</a>
@@ -352,6 +353,226 @@
   </div>
   </div>
 
+
+  <!-- 05c: Operator Journey Map -->
+  <div class="cs__section" id="s05c" data-reveal>
+    <span class="cs__section-num">05c Operator Journey Map</span>
+    <h2 class="cs__section-h">Every scenario the system was designed for.</h2>
+    <div class="cs__section-text">
+      <p>The map below traces <strong>six critical operator scenarios</strong> across three layers: what the operator experiences, what the system does autonomously, and where the operator surface (Terminal or Telegram) sits in the flow. Each scenario was designed for the worst version of itself.</p>
+    </div>
+  </div>
+
+  <!-- Journey Map - HTML/CSS -->
+  <div data-reveal style="margin:24px 0 40px">
+  <style>
+    .jm{font-family:var(--s)}.jm-scenario{margin-bottom:24px;border:1px solid var(--b2);border-radius:12px;overflow:hidden}
+    .jm-head{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .2s;-webkit-tap-highlight-color:transparent}
+    .jm-head:hover{background:rgba(255,255,255,.02)}
+    .jm-num{font-family:var(--m);font-size:11px;font-weight:700;min-width:24px;opacity:.5}
+    .jm-title{font-size:15px;font-weight:700;flex:1}
+    .jm-tag{font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;letter-spacing:.03em}
+    .jm-chev{font-size:16px;color:var(--t4);transition:transform .3s var(--e)}
+    .jm-scenario.open .jm-chev{transform:rotate(180deg)}
+    .jm-body{max-height:0;overflow:hidden;transition:max-height .5s var(--e)}
+    .jm-scenario.open .jm-body{max-height:2000px}
+    .jm-inner{padding:0 20px 20px}
+    .jm-lanes{display:grid;grid-template-columns:140px 1fr;gap:0;border:1px solid var(--b1);border-radius:8px;overflow:hidden}
+    .jm-lane-label{padding:12px 14px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid var(--b1);display:flex;align-items:center}
+    .jm-lane-content{padding:12px 16px;font-size:13px;color:var(--t2);line-height:1.6;border-bottom:1px solid var(--b1);border-left:1px solid var(--b1)}
+    .jm-lane-content strong{color:var(--t1)}
+    .jm-flow{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+    .jm-step{font-size:11px;padding:3px 10px;border-radius:4px;font-family:var(--m);font-weight:500}
+    .jm-step-ac{background:rgba(45,212,191,.08);color:var(--ac);border:1px solid rgba(45,212,191,.15)}
+    .jm-step-am{background:rgba(245,158,11,.06);color:var(--am);border:1px solid rgba(245,158,11,.12)}
+    .jm-step-dn{background:rgba(239,68,68,.06);color:#ef4444;border:1px solid rgba(239,68,68,.12)}
+    .jm-step-up{background:rgba(34,197,94,.06);color:var(--up);border:1px solid rgba(34,197,94,.12)}
+    .jm-step-pu{background:rgba(167,139,250,.06);color:var(--pu);border:1px solid rgba(167,139,250,.12)}
+    .jm-arrow{color:var(--t4);font-size:11px;display:flex;align-items:center}
+    @media(max-width:768px){.jm-lanes{grid-template-columns:1fr}.jm-lane-label{border-left:none}.jm-lane-content{border-left:none}}
+  </style>
+
+  <div class="jm">
+
+    <!-- Scenario 1: Signal Detection -->
+    <div class="jm-scenario open">
+      <div class="jm-head" onclick="this.parentElement.classList.toggle('open')" style="background:rgba(45,212,191,.03)">
+        <span class="jm-num" style="color:var(--ac)">S1</span>
+        <span class="jm-title" style="color:var(--ac)">New signal detected</span>
+        <span class="jm-tag" style="background:rgba(45,212,191,.08);color:var(--ac);border:1px solid rgba(45,212,191,.15)">Happy path</span>
+        <span class="jm-chev">&#8964;</span>
+      </div>
+      <div class="jm-body"><div class="jm-inner">
+        <div class="jm-lanes">
+          <div class="jm-lane-label" style="color:var(--ac)">Trigger</div>
+          <div class="jm-lane-content">Pair z-score crosses entry threshold (2.4&#963;). Pair passes all filters: correlation &gt;0.7, half-life &lt;48h, funding aligned.</div>
+          <div class="jm-lane-label" style="color:var(--am)">System</div>
+          <div class="jm-lane-content">
+            <div class="jm-flow">
+              <span class="jm-step jm-step-pu">Scanner detects</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-am">Gate validates</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-am">Risk checks pass</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-ac">Executor places 2-leg order</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-up">Position confirmed on-chain</span>
+            </div>
+          </div>
+          <div class="jm-lane-label" style="color:var(--pu)">Operator</div>
+          <div class="jm-lane-content"><strong>Telegram alert:</strong> "ENTRY: SEI/SUI z=2.67 | Size: $150 | 7x". Operator sees, acknowledges. No action needed.</div>
+          <div class="jm-lane-label" style="color:var(--t3)">Surface</div>
+          <div class="jm-lane-content" style="border-bottom:none">Terminal OPS view updates live. Position appears in trade grid. Spread chart begins tracking convergence.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- Scenario 2: Spread Convergence (Exit) -->
+    <div class="jm-scenario">
+      <div class="jm-head" onclick="this.parentElement.classList.toggle('open')" style="background:rgba(34,197,94,.03)">
+        <span class="jm-num" style="color:var(--up)">S2</span>
+        <span class="jm-title" style="color:var(--up)">Spread converges (profitable exit)</span>
+        <span class="jm-tag" style="background:rgba(34,197,94,.06);color:var(--up);border:1px solid rgba(34,197,94,.12)">Target outcome</span>
+        <span class="jm-chev">&#8964;</span>
+      </div>
+      <div class="jm-body"><div class="jm-inner">
+        <div class="jm-lanes">
+          <div class="jm-lane-label" style="color:var(--ac)">Trigger</div>
+          <div class="jm-lane-content">Z-score crosses exit threshold (0.8&#963;). Spread has reverted to mean.</div>
+          <div class="jm-lane-label" style="color:var(--am)">System</div>
+          <div class="jm-lane-content">
+            <div class="jm-flow">
+              <span class="jm-step jm-step-up">Exit signal</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-am">Close both legs</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-pu">Log P&amp;L</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-ac">Edge tracker decomposes</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-up">Pair returns to scanner</span>
+            </div>
+          </div>
+          <div class="jm-lane-label" style="color:var(--pu)">Operator</div>
+          <div class="jm-lane-content"><strong>Telegram:</strong> "EXIT: SEI/SUI +$3.49 | Hold: 4h12m | Edge: 2.3bps". Operator sees profit confirmation.</div>
+          <div class="jm-lane-label" style="color:var(--t3)">Surface</div>
+          <div class="jm-lane-content" style="border-bottom:none">LOG view updates. Win rate recalculated. Edge attribution per pair adjusted. Capital freed for next opportunity.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- Scenario 3: Drawdown Escalation -->
+    <div class="jm-scenario">
+      <div class="jm-head" onclick="this.parentElement.classList.toggle('open')" style="background:rgba(245,158,11,.03)">
+        <span class="jm-num" style="color:var(--am)">S3</span>
+        <span class="jm-title" style="color:var(--am)">Drawdown escalation</span>
+        <span class="jm-tag" style="background:rgba(245,158,11,.06);color:var(--am);border:1px solid rgba(245,158,11,.12)">Risk event</span>
+        <span class="jm-chev">&#8964;</span>
+      </div>
+      <div class="jm-body"><div class="jm-inner">
+        <div class="jm-lanes">
+          <div class="jm-lane-label" style="color:var(--ac)">Trigger</div>
+          <div class="jm-lane-content">Account drawdown crosses 6%. Multiple positions moving against the thesis simultaneously.</div>
+          <div class="jm-lane-label" style="color:var(--am)">System</div>
+          <div class="jm-lane-content">
+            <div class="jm-flow">
+              <span class="jm-step jm-step-am">DD 6% detected</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-am">State: REDUCED (0.5x)</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-dn">DD 9%: BLOCKED</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-dn">DD 10%: KILL ALL</span>
+            </div>
+          </div>
+          <div class="jm-lane-label" style="color:var(--pu)">Operator</div>
+          <div class="jm-lane-content"><strong>Telegram alerts escalate:</strong> "DD 6.3% - REDUCED" then "DD 9.1% - BLOCKED" then "DD 10% - KILLED". Each alert is progressively more urgent. Operator can intervene at any stage or let the system protect itself.</div>
+          <div class="jm-lane-label" style="color:var(--t3)">Surface</div>
+          <div class="jm-lane-content" style="border-bottom:none">CTRL view shows state change. DD badge turns red. Status bar shows DEFENSIVE. System is self-protecting.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- Scenario 4: Manual Kill -->
+    <div class="jm-scenario">
+      <div class="jm-head" onclick="this.parentElement.classList.toggle('open')" style="background:rgba(239,68,68,.03)">
+        <span class="jm-num" style="color:#ef4444">S4</span>
+        <span class="jm-title" style="color:#ef4444">Emergency kill (operator-initiated)</span>
+        <span class="jm-tag" style="background:rgba(239,68,68,.06);color:#ef4444;border:1px solid rgba(239,68,68,.12)">Critical</span>
+        <span class="jm-chev">&#8964;</span>
+      </div>
+      <div class="jm-body"><div class="jm-inner">
+        <div class="jm-lanes">
+          <div class="jm-lane-label" style="color:var(--ac)">Trigger</div>
+          <div class="jm-lane-content">Operator decides to halt everything. Market event, personal decision, or external factor.</div>
+          <div class="jm-lane-label" style="color:var(--am)">System</div>
+          <div class="jm-lane-content">
+            <div class="jm-flow">
+              <span class="jm-step jm-step-dn">/kill command</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-dn">Confirm: "Type KILL to confirm"</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-dn">Close all positions</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-dn">State: KILLED (sticky)</span>
+            </div>
+          </div>
+          <div class="jm-lane-label" style="color:var(--pu)">Operator</div>
+          <div class="jm-lane-content"><strong>2-step confirmation.</strong> Prevents accidental kill (pocket-dial incident led to this design). KILLED state is sticky: only manual /resume restores normal operation.</div>
+          <div class="jm-lane-label" style="color:var(--t3)">Surface</div>
+          <div class="jm-lane-content" style="border-bottom:none">All views show KILLED state. Red banner across Terminal. No automation runs. System is completely inert until operator manually restores.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- Scenario 5: Phantom Position -->
+    <div class="jm-scenario">
+      <div class="jm-head" onclick="this.parentElement.classList.toggle('open')" style="background:rgba(167,139,250,.03)">
+        <span class="jm-num" style="color:var(--pu)">S5</span>
+        <span class="jm-title" style="color:var(--pu)">Phantom position (network timeout)</span>
+        <span class="jm-tag" style="background:rgba(167,139,250,.06);color:var(--pu);border:1px solid rgba(167,139,250,.12)">Edge case</span>
+        <span class="jm-chev">&#8964;</span>
+      </div>
+      <div class="jm-body"><div class="jm-inner">
+        <div class="jm-lanes">
+          <div class="jm-lane-label" style="color:var(--ac)">Trigger</div>
+          <div class="jm-lane-content">Network timeout during two-leg execution. One leg filled, other leg failed. Local state diverges from on-chain reality.</div>
+          <div class="jm-lane-label" style="color:var(--am)">System</div>
+          <div class="jm-lane-content">
+            <div class="jm-flow">
+              <span class="jm-step jm-step-pu">Reconciler detects mismatch</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-am">Compare local vs on-chain</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-ac">Sync state</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-up">Resume normal ops</span>
+            </div>
+          </div>
+          <div class="jm-lane-label" style="color:var(--pu)">Operator</div>
+          <div class="jm-lane-content"><strong>Telegram:</strong> "RECON: Phantom detected SEI/SUI. Local: OPEN, Chain: FLAT. Synced." Operator is informed but no action needed.</div>
+          <div class="jm-lane-label" style="color:var(--t3)">Surface</div>
+          <div class="jm-lane-content" style="border-bottom:none">Reconciler runs every 5 ticks. Non-negotiable in DeFi where network failures are structural, not exceptional.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- Scenario 6: 2am Check -->
+    <div class="jm-scenario">
+      <div class="jm-head" onclick="this.parentElement.classList.toggle('open')" style="background:rgba(45,212,191,.03)">
+        <span class="jm-num" style="color:var(--ac)">S6</span>
+        <span class="jm-title">The 2am check (the real product test)</span>
+        <span class="jm-tag" style="background:rgba(255,255,255,.04);color:var(--t2);border:1px solid var(--b2)">Core UX</span>
+        <span class="jm-chev">&#8964;</span>
+      </div>
+      <div class="jm-body"><div class="jm-inner">
+        <div class="jm-lanes">
+          <div class="jm-lane-label" style="color:var(--ac)">Trigger</div>
+          <div class="jm-lane-content">Operator wakes up at 2am. Checks phone. Needs to know: "Am I okay right now?"</div>
+          <div class="jm-lane-label" style="color:var(--am)">System</div>
+          <div class="jm-lane-content">System has been running autonomously for hours. All decisions made without intervention. State is one of: OPEN, REDUCED, BLOCKED, or KILLED.</div>
+          <div class="jm-lane-label" style="color:var(--pu)">Operator</div>
+          <div class="jm-lane-content">
+            <div class="jm-flow">
+              <span class="jm-step jm-step-ac">Open Telegram</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-ac">Read last alert</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-up">See: "HEALTHY" or act</span><span class="jm-arrow">&#8594;</span>
+              <span class="jm-step jm-step-up">Go back to sleep</span>
+            </div>
+            <p style="margin-top:8px;font-size:13px;color:var(--t3)"><strong>Design goal:</strong> this entire interaction takes &lt;5 seconds. One glance. One answer. If the system is healthy, the operator's job is to go back to sleep.</p>
+          </div>
+          <div class="jm-lane-label" style="color:var(--t3)">Surface</div>
+          <div class="jm-lane-content" style="border-bottom:none">Telegram shows the last system message. If no alerts since the operator last checked, the silence IS the answer. The absence of noise is the signal.</div>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+  </div>
 
   <!-- 06: Impact -->
   <div class="cs__section" id="s06" data-reveal>
