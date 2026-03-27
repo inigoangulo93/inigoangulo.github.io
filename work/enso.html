@@ -364,7 +364,7 @@ if(navLinks.length){
     if(e.isIntersecting){
       navLinks.forEach(function(l){l.classList.remove("active")});
       var id=e.target.id;
-      var link=document.querySelector(".cs-nav__link[href="#"+id+""]");
+      var link=document.querySelector('.cs-nav__link[href="#'+id+'"]');
       if(link){
         link.classList.add("active");
         // Auto-scroll active link into view on mobile
