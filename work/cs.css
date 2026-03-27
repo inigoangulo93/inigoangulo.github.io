@@ -43,12 +43,12 @@ img{max-width:100%;height:auto}
 /* ─── Sidebar nav ─── */
 .cs-nav{width:180px;flex-shrink:0;position:sticky;top:60px;align-self:flex-start;padding:16px 0 16px 20px;max-height:calc(100vh - 80px);overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
 .cs-nav::-webkit-scrollbar{display:none}
-.cs-nav__link{display:flex;align-items:center;gap:8px;padding:7px 12px;font-family:var(--s);font-size:.72rem;color:var(--t4);text-decoration:none;border-radius:6px;transition:color .2s,background .2s;line-height:1.3;border-left:2px solid transparent;margin-bottom:2px}
+.cs-nav__link{display:flex;align-items:center;gap:8px;padding:7px 12px;font-family:var(--s);font-size:14px;color:var(--t4);text-decoration:none;border-radius:6px;transition:color .2s,background .2s;line-height:1.3;border-left:2px solid transparent;margin-bottom:2px}
 .cs-nav__link:hover{color:var(--t2);background:rgba(255,255,255,.03)}
 .cs-nav__link.active{color:var(--ac);border-left-color:var(--ac);background:var(--acg2)}
-.cs-nav__num{font-family:var(--m);font-size:.55rem;color:var(--t4);min-width:16px;opacity:.5}
+.cs-nav__num{font-family:var(--m);font-size:11px;color:var(--t4);min-width:16px;opacity:.5}
 .cs-nav__link.active .cs-nav__num{color:var(--ac);opacity:1}
-.cs-nav__top{display:flex;align-items:center;gap:6px;padding:7px 12px;font-family:var(--m);font-size:.58rem;color:var(--t4);text-decoration:none;margin-top:12px;border-top:1px solid var(--b1);padding-top:14px;transition:color .2s}
+.cs-nav__top{display:flex;align-items:center;gap:6px;padding:7px 12px;font-family:var(--m);font-size:14px;color:var(--t4);text-decoration:none;margin-top:12px;border-top:1px solid var(--b1);padding-top:14px;transition:color .2s}
 .cs-nav__top:hover{color:var(--t2)}
 
 /* ─── TLDR strip ─── */
@@ -209,17 +209,18 @@ img{max-width:100%;height:auto}
 
 @media(max-width:1100px){
   .cs-nav{width:160px;padding-left:12px}
-  .cs-nav__link{font-size:.68rem;padding:6px 10px}
+  .cs-nav__link{font-size:14px;padding:6px 10px}
 }
 
 @media(max-width:900px){
-  .cs-wrap{flex-direction:column}
-  .cs-nav{width:100%;position:sticky;top:50px;z-index:50;background:rgba(0,0,0,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--b1);padding:0;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;max-height:none;flex-shrink:0}
+  .cs-wrap{flex-direction:column;overflow-x:hidden}
+  .cs-nav{width:100%;position:sticky;top:50px;z-index:50;background:rgba(0,0,0,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--b1);padding:0 16px;display:flex;gap:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;max-height:none;flex-shrink:0;max-width:100vw;box-sizing:border-box}
   .cs-nav::-webkit-scrollbar{display:none}
-  .cs-nav__link{white-space:nowrap;border-left:none;border-bottom:2px solid transparent;border-radius:0;padding:10px 14px;font-size:.65rem;margin-bottom:0;flex-shrink:0}
-  .cs-nav__link.active{border-left-color:transparent;border-bottom-color:var(--ac);background:transparent}
+  .cs-nav__link{white-space:nowrap;border-left:none;border-bottom:2px solid transparent;border-radius:0;padding:10px 12px;font-size:14px;margin-bottom:0;flex-shrink:0}
+  .cs-nav__num{display:none}
+  .cs-nav__link.active{border-left-color:transparent;border-bottom-color:var(--ac);background:transparent;color:var(--ac)}
   .cs-nav__top{display:none}
-  .cs{padding-top:24px}
+  .cs{padding-top:16px}
 }
 
 @media(max-width:768px){
@@ -231,30 +232,36 @@ img{max-width:100%;height:auto}
   .cs__tldr{flex-direction:column}
   .cs__tldr-item{border-right:none;border-bottom:1px solid var(--b1);padding:16px 20px}
   .cs__tldr-item:last-child{border-bottom:none}
+  .cs__tldr-label{font-size:14px}
+  .cs__tldr-value{font-size:15px}
 
   /* Hero */
   .cs__hero{margin-bottom:36px;padding-bottom:36px}
-  .cs__type{font-size:.56rem;padding:5px 12px;letter-spacing:.1em}
+  .cs__type{font-size:14px;padding:5px 12px;letter-spacing:.08em}
   .cs__h{font-size:1.5rem;letter-spacing:-.02em}
-  .cs__sub{font-size:.88rem;line-height:1.7}
+  .cs__sub{font-size:15px;line-height:1.7}
 
   /* Metrics — 2-col grid */
   .cs__metrics{grid-template-columns:1fr 1fr;gap:10px;margin:24px 0}
   .cs__metric{padding:16px 12px}
   .cs__metric-val{font-size:1.3rem}
-  .cs__metric-label{font-size:.6rem}
+  .cs__metric-label{font-size:14px}
 
   /* Sections */
   .cs__section{padding:40px 0}
+  .cs__section-num{font-size:14px}
   .cs__section-h{font-size:1.15rem}
-  .cs__section-text{font-size:.85rem}
+  .cs__section-text{font-size:14px}
 
   /* Images — constrain everything */
   .cs__img--wide{margin:20px 0;border-radius:12px}
   .cs__img{margin:20px 0}
 
+  .cs__list li{font-size:14px}
+
   /* Screen grids */
   .cs__screens{grid-template-columns:1fr;gap:12px}
+  .cs__screen-label{font-size:14px}
 
   /* Mobile pairs — HORIZONTAL SCROLL with snap */
   .cs__mobile-pair{
@@ -269,11 +276,11 @@ img{max-width:100%;height:auto}
 
   /* Quotes */
   .cs__quote{padding:24px 20px;margin:24px 0;border-radius:12px}
-  .cs__quote-text{font-size:.92rem}
+  .cs__quote-text{font-size:15px}
   .cs__quote::before{font-size:2.5rem;left:14px;top:-4px}
 
   /* Tables */
-  .cs__decisions{font-size:.72rem;min-width:420px}
+  .cs__decisions{font-size:14px;min-width:360px}
   .cs__decisions th,.cs__decisions td{padding:10px 10px}
 
   /* Flow SVGs */
@@ -281,16 +288,26 @@ img{max-width:100%;height:auto}
 
   /* Evidence */
   .cs__evidence{padding:20px 20px 20px 22px}
+  .cs__evidence-label{font-size:14px}
+  .cs__evidence-text{font-size:14px}
 
   /* CTA */
   .cs__try{flex-direction:column;text-align:center;padding:20px;gap:16px}
-  .cs__try-btn{width:100%;text-align:center}
+  .cs__try-btn{width:100%;text-align:center;font-size:14px}
+  .cs__try-text{font-size:16px}
+  .cs__try-sub{font-size:14px}
+
+  .cs__img-cap{font-size:14px}
 
   /* Next project card */
   .cs__next{flex-direction:column;gap:12px;text-align:center;padding:28px 24px}
+  .cs__next-label{font-size:14px}
+  .cs__next-link{font-size:16px}
 
   /* Reflections */
   .cs__reflection{padding:16px 20px}
+  .cs__reflection-h{font-size:15px}
+  .cs__reflection-text{font-size:14px}
 
   /* Kill stagger delays on mobile for snappier feel */
   .js [data-reveal].vis .cs__metric,
@@ -306,7 +323,7 @@ img{max-width:100%;height:auto}
   .cs__metrics{grid-template-columns:1fr;gap:8px}
   .cs__metric{display:flex;align-items:center;gap:14px;text-align:left;padding:14px 16px}
   .cs__metric-val{font-size:1.3rem;margin-bottom:0;min-width:60px}
-  .cs__metric-label{font-size:.6rem}
+  .cs__metric-label{font-size:14px}
 
   /* Mobile pair screens */
   .cs__mobile-pair .cs__screen{min-width:170px;max-width:170px}
