@@ -80,178 +80,183 @@
     <div class="cs__section-text"><p>The urgency system operates across four layers: the <strong>user-facing experience</strong>, the <strong>business logic engine</strong>, the <strong>data pipeline</strong>, and the <strong>operational feedback loop</strong>. Each layer feeds the next.</p></div>
   </div>
 
+  <!-- Service Blueprint - expandable, high contrast -->
   <div class="cs__flow-svg" data-reveal>
-    <svg viewBox="0 0 960 680" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:var(--bg2);border-radius:12px;border:1px solid var(--b2);padding:20px">
+    <div id="blueprintWrap" style="position:relative;border-radius:12px;border:1px solid var(--b2);overflow:hidden;cursor:pointer" onclick="this.classList.toggle('bp-expanded')">
+    <style>
+      #blueprintWrap{max-height:600px;transition:max-height .6s cubic-bezier(.16,1,.3,1)}
+      #blueprintWrap.bp-expanded{max-height:3000px}
+      #blueprintWrap::after{content:'Click to expand';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,rgba(6,6,8,.95));display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px;font-family:var(--m);font-size:.65rem;color:var(--ac);letter-spacing:.06em;pointer-events:none;transition:opacity .3s}
+      #blueprintWrap.bp-expanded::after{opacity:0;pointer-events:none}
+    </style>
+    <svg viewBox="0 0 960 720" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#0a0c10;padding:28px 24px">
       <style>
-        .bp-label{font-family:'IBM Plex Sans',sans-serif;fill:#9a9ab0;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
-        .bp-h{font-family:'IBM Plex Sans',sans-serif;fill:#f4f4f6;font-size:13px;font-weight:600}
-        .bp-sub{font-family:'IBM Plex Sans',sans-serif;fill:#7272a0;font-size:10px}
-        .bp-box{rx:8;fill:rgba(255,255,255,.03);stroke:rgba(255,255,255,.1);stroke-width:1}
-        .bp-box-ac{rx:8;fill:rgba(45,212,191,.04);stroke:rgba(45,212,191,.15);stroke-width:1}
-        .bp-box-am{rx:8;fill:rgba(245,158,11,.04);stroke:rgba(245,158,11,.12);stroke-width:1}
-        .bp-box-up{rx:8;fill:rgba(34,197,94,.04);stroke:rgba(34,197,94,.12);stroke-width:1}
-        .bp-box-pu{rx:8;fill:rgba(167,139,250,.04);stroke:rgba(167,139,250,.12);stroke-width:1}
-        .bp-arr{stroke:rgba(255,255,255,.12);stroke-width:1;marker-end:url(#bp-arrow);fill:none}
-        .bp-arr-ac{stroke:rgba(45,212,191,.25);stroke-width:1.5;marker-end:url(#bp-arrow-ac);fill:none}
-        .bp-divider{stroke:rgba(255,255,255,.06);stroke-width:1;stroke-dasharray:4 4}
+        .bp-label{font-family:'IBM Plex Sans',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:2px;font-weight:700}
+        .bp-h{font-family:'IBM Plex Sans',sans-serif;fill:#f0f0f4;font-size:14px;font-weight:700}
+        .bp-sub{font-family:'IBM Plex Sans',sans-serif;fill:#a0a0b8;font-size:11px}
+        .bp-box{rx:8;fill:rgba(255,255,255,.05);stroke:rgba(255,255,255,.15);stroke-width:1.2}
+        .bp-box-ac{rx:8;fill:rgba(45,212,191,.06);stroke:rgba(45,212,191,.25);stroke-width:1.2}
+        .bp-box-am{rx:8;fill:rgba(245,158,11,.06);stroke:rgba(245,158,11,.2);stroke-width:1.2}
+        .bp-box-up{rx:8;fill:rgba(34,197,94,.06);stroke:rgba(34,197,94,.2);stroke-width:1.2}
+        .bp-box-pu{rx:8;fill:rgba(167,139,250,.06);stroke:rgba(167,139,250,.2);stroke-width:1.2}
+        .bp-arr{stroke:rgba(255,255,255,.2);stroke-width:1.5;marker-end:url(#bp-a);fill:none}
+        .bp-arr-ac{stroke:rgba(45,212,191,.4);stroke-width:1.5;marker-end:url(#bp-a2);fill:none}
+        .bp-div{stroke:rgba(255,255,255,.08);stroke-width:1;stroke-dasharray:5 5}
       </style>
       <defs>
-        <marker id="bp-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="rgba(255,255,255,.15)"/></marker>
-        <marker id="bp-arrow-ac" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="rgba(45,212,191,.3)"/></marker>
+        <marker id="bp-a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7" fill="rgba(255,255,255,.25)"/></marker>
+        <marker id="bp-a2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7" fill="rgba(45,212,191,.5)"/></marker>
       </defs>
 
-      <!-- Layer labels -->
-      <text x="20" y="30" class="bp-label" fill="#5eead4">User Experience Layer</text>
-      <line x1="20" y1="38" x2="940" y2="38" class="bp-divider"/>
+      <!-- LAYER 1: User Experience -->
+      <text x="24" y="28" class="bp-label" fill="#5eead4">User Experience Layer</text>
+      <line x1="24" y1="38" x2="936" y2="38" class="bp-div"/>
 
-      <!-- UX Layer boxes -->
-      <rect x="20" y="50" width="170" height="80" class="bp-box-ac"/>
-      <text x="105" y="78" class="bp-h" text-anchor="middle" fill="#5eead4">City Landing</text>
-      <text x="105" y="95" class="bp-sub" text-anchor="middle">Browse listings</text>
-      <text x="105" y="110" class="bp-sub" text-anchor="middle">Card grid + filters</text>
+      <rect x="24" y="52" width="168" height="82" class="bp-box-ac"/>
+      <text x="108" y="78" class="bp-h" text-anchor="middle" fill="#5eead4">City Landing</text>
+      <text x="108" y="96" class="bp-sub" text-anchor="middle">Browse listings</text>
+      <text x="108" y="112" class="bp-sub" text-anchor="middle">Card grid + filters</text>
 
-      <rect x="210" y="50" width="170" height="80" class="bp-box-ac"/>
-      <text x="295" y="78" class="bp-h" text-anchor="middle" fill="#5eead4">Card Impression</text>
-      <text x="295" y="95" class="bp-sub" text-anchor="middle">Risk-calibrated UI</text>
-      <text x="295" y="110" class="bp-sub" text-anchor="middle">Urgency signals render</text>
+      <rect x="212" y="52" width="168" height="82" class="bp-box-ac"/>
+      <text x="296" y="78" class="bp-h" text-anchor="middle" fill="#5eead4">Card Impression</text>
+      <text x="296" y="96" class="bp-sub" text-anchor="middle">Risk-calibrated UI</text>
+      <text x="296" y="112" class="bp-sub" text-anchor="middle">Urgency signals render</text>
 
-      <rect x="400" y="50" width="170" height="80" class="bp-box-ac"/>
-      <text x="485" y="78" class="bp-h" text-anchor="middle" fill="#5eead4">Room Detail</text>
-      <text x="485" y="95" class="bp-sub" text-anchor="middle">Deal perks confirmed</text>
-      <text x="485" y="110" class="bp-sub" text-anchor="middle">Gallery + amenities</text>
+      <rect x="400" y="52" width="168" height="82" class="bp-box-ac"/>
+      <text x="484" y="78" class="bp-h" text-anchor="middle" fill="#5eead4">Room Detail</text>
+      <text x="484" y="96" class="bp-sub" text-anchor="middle">Deal perks confirmed</text>
+      <text x="484" y="112" class="bp-sub" text-anchor="middle">Gallery + amenities</text>
 
-      <rect x="590" y="50" width="170" height="80" class="bp-box-ac"/>
-      <text x="675" y="78" class="bp-h" text-anchor="middle" fill="#5eead4">Checkout</text>
-      <text x="675" y="95" class="bp-sub" text-anchor="middle">Perks in summary</text>
-      <text x="675" y="110" class="bp-sub" text-anchor="middle">Price breakdown</text>
+      <rect x="588" y="52" width="168" height="82" class="bp-box-ac"/>
+      <text x="672" y="78" class="bp-h" text-anchor="middle" fill="#5eead4">Checkout</text>
+      <text x="672" y="96" class="bp-sub" text-anchor="middle">Perks in summary</text>
+      <text x="672" y="112" class="bp-sub" text-anchor="middle">Price breakdown</text>
 
-      <rect x="780" y="50" width="160" height="80" class="bp-box-up"/>
-      <text x="860" y="78" class="bp-h" text-anchor="middle" fill="#22c55e">Booking</text>
-      <text x="860" y="95" class="bp-sub" text-anchor="middle">Confirmation</text>
-      <text x="860" y="110" class="bp-sub" text-anchor="middle">Occupancy +1</text>
+      <rect x="776" y="52" width="160" height="82" class="bp-box-up"/>
+      <text x="856" y="78" class="bp-h" text-anchor="middle" fill="#22c55e">Booking</text>
+      <text x="856" y="96" class="bp-sub" text-anchor="middle">Confirmation</text>
+      <text x="856" y="112" class="bp-sub" text-anchor="middle">Occupancy +1</text>
 
-      <!-- UX arrows -->
-      <path d="M190,90 L210,90" class="bp-arr-ac"/>
-      <path d="M380,90 L400,90" class="bp-arr-ac"/>
-      <path d="M570,90 L590,90" class="bp-arr-ac"/>
-      <path d="M760,90 L780,90" class="bp-arr-ac"/>
+      <path d="M192,93 L212,93" class="bp-arr-ac"/>
+      <path d="M380,93 L400,93" class="bp-arr-ac"/>
+      <path d="M568,93 L588,93" class="bp-arr-ac"/>
+      <path d="M756,93 L776,93" class="bp-arr-ac"/>
 
-      <!-- Divider -->
-      <text x="20" y="168" class="bp-label" fill="#f59e0b">Business Logic Layer</text>
-      <line x1="20" y1="176" x2="940" y2="176" class="bp-divider"/>
+      <!-- LAYER 2: Business Logic -->
+      <text x="24" y="172" class="bp-label" fill="#f59e0b">Business Logic Layer</text>
+      <line x1="24" y1="182" x2="936" y2="182" class="bp-div"/>
 
-      <!-- Logic boxes -->
-      <rect x="20" y="190" width="200" height="100" class="bp-box-am"/>
-      <text x="120" y="218" class="bp-h" text-anchor="middle" fill="#f59e0b">Risk Calculator</text>
-      <text x="120" y="238" class="bp-sub" text-anchor="middle">Per-room scoring</text>
-      <text x="120" y="254" class="bp-sub" text-anchor="middle">Days to target date</text>
-      <text x="120" y="270" class="bp-sub" text-anchor="middle">Current occupancy rate</text>
+      <rect x="24" y="196" width="210" height="100" class="bp-box-am"/>
+      <text x="129" y="222" class="bp-h" text-anchor="middle" fill="#f59e0b">Risk Calculator</text>
+      <text x="129" y="242" class="bp-sub" text-anchor="middle">Per-room scoring</text>
+      <text x="129" y="258" class="bp-sub" text-anchor="middle">Days to target date</text>
+      <text x="129" y="274" class="bp-sub" text-anchor="middle">Current occupancy rate</text>
 
-      <rect x="240" y="190" width="200" height="100" class="bp-box-am"/>
-      <text x="340" y="218" class="bp-h" text-anchor="middle" fill="#f59e0b">Tier Assignment</text>
-      <text x="340" y="238" class="bp-sub" text-anchor="middle">L1: >30 days (calm)</text>
-      <text x="340" y="254" class="bp-sub" text-anchor="middle">L3: 7-14 days (deals)</text>
-      <text x="340" y="270" class="bp-sub" text-anchor="middle">L5: overdue (max perks)</text>
+      <rect x="254" y="196" width="210" height="100" class="bp-box-am"/>
+      <text x="359" y="222" class="bp-h" text-anchor="middle" fill="#f59e0b">Tier Assignment</text>
+      <text x="359" y="242" class="bp-sub" text-anchor="middle">L1: >30 days (calm)</text>
+      <text x="359" y="258" class="bp-sub" text-anchor="middle">L3: 7-14 days (deals)</text>
+      <text x="359" y="274" class="bp-sub" text-anchor="middle">L5: overdue (max perks)</text>
 
-      <rect x="460" y="190" width="200" height="100" class="bp-box-am"/>
-      <text x="560" y="218" class="bp-h" text-anchor="middle" fill="#f59e0b">Signal Composer</text>
-      <text x="560" y="238" class="bp-sub" text-anchor="middle">Element activation</text>
-      <text x="560" y="254" class="bp-sub" text-anchor="middle">Additive inheritance</text>
-      <text x="560" y="270" class="bp-sub" text-anchor="middle">Price/perk calculation</text>
+      <rect x="484" y="196" width="210" height="100" class="bp-box-am"/>
+      <text x="589" y="222" class="bp-h" text-anchor="middle" fill="#f59e0b">Signal Composer</text>
+      <text x="589" y="242" class="bp-sub" text-anchor="middle">Element activation</text>
+      <text x="589" y="258" class="bp-sub" text-anchor="middle">Additive inheritance</text>
+      <text x="589" y="274" class="bp-sub" text-anchor="middle">Price/perk calculation</text>
 
-      <rect x="680" y="190" width="260" height="100" class="bp-box-am"/>
-      <text x="810" y="218" class="bp-h" text-anchor="middle" fill="#f59e0b">Card Renderer</text>
-      <text x="810" y="238" class="bp-sub" text-anchor="middle">Server-side template selection</text>
-      <text x="810" y="254" class="bp-sub" text-anchor="middle">No client-side risk logic exposed</text>
-      <text x="810" y="270" class="bp-sub" text-anchor="middle">Cached per room, TTL 15 min</text>
+      <rect x="714" y="196" width="222" height="100" class="bp-box-am"/>
+      <text x="825" y="222" class="bp-h" text-anchor="middle" fill="#f59e0b">Card Renderer</text>
+      <text x="825" y="242" class="bp-sub" text-anchor="middle">Server-side template</text>
+      <text x="825" y="258" class="bp-sub" text-anchor="middle">No client-side risk logic</text>
+      <text x="825" y="274" class="bp-sub" text-anchor="middle">Cached per room, 15 min TTL</text>
 
-      <path d="M220,240 L240,240" class="bp-arr"/>
-      <path d="M440,240 L460,240" class="bp-arr"/>
-      <path d="M660,240 L680,240" class="bp-arr"/>
+      <path d="M234,246 L254,246" class="bp-arr"/>
+      <path d="M464,246 L484,246" class="bp-arr"/>
+      <path d="M694,246 L714,246" class="bp-arr"/>
 
-      <!-- Vertical arrows: logic -> UX -->
-      <path d="M120,190 L120,130" class="bp-arr" style="stroke:rgba(245,158,11,.15)"/>
-      <path d="M340,190 L295,130" class="bp-arr" style="stroke:rgba(245,158,11,.15)"/>
-      <path d="M810,190 L675,130" class="bp-arr" style="stroke:rgba(245,158,11,.15)"/>
+      <!-- Vertical: logic to UX -->
+      <path d="M129,196 L108,134" class="bp-arr" style="stroke:rgba(245,158,11,.2)"/>
+      <path d="M359,196 L296,134" class="bp-arr" style="stroke:rgba(245,158,11,.2)"/>
+      <path d="M825,196 L672,134" class="bp-arr" style="stroke:rgba(245,158,11,.2)"/>
 
-      <!-- Divider -->
-      <text x="20" y="328" class="bp-label" fill="#a78bfa">Data Pipeline Layer</text>
-      <line x1="20" y1="336" x2="940" y2="336" class="bp-divider"/>
+      <!-- LAYER 3: Data Pipeline -->
+      <text x="24" y="338" class="bp-label" fill="#a78bfa">Data Pipeline Layer</text>
+      <line x1="24" y1="348" x2="936" y2="348" class="bp-div"/>
 
-      <!-- Data boxes -->
-      <rect x="20" y="350" width="180" height="90" class="bp-box-pu"/>
-      <text x="110" y="378" class="bp-h" text-anchor="middle" fill="#a78bfa">Booking DB</text>
-      <text x="110" y="395" class="bp-sub" text-anchor="middle">Room inventory</text>
-      <text x="110" y="411" class="bp-sub" text-anchor="middle">Target move-in dates</text>
+      <rect x="24" y="362" width="172" height="92" class="bp-box-pu"/>
+      <text x="110" y="388" class="bp-h" text-anchor="middle" fill="#a78bfa">Booking DB</text>
+      <text x="110" y="406" class="bp-sub" text-anchor="middle">Room inventory</text>
+      <text x="110" y="422" class="bp-sub" text-anchor="middle">Target move-in dates</text>
 
-      <rect x="220" y="350" width="180" height="90" class="bp-box-pu"/>
-      <text x="310" y="378" class="bp-h" text-anchor="middle" fill="#a78bfa">Pricing Engine</text>
-      <text x="310" y="395" class="bp-sub" text-anchor="middle">Base rate per room</text>
-      <text x="310" y="411" class="bp-sub" text-anchor="middle">Discount rules by tier</text>
+      <rect x="216" y="362" width="172" height="92" class="bp-box-pu"/>
+      <text x="302" y="388" class="bp-h" text-anchor="middle" fill="#a78bfa">Pricing Engine</text>
+      <text x="302" y="406" class="bp-sub" text-anchor="middle">Base rate per room</text>
+      <text x="302" y="422" class="bp-sub" text-anchor="middle">Discount rules by tier</text>
 
-      <rect x="420" y="350" width="180" height="90" class="bp-box-pu"/>
-      <text x="510" y="378" class="bp-h" text-anchor="middle" fill="#a78bfa">PostHog</text>
-      <text x="510" y="395" class="bp-sub" text-anchor="middle">Live viewer counts</text>
-      <text x="510" y="411" class="bp-sub" text-anchor="middle">Session + funnel data</text>
+      <rect x="408" y="362" width="172" height="92" class="bp-box-pu"/>
+      <text x="494" y="388" class="bp-h" text-anchor="middle" fill="#a78bfa">PostHog</text>
+      <text x="494" y="406" class="bp-sub" text-anchor="middle">Live viewer counts</text>
+      <text x="494" y="422" class="bp-sub" text-anchor="middle">Session + funnel data</text>
 
-      <rect x="620" y="350" width="160" height="90" class="bp-box-pu"/>
-      <text x="700" y="378" class="bp-h" text-anchor="middle" fill="#a78bfa">Cron Job</text>
-      <text x="700" y="395" class="bp-sub" text-anchor="middle">Daily risk recalc</text>
-      <text x="700" y="411" class="bp-sub" text-anchor="middle">Pipeline sync</text>
+      <rect x="600" y="362" width="162" height="92" class="bp-box-pu"/>
+      <text x="681" y="388" class="bp-h" text-anchor="middle" fill="#a78bfa">Cron Job</text>
+      <text x="681" y="406" class="bp-sub" text-anchor="middle">Daily risk recalc</text>
+      <text x="681" y="422" class="bp-sub" text-anchor="middle">Pipeline sync</text>
 
-      <rect x="800" y="350" width="140" height="90" class="bp-box-pu"/>
-      <text x="870" y="378" class="bp-h" text-anchor="middle" fill="#a78bfa">Cache</text>
-      <text x="870" y="395" class="bp-sub" text-anchor="middle">Redis / CDN</text>
-      <text x="870" y="411" class="bp-sub" text-anchor="middle">15-min TTL</text>
+      <rect x="782" y="362" width="154" height="92" class="bp-box-pu"/>
+      <text x="859" y="388" class="bp-h" text-anchor="middle" fill="#a78bfa">Cache</text>
+      <text x="859" y="406" class="bp-sub" text-anchor="middle">Redis / CDN</text>
+      <text x="859" y="422" class="bp-sub" text-anchor="middle">15-min TTL</text>
 
-      <path d="M200,395 L220,395" class="bp-arr"/>
-      <path d="M400,395 L420,395" class="bp-arr"/>
-      <path d="M600,395 L620,395" class="bp-arr"/>
-      <path d="M780,395 L800,395" class="bp-arr"/>
+      <path d="M196,408 L216,408" class="bp-arr"/>
+      <path d="M388,408 L408,408" class="bp-arr"/>
+      <path d="M580,408 L600,408" class="bp-arr"/>
+      <path d="M762,408 L782,408" class="bp-arr"/>
 
-      <!-- Vertical: data -> logic -->
-      <path d="M110,350 L120,290" class="bp-arr" style="stroke:rgba(167,139,250,.15)"/>
-      <path d="M310,350 L340,290" class="bp-arr" style="stroke:rgba(167,139,250,.15)"/>
-      <path d="M510,350 L560,290" class="bp-arr" style="stroke:rgba(167,139,250,.15)"/>
+      <!-- Vertical: data to logic -->
+      <path d="M110,362 L129,296" class="bp-arr" style="stroke:rgba(167,139,250,.2)"/>
+      <path d="M302,362 L359,296" class="bp-arr" style="stroke:rgba(167,139,250,.2)"/>
+      <path d="M494,362 L589,296" class="bp-arr" style="stroke:rgba(167,139,250,.2)"/>
 
-      <!-- Divider -->
-      <text x="20" y="478" class="bp-label" fill="#22c55e">Feedback + Measurement Layer</text>
-      <line x1="20" y1="486" x2="940" y2="486" class="bp-divider"/>
+      <!-- LAYER 4: Feedback -->
+      <text x="24" y="498" class="bp-label" fill="#22c55e">Feedback + Measurement Layer</text>
+      <line x1="24" y1="508" x2="936" y2="508" class="bp-div"/>
 
-      <!-- Feedback boxes -->
-      <rect x="20" y="500" width="220" height="90" class="bp-box-up"/>
-      <text x="130" y="528" class="bp-h" text-anchor="middle" fill="#22c55e">A/B Experiment</text>
-      <text x="130" y="545" class="bp-sub" text-anchor="middle">PostHog feature flags</text>
-      <text x="130" y="561" class="bp-sub" text-anchor="middle">50/50 split, 28 days</text>
+      <rect x="24" y="522" width="215" height="92" class="bp-box-up"/>
+      <text x="131" y="548" class="bp-h" text-anchor="middle" fill="#22c55e">A/B Experiment</text>
+      <text x="131" y="566" class="bp-sub" text-anchor="middle">PostHog feature flags</text>
+      <text x="131" y="582" class="bp-sub" text-anchor="middle">50/50 split, 28 days</text>
 
-      <rect x="260" y="500" width="220" height="90" class="bp-box-up"/>
-      <text x="370" y="528" class="bp-h" text-anchor="middle" fill="#22c55e">Conversion Tracking</text>
-      <text x="370" y="545" class="bp-sub" text-anchor="middle">CTR, booking rate, time-to-book</text>
-      <text x="370" y="561" class="bp-sub" text-anchor="middle">Per-tier, per-city, per-device</text>
+      <rect x="259" y="522" width="215" height="92" class="bp-box-up"/>
+      <text x="366" y="548" class="bp-h" text-anchor="middle" fill="#22c55e">Conversion Tracking</text>
+      <text x="366" y="566" class="bp-sub" text-anchor="middle">CTR, booking rate, time-to-book</text>
+      <text x="366" y="582" class="bp-sub" text-anchor="middle">Per-tier, per-city, per-device</text>
 
-      <rect x="500" y="500" width="220" height="90" class="bp-box-up"/>
-      <text x="610" y="528" class="bp-h" text-anchor="middle" fill="#22c55e">Guardrails</text>
-      <text x="610" y="545" class="bp-sub" text-anchor="middle">Cancellation rate, NPS</text>
-      <text x="610" y="561" class="bp-sub" text-anchor="middle">Support tickets, discount depth</text>
+      <rect x="494" y="522" width="215" height="92" class="bp-box-up"/>
+      <text x="601" y="548" class="bp-h" text-anchor="middle" fill="#22c55e">Guardrails</text>
+      <text x="601" y="566" class="bp-sub" text-anchor="middle">Cancellation rate, NPS</text>
+      <text x="601" y="582" class="bp-sub" text-anchor="middle">Support tickets, discount depth</text>
 
-      <rect x="740" y="500" width="200" height="90" class="bp-box-up"/>
-      <text x="840" y="528" class="bp-h" text-anchor="middle" fill="#22c55e">Revenue Impact</text>
-      <text x="840" y="545" class="bp-sub" text-anchor="middle">Vacancy cost reduction</text>
-      <text x="840" y="561" class="bp-sub" text-anchor="middle">~62K/quarter estimated</text>
+      <rect x="729" y="522" width="207" height="92" class="bp-box-up"/>
+      <text x="832" y="548" class="bp-h" text-anchor="middle" fill="#22c55e">Revenue Impact</text>
+      <text x="832" y="566" class="bp-sub" text-anchor="middle">Vacancy cost reduction</text>
+      <text x="832" y="582" class="bp-sub" text-anchor="middle">~62K/quarter estimated</text>
 
-      <path d="M240,545 L260,545" class="bp-arr"/>
-      <path d="M480,545 L500,545" class="bp-arr"/>
-      <path d="M720,545 L740,545" class="bp-arr"/>
+      <path d="M239,568 L259,568" class="bp-arr"/>
+      <path d="M474,568 L494,568" class="bp-arr"/>
+      <path d="M709,568 L729,568" class="bp-arr"/>
 
-      <!-- Feedback loop arrow back to top -->
-      <path d="M840,500 L840,460 L950,460 L950,60 L940,60" class="bp-arr-ac" style="stroke-dasharray:6 4"/>
-      <text x="952" y="260" class="bp-sub" fill="#5eead4" transform="rotate(90,952,260)" text-anchor="middle" style="font-size:9px;letter-spacing:1px">FEEDBACK LOOP</text>
+      <!-- Feedback loop -->
+      <path d="M832,522 L832,480 L948,480 L948,70 L936,70" class="bp-arr-ac" style="stroke-dasharray:6 4"/>
+      <text x="950" y="280" fill="#5eead4" font-family="IBM Plex Sans" font-size="10" font-weight="600" letter-spacing="2" transform="rotate(90,950,280)" text-anchor="middle">FEEDBACK LOOP</text>
 
       <!-- Bottom summary -->
-      <rect x="20" y="620" width="920" height="46" rx="8" fill="rgba(45,212,191,.04)" stroke="rgba(45,212,191,.1)"/>
-      <text x="480" y="644" class="bp-h" text-anchor="middle" fill="#5eead4" style="font-size:11px;letter-spacing:0.5px">Risk calculated server-side per room . Signals composed per tier . Rendered per card . Measured per interaction . Iterated per cycle</text>
+      <rect x="24" y="648" width="912" height="50" rx="8" fill="rgba(45,212,191,.06)" stroke="rgba(45,212,191,.15)" stroke-width="1"/>
+      <text x="480" y="678" text-anchor="middle" fill="#5eead4" font-family="IBM Plex Sans" font-size="12" font-weight="600" letter-spacing="0.5">Risk per room  .  Signals per tier  .  Rendered per card  .  Measured per interaction  .  Iterated per cycle</text>
     </svg>
+    </div>
   </div>
+
 
   <div class="cs__section" id="s03" data-reveal>
     <span class="cs__section-num">03 Framework</span>
