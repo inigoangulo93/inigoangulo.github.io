@@ -1,0 +1,338 @@
+/* CS v6 deploy 20260327212321 */
+   Case Study — World-Class Visual System
+   ═══════════════════════════════════════════════════════════════ */
+
+:root{
+  --bg:#000;--bg2:#060608;--bg3:#0a0a0e;--bg4:#0e0e14;
+  --glass:rgba(8,8,14,.55);
+  --b1:rgba(255,255,255,.08);--b2:rgba(255,255,255,.14);--b3:rgba(255,255,255,.22);
+  --t1:#f4f4f6;--t2:#9a9ab0;--t3:#7272a0;--t4:#6a6a8a;
+  --ac:#2dd4bf;--ac2:#5eead4;--acg:rgba(45,212,191,.12);--acg2:rgba(45,212,191,.06);--acb:rgba(45,212,191,.2);
+  --up:#22c55e;--upg:rgba(34,197,94,.1);--dn:#ef4444;--dng:rgba(239,68,68,.06);
+  --am:#f59e0b;--amg:rgba(245,158,11,.08);
+  --m:'JetBrains Mono','SF Mono',monospace;
+  --s:'IBM Plex Sans',-apple-system,sans-serif;
+  --e:cubic-bezier(.16,1,.3,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:15px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:var(--m);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto}
+::selection{background:var(--ac);color:#000}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+
+/* ─── Progress bar ─── */
+.cs-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--ac),var(--ac2));z-index:200;width:0%;transition:width .1s linear;box-shadow:0 0 12px var(--acg)}
+
+/* ─── Top bar ─── */
+.cs-bar{position:fixed;top:0;left:0;right:0;height:48px;background:rgba(6,6,10,.72);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid var(--b2);z-index:100;box-shadow:0 4px 24px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center}
+.cs-bar__inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:960px;padding:0 32px}
+.cs-bar a{font-size:.72rem;color:var(--t3);transition:color .2s;display:flex;align-items:center;gap:6px}
+.cs-bar a:hover{color:var(--ac2)}
+.cs-bar__title{font-family:var(--s);font-size:.78rem;font-weight:700;color:var(--t2);display:flex;align-items:center;gap:8px}
+.cs-bar__dot{width:6px;height:6px;border-radius:50%;background:var(--ac);box-shadow:0 0 8px var(--acg)}
+.cs-bar__section{font-family:var(--m);font-size:.6rem;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;transition:color .3s,opacity .3s;opacity:0}
+.cs-bar__section.active{color:var(--t3);opacity:1}
+
+/* ─── Main layout ─── */
+.cs-wrap{display:flex;max-width:1140px;margin:0 auto;padding-top:50px}
+.cs{max-width:none;margin:0;padding:50px 32px 96px;overflow-x:clip;overflow-y:visible;flex:1;min-width:0;width:0}
+
+/* ─── Sidebar nav ─── */
+.cs-nav{width:180px;flex-shrink:0;position:sticky;top:60px;align-self:flex-start;padding:16px 0 16px 20px;max-height:calc(100vh - 80px);overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+.cs-nav::-webkit-scrollbar{display:none}
+.cs-nav__link{display:flex;align-items:center;gap:8px;padding:7px 12px;font-family:var(--s);font-size:14px;color:var(--t4);text-decoration:none;border-radius:6px;transition:color .2s,background .2s;line-height:1.3;border-left:2px solid transparent;margin-bottom:2px}
+.cs-nav__link:hover{color:var(--t2);background:rgba(255,255,255,.03)}
+.cs-nav__link.active{color:var(--ac);border-left-color:var(--ac);background:var(--acg2)}
+.cs-nav__num{font-family:var(--m);font-size:11px;color:var(--t4);min-width:16px;opacity:.5}
+.cs-nav__link.active .cs-nav__num{color:var(--ac);opacity:1}
+.cs-nav__top{display:flex;align-items:center;gap:6px;padding:7px 12px;font-family:var(--m);font-size:14px;color:var(--t4);text-decoration:none;margin-top:12px;border-top:1px solid var(--b1);padding-top:14px;transition:color .2s}
+.cs-nav__top:hover{color:var(--t2)}
+
+/* ─── TLDR strip ─── */
+.cs__tldr{display:flex;gap:0;margin-bottom:56px;border-radius:12px;overflow:hidden;border:1px solid var(--b2)}
+.cs__tldr-item{flex:1;padding:20px 24px;background:var(--bg2);border-right:1px solid var(--b1);display:flex;flex-direction:column;gap:6px;transition:background .3s}
+.cs__tldr-item:last-child{border-right:none}
+.cs__tldr-item:hover{background:var(--bg3)}
+.cs__tldr-label{font-size:.65rem;color:var(--t3);text-transform:uppercase;letter-spacing:.12em}
+.cs__tldr-value{font-family:var(--s);font-size:.94rem;font-weight:600;color:var(--t1)}
+.cs__tldr-value--ac{color:var(--ac2);text-shadow:0 0 20px var(--acg)}
+
+/* ─── Hero ─── */
+.cs__hero{margin-bottom:56px;padding-bottom:56px;border-bottom:1px solid var(--b1)}
+.cs__type{font-size:.64rem;color:var(--ac);text-transform:uppercase;letter-spacing:.16em;margin-bottom:20px;display:inline-block;padding:6px 14px;background:var(--acg2);border:1px solid var(--acb);border-radius:100px}
+.cs__h{font-family:var(--s);font-size:2.4rem;font-weight:700;letter-spacing:-.035em;line-height:1.15;margin-bottom:24px;max-width:820px}
+.cs__sub{font-family:var(--s);font-size:1.1rem;color:var(--t2);line-height:1.8;max-width:720px}
+
+/* ─── Metrics strip ─── */
+.cs__metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:32px 0}
+.cs__metric{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:24px 20px;text-align:center;transition:transform .4s var(--e),border-color .3s,box-shadow .4s}
+.cs__metric:hover{transform:translateY(-6px);border-color:var(--b3);box-shadow:0 16px 48px rgba(0,0,0,.4),0 0 0 1px var(--b3)}
+.cs__metric-val{font-family:var(--s);font-size:1.8rem;font-weight:700;display:block;margin-bottom:6px;letter-spacing:-.03em;transition:text-shadow .4s}
+.cs__metric:hover .cs__metric-val{text-shadow:0 0 32px currentColor}
+.cs__metric-val--g{color:var(--up);text-shadow:0 0 24px var(--upg)}
+.cs__metric-val--ac{color:var(--ac2);text-shadow:0 0 24px var(--acg)}
+.cs__metric-val--am{color:var(--am);text-shadow:0 0 24px var(--amg)}
+.cs__metric-label{font-size:.76rem;color:var(--t2);line-height:1.4}
+
+/* ─── Sections ─── */
+.cs__section{margin-bottom:0;padding:72px 0;position:relative}
+.cs__section+.cs__section{border-top:1px solid var(--b1)}
+.cs__section-num{font-size:.68rem;color:var(--ac);text-transform:uppercase;letter-spacing:.14em;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.cs__section-num::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--b2),transparent)}
+.cs__section-h{font-family:var(--s);font-size:1.6rem;font-weight:700;margin-bottom:24px;letter-spacing:-.02em;line-height:1.25;max-width:720px}
+.cs__section-text{font-family:var(--s);font-size:.94rem;color:var(--t2);line-height:1.9;max-width:720px}
+.cs__section-text p{margin-bottom:16px}
+.cs__section-text strong{color:var(--t1);font-weight:600}
+
+/* ─── Evidence callout ─── */
+.cs__evidence{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid var(--b2);border-radius:12px;padding:24px 28px;margin:28px 0;position:relative;overflow:hidden}
+.cs__evidence::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ac);border-radius:3px 0 0 3px}
+.cs__evidence-label{font-size:.66rem;color:var(--ac);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;display:block;font-weight:600}
+.cs__evidence-text{font-family:var(--s);font-size:.9rem;color:var(--t2);line-height:1.75}
+
+/* ─── Bullet list ─── */
+.cs__list{list-style:none;margin:24px 0;max-width:700px}
+.cs__list li{font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.8;padding:12px 0 12px 24px;position:relative;border-bottom:1px solid var(--b1)}
+.cs__list li:last-child{border-bottom:none}
+.cs__list li::before{content:'';position:absolute;left:0;top:18px;width:8px;height:8px;border-radius:50%;background:var(--ac);opacity:.6;box-shadow:0 0 8px var(--acg)}
+
+/* ─── Visual placeholders ─── */
+.cs__visual{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;margin:32px 0;font-size:.66rem;color:var(--t4);text-transform:uppercase;letter-spacing:.1em}
+
+/* ─── Images ─── */
+.cs__img{border-radius:12px;border:1px solid var(--b2);overflow:hidden;margin:32px 0;transition:border-color .3s,box-shadow .4s;max-width:100%}
+.cs__img:hover{border-color:var(--b3);box-shadow:0 20px 60px rgba(0,0,0,.35),0 0 0 1px var(--b3)}
+.cs__img img{width:100%;height:auto;display:block}
+.cs__img--wide{margin:40px -60px;border-radius:16px}
+.cs__img-cap{font-size:.72rem;color:var(--t2);text-align:center;padding:14px 0 0;letter-spacing:.03em;line-height:1.5}
+
+/* ─── Screen pairs / grids ─── */
+.cs__screens{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0}
+.cs__screen{border-radius:12px;border:1px solid var(--b2);overflow:hidden;transition:border-color .3s,transform .4s var(--e),box-shadow .4s}
+.cs__screen:hover{border-color:var(--b3);transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.35)}
+.cs__screen img{width:100%;height:auto;display:block}
+.cs__screen-label{font-size:.6rem;color:var(--t3);padding:10px 14px;background:var(--bg2);text-align:center;letter-spacing:.06em;text-transform:uppercase}
+
+/* Mobile pairs — horizontal scroll on mobile, centered on desktop */
+.cs__mobile-pair{display:flex;gap:20px;justify-content:center;margin:40px 0}
+.cs__mobile-pair .cs__screen{max-width:240px;flex-shrink:0}
+
+/* ─── Pull quote ─── */
+.cs__quote{margin:48px 0;padding:40px 48px;position:relative;text-align:center;background:linear-gradient(135deg,var(--acg2),transparent);border:1px solid var(--acb);border-radius:16px}
+.cs__quote::before{content:'\201C';position:absolute;top:-8px;left:32px;font-family:var(--s);font-size:4rem;color:var(--ac);opacity:.3;line-height:1}
+.cs__quote-text{font-family:var(--s);font-size:1.2rem;font-style:italic;color:var(--t1);line-height:1.7;max-width:600px;margin:0 auto}
+.cs__quote-author{font-size:.76rem;color:var(--t2);margin-top:16px;display:block;letter-spacing:.04em}
+
+/* ─── Flow SVG diagrams ─── */
+.cs__flow-svg{margin:32px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+.cs__flow-svg svg{display:block;max-width:100%;height:auto}
+
+/* ─── Decisions table ─── */
+.cs__decisions-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:24px 0;border-radius:12px;border:1px solid var(--b2)}
+.cs__decisions{width:100%;border-collapse:separate;border-spacing:0;min-width:500px}
+.cs__decisions th{text-align:left;font-size:.62rem;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;padding:14px 16px;background:var(--bg2);border-bottom:1px solid var(--b2);font-weight:600}
+.cs__decisions td{font-family:var(--s);font-size:.86rem;color:var(--t2);padding:16px 18px;border-bottom:1px solid var(--b1);vertical-align:top;line-height:1.6}
+.cs__decisions tr:last-child td{border-bottom:none}
+.cs__decisions td:first-child{color:var(--t1);font-weight:600}
+.cs__decisions tbody tr{transition:background .2s}
+.cs__decisions tbody tr:hover{background:var(--bg2)}
+
+/* ─── Reflection / failure blocks ─── */
+.cs__reflection{border-left:3px solid var(--am);padding:20px 24px;margin:24px 0;background:var(--amg);border-radius:0 12px 12px 0;transition:transform .3s var(--e)}
+.cs__reflection:hover{transform:translateX(4px)}
+.cs__reflection-h{font-family:var(--s);font-size:.94rem;font-weight:600;margin-bottom:10px;color:var(--am)}
+.cs__reflection-text{font-family:var(--s);font-size:.9rem;color:var(--t2);line-height:1.8}
+
+/* ─── CTA / Try block ─── */
+.cs__try{background:linear-gradient(135deg,var(--acg2),rgba(45,212,191,.02));border:1px solid var(--acb);border-radius:16px;padding:32px 36px;margin-bottom:56px;display:flex;align-items:center;justify-content:space-between;gap:24px;transition:border-color .3s,box-shadow .3s}
+.cs__try:hover{border-color:var(--acb);box-shadow:0 0 40px var(--acg)}
+.cs__try-text{font-family:var(--s);font-size:1rem;font-weight:600;display:block;margin-bottom:8px}
+.cs__try-sub{font-size:.84rem;color:var(--t2);display:block;font-weight:400;line-height:1.5}
+.cs__try-btn{font-size:.8rem;font-weight:600;color:#000;background:var(--ac);padding:12px 28px;border-radius:8px;transition:all .3s var(--e);white-space:nowrap;box-shadow:0 0 16px var(--acg)}
+.cs__try-btn:hover{transform:translateY(-2px);box-shadow:0 4px 24px var(--acg),0 0 60px var(--acg)}
+
+/* ─── Next project — full-width card ─── */
+.cs__next{margin-top:32px;padding:40px 36px;border:1px solid var(--b2);border-radius:16px;background:var(--bg2);display:flex;justify-content:space-between;align-items:center;transition:border-color .3s,box-shadow .4s,transform .4s var(--e)}
+.cs__next:hover{border-color:var(--b3);box-shadow:0 16px 48px rgba(0,0,0,.3);transform:translateY(-4px)}
+.cs__next-label{font-size:.64rem;color:var(--t3);text-transform:uppercase;letter-spacing:.12em}
+.cs__next-link{font-family:var(--s);font-size:1.05rem;font-weight:600;color:var(--ac2);display:flex;align-items:center;gap:10px;transition:gap .3s var(--e),text-shadow .3s}
+.cs__next:hover .cs__next-link{gap:16px;text-shadow:0 0 20px var(--acg)}
+
+/* ─── Scroll reveal — staggered children ─── */
+.js [data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s var(--e),transform .7s var(--e)}
+.js [data-reveal].vis{opacity:1;transform:translateY(0)}
+.js [data-reveal].vis>[data-child]{opacity:1;transform:translateY(0)}
+
+/* Stagger children inside revealed sections */
+.js [data-reveal] .cs__metric,
+.js [data-reveal] .cs__list li,
+.js [data-reveal] .cs__decisions tbody tr{
+  opacity:0;transform:translateY(12px);transition:opacity .5s var(--e),transform .5s var(--e)}
+.js [data-reveal].vis .cs__metric,
+.js [data-reveal].vis .cs__list li,
+.js [data-reveal].vis .cs__decisions tbody tr{opacity:1;transform:translateY(0)}
+
+/* Stagger delays for metrics */
+.js [data-reveal].vis .cs__metric:nth-child(1){transition-delay:.05s}
+.js [data-reveal].vis .cs__metric:nth-child(2){transition-delay:.1s}
+.js [data-reveal].vis .cs__metric:nth-child(3){transition-delay:.15s}
+.js [data-reveal].vis .cs__metric:nth-child(4){transition-delay:.2s}
+
+/* Stagger delays for list items */
+.js [data-reveal].vis .cs__list li:nth-child(1){transition-delay:.05s}
+.js [data-reveal].vis .cs__list li:nth-child(2){transition-delay:.1s}
+.js [data-reveal].vis .cs__list li:nth-child(3){transition-delay:.15s}
+.js [data-reveal].vis .cs__list li:nth-child(4){transition-delay:.2s}
+.js [data-reveal].vis .cs__list li:nth-child(5){transition-delay:.25s}
+
+/* Stagger delays for table rows */
+.js [data-reveal].vis .cs__decisions tbody tr:nth-child(1){transition-delay:.05s}
+.js [data-reveal].vis .cs__decisions tbody tr:nth-child(2){transition-delay:.1s}
+.js [data-reveal].vis .cs__decisions tbody tr:nth-child(3){transition-delay:.15s}
+.js [data-reveal].vis .cs__decisions tbody tr:nth-child(4){transition-delay:.2s}
+
+/* ─── Lightbox ─── */
+.cs__img{cursor:zoom-in}.cs__screen{cursor:zoom-in}
+.lb{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s var(--e);cursor:zoom-out;padding:24px}
+.lb.open{opacity:1;pointer-events:auto}
+.lb img{max-width:95vw;max-height:92vh;border-radius:12px;border:1px solid var(--b2);box-shadow:0 24px 80px rgba(0,0,0,.6);transform:scale(.95);transition:transform .3s var(--e)}
+.lb.open img{transform:scale(1)}
+.lb__close{position:absolute;top:16px;right:20px;font-size:1.2rem;color:var(--t3);cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--glass);border:1px solid var(--b1);transition:color .2s,border-color .2s}
+.lb__close:hover{color:var(--t1);border-color:var(--b2)}
+
+/* ═══════════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════════ */
+
+@media(max-width:1100px){
+  .cs-nav{width:160px;padding-left:12px}
+  .cs-nav__link{font-size:14px;padding:6px 10px}
+}
+
+@media(max-width:900px){
+  .cs-wrap{flex-direction:column;overflow-x:hidden}
+  .cs-nav{width:100%;position:fixed;top:48px;left:0;right:0;z-index:50;background:rgba(6,6,10,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--b1);padding:0 16px;display:flex;gap:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;max-height:none;flex-shrink:0;box-sizing:border-box;transform:translateY(-100%);transition:transform .3s var(--e);pointer-events:none}
+  .cs-nav.nav-visible{transform:translateY(0);pointer-events:auto}
+  .cs-nav::-webkit-scrollbar{display:none}
+  .cs-nav__link{white-space:nowrap;border-left:none;border-bottom:2px solid transparent;border-radius:0;padding:10px 12px;font-size:14px;margin-bottom:0;flex-shrink:0}
+  .cs-nav__num{display:none}
+  .cs-nav__link.active{border-left-color:transparent;border-bottom-color:var(--ac);background:transparent;color:var(--ac)}
+  .cs-nav__top{display:none}
+  .cs{padding-top:16px;width:auto;max-width:none;overflow-x:hidden}
+}
+
+@media(max-width:768px){
+  .cs-bar__inner{padding:0 16px}
+  .cs-bar__section{display:none}
+  .cs{padding:24px 16px 56px;overflow-x:clip;overflow-y:visible}
+
+  /* TLDR */
+  .cs__tldr{flex-direction:column}
+  .cs__tldr-item{border-right:none;border-bottom:1px solid var(--b1);padding:16px 20px}
+  .cs__tldr-item:last-child{border-bottom:none}
+  .cs__tldr-label{font-size:14px}
+  .cs__tldr-value{font-size:15px}
+
+  /* Hero */
+  .cs__hero{margin-bottom:36px;padding-bottom:36px}
+  .cs__type{font-size:14px;padding:5px 12px;letter-spacing:.08em}
+  .cs__h{font-size:1.5rem;letter-spacing:-.02em}
+  .cs__sub{font-size:15px;line-height:1.7}
+
+  /* Metrics — 2-col grid */
+  .cs__metrics{grid-template-columns:1fr 1fr;gap:10px;margin:24px 0}
+  .cs__metric{padding:16px 12px}
+  .cs__metric-val{font-size:1.3rem}
+  .cs__metric-label{font-size:14px}
+
+  /* Sections */
+  .cs__section{padding:40px 0}
+  .cs__section-num{font-size:14px}
+  .cs__section-h{font-size:1.15rem}
+  .cs__section-text{font-size:14px}
+
+  /* Images — constrain everything */
+  .cs__img--wide{margin:20px 0;border-radius:12px}
+  .cs__img{margin:20px 0}
+
+  .cs__list li{font-size:14px}
+
+  /* Screen grids */
+  .cs__screens{grid-template-columns:1fr;gap:12px}
+  .cs__screen-label{font-size:14px}
+
+  /* Mobile pairs — HORIZONTAL SCROLL with snap */
+  .cs__mobile-pair{
+    flex-wrap:nowrap;justify-content:flex-start;gap:12px;margin:28px -16px;padding:0 16px;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;
+    scrollbar-width:none;-ms-overflow-style:none}
+  .cs__mobile-pair::-webkit-scrollbar{display:none}
+  .cs__mobile-pair .cs__screen{min-width:200px;max-width:200px;scroll-snap-align:start}
+
+  /* Fade-hint for scroll */
+  .cs__mobile-pair::after{content:'';position:sticky;right:0;min-width:32px;height:100%;background:linear-gradient(90deg,transparent,var(--bg));flex-shrink:0;pointer-events:none}
+
+  /* Quotes */
+  .cs__quote{padding:24px 20px;margin:24px 0;border-radius:12px}
+  .cs__quote-text{font-size:15px}
+  .cs__quote::before{font-size:2.5rem;left:14px;top:-4px}
+
+  /* Tables */
+  .cs__decisions{font-size:14px;min-width:360px}
+  .cs__decisions th,.cs__decisions td{padding:10px 10px}
+
+  /* Flow SVGs */
+  .cs__flow-svg{margin:20px -16px;padding:0 16px}
+
+  /* Evidence */
+  .cs__evidence{padding:20px 20px 20px 22px}
+  .cs__evidence-label{font-size:14px}
+  .cs__evidence-text{font-size:14px}
+
+  /* CTA */
+  .cs__try{flex-direction:column;text-align:center;padding:20px;gap:16px}
+  .cs__try-btn{width:100%;text-align:center;font-size:14px}
+  .cs__try-text{font-size:16px}
+  .cs__try-sub{font-size:14px}
+
+  .cs__img-cap{font-size:14px}
+
+  /* Next project card */
+  .cs__next{flex-direction:column;gap:12px;text-align:center;padding:28px 24px}
+  .cs__next-label{font-size:14px}
+  .cs__next-link{font-size:16px}
+
+  /* Reflections */
+  .cs__reflection{padding:16px 20px}
+  .cs__reflection-h{font-size:15px}
+  .cs__reflection-text{font-size:14px}
+
+  /* Kill stagger delays on mobile for snappier feel */
+  .js [data-reveal].vis .cs__metric,
+  .js [data-reveal].vis .cs__list li,
+  .js [data-reveal].vis .cs__decisions tbody tr{transition-delay:0s!important}
+}
+
+@media(max-width:480px){
+  .cs{padding:68px 14px 48px}
+  .cs__h{font-size:1.25rem}
+
+  /* Metrics — single column */
+  .cs__metrics{grid-template-columns:1fr;gap:8px}
+  .cs__metric{display:flex;align-items:center;gap:14px;text-align:left;padding:14px 16px}
+  .cs__metric-val{font-size:1.3rem;margin-bottom:0;min-width:60px}
+  .cs__metric-label{font-size:14px}
+
+  /* Mobile pair screens */
+  .cs__mobile-pair .cs__screen{min-width:170px;max-width:170px}
+
+  /* Even tighter spacing */
+  .cs__section{padding:32px 0}
+  .cs__quote{padding:20px 16px}
+  .cs__quote::before{display:none}
+}
+/* deploy 1774519162 */
+/* v6-1774645907 */
