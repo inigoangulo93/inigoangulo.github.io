@@ -1,6 +1,4 @@
-/* CS v6 deploy 20260327212321 */
-   Case Study — World-Class Visual System
-   ═══════════════════════════════════════════════════════════════ */
+/* Case Study — World-Class Visual System */
 
 :root{
   --bg:#000;--bg2:#060608;--bg3:#0a0a0e;--bg4:#0e0e14;
@@ -334,5 +332,3 @@ img{max-width:100%;height:auto}
   .cs__quote{padding:20px 16px}
   .cs__quote::before{display:none}
 }
-/* deploy 1774519162 */
-/* v6-1774645907 */
