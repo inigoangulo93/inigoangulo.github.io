@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="cs.css?v=5">
+<link rel="stylesheet" href="cs.css?v=6">
 <style>/* Critical */body{background:#000;color:#f4f4f6;font-family:sans-serif;margin:0;overflow-x:hidden}[data-reveal]{opacity:1!important;transform:none!important}.js [data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}.js [data-reveal].vis{opacity:1;transform:none}.cs{max-width:960px;margin:0 auto;padding:100px 32px 96px;overflow-x:hidden}img{max-width:100%;height:auto}.cs-bar{position:fixed;top:0;left:0;right:0;height:48px;background:rgba(0,0,0,.85);z-index:100;display:flex;align-items:center;padding:0 32px}.cs-progress{position:fixed;top:0;left:0;height:2px;background:#2dd4bf;z-index:200;width:0}@media(max-width:768px){.cs__mobile-pair{overflow-x:auto;scroll-snap-type:x mandatory;flex-wrap:nowrap;gap:12px;margin:28px -16px;padding:0 16px}.cs__mobile-pair::-webkit-scrollbar{display:none}.cs__mobile-pair .cs__screen{min-width:200px;max-width:200px;scroll-snap-align:start}}</style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
@@ -344,24 +344,42 @@ document.querySelectorAll(".cs__img img, .cs__screen img").forEach(i=>{i.addEven
 function closeLb(){lb.classList.remove("open");document.body.style.overflow=""}
 lbc.addEventListener("click",closeLb);lb.addEventListener("click",e=>{if(e.target===lb)closeLb()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLb()});}
 
+
 // Sidebar nav active state
 var navLinks=document.querySelectorAll(".cs-nav__link");
+var csNav=document.getElementById("csNav");
 if(navLinks.length){
   var navObs=new IntersectionObserver(function(es){es.forEach(function(e){
     if(e.isIntersecting){
       navLinks.forEach(function(l){l.classList.remove("active")});
       var id=e.target.id;
       var link=document.querySelector(".cs-nav__link[href="#"+id+""]");
-      if(link)link.classList.add("active");
+      if(link){
+        link.classList.add("active");
+        // Auto-scroll active link into view on mobile
+        if(window.innerWidth<=900&&csNav){
+          link.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});
+        }
+      }
     }
   })},{threshold:0,rootMargin:"-30% 0px -60% 0px"});
   document.querySelectorAll(".cs__section[id]").forEach(function(s){navObs.observe(s)});
-  // Smooth scroll for nav links
   navLinks.forEach(function(l){l.addEventListener("click",function(e){
     e.preventDefault();var t=document.querySelector(l.getAttribute("href"));
     if(t)t.scrollIntoView({behavior:"smooth",block:"start"});
   })});
 }
+// Mobile: show nav on scroll-up, hide on scroll-down
+var lastScrollY=window.scrollY;
+window.addEventListener("scroll",function(){
+  if(window.innerWidth<=900&&csNav){
+    var cur=window.scrollY;
+    if(cur<lastScrollY||cur<100){csNav.classList.add("nav-visible")}
+    else{csNav.classList.remove("nav-visible")}
+    lastScrollY=cur;
+  }
+},{passive:true});
+
 </script>
 
 </body>
