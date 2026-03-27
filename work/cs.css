@@ -104,7 +104,7 @@ img{max-width:100%;height:auto}
 .cs__img{border-radius:12px;border:1px solid var(--b2);overflow:hidden;margin:32px 0;transition:border-color .3s,box-shadow .4s;max-width:100%}
 .cs__img:hover{border-color:var(--b3);box-shadow:0 20px 60px rgba(0,0,0,.35),0 0 0 1px var(--b3)}
 .cs__img img{width:100%;height:auto;display:block}
-.cs__img--wide{margin:40px -60px;border-radius:16px}
+.cs__img--wide{margin:40px 0;border-radius:16px}
 .cs__img-cap{font-size:.72rem;color:var(--t2);text-align:center;padding:14px 0 0;letter-spacing:.03em;line-height:1.5}
 
 /* ─── Screen pairs / grids ─── */
