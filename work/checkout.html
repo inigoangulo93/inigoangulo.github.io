@@ -24,6 +24,17 @@
   <span class="cs-bar__section"></span>
 </div></nav>
 
+<div class="cs-wrap">
+<nav class="cs-nav" id="csNav">
+<a href="#s01" class="cs-nav__link"><span class="cs-nav__num">01</span>Context</a>
+<a href="#s02" class="cs-nav__link"><span class="cs-nav__num">02</span>Problem</a>
+<a href="#s03" class="cs-nav__link"><span class="cs-nav__num">03</span>Insight</a>
+<a href="#s04" class="cs-nav__link"><span class="cs-nav__num">04</span>Solution</a>
+<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>Decisions</a>
+<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>Results</a>
+<a href="#s07" class="cs-nav__link"><span class="cs-nav__num">07</span>Takeaway</a>
+<a href="#" class="cs-nav__top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">&#8593; Top</a>
+</nav>
 <article class="cs">
 
   <!-- TLDR -->
@@ -62,7 +73,7 @@
   <p class="cs__img-cap">Complete funnel. I quantified the economic cost of every drop-off point. My scope: everything from add-to-cart through payment processing.</p>
 
   <!-- 01: Context -->
-  <div class="cs__section" data-reveal>
+  <div class="cs__section" id="s01" data-reveal>
     <span class="cs__section-num">01 Context</span>
     <h2 class="cs__section-h">Checkout funnel, end-to-end.</h2>
     <div class="cs__section-text">
@@ -81,7 +92,7 @@
   </div>
 
   <!-- 02: Problem -->
-  <div class="cs__section" data-reveal>
+  <div class="cs__section" id="s02" data-reveal>
     <span class="cs__section-num">02 The Real Problem</span>
     <h2 class="cs__section-h">Everyone was optimizing the wrong step.</h2>
     <div class="cs__section-text">
@@ -98,7 +109,7 @@
   </div>
 
   <!-- 03: Insight -->
-  <div class="cs__section" data-reveal>
+  <div class="cs__section" id="s03" data-reveal>
     <span class="cs__section-num">03 Key Insight</span>
     <h2 class="cs__section-h">The biggest opportunity wasn't in the payment form. It was in everything leading up to it.</h2>
     <div class="cs__section-text">
@@ -112,7 +123,7 @@
   </div>
 
   <!-- 04: Solution -->
-  <div class="cs__section" data-reveal>
+  <div class="cs__section" id="s04" data-reveal>
     <span class="cs__section-num">04 What I Changed</span>
     <h2 class="cs__section-h">Three interventions. Each targeted a specific moment of doubt.</h2>
 
@@ -148,7 +159,7 @@
   </div>
 
   <!-- 05: Decisions -->
-  <div class="cs__section" data-reveal>
+  <div class="cs__section" id="s05" data-reveal>
     <span class="cs__section-num">05 Key Decisions</span>
     <h2 class="cs__section-h">What trade-offs did I make?</h2>
     <div class="cs__section-text">
@@ -186,7 +197,7 @@
   </div>
 
   <!-- 06: Impact -->
-  <div class="cs__section" data-reveal>
+  <div class="cs__section" id="s06" data-reveal>
     <span class="cs__section-num">06 Results</span>
     <h2 class="cs__section-h">Small friction wasn't the problem. Lack of clarity was.</h2>
     <div class="cs__metrics">
@@ -202,7 +213,7 @@
   </div>
 
   <!-- 07: Reflection -->
-  <div class="cs__section" data-reveal>
+  <div class="cs__section" id="s07" data-reveal>
     <span class="cs__section-num">07 Takeaway</span>
     <h2 class="cs__section-h">Once users understood what they were paying and where they were in the process, conversion followed.</h2>
     <div class="cs__reflection">
@@ -222,6 +233,7 @@
   </div>
 
 </article>
+</div><!-- /cs-wrap -->
 
 <div class="lb" id="lb"><span class="lb__close">&times;</span><img></div>
 <script>
@@ -274,6 +286,25 @@ if(lb){const lbi=lb.querySelector("img"),lbc=lb.querySelector(".lb__close");
 document.querySelectorAll(".cs__img img, .cs__screen img").forEach(i=>{i.addEventListener("click",()=>{lbi.src=i.src;lbi.alt=i.alt||"";lb.classList.add("open");document.body.style.overflow="hidden"})});
 function closeLb(){lb.classList.remove("open");document.body.style.overflow=""}
 lbc.addEventListener("click",closeLb);lb.addEventListener("click",e=>{if(e.target===lb)closeLb()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLb()});}
+
+// Sidebar nav active state
+var navLinks=document.querySelectorAll(".cs-nav__link");
+if(navLinks.length){
+  var navObs=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){
+      navLinks.forEach(function(l){l.classList.remove("active")});
+      var id=e.target.id;
+      var link=document.querySelector(".cs-nav__link[href="#"+id+""]");
+      if(link)link.classList.add("active");
+    }
+  })},{threshold:0,rootMargin:"-30% 0px -60% 0px"});
+  document.querySelectorAll(".cs__section[id]").forEach(function(s){navObs.observe(s)});
+  // Smooth scroll for nav links
+  navLinks.forEach(function(l){l.addEventListener("click",function(e){
+    e.preventDefault();var t=document.querySelector(l.getAttribute("href"));
+    if(t)t.scrollIntoView({behavior:"smooth",block:"start"});
+  })});
+}
 </script>
 
 </body>
