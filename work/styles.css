@@ -35,8 +35,8 @@ img{max-width:100%;height:auto}
 .cs-bar__section.active{color:var(--t3);opacity:1}
 
 /* ─── Main layout ─── */
-.cs-wrap{display:flex;max-width:1140px;margin:0 auto;padding-top:50px}
-.cs{max-width:none;margin:0;padding:50px 32px 96px;overflow-x:clip;overflow-y:visible;flex:1;min-width:0;width:0}
+.cs-wrap{display:flex;max-width:1140px;margin:0 auto;padding-top:50px;overflow:hidden}
+.cs{margin:0;padding:50px 32px 96px;overflow:visible;flex:1;min-width:0}
 
 /* ─── Sidebar nav ─── */
 .cs-nav{width:180px;flex-shrink:0;position:sticky;top:60px;align-self:flex-start;padding:16px 0 16px 20px;max-height:calc(100vh - 80px);overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
@@ -219,13 +219,13 @@ img{max-width:100%;height:auto}
   .cs-nav__num{display:none}
   .cs-nav__link.active{border-left-color:transparent;border-bottom-color:var(--ac);background:transparent;color:var(--ac)}
   .cs-nav__top{display:none}
-  .cs{padding-top:16px;width:auto;max-width:none;overflow-x:hidden}
+  .cs{padding-top:16px;overflow:visible}
 }
 
 @media(max-width:768px){
   .cs-bar__inner{padding:0 16px}
   .cs-bar__section{display:none}
-  .cs{padding:24px 16px 56px;overflow-x:clip;overflow-y:visible}
+  .cs{padding:24px 16px 56px;overflow:visible}
 
   /* TLDR */
   .cs__tldr{flex-direction:column}
