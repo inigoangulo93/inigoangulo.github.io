@@ -307,6 +307,18 @@ img{max-width:100%;height:auto}
   .cs__reflection-h{font-size:15px}
   .cs__reflection-text{font-size:14px}
 
+
+  /* Inline component grids - force collapse */
+  [style*="grid-template-columns:repeat(4"]{grid-template-columns:1fr 1fr !important}
+  [style*="grid-template-columns:repeat(5"]{grid-template-columns:1fr 1fr !important}
+  [style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr !important}
+
+  /* Flow SVG containers - scrollable */
+  .cs__flow-svg{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+  /* All images constrain */
+  .cs__img img{border-radius:8px}
+
   /* Kill stagger delays on mobile for snappier feel */
   .js [data-reveal].vis .cs__metric,
   .js [data-reveal].vis .cs__list li,
