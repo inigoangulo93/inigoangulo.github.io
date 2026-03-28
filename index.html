@@ -525,10 +525,10 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   .hero__h{font-size:1.8rem !important;letter-spacing:-.03em;line-height:1.1;font-weight:300 !important}
   .hero__keyword{font-size:3.2rem !important;margin:4px 0 28px}
   .hero__p{font-size:.88rem;line-height:1.7}
-  .hero__proof{gap:0;margin-bottom:32px}
-  .hero__proof-item{padding:0 20px 0 0 !important}
-  .hero__proof-item:not(:first-child){padding-left:20px !important}
-  .hero__proof-val{font-size:1.6rem}
+  .hero__proof{gap:0;margin-bottom:32px;flex-wrap:nowrap;overflow-x:auto}
+  .hero__proof-item{padding:0 14px 0 0 !important;flex-shrink:0}
+  .hero__proof-item:not(:first-child){padding-left:14px !important}
+  .hero__proof-val{font-size:1.4rem}
   .hero__proof-ctx{display:none}
   .hero__cta{width:100%;justify-content:center;padding:14px 24px}
   .hero__meta{display:none}
@@ -704,7 +704,7 @@ function go(n){
 <div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">+11%</span><span class="hero__proof-label">Checkout conversion</span><span class="hero__proof-ctx">GetYourGuide, 4 EU markets</span></div>
 <div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--b">40x</span><span class="hero__proof-label">Reporting speed</span><span class="hero__proof-ctx">RetailNorm, cross-platform analytics</span></div>
 <div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--a">-22%</span><span class="hero__proof-label">Funnel friction</span><span class="hero__proof-ctx">ENSO, 3 European markets</span></div>
-<div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--p">5</span><span class="hero__proof-label">Countries shipped to</span><span class="hero__proof-ctx">Multi-market design systems</span></div>
+<div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--p">+34%</span><span class="hero__proof-label">Booking conversion</span><span class="hero__proof-ctx">ENSO, risk-calibrated urgency</span></div>
 </div>
 <div style="display:flex;gap:12px;flex-wrap:wrap"><a href="#contact" class="hero__cta" onclick="event.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in touch &#8594;</a><a href="Inigo%20Angulo%20CV%202026.pdf" download class="hero__cta" style="background:transparent;color:var(--ac2);border:1px solid var(--acb);box-shadow:none" onmouseover="this.style.background='var(--acg2)';this.style.boxShadow='0 0 20px var(--acg)'" onmouseout="this.style.background='transparent';this.style.boxShadow='none'">Download CV &#8595;</a></div>
 </div></div>
