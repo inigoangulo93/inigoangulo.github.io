@@ -419,9 +419,95 @@
   <div class="cs__section" id="s08" data-reveal>
     <span class="cs__section-num">08 Funnel Analysis</span>
     <h2 class="cs__section-h">Where the uplift compounded</h2>
-    <div class="cs__section-text"><p><strong>Card click-through was the primary lever</strong> (+45.8%), but gains compounded downstream: room view rate +11.7%, checkout start +12.9%. The urgency signals attracted higher-intent clicks.</p></div>
+    <div class="cs__section-text"><p><strong>Card click-through was the primary lever</strong> (+45.8%), but gains compounded downstream. The urgency signals didn't just attract clicks. They attracted higher-intent clicks.</p></div>
   </div>
-  <div class="cs__img" data-reveal><img src="../img/enso-urgency/12-conversion-funnel.png" alt="Funnel"></div>
+
+  <!-- Conversion Funnel - visual code -->
+  <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:24px 0">
+  <style>
+    .fn{font-family:var(--s)}.fn-row{display:flex;align-items:center;gap:0;margin-bottom:6px;position:relative}
+    .fn-step{display:flex;align-items:center;gap:12px;flex:1}
+    .fn-bar-wrap{flex:1;position:relative}
+    .fn-bar-bg{height:36px;background:rgba(255,255,255,.03);border-radius:6px;overflow:hidden;position:relative;display:flex}
+    .fn-bar-c{height:100%;background:rgba(255,255,255,.06);border-radius:6px 0 0 6px;display:flex;align-items:center;padding:0 10px;transition:width 1s var(--e)}
+    .fn-bar-v{height:100%;background:rgba(45,212,191,.12);border-radius:0 6px 6px 0;display:flex;align-items:center;padding:0 10px;transition:width 1s var(--e)}
+    .fn-bar-label{font-size:12px;font-weight:600;white-space:nowrap}
+    .fn-bar-label-c{color:var(--t3)}.fn-bar-label-v{color:#5eead4}
+    .fn-name{font-size:14px;font-weight:600;min-width:120px}
+    .fn-uplift{font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;background:rgba(34,197,94,.08);color:#22c55e;min-width:60px;text-align:center;flex-shrink:0}
+    .fn-connector{text-align:center;padding:2px 0;color:var(--t4);font-size:14px}
+    .fn-legend{display:flex;gap:20px;margin-bottom:16px;font-size:12px;color:var(--t3)}
+    .fn-legend-dot{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:4px;vertical-align:middle}
+    @media(max-width:768px){.fn-name{min-width:80px;font-size:13px}.fn-bar-label{font-size:11px}.fn-uplift{font-size:11px;min-width:50px;padding:3px 8px}.fn-row{flex-wrap:wrap;gap:8px}.fn-step{flex-wrap:wrap}}
+  </style>
+
+  <div class="fn">
+    <div style="font-size:15px;font-weight:700;margin-bottom:4px">5-Step Conversion Funnel</div>
+    <div class="fn-legend">
+      <span><span class="fn-legend-dot" style="background:rgba(255,255,255,.08)"></span>Control</span>
+      <span><span class="fn-legend-dot" style="background:rgba(45,212,191,.2)"></span>Variant (risk-based cards)</span>
+    </div>
+
+    <!-- Step 1: Card Impression -->
+    <div class="fn-row">
+      <span class="fn-name">Card impression</span>
+      <div class="fn-bar-wrap"><div class="fn-bar-bg">
+        <div class="fn-bar-c" style="width:50%"><span class="fn-bar-label fn-bar-label-c">100%</span></div>
+        <div class="fn-bar-v" style="width:50%"><span class="fn-bar-label fn-bar-label-v">100%</span></div>
+      </div></div>
+      <span class="fn-uplift" style="background:transparent;color:var(--t4)">baseline</span>
+    </div>
+    <div class="fn-connector">&#8595;</div>
+
+    <!-- Step 2: Card Click -->
+    <div class="fn-row">
+      <span class="fn-name">Card click</span>
+      <div class="fn-bar-wrap"><div class="fn-bar-bg">
+        <div class="fn-bar-c" style="width:33%"><span class="fn-bar-label fn-bar-label-c">8.3%</span></div>
+        <div class="fn-bar-v" style="width:48%"><span class="fn-bar-label fn-bar-label-v">12.1%</span></div>
+      </div></div>
+      <span class="fn-uplift">+45.8%</span>
+    </div>
+    <div class="fn-connector">&#8595;</div>
+
+    <!-- Step 3: Room View -->
+    <div class="fn-row">
+      <span class="fn-name">Room view</span>
+      <div class="fn-bar-wrap"><div class="fn-bar-bg">
+        <div class="fn-bar-c" style="width:27%"><span class="fn-bar-label fn-bar-label-c">6.1%</span></div>
+        <div class="fn-bar-v" style="width:40%"><span class="fn-bar-label fn-bar-label-v">8.4%</span></div>
+      </div></div>
+      <span class="fn-uplift">+37.7%</span>
+    </div>
+    <div class="fn-connector">&#8595;</div>
+
+    <!-- Step 4: Checkout Start -->
+    <div class="fn-row">
+      <span class="fn-name">Checkout start</span>
+      <div class="fn-bar-wrap"><div class="fn-bar-bg">
+        <div class="fn-bar-c" style="width:18%"><span class="fn-bar-label fn-bar-label-c">3.8%</span></div>
+        <div class="fn-bar-v" style="width:27%"><span class="fn-bar-label fn-bar-label-v">5.1%</span></div>
+      </div></div>
+      <span class="fn-uplift">+34.2%</span>
+    </div>
+    <div class="fn-connector">&#8595;</div>
+
+    <!-- Step 5: Booking Complete -->
+    <div class="fn-row">
+      <span class="fn-name" style="color:var(--ac)">Booking</span>
+      <div class="fn-bar-wrap"><div class="fn-bar-bg">
+        <div class="fn-bar-c" style="width:12%"><span class="fn-bar-label fn-bar-label-c">2.4%</span></div>
+        <div class="fn-bar-v" style="width:18%"><span class="fn-bar-label fn-bar-label-v">3.2%</span></div>
+      </div></div>
+      <span class="fn-uplift">+33.8%</span>
+    </div>
+
+    <!-- Insight callout -->
+    <div style="margin-top:20px;padding:16px 20px;background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.1);border-radius:8px;font-size:14px;color:var(--t2);line-height:1.6">
+      <strong style="color:var(--ac)">Key insight:</strong> The uplift didn't just happen at card level. It compounded through every step. Room view rate +37.7%, checkout start +34.2%. The urgency signals pre-qualified intent. Users who clicked were more likely to book.
+    </div>
+  </div>
+  </div>
   <div class="cs__section" id="s09" data-reveal>
     <span class="cs__section-num">09 Segmentation</span>
     <h2 class="cs__section-h">Breakdown by city, device, and risk level</h2>
