@@ -690,16 +690,7 @@ if(navLinks.length){
     if(t)t.scrollIntoView({behavior:"smooth",block:"start"});
   })});
 }
-// Mobile: show nav on scroll-up, hide on scroll-down
-var lastScrollY=window.scrollY;
-window.addEventListener("scroll",function(){
-  if(window.innerWidth<=900&&csNav){
-    var cur=window.scrollY;
-    if(cur<lastScrollY||cur<100){csNav.classList.add("nav-visible")}
-    else{csNav.classList.remove("nav-visible")}
-    lastScrollY=cur;
-  }
-},{passive:true});
+
 
 </script>
 
