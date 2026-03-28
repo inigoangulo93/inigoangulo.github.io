@@ -302,10 +302,118 @@
   <div class="cs__section" id="s07" data-reveal>
     <span class="cs__section-num">07 Validation</span>
     <h2 class="cs__section-h">A/B experiment: Dynamic Urgency Signals v1</h2>
-    <div class="cs__section-text"><p>PostHog controlled experiment: 14,208 unique users, 50/50 split, 28 days.</p></div>
-    <div class="cs__evidence"><span class="cs__evidence-label">Card Click-Through</span><span class="cs__evidence-text">Control: 8.3%. Variant: 12.1%. <strong>+45.8% uplift, p &lt; 0.001</strong></span></div>
-    <div class="cs__evidence"><span class="cs__evidence-label">Booking Conversion</span><span class="cs__evidence-text">Control: 2.4%. Variant: 3.2%. <strong>+33.8% uplift, p = 0.003</strong></span></div>
-    <div class="cs__evidence"><span class="cs__evidence-label">Median Time to Book</span><span class="cs__evidence-text">Control: 6.2 days. Variant: 3.8 days. <strong>-38.7% reduction, p = 0.008</strong></span></div>
+    <div class="cs__section-text"><p>PostHog controlled experiment. 14,208 unique users, 50/50 split, 28-day duration. Variant A (risk-based cards) vs Control (static cards).</p></div>
+  </div>
+
+  <!-- Experiment Results - visual dashboard -->
+  <div data-reveal style="margin:24px 0 32px">
+  <style>
+    .exp{font-family:var(--s);background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin-bottom:16px}
+    .exp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .exp-title{font-size:15px;font-weight:700}
+    .exp-badge{font-size:12px;font-weight:600;padding:4px 12px;border-radius:100px}
+    .exp-badge-up{background:rgba(34,197,94,.1);color:#22c55e}
+    .exp-badge-dn{background:rgba(239,68,68,.08);color:#ef4444}
+    .exp-bars{display:flex;flex-direction:column;gap:10px}
+    .exp-row{display:flex;align-items:center;gap:12px}
+    .exp-label{font-family:var(--m);font-size:13px;color:var(--t3);min-width:64px;text-align:right}
+    .exp-track{flex:1;height:32px;background:rgba(255,255,255,.03);border-radius:6px;overflow:hidden;position:relative}
+    .exp-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding:0 12px;font-size:13px;font-weight:600;transition:width 1.5s var(--e)}
+    .exp-fill-c{background:rgba(255,255,255,.08);color:var(--t3)}
+    .exp-fill-v{background:rgba(45,212,191,.15);color:#5eead4}
+    .exp-val{font-family:var(--m);font-size:14px;font-weight:700;min-width:56px}
+    .exp-val-c{color:var(--t3)}.exp-val-v{color:#5eead4}
+    .exp-meta{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap}
+    .exp-meta-item{font-size:12px;color:var(--t3)}
+    .exp-meta-item strong{color:var(--t2)}
+    @media(max-width:768px){.exp{padding:20px}.exp-label{min-width:52px;font-size:12px}.exp-fill{font-size:12px}.exp-val{font-size:13px;min-width:48px}.exp-header{flex-wrap:wrap;gap:8px}}
+  </style>
+
+  <!-- Metric 1: Card Click-Through Rate -->
+  <div class="exp">
+    <div class="exp-header">
+      <span class="exp-title">Card Click-Through Rate</span>
+      <span class="exp-badge exp-badge-up">+45.8% uplift</span>
+    </div>
+    <div class="exp-bars">
+      <div class="exp-row">
+        <span class="exp-label">Control</span>
+        <div class="exp-track"><div class="exp-fill exp-fill-c" style="width:42%">8.3%</div></div>
+        <span class="exp-val exp-val-c">8.3%</span>
+      </div>
+      <div class="exp-row">
+        <span class="exp-label">Variant</span>
+        <div class="exp-track"><div class="exp-fill exp-fill-v" style="width:61%">12.1%</div></div>
+        <span class="exp-val exp-val-v">12.1%</span>
+      </div>
+    </div>
+    <div class="exp-meta">
+      <span class="exp-meta-item"><strong>p &lt; 0.001</strong></span>
+      <span class="exp-meta-item">"View rooms" clicks / total card impressions</span>
+    </div>
+  </div>
+
+  <!-- Metric 2: Booking Conversion Rate -->
+  <div class="exp">
+    <div class="exp-header">
+      <span class="exp-title">Booking Conversion Rate</span>
+      <span class="exp-badge exp-badge-up">+33.8% uplift</span>
+    </div>
+    <div class="exp-bars">
+      <div class="exp-row">
+        <span class="exp-label">Control</span>
+        <div class="exp-track"><div class="exp-fill exp-fill-c" style="width:34%">2.4%</div></div>
+        <span class="exp-val exp-val-c">2.4%</span>
+      </div>
+      <div class="exp-row">
+        <span class="exp-label">Variant</span>
+        <div class="exp-track"><div class="exp-fill exp-fill-v" style="width:46%">3.2%</div></div>
+        <span class="exp-val exp-val-v">3.2%</span>
+      </div>
+    </div>
+    <div class="exp-meta">
+      <span class="exp-meta-item"><strong>p = 0.003</strong></span>
+      <span class="exp-meta-item">Completed bookings / unique listing viewers</span>
+    </div>
+  </div>
+
+  <!-- Metric 3: Median Time to Book -->
+  <div class="exp">
+    <div class="exp-header">
+      <span class="exp-title">Median Time to Book</span>
+      <span class="exp-badge exp-badge-up">-38.7% faster</span>
+    </div>
+    <div class="exp-bars">
+      <div class="exp-row">
+        <span class="exp-label">Control</span>
+        <div class="exp-track"><div class="exp-fill exp-fill-c" style="width:68%">6.2 days</div></div>
+        <span class="exp-val exp-val-c">6.2d</span>
+      </div>
+      <div class="exp-row">
+        <span class="exp-label">Variant</span>
+        <div class="exp-track"><div class="exp-fill exp-fill-v" style="width:42%">3.8 days</div></div>
+        <span class="exp-val exp-val-v">3.8d</span>
+      </div>
+    </div>
+    <div class="exp-meta">
+      <span class="exp-meta-item"><strong>p = 0.008</strong></span>
+      <span class="exp-meta-item">Days from first listing view to completed booking</span>
+    </div>
+  </div>
+
+  <!-- Experiment summary -->
+  <div style="background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.12);border-radius:12px;padding:20px 24px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;justify-content:center">
+    <div style="text-align:center"><span style="font-family:var(--m);font-size:12px;color:var(--t3);display:block">Users</span><span style="font-family:var(--s);font-size:18px;font-weight:700;color:var(--ac)">14,208</span></div>
+    <div style="width:1px;height:32px;background:var(--b1)"></div>
+    <div style="text-align:center"><span style="font-family:var(--m);font-size:12px;color:var(--t3);display:block">Duration</span><span style="font-family:var(--s);font-size:18px;font-weight:700;color:var(--ac)">28 days</span></div>
+    <div style="width:1px;height:32px;background:var(--b1)"></div>
+    <div style="text-align:center"><span style="font-family:var(--m);font-size:12px;color:var(--t3);display:block">Split</span><span style="font-family:var(--s);font-size:18px;font-weight:700;color:var(--ac)">50/50</span></div>
+    <div style="width:1px;height:32px;background:var(--b1)"></div>
+    <div style="text-align:center"><span style="font-family:var(--m);font-size:12px;color:var(--t3);display:block">Significance</span><span style="font-family:var(--s);font-size:18px;font-weight:700;color:var(--ac)">Day 16</span></div>
+    <div style="width:1px;height:32px;background:var(--b1)"></div>
+    <div style="text-align:center"><span style="font-family:var(--m);font-size:12px;color:var(--t3);display:block">Platform</span><span style="font-family:var(--s);font-size:18px;font-weight:700;color:var(--ac)">PostHog</span></div>
+  </div>
+
   </div>
   <div class="cs__img" data-reveal><img src="../img/enso-urgency/11-posthog-experiment.png" alt="PostHog experiment"></div>
   <div class="cs__section" id="s08" data-reveal>
