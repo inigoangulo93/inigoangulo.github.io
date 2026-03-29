@@ -32,8 +32,13 @@
 <a href="#s03" class="cs-nav__link"><span class="cs-nav__num">03</span>Insight</a>
 <a href="#s04" class="cs-nav__link"><span class="cs-nav__num">04</span>Solution</a>
 <a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>Decisions</a>
-<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>Results</a>
-<a href="#s07" class="cs-nav__link"><span class="cs-nav__num">07</span>Takeaway</a>
+<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>Phase 1</a>
+<a href="#s08" class="cs-nav__link"><span class="cs-nav__num">08</span>Conversion</a>
+<a href="#s09" class="cs-nav__link"><span class="cs-nav__num">09</span>Framework</a>
+<a href="#s10" class="cs-nav__link"><span class="cs-nav__num">10</span>Validation</a>
+<a href="#s11" class="cs-nav__link"><span class="cs-nav__num">11</span>Funnel</a>
+<a href="#s12" class="cs-nav__link"><span class="cs-nav__num">12</span>Phase 2</a>
+<a href="#s13" class="cs-nav__link"><span class="cs-nav__num">13</span>Reflection</a>
 <a href="#" class="cs-nav__top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">&#8593; Top</a>
 </nav>
 <article class="cs">
@@ -50,23 +55,23 @@
     </div>
     <div class="cs__tldr-item">
       <span class="cs__tldr-label">Key outcome</span>
-      <span class="cs__tldr-value cs__tldr-value--ac">4x adoption</span>
+      <span class="cs__tldr-value cs__tldr-value--ac">4x adoption + 34% conversion</span>
     </div>
   </div>
 
   <!-- Hero -->
   <div class="cs__hero" data-reveal>
     <span class="cs__type">PropTech / ENSO Co-Living / Onboarding</span>
-    <h1 class="cs__h">The brief said &#8220;digitize 47 spreadsheets.&#8221; Research said the product was 3 daily decisions. I killed 60% of the planned scope and adoption went 4x.</h1>
-    <p class="cs__sub">AI &amp; Experience Strategy Lead for a next-generation co-living platform across 3 European markets. I redesigned the onboarding and qualification funnel end-to-end. The biggest impact came from what I removed, not what I added.</p>
+    <h1 class="cs__h">Two product challenges. One platform. From broken onboarding to conversion engine.</h1>
+    <p class="cs__sub">AI &amp; Experience Strategy Lead for ENSO Co-Living across 3 European markets. Phase 1: redesigned the onboarding funnel, killed 60% of planned scope, 4x adoption. Phase 2: built a risk-calibrated urgency system for the catalogue, +34% booking conversion validated via A/B test.</p>
   </div>
 
   <!-- Metrics -->
   <div class="cs__metrics" data-reveal>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">-22%</span><span class="cs__metric-label">Onboarding friction reduced</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">-22%</span><span class="cs__metric-label">Onboarding friction</span></div>
     <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">4x</span><span class="cs__metric-label">Adoption vs projection</span></div>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">60%</span><span class="cs__metric-label">Planned scope eliminated</span></div>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">3</span><span class="cs__metric-label">European markets served</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">+34%</span><span class="cs__metric-label">Booking conversion</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">-39%</span><span class="cs__metric-label">Time to book</span></div>
   </div>
 
   <!-- Hero visual -->
@@ -259,7 +264,7 @@
 
   <!-- 06: Impact -->
   <div class="cs__section" id="s06" data-reveal>
-    <span class="cs__section-num">06 Results</span>
+    <span class="cs__section-num">06 Phase 1 Results</span>
     <h2 class="cs__section-h">Scope discipline wasn&#8217;t a constraint &#8212; it was the strategy.</h2>
     <div class="cs__metrics">
       <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">-22%</span><span class="cs__metric-label">Onboarding friction reduced</span></div>
@@ -273,9 +278,255 @@
     </div>
   </div>
 
-  <!-- 07: Reflection -->
-  <div class="cs__section" id="s07" data-reveal>
-    <span class="cs__section-num">07 Takeaway</span>
+
+  <!-- ═══════════════ PHASE 2: CATALOGUE & CONVERSION ═══════════════ -->
+
+  <div class="cs__section" id="s08" data-reveal>
+    <span class="cs__section-num">08 Phase 2: The Conversion Problem</span>
+    <h2 class="cs__section-h">Every empty room is burning money. Static listings weren't helping.</h2>
+    <div class="cs__section-text">
+      <p>With onboarding solved, the next bottleneck was clear: <strong>the catalogue</strong>. Every habi costs ENSO ~4.2K&#8364;/month when empty. Our listing page treated every room equally. A high-risk vacancy that needed to fill this week looked identical to one available three months out.</p>
+      <p>No urgency differentiation. No conversion pressure calibrated to actual business risk.</p>
+    </div>
+    <div class="cs__evidence"><span class="cs__evidence-label">Hypothesis</span><span class="cs__evidence-text">If we surface the right urgency signals at the right time, we can accelerate bookings for high-risk inventory without degrading trust.</span></div>
+  </div>
+
+  <div class="cs__section" id="s09" data-reveal>
+    <span class="cs__section-num">09 Risk Framework</span>
+    <h2 class="cs__section-h">Five risk tiers. Progressive urgency. Ethical by design.</h2>
+    <div class="cs__section-text">
+      <p>Five risk tiers drive the progressive addition of urgency elements. Each tier maps to <strong>days remaining before vacancy becomes a financial liability</strong>. The system is <strong>additive</strong>: higher tiers inherit all elements from lower tiers.</p>
+      <p>Three design principles: progressive disclosure (start clean), truthful signals (live data, not fabricated), scarcity not pressure (context, not panic).</p>
+    </div>
+  </div>
+
+  <div class="cs__section" id="s10" data-reveal>
+    <span class="cs__section-num">10 Validation</span>
+    <h2 class="cs__section-h">A/B experiment: 14,208 users, 28 days, PostHog.</h2>
+    <div class="cs__section-text"><p>Controlled experiment. 50/50 split. Variant A (risk-based cards) vs Control (static cards).</p></div>
+  </div>
+
+<!-- Experiment Results - visual dashboard -->
+  <div data-reveal style="margin:24px 0 32px">
+  <style>
+    .exp{font-family:var(--s);background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin-bottom:16px}
+    .exp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .exp-title{font-size:15px;font-weight:700}
+    .exp-badge{font-size:12px;font-weight:600;padding:4px 12px;border-radius:100px}
+    .exp-badge-up{background:rgba(34,197,94,.1);color:#22c55e}
+    .exp-badge-dn{background:rgba(239,68,68,.08);color:#ef4444}
+    .exp-bars{display:flex;flex-direction:column;gap:10px}
+    .exp-row{display:flex;align-items:center;gap:12px}
+    .exp-label{font-family:var(--m);font-size:13px;color:var(--t3);min-width:64px;text-align:right}
+    .exp-track{flex:1;height:32px;background:rgba(255,255,255,.03);border-radius:6px;overflow:hidden;position:relative}
+    .exp-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding:0 12px;font-size:13px;font-weight:600;transition:width 1.5s var(--e)}
+    .exp-fill-c{background:rgba(255,255,255,.08);color:var(--t3)}
+    .exp-fill-v{background:rgba(45,212,191,.15);color:#5eead4}
+    .exp-val{font-family:var(--m);font-size:14px;font-weight:700;min-width:56px}
+    .exp-val-c{color:var(--t3)}.exp-val-v{color:#5eead4}
+    .exp-meta{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap}
+    .exp-meta-item{font-size:12px;color:var(--t3)}
+    .exp-meta-item strong{color:var(--t2)}
+    @media(max-width:768px){.exp{padding:20px}.exp-label{min-width:52px;font-size:12px}.exp-fill{font-size:12px}.exp-val{font-size:13px;min-width:48px}.exp-header{flex-wrap:wrap;gap:8px}}
+  </style>
+
+  <!-- Metric 1: Card Click-Through Rate -->
+  <div class="exp">
+    <div class="exp-header">
+      <span class="exp-title">Card Click-Through Rate</span>
+      <span class="exp-badge exp-badge-up">+45.8% uplift</span>
+    </div>
+    <div class="exp-bars">
+      <div class="exp-row">
+        <span class="exp-label">Control</span>
+        <div class="exp-track"><div class="exp-fill exp-fill-c" style="width:42%">8.3%</div></div>
+        <span class="exp-val exp-val-c">8.3%</span>
+      </div>
+      <div class="exp-row">
+        <span class="exp-label">Variant</span>
+        <div class="exp-track"><div class="exp-fill exp-fill-v" style="width:61%">12.1%</div></div>
+        <span class="exp-val exp-val-v">12.1%</span>
+      </div>
+    </div>
+    <div class="exp-meta">
+      <span class="exp-meta-item"><strong>p &lt; 0.001</strong></span>
+      <span class="exp-meta-item">"View rooms" clicks / total card impressions</span>
+    </div>
+  </div>
+
+  <!-- Metric 2: Booking Conversion Rate -->
+  <div class="exp">
+    <div class="exp-header">
+      <span class="exp-title">Booking Conversion Rate</span>
+      <span class="exp-badge exp-badge-up">+33.8% uplift</span>
+    </div>
+    <div class="exp-bars">
+      <div class="exp-row">
+        <span class="exp-label">Control</span>
+        <div class="exp-track"><div class="exp-fill exp-fill-c" style="width:34%">2.4%</div></div>
+        <span class="exp-val exp-val-c">2.4%</span>
+      </div>
+      <div class="exp-row">
+        <span class="exp-label">Variant</span>
+        <div class="exp-track"><div class="exp-fill exp-fill-v" style="width:46%">3.2%</div></div>
+        <span class="exp-val exp-val-v">3.2%</span>
+      </div>
+    </div>
+    <div class="exp-meta">
+      <span class="exp-meta-item"><strong>p = 0.003</strong></span>
+      <span class="exp-meta-item">Completed bookings / unique listing viewers</span>
+    </div>
+  </div>
+
+  <!-- Metric 3: Median Time to Book -->
+  <div class="exp">
+    <div class="exp-header">
+      <span class="exp-title">Median Time to Book</span>
+      <span class="exp-badge exp-badge-up">-38.7% faster</span>
+    </div>
+    <div class="exp-bars">
+      <div class="exp-row">
+        <span class="exp-label">Control</span>
+        <div class="exp-track"><div class="exp-fill exp-fill-c" style="width:68%">6.2 days</div></div>
+        <span class="exp-val exp-val-c">6.2d</span>
+      </div>
+      <div class="exp-row">
+        <span class="exp-label">Variant</span>
+        <div class="exp-track"><div class="exp-fill exp-fill-v" style="width:42%">3.8 days</div></div>
+        <span class="exp-val exp-val-v">3.8d</span>
+      </div>
+    </div>
+    <div class="exp-meta">
+      <span class="exp-meta-item"><strong>p = 0.008</strong></span>
+      <span class="exp-meta-item">Days from first listing view to completed booking</span>
+    </div>
+  </div>
+
+  <!-- Experiment summary -->
+  <div style="background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.12);border-radius:12px;padding:20px 24px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;justify-content:center">
+    <div style="text-align:center"><span style="font-family:var(--m);font-size:12px;color:var(--t3);display:block">Users</span><span style="font-family:var(--s);font-size:18px;font-weight:700;color:var(--ac)">14,208</span></div>
+    <div style="width:1px;height:32px;background:var(--b1)"></div>
+    <div style="text-align:center"><span style="font-family:var(--m);font-size:12px;color:var(--t3);display:block">Duration</span><span style="font-family:var(--s);font-size:18px;font-weight:700;color:var(--ac)">28 days</span></div>
+    <div style="width:1px;height:32px;background:var(--b1)"></div>
+    <div style="text-align:center"><span style="font-family:var(--m);font-size:12px;color:var(--t3);display:block">Split</span><span style="font-family:var(--s);font-size:18px;font-weight:700;color:var(--ac)">50/50</span></div>
+    <div style="width:1px;height:32px;background:var(--b1)"></div>
+    <div style="text-align:center"><span style="font-family:var(--m);font-size:12px;color:var(--t3);display:block">Significance</span><span style="font-family:var(--s);font-size:18px;font-weight:700;color:var(--ac)">Day 16</span></div>
+    <div style="width:1px;height:32px;background:var(--b1)"></div>
+    <div style="text-align:center"><span style="font-family:var(--m);font-size:12px;color:var(--t3);display:block">Platform</span><span style="font-family:var(--s);font-size:18px;font-weight:700;color:var(--ac)">PostHog</span></div>
+  </div>
+
+  </div>
+  
+
+  <div class="cs__section" id="s11" data-reveal>
+    <span class="cs__section-num">11 Funnel Analysis</span>
+    <h2 class="cs__section-h">Where the uplift compounded</h2>
+    <div class="cs__section-text"><p><strong>Card click-through was the primary lever</strong> (+45.8%), but gains compounded through every step downstream.</p></div>
+  </div>
+
+<!-- Conversion Funnel - visual code -->
+  <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:24px 0">
+  <style>
+    .fn{font-family:var(--s)}.fn-row{display:flex;align-items:center;gap:0;margin-bottom:6px;position:relative}
+    .fn-step{display:flex;align-items:center;gap:12px;flex:1}
+    .fn-bar-wrap{flex:1;position:relative}
+    .fn-bar-bg{height:36px;background:rgba(255,255,255,.03);border-radius:6px;overflow:hidden;position:relative;display:flex}
+    .fn-bar-c{height:100%;background:rgba(255,255,255,.06);border-radius:6px 0 0 6px;display:flex;align-items:center;padding:0 10px;transition:width 1s var(--e)}
+    .fn-bar-v{height:100%;background:rgba(45,212,191,.12);border-radius:0 6px 6px 0;display:flex;align-items:center;padding:0 10px;transition:width 1s var(--e)}
+    .fn-bar-label{font-size:12px;font-weight:600;white-space:nowrap}
+    .fn-bar-label-c{color:var(--t3)}.fn-bar-label-v{color:#5eead4}
+    .fn-name{font-size:14px;font-weight:600;min-width:120px}
+    .fn-uplift{font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;background:rgba(34,197,94,.08);color:#22c55e;min-width:60px;text-align:center;flex-shrink:0}
+    .fn-connector{text-align:center;padding:2px 0;color:var(--t4);font-size:14px}
+    .fn-legend{display:flex;gap:20px;margin-bottom:16px;font-size:12px;color:var(--t3)}
+    .fn-legend-dot{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:4px;vertical-align:middle}
+    @media(max-width:768px){.fn-name{min-width:80px;font-size:13px}.fn-bar-label{font-size:11px}.fn-uplift{font-size:11px;min-width:50px;padding:3px 8px}.fn-row{flex-wrap:wrap;gap:8px}.fn-step{flex-wrap:wrap}}
+  </style>
+
+  <div class="fn">
+    <div style="font-size:15px;font-weight:700;margin-bottom:4px">5-Step Conversion Funnel</div>
+    <div class="fn-legend">
+      <span><span class="fn-legend-dot" style="background:rgba(255,255,255,.08)"></span>Control</span>
+      <span><span class="fn-legend-dot" style="background:rgba(45,212,191,.2)"></span>Variant (risk-based cards)</span>
+    </div>
+
+    <!-- Step 1: Card Impression -->
+    <div class="fn-row">
+      <span class="fn-name">Card impression</span>
+      <div class="fn-bar-wrap"><div class="fn-bar-bg">
+        <div class="fn-bar-c" style="width:50%"><span class="fn-bar-label fn-bar-label-c">100%</span></div>
+        <div class="fn-bar-v" style="width:50%"><span class="fn-bar-label fn-bar-label-v">100%</span></div>
+      </div></div>
+      <span class="fn-uplift" style="background:transparent;color:var(--t4)">baseline</span>
+    </div>
+    <div class="fn-connector">&#8595;</div>
+
+    <!-- Step 2: Card Click -->
+    <div class="fn-row">
+      <span class="fn-name">Card click</span>
+      <div class="fn-bar-wrap"><div class="fn-bar-bg">
+        <div class="fn-bar-c" style="width:33%"><span class="fn-bar-label fn-bar-label-c">8.3%</span></div>
+        <div class="fn-bar-v" style="width:48%"><span class="fn-bar-label fn-bar-label-v">12.1%</span></div>
+      </div></div>
+      <span class="fn-uplift">+45.8%</span>
+    </div>
+    <div class="fn-connector">&#8595;</div>
+
+    <!-- Step 3: Room View -->
+    <div class="fn-row">
+      <span class="fn-name">Room view</span>
+      <div class="fn-bar-wrap"><div class="fn-bar-bg">
+        <div class="fn-bar-c" style="width:27%"><span class="fn-bar-label fn-bar-label-c">6.1%</span></div>
+        <div class="fn-bar-v" style="width:40%"><span class="fn-bar-label fn-bar-label-v">8.4%</span></div>
+      </div></div>
+      <span class="fn-uplift">+37.7%</span>
+    </div>
+    <div class="fn-connector">&#8595;</div>
+
+    <!-- Step 4: Checkout Start -->
+    <div class="fn-row">
+      <span class="fn-name">Checkout start</span>
+      <div class="fn-bar-wrap"><div class="fn-bar-bg">
+        <div class="fn-bar-c" style="width:18%"><span class="fn-bar-label fn-bar-label-c">3.8%</span></div>
+        <div class="fn-bar-v" style="width:27%"><span class="fn-bar-label fn-bar-label-v">5.1%</span></div>
+      </div></div>
+      <span class="fn-uplift">+34.2%</span>
+    </div>
+    <div class="fn-connector">&#8595;</div>
+
+    <!-- Step 5: Booking Complete -->
+    <div class="fn-row">
+      <span class="fn-name" style="color:var(--ac)">Booking</span>
+      <div class="fn-bar-wrap"><div class="fn-bar-bg">
+        <div class="fn-bar-c" style="width:12%"><span class="fn-bar-label fn-bar-label-c">2.4%</span></div>
+        <div class="fn-bar-v" style="width:18%"><span class="fn-bar-label fn-bar-label-v">3.2%</span></div>
+      </div></div>
+      <span class="fn-uplift">+33.8%</span>
+    </div>
+
+    <!-- Insight callout -->
+    <div style="margin-top:20px;padding:16px 20px;background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.1);border-radius:8px;font-size:14px;color:var(--t2);line-height:1.6">
+      <strong style="color:var(--ac)">Key insight:</strong> The uplift didn't just happen at card level. It compounded through every step. Room view rate +37.7%, checkout start +34.2%. The urgency signals pre-qualified intent. Users who clicked were more likely to book.
+    </div>
+  </div>
+  </div>
+
+
+  <div class="cs__section" id="s12" data-reveal>
+    <span class="cs__section-num">12 Phase 2 Results</span>
+    <h2 class="cs__section-h">Results after 90-day rollout</h2>
+    <div class="cs__metrics">
+      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">+34%</span><span class="cs__metric-label">Booking conversion</span></div>
+      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">-39%</span><span class="cs__metric-label">Time to book</span></div>
+      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">-18%</span><span class="cs__metric-label">Vacancy rate</span></div>
+      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">~62K&#8364;</span><span class="cs__metric-label">Quarterly savings</span></div>
+    </div>
+    <div class="cs__evidence"><span class="cs__evidence-label">Validation</span><span class="cs__evidence-text">PostHog A/B test. 14,208 users, 28 days, 95% significance on Day 16. All guardrails passed. No increase in cancellations, support load, or booking regret.</span></div>
+  </div>
+
+  <!-- 13: Reflection -->
+  <div class="cs__section" id="s13" data-reveal>
+    <span class="cs__section-num">13 Reflection</span>
     <h2 class="cs__section-h">Once I framed the process as 3 trust decisions instead of 47 data fields, the right product became obvious.</h2>
     <div class="cs__reflection">
       <span class="cs__reflection-h">The pattern</span>
@@ -289,14 +540,14 @@
 
   <!-- Try CTA -->
   <a href="https://ensocoliving.com/" target="_blank" rel="noopener" class="cs__try" data-reveal>
-    <div><span class="cs__try-text">Visit the live product</span><span class="cs__try-sub">See the co-living experience we designed.</span></div>
+    <div><span class="cs__try-text">Visit ENSO Co-Living</span><span class="cs__try-sub">See the co-living experience we designed.</span></div>
     <span class="cs__try-btn">Open ENSO &#8594;</span>
   </a>
 
   <!-- Next project -->
   <div class="cs__next">
     <span class="cs__next-label">Next case study</span>
-    <a href="enso-urgency.html" class="cs__next-link">Dynamic Urgency System &#8594;</a>
+    <a href="kodo.html" class="cs__next-link">KODO Arbitrage &#8594;</a>
   </div>
 
 </article>
