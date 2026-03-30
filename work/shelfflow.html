@@ -30,12 +30,12 @@
 <a href="#s02" class="cs-nav__link"><span class="cs-nav__num">02</span>Why It Mattered</a>
 <a href="#s03" class="cs-nav__link"><span class="cs-nav__num">03</span>System</a>
 <a href="#s04" class="cs-nav__link"><span class="cs-nav__num">04</span>Workflow</a>
-<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>States</a>
+<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>State Architecture</a>
 <a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>Decisions</a>
 <a href="#s07" class="cs-nav__link"><span class="cs-nav__num">07</span>AI Layer</a>
 <a href="#s08" class="cs-nav__link"><span class="cs-nav__num">08</span>Scale</a>
-<a href="#s09" class="cs-nav__link"><span class="cs-nav__num">09</span>Ecosystem</a>
-<a href="#s10" class="cs-nav__link"><span class="cs-nav__num">10</span>Service</a>
+<a href="#s09" class="cs-nav__link"><span class="cs-nav__num">09</span>Integration</a>
+<a href="#s10" class="cs-nav__link"><span class="cs-nav__num">10</span>Roles</a>
 <a href="#s11" class="cs-nav__link"><span class="cs-nav__num">11</span>Principles</a>
 <a href="#s12" class="cs-nav__link"><span class="cs-nav__num">12</span>Reflection</a>
 <a href="#" class="cs-nav__top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">&#8593; Top</a>
@@ -65,8 +65,10 @@
   <!-- Hero -->
   <div class="cs__hero" data-reveal>
     <span class="cs__type">B2B SaaS / AI-Assisted Workflow / Content Operations</span>
-    <h1 class="cs__h">A workflow operating system for retail content at scale. One brief in, 36 retailer-ready packages out, with humans owning every decision that ships.</h1>
-    <p class="cs__sub">Retail content operations were slow, fragmented and expensive. Every product launch meant weeks of manual coordination across SKUs, retailers and markets, with approvals scattered across email threads and spreadsheets. I designed ShelfFlow: a structured workflow platform that turns a single product brief into retailer-ready content through AI-assisted generation, gated human approvals and multi-retailer deployment. I led product design end-to-end, from workflow architecture and state machine design to decision authority mapping, AI orchestration boundaries and the full operator interface.</p>
+    <h1 class="cs__h">The workflow operating system for retail content at scale.</h1>
+    <p class="cs__sub">One brief in, 36 retailer-ready content packages out. AI accelerates the work. Humans own every decision that ships.</p>
+    <p class="cs__sub" style="margin-top:16px;color:var(--t3)">Retail content operations were slow, fragmented and expensive. Every product launch meant weeks of manual coordination across SKUs, retailers and markets, with approvals scattered across email threads and spreadsheets. I designed ShelfFlow: a structured workflow platform that turns a single product brief into retailer-ready content through AI-assisted generation, gated human approvals and multi-retailer deployment.</p>
+    <p class="cs__sub" style="margin-top:12px;color:var(--t3)">I led product design end-to-end: workflow architecture, state machine design, decision authority mapping, AI orchestration boundaries and the full operator interface.</p>
   </div>
 
   <!-- Metrics -->
@@ -82,7 +84,7 @@
 
   <!-- Commerce Workspace -->
   <div class="cs__img" data-reveal><img src="../img/shelfflow/ui-7.png" alt="ShelfFlow Commerce Workspace dashboard"></div>
-  <p class="cs__img-cap">Commerce Workspace: active briefs, pipeline overview, and AI tools in one surface.</p>
+  <p class="cs__img-cap">Commerce Workspace. The single surface where operators track active briefs, pipeline status and AI agent activity across all launches.</p>
 
   <!-- 01: Problem -->
   <div class="cs__section" id="s01" data-reveal>
@@ -141,7 +143,7 @@
 
   <!-- Workflow architecture diagram -->
   <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/workflow-1.png" alt="ShelfFlow workflow architecture: 6 stages, 4 decision gates"></div>
-  <p class="cs__img-cap">End-to-end workflow architecture. 6 stages, 4 decision gates, AI intelligence layer embedded throughout.</p>
+  <p class="cs__img-cap">End-to-end workflow architecture. Six stages, four decision gates. AI operates between gates. Humans own every gate transition.</p>
   </div>
 
   <!-- 04: Workflow -->
@@ -175,7 +177,7 @@
   </div>
 
   <div class="cs__img" data-reveal><img src="../img/shelfflow/ui-13.png" alt="SKU detail panel with gap flags"></div>
-  <p class="cs__img-cap">SKU detail panel: field-level gap tags, AI recommendation to fix, and one-click delegation to ops team.</p>
+  <p class="cs__img-cap">SKU detail panel. Field-level gap detection with AI recommendations. One-click delegation to the ops team for resolution before the package can advance.</p>
 
   <!-- Content generation -->
   <div class="cs__screens" data-reveal>
@@ -192,7 +194,7 @@
     <div class="cs__screen"><img src="../img/shelfflow/ui-4.png" alt="Walmart PDP preview"><span class="cs__screen-label">Walmart &#183; Marketplace specs applied</span></div>
     <div class="cs__screen"><img src="../img/shelfflow/ui-2.png" alt="Amazon enhanced content"><span class="cs__screen-label">Amazon &#183; Enhanced variant (Option B)</span></div>
   </div>
-  <p class="cs__img-cap">Same SKU, three retailers, completely different specs. Each preview renders in the retailer's actual page layout.</p>
+  <p class="cs__img-cap">Same SKU, three retailers, completely different specs. Previews render in each retailer's actual page layout so operators review what the customer will see, not an abstraction.</p>
 
   <!-- Review and approve -->
   <div class="cs__img" data-reveal><img src="../img/shelfflow/ui-5.png" alt="Review and approve matrix"></div>
@@ -204,15 +206,16 @@
 
   <!-- User journey diagram -->
   <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/workflow-7.png" alt="Detailed user journey with happy path and exception handling"></div>
-  <p class="cs__img-cap">Detailed user journey: happy path, branching decisions, rejection loops, and recovery flows across all 6 stages.</p>
+  <p class="cs__img-cap">Full user journey mapping. Happy path, branching decisions, rejection loops and recovery flows. Rejection is not an error state. It is a structured feedback loop that routes content back with reviewer notes.</p>
   </div>
 
   <!-- 05: States -->
   <div class="cs__section" id="s05" data-reveal>
-    <span class="cs__section-num">05 States</span>
-    <h2 class="cs__section-h">Every content package has a state machine. No package moves without an explicit transition.</h2>
+    <span class="cs__section-num">05 State Architecture</span>
+    <h2 class="cs__section-h">Every content package has a state machine. No package moves without an explicit transition, and no transition happens without a record.</h2>
     <div class="cs__section-text">
       <p>Each of the 36 content packages operates as an independent state machine. States are explicit, transitions are guarded by gate conditions, and every state change is logged with who triggered it and why.</p>
+      <p>This was a deliberate architectural choice. In the existing workflow, packages got stuck in ambiguous in-between states: "probably approved", "waiting on someone", "I think legal saw it". The state machine eliminates ambiguity. A package is either Draft, In Review, Approved, Published, Rejected, or Blocked. Nothing else. Every transition requires an explicit human action or a system event, and the audit trail is permanent.</p>
     </div>
 
     <!-- State machine component -->
@@ -320,11 +323,11 @@
 
   <!-- AI agent orchestration diagram -->
   <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/workflow-2.png" alt="AI agent orchestration flow"></div>
-  <p class="cs__img-cap">AI agent orchestration: how intelligence flows through the content pipeline. Workflow orchestrator routes, schedules, and enforces gates.</p>
+  <p class="cs__img-cap">AI agent orchestration. The workflow orchestrator routes tasks to the right agent, schedules generation jobs and enforces gate rules. No agent can bypass a gate.</p>
 
   <!-- Human-in-the-loop decision model -->
   <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/workflow-4.png" alt="Human-in-the-loop decision model"></div>
-  <p class="cs__img-cap">Human-in-the-loop decision model. Three zones: AI acts freely (parse, scan, format), AI proposes (enrichments, variants), human decides (validate, approve, ship). Trust architecture below.</p>
+  <p class="cs__img-cap">Human-in-the-loop decision model. Three authority zones: AI acts freely (parse, scan, format), AI proposes (enrichments, variants), human decides (validate, approve, ship). The boundary between zones is the product's trust architecture.</p>
   </div>
 
   <!-- 08: Complexity -->
@@ -351,10 +354,11 @@
 
   <!-- 09: Ecosystem -->
   <div class="cs__section" id="s09" data-reveal>
-    <span class="cs__section-num">09 Ecosystem</span>
-    <h2 class="cs__section-h">ShelfFlow sits between the brand team and the retailer. It's the coordination layer, not a content tool.</h2>
+    <span class="cs__section-num">09 Ecosystem Integration</span>
+    <h2 class="cs__section-h">ShelfFlow sits between the brand team and the retailer. It's the coordination layer, not another content tool.</h2>
     <div class="cs__section-text">
-      <p>The platform integrates with the existing enterprise ecosystem: <strong>PIM systems</strong> for product data, <strong>DAM systems</strong> for assets, <strong>retailer portals</strong> for final distribution, and <strong>compliance databases</strong> for claim validation. ShelfFlow doesn't replace these systems. It orchestrates the workflow between them.</p>
+      <p>Enterprise content teams don't work in isolation. Product data lives in PIM systems. Brand assets live in DAMs. Compliance rules live in regulatory databases. Finished content ships through retailer portals with their own APIs and validation rules.</p>
+      <p>ShelfFlow doesn't replace any of these systems. It <strong>orchestrates the workflow between them</strong>: pulling structured product data at brief intake, validating claims against compliance databases during review, and pushing retailer-formatted packages to distribution portals at launch. The design assumption was that integration points would be messy and unreliable, so the system had to handle partial data, format mismatches and failed API calls gracefully without blocking the entire pipeline.</p>
     </div>
     <ul class="cs__list">
       <li><strong>Upstream:</strong> Product briefs, PIM data, brand guidelines, regulatory databases</li>
@@ -364,15 +368,16 @@
 
   <!-- Ecosystem diagram -->
   <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/workflow-5.png" alt="ShelfFlow in the commerce content ecosystem"></div>
-  <p class="cs__img-cap">ShelfFlow in the commerce content ecosystem. Upstream sources (PIM, DAM, brand guidelines) flow in; retailer-ready content flows out to Amazon, Sephora, Walmart, and any retail channel.</p>
+  <p class="cs__img-cap">Integration map. Upstream sources (PIM, DAM, brand guidelines) flow in. Retailer-ready content flows out to Amazon, Sephora, Walmart and other retail channels. ShelfFlow is the coordination layer, not the data layer.</p>
   </div>
 
   <!-- 10: Service -->
   <div class="cs__section" id="s10" data-reveal>
-    <span class="cs__section-num">10 Service Design</span>
-    <h2 class="cs__section-h">Four roles, clear authority boundaries. No one can do someone else's job.</h2>
+    <span class="cs__section-num">10 Roles and Authority</span>
+    <h2 class="cs__section-h">Four roles, clear authority boundaries. The system enforces who can approve what. Process docs don't.</h2>
     <div class="cs__section-text">
-      <p>ShelfFlow defines four operator roles, each with explicit permissions mapped to workflow stages and gate authority. Role boundaries are enforced by the system, not by process documentation.</p>
+      <p>In the existing workflow, anyone with email access could informally "approve" content. That created accountability gaps. When something shipped with an incorrect claim, no one could determine who had actually signed off on it.</p>
+      <p>ShelfFlow defines four operator roles, each with <strong>explicit permissions mapped to specific workflow stages and gate authority</strong>. A Content Lead can approve briefs and drafts, but cannot sign off on compliance. A Compliance Officer owns Gate 3, but has no authority over launch. Role boundaries are enforced by the system, not by process documentation or team agreements.</p>
     </div>
 
     <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
@@ -387,7 +392,7 @@
 
   <!-- Service blueprint -->
   <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/workflow-6.png" alt="Service blueprint: 5 operational layers across 6 workflow stages"></div>
-  <p class="cs__img-cap">Service blueprint: 5 operational layers (user actions, frontstage UI, backstage AI, system infra, human ops) mapped across all 6 workflow stages.</p>
+  <p class="cs__img-cap">Service blueprint. Five operational layers mapped across all six workflow stages. This diagram drove conversations with engineering about where AI runs server-side vs. where humans interact in the UI.</p>
   </div>
 
   <!-- 11: Principles -->
