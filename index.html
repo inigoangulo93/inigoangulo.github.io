@@ -296,30 +296,19 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .tk__dot{display:flex;align-items:flex-start;justify-content:center;padding-top:22px;position:relative;z-index:2}
 .tk__dot svg{filter:drop-shadow(0 0 6px var(--dot-glow,var(--acg)))}
 
-.tk__card{padding:20px 28px 20px 20px;margin-bottom:2px;border-radius:12px;border:1px solid transparent;cursor:pointer;transition:background .3s,border-color .3s,box-shadow .4s var(--e);-webkit-tap-highlight-color:transparent}
+.tk__card{padding:20px 28px 20px 20px;margin-bottom:2px;border-radius:12px;border:1px solid transparent;transition:background .3s,border-color .3s}
 .tk__card:hover{background:var(--bg2);border-color:var(--b1)}
-.tk.open .tk__card{background:var(--bg2);border-color:var(--b2);box-shadow:0 8px 32px rgba(0,0,0,.25),0 0 0 1px var(--b1),inset 0 1px 0 var(--b1)}
 
 .tk__head{display:flex;align-items:center;gap:12px}
 .tk__num{font-family:var(--m);font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;font-weight:600;opacity:.5;transition:opacity .3s}
-.tk:hover .tk__num,.tk.open .tk__num{opacity:1}
+.tk:hover .tk__num{opacity:1}
 .tk__h{font-family:var(--s);font-size:1.4rem;font-weight:800;letter-spacing:-.03em;transition:color .3s}
 .tk:hover .tk__h{color:var(--card-accent,var(--ac2))}
-.tk.open .tk__h{color:var(--card-accent,var(--ac2))}
-.tk__toggle{margin-left:auto;width:28px;height:28px;border-radius:50%;border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;transition:transform .4s var(--e),border-color .3s,background .3s;flex-shrink:0}
-.tk.open .tk__toggle{transform:rotate(180deg);border-color:var(--card-accent,var(--ac));background:rgba(255,255,255,.03)}
-.tk.open .tk__toggle svg polyline{stroke:var(--card-accent,var(--ac))}
 
 .tk__p{font-family:var(--s);font-size:.88rem;color:var(--t2);line-height:1.75;margin-top:10px;max-width:620px}
 
-.tk__expand{max-height:0;overflow:hidden;opacity:0;transition:max-height .5s var(--e),opacity .35s .05s}
-.tk.open .tk__expand{max-height:500px;opacity:1;padding-top:16px}
-
-.tk__chips{display:flex;flex-wrap:wrap;gap:8px}
-.tk__chip{font-family:var(--s);font-size:.68rem;font-weight:500;padding:5px 14px;border-radius:100px;color:var(--chip-c,var(--t2));background:var(--chip-bg,var(--glass));border:1px solid var(--chip-b,var(--b1));transition:transform .3s var(--e),box-shadow .3s;letter-spacing:.01em}
-.tk__chip:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.2)}
-
-.tk__aside{font-family:var(--s);font-size:.78rem;color:var(--t3);line-height:1.65;margin-top:14px;padding:14px 18px;background:var(--glass);border:1px solid var(--b1);border-radius:8px;max-width:620px}
+.tk__proof{font-family:var(--s);font-size:.76rem;color:var(--t4);line-height:1.6;margin-top:12px;max-width:620px}
+.tk__proof strong{color:var(--card-accent,var(--ac2));font-weight:600}
 
 /* skills (consistent, no primary distinction) */
 .sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
@@ -564,10 +553,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   .tk__h{font-size:1.1rem}
   .tk__num{font-size:.52rem}
   .tk__p{font-size:.82rem;margin-top:8px}
-  .tk__chip{font-size:.6rem;padding:4px 10px}
-  .tk__aside{font-size:.72rem;padding:10px 12px;margin-top:10px}
-  .tk__toggle{width:26px;height:26px;min-width:26px}
-  .tk__toggle svg{width:10px;height:10px}
+  .tk__proof{font-size:.7rem;margin-top:8px}
   /* Hide the timeline line divs on mobile */
   #v-about [style*="position:absolute;left:28px"]{display:none!important}
 
@@ -814,15 +800,9 @@ function go(n){
 <div class="tk__head">
 <span class="tk__num" style="color:var(--ac)">01</span>
 <h3 class="tk__h">Listen</h3>
-<span class="tk__toggle"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4" stroke="var(--t3)" stroke-width="1.5" fill="none"/></svg></span>
 </div>
 <p class="tk__p">Before I design anything, I watch. Session recordings, operator shadowing, funnel data. The real problem is rarely what the brief describes.</p>
-<div class="tk__expand">
-<div class="tk__chips">
-<span class="tk__chip" style="--chip-c:var(--up);--chip-bg:rgba(34,197,94,.06);--chip-b:rgba(34,197,94,.2)">PostHog</span><span class="tk__chip" style="--chip-c:var(--up);--chip-bg:rgba(34,197,94,.06);--chip-b:rgba(34,197,94,.2)">Hotjar</span><span class="tk__chip" style="--chip-c:var(--up);--chip-bg:rgba(34,197,94,.06);--chip-b:rgba(34,197,94,.2)">Session Recordings</span><span class="tk__chip" style="--chip-c:var(--am);--chip-bg:var(--amg);--chip-b:rgba(245,158,11,.2)">Operator Shadowing</span><span class="tk__chip" style="--chip-c:var(--am);--chip-bg:var(--amg);--chip-b:rgba(245,158,11,.2)">Stakeholder Interviews</span>
-</div>
-<div class="tk__aside"><span style="color:var(--ac);font-weight:600">Case:</span> ENSO Co-Living. The brief said "digitize 47 spreadsheets." Research said the product was 3 daily trust decisions. Killed 60% of planned scope. Adoption went 4x.</div>
-</div>
+<p class="tk__proof"><strong>ENSO Co-Living.</strong> The brief said "digitize 47 spreadsheets." Research said the product was 3 daily trust decisions. Killed 60% of planned scope. Adoption went 4x.</p>
 </div>
 </div>
 
@@ -845,15 +825,9 @@ function go(n){
 <div class="tk__head">
 <span class="tk__num" style="color:var(--up)">02</span>
 <h3 class="tk__h">Frame</h3>
-<span class="tk__toggle"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4" stroke="var(--t3)" stroke-width="1.5" fill="none"/></svg></span>
 </div>
 <p class="tk__p">I redefine the problem as a decision. What does this system need to produce? Who acts on it, and when? Every feature either serves that decision or gets cut.</p>
-<div class="tk__expand">
-<div class="tk__chips">
-<span class="tk__chip" style="--chip-c:var(--am);--chip-bg:var(--amg);--chip-b:rgba(245,158,11,.2)">Service Blueprints</span><span class="tk__chip" style="--chip-c:var(--am);--chip-bg:var(--amg);--chip-b:rgba(245,158,11,.2)">Decision Mapping</span><span class="tk__chip" style="--chip-c:var(--am);--chip-bg:var(--amg);--chip-b:rgba(245,158,11,.2)">Jobs-to-be-Done</span><span class="tk__chip" style="--chip-c:var(--ac);--chip-bg:var(--acg2);--chip-b:var(--acb)">Scope Definition</span>
-</div>
-<div class="tk__aside"><span style="color:var(--up);font-weight:600">Case:</span> GetYourGuide. 38% of converters left checkout with no re-entry path. Reframed as "commitment anxiety." 10 experiments. +11% conversion.</div>
-</div>
+<p class="tk__proof"><strong>GetYourGuide.</strong> 38% of converters left checkout with no re-entry path. Reframed as "commitment anxiety." 10 experiments. +11% conversion.</p>
 </div>
 </div>
 
@@ -877,15 +851,9 @@ function go(n){
 <div class="tk__head">
 <span class="tk__num" style="color:var(--pu)">03</span>
 <h3 class="tk__h">Architect</h3>
-<span class="tk__toggle"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4" stroke="var(--t3)" stroke-width="1.5" fill="none"/></svg></span>
 </div>
 <p class="tk__p">Structure before surface. Information architecture, decision flows, and component logic come first. Screens are the last thing I design, not the first.</p>
-<div class="tk__expand">
-<div class="tk__chips">
-<span class="tk__chip" style="--chip-c:var(--pu);--chip-bg:var(--pug);--chip-b:rgba(167,139,250,.2)">Figma</span><span class="tk__chip" style="--chip-c:var(--pu);--chip-bg:var(--pug);--chip-b:rgba(167,139,250,.2)">FigJam</span><span class="tk__chip" style="--chip-c:var(--pu);--chip-bg:var(--pug);--chip-b:rgba(167,139,250,.2)">Framer</span><span class="tk__chip" style="--chip-c:var(--ac);--chip-bg:var(--acg2);--chip-b:var(--acb)">Design Systems</span><span class="tk__chip" style="--chip-c:var(--ac);--chip-bg:var(--acg2);--chip-b:var(--acb)">Prototyping</span><span class="tk__chip" style="--chip-c:var(--ac);--chip-bg:var(--acg2);--chip-b:var(--acb)">Information Architecture</span>
-</div>
-<div class="tk__aside"><span style="color:var(--pu);font-weight:600">Case:</span> RetailNorm. Designed the normalization engine UI: dual-view architecture (executive + technical), confidence scoring, PDF export. All validated before code.</div>
-</div>
+<p class="tk__proof"><strong>RetailNorm.</strong> Dual-view architecture (executive + technical), confidence scoring, PDF export. All validated before code.</p>
 </div>
 </div>
 
@@ -908,15 +876,9 @@ function go(n){
 <div class="tk__head">
 <span class="tk__num" style="color:var(--am)">04</span>
 <h3 class="tk__h">Prove</h3>
-<span class="tk__toggle"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4" stroke="var(--t3)" stroke-width="1.5" fill="none"/></svg></span>
 </div>
 <p class="tk__p">I instrument my own work. Every design ships with its measurement plan. I read session recordings before standups and run A/B experiments across markets.</p>
-<div class="tk__expand">
-<div class="tk__chips">
-<span class="tk__chip" style="--chip-c:var(--up);--chip-bg:rgba(34,197,94,.06);--chip-b:rgba(34,197,94,.2)">PostHog</span><span class="tk__chip" style="--chip-c:var(--up);--chip-bg:rgba(34,197,94,.06);--chip-b:rgba(34,197,94,.2)">GA4</span><span class="tk__chip" style="--chip-c:var(--up);--chip-bg:rgba(34,197,94,.06);--chip-b:rgba(34,197,94,.2)">Mixpanel</span><span class="tk__chip" style="--chip-c:var(--up);--chip-bg:rgba(34,197,94,.06);--chip-b:rgba(34,197,94,.2)">A/B Testing</span><span class="tk__chip" style="--chip-c:var(--pu);--chip-bg:var(--pug);--chip-b:rgba(167,139,250,.2)">SQL</span>
-</div>
-<div class="tk__aside"><span style="color:var(--am);font-weight:600">Case:</span> GetYourGuide checkout validated across 4 EU markets. 10 A/B experiments. 72% of the +11% uplift came from mobile.</div>
-</div>
+<p class="tk__proof"><strong>GetYourGuide.</strong> Checkout validated across 4 EU markets. 10 A/B experiments. 72% of the +11% uplift came from mobile.</p>
 </div>
 </div>
 
@@ -938,15 +900,9 @@ function go(n){
 <div class="tk__head">
 <span class="tk__num" style="color:var(--ac2)">05</span>
 <h3 class="tk__h">Close the loop</h3>
-<span class="tk__toggle"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4" stroke="var(--t3)" stroke-width="1.5" fill="none"/></svg></span>
 </div>
 <p class="tk__p">Shipping is not a handoff. I stay close to the product after launch, reading session data and adjusting. The signal after release matters more than the plan before it.</p>
-<div class="tk__expand">
-<div class="tk__chips">
-<span class="tk__chip" style="--chip-c:var(--pu);--chip-bg:var(--pug);--chip-b:rgba(167,139,250,.2)">Claude</span><span class="tk__chip" style="--chip-c:var(--pu);--chip-bg:var(--pug);--chip-b:rgba(167,139,250,.2)">Cursor</span><span class="tk__chip" style="--chip-c:var(--pu);--chip-bg:var(--pug);--chip-b:rgba(167,139,250,.2)">Vercel</span><span class="tk__chip" style="--chip-c:var(--pu);--chip-bg:var(--pug);--chip-b:rgba(167,139,250,.2)">GitHub</span><span class="tk__chip" style="--chip-c:var(--pu);--chip-bg:var(--pug);--chip-b:rgba(167,139,250,.2)">Supabase</span><span class="tk__chip" style="--chip-c:var(--pu);--chip-bg:var(--pug);--chip-b:rgba(167,139,250,.2)">HTML / CSS / JS</span>
-</div>
-<div class="tk__aside"><span style="color:var(--ac2);font-weight:600">Case:</span> RetailNorm, K&#332;DO, and this portfolio shipped without an engineering team. Validated concept to shipped product in weeks.</div>
-</div>
+<p class="tk__proof"><strong>RetailNorm, K&#332;DO, this portfolio.</strong> Shipped without an engineering team. Validated concept to live product in weeks.</p>
 </div>
 </div>
 
@@ -1026,12 +982,6 @@ document.querySelectorAll(".flow__step").forEach(function(step){
 });
 
 // Thinking page accordion — multiple can be open
-document.querySelectorAll(".tk").forEach(function(tk,i){
-  if(i===0)tk.classList.add("open");
-  tk.querySelector(".tk__card").addEventListener("click",function(){
-    tk.classList.toggle("open");
-  });
-});
 
 // Approach scribble — scroll-driven progress
 var scribble=document.getElementById("scribblePath");
