@@ -685,13 +685,13 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 </head>
 <body>
 <div class="ambient"><i></i><i></i></div>
-<header class="bar"><div class="bar__inner"><span class="bar__name">Inigo Angulo</span><nav class="bar__nav"><button class="bar__btn on" onclick="go('index')" data-v="index">Work</button><button class="bar__btn" onclick="go('about')" data-v="about">Process</button><button class="bar__btn" onclick="go('logs')" data-v="logs">About</button></nav><button class="bar__cta" onclick="go('index');setTimeout(function(){document.getElementById('contact').scrollIntoView({behavior:'smooth'})},100)">Contact</button><div class="bar__ham" id="hamBtn" onclick="toggleMenu()"><span></span><span></span><span></span></div></div></header>
+<header class="bar"><div class="bar__inner"><span class="bar__name">Inigo Angulo</span><nav class="bar__nav"><button class="bar__btn on" onclick="go('index')" data-v="index">Work</button><button class="bar__btn" onclick="go('about')" data-v="about">How I think</button><button class="bar__btn" onclick="go('logs')" data-v="logs">About</button></nav><button class="bar__cta" onclick="go('index');setTimeout(function(){document.getElementById('contact').scrollIntoView({behavior:'smooth'})},100)">Contact</button><div class="bar__ham" id="hamBtn" onclick="toggleMenu()"><span></span><span></span><span></span></div></div></header>
 
 <div class="mob-menu" id="mobMenu">
 <div class="mob-menu__bg" onclick="toggleMenu()"></div>
 <div class="mob-menu__inner">
 <div class="mob-menu__link on" onclick="mgo('index')"><span>Work</span><span class="mob-menu__link-num">01</span></div>
-<div class="mob-menu__link" onclick="mgo('about')"><span>Process</span><span class="mob-menu__link-num">02</span></div>
+<div class="mob-menu__link" onclick="mgo('about')"><span>How I think</span><span class="mob-menu__link-num">02</span></div>
 <div class="mob-menu__link" onclick="mgo('logs')"><span>About</span><span class="mob-menu__link-num">03</span></div>
 <div class="mob-menu__cta"><a onclick="mgo('_contact')">Get in touch &#8594;</a></div>
 <div class="mob-menu__contact"><a href="/cdn-cgi/l/email-protection#2e47404749414f40495b42416e49434f4742004d4143">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank">LinkedIn</a><a href="tel:+41799528321">Phone</a></div>
@@ -734,6 +734,7 @@ function go(n){
 <p style="font-family:var(--m);font-size:.68rem;color:var(--ac);text-transform:uppercase;letter-spacing:.18em;margin-bottom:16px">// approach</p>
 <h2 style="font-family:var(--s);font-size:2.2rem;font-weight:800;letter-spacing:-.04em;line-height:1.12;margin-bottom:16px">I design backwards.</h2>
 <p style="font-family:var(--s);font-size:.94rem;color:var(--t2);line-height:1.7">Start with the decision the business needs to make. Build the system that produces it. Everything else gets removed.</p>
+<a href="#" onclick="go('about');return false" style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-family:var(--s);font-size:.82rem;font-weight:500;color:var(--ac2);border:1px solid var(--acb);background:var(--acg2);padding:8px 20px;border-radius:6px;transition:all .3s var(--e);letter-spacing:.01em" onmouseover="this.style.background='var(--ac)';this.style.color='#000';this.style.borderColor='var(--ac)';this.style.boxShadow='0 0 20px var(--acg)'" onmouseout="this.style.background='var(--acg2)';this.style.color='var(--ac2)';this.style.borderColor='var(--acb)';this.style.boxShadow='none'">How I think <span style="font-size:.7rem">&#8594;</span></a>
 </div>
 
 <!-- Scroll-driven scribble -->
@@ -994,7 +995,7 @@ function go(n){
 <footer class="footer">
 <div class="footer__inner">
 <div><span class="footer__brand">Inigo Angulo</span><p class="footer__desc">Product designer and growth strategist based in Zurich. 10 years building systems that move metrics.</p></div>
-<div><p class="footer__col-title">Navigation</p><div class="footer__links"><a href="#" onclick="go('index');return false">Work</a><a href="#" onclick="go('about');return false">Process</a><a href="#" onclick="go('logs');return false">About</a></div></div>
+<div><p class="footer__col-title">Navigation</p><div class="footer__links"><a href="#" onclick="go('index');return false">Work</a><a href="#" onclick="go('about');return false">How I think</a><a href="#" onclick="go('logs');return false">About</a></div></div>
 <div><p class="footer__col-title">Connect</p><div class="footer__links"><a href="/cdn-cgi/l/email-protection#096067606e6668676e7c6566496e64686065276a6664">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank">LinkedIn</a><a href="tel:+41799528321">Phone</a></div></div>
 <div><p class="footer__col-title">Resources</p><div class="footer__links"><a href="Inigo%20Angulo%20CV%202026.pdf" download>Download CV</a></div></div>
 </div>
