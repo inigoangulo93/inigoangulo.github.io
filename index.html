@@ -552,7 +552,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   .tk{display:block;margin-bottom:16px}
   .tk__dot{display:none}
   .tk__card{padding:16px 18px;border-radius:10px}
-  .tk__card svg[viewBox="0 0 400 140"]{height:80px}
+  .tk__card svg[viewBox="0 0 400 200"]{height:90px}
   .tk__head{gap:8px}
   .tk__h{font-size:1.1rem}
   .tk__num{font-size:.52rem}
@@ -791,15 +791,30 @@ function go(n){
 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ac)" stroke-width="1.5"><circle cx="12" cy="12" r="9" opacity=".4"/><circle cx="12" cy="12" r="4" fill="var(--ac)" opacity=".6" stroke="none"/></svg>
 </div>
 <div class="tk__card" style="--card-accent:var(--ac);--card-glow:var(--acg)">
-<!-- Illustration: scattered dots = noise, chaos -->
-<svg viewBox="0 0 400 140" style="width:100%;margin-bottom:16px;display:block" fill="none">
-<circle cx="35" cy="40" r="5" fill="#ef4444" opacity=".3"><animate attributeName="cx" values="35;45;25;35" dur="4s" repeatCount="indefinite"/></circle>
-<circle cx="80" cy="95" r="4" fill="#ef4444" opacity=".25"><animate attributeName="cy" values="95;80;105;95" dur="3.5s" repeatCount="indefinite"/></circle>
-<circle cx="140" cy="28" r="6.5" fill="#ef4444" opacity=".2"/><circle cx="195" cy="108" r="3.5" fill="#ef4444" opacity=".3"/>
-<circle cx="245" cy="55" r="5.5" fill="#ef4444" opacity=".15"/><circle cx="300" cy="85" r="3.5" fill="#6e6e88" opacity=".2"/>
-<circle cx="340" cy="32" r="2.5" fill="#6e6e88" opacity=".15"/><circle cx="370" cy="70" r="3" fill="#6e6e88" opacity=".1"/>
-<path d="M35,40 L80,95 M80,95 L140,28 M140,28 L195,108" stroke="#ef4444" stroke-width=".7" opacity=".12" stroke-dasharray="4 5"/>
-<text x="385" y="75" fill="#8585a0" font-size="10" font-family="JetBrains Mono" text-anchor="end" opacity=".5">noise</text>
+<!-- Illustration: particle field — chaos settling into faint order -->
+<svg viewBox="0 0 400 200" style="width:100%;margin-bottom:20px;display:block" fill="none">
+<!-- Chaotic left field -->
+<circle cx="28" cy="45" r="2.5" fill="#ef4444" opacity=".35"><animate attributeName="cx" values="28;38;20;28" dur="5s" repeatCount="indefinite"/></circle>
+<circle cx="55" cy="120" r="4" fill="#ef4444" opacity=".22"><animate attributeName="cy" values="120;105;135;120" dur="4.2s" repeatCount="indefinite"/></circle>
+<circle cx="42" cy="168" r="3" fill="#ef4444" opacity=".18"><animate attributeName="cx" values="42;50;34;42" dur="6s" repeatCount="indefinite"/></circle>
+<circle cx="90" cy="32" r="5" fill="#ef4444" opacity=".15"/><circle cx="78" cy="80" r="2" fill="#ef4444" opacity=".28"/>
+<circle cx="115" cy="155" r="3.5" fill="#ef4444" opacity=".12"/><circle cx="105" cy="60" r="1.5" fill="#ef4444" opacity=".2"/>
+<!-- Erratic connections -->
+<path d="M28,45 L55,120 M55,120 L90,32 M90,32 L78,80 M78,80 L42,168 M42,168 L115,155" stroke="#ef4444" stroke-width=".5" opacity=".08" stroke-dasharray="3 6"/>
+<!-- Mid-zone: particles slowing -->
+<circle cx="170" cy="55" r="2" fill="#8585a0" opacity=".18"/><circle cx="185" cy="100" r="2.5" fill="#8585a0" opacity=".15"/>
+<circle cx="165" cy="145" r="1.5" fill="#8585a0" opacity=".12"/><circle cx="200" cy="75" r="2" fill="#8585a0" opacity=".1"/>
+<path d="M170,55 L185,100 M185,100 L165,145" stroke="#8585a0" stroke-width=".4" opacity=".06" stroke-dasharray="2 5"/>
+<!-- Right side: faint grid lines emerging -->
+<line x1="260" y1="40" x2="260" y2="165" stroke="#8585a0" stroke-width=".3" opacity=".06"/>
+<line x1="300" y1="40" x2="300" y2="165" stroke="#8585a0" stroke-width=".3" opacity=".06"/>
+<line x1="340" y1="40" x2="340" y2="165" stroke="#8585a0" stroke-width=".3" opacity=".06"/>
+<line x1="245" y1="70" x2="360" y2="70" stroke="#8585a0" stroke-width=".3" opacity=".05"/>
+<line x1="245" y1="105" x2="360" y2="105" stroke="#8585a0" stroke-width=".3" opacity=".05"/>
+<line x1="245" y1="140" x2="360" y2="140" stroke="#8585a0" stroke-width=".3" opacity=".05"/>
+<circle cx="260" cy="70" r="2" fill="#ef4444" opacity=".15"/><circle cx="300" cy="105" r="2" fill="#8585a0" opacity=".12"/>
+<circle cx="340" cy="140" r="2" fill="#8585a0" opacity=".1"/>
+<text x="390" y="105" fill="#8585a0" font-size="9" font-family="JetBrains Mono" text-anchor="end" opacity=".4">noise</text>
 </svg>
 <div class="tk__head">
 <span class="tk__num" style="color:var(--ac)">01</span>
@@ -816,22 +831,39 @@ function go(n){
 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--up)" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="3" opacity=".4"/><line x1="4" y1="12" x2="20" y2="12" opacity=".25"/><line x1="12" y1="4" x2="12" y2="20" opacity=".25"/></svg>
 </div>
 <div class="tk__card" style="--card-accent:var(--up);--card-glow:var(--upg)">
-<!-- Illustration: dots connecting into clusters -->
-<svg viewBox="0 0 400 140" style="width:100%;margin-bottom:16px;display:block" fill="none">
-<circle cx="60" cy="45" r="5" fill="#2dd4bf" opacity=".4"/><circle cx="120" cy="85" r="5" fill="#2dd4bf" opacity=".4"/><circle cx="85" cy="95" r="3.5" fill="#2dd4bf" opacity=".3"/>
-<line x1="60" y1="45" x2="120" y2="85" stroke="#2dd4bf" stroke-width="1" opacity=".2"/><line x1="85" y1="95" x2="120" y2="85" stroke="#2dd4bf" stroke-width="1" opacity=".2"/>
-<rect x="190" y="25" width="110" height="75" rx="6" stroke="#22c55e" stroke-width="1.2" opacity=".2" fill="rgba(34,197,94,.03)"/>
-<line x1="190" y1="55" x2="300" y2="55" stroke="#22c55e" stroke-width=".6" opacity=".15"/>
-<circle cx="215" cy="42" r="3.5" fill="#22c55e" opacity=".4"/><circle cx="270" cy="82" r="3.5" fill="#22c55e" opacity=".4"/>
-<line x1="215" y1="42" x2="270" y2="82" stroke="#22c55e" stroke-width="1" opacity=".25" stroke-dasharray="3 4"><animate attributeName="stroke-dashoffset" values="0;-14" dur="3s" repeatCount="indefinite"/></line>
-<text x="385" y="75" fill="#8585a0" font-size="10" font-family="JetBrains Mono" text-anchor="end" opacity=".5">structure</text>
+<!-- Illustration: loose nodes converging into a decision tree -->
+<svg viewBox="0 0 400 200" style="width:100%;margin-bottom:20px;display:block" fill="none">
+<!-- Scattered inputs on the left -->
+<circle cx="35" cy="40" r="3" fill="#22c55e" opacity=".2"/><circle cx="30" cy="90" r="2.5" fill="#22c55e" opacity=".18"/>
+<circle cx="40" cy="140" r="3.5" fill="#22c55e" opacity=".15"/><circle cx="50" cy="175" r="2" fill="#22c55e" opacity=".12"/>
+<!-- Converging lines to mid-nodes -->
+<path d="M35,40 Q80,55 110,60" stroke="#22c55e" stroke-width=".6" opacity=".1"/>
+<path d="M30,90 Q75,80 110,60" stroke="#22c55e" stroke-width=".6" opacity=".1"/>
+<path d="M40,140 Q85,140 115,135" stroke="#22c55e" stroke-width=".6" opacity=".1"/>
+<path d="M50,175 Q90,160 115,135" stroke="#22c55e" stroke-width=".6" opacity=".1"/>
+<!-- Mid-level cluster nodes -->
+<circle cx="110" cy="60" r="4" fill="#22c55e" opacity=".25"/><circle cx="115" cy="135" r="4" fill="#22c55e" opacity=".25"/>
+<!-- Lines to decision frame -->
+<path d="M114,60 Q160,75 200,80" stroke="#22c55e" stroke-width=".7" opacity=".15" stroke-dasharray="4 4"><animate attributeName="stroke-dashoffset" values="0;-16" dur="4s" repeatCount="indefinite"/></path>
+<path d="M119,135 Q165,120 200,115" stroke="#22c55e" stroke-width=".7" opacity=".15" stroke-dasharray="4 4"><animate attributeName="stroke-dashoffset" values="0;-16" dur="4s" repeatCount="indefinite"/></path>
+<!-- Decision frame -->
+<rect x="195" y="50" width="130" height="100" rx="8" stroke="#2dd4bf" stroke-width="1" opacity=".15" fill="rgba(45,212,191,.02)"/>
+<line x1="195" y1="85" x2="325" y2="85" stroke="#2dd4bf" stroke-width=".4" opacity=".08"/>
+<line x1="195" y1="118" x2="325" y2="118" stroke="#2dd4bf" stroke-width=".4" opacity=".08"/>
+<text x="210" y="72" fill="#2dd4bf" font-size="7" font-family="JetBrains Mono" opacity=".3">decision</text>
+<text x="210" y="105" fill="#2dd4bf" font-size="7" font-family="JetBrains Mono" opacity=".25">scope</text>
+<text x="210" y="137" fill="#2dd4bf" font-size="7" font-family="JetBrains Mono" opacity=".2">action</text>
+<!-- Output arrow -->
+<path d="M325,100 L360,100" stroke="#2dd4bf" stroke-width=".8" opacity=".2"/>
+<circle cx="365" cy="100" r="3" fill="#2dd4bf" opacity=".3"><animate attributeName="opacity" values=".2;.45;.2" dur="3s" repeatCount="indefinite"/></circle>
+<text x="390" y="105" fill="#8585a0" font-size="9" font-family="JetBrains Mono" text-anchor="end" opacity=".4">structure</text>
 </svg>
 <div class="tk__head">
 <span class="tk__num" style="color:var(--up)">02</span>
 <h3 class="tk__h">Frame</h3>
 </div>
 <p class="tk__p">I redefine the problem as a decision. What does this system need to produce? Who acts on it, and when? Every feature either serves that decision or gets cut.</p>
-<p class="tk__proof"><strong>GetYourGuide.</strong> 38% of converters left checkout with no re-entry path. Reframed as "commitment anxiety." 10 experiments. +11% conversion.</p>
+<p class="tk__proof"><strong>GetYourGuide.</strong> 38% of converters left checkout with no re-entry path. Reframed as "commitment anxiety." 10 experiments. +11% conversion. <strong>ShelfFlow.</strong> Content ops across SKUs and retailers looked like a coordination problem. Reframed as a decision pipeline: 6 stages, 4 gates.</p>
 </div>
 </div>
 
@@ -841,23 +873,50 @@ function go(n){
 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--pu)" stroke-width="1.5"><path d="M12 3L21 8V16L12 21L3 16V8Z" opacity=".4"/><circle cx="12" cy="12" r="3" fill="var(--pu)" opacity=".5" stroke="none"/></svg>
 </div>
 <div class="tk__card" style="--card-accent:var(--pu);--card-glow:var(--pug)">
-<!-- Illustration: clean components, system grid -->
-<svg viewBox="0 0 400 140" style="width:100%;margin-bottom:16px;display:block" fill="none">
-<rect x="30" y="15" width="70" height="95" rx="6" stroke="#a78bfa" stroke-width="1.2" opacity=".25" fill="rgba(167,139,250,.03)"/>
-<rect x="38" y="25" width="54" height="6" rx="2" fill="#a78bfa" opacity=".2"/><rect x="38" y="38" width="40" height="5" rx="2" fill="#a78bfa" opacity=".12"/><rect x="38" y="50" width="48" height="5" rx="2" fill="#a78bfa" opacity=".1"/><rect x="38" y="62" width="36" height="5" rx="2" fill="#a78bfa" opacity=".08"/>
-<rect x="120" y="15" width="70" height="95" rx="6" stroke="#a78bfa" stroke-width="1.2" opacity=".25" fill="rgba(167,139,250,.03)"/>
-<rect x="128" y="25" width="54" height="6" rx="2" fill="#a78bfa" opacity=".2"/><rect x="128" y="38" width="40" height="5" rx="2" fill="#a78bfa" opacity=".12"/>
-<rect x="210" y="15" width="70" height="95" rx="6" stroke="#a78bfa" stroke-width="1.2" opacity=".25" fill="rgba(167,139,250,.03)"/>
-<rect x="218" y="25" width="54" height="6" rx="2" fill="#a78bfa" opacity=".2"/>
-<path d="M100,62 L120,62 M190,62 L210,62" stroke="#a78bfa" stroke-width="1" opacity=".2" stroke-dasharray="3 3"/>
-<text x="385" y="75" fill="#8585a0" font-size="10" font-family="JetBrains Mono" text-anchor="end" opacity=".5">system</text>
+<!-- Illustration: architectural blueprint — layered system diagram -->
+<svg viewBox="0 0 400 200" style="width:100%;margin-bottom:20px;display:block" fill="none">
+<!-- Faint blueprint grid -->
+<line x1="20" y1="30" x2="380" y2="30" stroke="#a78bfa" stroke-width=".25" opacity=".06"/>
+<line x1="20" y1="65" x2="380" y2="65" stroke="#a78bfa" stroke-width=".25" opacity=".06"/>
+<line x1="20" y1="100" x2="380" y2="100" stroke="#a78bfa" stroke-width=".25" opacity=".06"/>
+<line x1="20" y1="135" x2="380" y2="135" stroke="#a78bfa" stroke-width=".25" opacity=".06"/>
+<line x1="20" y1="170" x2="380" y2="170" stroke="#a78bfa" stroke-width=".25" opacity=".06"/>
+<!-- Layer 1: IA structure -->
+<rect x="30" y="22" width="100" height="50" rx="6" stroke="#a78bfa" stroke-width=".8" opacity=".18" fill="rgba(167,139,250,.02)"/>
+<rect x="38" y="32" width="65" height="4" rx="1.5" fill="#a78bfa" opacity=".15"/>
+<rect x="38" y="42" width="48" height="3" rx="1" fill="#a78bfa" opacity=".08"/>
+<rect x="38" y="50" width="55" height="3" rx="1" fill="#a78bfa" opacity=".06"/>
+<text x="38" y="66" fill="#a78bfa" font-size="6" font-family="JetBrains Mono" opacity=".2">layer.ia</text>
+<!-- Layer 2: component system -->
+<rect x="150" y="55" width="100" height="55" rx="6" stroke="#a78bfa" stroke-width=".8" opacity=".2" fill="rgba(167,139,250,.02)"/>
+<rect x="160" y="68" width="32" height="28" rx="4" stroke="#a78bfa" stroke-width=".5" opacity=".12" fill="rgba(167,139,250,.015)"/>
+<rect x="200" y="68" width="32" height="28" rx="4" stroke="#a78bfa" stroke-width=".5" opacity=".12" fill="rgba(167,139,250,.015)"/>
+<rect x="164" y="74" width="24" height="3" rx="1" fill="#a78bfa" opacity=".1"/><rect x="204" y="74" width="24" height="3" rx="1" fill="#a78bfa" opacity=".1"/>
+<rect x="164" y="82" width="18" height="2" rx="1" fill="#a78bfa" opacity=".06"/><rect x="204" y="82" width="18" height="2" rx="1" fill="#a78bfa" opacity=".06"/>
+<text x="160" y="106" fill="#a78bfa" font-size="6" font-family="JetBrains Mono" opacity=".2">layer.components</text>
+<!-- Layer 3: decision flow -->
+<rect x="270" y="90" width="100" height="55" rx="6" stroke="#a78bfa" stroke-width=".8" opacity=".22" fill="rgba(167,139,250,.02)"/>
+<circle cx="295" cy="112" r="6" stroke="#a78bfa" stroke-width=".5" opacity=".15" fill="rgba(167,139,250,.03)"/>
+<path d="M301,112 L322,112" stroke="#a78bfa" stroke-width=".5" opacity=".12"/>
+<circle cx="330" cy="105" r="4" stroke="#a78bfa" stroke-width=".5" opacity=".12" fill="rgba(167,139,250,.02)"/>
+<circle cx="330" cy="120" r="4" stroke="#a78bfa" stroke-width=".5" opacity=".12" fill="rgba(167,139,250,.02)"/>
+<path d="M322,112 L326,105 M322,112 L326,120" stroke="#a78bfa" stroke-width=".4" opacity=".1"/>
+<path d="M334,105 L348,105 M334,120 L348,120" stroke="#a78bfa" stroke-width=".4" opacity=".08" stroke-dasharray="2 2"/>
+<text x="280" y="141" fill="#a78bfa" font-size="6" font-family="JetBrains Mono" opacity=".2">layer.decisions</text>
+<!-- Connecting flow between layers -->
+<path d="M130,47 Q140,55 150,68" stroke="#a78bfa" stroke-width=".5" opacity=".1" stroke-dasharray="3 4"/>
+<path d="M250,85 Q260,88 270,100" stroke="#a78bfa" stroke-width=".5" opacity=".1" stroke-dasharray="3 4"/>
+<!-- Output node -->
+<circle cx="330" cy="170" r="3" fill="#a78bfa" opacity=".2"><animate attributeName="opacity" values=".15;.35;.15" dur="3.5s" repeatCount="indefinite"/></circle>
+<path d="M330,145 L330,167" stroke="#a78bfa" stroke-width=".4" opacity=".1" stroke-dasharray="2 3"/>
+<text x="390" y="105" fill="#8585a0" font-size="9" font-family="JetBrains Mono" text-anchor="end" opacity=".4">system</text>
 </svg>
 <div class="tk__head">
 <span class="tk__num" style="color:var(--pu)">03</span>
 <h3 class="tk__h">Architect</h3>
 </div>
 <p class="tk__p">Structure before surface. Information architecture, decision flows, and component logic come first. Screens are the last thing I design, not the first.</p>
-<p class="tk__proof"><strong>RetailNorm.</strong> Dual-view architecture (executive + technical), confidence scoring, PDF export. All validated before code.</p>
+<p class="tk__proof"><strong>ShelfFlow.</strong> 6 workflow stages, 4 decision gates, 6 AI agents. Every human approval mapped before a single screen was designed. <strong>RetailNorm.</strong> Dual-view architecture (executive + technical), confidence scoring, PDF export. All validated before code.</p>
 </div>
 </div>
 
@@ -867,15 +926,31 @@ function go(n){
 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--am)" stroke-width="1.5"><polyline points="4,18 8,12 12,15 16,8 20,5" opacity=".5" fill="none" stroke-linecap="round"/><circle cx="20" cy="5" r="2" fill="var(--am)" opacity=".6" stroke="none"/></svg>
 </div>
 <div class="tk__card" style="--card-accent:var(--am);--card-glow:var(--amg)">
-<!-- Illustration: chart going up, data signals -->
-<svg viewBox="0 0 400 140" style="width:100%;margin-bottom:16px;display:block" fill="none">
-<line x1="40" y1="120" x2="360" y2="120" stroke="#8585a0" stroke-width=".6" opacity=".2"/>
-<polyline points="60,105 100,90 140,95 180,72 220,65 260,48 300,38 340,22" stroke="#22c55e" stroke-width="2" opacity=".5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="60,100 100,96 140,92 180,85 220,80 260,76 300,72 340,68" stroke="#8585a0" stroke-width="1" opacity=".15" fill="none" stroke-dasharray="4 4"/>
-<circle cx="340" cy="22" r="4.5" fill="#22c55e" opacity=".5"><animate attributeName="opacity" values=".3;.7;.3" dur="2s" repeatCount="indefinite"/></circle>
-<rect x="248" y="10" width="60" height="24" rx="4" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.2)" stroke-width=".6"/>
-<text x="278" y="26" text-anchor="middle" fill="#22c55e" font-size="9" font-family="JetBrains Mono" opacity=".7">+11%</text>
-<text x="385" y="75" fill="#8585a0" font-size="10" font-family="JetBrains Mono" text-anchor="end" opacity=".5">signal</text>
+<!-- Illustration: multi-layer data validation chart -->
+<svg viewBox="0 0 400 200" style="width:100%;margin-bottom:20px;display:block" fill="none">
+<!-- Axis -->
+<line x1="35" y1="172" x2="370" y2="172" stroke="#8585a0" stroke-width=".4" opacity=".1"/>
+<line x1="35" y1="35" x2="35" y2="172" stroke="#8585a0" stroke-width=".3" opacity=".06"/>
+<!-- Horizontal guides -->
+<line x1="35" y1="130" x2="370" y2="130" stroke="#8585a0" stroke-width=".2" opacity=".05"/>
+<line x1="35" y1="90" x2="370" y2="90" stroke="#8585a0" stroke-width=".2" opacity=".05"/>
+<line x1="35" y1="55" x2="370" y2="55" stroke="#8585a0" stroke-width=".2" opacity=".05"/>
+<!-- Confidence band -->
+<path d="M55,152 Q105,145 145,148 Q190,135 235,120 Q275,100 315,80 Q345,65 360,50 L360,72 Q345,82 315,98 Q275,118 235,138 Q190,150 145,158 Q105,158 55,162 Z" fill="rgba(34,197,94,.035)"/>
+<!-- Baseline trend -->
+<polyline points="55,155 105,152 145,150 190,148 235,145 275,143 315,140 360,138" stroke="#8585a0" stroke-width=".7" opacity=".1" fill="none" stroke-dasharray="4 6"/>
+<!-- Signal line -->
+<polyline points="55,155 105,145 145,148 190,130 235,115 275,92 315,72 360,42" stroke="#22c55e" stroke-width="1.6" opacity=".45" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- Data points -->
+<circle cx="145" cy="148" r="2" fill="#22c55e" opacity=".25"/><circle cx="235" cy="115" r="2.5" fill="#22c55e" opacity=".3"/>
+<circle cx="315" cy="72" r="2.5" fill="#22c55e" opacity=".35"/>
+<circle cx="360" cy="42" r="3.5" fill="#22c55e" opacity=".5"><animate attributeName="opacity" values=".3;.6;.3" dur="2.5s" repeatCount="indefinite"/></circle>
+<!-- Metric callouts -->
+<rect x="288" y="44" width="48" height="18" rx="4" fill="rgba(34,197,94,.06)" stroke="rgba(34,197,94,.12)" stroke-width=".4"/>
+<text x="312" y="56" text-anchor="middle" fill="#22c55e" font-size="7.5" font-family="JetBrains Mono" opacity=".6">+11%</text>
+<rect x="205" y="90" width="40" height="15" rx="3" fill="rgba(245,158,11,.04)" stroke="rgba(245,158,11,.1)" stroke-width=".4"/>
+<text x="225" y="100" text-anchor="middle" fill="#f59e0b" font-size="6.5" font-family="JetBrains Mono" opacity=".45">4 mkts</text>
+<text x="390" y="105" fill="#8585a0" font-size="9" font-family="JetBrains Mono" text-anchor="end" opacity=".4">signal</text>
 </svg>
 <div class="tk__head">
 <span class="tk__num" style="color:var(--am)">04</span>
@@ -892,21 +967,40 @@ function go(n){
 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ac2)" stroke-width="1.5"><circle cx="12" cy="12" r="9" opacity=".3"/><circle cx="12" cy="12" r="5" opacity=".2"/><circle cx="12" cy="12" r="2" fill="var(--ac2)" opacity=".7" stroke="none"/></svg>
 </div>
 <div class="tk__card" style="--card-accent:var(--ac2);--card-glow:var(--acg)">
-<!-- Illustration: clean target, converged -->
-<svg viewBox="0 0 400 140" style="width:100%;margin-bottom:16px;display:block" fill="none">
-<circle cx="200" cy="70" r="52" stroke="#2dd4bf" stroke-width="1.2" opacity=".1"/>
-<circle cx="200" cy="70" r="35" stroke="#2dd4bf" stroke-width="1.2" opacity=".15"/>
-<circle cx="200" cy="70" r="18" stroke="#2dd4bf" stroke-width="1.2" opacity=".22"/>
-<circle cx="200" cy="70" r="6" fill="#2dd4bf" opacity=".6"><animate attributeName="opacity" values=".4;.8;.4" dur="2.5s" repeatCount="indefinite"/></circle>
-<circle cx="200" cy="70" r="6" fill="none" stroke="#2dd4bf" stroke-width="8" opacity=".06"><animate attributeName="r" values="6;30;6" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".1;0;.1" dur="3s" repeatCount="indefinite"/></circle>
-<text x="385" y="75" fill="#8585a0" font-size="10" font-family="JetBrains Mono" text-anchor="end" opacity=".5">feedback</text>
+<!-- Illustration: feedback loop — orbital convergence -->
+<svg viewBox="0 0 400 200" style="width:100%;margin-bottom:20px;display:block" fill="none">
+<!-- Outermost orbit -->
+<ellipse cx="200" cy="100" rx="140" ry="75" stroke="#2dd4bf" stroke-width=".4" opacity=".06"/>
+<!-- Orbit rings converging -->
+<ellipse cx="200" cy="100" rx="105" ry="58" stroke="#2dd4bf" stroke-width=".5" opacity=".08"/>
+<ellipse cx="200" cy="100" rx="72" ry="42" stroke="#2dd4bf" stroke-width=".6" opacity=".1"/>
+<ellipse cx="200" cy="100" rx="42" ry="25" stroke="#2dd4bf" stroke-width=".7" opacity=".14"/>
+<ellipse cx="200" cy="100" rx="18" ry="11" stroke="#2dd4bf" stroke-width=".8" opacity=".2"/>
+<!-- Travelling particle on outer orbit -->
+<circle r="2.5" fill="#2dd4bf" opacity=".3">
+<animateMotion dur="8s" repeatCount="indefinite" path="M200,25 A140,75 0 1,1 199.9,25"/>
+</circle>
+<!-- Travelling particle on mid orbit -->
+<circle r="2" fill="#2dd4bf" opacity=".35">
+<animateMotion dur="5s" repeatCount="indefinite" path="M200,58 A72,42 0 1,1 199.9,58"/>
+</circle>
+<!-- Feedback arrow arc (top-right) -->
+<path d="M295,60 A110,65 0 0,1 310,95" stroke="#2dd4bf" stroke-width=".6" opacity=".12"/>
+<path d="M308,89 L310,95 L304,93" stroke="#2dd4bf" stroke-width=".5" opacity=".15" fill="none"/>
+<!-- Feedback arrow arc (bottom-left) -->
+<path d="M105,140 A110,65 0 0,1 90,105" stroke="#2dd4bf" stroke-width=".6" opacity=".12"/>
+<path d="M92,111 L90,105 L96,107" stroke="#2dd4bf" stroke-width=".5" opacity=".15" fill="none"/>
+<!-- Center convergence point -->
+<circle cx="200" cy="100" r="5" fill="#2dd4bf" opacity=".5"><animate attributeName="opacity" values=".35;.7;.35" dur="3s" repeatCount="indefinite"/></circle>
+<circle cx="200" cy="100" r="5" fill="none" stroke="#2dd4bf" stroke-width="6" opacity=".04"><animate attributeName="r" values="5;22;5" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".06;0;.06" dur="4s" repeatCount="indefinite"/></circle>
+<text x="390" y="105" fill="#8585a0" font-size="9" font-family="JetBrains Mono" text-anchor="end" opacity=".4">feedback</text>
 </svg>
 <div class="tk__head">
 <span class="tk__num" style="color:var(--ac2)">05</span>
 <h3 class="tk__h">Close the loop</h3>
 </div>
 <p class="tk__p">Shipping is not a handoff. I stay close to the product after launch, reading session data and adjusting. The signal after release matters more than the plan before it.</p>
-<p class="tk__proof"><strong>RetailNorm, K&#332;DO, this portfolio.</strong> Shipped without an engineering team. Validated concept to live product in weeks.</p>
+<p class="tk__proof"><strong>ShelfFlow.</strong> 1 brief produces 36 retailer-ready content packages through gated human approvals. <strong>RetailNorm, K&#332;DO, this portfolio.</strong> Shipped without an engineering team. Validated concept to live product in weeks.</p>
 </div>
 </div>
 
