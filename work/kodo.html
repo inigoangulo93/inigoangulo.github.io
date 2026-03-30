@@ -103,7 +103,7 @@
     <span class="cs__section-num">02 The Real Problem</span>
     <h2 class="cs__section-h">v1 was a terminal log with 23 metrics per pair.</h2>
     <div class="cs__section-text">
-      <p>Complete information, zero decision clarity. At 2am with leveraged capital moving against the operator, the question isn't analytical &#8212; it's binary: "Am I okay right now?" The problem was never information. It was architecture.</p>
+      <p>Complete information, zero decision clarity. At 2am with leveraged capital moving against the operator, the question isn't analytical. It's binary: "Am I okay right now?" The problem was never information. It was architecture.</p>
     </div>
     <ul class="cs__list">
       <li><strong>Signals are ambiguous by nature.</strong> Non-stationary on-chain data, regime shifts, correlation breakdowns across token pairs. In crypto, hesitation has a cost. Overreaction has a cost.</li>
@@ -121,7 +121,7 @@
     </div>
     <div class="cs__evidence">
       <span class="cs__evidence-label">Evidence</span>
-      <span class="cs__evidence-text">v1 had perfect information &#8212; 23 metrics per pair including z-scores, half-lives, funding rates, and on-chain liquidity depth &#8212; and the operator couldn't act. v2 has a gate that decides autonomously and only surfaces what requires intervention. The shift: from "here's all the data" to "the system is handling it, here's what needs your attention."</span>
+      <span class="cs__evidence-text">v1 had perfect information, 23 metrics per pair including z-scores, half-lives, funding rates, and on-chain liquidity depth, and the operator couldn't act. v2 has a gate that decides autonomously and only surfaces what requires intervention. The shift: from "here's all the data" to "the system is handling it, here's what needs your attention."</span>
     </div>
       <p class="cs__img-cap">6-step signal pipeline. One number drives every decision: the z-score.</p>
 
@@ -242,7 +242,7 @@
           <td>Primary surface</td>
           <td>Telegram</td>
           <td>Dashboard</td>
-          <td>95% of interaction is "am I okay?" &#8212; phone notification answers it in 5 seconds.</td>
+          <td>95% of interaction is "am I okay?" A phone notification answers it in 5 seconds.</td>
         </tr>
         <tr>
           <td>Infrastructure</td>
@@ -621,7 +621,7 @@
     </div>
     <div class="cs__reflection" style="border-color:var(--dn);background:var(--dng)">
       <span class="cs__reflection-h" style="color:var(--dn)">What failed</span>
-      <span class="cs__reflection-text">The v1 dashboard was beautiful &#8212; detailed charts, full statistics. Completely useless at 2am. Redesign inverted hierarchy: system state first (GO/PAUSED/KILLED), not data. Also: the operator accidentally triggered /kill during a profitable run &#8212; added 2-step confirmation after. Also underestimated reconciliation &#8212; phantom positions from network timeouts during execution. Now runs every 5 ticks. On-chain reconciliation is non-negotiable in DeFi.</span>
+      <span class="cs__reflection-text">The v1 dashboard was beautiful, with detailed charts and full statistics. Completely useless at 2am. Redesign inverted hierarchy: system state first (GO/PAUSED/KILLED), not data. Also: the operator accidentally triggered /kill during a profitable run, so we added 2-step confirmation after. Also underestimated reconciliation. Phantom positions from network timeouts during execution. Now runs every 5 ticks. On-chain reconciliation is non-negotiable in DeFi.</span>
     </div>
   </div>
 

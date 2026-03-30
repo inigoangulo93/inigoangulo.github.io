@@ -115,7 +115,7 @@
       <p>Three problems were silently breaking every cross-platform report:</p>
     </div>
     <ul class="cs__list">
-      <li><strong>Attribution windows differ across platforms</strong> (7-day, 14-day, 30-day). Same campaign, different numbers. Not a bug &#8212; a structural incompatibility.</li>
+      <li><strong>Attribution windows differ across platforms</strong> (7-day, 14-day, 30-day). Same campaign, different numbers. Not a bug, but a structural incompatibility.</li>
       <li><strong>Media planners spend 2&#8211;4 hours per client per week</strong> on manual Excel normalization. None trust their macros.</li>
       <li><strong>No engineering team.</strong> Solo designer. Every architectural decision had to be simple enough to maintain alone.</li>
     </ul>
@@ -129,7 +129,7 @@
   <!-- 03: Insight -->
   <div class="cs__section" id="s03" data-reveal>
     <span class="cs__section-num">03 Key Insight</span>
-    <h2 class="cs__section-h">Agencies don&#8217;t buy tools &#8212; they buy deliverables.</h2>
+    <h2 class="cs__section-h">Agencies don&#8217;t buy tools. They buy deliverables.</h2>
     <div class="cs__section-text">
       <p>The PDF report wasn&#8217;t a feature, it was the product. Concierge validation (manually delivering Excel reports) taught me this before I opened Figma. If I&#8217;d started with the dashboard, I would have built the wrong thing.</p>
     </div>
@@ -150,7 +150,7 @@
 
     <div class="cs__section-text">
       <p><strong>1. Built a normalization engine</strong></p>
-      <p>Upload CSVs from any platform. Get comparable ROAS in seconds. Normalizes to 7-day last-click (strictest standard). Every normalized number is lower than what agencies are used to &#8212; intentional. The explanation of why is the strongest trust signal.</p>
+      <p>Upload CSVs from any platform. Get comparable ROAS in seconds. Normalizes to 7-day last-click (strictest standard). Every normalized number is lower than what agencies are used to, and that is intentional. The explanation of why is the strongest trust signal.</p>
     </div>
 
     <div class="cs__section-text" style="margin-top:28px">
@@ -223,7 +223,7 @@
           <td>Normalization baseline</td>
           <td>7-day last-click (strictest)</td>
           <td>14-day (Amazon default)</td>
-          <td>Lower numbers force the &#8220;why&#8221; conversation &#8212; strongest trust signal</td>
+          <td>Lower numbers force the &#8220;why&#8221; conversation, the strongest trust signal</td>
         </tr>
         <tr>
           <td>Uncertainty display</td>
@@ -269,11 +269,11 @@
     <h2 class="cs__section-h">The most impactful work was deciding what I refused to build.</h2>
     <div class="cs__reflection">
       <span class="cs__reflection-h">The pattern</span>
-      <span class="cs__reflection-text">Design the output artifact before the interface. Make uncertainty visible instead of hiding it. Validate the business model before opening a design tool. Treat architecture as a design decision, not an engineering detail. The dashboard is not the product &#8212; the artifact the dashboard produces is.</span>
+      <span class="cs__reflection-text">Design the output artifact before the interface. Make uncertainty visible instead of hiding it. Validate the business model before opening a design tool. Treat architecture as a design decision, not an engineering detail. The dashboard is not the product. The artifact the dashboard produces is.</span>
     </div>
     <div class="cs__reflection" style="border-color:var(--dn);background:var(--dng)">
       <span class="cs__reflection-h" style="color:var(--dn)">What failed</span>
-      <span class="cs__reflection-text">First version was an API (upload CSV, get JSON) &#8212; agencies don&#8217;t use endpoints, they use screens on Monday morning. Pivoted to dashboard-first in sprint 1. Also budgeted 1 week for CSV parsing, took 3 &#8212; Amazon headers change by report type. Also dark theme default was designer preference, not user context &#8212; users needed light mode for client presentations.</span>
+      <span class="cs__reflection-text">First version was an API (upload CSV, get JSON), but agencies don&#8217;t use endpoints. They use screens on Monday morning. Pivoted to dashboard-first in sprint 1. Also budgeted 1 week for CSV parsing, took 3 because Amazon headers change by report type. Also dark theme default was designer preference, not user context. Users needed light mode for client presentations.</span>
     </div>
   </div>
 
