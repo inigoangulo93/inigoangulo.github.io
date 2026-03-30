@@ -252,15 +252,18 @@ img{max-width:100%;height:auto}
   .cs__section-text{font-size:14px}
 
   /* Images — constrain everything */
-  .cs__img--wide{margin:20px 0;border-radius:12px}
-  .cs__img{margin:20px 0}
-  .cs__img-cap{margin-bottom:16px;padding-top:10px}
+  .cs__img--wide{margin:20px 0 12px;border-radius:12px}
+  .cs__img{margin:20px 0 12px;position:relative;z-index:1}
+  .cs__img img{display:block;width:100%;height:auto}
+  .cs__img-cap{margin-bottom:20px;padding-top:10px;position:relative;z-index:2}
 
   .cs__list li{font-size:14px}
 
   /* Screen grids */
-  .cs__screens{grid-template-columns:1fr;gap:12px;margin:16px 0}
-  .cs__screen-label{font-size:14px;padding:8px 12px}
+  .cs__screens{grid-template-columns:1fr;gap:14px;margin:16px 0 12px}
+  .cs__screen{position:relative;z-index:1}
+  .cs__screen img{display:block;width:100%;height:auto}
+  .cs__screen-label{font-size:14px;padding:8px 12px;position:relative;z-index:2;background:var(--bg2);display:block}
 
   /* Mobile pairs — HORIZONTAL SCROLL with snap */
   .cs__mobile-pair{
