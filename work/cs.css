@@ -224,6 +224,7 @@ img{max-width:100%;height:auto}
 @media(max-width:768px){
   .cs-bar__inner{padding:0 16px}
   .cs-bar__section{display:none}
+  .cs-bar__title{position:static;transform:none;margin-left:auto}
   .cs{padding:24px 16px 56px;overflow-x:hidden;width:100%;box-sizing:border-box}
 
   /* TLDR */
