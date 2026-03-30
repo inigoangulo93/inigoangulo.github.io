@@ -250,10 +250,14 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .cd__chip--g{color:var(--up)}.cd__chip--b{color:var(--ac2)}.cd__chip--a{color:var(--am)}.cd__chip--p{color:var(--pu)}
 .cd__peek{display:none}
 .cd__body{padding:20px 24px 24px;flex:1;display:flex;flex-direction:column;gap:6px}
+.cd--f .cd__body{padding:24px 28px 28px;gap:8px}
 .cd__type{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px;align-items:center}
-.cd__name{font-family:var(--s);font-size:1.3rem;font-weight:800;line-height:1.2;letter-spacing:-.03em}.cd--f .cd__name{font-size:1.5rem}
+.cd--f .cd__type{gap:6px;margin-bottom:8px}
+.cd__name{font-family:var(--s);font-size:1.3rem;font-weight:800;line-height:1.2;letter-spacing:-.03em}.cd--f .cd__name{font-size:1.5rem;margin-bottom:4px}
 .cd__desc{font-family:var(--s);font-size:.84rem;color:var(--t2);line-height:1.6;flex:1}
+.cd--f .cd__desc{font-size:.88rem;line-height:1.7;max-width:680px}
 .cd__foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:12px}
+.cd--f .cd__foot{padding-top:16px}
 .cd__yr{font-size:.75rem;color:var(--ac2);font-weight:500}.cd__go{font-size:.85rem;color:var(--ac2);transition:color .2s,transform .2s,text-shadow .3s;opacity:.7}
 .cd:hover .cd__go{color:var(--ac2);transform:translateX(5px);text-shadow:0 0 10px var(--acg);opacity:1}
 
@@ -745,7 +749,7 @@ function go(n){
 
 <div class="layer layer--raised"><div class="mx"><div class="sh"><span>// work</span></div>
 <div class="cards">
-<a href="work/shelfflow.html" class="cd cd--f cd--5"><div class="cd__img"><img src="img/shelfflow/cover.png" alt="ShelfFlow platform overview" style="width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">Enterprise Commerce</span><span class="cd__tag cd__tag--what">Agentic AI Tool</span><span class="cd__tag cd__tag--what">Workflow Design</span><span class="cd__tag cd__tag--what">Commerce</span></div><h3 class="cd__name">ShelfFlow</h3><p class="cd__desc">Enterprise teams were losing weeks coordinating content across retailers, SKUs, and markets. I designed the workflow operating system: AI-assisted generation, human-gated approvals, multi-retailer deployment. 6 stages, 4 decision gates, 36 content packages per brief.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
+<a href="work/shelfflow.html" class="cd cd--f cd--5"><div class="cd__img"><img src="img/shelfflow/cover.png" alt="ShelfFlow platform overview" style="width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--what">B2B SaaS</span><span class="cd__tag cd__tag--what">AI-Assisted Workflow</span><span class="cd__tag cd__tag--what">Human-in-the-Loop</span><span class="cd__tag cd__tag--what">Content Operations</span></div><h3 class="cd__name">ShelfFlow</h3><p class="cd__desc">Retail content operations had become slow, fragmented and impossible to scale. I designed the workflow operating system that turned complex brief creation, approvals and multi-retailer deployment into one structured AI-assisted flow.</p><div class="cd__foot"><span class="cd__yr">View case study</span><span class="cd__go">&#8594;</span></div></div></a>
 <a href="work/retailnorm.html" class="cd cd--1"><div class="cd__img"><img src="img/Retailnorm.png" alt="RetailNorm dashboard" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--what">Commerce</span><span class="cd__tag cd__tag--what">Dashboards</span><span class="cd__tag cd__tag--live">Live</span></div><h3 class="cd__name">RetailNorm</h3><p class="cd__desc">Cross-platform retail media analytics. Normalized incomparable ROAS data into a single trustworthy view. 40x faster reporting. Live product.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
 <div class="cards__side">
 <a href="work/checkout.html" class="cd cd--3"><div class="cd__img"><img src="img/gyg-checkoutfunnel.jpeg" alt="GetYourGuide checkout redesign" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">GetYourGuide</span><span class="cd__tag cd__tag--what">Growth &amp; CRO</span><span class="cd__tag cd__tag--result">+11% Conversion</span></div><h3 class="cd__name">Checkout Funnel Redesign</h3><p class="cd__desc">The team was optimizing the wrong step. 38% of converters left checkout and came back with no re-entry experience. The problem wasn't payment. It was the gap nobody measured. +11 pts, 4 EU markets.</p><div class="cd__foot"><span class="cd__yr">Read case study</span><span class="cd__go">&#8594;</span></div></div></a>
@@ -768,7 +772,7 @@ function go(n){
 <p style="font-family:var(--m);font-size:.62rem;color:var(--ac);text-transform:uppercase;letter-spacing:.22em;margin-bottom:28px">Process</p>
 <h2 style="font-family:var(--s);font-size:3rem;font-weight:300;letter-spacing:-.03em;line-height:1.12;margin-bottom:8px;color:var(--t2)">From ambiguity</h2>
 <h2 style="font-family:var(--s);font-size:3rem;font-weight:300;letter-spacing:-.03em;line-height:1.12;margin-bottom:28px;color:var(--t2)">to <span style="font-weight:800;color:var(--t1)">measurable</span> <em style="font-weight:800;font-style:italic;color:var(--ac2);text-shadow:0 0 40px var(--acg)">outcome.</em></h2>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t3);line-height:1.75;max-width:480px;margin:0 auto">Every engagement follows this arc. The order matters&mdash;each phase feeds the next.</p>
+<p style="font-family:var(--s);font-size:.92rem;color:var(--t3);line-height:1.75;max-width:480px;margin:0 auto">Every engagement follows this arc. The order matters. Each phase feeds the next.</p>
 </div>
 
 
@@ -867,7 +871,7 @@ function go(n){
 <div class="tk__chips">
 <span class="tk__chip" style="--chip-c:var(--pu);--chip-bg:var(--pug);--chip-b:rgba(167,139,250,.2)">Figma</span><span class="tk__chip" style="--chip-c:var(--pu);--chip-bg:var(--pug);--chip-b:rgba(167,139,250,.2)">FigJam</span><span class="tk__chip" style="--chip-c:var(--pu);--chip-bg:var(--pug);--chip-b:rgba(167,139,250,.2)">Framer</span><span class="tk__chip" style="--chip-c:var(--ac);--chip-bg:var(--acg2);--chip-b:var(--acb)">Design Systems</span><span class="tk__chip" style="--chip-c:var(--ac);--chip-bg:var(--acg2);--chip-b:var(--acb)">Prototyping</span><span class="tk__chip" style="--chip-c:var(--ac);--chip-bg:var(--acg2);--chip-b:var(--acb)">Information Architecture</span>
 </div>
-<div class="tk__aside"><span style="color:var(--pu);font-weight:600">Case:</span> RetailNorm. Designed the normalization engine UI: dual-view architecture (executive + technical), confidence scoring, PDF export&mdash;all validated before code.</div>
+<div class="tk__aside"><span style="color:var(--pu);font-weight:600">Case:</span> RetailNorm. Designed the normalization engine UI: dual-view architecture (executive + technical), confidence scoring, PDF export. All validated before code.</div>
 </div>
 </div>
 </div>
