@@ -164,7 +164,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 
 /* layers + depth */
 .vp{padding-top:48px;min-height:100vh;position:relative;z-index:1}
-.v{display:none;padding:0}.v.on{display:block;animation:fade .3s var(--e)}
+.v{display:none;padding:0}.v.on{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .layer{padding:56px 24px;position:relative}
 .layer--raised{background:var(--bg2);border-top:1px solid var(--b1);border-bottom:1px solid var(--b1)}
@@ -692,7 +692,7 @@ function go(n){
   document.querySelectorAll('.v').forEach(function(v){v.classList.remove('on')});
   document.querySelectorAll('.bar__btn').forEach(function(b){b.classList.remove('on')});
   var t=document.getElementById('v-'+n);
-  if(t){t.classList.add('on');t.style.animation='none';t.offsetHeight;t.style.animation=''}
+  if(t){t.classList.add('on');t.style.animation='none';t.offsetHeight;t.style.animation='fade .3s var(--e)'}
   document.querySelectorAll('.bar__btn').forEach(function(b){if(b.dataset.v===n)b.classList.add('on')});
   window.scrollTo({top:0,behavior:'instant'});
 }
