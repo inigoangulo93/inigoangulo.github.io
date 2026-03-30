@@ -105,7 +105,7 @@ img{max-width:100%;height:auto}
 .cs__img:hover{border-color:var(--b3);box-shadow:0 20px 60px rgba(0,0,0,.35),0 0 0 1px var(--b3)}
 .cs__img img{width:100%;height:auto;display:block}
 .cs__img--wide{margin:40px 0;border-radius:16px}
-.cs__img-cap{font-size:.72rem;color:var(--t2);text-align:center;padding:14px 0 0;letter-spacing:.03em;line-height:1.5}
+.cs__img-cap{font-size:.72rem;color:var(--t2);text-align:center;padding:14px 0 0;margin-bottom:8px;letter-spacing:.03em;line-height:1.5}
 
 /* ─── Screen pairs / grids ─── */
 .cs__screens{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0}
@@ -254,12 +254,13 @@ img{max-width:100%;height:auto}
   /* Images — constrain everything */
   .cs__img--wide{margin:20px 0;border-radius:12px}
   .cs__img{margin:20px 0}
+  .cs__img-cap{margin-bottom:16px;padding-top:10px}
 
   .cs__list li{font-size:14px}
 
   /* Screen grids */
-  .cs__screens{grid-template-columns:1fr;gap:12px}
-  .cs__screen-label{font-size:14px}
+  .cs__screens{grid-template-columns:1fr;gap:12px;margin:16px 0}
+  .cs__screen-label{font-size:14px;padding:8px 12px}
 
   /* Mobile pairs — HORIZONTAL SCROLL with snap */
   .cs__mobile-pair{
