@@ -77,7 +77,326 @@
   <!-- Hero visual -->
   <div class="cs__img cs__img--wide" data-reveal><img src="../img/shekffkow-cover.png" alt="ShelfFlow platform overview"></div>
 
-  <!-- SECTIONS CONTINUE BELOW -->
+  <!-- Commerce Workspace -->
+  <div class="cs__img" data-reveal><img src="../img/Shelfmaster product UI (7).png" alt="ShelfFlow Commerce Workspace dashboard"></div>
+  <p class="cs__img-cap">Commerce Workspace: active briefs, pipeline overview, and AI tools in one surface.</p>
+
+  <!-- 01: Problem -->
+  <div class="cs__section" id="s01" data-reveal>
+    <span class="cs__section-num">01 Problem</span>
+    <h2 class="cs__section-h">Enterprise commerce teams were producing content manually, SKU by SKU, retailer by retailer. It didn't scale.</h2>
+    <div class="cs__section-text">
+      <p>A single product launch at an enterprise CPG company generates content across <strong>multiple SKUs, multiple retailers, and multiple markets</strong>. Each retailer has different spec requirements, character limits, image guidelines, and compliance rules. The content team was doing this by hand.</p>
+      <p>One brief would take weeks to turn into retailer-ready packages. Errors compounded. Versioning was manual. Approvals happened over email threads no one could follow. The bottleneck wasn't creativity &#8212; it was coordination.</p>
+    </div>
+    <ul class="cs__list">
+      <li><strong>6 SKUs &#215; 6 retailers = 36 content packages</strong> from a single product brief. Each with unique spec requirements.</li>
+      <li><strong>No single source of truth.</strong> Content lived in spreadsheets, email threads, and shared drives. Version conflicts were constant.</li>
+      <li><strong>Approval chains were invisible.</strong> No one knew who had approved what, or what was still pending. Launches slipped.</li>
+      <li><strong>AI tools existed but weren't trusted.</strong> Teams experimented with generative AI but had no governance model. Nothing AI-generated shipped without manual rewriting.</li>
+    </ul>
+  </div>
+
+  <!-- 02: Insight -->
+  <div class="cs__section" id="s02" data-reveal>
+    <span class="cs__section-num">02 Insight</span>
+    <h2 class="cs__section-h">The problem wasn't content generation. It was decision architecture. Who approves what, when, and with what authority.</h2>
+    <div class="cs__section-text">
+      <p>Every enterprise content workflow has the same hidden structure: a series of <strong>decision gates</strong> where someone must say yes or no before work moves forward. The teams I observed didn't lack tools &#8212; they lacked a system that made decision authority explicit.</p>
+      <p>AI could accelerate the generation phase, but only if humans retained clear authority over what ships. The insight: <strong>design the decision architecture first, then embed AI as an accelerator within it.</strong></p>
+    </div>
+    <div class="cs__evidence">
+      <span class="cs__evidence-label">Evidence</span>
+      <span class="cs__evidence-text">Stakeholder interviews revealed that 70% of delays weren't in content creation &#8212; they were in approval ambiguity. "Who needs to sign off on this?" was the most common question. The workflow needed explicit gates, not faster drafting.</span>
+    </div>
+  </div>
+
+  <!-- 03: System -->
+  <div class="cs__section" id="s03" data-reveal>
+    <span class="cs__section-num">03 System</span>
+    <h2 class="cs__section-h">One brief in, 36 retailer-ready packages out. Six stages, four decision gates, zero ambiguity.</h2>
+    <div class="cs__section-text">
+      <p>ShelfFlow is a structured workflow platform. It takes a single product brief and coordinates the entire content production pipeline across SKUs, retailers, and markets. The system has <strong>6 workflow stages</strong> with <strong>4 mandatory decision gates</strong> where human approval is required before content advances.</p>
+    </div>
+
+    <!-- 6-stage pipeline component -->
+    <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
+      <p style="font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px">Six-stage pipeline</p>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(45,212,191,.03);border:1px solid rgba(45,212,191,.08)"><span style="font-family:var(--m);font-size:12px;color:var(--ac);min-width:20px;font-weight:700">S1</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Brief Intake</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">Product brief parsed, SKU matrix generated</span></div>
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.12)"><span style="font-family:var(--m);font-size:12px;color:var(--ac);min-width:20px;font-weight:700">S2</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">AI Draft Generation</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 1: Brief approval</span></div>
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.1)"><span style="font-family:var(--m);font-size:12px;color:var(--am);min-width:20px;font-weight:700">S3</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Human Review &amp; Edit</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 2: Draft quality</span></div>
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.12)"><span style="font-family:var(--m);font-size:12px;color:var(--am);min-width:20px;font-weight:700">S4</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Retailer Adaptation</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">Specs, character limits, compliance</span></div>
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(167,139,250,.04);border:1px solid rgba(167,139,250,.1)"><span style="font-family:var(--m);font-size:12px;color:#a78bfa;min-width:20px;font-weight:700">S5</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Compliance &amp; Legal</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 3: Compliance sign-off</span></div>
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.1)"><span style="font-family:var(--m);font-size:12px;color:var(--up);min-width:20px;font-weight:700">S6</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Publish &amp; Distribute</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 4: Final launch approval</span></div>
+      </div>
+    </div>
+
+  <!-- Workflow architecture diagram -->
+  <div class="cs__img cs__img--wide" data-reveal><img src="../img/ShelfFlow01_workflow_architecture (1).png" alt="ShelfFlow workflow architecture: 6 stages, 4 decision gates"></div>
+  <p class="cs__img-cap">End-to-end workflow architecture. 6 stages, 4 decision gates, AI intelligence layer embedded throughout.</p>
+  </div>
+
+  <!-- 04: Workflow -->
+  <div class="cs__section" id="s04" data-reveal>
+    <span class="cs__section-num">04 Workflow</span>
+    <h2 class="cs__section-h">The operator interface: one screen to track 36 packages across 6 stages.</h2>
+    <div class="cs__section-text">
+      <p>The core interface is a <strong>workflow board</strong> where operators see every content package, its current stage, who owns it, and what's blocking it. Each package card shows its SKU, target retailer, current gate status, and AI confidence score.</p>
+      <p>The design principle: <strong>at any moment, an operator should be able to answer "what's blocking this launch?" in under 5 seconds.</strong> No drilling into sub-screens. No checking email. The board is the single source of truth.</p>
+    </div>
+    <ul class="cs__list">
+      <li><strong>Package cards</strong> show SKU, retailer, stage, owner, gate status, and time-in-stage. Color-coded by urgency.</li>
+      <li><strong>Batch operations</strong> let operators approve, reject, or reassign multiple packages at once. Critical when managing 36 packages per launch.</li>
+      <li><strong>Filters by retailer, SKU, or gate status</strong> so operators can focus on what needs attention now.</li>
+    </ul>
+
+  <!-- Brief intake -->
+  <div class="cs__screens" data-reveal>
+    <div class="cs__screen"><img src="../img/Shelfmaster product UI (8).png" alt="Brief intake form"><span class="cs__screen-label">S1 &#183; Brief intake &#8212; empty state</span></div>
+    <div class="cs__screen"><img src="../img/Shelfmaster product UI (9).png" alt="Brief with business context"><span class="cs__screen-label">S1 &#183; Brief filled &#8212; markets, brands, retailers</span></div>
+  </div>
+
+  <!-- Brief validation -->
+  <div class="cs__img" data-reveal><img src="../img/Shelfmaster product UI (10).png" alt="Brief validation side-by-side diff"></div>
+  <p class="cs__img-cap">Gate 1: Brief validation. Side-by-side diff &#8212; user brief vs. AI-enriched brief. Human confirms or edits before lock.</p>
+
+  <!-- Completeness check -->
+  <div class="cs__screens" data-reveal>
+    <div class="cs__screen"><img src="../img/Shelfmaster product UI (11).png" alt="Completeness check scanning SKUs"><span class="cs__screen-label">S3 &#183; Completeness scanning &#8212; AI analysing SKUs</span></div>
+    <div class="cs__screen"><img src="../img/Shelfmaster product UI (12).png" alt="Completeness results with gaps"><span class="cs__screen-label">S3 &#183; Results &#8212; 9 ready, 3 with gaps</span></div>
+  </div>
+
+  <div class="cs__img" data-reveal><img src="../img/Shelfmaster product UI (13).png" alt="SKU detail panel with gap flags"></div>
+  <p class="cs__img-cap">SKU detail panel: field-level gap tags, AI recommendation to fix, and one-click delegation to ops team.</p>
+
+  <!-- Content generation -->
+  <div class="cs__screens" data-reveal>
+    <div class="cs__screen"><img src="../img/Shelfmaster product UI (14).png" alt="Generate content empty state"><span class="cs__screen-label">S4 &#183; Generate &#8212; select SKUs, trigger AI</span></div>
+    <div class="cs__screen"><img src="../img/Shelfmaster product UI (15).png" alt="Building PDPs in progress"><span class="cs__screen-label">S4 &#183; Generating &#8212; A/B variants per retailer</span></div>
+  </div>
+
+  <!-- Retailer previews -->
+  <div class="cs__screens" data-reveal>
+    <div class="cs__screen"><img src="../img/Shelfmaster product UI (1).png" alt="Amazon PDP preview"><span class="cs__screen-label">Amazon &#183; Full-fidelity PDP preview</span></div>
+    <div class="cs__screen"><img src="../img/Shelfmaster product UI (3).png" alt="Sephora PDP preview"><span class="cs__screen-label">Sephora &#183; Adapted to retailer format</span></div>
+  </div>
+  <div class="cs__screens" data-reveal>
+    <div class="cs__screen"><img src="../img/Shelfmaster product UI (4).png" alt="Walmart PDP preview"><span class="cs__screen-label">Walmart &#183; Marketplace specs applied</span></div>
+    <div class="cs__screen"><img src="../img/Shelfmaster product UI (2).png" alt="Amazon enhanced content"><span class="cs__screen-label">Amazon &#183; Enhanced variant (Option B)</span></div>
+  </div>
+  <p class="cs__img-cap">Same SKU, three retailers, completely different specs. Each preview renders in the retailer's actual page layout.</p>
+
+  <!-- Review and approve -->
+  <div class="cs__img" data-reveal><img src="../img/Shelfmaster product UI (5).png" alt="Review and approve matrix"></div>
+  <p class="cs__img-cap">Gate 4: Full matrix review. Per-cell approval &#8212; 18 human decisions, every SKU &#215; retailer combination. "Approve for Launch" is the final gate.</p>
+
+  <!-- Launch -->
+  <div class="cs__img" data-reveal><img src="../img/Shelfmaster product UI (6).png" alt="Push to retailers launch screen"></div>
+  <p class="cs__img-cap">S6: Launch. Package assembled, SKU names mapped to retailer IDs, push to retailers via API. Point of no return.</p>
+
+  <!-- User journey diagram -->
+  <div class="cs__img cs__img--wide" data-reveal><img src="../img/ShelfFlow01_workflow_architecture (7).png" alt="Detailed user journey with happy path and exception handling"></div>
+  <p class="cs__img-cap">Detailed user journey: happy path, branching decisions, rejection loops, and recovery flows across all 6 stages.</p>
+  </div>
+
+  <!-- 05: States -->
+  <div class="cs__section" id="s05" data-reveal>
+    <span class="cs__section-num">05 States</span>
+    <h2 class="cs__section-h">Every content package has a state machine. No package moves without an explicit transition.</h2>
+    <div class="cs__section-text">
+      <p>Each of the 36 content packages operates as an independent state machine. States are explicit, transitions are guarded by gate conditions, and every state change is logged with who triggered it and why.</p>
+    </div>
+
+    <!-- State machine component -->
+    <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
+      <p style="font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px">Content package states</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+        <div style="padding:14px;border-radius:6px;background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.12);text-align:center"><span style="font-family:var(--s);font-size:14px;font-weight:700;color:#5eead4;display:block">Draft</span><span style="font-family:var(--m);font-size:12px;color:var(--t3)">AI-generated</span><span style="font-family:var(--s);font-size:12px;color:var(--t2);display:block;margin-top:4px">Awaiting review</span></div>
+        <div style="padding:14px;border-radius:6px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.12);text-align:center"><span style="font-family:var(--s);font-size:14px;font-weight:700;color:#f59e0b;display:block">In Review</span><span style="font-family:var(--m);font-size:12px;color:var(--t3)">Human editing</span><span style="font-family:var(--s);font-size:12px;color:var(--t2);display:block;margin-top:4px">Owner assigned</span></div>
+        <div style="padding:14px;border-radius:6px;background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.12);text-align:center"><span style="font-family:var(--s);font-size:14px;font-weight:700;color:#a78bfa;display:block">Approved</span><span style="font-family:var(--m);font-size:12px;color:var(--t3)">Gate passed</span><span style="font-family:var(--s);font-size:12px;color:var(--t2);display:block;margin-top:4px">Ready for next stage</span></div>
+        <div style="padding:14px;border-radius:6px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.12);text-align:center"><span style="font-family:var(--s);font-size:14px;font-weight:700;color:#22c55e;display:block">Published</span><span style="font-family:var(--m);font-size:12px;color:var(--t3)">Retailer-live</span><span style="font-family:var(--s);font-size:12px;color:var(--t2);display:block;margin-top:4px">Audit trail complete</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px">
+        <div style="padding:14px;border-radius:6px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.12);text-align:center"><span style="font-family:var(--s);font-size:14px;font-weight:700;color:#ef4444;display:block">Rejected</span><span style="font-family:var(--m);font-size:12px;color:var(--t3)">Gate failed</span><span style="font-family:var(--s);font-size:12px;color:var(--t2);display:block;margin-top:4px">Returns to previous stage with notes</span></div>
+        <div style="padding:14px;border-radius:6px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.08);text-align:center"><span style="font-family:var(--s);font-size:14px;font-weight:700;color:#ef4444;display:block">Blocked</span><span style="font-family:var(--m);font-size:12px;color:var(--t3)">Dependency unmet</span><span style="font-family:var(--s);font-size:12px;color:var(--t2);display:block;margin-top:4px">Waiting on external input</span></div>
+      </div>
+    </div>
+
+    <div class="cs__evidence">
+      <span class="cs__evidence-label">Design rationale</span>
+      <span class="cs__evidence-text">Every state transition is logged: who, when, why. Rejected packages carry reviewer notes back to the previous stage. No silent failures. No packages stuck in limbo. The state machine is the accountability layer.</span>
+    </div>
+
+  <!-- SKU lifecycle state machine -->
+  <div class="cs__img cs__img--wide" data-reveal><img src="../img/ShelfFlow01_workflow_architecture (8).png" alt="SKU lifecycle state machine diagram"></div>
+  <p class="cs__img-cap">SKU lifecycle: 8 possible states, 2 loops (fix + re-scan), per-retailer approval. 36 parallel state machines converging to a single launch.</p>
+  </div>
+
+  <!-- 06: Decisions -->
+  <div class="cs__section" id="s06" data-reveal>
+    <span class="cs__section-num">06 Decisions</span>
+    <h2 class="cs__section-h">What trade-offs did I make?</h2>
+    <div class="cs__section-text">
+      <p>Every decision involved choosing between speed and control. In enterprise commerce, the cost of shipping wrong content to a retailer is higher than the cost of one more approval step.</p>
+    </div>
+    <div class="cs__decisions-wrap"><table class="cs__decisions">
+      <thead><tr><th>Decision</th><th>Chosen</th><th>Rejected</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>AI authority</td>
+          <td>Draft-only (never ships)</td>
+          <td>Auto-publish with confidence threshold</td>
+          <td>Enterprise compliance requires human sign-off. AI that ships autonomously is a liability, not a feature.</td>
+        </tr>
+        <tr>
+          <td>Gate model</td>
+          <td>4 mandatory gates, no bypass</td>
+          <td>Flexible approval chains</td>
+          <td>Flexibility introduces ambiguity. "Who approved this?" must always have one answer.</td>
+        </tr>
+        <tr>
+          <td>Package granularity</td>
+          <td>1 package = 1 SKU &#215; 1 retailer</td>
+          <td>Grouped by SKU or by retailer</td>
+          <td>Retailer specs diverge too much. Grouping hides critical differences. Granular = traceable.</td>
+        </tr>
+        <tr>
+          <td>State machine</td>
+          <td>Explicit states, logged transitions</td>
+          <td>Implicit progress tracking</td>
+          <td>When a retailer asks "who approved this copy?", the system must answer in seconds, not hours.</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+  <!-- Decision authority map -->
+  <div class="cs__img cs__img--wide" data-reveal><img src="../img/ShelfFlow01_workflow_architecture (9).png" alt="Decision authority map"></div>
+  <p class="cs__img-cap">Decision authority map: who owns which decisions across the workflow. AI agents act autonomously between gates &#8212; humans own every approval that ships.</p>
+  </div>
+
+  <!-- 07: AI Layer -->
+  <div class="cs__section" id="s07" data-reveal>
+    <span class="cs__section-num">07 AI Layer</span>
+    <h2 class="cs__section-h">Six AI agents. Each has a defined scope. None can ship content.</h2>
+    <div class="cs__section-text">
+      <p>ShelfFlow embeds 6 specialised AI agents across the pipeline. Each agent operates within a bounded scope: it can draft, suggest, check, or flag &#8212; but it cannot approve or publish. <strong>Human authority is not a fallback. It's the architecture.</strong></p>
+    </div>
+
+    <!-- AI agents component -->
+    <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
+      <p style="font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px">Embedded AI agents</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+        <div style="padding:14px;border-radius:6px;border:1px solid rgba(45,212,191,.12);background:rgba(45,212,191,.04)"><span style="font-family:var(--m);font-size:11px;color:var(--ac);display:block;margin-bottom:6px;font-weight:600">BRIEF PARSER</span><span style="font-family:var(--s);font-size:13px;color:var(--t2)">Extracts SKU matrix, claims, and key messages from product brief</span></div>
+        <div style="padding:14px;border-radius:6px;border:1px solid rgba(45,212,191,.12);background:rgba(45,212,191,.04)"><span style="font-family:var(--m);font-size:11px;color:var(--ac);display:block;margin-bottom:6px;font-weight:600">COPY DRAFTER</span><span style="font-family:var(--s);font-size:13px;color:var(--t2)">Generates retailer-adapted copy per SKU. Respects character limits and tone.</span></div>
+        <div style="padding:14px;border-radius:6px;border:1px solid rgba(45,212,191,.12);background:rgba(45,212,191,.04)"><span style="font-family:var(--m);font-size:11px;color:var(--ac);display:block;margin-bottom:6px;font-weight:600">SPEC CHECKER</span><span style="font-family:var(--s);font-size:13px;color:var(--t2)">Validates against retailer spec sheets. Flags violations before human review.</span></div>
+        <div style="padding:14px;border-radius:6px;border:1px solid rgba(245,158,11,.12);background:rgba(245,158,11,.04)"><span style="font-family:var(--m);font-size:11px;color:var(--am);display:block;margin-bottom:6px;font-weight:600">COMPLIANCE SCANNER</span><span style="font-family:var(--s);font-size:13px;color:var(--t2)">Checks claims against regulatory databases. Flags risk, never clears it.</span></div>
+        <div style="padding:14px;border-radius:6px;border:1px solid rgba(245,158,11,.12);background:rgba(245,158,11,.04)"><span style="font-family:var(--m);font-size:11px;color:var(--am);display:block;margin-bottom:6px;font-weight:600">CONSISTENCY AUDITOR</span><span style="font-family:var(--s);font-size:13px;color:var(--t2)">Cross-checks messaging across all 36 packages. Detects contradictions.</span></div>
+        <div style="padding:14px;border-radius:6px;border:1px solid rgba(167,139,250,.12);background:rgba(167,139,250,.04)"><span style="font-family:var(--m);font-size:11px;color:#a78bfa;display:block;margin-bottom:6px;font-weight:600">DIFF REPORTER</span><span style="font-family:var(--s);font-size:13px;color:var(--t2)">Summarises what changed between versions. Enables faster re-approval.</span></div>
+      </div>
+      <p style="font-family:var(--s);font-size:13px;color:var(--t3);margin-top:12px;text-align:center">Every agent drafts or flags. No agent approves. Zero autonomous shipping.</p>
+    </div>
+
+  <!-- AI agent orchestration diagram -->
+  <div class="cs__img cs__img--wide" data-reveal><img src="../img/ShelfFlow01_workflow_architecture (2).png" alt="AI agent orchestration flow"></div>
+  <p class="cs__img-cap">AI agent orchestration: how intelligence flows through the content pipeline. Workflow orchestrator routes, schedules, and enforces gates.</p>
+
+  <!-- Human-in-the-loop decision model -->
+  <div class="cs__img cs__img--wide" data-reveal><img src="../img/ShelfFlow01_workflow_architecture (4).png" alt="Human-in-the-loop decision model"></div>
+  <p class="cs__img-cap">Human-in-the-loop decision model. Three zones: AI acts freely (parse, scan, format), AI proposes (enrichments, variants), human decides (validate, approve, ship). Trust architecture below.</p>
+  </div>
+
+  <!-- 08: Complexity -->
+  <div class="cs__section" id="s08" data-reveal>
+    <span class="cs__section-num">08 Complexity</span>
+    <h2 class="cs__section-h">36 packages. 18 approvals. The combinatorial explosion that makes manual workflows collapse.</h2>
+    <div class="cs__section-text">
+      <p>The core complexity of ShelfFlow isn't any single content package &#8212; it's the <strong>combinatorial explosion</strong> when you multiply SKUs by retailers by markets. A "simple" 6-SKU launch across 6 retailers generates 36 unique content packages, each needing at least 3 human touch points.</p>
+      <p>This is where manual workflows break. Not at package #1, but at package #27, when reviewer fatigue sets in and the differences between Amazon and Walmart specs blur together. ShelfFlow's job is to make package #36 as reviewable as package #1.</p>
+    </div>
+    <div class="cs__evidence">
+      <span class="cs__evidence-label">Scale math</span>
+      <span class="cs__evidence-text"><strong>6 SKUs &#215; 6 retailers = 36 packages.</strong> Each package passes through 4 gates. That's 144 gate evaluations per launch. With ~50% requiring at least one revision cycle, the system manages 200+ state transitions per product launch. Without structured workflow, this is untrackable.</span>
+    </div>
+
+  <!-- Content matrix explosion -->
+  <div class="cs__img cs__img--wide" data-reveal><img src="../img/ShelfFlow01_workflow_architecture (3).png" alt="Content matrix explosion: 1 brief becomes 36 packages"></div>
+  <p class="cs__img-cap">The content matrix explosion: 1 brief &#8594; 12 SKUs &#215; 3 retailers &#215; 2 variants = 36 content packages &#8594; 18 approval decisions &#8594; 1 launch.</p>
+  </div>
+
+  <!-- 09: Ecosystem -->
+  <div class="cs__section" id="s09" data-reveal>
+    <span class="cs__section-num">09 Ecosystem</span>
+    <h2 class="cs__section-h">ShelfFlow sits between the brand team and the retailer. It's the coordination layer, not a content tool.</h2>
+    <div class="cs__section-text">
+      <p>The platform integrates with the existing enterprise ecosystem: <strong>PIM systems</strong> for product data, <strong>DAM systems</strong> for assets, <strong>retailer portals</strong> for final distribution, and <strong>compliance databases</strong> for claim validation. ShelfFlow doesn't replace these systems &#8212; it orchestrates the workflow between them.</p>
+    </div>
+    <ul class="cs__list">
+      <li><strong>Upstream:</strong> Product briefs, PIM data, brand guidelines, regulatory databases</li>
+      <li><strong>Core:</strong> ShelfFlow workflow engine, AI agents, decision gates, state machine</li>
+      <li><strong>Downstream:</strong> Retailer portals (Amazon, Walmart, Target, etc.), content delivery, audit logs</li>
+    </ul>
+
+  <!-- Ecosystem diagram -->
+  <div class="cs__img cs__img--wide" data-reveal><img src="../img/ShelfFlow01_workflow_architecture (5).png" alt="ShelfFlow in the commerce content ecosystem"></div>
+  <p class="cs__img-cap">ShelfFlow in the commerce content ecosystem. Upstream sources (PIM, DAM, brand guidelines) flow in; retailer-ready content flows out to Amazon, Sephora, Walmart, and any retail channel.</p>
+  </div>
+
+  <!-- 10: Service -->
+  <div class="cs__section" id="s10" data-reveal>
+    <span class="cs__section-num">10 Service Design</span>
+    <h2 class="cs__section-h">Four roles, clear authority boundaries. No one can do someone else's job.</h2>
+    <div class="cs__section-text">
+      <p>ShelfFlow defines four operator roles, each with explicit permissions mapped to workflow stages and gate authority. Role boundaries are enforced by the system, not by process documentation.</p>
+    </div>
+
+    <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
+      <p style="font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px">Authority mapping</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+        <div style="padding:14px;border-radius:6px;border:1px solid rgba(45,212,191,.12);background:rgba(45,212,191,.04);text-align:center"><span style="font-family:var(--m);font-size:11px;color:var(--ac);display:block;margin-bottom:4px;font-weight:600">CONTENT LEAD</span><span style="font-family:var(--s);font-size:12px;color:var(--t2)">Owns briefs, approves drafts (G1, G2)</span></div>
+        <div style="padding:14px;border-radius:6px;border:1px solid rgba(245,158,11,.12);background:rgba(245,158,11,.04);text-align:center"><span style="font-family:var(--m);font-size:11px;color:var(--am);display:block;margin-bottom:4px;font-weight:600">COMPLIANCE</span><span style="font-family:var(--s);font-size:12px;color:var(--t2)">Owns regulatory review (G3)</span></div>
+        <div style="padding:14px;border-radius:6px;border:1px solid rgba(167,139,250,.12);background:rgba(167,139,250,.04);text-align:center"><span style="font-family:var(--m);font-size:11px;color:#a78bfa;display:block;margin-bottom:4px;font-weight:600">BRAND MANAGER</span><span style="font-family:var(--s);font-size:12px;color:var(--t2)">Final launch authority (G4)</span></div>
+        <div style="padding:14px;border-radius:6px;border:1px solid rgba(34,197,94,.12);background:rgba(34,197,94,.04);text-align:center"><span style="font-family:var(--m);font-size:11px;color:var(--up);display:block;margin-bottom:4px;font-weight:600">OPERATOR</span><span style="font-family:var(--s);font-size:12px;color:var(--t2)">Manages workflow, no gate authority</span></div>
+      </div>
+    </div>
+
+  <!-- Service blueprint -->
+  <div class="cs__img cs__img--wide" data-reveal><img src="../img/ShelfFlow01_workflow_architecture (6).png" alt="Service blueprint: 5 operational layers across 6 workflow stages"></div>
+  <p class="cs__img-cap">Service blueprint: 5 operational layers (user actions, frontstage UI, backstage AI, system infra, human ops) mapped across all 6 workflow stages.</p>
+  </div>
+
+  <!-- 11: Principles -->
+  <div class="cs__section" id="s11" data-reveal>
+    <span class="cs__section-num">11 Design Principles</span>
+    <h2 class="cs__section-h">The rules that shaped every design decision in ShelfFlow.</h2>
+    <ul class="cs__list">
+      <li><strong>Humans approve, AI accelerates.</strong> No AI agent can advance content past a decision gate. The human is not a fallback &#8212; they are the system.</li>
+      <li><strong>Every state transition is auditable.</strong> If a retailer asks "who approved this claim?", the system answers in seconds.</li>
+      <li><strong>The board is the source of truth.</strong> If it's not on the board, it doesn't exist. No side channels, no email approvals.</li>
+      <li><strong>Package #36 must be as reviewable as package #1.</strong> Design against reviewer fatigue, not reviewer enthusiasm.</li>
+      <li><strong>Complexity is the system's problem, not the operator's.</strong> 36 packages, 144 gate evaluations &#8212; the operator sees what needs attention now.</li>
+    </ul>
+  </div>
+
+  <!-- 12: Reflection -->
+  <div class="cs__section" id="s12" data-reveal>
+    <span class="cs__section-num">12 Reflection</span>
+    <h2 class="cs__section-h">The hardest design problem wasn't the AI. It was making 18 approval moments feel fast instead of bureaucratic.</h2>
+    <div class="cs__reflection">
+      <span class="cs__reflection-h">The pattern</span>
+      <span class="cs__reflection-text">AI in enterprise workflows fails when it's positioned as a replacement for human judgement. It succeeds when it's positioned as an accelerator within an explicit decision architecture. The value of ShelfFlow isn't that AI writes copy &#8212; it's that the system makes the coordination overhead of 36 packages manageable. The workflow is the product.</span>
+    </div>
+    <div class="cs__reflection" style="border-color:var(--dn);background:var(--dng)">
+      <span class="cs__reflection-h" style="color:var(--dn)">What failed</span>
+      <span class="cs__reflection-text">v1 had 6 decision gates &#8212; one per stage. Testing revealed that gates at Brief Intake and Retailer Adaptation added friction without adding value. Content leads were rubber-stamping them. Reduced to 4 gates where genuine decision-making happens. Also: the first version of batch operations let users approve packages they hadn't individually reviewed. Added a "reviewed" flag requirement before batch approval. Speed without review is liability.</span>
+    </div>
+  </div>
+
+  <!-- Next project -->
+  <div class="cs__next">
+    <span class="cs__next-label">Next case study</span>
+    <a href="kodo.html" class="cs__next-link">KODO Arbitrage &#8594;</a>
+  </div>
 
 </article>
 </div><!-- /cs-wrap -->
