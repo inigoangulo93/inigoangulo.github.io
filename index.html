@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inigo Angulo · Product Design and Growth</title>
-<meta name="description" content="I design systems that make complexity usable. Commerce, conversion, trading interfaces. Product design and growth.">
-<meta property="og:title" content="Inigo Angulo / Product Design">
-<meta property="og:description" content="I design systems that make complexity usable. Commerce, conversion, trading interfaces.">
+<title>Inigo Angulo · Product Strategy, Design &amp; Growth</title>
+<meta name="description" content="I build products that make complexity usable. Strategy, design and growth across commerce, conversion and trading systems.">
+<meta property="og:title" content="Inigo Angulo / Product &amp; Design">
+<meta property="og:description" content="I build products that make complexity usable. Strategy, design and growth across commerce, conversion and trading systems.">
 <meta property="og:image" content="https://inigoangulo.com/img/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://inigoangulo.com">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Inigo Angulo / Product Design">
-<meta name="twitter:description" content="I design systems that make complexity usable. Commerce, conversion, trading interfaces.">
+<meta name="twitter:title" content="Inigo Angulo / Product &amp; Design">
+<meta name="twitter:description" content="I build products that make complexity usable. Strategy, design and growth across commerce, conversion and trading systems.">
 <meta name="twitter:image" content="https://inigoangulo.com/img/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -668,10 +668,15 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   .ph__eq{flex-direction:column;gap:6px}
   .ph__eq-op{transform:rotate(90deg)}
 }
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
 </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Inigo Angulo","url":"https://inigoangulo.com","jobTitle":["Product Manager","Product Designer","Growth Strategist"],"worksFor":{"@type":"Organization","name":"WPP"},"address":{"@type":"PostalAddress","addressLocality":"Zurich","addressCountry":"CH"},"sameAs":["https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/"],"knowsAbout":["Product Strategy","Product Design","Conversion Optimization","Agentic AI Workflows","Behavioral Analytics"]}
+</script>
 </head>
 <body>
 <div class="ambient"><i></i><i></i></div>
@@ -688,7 +693,9 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 </div>
 </div>
 <script>
-function go(n){
+var _hashFor={index:'#work',about:'#how-i-think',logs:'#about'};
+var _viewFor={'work':'index','how-i-think':'about','about':'logs'};
+function render(n){
   document.querySelectorAll('.v').forEach(function(v){v.classList.remove('on')});
   document.querySelectorAll('.bar__btn').forEach(function(b){b.classList.remove('on')});
   var t=document.getElementById('v-'+n);
@@ -696,6 +703,25 @@ function go(n){
   document.querySelectorAll('.bar__btn').forEach(function(b){if(b.dataset.v===n)b.classList.add('on')});
   window.scrollTo({top:0,behavior:'instant'});
 }
+function go(n){
+  if(location.hash!==_hashFor[n]){history.pushState(null,'',_hashFor[n]);}
+  render(n);
+}
+function _route(){
+  var hh=location.hash.slice(1);
+  if(hh==='contact'){render('index');var c=document.getElementById('contact');if(c)setTimeout(function(){c.scrollIntoView({behavior:'smooth'})},50);return}
+  if(_viewFor[hh]){render(_viewFor[hh]);}else if(!hh){render('index');}
+}
+window.addEventListener('popstate',_route);
+window.addEventListener('DOMContentLoaded',function(){
+  if(location.hash&&location.hash!=='#work')_route();
+  if(location.search.indexOf('sent=1')>-1){
+    var f=document.getElementById('contactForm');
+    if(f){f.innerHTML='<p style="font-family:var(--m);font-size:.82rem;color:var(--ac);padding:24px 0">Message sent. I read everything personally and reply within 24h. &#10003;</p>';}
+    var c=document.getElementById('contact');if(c)setTimeout(function(){c.scrollIntoView()},100);
+    history.replaceState(null,'','/'+location.hash);
+  }
+});
 </script>
 <main class="vp">
 
@@ -709,7 +735,7 @@ function go(n){
 <div class="hero__proof">
 <div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">+11%</span><span class="hero__proof-label">Checkout conversion</span><span class="hero__proof-ctx">GetYourGuide, 4 EU markets</span></div>
 <div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--b">40x</span><span class="hero__proof-label">Reporting speed</span><span class="hero__proof-ctx">RetailNorm, cross-platform analytics</span></div>
-<div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--a">-22%</span><span class="hero__proof-label">Funnel friction</span><span class="hero__proof-ctx">ENSO, 3 European markets</span></div>
+<div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--a">1→36</span><span class="hero__proof-label">Packages per brief</span><span class="hero__proof-ctx">ShelfFlow, agentic pipeline</span></div>
 <div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--p">+34%</span><span class="hero__proof-label">Booking conversion</span><span class="hero__proof-ctx">ENSO, risk-calibrated urgency</span></div>
 </div>
 <div style="display:flex;gap:12px;flex-wrap:wrap"><a href="#contact" class="hero__cta" onclick="event.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in touch &#8594;</a><a href="inigo-angulo-cv-2026.pdf" download class="hero__cta" style="background:transparent;color:var(--ac2);border:1px solid var(--acb);box-shadow:none" onmouseover="this.style.background='var(--acg2)';this.style.boxShadow='0 0 20px var(--acg)'" onmouseout="this.style.background='transparent';this.style.boxShadow='none'">Download CV &#8595;</a></div>
@@ -752,18 +778,18 @@ function go(n){
 
 <div class="layer layer--raised"><div class="mx"><div class="sh"><span>// work</span></div>
 <div class="cards">
-<a href="work/shelfflow.html" class="cd cd--f cd--5"><div class="cd__img"><img src="img/shelfflow/cover.png" alt="ShelfFlow platform overview" style="width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--what">B2B SaaS</span><span class="cd__tag cd__tag--what">AI-Assisted Workflow</span><span class="cd__tag cd__tag--what">Human-in-the-Loop</span><span class="cd__tag cd__tag--what">Content Operations</span><span class="cd__tag cd__tag--result">1 Brief &#8594; 36 Packages</span></div><h3 class="cd__name">ShelfFlow</h3><p class="cd__desc">Retail content operations had become slow, fragmented and impossible to scale. I designed the supervision interface for an agentic pipeline: six AI agents generate and adapt, four human gates decide what ships across retailers.</p><div class="cd__foot"><span class="cd__yr">View case study</span><span class="cd__go">&#8594;</span></div></div></a>
-<a href="work/retailnorm.html" class="cd cd--1"><div class="cd__img"><img src="img/Retailnorm.png" alt="RetailNorm dashboard" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--what">Commerce</span><span class="cd__tag cd__tag--what">Dashboards</span><span class="cd__tag cd__tag--live">Live</span></div><h3 class="cd__name">RetailNorm</h3><p class="cd__desc">Cross-platform retail media analytics. Normalized incomparable ROAS data into a single trustworthy view. 40x faster reporting. Live product.</p><div class="cd__foot"><span class="cd__yr">View case study</span><span class="cd__go">&#8594;</span></div></div></a>
+<a href="work/shelfflow.html" class="cd cd--f cd--5"><div class="cd__img"><img src="img/shelfflow/cover-card.webp" width="1200" height="675" decoding="async" alt="ShelfFlow platform overview" style="width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">Enterprise CPG &#183; NDA</span><span class="cd__tag cd__tag--what">Agentic Pipeline</span><span class="cd__tag cd__tag--result">1 Brief &#8594; 36 Packages</span></div><h3 class="cd__name">ShelfFlow</h3><p class="cd__desc">Retail content operations had become slow, fragmented and impossible to scale. I designed the supervision interface for an agentic pipeline: six AI agents generate and adapt, four human gates decide what ships across retailers.</p><div class="cd__foot"><span class="cd__yr">View case study</span><span class="cd__go">&#8594;</span></div></div></a>
+<a href="work/retailnorm.html" class="cd cd--1"><div class="cd__img"><img src="img/retailnorm-card.webp" width="1200" height="675" decoding="async" loading="lazy" alt="RetailNorm dashboard" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">Personal Product</span><span class="cd__tag cd__tag--what">Retail Media Analytics</span><span class="cd__tag cd__tag--result">40x Reporting Speed</span><span class="cd__tag cd__tag--live">Live</span></div><h3 class="cd__name">RetailNorm</h3><p class="cd__desc">Cross-platform retail media analytics. Normalized incomparable ROAS data into a single trustworthy view. 40x faster reporting, executive and technical views.</p><div class="cd__foot"><span class="cd__yr">View case study</span><span class="cd__go">&#8594;</span></div></div></a>
 <div class="cards__side">
-<a href="work/checkout.html" class="cd cd--3"><div class="cd__img"><img src="img/gyg-checkoutfunnel.jpeg" alt="GetYourGuide checkout redesign" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">GetYourGuide</span><span class="cd__tag cd__tag--what">Growth &amp; CRO</span><span class="cd__tag cd__tag--result">+11% Conversion</span></div><h3 class="cd__name">Checkout Funnel Redesign</h3><p class="cd__desc">The team was optimizing the wrong step. 38% of converters left checkout and came back with no re-entry experience. The problem wasn't payment. It was the gap nobody measured. +11%, 4 EU markets.</p><div class="cd__foot"><span class="cd__yr">View case study</span><span class="cd__go">&#8594;</span></div></div></a>
-<a href="work/kodo.html" class="cd cd--2"><div class="cd__img"><img src="img/kodo/thumbnail.png" alt="KŌDO Arbitrage trading interface" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">Private Client</span><span class="cd__tag cd__tag--what">Crypto</span><span class="cd__tag cd__tag--what">Web3</span><span class="cd__tag cd__tag--what">Trading Interface</span><span class="cd__tag cd__tag--result">24/7 Live Capital</span></div><h3 class="cd__name">KŌDO Arbitrage</h3><p class="cd__desc">Private Web3 client. 24/7 autonomous execution. v1 had 23 metrics and the operator couldn't decide in under 30 minutes. A design failure with financial consequences. v2 answers one question.</p><div class="cd__foot"><span class="cd__yr">View case study</span><span class="cd__go">&#8594;</span></div></div></a>
-<a href="work/enso.html" class="cd cd--4"><div class="cd__img"><img src="img/enso.png" alt="ENSO Co-Living" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">ENSO Co-Living</span><span class="cd__tag cd__tag--what">PropTech</span><span class="cd__tag cd__tag--result">4x Adoption</span><span class="cd__tag cd__tag--result">+34% Conversion</span></div><h3 class="cd__name">ENSO Co-Living</h3><p class="cd__desc">Two phases, one platform. Redesigned onboarding (4x adoption), then built a risk-calibrated urgency system for the catalogue (+34% booking conversion). 3 European markets.</p><div class="cd__foot"><span class="cd__yr">View case study</span><span class="cd__go">&#8594;</span></div></div></a>
+<a href="work/checkout.html" class="cd cd--3"><div class="cd__img"><img src="img/gyg-card.webp" width="1080" height="1440" decoding="async" loading="lazy" alt="GetYourGuide checkout redesign" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">GetYourGuide</span><span class="cd__tag cd__tag--what">CRO &#183; 10 A/B Tests</span><span class="cd__tag cd__tag--result">+11% Conversion</span></div><h3 class="cd__name">Checkout Funnel Redesign</h3><p class="cd__desc">The team was optimizing the wrong step. 38% of converters left checkout and came back with no re-entry experience. The problem wasn't payment. It was the gap nobody measured. +11%, 4 EU markets.</p><div class="cd__foot"><span class="cd__yr">View case study</span><span class="cd__go">&#8594;</span></div></div></a>
+<a href="work/kodo.html" class="cd cd--2"><div class="cd__img"><img src="img/kodo/thumbnail-card.webp" width="1200" height="900" decoding="async" loading="lazy" alt="KŌDO Arbitrage trading interface" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">Private Web3 Client</span><span class="cd__tag cd__tag--what">Trading Interface</span><span class="cd__tag cd__tag--result">23 Metrics &#8594; 1 Decision</span><span class="cd__tag cd__tag--live">Live</span></div><h3 class="cd__name">KŌDO Arbitrage</h3><p class="cd__desc">Private Web3 client. 24/7 autonomous execution. v1 had 23 metrics and the operator couldn't decide in under 30 minutes. A design failure with financial consequences. v2 answers one question.</p><div class="cd__foot"><span class="cd__yr">View case study</span><span class="cd__go">&#8594;</span></div></div></a>
+<a href="work/enso.html" class="cd cd--4"><div class="cd__img"><img src="img/enso-card.webp" width="1200" height="960" decoding="async" loading="lazy" alt="ENSO Co-Living" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div><div class="cd__body"><div class="cd__type"><span class="cd__tag cd__tag--who">ENSO Co-Living</span><span class="cd__tag cd__tag--what">PropTech Onboarding</span><span class="cd__tag cd__tag--result">+34% Booking Conversion</span></div><h3 class="cd__name">ENSO Co-Living</h3><p class="cd__desc">Two phases, one platform. Redesigned onboarding (4x adoption), then built a risk-calibrated urgency system for the catalogue (+34% booking conversion). 3 European markets.</p><div class="cd__foot"><span class="cd__yr">View case study</span><span class="cd__go">&#8594;</span></div></div></a>
 </div>
 </div></div></div>
 
 
 
-<div class="layer layer--raised" id="contact"><div class="mx"><div class="contact__row"><div class="contact__left"><h2>Let's talk about your system.</h2><p style="font-family:var(--s);font-size:.88rem;color:var(--t2);line-height:1.65;max-width:380px;margin-bottom:24px">I work on complex product problems where design directly impacts revenue, decision quality, or operational efficiency. Commerce, fintech, data-heavy systems.</p><div class="cl"><a href="mailto:inigoangulo@gmail.com"><span>Email</span><span>inigoangulo@gmail.com</span></a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank"><span>LinkedIn</span>/inigo-angulo</a><a href="tel:+41799528321"><span>Phone</span>+41 79 952 83 21</a></div><p style="font-family:var(--s);font-size:.76rem;color:var(--t3);margin-top:20px;line-height:1.6">Based in Zurich. Remote or hybrid.</p></div><div class="contact__right"><p class="contact__ft">// reach out</p><div class="ff"><label>Name</label><input placeholder="Your name"></div><div class="ff"><label>Email</label><input type="email" placeholder="your@email.com"></div><div class="ff"><label>What are you working on?</label><textarea placeholder="Tell me about the system you're building, the problem you're stuck on, or the role you're hiring for."></textarea></div><button class="form-go">Send message</button></div></div></div></div>
+<div class="layer layer--raised" id="contact"><div class="mx"><div class="contact__row"><div class="contact__left"><h2>Let's talk about your system.</h2><p style="font-family:var(--s);font-size:.88rem;color:var(--t2);line-height:1.65;max-width:380px;margin-bottom:24px">I work on complex product problems where design directly impacts revenue, decision quality, or operational efficiency. Commerce, fintech, data-heavy systems.</p><div class="cl"><a href="mailto:inigoangulo@gmail.com"><span>Email</span><span>inigoangulo@gmail.com</span></a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank"><span>LinkedIn</span>/inigo-angulo</a><a href="tel:+41799528321"><span>Phone</span>+41 79 952 83 21</a></div><p style="font-family:var(--s);font-size:.76rem;color:var(--t3);margin-top:20px;line-height:1.6">Based in Zurich. Remote or hybrid.</p></div><div class="contact__right"><p class="contact__ft">// reach out</p><form action="https://formsubmit.co/inigoangulo@gmail.com" method="POST" id="contactForm"><input type="hidden" name="_subject" value="Portfolio contact — inigoangulo.com"><input type="hidden" name="_next" value="https://inigoangulo.com/?sent=1#contact"><input type="hidden" name="_captcha" value="false"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"><div class="ff"><label for="cf-name">Name</label><input id="cf-name" name="name" required placeholder="Your name"></div><div class="ff"><label for="cf-email">Email</label><input id="cf-email" type="email" name="email" required placeholder="your@email.com"></div><div class="ff"><label for="cf-msg">What are you working on?</label><textarea id="cf-msg" name="message" required placeholder="Tell me about the system you're building, the problem you're stuck on, or the role you're hiring for."></textarea></div><button class="form-go" type="submit">Send message</button></form></div></div></div></div>
 </section>
 
 <!-- ████ THINKING ████ -->
@@ -1000,7 +1026,7 @@ function go(n){
 <h3 class="tk__h">Close the loop</h3>
 </div>
 <p class="tk__p">Shipping is not a handoff. I stay close to the product after launch, reading session data and adjusting. The signal after release matters more than the plan before it.</p>
-<p class="tk__proof"><strong>ShelfFlow.</strong> 1 brief produces 36 retailer-ready content packages through gated human approvals. <strong>RetailNorm, K&#332;DO, this portfolio.</strong> Shipped without an engineering team. Validated concept to live product in weeks.</p>
+<p class="tk__proof"><strong>ShelfFlow.</strong> 1 brief produces 36 retailer-ready content packages through gated human approvals. <strong>RetailNorm, K&#332;DO, this portfolio.</strong> Designed, built and shipped end to end: concept to live product in weeks.</p>
 </div>
 </div>
 
@@ -1012,7 +1038,7 @@ function go(n){
 <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start">
 <div>
 <div style="position:relative;width:100%;aspect-ratio:3/4;border-radius:12px;overflow:hidden;border:1px solid var(--b1)">
-<img src="img/portrait-inigo.webp" alt="Inigo Angulo" style="width:100%;height:100%;object-fit:cover">
+<img src="img/portrait-inigo.webp" width="832" height="1069" decoding="async" loading="lazy" alt="Inigo Angulo" style="width:100%;height:100%;object-fit:cover">
 </div>
 <div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap">
 <span style="font-family:var(--m);font-size:.68rem;color:var(--t3)">Zurich, Switzerland</span>
@@ -1021,11 +1047,12 @@ function go(n){
 </div>
 <div>
 <div class="sh" style="margin-bottom:24px"><span>// about me</span></div>
-<h2 style="font-family:var(--s);font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:16px">Inigo Angulo</h2>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">I&#8217;m a product designer based in Zurich with 9+ years of experience across commerce, fintech, PropTech, and travel.</p>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">I work on complex, data-rich products where clarity, speed, and business impact matter. My focus is turning messy systems into experiences that are easier to use, easier to trust, and better aligned with how people actually make decisions.</p>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">Currently, I&#8217;m Experience Lead for Commerce at WPP, shaping end-to-end UX across AI-enabled platforms. Previously, I led conversion optimisation at GetYourGuide, designed luxury trading platforms at Crowdhouse AG, and contributed to a multi-country design system at ING Bank.</p>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:24px">My work sits between product strategy, behavioural analytics, and experience design. I use tools like PostHog, GA4, and Mixpanel not just to validate decisions, but to uncover friction, blind spots, and patterns that usually go unnoticed.</p>
+<h2 style="font-family:var(--s);font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:6px">Inigo Angulo</h2>
+<p style="font-family:var(--m);font-size:.7rem;color:var(--ac2);letter-spacing:.06em;margin-bottom:16px">PRODUCT STRATEGY &#183; PRODUCT MANAGEMENT &#183; DESIGN</p>
+<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">I&#8217;m a product builder based in Zurich, 9+ years across commerce, fintech, PropTech, and travel. I operate across the full stack of product work: strategy, design, and the analytics that prove it.</p>
+<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">I work on complex, data-rich products where clarity, speed, and business impact matter. My focus is turning messy systems into products people trust and decisions the business can act on — from problem definition and prioritisation to shipped interface.</p>
+<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">Currently, I&#8217;m Experience Lead for Commerce at WPP, owning product and experience strategy for AI-enabled commerce platforms. Previously, I ran the checkout experimentation programme at GetYourGuide (10 A/B tests, +11% conversion), led product for a luxury trading platform at Crowdhouse AG, and helped build ING Bank&#8217;s multi-country design system.</p>
+<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:24px">My work sits at the intersection of product strategy, behavioural analytics, and design execution. I use PostHog, GA4, and Mixpanel not just to validate decisions, but to find the friction, blind spots, and opportunities that define what to build next.</p>
 <div style="display:flex;flex-direction:column;gap:12px;padding:20px 0;border-top:1px solid var(--b1)">
 <div class="sh" style="margin-bottom:4px"><span>// beyond work</span></div>
 <p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.75;margin-bottom:8px">Outside of work, I&#8217;m deeply drawn to European medieval history, especially the symbolic weight, visual language, and cultural continuity of the period. I have a particular fascination with Gothic typography and the way form can carry identity, authority, and atmosphere across centuries.</p>
@@ -1048,7 +1075,7 @@ function go(n){
 <!-- FOOTER -->
 <footer class="footer">
 <div class="footer__inner">
-<div><span class="footer__brand">Inigo Angulo</span><p class="footer__desc">Product designer and growth strategist based in Zurich. 9+ years building systems that move metrics.</p></div>
+<div><span class="footer__brand">Inigo Angulo</span><p class="footer__desc">Product strategy, design and growth. Based in Zurich, 9+ years building systems that move metrics.</p></div>
 <div><p class="footer__col-title">Navigation</p><div class="footer__links"><a href="#work" onclick="go('index');return false">Work</a><a href="#how-i-think" onclick="go('about');return false">How I think</a><a href="#about" onclick="go('logs');return false">About</a></div></div>
 <div><p class="footer__col-title">Connect</p><div class="footer__links"><a href="mailto:inigoangulo@gmail.com">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank">LinkedIn</a><a href="tel:+41799528321">Phone</a></div></div>
 <div><p class="footer__col-title">Resources</p><div class="footer__links"><a href="inigo-angulo-cv-2026.pdf" download>Download CV</a></div></div>
@@ -1361,7 +1388,7 @@ function mgo(n){
 <div class="bf__body">
 <div class="bf__fire">
 <div class="bf__fire-glow"></div>
-<div class="bf__fire-inner"><img class="bf__img" src="img/rest-here-weary-traveller.png" alt="Bonfire"></div>
+<div class="bf__fire-inner"><img class="bf__img" src="img/rest-here-weary-traveller.webp" width="1200" height="672" decoding="async" loading="lazy" alt="Bonfire"></div>
 </div>
 <div class="bf__title">Rest here, weary traveller.</div>
 <div class="bf__sub">No signal to chase. No decisions to make.<br>Just a quiet place between battles.</div>
