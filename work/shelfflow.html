@@ -108,7 +108,7 @@
       <p>This wasn't a creativity problem or a tooling gap. It was a <strong>coordination overhead problem</strong> that got exponentially worse with every new SKU, retailer, or market added to the matrix.</p>
     </div>
     <ul class="cs__list">
-      <li><strong>6 SKUs &#215; 6 retailers = 36 content packages</strong> from a single product brief. Each with unique spec requirements, character limits, and compliance constraints.</li>
+      <li><strong>6 SKUs &#215; 3 retailers &#215; 2 variants = 36 content packages</strong> from a single product brief. Each with unique spec requirements, character limits, and compliance constraints.</li>
       <li><strong>No single source of truth.</strong> Content lived in spreadsheets, email threads, and shared drives. Version conflicts were constant. Teams regularly shipped outdated copy because they couldn't tell which file was current.</li>
       <li><strong>Approval chains were invisible.</strong> No one knew who had approved what, or what was still pending. A single missing sign-off could block an entire launch, and the team often wouldn't discover it until the deadline.</li>
       <li><strong>Multi-market duplication.</strong> Teams in different regions recreated the same content independently, introducing inconsistencies across markets that took days to reconcile.</li>
@@ -280,7 +280,7 @@
         </tr>
         <tr>
           <td>Package granularity</td>
-          <td>1 package = 1 SKU &#215; 1 retailer</td>
+          <td>1 package = 1 SKU &#215; 1 retailer &#215; 1 variant</td>
           <td>Grouped by SKU or by retailer</td>
           <td>Retailer specs diverge too much for grouping to be safe. Amazon character limits differ from Sephora's by 40%+. Grouping hides critical differences that cause portal rejections downstream.</td>
         </tr>
@@ -347,21 +347,21 @@
     <span class="cs__section-num">08 Operational Scale</span>
     <h2 class="cs__section-h">36 packages. 18 approvals. 200+ state transitions. The combinatorial reality that makes manual workflows collapse.</h2>
     <div class="cs__section-text">
-      <p>The core complexity of ShelfFlow isn't any single content package. It's the <strong>combinatorial explosion</strong> when you multiply SKUs by retailers by markets. A "simple" 6-SKU launch across 6 retailers generates 36 unique content packages, each needing at least 3 human touch points.</p>
+      <p>The core complexity of ShelfFlow isn't any single content package. It's the <strong>combinatorial explosion</strong> when you multiply SKUs by retailers by markets. A "simple" 6-SKU launch across 3 retailers, each with two AI-generated variants, generates 36 unique content packages, each needing at least 3 human touch points.</p>
       <p>This is where manual workflows break. Not at package #1, but at package #27, when reviewer fatigue sets in and the differences between Amazon and Walmart specs blur together. ShelfFlow's job is to make package #36 as reviewable as package #1.</p>
     </div>
     <div class="cs__evidence">
       <span class="cs__evidence-label">Scale math</span>
-      <span class="cs__evidence-text"><strong>6 SKUs &#215; 6 retailers = 36 packages.</strong> Each package passes through 4 gates. That's 144 gate evaluations per launch. With roughly 50% requiring at least one revision cycle, the system manages 200+ state transitions per product launch. Without structured workflow, this volume becomes untrackable within the first week.</span>
+      <span class="cs__evidence-text"><strong>6 SKUs &#215; 3 retailers &#215; 2 variants = 36 packages.</strong> Each package passes through 4 gates. That's 144 gate evaluations per launch. With roughly 50% requiring at least one revision cycle, the system manages 200+ state transitions per product launch. Without structured workflow, this volume becomes untrackable within the first week.</span>
     </div>
     <div class="cs__evidence" style="border-color:var(--am)">
       <span class="cs__evidence-label" style="color:var(--am)">Edge cases and constraints</span>
-      <span class="cs__evidence-text">The system had to handle partial approvals (3 of 6 retailers ready, 3 still in review), mid-cycle brief changes (product claims updated after generation), and cross-package dependencies (a compliance flag on one SKU potentially affecting all packages sharing the same claim). These weren't theoretical scenarios. They were weekly occurrences in the existing workflow.</span>
+      <span class="cs__evidence-text">The system had to handle partial approvals (2 of 3 retailers ready, 1 still in review), mid-cycle brief changes (product claims updated after generation), and cross-package dependencies (a compliance flag on one SKU potentially affecting all packages sharing the same claim). These weren't theoretical scenarios. They were weekly occurrences in the existing workflow.</span>
     </div>
 
   <!-- Content matrix explosion -->
   <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/workflow-3.png" alt="Content matrix explosion: 1 brief becomes 36 packages"></div>
-  <p class="cs__img-cap">The content matrix explosion: 1 brief &#8594; 12 SKUs &#215; 3 retailers &#215; 2 variants = 36 content packages &#8594; 18 approval decisions &#8594; 1 launch.</p>
+  <p class="cs__img-cap">The content matrix explosion: 1 brief &#8594; 6 SKUs &#215; 3 retailers &#215; 2 variants = 36 content packages &#8594; 18 approval decisions &#8594; 1 launch.</p>
   </div>
 
   <!-- 09: Ecosystem -->
@@ -437,7 +437,7 @@
     </div>
     <div class="cs__reflection" style="border-color:var(--ac);background:var(--acg2)">
       <span class="cs__reflection-h" style="color:var(--ac)">What success looks like</span>
-      <span class="cs__reflection-text">A content team launches a new product across 6 retailers in days instead of weeks. Every approval has a timestamp and an owner. Every AI-generated draft has been reviewed by a human before it reaches a retailer portal. When compliance asks "who approved this claim for Walmart?", the answer takes seconds, not a forensic email search. The system doesn't make the work disappear. It makes the work structured enough to scale.</span>
+      <span class="cs__reflection-text">A content team launches a new product across 3 retailers in days instead of weeks. Every approval has a timestamp and an owner. Every AI-generated draft has been reviewed by a human before it reaches a retailer portal. When compliance asks "who approved this claim for Walmart?", the answer takes seconds, not a forensic email search. The system doesn't make the work disappear. It makes the work structured enough to scale.</span>
     </div>
   </div>
 
