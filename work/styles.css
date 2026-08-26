@@ -90,6 +90,9 @@ img{max-width:100%;height:auto}
 .cs__evidence::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ac);border-radius:3px 0 0 3px}
 .cs__evidence-label{font-size:.66rem;color:var(--ac);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;display:block;font-weight:600}
 .cs__evidence-text{font-family:var(--s);font-size:.9rem;color:var(--t2);line-height:1.75}
+.cs__evidence--am{border-color:rgba(245,158,11,.35)}
+.cs__evidence--am::before{background:var(--am)}
+.cs__evidence--am .cs__evidence-label{color:var(--am)}
 
 /* ─── Bullet list ─── */
 .cs__list{list-style:none;margin:24px 0;max-width:700px}

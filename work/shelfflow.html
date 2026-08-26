@@ -446,8 +446,8 @@
       <span class="cs__evidence-label">Scale math</span>
       <span class="cs__evidence-text"><strong>6 SKUs &#215; 3 retailers &#215; 2 variants = 36 packages.</strong> Each package passes through 4 gates. That's 144 gate evaluations per launch. With roughly 50% requiring at least one revision cycle, the system manages 200+ state transitions per product launch. Without structured workflow, this volume becomes untrackable within the first week.</span>
     </div>
-    <div class="cs__evidence" style="border-color:var(--am)">
-      <span class="cs__evidence-label" style="color:var(--am)">Edge cases and constraints</span>
+    <div class="cs__evidence cs__evidence--am">
+      <span class="cs__evidence-label">Edge cases and constraints</span>
       <span class="cs__evidence-text">The system had to handle partial approvals (2 of 3 retailers ready, 1 still in review), mid-cycle brief changes (product claims updated after generation), and cross-package dependencies (a compliance flag on one SKU potentially affecting all packages sharing the same claim). These weren't theoretical scenarios. They were weekly occurrences in the existing workflow.</span>
     </div>
 
