@@ -155,7 +155,12 @@
 
   <!-- Agent orchestration & authority swimlanes (responsive inline SVG) -->
   <style>
-  .wf-swim{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:20px;margin:28px 0 10px}
+  .wf-swim{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:20px;margin:28px 0 10px;cursor:zoom-in;position:relative}
+  .wf-swim::after{content:"\2922  expand";position:absolute;top:10px;right:14px;font-family:var(--m);font-size:10px;color:var(--t3);opacity:.7}
+  .svglb{position:fixed;inset:0;background:rgba(6,6,10,.96);z-index:1000;display:none;align-items:center;justify-content:center;padding:3vh 2vw;cursor:zoom-out;overflow:auto}
+  .svglb.open{display:flex}
+  .svglb svg{width:min(96vw,1600px);height:auto}
+  .svglb .svglb__close{position:fixed;top:14px;right:20px;font-size:28px;color:var(--t3);cursor:pointer;font-family:var(--s)}
   .wf-swim svg{width:100%;height:auto;display:block}
   .wf-swim--m{display:none;max-width:440px;margin-left:auto;margin-right:auto}
   @media(max-width:700px){.wf-swim--d{display:none}.wf-swim--m{display:block}}
@@ -420,6 +425,14 @@
   <!-- Review and approve -->
   <div class="cs__img" data-reveal><img src="../img/shelfflow/ui-5.png" alt="Review and approve matrix"></div>
   <p class="cs__img-cap">Gate 4: Full matrix review. Per-cell approval across 18 human decisions, every SKU &#215; retailer combination. "Approve for Launch" is the final gate.</p>
+
+  <!-- Interactive demo CTA -->
+  <a href="gate4-demo.html" data-reveal style="display:block;text-decoration:none;background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:24px 28px;margin:28px 0">
+    <span style="font-family:var(--m);font-size:11px;color:var(--ac);letter-spacing:2px">&#9670; INTERACTIVE &#8212; SYNTHETIC DATA</span>
+    <p style="font-family:var(--s);font-size:1.15rem;font-weight:700;color:var(--t1);margin:10px 0 6px">Hold Gate 4 yourself.</p>
+    <p style="font-family:var(--s);font-size:.9rem;color:var(--t2);line-height:1.65;margin:0 0 14px">A working slice of the decision architecture: approve variants, reject and watch the feedback loop, and try to batch-skip the review &#8212; the guardrails are live.</p>
+    <span style="font-family:var(--m);font-size:.85rem;color:var(--ac)">Open the demo &#8594;</span>
+  </a>
   </div>
 
   <!-- 05: Scale -->
@@ -524,6 +537,24 @@ const metricObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting
   }
 }})},{threshold:.3});
 document.querySelectorAll(".cs__metric").forEach(m=>metricObs.observe(m));
+
+// SVG diagram expander
+var svglb=document.createElement('div');svglb.className='svglb';
+svglb.innerHTML='<span class="svglb__close">&times;</span>';
+document.body.appendChild(svglb);
+function closeSvgLb(){svglb.classList.remove('open');var s=svglb.querySelector('svg');if(s)s.remove();document.body.style.overflow=''}
+document.querySelectorAll('.wf-swim').forEach(function(w){
+  w.setAttribute('role','button');w.setAttribute('tabindex','0');
+  w.setAttribute('aria-label','Expand diagram');
+  function openIt(){var s=w.querySelector('svg');if(!s)return;
+    var c=svglb.querySelector('svg');if(c)c.remove();
+    svglb.appendChild(s.cloneNode(true));
+    svglb.classList.add('open');document.body.style.overflow='hidden'}
+  w.addEventListener('click',openIt);
+  w.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openIt()}});
+});
+svglb.addEventListener('click',closeSvgLb);
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSvgLb()});
 
 // Lightbox
 const lb=document.getElementById("lb");
