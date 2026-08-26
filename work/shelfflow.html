@@ -153,13 +153,180 @@
   </div>
   <p class="cs__img-cap">Agents at work. The operator triggers generation and supervises progress in real time: per-package status, confidence signals and flags surfaced as they happen.</p>
 
-  <!-- AI agent orchestration diagram -->
-  <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/workflow-2.png" alt="AI agent orchestration flow"></div>
-  <p class="cs__img-cap">Agent orchestration. The workflow orchestrator routes tasks to the right agent, schedules generation jobs and enforces gate rules. No agent can bypass a gate.</p>
-
-  <!-- Human-in-the-loop decision model -->
-  <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/workflow-4.png" alt="Human-in-the-loop decision model"></div>
-  <p class="cs__img-cap">Three authority zones: AI acts freely (parse, scan, format), AI proposes (enrichments, variants), human decides (validate, approve, ship). The boundary between zones is the product's trust architecture.</p>
+  <!-- Agent orchestration & authority swimlanes (responsive inline SVG) -->
+  <style>
+  .wf-swim{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:20px;margin:28px 0 10px}
+  .wf-swim svg{width:100%;height:auto;display:block}
+  .wf-swim--m{display:none;max-width:440px;margin-left:auto;margin-right:auto}
+  @media(max-width:700px){.wf-swim--d{display:none}.wf-swim--m{display:block}}
+  .wfgp rect{animation:wfgpulse 2.4s ease-in-out infinite}
+  @keyframes wfgpulse{0%,100%{opacity:1}50%{opacity:.35}}
+  @media(prefers-reduced-motion:reduce){.wfgp rect{animation:none}}
+  </style>
+  <div class="wf-swim wf-swim--d" data-reveal>
+<svg viewBox="0 0 1440 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Agent orchestration and human authority: six AI agents in the top lane, six-stage pipeline with four human gates in the middle, gate owners below" style="font-family:var(--m)">
+<rect x="48" y="48" width="1344" height="220" rx="10" fill="rgba(45,212,191,.025)" stroke="rgba(45,212,191,.14)" stroke-dasharray="4 4"/>
+<text x="64" y="76" fill="#2dd4bf" font-size="12" letter-spacing="2.5">AI LAYER &#8212; SIX AGENTS, ONE ORCHESTRATOR</text>
+<text x="64" y="94" fill="#5f5f70" font-size="11">the orchestrator routes tasks and enforces gate rules &#183; agents draft, adapt, scan and flag &#8212; never approve, never publish</text>
+<rect x="54" y="108" width="192" height="44" rx="8" fill="#15151f" stroke="rgba(45,212,191,.4)"/>
+<text x="150" y="135" fill="#7de8d8" font-size="13" text-anchor="middle">BRIEF PARSER</text>
+<rect x="274" y="108" width="192" height="44" rx="8" fill="#15151f" stroke="rgba(45,212,191,.4)"/>
+<text x="370" y="135" fill="#7de8d8" font-size="13" text-anchor="middle">COPY DRAFTER</text>
+<rect x="494" y="108" width="192" height="44" rx="8" fill="#15151f" stroke="rgba(167,139,250,.4)"/>
+<text x="590" y="135" fill="#c9b8f7" font-size="13" text-anchor="middle">DIFF REPORTER</text>
+<rect x="714" y="108" width="192" height="44" rx="8" fill="#15151f" stroke="rgba(45,212,191,.4)"/>
+<text x="810" y="135" fill="#7de8d8" font-size="13" text-anchor="middle">SPEC CHECKER</text>
+<rect x="934" y="108" width="192" height="44" rx="8" fill="#15151f" stroke="rgba(245,158,11,.4)"/>
+<text x="1030" y="135" fill="#f5c56b" font-size="13" text-anchor="middle">COMPLIANCE SCANNER</text>
+<rect x="494" y="176" width="632" height="36" rx="7" fill="#15151f" stroke="rgba(245,158,11,.4)" stroke-dasharray="5 3"/>
+<text x="810" y="199" fill="#f5c56b" font-size="12.5" text-anchor="middle">CONSISTENCY AUDITOR &#8212; cross-checks all 36 packages</text>
+<line x1="150" y1="152" x2="150" y2="296" stroke="rgba(45,212,191,.35)" stroke-dasharray="2 4"/>
+<circle cx="150" cy="296" r="2.5" fill="rgb(45,212,191)"/>
+<line x1="370" y1="152" x2="370" y2="296" stroke="rgba(45,212,191,.35)" stroke-dasharray="2 4"/>
+<circle cx="370" cy="296" r="2.5" fill="rgb(45,212,191)"/>
+<line x1="590" y1="152" x2="590" y2="176" stroke="rgba(167,139,250,.35)" stroke-dasharray="2 4"/>
+<line x1="590" y1="212" x2="590" y2="296" stroke="rgba(167,139,250,.35)" stroke-dasharray="2 4"/>
+<circle cx="590" cy="296" r="2.5" fill="rgb(167,139,250)"/>
+<line x1="810" y1="152" x2="810" y2="176" stroke="rgba(45,212,191,.35)" stroke-dasharray="2 4"/>
+<line x1="810" y1="212" x2="810" y2="296" stroke="rgba(45,212,191,.35)" stroke-dasharray="2 4"/>
+<circle cx="810" cy="296" r="2.5" fill="rgb(45,212,191)"/>
+<line x1="1030" y1="152" x2="1030" y2="176" stroke="rgba(245,158,11,.35)" stroke-dasharray="2 4"/>
+<line x1="1030" y1="212" x2="1030" y2="296" stroke="rgba(245,158,11,.35)" stroke-dasharray="2 4"/>
+<circle cx="1030" cy="296" r="2.5" fill="rgb(245,158,11)"/>
+<text x="20" y="312" fill="#c8c8d4" font-size="12">1 brief</text>
+<line x1="20" y1="326" x2="69" y2="326" stroke="#3a3a48" marker-end="url(#wfah)"/>
+<rect x="75" y="300" width="150" height="52" rx="9" fill="#15151f" stroke="#2b2b38"/>
+<text x="150" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S1 &#183; Intake</text>
+<line x1="225" y1="326" x2="295" y2="326" stroke="#2b2b38"/>
+<rect x="295" y="300" width="150" height="52" rx="9" fill="#15151f" stroke="#2b2b38"/>
+<text x="370" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S2 &#183; Draft</text>
+<line x1="445" y1="326" x2="515" y2="326" stroke="#2b2b38"/>
+<rect x="515" y="300" width="150" height="52" rx="9" fill="#15151f" stroke="#2b2b38"/>
+<text x="590" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S3 &#183; Review</text>
+<line x1="665" y1="326" x2="735" y2="326" stroke="#2b2b38"/>
+<rect x="735" y="300" width="150" height="52" rx="9" fill="#15151f" stroke="#2b2b38"/>
+<text x="810" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S4 &#183; Adapt</text>
+<line x1="885" y1="326" x2="955" y2="326" stroke="#2b2b38"/>
+<rect x="955" y="300" width="150" height="52" rx="9" fill="#15151f" stroke="#2b2b38"/>
+<text x="1030" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S5 &#183; Legal</text>
+<line x1="1105" y1="326" x2="1175" y2="326" stroke="#2b2b38"/>
+<rect x="1175" y="300" width="150" height="52" rx="9" fill="#15151f" stroke="#2b2b38"/>
+<text x="1250" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S6 &#183; Publish</text>
+<g class="wfgp" style="animation-delay:0.0s"><rect x="253" y="319" width="14" height="14" transform="rotate(45 260 326)" fill="#2dd4bf"/></g>
+<text x="260" y="376" fill="#2dd4bf" font-size="11" text-anchor="middle">G1 &#183; brief</text>
+<g class="wfgp" style="animation-delay:0.5s"><rect x="473" y="319" width="14" height="14" transform="rotate(45 480 326)" fill="#f59e0b"/></g>
+<text x="480" y="376" fill="#f59e0b" font-size="11" text-anchor="middle">G2 &#183; draft</text>
+<g class="wfgp" style="animation-delay:1.0s"><rect x="913" y="319" width="14" height="14" transform="rotate(45 920 326)" fill="#a78bfa"/></g>
+<text x="920" y="376" fill="#a78bfa" font-size="11" text-anchor="middle">G3 &#183; compliance</text>
+<g class="wfgp" style="animation-delay:1.5s"><rect x="1133" y="319" width="14" height="14" transform="rotate(45 1140 326)" fill="#22c55e"/></g>
+<text x="1140" y="376" fill="#22c55e" font-size="11" text-anchor="middle">G4 &#183; launch</text>
+<line x1="1325" y1="326" x2="1371" y2="326" stroke="#22c55e" marker-end="url(#wfag)"/>
+<text x="1430" y="314" fill="#22c55e" font-size="12" text-anchor="end">36 packages</text><text x="1430" y="352" fill="#5f5f70" font-size="11" text-anchor="end">18 approvals</text>
+<rect x="48" y="412" width="1344" height="152" rx="10" fill="rgba(245,158,11,.02)" stroke="rgba(245,158,11,.14)" stroke-dasharray="4 4"/>
+<text x="64" y="552" fill="#f59e0b" font-size="12" letter-spacing="2.5">HUMAN AUTHORITY &#8212; NOTHING SHIPS WITHOUT A GATE OWNER</text>
+<line x1="260" y1="338" x2="260" y2="362" stroke="#3a3a48"/><line x1="260" y1="388" x2="260" y2="458" stroke="#3a3a48"/><line x1="260" y1="458" x2="370" y2="458" stroke="#3a3a48"/>
+<line x1="480" y1="338" x2="480" y2="362" stroke="#3a3a48"/><line x1="480" y1="388" x2="480" y2="458" stroke="#3a3a48"/><line x1="480" y1="458" x2="370" y2="458" stroke="#3a3a48"/>
+<line x1="370" y1="458" x2="370" y2="478" stroke="#3a3a48"/>
+<line x1="920" y1="338" x2="920" y2="362" stroke="#3a3a48"/><line x1="920" y1="388" x2="920" y2="478" stroke="#3a3a48"/>
+<line x1="1140" y1="338" x2="1140" y2="362" stroke="#3a3a48"/><line x1="1140" y1="388" x2="1140" y2="478" stroke="#3a3a48"/>
+<rect x="270" y="478" width="200" height="44" rx="8" fill="#15151f" stroke="rgba(245,158,11,.4)"/>
+<text x="370" y="505" fill="#f5c56b" font-size="12.5" text-anchor="middle">CONTENT LEAD &#183; G1 G2</text>
+<rect x="820" y="478" width="200" height="44" rx="8" fill="#15151f" stroke="rgba(167,139,250,.4)"/>
+<text x="920" y="505" fill="#c9b8f7" font-size="12.5" text-anchor="middle">COMPLIANCE OFFICER &#183; G3</text>
+<rect x="1040" y="478" width="200" height="44" rx="8" fill="#15151f" stroke="rgba(34,197,94,.4)"/>
+<text x="1140" y="505" fill="#86e0a1" font-size="12.5" text-anchor="middle">BRAND MANAGER &#183; G4</text>
+<rect x="66" y="478" width="180" height="44" rx="8" fill="none" stroke="#2b2b38" stroke-dasharray="3 3"/>
+<text x="156" y="497" fill="#5f5f70" font-size="11.5" text-anchor="middle">OPERATOR &#183; runs the workflow</text>
+<text x="156" y="512" fill="#44444f" font-size="10.5" text-anchor="middle">no gate authority</text>
+<circle cx="96" cy="602" r="4" fill="#2dd4bf"/><text x="108" y="606" fill="#8a8a98" font-size="11.5">generate &amp; validate</text>
+<circle cx="275" cy="602" r="4" fill="#f59e0b"/><text x="287" y="606" fill="#8a8a98" font-size="11.5">risk &amp; consistency flags</text>
+<circle cx="489" cy="602" r="4" fill="#a78bfa"/><text x="501" y="606" fill="#8a8a98" font-size="11.5">change reporting</text>
+<rect x="647" y="596" width="11" height="11" transform="rotate(45 652 602)" fill="#e8e8ee"/><text x="665" y="606" fill="#8a8a98" font-size="11.5">mandatory human gate &#8212; no bypass</text>
+<defs><marker id="wfah" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7" fill="none" stroke="#3a3a48" stroke-width="1.4"/></marker><marker id="wfag" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7" fill="none" stroke="#22c55e" stroke-width="1.4"/></marker></defs>
+</svg>
+  </div>
+  <div class="wf-swim wf-swim--m" data-reveal>
+<svg viewBox="0 0 420 764" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mobile layout: AI agents on the left, six-stage pipeline top to bottom, gate owners on the right" style="font-family:var(--m)">
+<rect x="4" y="42" width="148" height="600" rx="8" fill="rgba(45,212,191,.02)" stroke="rgba(45,212,191,.12)" stroke-dasharray="3 3"/>
+<text x="12" y="30" fill="#2dd4bf" font-size="10" letter-spacing="1.5">AI AGENTS</text>
+<rect x="268" y="42" width="148" height="600" rx="8" fill="rgba(245,158,11,.02)" stroke="rgba(245,158,11,.12)" stroke-dasharray="3 3"/>
+<text x="410" y="30" fill="#f59e0b" font-size="10" letter-spacing="1.5" text-anchor="end">HUMAN GATES</text>
+<text x="210" y="52" fill="#c8c8d4" font-size="10.5" text-anchor="middle">1 brief</text>
+<line x1="210" y1="56" x2="210" y2="68" stroke="#3a3a48" marker-end="url(#wfmah)"/>
+<rect x="162" y="70" width="96" height="44" rx="8" fill="#15151f" stroke="#2b2b38"/>
+<text x="210" y="88" fill="#e8e8ee" font-size="12" text-anchor="middle">S1</text>
+<text x="210" y="103" fill="#8a8a98" font-size="10" text-anchor="middle">Intake</text>
+<line x1="210" y1="114" x2="210" y2="170" stroke="#2b2b38"/>
+<g class="wfgp" style="animation-delay:0.0s"><rect x="204" y="136" width="12" height="12" transform="rotate(45 210 142)" fill="#2dd4bf"/></g>
+<rect x="162" y="170" width="96" height="44" rx="8" fill="#15151f" stroke="#2b2b38"/>
+<text x="210" y="188" fill="#e8e8ee" font-size="12" text-anchor="middle">S2</text>
+<text x="210" y="203" fill="#8a8a98" font-size="10" text-anchor="middle">Draft</text>
+<line x1="210" y1="214" x2="210" y2="270" stroke="#2b2b38"/>
+<g class="wfgp" style="animation-delay:0.5s"><rect x="204" y="236" width="12" height="12" transform="rotate(45 210 242)" fill="#f59e0b"/></g>
+<rect x="162" y="270" width="96" height="44" rx="8" fill="#15151f" stroke="#2b2b38"/>
+<text x="210" y="288" fill="#e8e8ee" font-size="12" text-anchor="middle">S3</text>
+<text x="210" y="303" fill="#8a8a98" font-size="10" text-anchor="middle">Review</text>
+<line x1="210" y1="314" x2="210" y2="370" stroke="#2b2b38"/>
+<rect x="162" y="370" width="96" height="44" rx="8" fill="#15151f" stroke="#2b2b38"/>
+<text x="210" y="388" fill="#e8e8ee" font-size="12" text-anchor="middle">S4</text>
+<text x="210" y="403" fill="#8a8a98" font-size="10" text-anchor="middle">Adapt</text>
+<line x1="210" y1="414" x2="210" y2="470" stroke="#2b2b38"/>
+<g class="wfgp" style="animation-delay:1.0s"><rect x="204" y="436" width="12" height="12" transform="rotate(45 210 442)" fill="#a78bfa"/></g>
+<rect x="162" y="470" width="96" height="44" rx="8" fill="#15151f" stroke="#2b2b38"/>
+<text x="210" y="488" fill="#e8e8ee" font-size="12" text-anchor="middle">S5</text>
+<text x="210" y="503" fill="#8a8a98" font-size="10" text-anchor="middle">Legal</text>
+<line x1="210" y1="514" x2="210" y2="570" stroke="#2b2b38"/>
+<g class="wfgp" style="animation-delay:1.5s"><rect x="204" y="536" width="12" height="12" transform="rotate(45 210 542)" fill="#22c55e"/></g>
+<rect x="162" y="570" width="96" height="44" rx="8" fill="#15151f" stroke="#2b2b38"/>
+<text x="210" y="588" fill="#e8e8ee" font-size="12" text-anchor="middle">S6</text>
+<text x="210" y="603" fill="#8a8a98" font-size="10" text-anchor="middle">Publish</text>
+<rect x="8" y="77" width="128" height="30" rx="6" fill="#15151f" stroke="rgba(45,212,191,.4)"/>
+<text x="72" y="95.5" fill="#7de8d8" font-size="10" text-anchor="middle">BRIEF PARSER</text>
+<line x1="136" y1="92" x2="162" y2="92" stroke="rgba(45,212,191,.35)"/>
+<rect x="8" y="177" width="128" height="30" rx="6" fill="#15151f" stroke="rgba(45,212,191,.4)"/>
+<text x="72" y="195.5" fill="#7de8d8" font-size="10" text-anchor="middle">COPY DRAFTER</text>
+<line x1="136" y1="192" x2="162" y2="192" stroke="rgba(45,212,191,.35)"/>
+<rect x="8" y="277" width="128" height="30" rx="6" fill="#15151f" stroke="rgba(167,139,250,.4)"/>
+<text x="72" y="295.5" fill="#c9b8f7" font-size="10" text-anchor="middle">DIFF REPORTER</text>
+<line x1="136" y1="292" x2="162" y2="292" stroke="rgba(167,139,250,.35)"/>
+<rect x="8" y="377" width="128" height="30" rx="6" fill="#15151f" stroke="rgba(45,212,191,.4)"/>
+<text x="72" y="395.5" fill="#7de8d8" font-size="10" text-anchor="middle">SPEC CHECKER</text>
+<line x1="136" y1="392" x2="162" y2="392" stroke="rgba(45,212,191,.35)"/>
+<rect x="8" y="446" width="128" height="30" rx="6" fill="#15151f" stroke="rgba(245,158,11,.4)"/>
+<text x="72" y="464.5" fill="#f5c56b" font-size="10" text-anchor="middle">CONSISTENCY AUD.</text>
+<line x1="136" y1="461" x2="154" y2="461" stroke="rgba(245,158,11,.35)"/>
+<rect x="8" y="484" width="128" height="30" rx="6" fill="#15151f" stroke="rgba(245,158,11,.4)"/>
+<text x="72" y="502.5" fill="#f5c56b" font-size="10" text-anchor="middle">COMPLIANCE SCAN</text>
+<line x1="136" y1="499" x2="154" y2="499" stroke="rgba(245,158,11,.35)"/>
+<line x1="154" y1="461" x2="154" y2="499" stroke="rgba(245,158,11,.35)"/>
+<line x1="154" y1="492" x2="162" y2="492" stroke="rgba(245,158,11,.35)"/>
+<path d="M218,142 H265 V192" fill="none" stroke="#3a3a48"/>
+<path d="M218,242 H265 V192" fill="none" stroke="#3a3a48"/>
+<line x1="265" y1="192" x2="274" y2="192" stroke="#3a3a48"/>
+<rect x="274" y="176" width="138" height="32" rx="6" fill="#15151f" stroke="rgba(245,158,11,.4)"/>
+<text x="343" y="190" fill="#f5c56b" font-size="10" text-anchor="middle">CONTENT LEAD</text>
+<text x="343" y="202" fill="#8a8a98" font-size="9" text-anchor="middle">G1 &#183; G2</text>
+<line x1="218" y1="442" x2="274" y2="442" stroke="#3a3a48"/>
+<rect x="274" y="426" width="138" height="32" rx="6" fill="#15151f" stroke="rgba(167,139,250,.4)"/>
+<text x="343" y="440" fill="#c9b8f7" font-size="10" text-anchor="middle">COMPLIANCE OFF.</text>
+<text x="343" y="452" fill="#8a8a98" font-size="9" text-anchor="middle">G3</text>
+<line x1="218" y1="542" x2="274" y2="542" stroke="#3a3a48"/>
+<rect x="274" y="526" width="138" height="32" rx="6" fill="#15151f" stroke="rgba(34,197,94,.4)"/>
+<text x="343" y="540" fill="#86e0a1" font-size="10" text-anchor="middle">BRAND MANAGER</text>
+<text x="343" y="552" fill="#8a8a98" font-size="9" text-anchor="middle">G4 &#183; launch</text>
+<line x1="210" y1="614" x2="210" y2="648" stroke="#22c55e" marker-end="url(#wfmag)"/>
+<text x="210" y="668" fill="#22c55e" font-size="11.5" text-anchor="middle">36 packages &#183; 18 approvals</text>
+<g font-size="9.5" fill="#8a8a98">
+<circle cx="20" cy="698" r="3.5" fill="#2dd4bf"/><text x="30" y="702">generate &amp; validate</text>
+<circle cx="176" cy="698" r="3.5" fill="#f59e0b"/><text x="186" y="702">risk flags</text>
+<circle cx="276" cy="698" r="3.5" fill="#a78bfa"/><text x="286" y="702">change reports</text>
+<rect x="16" y="716" width="9" height="9" transform="rotate(45 20.5 720.5)" fill="#e8e8ee"/><text x="30" y="724">mandatory human gate &#8212; no bypass</text>
+<text x="16" y="744" fill="#5f5f70" font-size="9.5">OPERATOR runs the workflow &#183; no gate authority</text>
+</g>
+<defs><marker id="wfmah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#3a3a48" stroke-width="1.3"/></marker><marker id="wfmag" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#22c55e" stroke-width="1.3"/></marker></defs>
+</svg>
+  </div>
+  <p class="cs__img-cap">Agent orchestration and authority in one map. Six agents work the lanes between gates; four humans own the gates. The vertical axis is the trust architecture: AI drafts and flags above the line, human accountability signs below it. The operator runs the workflow but holds no gate authority.</p>
   </div>
 
   <!-- 03: Human Gates -->
