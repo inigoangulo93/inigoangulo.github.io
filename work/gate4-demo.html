@@ -70,10 +70,14 @@ button{font-family:var(--m);cursor:pointer}
 .foot a{color:var(--ac)}
 .shake{animation:sh .4s}
 @keyframes sh{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+body.embed nav,body.embed .tag,body.embed h1,body.embed .sub,body.embed .foot{display:none}
+body.embed{padding:12px 12px 20px}
+body.embed .wrap{margin-top:0!important}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
+<script>if(new URLSearchParams(location.search).get('embed')==='1')document.body.classList.add('embed');</script>
 <nav style="position:fixed;top:0;left:0;right:0;background:rgba(10,10,15,.9);backdrop-filter:blur(8px);border-bottom:1px solid #1e1e28;padding:10px 16px;z-index:10;font-size:11px"><a href="shelfflow.html" style="color:#8a8a98;text-decoration:none">&#8592; Back to the ShelfFlow case study</a></nav>
 <div class="wrap" style="margin-top:34px">
 <p class="tag">SHELFFLOW · INTERACTIVE DEMO · SYNTHETIC DATA</p>
@@ -211,6 +215,11 @@ document.addEventListener('keydown',guard(function(e){if(cur<0||ffRunning||launc
 log('Gate 4 opened · '+N+' decisions pending · owner: Brand Manager');
 show(0);
 })();
+
+// embed auto-height: report content height to the parent page
+if(window.parent!==window&&'ResizeObserver' in window){
+  new ResizeObserver(function(){parent.postMessage({type:'g4h',h:document.body.scrollHeight},'*')}).observe(document.body);
+}
 </script>
 </body>
 </html>

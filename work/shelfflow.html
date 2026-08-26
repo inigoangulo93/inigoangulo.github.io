@@ -427,12 +427,13 @@
   <p class="cs__img-cap">Gate 4: Full matrix review. Per-cell approval across 18 human decisions, every SKU &#215; retailer combination. "Approve for Launch" is the final gate.</p>
 
   <!-- Interactive demo CTA -->
-  <a href="gate4-demo.html" data-reveal style="display:block;text-decoration:none;background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:24px 28px;margin:28px 0">
+  <div data-reveal style="background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:24px 28px;margin:28px 0">
     <span style="font-family:var(--m);font-size:11px;color:var(--ac);letter-spacing:2px">&#9670; INTERACTIVE &#8212; SYNTHETIC DATA</span>
     <p style="font-family:var(--s);font-size:1.15rem;font-weight:700;color:var(--t1);margin:10px 0 6px">Hold Gate 4 yourself.</p>
     <p style="font-family:var(--s);font-size:.9rem;color:var(--t2);line-height:1.65;margin:0 0 14px">A working slice of the decision architecture: approve variants, reject and watch the feedback loop, and try to batch-skip the review &#8212; the guardrails are live.</p>
-    <span style="font-family:var(--m);font-size:.85rem;color:var(--ac)">Open the demo &#8594;</span>
-  </a>
+    <iframe id="g4frame" src="gate4-demo.html?embed=1" title="Interactive Gate 4 demo" loading="lazy" style="width:100%;border:0;border-radius:10px;height:760px;background:#0a0a0f"></iframe>
+    <p style="margin:10px 0 0"><a href="gate4-demo.html" style="font-family:var(--m);font-size:.78rem;color:var(--t3);text-decoration:none">Open full screen &#8599;</a></p>
+  </div>
   </div>
 
   <!-- 05: Scale -->
@@ -537,6 +538,14 @@ const metricObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting
   }
 }})},{threshold:.3});
 document.querySelectorAll(".cs__metric").forEach(m=>metricObs.observe(m));
+
+// Gate 4 embed: follow the demo's reported height (no inner scroll, no CLS)
+window.addEventListener('message',function(e){
+  if(!e.data||e.data.type!=='g4h')return;
+  var f=document.getElementById('g4frame');if(!f)return;
+  var h=Math.max(400,Math.min(1400,parseInt(e.data.h,10)||0));
+  if(h)f.style.height=h+'px';
+});
 
 // SVG diagram expander
 var svglb=document.createElement('div');svglb.className='svglb';
