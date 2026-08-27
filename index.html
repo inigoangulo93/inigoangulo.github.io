@@ -353,6 +353,24 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .contact__left p{font-family:var(--s);font-size:.84rem;color:var(--t2);line-height:1.6;max-width:380px;margin-bottom:20px}
 .cl{display:flex;flex-direction:column;gap:8px}.cl a{font-size:.78rem;color:var(--t2);display:flex;align-items:center;gap:8px;transition:color .2s}.cl a:hover{color:var(--ac2);text-shadow:0 0 10px var(--acg)}.cl a span{color:var(--t3);font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;width:52px;flex-shrink:0}
 .contact__right{width:100%;max-width:440px}
+/* Book a call */
+.bac{width:100%;max-width:560px}
+.bac__kicker{font-family:var(--m);font-size:12px;color:var(--ac);letter-spacing:3px;margin-bottom:12px}
+.bac__h{font-family:var(--s);font-size:clamp(24px,4vw,34px);font-weight:700;margin-bottom:8px}
+.bac__sub{font-family:var(--s);font-size:15px;color:var(--t3);line-height:1.65;margin-bottom:26px}
+.bac__card{background:var(--bg2);border:1px solid rgba(45,212,191,.28);border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:16px}
+.bac__row{display:flex;align-items:center;gap:14px}
+.bac__ico{width:44px;height:44px;border-radius:10px;border:1px solid rgba(45,212,191,.35);background:rgba(45,212,191,.06);display:flex;align-items:center;justify-content:center;flex:none}
+.bac__ico svg{width:22px;height:22px;stroke:var(--ac);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.bac__t1{font-family:var(--s);font-size:16px;font-weight:600;color:var(--t1)}
+.bac__t2{font-family:var(--m);font-size:11px;color:var(--t3);margin-top:3px}
+.bac__btn{display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--m);font-size:14px;padding:15px 20px;border-radius:9px;background:var(--ac);color:#04120e;text-decoration:none;font-weight:700;transition:transform .12s, box-shadow .12s}
+.bac__btn:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(45,212,191,.25)}
+.bac__alt{font-family:var(--m);font-size:11.5px;color:var(--mut);text-align:center}
+.bac__alt a{color:var(--t3)}
+.bac__meta{display:flex;gap:16px;justify-content:center;font-family:var(--m);font-size:10.5px;color:var(--mut);flex-wrap:wrap}
+.bac__meta span{display:flex;align-items:center;gap:6px}
+.bac__dot{width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block}
 .contact__ft{font-size:.65rem;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:18px}
 .ff{margin-bottom:12px}.ff label{display:block;font-size:.65rem;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
 .ff input,.ff textarea{width:100%;background:var(--bg2);border:1px solid var(--b1);border-radius:6px;padding:9px 12px;color:var(--t1);font-family:var(--m);font-size:.76rem;outline:none;transition:border-color .2s,box-shadow .2s}
@@ -802,7 +820,40 @@ window.addEventListener('DOMContentLoaded',function(){
 
 
 
-<div class="layer layer--raised" id="contact"><div class="mx"><div class="contact__row"><div class="contact__left"><h2>Let's talk about your system.</h2><p style="font-family:var(--s);font-size:.88rem;color:var(--t2);line-height:1.65;max-width:380px;margin-bottom:24px">I work on complex product problems where design directly impacts revenue, decision quality, or operational efficiency. Commerce, fintech, data-heavy systems.</p><div class="cl"><a href="mailto:inigoangulo@gmail.com"><span>Email</span><span>inigoangulo@gmail.com</span></a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank"><span>LinkedIn</span>/inigo-angulo</a><a href="tel:+41799528321"><span>Phone</span>+41 79 952 83 21</a></div><p style="font-family:var(--s);font-size:.76rem;color:var(--t3);margin-top:20px;line-height:1.6">Based in Zurich. Remote or hybrid.</p></div><div class="contact__right"><p class="contact__ft">// reach out</p><form action="https://formsubmit.co/inigoangulo@gmail.com" method="POST" id="contactForm"><input type="hidden" name="_subject" value="Portfolio contact — inigoangulo.com"><input type="hidden" name="_next" value="https://inigoangulo.com/?sent=1#contact"><input type="hidden" name="_captcha" value="false"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"><div class="ff"><label for="cf-name">Name</label><input id="cf-name" name="name" required placeholder="Your name"></div><div class="ff"><label for="cf-email">Email</label><input id="cf-email" type="email" name="email" required placeholder="your@email.com"></div><div class="ff"><label for="cf-msg">What are you working on?</label><textarea id="cf-msg" name="message" required placeholder="Tell me about the system you're building, the problem you're stuck on, or the role you're hiring for."></textarea></div><button class="form-go" type="submit">Send message</button></form></div></div></div></div>
+<div class="layer layer--raised" id="contact"><div class="mx"><div class="contact__row"><div class="contact__left"><h2>Let's talk about your system.</h2><p style="font-family:var(--s);font-size:.88rem;color:var(--t2);line-height:1.65;max-width:380px;margin-bottom:24px">I work on complex product problems where design directly impacts revenue, decision quality, or operational efficiency. Commerce, fintech, data-heavy systems.</p><div class="cl"><a href="mailto:inigoangulo@gmail.com"><span>Email</span><span>inigoangulo@gmail.com</span></a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank"><span>LinkedIn</span>/inigo-angulo</a><a href="tel:+41799528321"><span>Phone</span>+41 79 952 83 21</a></div><p style="font-family:var(--s);font-size:.76rem;color:var(--t3);margin-top:20px;line-height:1.6">Based in Zurich. Remote or hybrid.</p></div><div class="contact__right">
+<section class="bac">
+  <p class="bac__kicker">// TALK</p>
+  <h2 class="bac__h">The fastest way to figure out if we fit.</h2>
+  <p class="bac__sub">Twenty minutes, no deck, no agenda theater. Bring a hard problem — an ambiguous product, a funnel that leaks, an AI workflow that needs supervision — and let&#8217;s think through it together.</p>
+
+  <div class="bac__card">
+    <div class="bac__row">
+      <div class="bac__ico">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><path d="M9 15.5l2 2 4-4"/></svg>
+      </div>
+      <div>
+        <p class="bac__t1">Intro call &#183; 20 min</p>
+        <p class="bac__t2">Video call &#183; Europe/Zurich &#183; no prep needed</p>
+      </div>
+    </div>
+
+    <!-- data-cal-link activa el popup del script; el href es el fallback sin JS -->
+    <a class="bac__btn"
+       href="https://cal.com/inigoangulo/30min"
+       data-cal-link="inigoangulo/30min"
+       data-cal-namespace="intro"
+       data-cal-config='{"theme":"dark"}'>
+      Book a slot &#8594;
+    </a>
+
+    <p class="bac__meta">
+      <span><span class="bac__dot"></span>Usually replies same day</span>
+      <span>CET &#183; overlaps US mornings</span>
+    </p>
+    <p class="bac__alt">Prefer async? <a href="mailto:inigoangulo@gmail.com">inigoangulo@gmail.com</a> or the form below.</p>
+  </div>
+</section>
+<p class="contact__ft">// reach out</p><form action="https://formsubmit.co/inigoangulo@gmail.com" method="POST" id="contactForm"><input type="hidden" name="_subject" value="Portfolio contact — inigoangulo.com"><input type="hidden" name="_next" value="https://inigoangulo.com/?sent=1#contact"><input type="hidden" name="_captcha" value="false"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"><div class="ff"><label for="cf-name">Name</label><input id="cf-name" name="name" required placeholder="Your name"></div><div class="ff"><label for="cf-email">Email</label><input id="cf-email" type="email" name="email" required placeholder="your@email.com"></div><div class="ff"><label for="cf-msg">What are you working on?</label><textarea id="cf-msg" name="message" required placeholder="Tell me about the system you're building, the problem you're stuck on, or the role you're hiring for."></textarea></div><button class="form-go" type="submit">Send message</button></form></div></div></div></div>
 </section>
 
 <!-- ████ THINKING ████ -->
@@ -1534,6 +1585,12 @@ window.addEventListener('scroll',onScroll,{passive:true});
 window.addEventListener('resize',onScroll,{passive:true});
 onScroll();
 })();
+</script>
+<!-- Cal.com popup embed (loads the iframe only on click) -->
+<script>
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "intro", {origin:"https://app.cal.com"});
+Cal.ns.intro("ui", {"theme":"dark","cssVarsPerTheme":{"dark":{"cal-brand":"#2dd4bf"}},"hideEventTypeDetails":false,"layout":"month_view"});
 </script>
 </body>
 </html>
