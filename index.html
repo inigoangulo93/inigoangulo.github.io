@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Inigo Angulo · Product Strategy, Design &amp; Growth</title>
 <meta name="description" content="I build products that make complexity usable. Strategy, design and growth across commerce, conversion and trading systems.">
-<meta property="og:title" content="Inigo Angulo / Product &amp; Design">
+<meta property="og:title" content="Inigo Angulo &#183; Product Strategy, Design &amp; Growth">
 <meta property="og:description" content="I build products that make complexity usable. Strategy, design and growth across commerce, conversion and trading systems.">
 <meta property="og:image" content="https://inigoangulo.com/img/og.png">
 <meta property="og:image:width" content="1200">
@@ -15,7 +15,7 @@
 <link rel="canonical" href="https://inigoangulo.com/">
 <meta property="og:url" content="https://inigoangulo.com">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Inigo Angulo / Product &amp; Design">
+<meta name="twitter:title" content="Inigo Angulo &#183; Product Strategy, Design &amp; Growth">
 <meta name="twitter:description" content="I build products that make complexity usable. Strategy, design and growth across commerce, conversion and trading systems.">
 <meta name="twitter:image" content="https://inigoangulo.com/img/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -522,7 +522,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .bf__sanctuary{font-family:var(--m);font-size:.5rem;color:rgba(200,160,100,.25);letter-spacing:.15em;text-transform:uppercase;margin-top:40px;opacity:0;transition:opacity .5s 1.2s}
 .bf-wrap.open .bf__sanctuary{opacity:1}
 
-@media(max-width:768px){
+@media(max-width:768px){.tk-spine{display:none}
   .bf__body{padding:32px 20px 60px;justify-content:flex-start;padding-top:60px}
   .bf__fire{width:200px;margin-bottom:24px}
   .bf__title{font-size:1.4rem}
@@ -720,6 +720,9 @@ function render(n){
   var t=document.getElementById('v-'+n);
   if(t){t.classList.add('on');t.style.animation='none';t.offsetHeight;t.style.animation='fade .3s var(--e)'}
   document.querySelectorAll('.bar__btn').forEach(function(b){if(b.dataset.v===n)b.classList.add('on')});
+  requestAnimationFrame(function(){
+    document.querySelectorAll('.v.on [data-reveal]:not(.vis)').forEach(function(el){el.classList.add('vis')});
+  });
   window.scrollTo({top:0,behavior:'instant'});
 }
 function go(n){
@@ -752,7 +755,7 @@ window.addEventListener('DOMContentLoaded',function(){
 <span class="hero__keyword">Inigo <em>Angulo.</em></span>
 <p class="hero__p">I turn ambiguous, data-heavy problems into clear products with commercial value. Commerce, conversion, trading interfaces. I use AI to move faster, but the real edge is knowing what to cut.</p>
 <div class="hero__proof">
-<div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">1&#8594;36</span><span class="hero__proof-label">Packages per brief</span><span class="hero__proof-ctx">ShelfFlow &#183; NDA</span></div>
+<div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">1&#8594;36</span><span class="hero__proof-label">Packages per brief</span><span class="hero__proof-ctx">Agentic pipeline &#183; NDA</span></div>
 <div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">40x</span><span class="hero__proof-label">Reporting speed</span><span class="hero__proof-ctx">RetailNorm &#183; live product</span></div>
 <div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">+11%</span><span class="hero__proof-label">Checkout conversion</span><span class="hero__proof-ctx">GetYourGuide &#183; 4 EU markets</span></div>
 <div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">4x</span><span class="hero__proof-label">Feature adoption</span><span class="hero__proof-ctx">ENSO &#183; PropTech</span></div>
@@ -866,7 +869,7 @@ window.addEventListener('DOMContentLoaded',function(){
 <!-- Timeline container -->
 <div style="position:relative;max-width:820px;margin:0 auto">
 <!-- Timeline line -->
-<div style="position:absolute;left:28px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--ac),var(--up),var(--pu),var(--am),var(--ac2));opacity:.15;border-radius:2px"></div>
+<div class="tk-spine" style="position:absolute;left:28px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--ac),var(--up),var(--pu),var(--am),var(--ac2));opacity:.15;border-radius:2px"></div>
 
 <!-- 01 LISTEN -->
 <div class="tk" data-reveal>
