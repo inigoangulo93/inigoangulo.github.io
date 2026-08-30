@@ -418,6 +418,11 @@
       <span class="cs__evidence-text">Every state transition is logged: who, when, why. Rejected packages carry reviewer notes back to the previous stage. No silent failures. No packages stuck in limbo. The state machine is the accountability layer.</span>
     </div>
 
+    <div class="cs__evidence">
+      <span class="cs__evidence-label">System rationale</span>
+      <span class="cs__evidence-text"><strong>How we measured the agents.</strong> Agent quality was tracked against human outcomes, not benchmarks: flag precision (how often a compliance flag survived human review), per-gate rejection rate as a drift signal, regeneration acceptance (how often a v2 shipped without further notes), and a review-time floor per cell &#8212; the rubber-stamp detector that triggered the batch guardrail. When rejection rates fell too low, we treated it as reviewer fatigue, not agent excellence.</span>
+    </div>
+
   <!-- Gate 1 diff review -->
   <div class="cs__img" data-reveal><img src="../img/shelfflow/ui-10.png" alt="Brief validation side-by-side diff"></div>
   <p class="cs__img-cap">Gate 1: Brief validation. Side-by-side diff showing user brief vs. AI-enriched brief. Human confirms or edits before lock.</p>
