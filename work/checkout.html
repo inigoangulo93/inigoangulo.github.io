@@ -377,7 +377,9 @@
             var out=card.querySelector('.wys__out');
             out.style.color=COLS[call];
             out.innerHTML=(hit?'&#10003; Same call. ':'&#8600; His call: ')+'<b>'+CALLS[call]+'</b>';
-            if(done===3){document.getElementById('wysScore').textContent='You matched '+match+'/3 of the actual calls.'}
+            if(typeof gtag==='function')gtag('event','wys_call',{exp:(card.querySelector('.wys__id')||{}).textContent||'',user_call:b.dataset.v,match:hit});
+            if(done===3){document.getElementById('wysScore').textContent='You matched '+match+'/3 of the actual calls.';
+              if(typeof gtag==='function')gtag('event','wys_complete',{score:match});}
           });
         });
       });

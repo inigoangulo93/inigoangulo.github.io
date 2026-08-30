@@ -5,6 +5,8 @@
 <title>ShelfFlow · Gate 4 — interactive demo · Inigo Angulo</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <meta name="description" content="Hold Gate 4 yourself: an operable slice of ShelfFlow's decision architecture. Approve, reject, and meet the guardrail that blocks unreviewed batch approvals.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW",{send_page_view:window.parent===window});</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -123,6 +125,7 @@ var COPY={
  'Sephora':['A silky daily serum for luminous, even-toned skin.','Your glow ritual: antioxidant defense meets lit-from-within luminosity.'],
  'Walmart':['Everyday brightening serum. Gentle formula, real results.','Radiant skin at an everyday price — dermatologist-grade brightening for all.']};
 var N=9, cells=[], cur=-1, decided=0, ffRunning=false, launched=false;
+function ev(n,p){if(typeof gtag==='function')gtag('event',n,p||{})}
 function $(id){return document.getElementById(id)}
 var card=$('card'),mgrid=$('mgrid'),logEl=$('log'),msg=$('msg'),hint=$('hint'),decide=$('decide');
 
@@ -173,6 +176,7 @@ function approve(i,v,silent){var c=cells[i];if(!c||c.st==='ok')return;
 function reject(i){var c=cells[i];if(!c||c.st!=='pend')return;
  // sincrono: rechazo + regeneracion inmediata (sin timers: inmune a throttling de iframes)
  log(c.sku+' × '+c.ret+' <span style="color:#ef4444">rejected</span> → notes routed to Copy Drafter');
+ ev('reject_used',{cell:c.sku+' x '+c.ret});
  c.gen++;decided++;
  log(c.sku+' × '+c.ret+' regenerated (v'+c.gen+') → back to <span style="color:#f5c56b">In Review</span>');
  if(decided>=2&&$('ff').style.display!=='block'){$('ff').style.display='block';}
@@ -189,8 +193,9 @@ $('batch').onclick=guard(function(){if(launched)return;
   var b=$('batch');b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake');
   msg.innerHTML='<b>BLOCKED</b> — '+pend+' packages not individually reviewed. <i>Speed without review is liability.</i>';
   log('<span style="color:#ef4444">Batch approval BLOCKED: '+pend+' unreviewed packages</span>');
+  ev('batch_blocked',{unreviewed:pend});
   setHint('That guardrail shipped after v1 testing: operators rubber-stamped to save time. Review a cell — or <b>reject</b> one and watch where it goes.')}});
-$('ff').onclick=guard(function(){if(ffRunning||launched)return;ffRunning=true;
+$('ff').onclick=guard(function(){if(ffRunning||launched)return;ffRunning=true;ev('ff_used',{remaining:N-approvedCount()});
  var f=$('ff');f.disabled=true;f.style.opacity=.5;decide.style.display='none';
  setHint('Simulated reviewer session — every decision still gets an owner and a log line.');
  card.innerHTML='<p class="qn" style="margin:0">Reviewer session in progress…</p>';
@@ -198,7 +203,7 @@ $('ff').onclick=guard(function(){if(ffRunning||launched)return;ffRunning=true;
   if(n<0){clearInterval(t);ffRunning=false;refresh();
    setHint('9/9 on this slice — 18/18 on the full gate. One thing left: <b>Approve for Launch</b>.');return}
   approve(n,Math.random()<.25?'A':'B',true);refresh()}),150)});
-$('launch').onclick=guard(function(){if(approvedCount()!==N||launched)return;launched=true;
+$('launch').onclick=guard(function(){if(approvedCount()!==N||launched)return;launched=true;ev('launch_approved',{decisions:N});
  msg.textContent='';decide.style.display='none';
  card.innerHTML='<div class="done"><div class="big">✓</div><h2>Launch approved</h2>'
  +'<p><span class="n">'+N+'/'+N+'</span> decisions on this slice · <span class="n">18/18</span> on the full gate<br>'
