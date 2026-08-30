@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lost, traveller? · Inigo Angulo</title>
+<meta name="description" content="This path leads nowhere. The bonfire is this way.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0f;--t1:#e8e8ee;--t2:#c8c8d4;--t3:#8585a0;--ac:#2dd4bf;--acb:rgba(45,212,191,.35);--acg:rgba(45,212,191,.18);--acg2:rgba(45,212,191,.06);--m:'JetBrains Mono',monospace;--s:'IBM Plex Sans',sans-serif;--e:cubic-bezier(.4,0,.2,1)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--t1);font-family:var(--m);min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center;overflow-x:hidden}
+.fire{position:relative;width:min(560px,92vw);border-radius:14px;overflow:hidden;border:1px solid rgba(45,212,191,.14);margin-bottom:34px;line-height:0}
+.fire img{width:100%;height:auto;display:block;opacity:.82}
+.fire::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 42% 62%,transparent 8%,rgba(10,10,15,.55) 72%,var(--bg) 100%)}
+.k{font-size:.68rem;color:var(--ac);letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px}
+h1{font-family:var(--s);font-size:clamp(28px,6vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1.12;margin-bottom:14px}
+.sub{font-family:var(--s);font-size:.95rem;color:var(--t2);line-height:1.7;max-width:420px;margin:0 auto 30px}
+.go{display:inline-flex;align-items:center;gap:8px;font-family:var(--m);font-size:.84rem;color:var(--ac);border:1px solid var(--acb);background:var(--acg2);padding:13px 26px;border-radius:8px;text-decoration:none;transition:all .3s var(--e)}
+.go:hover{background:var(--ac);color:#04120e;border-color:var(--ac);box-shadow:0 0 22px var(--acg)}
+.path{margin-top:26px;font-size:.66rem;color:var(--t3);word-break:break-all;max-width:92vw}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="fire"><img src="/img/rest-here-weary-traveller.webp" width="1200" height="672" decoding="async" alt="A traveller resting at a bonfire"></div>
+
+<p class="k">// 404</p>
+<h1>Lost, traveller?</h1>
+<p class="sub">This path leads nowhere. The bonfire is this way.</p>
+<a class="go" href="/">&#8592; Rest at the fire</a>
+<p class="path" id="p"></p>
+
+<script>
+var el=document.getElementById('p');
+if(el)el.textContent=location.pathname;
+</script>
+
+</body>
+</html>

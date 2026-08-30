@@ -1,0 +1,15 @@
+# Inigo Angulo — Product Strategy, Design & Growth
+
+Product builder, Zurich. 9+ years across commerce, fintech, PropTech, travel. Specialty: supervision interfaces for agentic AI systems, conversion optimization, decision architecture.
+
+## Case studies
+
+- /work/shelfflow.html — Agentic content pipeline (confidential client): 6 AI agents, 4 human gates, 1 brief → 36 packages, launch cycle weeks → days. Includes an operable Gate 4 demo (/work/gate4-demo.html).
+- /work/checkout.html — GetYourGuide checkout: 10 A/B experiments, +11% conversion, experiment log with kills, receipts still live in production.
+- /work/retailnorm.html — RetailNorm (founder): retail media analytics, 40x faster reporting, live.
+- /work/kodo.html — KODO (founder): AI arbitrage bot for perpetual futures on Hyperliquid, 23 metrics → 1 decision, live.
+- /work/enso.html — ENSO Co-Living: AI-enhanced onboarding, −22% friction, +34% booking conversion, 4x adoption, 4 European markets.
+
+## Contact
+
+cal.com/inigoangulo/30min · inigoangulo@gmail.com · CV: /inigo-angulo-cv-2026.pdf
