@@ -12,6 +12,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="website">
+<link rel="canonical" href="https://inigoangulo.com/">
 <meta property="og:url" content="https://inigoangulo.com">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Inigo Angulo / Product &amp; Design">
@@ -712,6 +713,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 <script>
 var _hashFor={index:'#work',about:'#how-i-think',logs:'#about'};
 var _viewFor={'work':'index','how-i-think':'about','about':'logs'};
+if(location.pathname.endsWith('/index.html'))history.replaceState(null,'',location.pathname.slice(0,-10)+location.search+location.hash);
 function render(n){
   document.querySelectorAll('.v').forEach(function(v){v.classList.remove('on')});
   document.querySelectorAll('.bar__btn').forEach(function(b){b.classList.remove('on')});
