@@ -297,23 +297,10 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .fn__d{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:.56rem;color:var(--up);font-weight:600;text-shadow:0 0 6px var(--upg)}
 
 /* ─── Thinking page — vertical timeline ─── */
-.tk{display:grid;grid-template-columns:56px 1fr;gap:0;margin-bottom:0;position:relative}
-.tk__dot{display:flex;align-items:flex-start;justify-content:center;padding-top:22px;position:relative;z-index:2}
-.tk__dot svg{filter:drop-shadow(0 0 6px var(--dot-glow,var(--acg)))}
 
-.tk__card{padding:20px 28px 20px 20px;margin-bottom:2px;border-radius:12px;border:1px solid transparent;transition:background .3s,border-color .3s}
-.tk__card:hover{background:var(--bg2);border-color:var(--b1)}
 
-.tk__head{display:flex;align-items:center;gap:12px}
-.tk__num{font-family:var(--m);font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;font-weight:600;opacity:.5;transition:opacity .3s}
-.tk:hover .tk__num{opacity:1}
-.tk__h{font-family:var(--s);font-size:1.4rem;font-weight:800;letter-spacing:-.03em;transition:color .3s}
-.tk:hover .tk__h{color:var(--card-accent,var(--ac2))}
 
-.tk__p{font-family:var(--s);font-size:.88rem;color:var(--t2);line-height:1.75;margin-top:10px;max-width:620px}
 
-.tk__proof{font-family:var(--s);font-size:.76rem;color:var(--t4);line-height:1.6;margin-top:12px;max-width:620px}
-.tk__proof strong{color:var(--card-accent,var(--ac2));font-weight:600}
 
 /* skills (consistent, no primary distinction) */
 .sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
@@ -522,7 +509,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .bf__sanctuary{font-family:var(--m);font-size:.5rem;color:rgba(200,160,100,.25);letter-spacing:.15em;text-transform:uppercase;margin-top:40px;opacity:0;transition:opacity .5s 1.2s}
 .bf-wrap.open .bf__sanctuary{opacity:1}
 
-@media(max-width:768px){.tk-spine{display:none}
+@media(max-width:768px){
   .bf__body{padding:32px 20px 60px;justify-content:flex-start;padding-top:60px}
   .bf__fire{width:200px;margin-bottom:24px}
   .bf__title{font-size:1.4rem}
@@ -567,15 +554,6 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   .clients__item{min-width:auto;padding:8px 16px;font-size:.72rem;white-space:nowrap}
 
   /* Thinking timeline — no column on mobile */
-  .tk{display:block;margin-bottom:16px}
-  .tk__dot{display:none}
-  .tk__card{padding:16px 18px;border-radius:10px}
-  .tk__card svg[viewBox="0 0 400 200"]{height:90px}
-  .tk__head{gap:8px}
-  .tk__h{font-size:1.1rem}
-  .tk__num{font-size:.52rem}
-  .tk__p{font-size:.82rem;margin-top:8px}
-  .tk__proof{font-size:.7rem;margin-top:8px}
   /* Hide the timeline line divs on mobile */
   #v-about [style*="position:absolute;left:28px"]{display:none!important}
 
@@ -861,236 +839,183 @@ window.addEventListener('DOMContentLoaded',function(){
 <p style="font-family:var(--m);font-size:.62rem;color:var(--ac);text-transform:uppercase;letter-spacing:.22em;margin-bottom:28px">How I think</p>
 <h2 style="font-family:var(--s);font-size:3rem;font-weight:300;letter-spacing:-.03em;line-height:1.12;margin-bottom:8px;color:var(--t2)">From ambiguity</h2>
 <h2 style="font-family:var(--s);font-size:3rem;font-weight:300;letter-spacing:-.03em;line-height:1.12;margin-bottom:28px;color:var(--t2)">to <span style="font-weight:800;color:var(--t1)">measurable</span> <em style="font-weight:800;font-style:italic;color:var(--ac2);text-shadow:0 0 40px var(--acg)">outcome.</em></h2>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t3);line-height:1.75;max-width:520px;margin:0 auto">Most product problems are not design problems. They are clarity problems. Each step below removes a specific layer of uncertainty.</p>
 </div>
 
 
 
-<!-- Timeline container -->
-<div style="position:relative;max-width:820px;margin:0 auto">
-<!-- Timeline line -->
-<div class="tk-spine" style="position:absolute;left:28px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--ac),var(--up),var(--pu),var(--am),var(--ac2));opacity:.15;border-radius:2px"></div>
+<!-- HX-SECTION START · How I think, animated steps · replaces the intro paragraph + 5 step blocks inside the existing #how-i-think section (keep the section wrapper and its H2) -->
+<div class="hx">
+<style>
+.hx{max-width:860px;margin:0 auto;font-family:'JetBrains Mono',monospace;color:#e8e8ea}
+.hx *{box-sizing:border-box}
+.hx__lede{font-size:.64rem;color:#77777d;margin:0 0 40px}
+.hx__lede b{color:#2dd4bf;font-weight:500}
 
-<!-- 01 LISTEN -->
-<div class="tk" data-reveal>
-<div class="tk__dot" style="--dot-color:var(--ac);--dot-glow:var(--acg)">
-<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ac)" stroke-width="1.5"><circle cx="12" cy="12" r="9" opacity=".4"/><circle cx="12" cy="12" r="4" fill="var(--ac)" opacity=".6" stroke="none"/></svg>
-</div>
-<div class="tk__card" style="--card-accent:var(--ac);--card-glow:var(--acg)">
-<!-- Illustration: particle field — chaos settling into faint order -->
-<svg viewBox="0 0 400 200" style="width:100%;margin-bottom:20px;display:block" fill="none">
-<!-- Chaotic left field -->
-<circle cx="28" cy="45" r="2.5" fill="#ef4444" opacity=".35"><animate attributeName="cx" values="28;38;20;28" dur="5s" repeatCount="indefinite"/></circle>
-<circle cx="55" cy="120" r="4" fill="#ef4444" opacity=".22"><animate attributeName="cy" values="120;105;135;120" dur="4.2s" repeatCount="indefinite"/></circle>
-<circle cx="42" cy="168" r="3" fill="#ef4444" opacity=".18"><animate attributeName="cx" values="42;50;34;42" dur="6s" repeatCount="indefinite"/></circle>
-<circle cx="90" cy="32" r="5" fill="#ef4444" opacity=".15"/><circle cx="78" cy="80" r="2" fill="#ef4444" opacity=".28"/>
-<circle cx="115" cy="155" r="3.5" fill="#ef4444" opacity=".12"/><circle cx="105" cy="60" r="1.5" fill="#ef4444" opacity=".2"/>
-<!-- Erratic connections -->
-<path d="M28,45 L55,120 M55,120 L90,32 M90,32 L78,80 M78,80 L42,168 M42,168 L115,155" stroke="#ef4444" stroke-width=".5" opacity=".08" stroke-dasharray="3 6"/>
-<!-- Mid-zone: particles slowing -->
-<circle cx="170" cy="55" r="2" fill="#8585a0" opacity=".18"/><circle cx="185" cy="100" r="2.5" fill="#8585a0" opacity=".15"/>
-<circle cx="165" cy="145" r="1.5" fill="#8585a0" opacity=".12"/><circle cx="200" cy="75" r="2" fill="#8585a0" opacity=".1"/>
-<path d="M170,55 L185,100 M185,100 L165,145" stroke="#8585a0" stroke-width=".4" opacity=".06" stroke-dasharray="2 5"/>
-<!-- Right side: faint grid lines emerging -->
-<line x1="260" y1="40" x2="260" y2="165" stroke="#8585a0" stroke-width=".3" opacity=".06"/>
-<line x1="300" y1="40" x2="300" y2="165" stroke="#8585a0" stroke-width=".3" opacity=".06"/>
-<line x1="340" y1="40" x2="340" y2="165" stroke="#8585a0" stroke-width=".3" opacity=".06"/>
-<line x1="245" y1="70" x2="360" y2="70" stroke="#8585a0" stroke-width=".3" opacity=".05"/>
-<line x1="245" y1="105" x2="360" y2="105" stroke="#8585a0" stroke-width=".3" opacity=".05"/>
-<line x1="245" y1="140" x2="360" y2="140" stroke="#8585a0" stroke-width=".3" opacity=".05"/>
-<circle cx="260" cy="70" r="2" fill="#ef4444" opacity=".15"/><circle cx="300" cy="105" r="2" fill="#8585a0" opacity=".12"/>
-<circle cx="340" cy="140" r="2" fill="#8585a0" opacity=".1"/>
-<text x="390" y="105" fill="#8585a0" font-size="9" font-family="JetBrains Mono" text-anchor="end" opacity=".4">noise</text>
-</svg>
-<div class="tk__head">
-<span class="tk__num" style="color:var(--ac)">01</span>
-<h3 class="tk__h">Listen</h3>
-</div>
-<p class="tk__p">Before I design anything, I watch. Session recordings, operator shadowing, funnel data. The real problem is rarely what the brief describes.</p>
-<p class="tk__proof"><strong>ENSO Co-Living.</strong> The brief said "digitize 47 spreadsheets." Research said the product was 3 daily trust decisions. Killed 60% of planned scope. Adoption went 4x.</p>
-</div>
-</div>
+.hx__step{display:grid;grid-template-columns:44px 210px 1fr;gap:0 26px;align-items:center;padding:22px 0;position:relative}
+.hx__rail{position:relative;height:100%;display:flex;align-items:center;justify-content:center}
+.hx__rail::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:#131317}
+.hx__step--first .hx__rail::before{top:50%}
+.hx__step--last .hx__rail::before{bottom:50%}
+.hx__node{position:relative;z-index:1;width:30px;height:30px;border-radius:50%;border:1px solid #26262c;background:#0a0a0d;display:flex;align-items:center;justify-content:center;font-size:.54rem;color:#55555a;transition:border-color .3s,color .3s,box-shadow .3s}
+.hx__step:hover .hx__node{border-color:#2dd4bf;color:#2dd4bf;box-shadow:0 0 12px #2dd4bf22}
 
-<!-- 02 FRAME -->
-<div class="tk" data-reveal data-delay="1">
-<div class="tk__dot" style="--dot-color:var(--up);--dot-glow:var(--upg)">
-<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--up)" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="3" opacity=".4"/><line x1="4" y1="12" x2="20" y2="12" opacity=".25"/><line x1="12" y1="4" x2="12" y2="20" opacity=".25"/></svg>
-</div>
-<div class="tk__card" style="--card-accent:var(--up);--card-glow:var(--upg)">
-<!-- Illustration: loose nodes converging into a decision tree -->
-<svg viewBox="0 0 400 200" style="width:100%;margin-bottom:20px;display:block" fill="none">
-<!-- Scattered inputs on the left -->
-<circle cx="35" cy="40" r="3" fill="#22c55e" opacity=".2"/><circle cx="30" cy="90" r="2.5" fill="#22c55e" opacity=".18"/>
-<circle cx="40" cy="140" r="3.5" fill="#22c55e" opacity=".15"/><circle cx="50" cy="175" r="2" fill="#22c55e" opacity=".12"/>
-<!-- Converging lines to mid-nodes -->
-<path d="M35,40 Q80,55 110,60" stroke="#22c55e" stroke-width=".6" opacity=".1"/>
-<path d="M30,90 Q75,80 110,60" stroke="#22c55e" stroke-width=".6" opacity=".1"/>
-<path d="M40,140 Q85,140 115,135" stroke="#22c55e" stroke-width=".6" opacity=".1"/>
-<path d="M50,175 Q90,160 115,135" stroke="#22c55e" stroke-width=".6" opacity=".1"/>
-<!-- Mid-level cluster nodes -->
-<circle cx="110" cy="60" r="4" fill="#22c55e" opacity=".25"/><circle cx="115" cy="135" r="4" fill="#22c55e" opacity=".25"/>
-<!-- Lines to decision frame -->
-<path d="M114,60 Q160,75 200,80" stroke="#22c55e" stroke-width=".7" opacity=".15" stroke-dasharray="4 4"><animate attributeName="stroke-dashoffset" values="0;-16" dur="4s" repeatCount="indefinite"/></path>
-<path d="M119,135 Q165,120 200,115" stroke="#22c55e" stroke-width=".7" opacity=".15" stroke-dasharray="4 4"><animate attributeName="stroke-dashoffset" values="0;-16" dur="4s" repeatCount="indefinite"/></path>
-<!-- Decision frame -->
-<rect x="195" y="50" width="130" height="100" rx="8" stroke="#2dd4bf" stroke-width="1" opacity=".15" fill="rgba(45,212,191,.02)"/>
-<line x1="195" y1="85" x2="325" y2="85" stroke="#2dd4bf" stroke-width=".4" opacity=".08"/>
-<line x1="195" y1="118" x2="325" y2="118" stroke="#2dd4bf" stroke-width=".4" opacity=".08"/>
-<text x="210" y="72" fill="#2dd4bf" font-size="7" font-family="JetBrains Mono" opacity=".3">decision</text>
-<text x="210" y="105" fill="#2dd4bf" font-size="7" font-family="JetBrains Mono" opacity=".25">scope</text>
-<text x="210" y="137" fill="#2dd4bf" font-size="7" font-family="JetBrains Mono" opacity=".2">action</text>
-<!-- Output arrow -->
-<path d="M325,100 L360,100" stroke="#2dd4bf" stroke-width=".8" opacity=".2"/>
-<circle cx="365" cy="100" r="3" fill="#2dd4bf" opacity=".3"><animate attributeName="opacity" values=".2;.45;.2" dur="3s" repeatCount="indefinite"/></circle>
-<text x="390" y="105" fill="#8585a0" font-size="9" font-family="JetBrains Mono" text-anchor="end" opacity=".4">structure</text>
-</svg>
-<div class="tk__head">
-<span class="tk__num" style="color:var(--up)">02</span>
-<h3 class="tk__h">Frame</h3>
-</div>
-<p class="tk__p">I redefine the problem as a decision. What does this system need to produce? Who acts on it, and when? Every feature either serves that decision or gets cut.</p>
-<p class="tk__proof"><strong>GetYourGuide.</strong> 38% of converters left checkout with no re-entry path. Reframed as "commitment anxiety." 10 experiments. +11% conversion. <strong>ShelfFlow.</strong> Content ops across SKUs and retailers looked like a coordination problem. Reframed as a decision pipeline: 6 stages, 4 gates.</p>
-</div>
-</div>
+.hx__viz{height:172px;position:relative;display:flex;align-items:center;justify-content:center;perspective:620px}
+.hx__viz::before{content:"";position:absolute;inset:-4%;border-radius:50%;background:radial-gradient(closest-side,#2dd4bf12,transparent 72%);opacity:0;transition:opacity .6s;pointer-events:none}
+.hx__step:hover .hx__viz::before{opacity:1}
 
-<!-- 03 BUILD -->
-<div class="tk" data-reveal data-delay="2">
-<div class="tk__dot" style="--dot-color:var(--pu);--dot-glow:var(--pug)">
-<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--pu)" stroke-width="1.5"><path d="M12 3L21 8V16L12 21L3 16V8Z" opacity=".4"/><circle cx="12" cy="12" r="3" fill="var(--pu)" opacity=".5" stroke="none"/></svg>
-</div>
-<div class="tk__card" style="--card-accent:var(--pu);--card-glow:var(--pug)">
-<!-- Illustration: architectural blueprint — layered system diagram -->
-<svg viewBox="0 0 400 200" style="width:100%;margin-bottom:20px;display:block" fill="none">
-<!-- Faint blueprint grid -->
-<line x1="20" y1="30" x2="380" y2="30" stroke="#a78bfa" stroke-width=".25" opacity=".06"/>
-<line x1="20" y1="65" x2="380" y2="65" stroke="#a78bfa" stroke-width=".25" opacity=".06"/>
-<line x1="20" y1="100" x2="380" y2="100" stroke="#a78bfa" stroke-width=".25" opacity=".06"/>
-<line x1="20" y1="135" x2="380" y2="135" stroke="#a78bfa" stroke-width=".25" opacity=".06"/>
-<line x1="20" y1="170" x2="380" y2="170" stroke="#a78bfa" stroke-width=".25" opacity=".06"/>
-<!-- Layer 1: IA structure -->
-<rect x="30" y="22" width="100" height="50" rx="6" stroke="#a78bfa" stroke-width=".8" opacity=".18" fill="rgba(167,139,250,.02)"/>
-<rect x="38" y="32" width="65" height="4" rx="1.5" fill="#a78bfa" opacity=".15"/>
-<rect x="38" y="42" width="48" height="3" rx="1" fill="#a78bfa" opacity=".08"/>
-<rect x="38" y="50" width="55" height="3" rx="1" fill="#a78bfa" opacity=".06"/>
-<text x="38" y="66" fill="#a78bfa" font-size="6" font-family="JetBrains Mono" opacity=".2">layer.ia</text>
-<!-- Layer 2: component system -->
-<rect x="150" y="55" width="100" height="55" rx="6" stroke="#a78bfa" stroke-width=".8" opacity=".2" fill="rgba(167,139,250,.02)"/>
-<rect x="160" y="68" width="32" height="28" rx="4" stroke="#a78bfa" stroke-width=".5" opacity=".12" fill="rgba(167,139,250,.015)"/>
-<rect x="200" y="68" width="32" height="28" rx="4" stroke="#a78bfa" stroke-width=".5" opacity=".12" fill="rgba(167,139,250,.015)"/>
-<rect x="164" y="74" width="24" height="3" rx="1" fill="#a78bfa" opacity=".1"/><rect x="204" y="74" width="24" height="3" rx="1" fill="#a78bfa" opacity=".1"/>
-<rect x="164" y="82" width="18" height="2" rx="1" fill="#a78bfa" opacity=".06"/><rect x="204" y="82" width="18" height="2" rx="1" fill="#a78bfa" opacity=".06"/>
-<text x="160" y="106" fill="#a78bfa" font-size="6" font-family="JetBrains Mono" opacity=".2">layer.components</text>
-<!-- Layer 3: decision flow -->
-<rect x="270" y="90" width="100" height="55" rx="6" stroke="#a78bfa" stroke-width=".8" opacity=".22" fill="rgba(167,139,250,.02)"/>
-<circle cx="295" cy="112" r="6" stroke="#a78bfa" stroke-width=".5" opacity=".15" fill="rgba(167,139,250,.03)"/>
-<path d="M301,112 L322,112" stroke="#a78bfa" stroke-width=".5" opacity=".12"/>
-<circle cx="330" cy="105" r="4" stroke="#a78bfa" stroke-width=".5" opacity=".12" fill="rgba(167,139,250,.02)"/>
-<circle cx="330" cy="120" r="4" stroke="#a78bfa" stroke-width=".5" opacity=".12" fill="rgba(167,139,250,.02)"/>
-<path d="M322,112 L326,105 M322,112 L326,120" stroke="#a78bfa" stroke-width=".4" opacity=".1"/>
-<path d="M334,105 L348,105 M334,120 L348,120" stroke="#a78bfa" stroke-width=".4" opacity=".08" stroke-dasharray="2 2"/>
-<text x="280" y="141" fill="#a78bfa" font-size="6" font-family="JetBrains Mono" opacity=".2">layer.decisions</text>
-<!-- Connecting flow between layers -->
-<path d="M130,47 Q140,55 150,68" stroke="#a78bfa" stroke-width=".5" opacity=".1" stroke-dasharray="3 4"/>
-<path d="M250,85 Q260,88 270,100" stroke="#a78bfa" stroke-width=".5" opacity=".1" stroke-dasharray="3 4"/>
-<!-- Output node -->
-<circle cx="330" cy="170" r="3" fill="#a78bfa" opacity=".2"><animate attributeName="opacity" values=".15;.35;.15" dur="3.5s" repeatCount="indefinite"/></circle>
-<path d="M330,145 L330,167" stroke="#a78bfa" stroke-width=".4" opacity=".1" stroke-dasharray="2 3"/>
-<text x="390" y="105" fill="#8585a0" font-size="9" font-family="JetBrains Mono" text-anchor="end" opacity=".4">system</text>
-</svg>
-<div class="tk__head">
-<span class="tk__num" style="color:var(--pu)">03</span>
-<h3 class="tk__h">Architect</h3>
-</div>
-<p class="tk__p">Structure before surface. Information architecture, decision flows, and component logic come first. Screens are the last thing I design, not the first.</p>
-<p class="tk__proof"><strong>ShelfFlow.</strong> 6 workflow stages, 4 decision gates, 6 AI agents. Every human approval mapped before a single screen was designed. <strong>RetailNorm.</strong> Dual-view architecture (executive + technical), confidence scoring, PDF export. All validated before code.</p>
-</div>
-</div>
+.hx__st{font-family:'IBM Plex Sans',sans-serif;font-size:1.15rem;font-weight:700;margin:0 0 6px}
+.hx__sd{font-size:.68rem;color:#8a8a90;line-height:1.6;margin:0}
 
-<!-- 04 PROVE -->
-<div class="tk" data-reveal data-delay="3">
-<div class="tk__dot" style="--dot-color:var(--am);--dot-glow:var(--amg)">
-<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--am)" stroke-width="1.5"><polyline points="4,18 8,12 12,15 16,8 20,5" opacity=".5" fill="none" stroke-linecap="round"/><circle cx="20" cy="5" r="2" fill="var(--am)" opacity=".6" stroke="none"/></svg>
-</div>
-<div class="tk__card" style="--card-accent:var(--am);--card-glow:var(--amg)">
-<!-- Illustration: multi-layer data validation chart -->
-<svg viewBox="0 0 400 200" style="width:100%;margin-bottom:20px;display:block" fill="none">
-<!-- Axis -->
-<line x1="35" y1="172" x2="370" y2="172" stroke="#8585a0" stroke-width=".4" opacity=".1"/>
-<line x1="35" y1="35" x2="35" y2="172" stroke="#8585a0" stroke-width=".3" opacity=".06"/>
-<!-- Horizontal guides -->
-<line x1="35" y1="130" x2="370" y2="130" stroke="#8585a0" stroke-width=".2" opacity=".05"/>
-<line x1="35" y1="90" x2="370" y2="90" stroke="#8585a0" stroke-width=".2" opacity=".05"/>
-<line x1="35" y1="55" x2="370" y2="55" stroke="#8585a0" stroke-width=".2" opacity=".05"/>
-<!-- Confidence band -->
-<path d="M55,152 Q105,145 145,148 Q190,135 235,120 Q275,100 315,80 Q345,65 360,50 L360,72 Q345,82 315,98 Q275,118 235,138 Q190,150 145,158 Q105,158 55,162 Z" fill="rgba(34,197,94,.035)"/>
-<!-- Baseline trend -->
-<polyline points="55,155 105,152 145,150 190,148 235,145 275,143 315,140 360,138" stroke="#8585a0" stroke-width=".7" opacity=".1" fill="none" stroke-dasharray="4 6"/>
-<!-- Signal line -->
-<polyline points="55,155 105,145 145,148 190,130 235,115 275,92 315,72 360,42" stroke="#22c55e" stroke-width="1.6" opacity=".45" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<!-- Data points -->
-<circle cx="145" cy="148" r="2" fill="#22c55e" opacity=".25"/><circle cx="235" cy="115" r="2.5" fill="#22c55e" opacity=".3"/>
-<circle cx="315" cy="72" r="2.5" fill="#22c55e" opacity=".35"/>
-<circle cx="360" cy="42" r="3.5" fill="#22c55e" opacity=".5"><animate attributeName="opacity" values=".3;.6;.3" dur="2.5s" repeatCount="indefinite"/></circle>
-<!-- Metric callouts -->
-<rect x="288" y="44" width="48" height="18" rx="4" fill="rgba(34,197,94,.06)" stroke="rgba(34,197,94,.12)" stroke-width=".4"/>
-<text x="312" y="56" text-anchor="middle" fill="#22c55e" font-size="7.5" font-family="JetBrains Mono" opacity=".6">+11%</text>
-<rect x="205" y="90" width="40" height="15" rx="3" fill="rgba(245,158,11,.04)" stroke="rgba(245,158,11,.1)" stroke-width=".4"/>
-<text x="225" y="100" text-anchor="middle" fill="#f59e0b" font-size="6.5" font-family="JetBrains Mono" opacity=".45">4 mkts</text>
-<text x="390" y="105" fill="#8585a0" font-size="9" font-family="JetBrains Mono" text-anchor="end" opacity=".4">signal</text>
-</svg>
-<div class="tk__head">
-<span class="tk__num" style="color:var(--am)">04</span>
-<h3 class="tk__h">Prove</h3>
-</div>
-<p class="tk__p">I instrument my own work. Every design ships with its measurement plan. I read session recordings before standups and run A/B experiments across markets.</p>
-<p class="tk__proof"><strong>GetYourGuide.</strong> Checkout validated across 4 EU markets. 10 A/B experiments. 72% of the +11% uplift came from mobile.</p>
-</div>
-</div>
+@media(max-width:680px){
+  .hx__step{grid-template-columns:1fr;gap:12px;padding:20px 0 26px}
+  .hx__rail{display:none}
+  .hx__viz{height:132px}
+  .hx__st{font-size:1.05rem}
+}
 
-<!-- 05 SHIP -->
-<div class="tk" data-reveal data-delay="4">
-<div class="tk__dot" style="--dot-color:var(--ac2);--dot-glow:var(--acg)">
-<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ac2)" stroke-width="1.5"><circle cx="12" cy="12" r="9" opacity=".3"/><circle cx="12" cy="12" r="5" opacity=".2"/><circle cx="12" cy="12" r="2" fill="var(--ac2)" opacity=".7" stroke="none"/></svg>
-</div>
-<div class="tk__card" style="--card-accent:var(--ac2);--card-glow:var(--acg)">
-<!-- Illustration: feedback loop — orbital convergence -->
-<svg viewBox="0 0 400 200" style="width:100%;margin-bottom:20px;display:block" fill="none">
-<!-- Outermost orbit -->
-<ellipse cx="200" cy="100" rx="140" ry="75" stroke="#2dd4bf" stroke-width=".4" opacity=".06"/>
-<!-- Orbit rings converging -->
-<ellipse cx="200" cy="100" rx="105" ry="58" stroke="#2dd4bf" stroke-width=".5" opacity=".08"/>
-<ellipse cx="200" cy="100" rx="72" ry="42" stroke="#2dd4bf" stroke-width=".6" opacity=".1"/>
-<ellipse cx="200" cy="100" rx="42" ry="25" stroke="#2dd4bf" stroke-width=".7" opacity=".14"/>
-<ellipse cx="200" cy="100" rx="18" ry="11" stroke="#2dd4bf" stroke-width=".8" opacity=".2"/>
-<!-- Travelling particle on outer orbit -->
-<circle r="2.5" fill="#2dd4bf" opacity=".3">
-<animateMotion dur="8s" repeatCount="indefinite" path="M200,25 A140,75 0 1,1 199.9,25"/>
-</circle>
-<!-- Travelling particle on mid orbit -->
-<circle r="2" fill="#2dd4bf" opacity=".35">
-<animateMotion dur="5s" repeatCount="indefinite" path="M200,58 A72,42 0 1,1 199.9,58"/>
-</circle>
-<!-- Feedback arrow arc (top-right) -->
-<path d="M295,60 A110,65 0 0,1 310,95" stroke="#2dd4bf" stroke-width=".6" opacity=".12"/>
-<path d="M308,89 L310,95 L304,93" stroke="#2dd4bf" stroke-width=".5" opacity=".15" fill="none"/>
-<!-- Feedback arrow arc (bottom-left) -->
-<path d="M105,140 A110,65 0 0,1 90,105" stroke="#2dd4bf" stroke-width=".6" opacity=".12"/>
-<path d="M92,111 L90,105 L96,107" stroke="#2dd4bf" stroke-width=".5" opacity=".15" fill="none"/>
-<!-- Center convergence point -->
-<circle cx="200" cy="100" r="5" fill="#2dd4bf" opacity=".5"><animate attributeName="opacity" values=".35;.7;.35" dur="3s" repeatCount="indefinite"/></circle>
-<circle cx="200" cy="100" r="5" fill="none" stroke="#2dd4bf" stroke-width="6" opacity=".04"><animate attributeName="r" values="5;22;5" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".06;0;.06" dur="4s" repeatCount="indefinite"/></circle>
-<text x="390" y="105" fill="#8585a0" font-size="9" font-family="JetBrains Mono" text-anchor="end" opacity=".4">feedback</text>
-</svg>
-<div class="tk__head">
-<span class="tk__num" style="color:var(--ac2)">05</span>
-<h3 class="tk__h">Close the loop</h3>
-</div>
-<p class="tk__p">Shipping is not a handoff. I stay close to the product after launch, reading session data and adjusting. The signal after release matters more than the plan before it.</p>
-<p class="tk__proof"><strong>ShelfFlow.</strong> 1 brief produces 36 retailer-ready content packages through gated human approvals. <strong>RetailNorm, K&#332;DO, this portfolio.</strong> Designed, built and shipped end to end: concept to live product in weeks.</p>
-</div>
-</div>
+/* 01 LISTEN */
+.hx .f1{position:relative;width:130px;height:130px;transform:rotateX(16deg) rotateY(-10deg);transform-style:preserve-3d}
+.hx .f1 i{position:absolute;width:5px;height:5px;border-radius:50%;background:#2e2e34;transition:background .5s,opacity .5s;animation:hxdrift 6s ease-in-out infinite;animation-play-state:paused}
+.hx .f1 i:nth-child(2n){animation-duration:7.4s}.hx .f1 i:nth-child(3n){animation-duration:8.6s}
+@keyframes hxdrift{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.hx .f1 .sig{width:8px;height:8px;background:#3a3a40;animation:hxpulse 2.2s ease-in-out infinite;animation-play-state:paused;transition:background .4s,box-shadow .4s}
+@keyframes hxpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.55)}}
+.hx__step:hover .f1 i{animation-play-state:running;opacity:.45}
+.hx__step:hover .f1 .sig{background:#2dd4bf;box-shadow:0 0 16px #2dd4bf99;opacity:1}
+
+/* 02 FRAME */
+.hx .cube{width:70px;height:70px;position:relative;transform-style:preserve-3d;animation:hxspin 10s linear infinite;animation-play-state:paused}
+@keyframes hxspin{from{transform:rotateX(-20deg) rotateY(28deg)}to{transform:rotateX(-20deg) rotateY(388deg)}}
+.hx .cube i{position:absolute;inset:0;border:1px solid #26262c;background:#0d0d1055;transition:border-color .4s,background .4s,box-shadow .4s}
+.hx .cube i:nth-child(1){transform:rotateY(0) translateZ(35px)}
+.hx .cube i:nth-child(2){transform:rotateY(90deg) translateZ(35px)}
+.hx .cube i:nth-child(3){transform:rotateY(180deg) translateZ(35px)}
+.hx .cube i:nth-child(4){transform:rotateY(270deg) translateZ(35px)}
+.hx .cube i:nth-child(5){transform:rotateX(90deg) translateZ(35px)}
+.hx .cube i:nth-child(6){transform:rotateX(-90deg) translateZ(35px)}
+.hx__step:hover .cube{animation-play-state:running}
+.hx__step:hover .cube i:nth-child(1){border-color:#2dd4bf;background:#0b1a17cc;box-shadow:0 0 18px #2dd4bf22 inset}
+
+/* 03 ARCHITECT */
+.hx .stack{width:98px;height:98px;position:relative;transform:rotateX(58deg) rotateZ(-42deg);transform-style:preserve-3d}
+.hx .stack i{position:absolute;inset:0;border-radius:8px;border:1px solid #26262c;background:#0d0d10ee;transition:transform .7s cubic-bezier(.22,1,.36,1),border-color .5s,box-shadow .5s}
+.hx .stack i:nth-child(1){transform:translateZ(0)}
+.hx .stack i:nth-child(2){transform:translateZ(7px)}
+.hx .stack i:nth-child(3){transform:translateZ(14px)}
+.hx__step:hover .stack i:nth-child(2){transform:translateZ(34px);border-color:#d9b45a88}
+.hx__step:hover .stack i:nth-child(3){transform:translateZ(66px);border-color:#2dd4bf;background:#0b1a17ee;box-shadow:0 0 20px #2dd4bf22}
+
+/* 04 PROVE */
+.hx .ab{display:flex;gap:18px;align-items:flex-end;height:112px}
+.hx .bar4{width:30px;position:relative}
+.hx .bar4 .face{width:100%;height:56px;background:#141418;border:1px solid #26262c;border-radius:3px 3px 0 0;transition:height .8s cubic-bezier(.22,1,.36,1),background .5s,border-color .5s,box-shadow .5s}
+.hx .bar4 em{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-style:normal;font-size:.54rem;color:#55555a;transition:color .4s}
+.hx .bar4 s{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);text-decoration:none;font-size:.5rem;color:transparent;transition:color .5s .3s;white-space:nowrap}
+.hx__step:hover .bar4--l .face{height:32px}
+.hx__step:hover .bar4--w .face{height:100px;background:#123c36;border-color:#2dd4bf;box-shadow:0 0 16px #2dd4bf22}
+.hx__step:hover .bar4--w em{color:#2dd4bf}
+.hx__step:hover .bar4 s{color:#55555a}
+
+/* 05 CLOSE THE LOOP */
+.hx .orb{width:118px;height:118px;position:relative;transform:rotateX(62deg);transform-style:preserve-3d}
+.hx .orb .ring{position:absolute;inset:0;border:1px solid #222228;border-radius:50%;transition:border-color .5s}
+.hx .orb .ring2{position:absolute;inset:18px;border:1px dashed #18181d;border-radius:50%}
+.hx .orb .sat{position:absolute;inset:0;animation:hxorbit 5s linear infinite;animation-play-state:paused}
+.hx .orb .sat i{position:absolute;top:-4px;left:50%;width:9px;height:9px;margin-left:-4px;border-radius:50%;background:#3a3a40;transition:background .4s,box-shadow .4s}
+@keyframes hxorbit{from{transform:rotateZ(0)}to{transform:rotateZ(360deg)}}
+.hx .orb .core{position:absolute;top:50%;left:50%;width:12px;height:12px;margin:-6px;border-radius:50%;background:#0d0d10;border:1px solid #3a3a40;transition:border-color .4s;animation:hxcore 2.6s ease-in-out infinite;animation-play-state:paused}
+@keyframes hxcore{0%,100%{box-shadow:0 0 0 0 #d9b45a33}50%{box-shadow:0 0 0 9px transparent}}
+.hx__step:hover .orb .ring{border-color:#2dd4bf44}
+.hx__step:hover .orb .sat{animation-play-state:running}
+.hx__step:hover .orb .sat i{background:#2dd4bf;box-shadow:0 0 12px #2dd4bf99}
+.hx__step:hover .orb .core{border-color:#d9b45a;animation-play-state:running}
+
+/* touch: reward states run gently on their own */
+@media(hover:none){
+  .hx .f1 i,.hx .cube,.hx .orb .sat,.hx .orb .core,.hx .f1 .sig{animation-play-state:running}
+  .hx .f1 i{opacity:.45}.hx .f1 .sig{background:#2dd4bf;box-shadow:0 0 16px #2dd4bf99}
+  .hx .cube i:nth-child(1){border-color:#2dd4bf;background:#0b1a17cc}
+  .hx .stack i:nth-child(2){transform:translateZ(34px);border-color:#d9b45a88}
+  .hx .stack i:nth-child(3){transform:translateZ(66px);border-color:#2dd4bf;background:#0b1a17ee}
+  .hx .bar4--l .face{height:32px}
+  .hx .bar4--w .face{height:100px;background:#123c36;border-color:#2dd4bf}
+  .hx .orb .sat i{background:#2dd4bf}.hx .orb .core{border-color:#d9b45a}
+  .hx__node{border-color:#2dd4bf55;color:#2dd4bf}
+  .hx__viz::before{opacity:.7}
+}
+/* reduced motion: resolved state, statically */
+@media(prefers-reduced-motion:reduce){
+  .hx *{animation:none!important;transition:none!important}
+  .hx .f1 i{opacity:.45}.hx .f1 .sig{background:#2dd4bf}
+  .hx .cube i:nth-child(1){border-color:#2dd4bf;background:#0b1a17cc}
+  .hx .stack i:nth-child(2){transform:translateZ(34px);border-color:#d9b45a88}
+  .hx .stack i:nth-child(3){transform:translateZ(66px);border-color:#2dd4bf;background:#0b1a17ee}
+  .hx .bar4--l .face{height:32px}.hx .bar4--w .face{height:100px;background:#123c36;border-color:#2dd4bf}
+  .hx .orb .sat i{background:#2dd4bf}.hx .orb .core{border-color:#d9b45a}
+}
+</style>
+
+  <p class="hx__lede">five steps · each kills one layer of uncertainty · <b>hover to watch each one think</b></p>
+
+  <div class="hx__step hx__step--first">
+    <div class="hx__rail"><div class="hx__node">01</div></div>
+    <div class="hx__viz"><div class="f1">
+      <i style="top:12%;left:18%"></i><i style="top:28%;left:70%"></i><i style="top:44%;left:8%"></i>
+      <i style="top:60%;left:82%"></i><i style="top:76%;left:30%"></i><i style="top:18%;left:48%"></i>
+      <i style="top:66%;left:58%"></i><i style="top:38%;left:34%"></i><i style="top:84%;left:68%"></i>
+      <i class="sig" style="top:50%;left:47%"></i>
+    </div></div>
+    <div>
+      <h3 class="hx__st">Listen</h3>
+      <p class="hx__sd">The real problem is rarely the brief.</p>
+    </div>
+  </div>
+
+  <div class="hx__step">
+    <div class="hx__rail"><div class="hx__node">02</div></div>
+    <div class="hx__viz"><div class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <div>
+      <h3 class="hx__st">Frame</h3>
+      <p class="hx__sd">Every problem becomes one decision.</p>
+    </div>
+  </div>
+
+  <div class="hx__step">
+    <div class="hx__rail"><div class="hx__node">03</div></div>
+    <div class="hx__viz"><div class="stack"><i></i><i></i><i></i></div></div>
+    <div>
+      <h3 class="hx__st">Architect</h3>
+      <p class="hx__sd">Structure first. Screens last.</p>
+    </div>
+  </div>
+
+  <div class="hx__step">
+    <div class="hx__rail"><div class="hx__node">04</div></div>
+    <div class="hx__viz"><div class="ab">
+      <div class="bar4 bar4--l"><em>A</em><div class="face"></div><s>control</s></div>
+      <div class="bar4 bar4--w"><em>B</em><div class="face"></div><s>earned it</s></div>
+    </div></div>
+    <div>
+      <h3 class="hx__st">Prove</h3>
+      <p class="hx__sd">Every design ships with its measurement plan.</p>
+    </div>
+  </div>
+
+  <div class="hx__step hx__step--last">
+    <div class="hx__rail"><div class="hx__node">05</div></div>
+    <div class="hx__viz"><div class="orb">
+      <div class="ring"></div><div class="ring2"></div>
+      <div class="sat"><i></i></div>
+      <div class="core"></div>
+    </div></div>
+    <div>
+      <h3 class="hx__st">Close the loop</h3>
+      <p class="hx__sd">The signal after release beats the plan before it.</p>
+    </div>
+  </div>
 
 </div>
+<!-- HX-SECTION END -->
 </div></div>
 </section>
 
