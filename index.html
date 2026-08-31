@@ -935,17 +935,24 @@ window.addEventListener('DOMContentLoaded',function(){
 
 /* touch: reward states run gently on their own */
 @media(hover:none){
-  .hx .f1 i,.hx .cube,.hx .orb .sat,.hx .orb .core,.hx .f1 .sig{animation-play-state:running}
-  .hx .f1 i{opacity:.45}.hx .f1 .sig{background:#2dd4bf;box-shadow:0 0 16px #2dd4bf99}
-  .hx .cube i:nth-child(1){border-color:#2dd4bf;background:#0b1a17cc}
-  .hx .stack i:nth-child(2){transform:translateZ(34px);border-color:#d9b45a88}
-  .hx .stack i:nth-child(3){transform:translateZ(66px);border-color:#2dd4bf;background:#0b1a17ee}
-  .hx .bar4--l .face{height:32px}
-  .hx .bar4--w .face{height:100px;background:#123c36;border-color:#2dd4bf}
-  .hx .orb .sat i{background:#2dd4bf}.hx .orb .core{border-color:#d9b45a}
-  .hx__node{border-color:#2dd4bf55;color:#2dd4bf}
-  .hx__viz::before{opacity:.7}
+  /* thinking copy always readable on touch */
   .hx__panel{max-height:none;opacity:1}
+  /* each step wakes when it scrolls into view, one at a time (.hx-in set by the observer below) */
+  .hx__step.hx-in .f1 i,.hx__step.hx-in .cube,.hx__step.hx-in .orb .sat,.hx__step.hx-in .orb .core,.hx__step.hx-in .f1 .sig{animation-play-state:running}
+  .hx__step.hx-in .f1 i{opacity:.45}
+  .hx__step.hx-in .f1 .sig{background:#2dd4bf;box-shadow:0 0 16px #2dd4bf99}
+  .hx__step.hx-in .cube i:nth-child(1){border-color:#2dd4bf;background:#0b1a17cc;box-shadow:0 0 18px #2dd4bf22 inset}
+  .hx__step.hx-in .stack i:nth-child(2){transform:translateZ(34px);border-color:#d9b45a88}
+  .hx__step.hx-in .stack i:nth-child(3){transform:translateZ(66px);border-color:#2dd4bf;background:#0b1a17ee;box-shadow:0 0 20px #2dd4bf22}
+  .hx__step.hx-in .bar4--l .face{height:32px}
+  .hx__step.hx-in .bar4--w .face{height:100px;background:#123c36;border-color:#2dd4bf;box-shadow:0 0 16px #2dd4bf22}
+  .hx__step.hx-in .bar4--w em{color:#2dd4bf}
+  .hx__step.hx-in .bar4 s{color:#55555a}
+  .hx__step.hx-in .orb .ring{border-color:#2dd4bf44}
+  .hx__step.hx-in .orb .sat i{background:#2dd4bf;box-shadow:0 0 12px #2dd4bf99}
+  .hx__step.hx-in .orb .core{border-color:#d9b45a}
+  .hx__step.hx-in .hx__node{border-color:#2dd4bf;color:#2dd4bf;box-shadow:0 0 12px #2dd4bf22}
+  .hx__step.hx-in .hx__viz::before{opacity:1}
 }
 /* reduced motion: resolved state, statically */
 @media(prefers-reduced-motion:reduce){
@@ -1029,6 +1036,16 @@ window.addEventListener('DOMContentLoaded',function(){
   </div>
 
 </div>
+<script>
+(function(){
+  var steps=document.querySelectorAll('.hx .hx__step');
+  if(!steps.length||!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){e.target.classList.toggle('hx-in',e.isIntersecting)});
+  },{rootMargin:'-30% 0px -30% 0px'});
+  Array.prototype.forEach.call(steps,function(s){io.observe(s)});
+})();
+</script>
 <!-- HX-SECTION END -->
 </div></div>
 </section>
