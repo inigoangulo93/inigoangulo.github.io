@@ -843,34 +843,37 @@ window.addEventListener('DOMContentLoaded',function(){
 
 
 
-<!-- HX-SECTION START · How I think, animated steps · replaces the intro paragraph + 5 step blocks inside the existing #how-i-think section (keep the section wrapper and its H2) -->
+<!-- HX-SECTION START · How I think, centered animated steps with expandable thinking · replaces the intro paragraph + 5 step blocks inside the existing #how-i-think section (keep the section wrapper and its H2) -->
 <div class="hx">
 <style>
-.hx{max-width:860px;margin:0 auto;font-family:'JetBrains Mono',monospace;color:#e8e8ea}
+.hx{max-width:640px;margin:0 auto;font-family:'JetBrains Mono',monospace;color:#e8e8ea;text-align:center}
 .hx *{box-sizing:border-box}
-.hx__lede{font-size:.64rem;color:#77777d;margin:0 0 40px}
+.hx__lede{font-size:.64rem;color:#77777d;margin:0 0 8px}
 .hx__lede b{color:#2dd4bf;font-weight:500}
 
-.hx__step{display:grid;grid-template-columns:44px 210px 1fr;gap:0 26px;align-items:center;padding:22px 0;position:relative}
-.hx__rail{position:relative;height:100%;display:flex;align-items:center;justify-content:center}
-.hx__rail::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:#131317}
-.hx__step--first .hx__rail::before{top:50%}
-.hx__step--last .hx__rail::before{bottom:50%}
-.hx__node{position:relative;z-index:1;width:30px;height:30px;border-radius:50%;border:1px solid #26262c;background:#0a0a0d;display:flex;align-items:center;justify-content:center;font-size:.54rem;color:#55555a;transition:border-color .3s,color .3s,box-shadow .3s}
+.hx__step{position:relative;padding:0 0 8px}
+.hx__link{width:1px;height:44px;background:#131317;margin:0 auto}
+.hx__node{width:30px;height:30px;margin:0 auto 18px;border-radius:50%;border:1px solid #26262c;background:#0a0a0d;display:flex;align-items:center;justify-content:center;font-size:.54rem;color:#55555a;transition:border-color .3s,color .3s,box-shadow .3s}
 .hx__step:hover .hx__node{border-color:#2dd4bf;color:#2dd4bf;box-shadow:0 0 12px #2dd4bf22}
 
-.hx__viz{height:172px;position:relative;display:flex;align-items:center;justify-content:center;perspective:620px}
-.hx__viz::before{content:"";position:absolute;inset:-4%;border-radius:50%;background:radial-gradient(closest-side,#2dd4bf12,transparent 72%);opacity:0;transition:opacity .6s;pointer-events:none}
+.hx__viz{height:168px;position:relative;display:flex;align-items:center;justify-content:center;perspective:620px}
+.hx__viz::before{content:"";position:absolute;inset:-6%;border-radius:50%;background:radial-gradient(closest-side,#2dd4bf12,transparent 72%);opacity:0;transition:opacity .6s;pointer-events:none}
 .hx__step:hover .hx__viz::before{opacity:1}
 
-.hx__st{font-family:'IBM Plex Sans',sans-serif;font-size:1.15rem;font-weight:700;margin:0 0 6px}
+.hx__st{font-family:'IBM Plex Sans',sans-serif;font-size:1.15rem;font-weight:700;margin:16px 0 6px}
 .hx__sd{font-size:.68rem;color:#8a8a90;line-height:1.6;margin:0}
 
+.hx__panel{max-height:0;opacity:0;overflow:hidden;transition:max-height .55s cubic-bezier(.22,1,.36,1) .12s,opacity .45s ease .12s}
+.hx__step:hover .hx__panel,.hx__step:focus-within .hx__panel,.hx__step:focus .hx__panel{max-height:220px;opacity:1}
+.hx__panel p{max-width:460px;margin:14px auto 6px;font-size:.64rem;color:#8a8a90;line-height:1.8;text-align:center}
+.hx__panel p b{color:#c9c9ce;font-weight:600}
+.hx__step{outline:none}
+.hx__step:focus-visible .hx__node{border-color:#2dd4bf;color:#2dd4bf}
+
 @media(max-width:680px){
-  .hx__step{grid-template-columns:1fr;gap:12px;padding:20px 0 26px}
-  .hx__rail{display:none}
-  .hx__viz{height:132px}
+  .hx__viz{height:136px}
   .hx__st{font-size:1.05rem}
+  .hx__link{height:34px}
 }
 
 /* 01 LISTEN */
@@ -906,7 +909,7 @@ window.addEventListener('DOMContentLoaded',function(){
 .hx__step:hover .stack i:nth-child(3){transform:translateZ(66px);border-color:#2dd4bf;background:#0b1a17ee;box-shadow:0 0 20px #2dd4bf22}
 
 /* 04 PROVE */
-.hx .ab{display:flex;gap:18px;align-items:flex-end;height:112px}
+.hx .ab{display:flex;gap:18px;align-items:flex-end;height:110px}
 .hx .bar4{width:30px;position:relative}
 .hx .bar4 .face{width:100%;height:56px;background:#141418;border:1px solid #26262c;border-radius:3px 3px 0 0;transition:height .8s cubic-bezier(.22,1,.36,1),background .5s,border-color .5s,box-shadow .5s}
 .hx .bar4 em{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-style:normal;font-size:.54rem;color:#55555a;transition:color .4s}
@@ -942,6 +945,7 @@ window.addEventListener('DOMContentLoaded',function(){
   .hx .orb .sat i{background:#2dd4bf}.hx .orb .core{border-color:#d9b45a}
   .hx__node{border-color:#2dd4bf55;color:#2dd4bf}
   .hx__viz::before{opacity:.7}
+  .hx__panel{max-height:none;opacity:1}
 }
 /* reduced motion: resolved state, statically */
 @media(prefers-reduced-motion:reduce){
@@ -957,60 +961,70 @@ window.addEventListener('DOMContentLoaded',function(){
 
   <p class="hx__lede">five steps · each kills one layer of uncertainty · <b>hover to watch each one think</b></p>
 
-  <div class="hx__step hx__step--first">
-    <div class="hx__rail"><div class="hx__node">01</div></div>
+  <div class="hx__step" tabindex="0">
+    <div class="hx__link" aria-hidden="true"></div>
+    <div class="hx__node">01</div>
     <div class="hx__viz"><div class="f1">
       <i style="top:12%;left:18%"></i><i style="top:28%;left:70%"></i><i style="top:44%;left:8%"></i>
       <i style="top:60%;left:82%"></i><i style="top:76%;left:30%"></i><i style="top:18%;left:48%"></i>
       <i style="top:66%;left:58%"></i><i style="top:38%;left:34%"></i><i style="top:84%;left:68%"></i>
       <i class="sig" style="top:50%;left:47%"></i>
     </div></div>
-    <div>
-      <h3 class="hx__st">Listen</h3>
-      <p class="hx__sd">The real problem is rarely the brief.</p>
+    <h3 class="hx__st">Listen</h3>
+    <p class="hx__sd">The real problem is rarely the brief.</p>
+    <div class="hx__panel">
+      <p>Briefs describe symptoms. <b>Behavior describes problems.</b> Session data, recordings and shadowing come before any sketch, and every stated requirement is a hypothesis until it survives contact with what people actually do.</p>
     </div>
   </div>
 
-  <div class="hx__step">
-    <div class="hx__rail"><div class="hx__node">02</div></div>
+  <div class="hx__step" tabindex="0">
+    <div class="hx__link" aria-hidden="true"></div>
+    <div class="hx__node">02</div>
     <div class="hx__viz"><div class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-    <div>
-      <h3 class="hx__st">Frame</h3>
-      <p class="hx__sd">Every problem becomes one decision.</p>
+    <h3 class="hx__st">Frame</h3>
+    <p class="hx__sd">Every problem becomes one decision.</p>
+    <div class="hx__panel">
+      <p>A problem framed as a decision has a finite answer. <b>What must this system produce, who acts on it, and when?</b> Every feature either serves that decision or gets cut, and most of the value is in the cutting.</p>
     </div>
   </div>
 
-  <div class="hx__step">
-    <div class="hx__rail"><div class="hx__node">03</div></div>
+  <div class="hx__step" tabindex="0">
+    <div class="hx__link" aria-hidden="true"></div>
+    <div class="hx__node">03</div>
     <div class="hx__viz"><div class="stack"><i></i><i></i><i></i></div></div>
-    <div>
-      <h3 class="hx__st">Architect</h3>
-      <p class="hx__sd">Structure first. Screens last.</p>
+    <h3 class="hx__st">Architect</h3>
+    <p class="hx__sd">Structure first. Screens last.</p>
+    <div class="hx__panel">
+      <p>Information architecture, decision flows and component logic come before any interface. <b>When the structure is right, the screens almost draw themselves.</b> When it's wrong, no amount of visual polish will save them.</p>
     </div>
   </div>
 
-  <div class="hx__step">
-    <div class="hx__rail"><div class="hx__node">04</div></div>
+  <div class="hx__step" tabindex="0">
+    <div class="hx__link" aria-hidden="true"></div>
+    <div class="hx__node">04</div>
     <div class="hx__viz"><div class="ab">
       <div class="bar4 bar4--l"><em>A</em><div class="face"></div><s>control</s></div>
       <div class="bar4 bar4--w"><em>B</em><div class="face"></div><s>earned it</s></div>
     </div></div>
-    <div>
-      <h3 class="hx__st">Prove</h3>
-      <p class="hx__sd">Every design ships with its measurement plan.</p>
+    <h3 class="hx__st">Prove</h3>
+    <p class="hx__sd">Every design ships with its measurement plan.</p>
+    <div class="hx__panel">
+      <p>Opinion starts the work; <b>instrumented outcomes finish it.</b> Every design ships knowing how it will be measured, and a result that can't be verified is a result that doesn't exist yet.</p>
     </div>
   </div>
 
-  <div class="hx__step hx__step--last">
-    <div class="hx__rail"><div class="hx__node">05</div></div>
+  <div class="hx__step" tabindex="0">
+    <div class="hx__link" aria-hidden="true"></div>
+    <div class="hx__node">05</div>
     <div class="hx__viz"><div class="orb">
       <div class="ring"></div><div class="ring2"></div>
       <div class="sat"><i></i></div>
       <div class="core"></div>
     </div></div>
-    <div>
-      <h3 class="hx__st">Close the loop</h3>
-      <p class="hx__sd">The signal after release beats the plan before it.</p>
+    <h3 class="hx__st">Close the loop</h3>
+    <p class="hx__sd">The signal after release beats the plan before it.</p>
+    <div class="hx__panel">
+      <p>Shipping is not a handoff. <b>Reality votes after release,</b> and systems get tuned in production: reading the signal, adjusting, and letting what actually happens outrank what was planned.</p>
     </div>
   </div>
 
