@@ -26,124 +26,184 @@
 
 <article class="cs">
 
+  <!-- TLDR -->
   <div class="cs__tldr" data-reveal>
-    <div class="cs__tldr-item"><span class="cs__tldr-label">Company</span><span class="cs__tldr-value">Acervo, 2026 (co-founded venture, Mexico)</span></div>
-    <div class="cs__tldr-item"><span class="cs__tldr-label">My role</span><span class="cs__tldr-value">Product and engineering, solo, leading a Claude Code agent team</span></div>
-    <div class="cs__tldr-item"><span class="cs__tldr-label">Key outcome</span><span class="cs__tldr-value cs__tldr-value--ac">Production in 17 days, first 100-car collection in 6 weeks</span></div>
+    <div class="cs__tldr-item">
+      <span class="cs__tldr-label">Company</span>
+      <span class="cs__tldr-value">Acervo (co-founded venture, Mexico)</span>
+    </div>
+    <div class="cs__tldr-item">
+      <span class="cs__tldr-label">Role</span>
+      <span class="cs__tldr-value">Product &amp; Engineering, solo</span>
+    </div>
+    <div class="cs__tldr-item">
+      <span class="cs__tldr-label">Scope</span>
+      <span class="cs__tldr-value">0 to production with a Claude Code agent team</span>
+    </div>
+    <div class="cs__tldr-item">
+      <span class="cs__tldr-label">Key outcome</span>
+      <span class="cs__tldr-value cs__tldr-value--ac">First commit to production: 17 days</span>
+    </div>
   </div>
 
+  <!-- Hero -->
   <div class="cs__hero" data-reveal>
-    <span class="cs__type">AI Build &amp; Deployment / Acervo / 2026</span>
-    <h1 class="cs__h">Three partners, one engineer. The engineer was me, and I don&#8217;t write code.</h1>
-    <p class="cs__sub">Acervo is a private management platform for automotive collections in Mexico and Latin America: a digital passport per car, garages, parts custody, AI assisted onboarding and a sealed-offer private market. My partners brought the collector network and sales. I owned product and engineering. There was no engineering team, so I built one out of AI agents and shipped the platform to production in 17 days.</p>
+    <span class="cs__type">Vertical SaaS / AI Build &amp; Deployment / Automotive Collections</span>
+    <h1 class="cs__h">A production platform for serious car collections, built by one person and a team of agents.</h1>
+    <p class="cs__sub">Three partners, no engineering team, no funding until the MVP proved itself. I owned product and engineering, built an engineering team out of AI agents, and shipped to production in 17 days.</p>
+    <p class="cs__sub" style="margin-top:16px;color:var(--t3)">Acervo is a private management platform for automotive collections in Mexico and Latin America: a digital passport per car, garages, parts custody, AI assisted onboarding, an audit trail on every change and a sealed-offer private market. It runs at app.acervogroup.com, by invitation.</p>
+    <p class="cs__sub" style="margin-top:12px;color:var(--t3)">My partners brought the collector network and sales. I brought the product judgment and the build: scope, Figma system, agent orchestration, data model, security gates, promotion workflow, production.</p>
   </div>
 
+  <!-- Metrics -->
+  <div class="cs__metrics" data-reveal>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">17 days</span><span class="cs__metric-label">First commit to production (Sept 16 to Oct 3, 2026)</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">230+</span><span class="cs__metric-label">Tickets shipped in seven weeks, 420+ ticketed</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">61</span><span class="cs__metric-label">Database migrations in production by week five</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">100+</span><span class="cs__metric-label">Cars in the first real collection being loaded</span></div>
+  </div>
+
+  <!-- Hero visual -->
   <div class="cs__img cs__img--wide" data-reveal><img src="../img/acervo/hero.webp" alt="Acervo: private automotive collections" width="1920" height="720"></div>
 
-  <!-- 01 CONTEXT -->
-  <div class="cs__section" data-reveal>
-    <span class="cs__section-num">01 Context</span>
-    <h2 class="cs__section-h">What was the situation?</h2>
-    <div class="cs__section-text">
-      <p>Serious car collections in Mexico, from a few cars to more than a hundred spread across several cities, are managed in Excel, WhatsApp, Drive folders and the memory of one trusted manager. Records are inconsistent, provenance is hard to prove, parts go missing between garages, and nothing is ready when an insurer, a buyer or an importer asks for it.</p>
-      <p>In September 2026 I started Acervo with two partners: one with field experience and a network of collectors in Mexico, the other leading sales and growth. My job was everything product and tech. The first test collection was real: over 100 cars plus a spare parts inventory, owned by a family in the partner&#8217;s network. The constraint was explicit: nothing is signed and nothing is funded until the MVP proves it is worth it. So the MVP had to exist fast, and it had to be good enough for a wealthy, discreet client.</p>
-    </div>
-  </div>
+  <div class="cs__img" data-reveal><img src="../img/acervo/dashboard.webp" alt="Acervo owner dashboard: 28 cars, 3 garages, 37 parts, distribution by garage" width="1511" height="671"></div>
+  <p class="cs__img-cap">The owner&#8217;s home. One collection, its garages, parts and documents, and the breakdown an owner actually asks for: by garage, by brand, by decade, by situation.</p>
 
-  <!-- 02 PROBLEM -->
-  <div class="cs__section" data-reveal>
-    <span class="cs__section-num">02 Problem</span>
-    <h2 class="cs__section-h">What was actually broken?</h2>
+  <!-- 01: Context -->
+  <div class="cs__section" id="s01" data-reveal>
+    <span class="cs__section-num">01 The Situation</span>
+    <h2 class="cs__section-h">A hundred cars across several cities, managed in Excel, WhatsApp and one trusted person&#8217;s memory. Nothing ready when an insurer, a buyer or a customs lawyer asks.</h2>
     <div class="cs__section-text">
-      <p>The obvious plan was to design the product in Figma, write a spec and hire a developer or an agency. In Mexico or Switzerland that is two to four months and a five figure budget before a collector touches anything, for a venture with no money and no proof of demand.</p>
-      <p>The less obvious problem was trust. A collector will not hand a hundred cars&#8217; worth of documents to a tool that stores identity papers, lets anyone edit history, or loses photos on a slow garage connection. The product needed an audit trail, strict permissions, real security review and a mobile first workflow before it needed features.</p>
-    </div>
-  </div>
-
-  <!-- 03 INSIGHT -->
-  <div class="cs__section" data-reveal>
-    <span class="cs__section-num">03 Insight</span>
-    <h2 class="cs__section-h">What did you see that others missed?</h2>
-    <div class="cs__section-text">
-      <p>The bottleneck was never typing code. It was deciding what to build, in what order, and knowing when something was done. That is product work, and I have done it for ten years. If the decisions were mine and the typing was delegated to agents, one person could run a small engineering team.</p>
-      <p>So I treated Claude Code as a team, not a tool: a lead agent that plans and orchestrates, specialist agents for schema, UI, security and QA, each with its own file, its own rules and its own model. Tickets, pull requests, ADRs, a protected main branch and a promotion workflow, exactly as I would run a human team. And one rule that shaped every feature: <strong>the AI proposes, a person decides, the system records who decided.</strong></p>
+      <p>Serious collections in Mexico range from a handful of cars to more than a hundred, spread across garages in different states. Records are inconsistent, provenance is hard to prove, parts go missing between workshops, and every request from an insurer or a buyer starts a scramble through folders and chats.</p>
+      <p>In September 2026 I started Acervo with two partners: one with field experience and a network of collectors, the other leading sales and growth. The first test collection was real: <strong>over 100 cars plus a spare parts inventory</strong>, owned by a family in that network. The constraint was explicit: nothing signed and nothing funded until the MVP proved it was worth it. So it had to exist fast, and it had to be good enough for a wealthy, discreet client.</p>
     </div>
     <div class="cs__evidence">
-      <span class="cs__evidence-label">Evidence</span>
-      <span class="cs__evidence-text">Starter kit pushed Sept 16: CLAUDE.md, six agent definitions, docs/, migration 0001. Week 1 closed Sept 21 with tickets 001 to 005 merged and staging fully wired (Vercel previews, Supabase with SMTP and TOTP, Sentry, GitHub environments with migration secrets, main protected by ruleset).</span>
+      <span class="cs__evidence-label">How collectors keep their records today</span>
+      <span class="cs__evidence-text">Excel sheets, Drive folders, PDFs and phone photos, in no consistent shape. That answer from the field defined the onboarding: the product had to accept whatever the collector already had, not ask them to start over.</span>
     </div>
   </div>
 
-  <!-- 04 SOLUTION -->
-  <div class="cs__section" data-reveal>
-    <span class="cs__section-num">04 Solution</span>
-    <h2 class="cs__section-h">What did you ship?</h2>
+  <div class="cs__img" data-reveal><img src="../img/acervo/garage.webp" alt="A private garage with classic cars" width="1920" height="720"></div>
+  <p class="cs__img-cap">The job to be done happens standing in a garage, phone in hand, on a bad connection. Every screen was designed for that moment first.</p>
+
+  <!-- 02: The real problem -->
+  <div class="cs__section" id="s02" data-reveal>
+    <span class="cs__section-num">02 The Real Problem</span>
+    <h2 class="cs__section-h">The obvious plan was a spec, a Figma file and an agency. That is two to four months and a five figure budget before a collector touches anything. The real bottleneck was never typing code.</h2>
     <div class="cs__section-text">
-      <p><strong>The product.</strong> A mobile first web app in Spanish (es-MX) where owners and managers share one collection with per-action permissions. Each car has a digital passport: photos, history, maintenance, documents, exportable at any time. Cars belong to garages and every move is logged, individually or in batches. A parts inventory tracks condition, location and who holds each item. Every change writes to an audit log tied to an author and a timestamp.</p>
-      <p><strong>The AI layer.</strong> Onboarding accepts whatever the collector has: photos, spreadsheets, PDFs, a Drive folder. The system turns them into draft records for review, or a concierge team does it. From car photos it suggests make, model, generation, body, colour and year range, and reads the VIN from a plate photo. Every suggestion needs a human confirmation and the system records who confirmed it.</p>
-      <p><strong>The business layer.</strong> Each car has one of three visibility states (private, open to offers, for sale). Buyers keep wishlists and get match alerts; Acervo handles brokerage and paperwork for a commission. A per-car valuation block and an on-brand PDF report close the loop for insurers and buyers.</p>
-      <p><strong>The machine behind it.</strong> Next.js, Supabase (Postgres with row level security), Claude API, Vercel, Sentry, Cloudflare. Two environments with a promotion workflow: a candidate SHA is built and migrated in staging, passes a security review by a dedicated pen test agent, and is promoted to production only with an explicit approval. Storage backups to R2 with a tested restore before the first real collection was loaded.</p>
+      <p>The bottleneck was deciding what to build, in what order, and knowing when something was done. That is product work, and I had done it for ten years. If the decisions stayed mine and the typing was delegated, one person could run a small engineering team.</p>
+      <p>The second problem was trust. A collector will not hand over a hundred cars&#8217; worth of documents to a tool that stores identity papers, lets anyone edit history, or loses photos on a slow garage connection. <strong>The product needed an audit trail, strict permissions and a real security review before it needed features.</strong></p>
     </div>
-    <div class="cs__img cs__img--wide" data-reveal><img src="../img/acervo/dashboard.webp" alt="Acervo collection dashboard: 28 cars, 3 garages, 37 parts, with distribution by garage" width="1511" height="671"></div>
-    <div class="cs__img-cap">Owner dashboard: one collection, its garages, parts and documents, and the distribution the owner actually asks about (by garage, brand, decade, situation).</div>
-    <div class="cs__mobile-pair" data-reveal>
-      <div class="cs__screen"><img src="../img/acervo/car.webp" alt="Car passport: Pontiac Grand Prix NASCAR, garage, documents and parts" width="270" height="590"><span class="cs__screen-label">Car passport</span></div>
-      <div class="cs__screen"><img src="../img/acervo/garages.webp" alt="Garages list with car counts" width="267" height="584"><span class="cs__screen-label">Garages</span></div>
-      <div class="cs__screen"><img src="../img/acervo/parts.webp" alt="Parts inventory with status chips" width="266" height="590"><span class="cs__screen-label">Parts &amp; custody</span></div>
-    </div>
-    <div class="cs__img-cap">Mobile first, one-handed, for the person standing in the garage: passport, garages and parts with status (in inventory, mounted, wanted).</div>
     <div class="cs__evidence">
-      <span class="cs__evidence-label">The team</span>
-      <span class="cs__evidence-text">One lead agent (planning, orchestration, PRs) on the strongest model; specialist agents for data and migrations, UI components, security and QA pinned to cheaper models in their frontmatter. 26 UI components designed in Figma as a token library and built with the same names in code. I merged every PR for the first two weeks, then let the lead merge its own non critical PRs once the review rules held.</span>
+      <span class="cs__evidence-label">The rule that shaped every feature</span>
+      <span class="cs__evidence-text">The AI proposes, a person decides, the system records who decided. No autonomous writes, no exceptions. It is the same rule I designed into ShelfFlow&#8217;s human gates, applied here to a wealthy client&#8217;s provenance records.</span>
     </div>
   </div>
 
-  <!-- 05 DECISIONS -->
-  <div class="cs__section" data-reveal>
-    <span class="cs__section-num">05 Key decisions</span>
-    <h2 class="cs__section-h">What trade-offs did you make?</h2>
+  <!-- 03: The team -->
+  <div class="cs__section" id="s03" data-reveal>
+    <span class="cs__section-num">03 The Engineering Team</span>
+    <h2 class="cs__section-h">I treated Claude Code as a team, not a tool: a lead that plans and orchestrates, specialists for schema, UI, security and QA, each with its own file, rules and model.</h2>
+    <div class="cs__section-text">
+      <p>The starter kit went in on September 16: a CLAUDE.md with the working rules, six agent definitions, a docs folder as the canonical source of truth, and migration 0001. From there the process looked like any engineering team I have worked with: tickets with acceptance criteria, pull requests, architecture decision records, a protected main branch, staging and production environments.</p>
+      <p>The lead agent ran on the strongest model and did planning, orchestration and PRs. Specialists for data and migrations, UI components, security and QA were pinned to cheaper models in their frontmatter. <strong>For the first two weeks I merged every PR myself.</strong> Once the review rules had held on real PRs, the lead was allowed to merge its own non critical ones.</p>
+      <p>Design ran in parallel in Figma: a token library, a 26 component kit in three batches, and the same component names in Figma and code (shadcn convention, own components prefixed). The brand palette (ink, ivory, orange) was kept for identity and action only; a separate functional colour set, warm and desaturated for ivory, feeds every status, chip, alert and toast.</p>
+    </div>
+    <div class="cs__evidence">
+      <span class="cs__evidence-label">Week one, closed Sept 21</span>
+      <span class="cs__evidence-text">Tickets 001 to 005 merged. Staging fully wired: Vercel previews, Supabase with custom SMTP and TOTP, Sentry, GitHub environments with migration secrets, main protected by ruleset. Five days from empty repo to a deployable pipeline.</span>
+    </div>
+    <div class="cs__evidence cs__evidence--am">
+      <span class="cs__evidence-label">Stack</span>
+      <span class="cs__evidence-text">Next.js, Supabase (Postgres with row level security), Claude API, Vercel, Sentry, Cloudflare, Resend. Nothing exotic on purpose: the team was new, the stack should not be.</span>
+    </div>
+  </div>
+
+  <!-- 04: The product -->
+  <div class="cs__section" id="s04" data-reveal>
+    <span class="cs__section-num">04 The Product</span>
+    <h2 class="cs__section-h">A digital passport per car, garages that log every move, parts with custody, and an onboarding that accepts whatever the collector already has.</h2>
+    <div class="cs__section-text">
+      <p>Owners and managers share one collection with per-action permissions. Each car carries photos, history, maintenance and documents, exportable at any time. Cars belong to garages and every move is logged, individually or in batches. A parts inventory tracks condition, location and who holds each item. Every change writes to an audit log tied to an author and a timestamp.</p>
+      <p>Onboarding takes photos, spreadsheets, PDFs or a Drive folder and turns them into draft records for review, or a concierge team does it. From car photos the system suggests make, model, generation, body, colour and year range, and reads the VIN from a plate photo. <strong>Every suggestion needs a human confirmation, and the log records who confirmed it.</strong></p>
+      <p>On top sits the business layer: three visibility states per car (private, open to offers, for sale), buyer wishlists with match alerts, brokerage and paperwork handled by Acervo for a commission, a valuation block and an on-brand PDF report for insurers and buyers.</p>
+    </div>
+  </div>
+
+  <div class="cs__mobile-pair" data-reveal>
+    <div class="cs__screen"><img src="../img/acervo/car.webp" alt="Car passport: Pontiac Grand Prix NASCAR, garage, documents and parts" width="270" height="590"><span class="cs__screen-label">Car passport</span></div>
+    <div class="cs__screen"><img src="../img/acervo/garages.webp" alt="Garages list with car counts" width="267" height="584"><span class="cs__screen-label">Garages</span></div>
+    <div class="cs__screen"><img src="../img/acervo/parts.webp" alt="Parts inventory with status chips" width="266" height="590"><span class="cs__screen-label">Parts &amp; custody</span></div>
+  </div>
+  <p class="cs__img-cap">Mobile first and one-handed: passport, garages and parts with status (in inventory, mounted, wanted). Spanish (es-MX) throughout.</p>
+
+  <!-- 05: Shipping -->
+  <div class="cs__section" id="s05" data-reveal>
+    <span class="cs__section-num">05 Shipping to Production</span>
+    <h2 class="cs__section-h">Two environments, a promotion workflow with explicit approval, a pen test agent that can say no, and a backup you have actually restored.</h2>
+    <div class="cs__section-text">
+      <p>A candidate SHA is built and migrated in staging, passes a security review by a dedicated agent, and is promoted to production only with an explicit approval comment on the promotion issue. The first promotion happened on October 3, seventeen days after the first commit. Three more followed in the next two weeks, each one gated the same way.</p>
+      <p>Before the first real collection was loaded, storage backups to Cloudflare R2 were in place and a real restore had been verified against staging. Staff accounts in production are the partners&#8217; company mailboxes, not personal ones, bootstrapped by migration. Captcha and custom SMTP on both environments.</p>
+    </div>
+    <div class="cs__evidence">
+      <span class="cs__evidence-label">When the gate said no</span>
+      <span class="cs__evidence-text">On October 15 the security review of candidate 86254f3 came back FAIL on a rule outside the import. Instead of delaying the whole promotion, the automatic photo reading of the car alta went behind a feature flag born in false. Production moved on time; the risky surface stayed dark until it passed.</span>
+    </div>
+  </div>
+
+  <div class="cs__img" data-reveal><img src="../img/acervo/hypercars.webp" alt="Modern hypercars in a collection garage" width="1920" height="720"></div>
+  <p class="cs__img-cap">October 16: fourth promotion, 61 migrations in production, the import and the photo reading behind flags. The first family collection starts loading car by car.</p>
+
+  <!-- 06: Decisions -->
+  <div class="cs__section" id="s06" data-reveal>
+    <span class="cs__section-num">06 Key Decisions</span>
+    <h2 class="cs__section-h">What was chosen, what was rejected, and why.</h2>
     <div class="cs__decisions-wrap">
     <table class="cs__decisions">
       <thead><tr><th>Decision</th><th>What we chose</th><th>What we rejected</th><th>Why</th></tr></thead>
       <tbody>
         <tr><td>Scope</td><td>Six week MVP: registry, parts, document digitisation, roles, maintenance reminders</td><td>Import/export and insurance in v1</td><td>Those pillars need the registry to exist first. Nothing built for hypothetical needs.</td></tr>
         <tr><td>Identity</td><td>No KYC documents stored; manual verification, access by referral and approval</td><td>Built-in KYC with document upload</td><td>A collector&#8217;s trust is the product. Storing passports is a liability, not a feature.</td></tr>
-        <tr><td>AI in the workflow</td><td>AI proposes, a person confirms, the audit log records who</td><td>Auto-apply AI recognition results</td><td>Wrong make or year on a six figure car is not a UX bug, it is a provenance problem.</td></tr>
+        <tr><td>AI in the workflow</td><td>AI proposes, a person confirms, the audit log records who</td><td>Auto-apply recognition results</td><td>A wrong make or year on a six figure car is not a UX bug, it is a provenance problem.</td></tr>
         <tr><td>Authentication</td><td>Email magic link plus TOTP, for everyone including the mechanic</td><td>Phone and SMS login</td><td>No SMS provider to contract, one auth path to secure. If a mechanic has no email, we create one.</td></tr>
-        <tr><td>Security gate</td><td>Ship the photo recognition behind a feature flag, off in production, after a FAIL from the pen test agent</td><td>Delay the whole promotion until the finding was fixed</td><td>The collection loading could start on time; the risky surface stayed dark until it passed.</td></tr>
-        <tr><td>Who merges</td><td>Only me for the first two weeks, then the lead agent for non critical PRs</td><td>Agents merging from day one</td><td>Trust the process once the review rules have been tested on real PRs, not before.</td></tr>
+        <tr><td>Security gate</td><td>Ship the risky feature behind a flag, off in production, after a FAIL</td><td>Delay the whole promotion</td><td>The collection loading could start on time; the risky surface stayed dark until it passed.</td></tr>
+        <tr><td>Who merges</td><td>Only me for two weeks, then the lead agent for non critical PRs</td><td>Agents merging from day one</td><td>Trust the process once the review rules have been tested on real PRs, not before.</td></tr>
       </tbody>
     </table>
     </div>
   </div>
 
-  <!-- 06 IMPACT -->
-  <div class="cs__section" data-reveal>
-    <span class="cs__section-num">06 Impact</span>
-    <h2 class="cs__section-h">What happened?</h2>
+  <!-- 07: Impact -->
+  <div class="cs__section" id="s07" data-reveal>
+    <span class="cs__section-num">07 What Happened</span>
+    <h2 class="cs__section-h">A product that would have been a quarter of agency time existed in seventeen days, with the controls a wealthy client expects.</h2>
     <div class="cs__metrics">
-      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">17 days</span><span class="cs__metric-label">First commit to production (Sept 16 to Oct 3)</span></div>
-      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">230+</span><span class="cs__metric-label">Tickets shipped in seven weeks, 420+ ticketed</span></div>
-      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">61</span><span class="cs__metric-label">Database migrations in production by week 5</span></div>
-      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">100+</span><span class="cs__metric-label">Cars in the first real collection being loaded</span></div>
+      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">17</span><span class="cs__metric-label">Days from first commit to production</span></div>
+      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">4</span><span class="cs__metric-label">Production promotions in two weeks, each security gated</span></div>
+      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">27 s</span><span class="cs__metric-label">To register a car with photos on a phone over slow 3G</span></div>
+      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">1</span><span class="cs__metric-label">Person on product and engineering</span></div>
     </div>
     <div class="cs__evidence">
       <span class="cs__evidence-label">Validation method</span>
-      <span class="cs__evidence-text">Dates and counts from the repository, the task board and the promotion issues: four production promotions in the first two weeks, each gated by a security review. Gate 2 (registering a car with three photos in 27 seconds over slow 3G) was measured on my own phone against the branch preview with the network throttled and cut. Infrastructure cost to date: domains, Supabase, Vercel Pro and a Claude Max subscription, paid by me. [TODO: total CHF to date].</span>
+      <span class="cs__evidence-text">Dates and counts come from the repository, the task board and the promotion issues. The 27 second gate was measured on my own phone against the branch preview, with the network throttled and then cut. Infrastructure to date: domains, Supabase, Vercel Pro and a Claude Max subscription, paid by me. [TODO: total CHF to date]</span>
     </div>
   </div>
 
-  <!-- 07 REFLECTION -->
-  <div class="cs__section" data-reveal>
-    <span class="cs__section-num">07 Reflection</span>
-    <h2 class="cs__section-h">What I learned</h2>
+  <!-- 08: Reflection -->
+  <div class="cs__section" id="s08" data-reveal>
+    <span class="cs__section-num">08 What I Learned</span>
+    <h2 class="cs__section-h">An agent team ships exactly what it can observe. The gates where a human measures on a real device are not overhead. They are the product.</h2>
     <div class="cs__reflection">
       <span class="cs__reflection-h">What I would do differently</span>
-      <span class="cs__reflection-text">Fix the brand and the domain before the first screen. We renamed the venture twice during the build (the first name clashed with a UK app, the second had no available domain) and every rename touched environment names, email templates and copy. Second: budget tokens like budget money. The weekly limit on my plan stopped the lead agent for two days right before the first promotion. A team that costs nothing to idle still has a hard cap on throughput, and I planned as if it didn&#8217;t.</span>
+      <span class="cs__reflection-text">Fix the brand and the domain before the first screen. We renamed the venture twice during the build (the first name clashed with a UK app, the second had no available domain) and every rename touched environment names, email templates and copy.</span>
+    </div>
+    <div class="cs__reflection">
+      <span class="cs__reflection-h">Budget tokens like you budget money</span>
+      <span class="cs__reflection-text">The weekly limit on my plan stopped the lead agent for two days right before the first promotion. A team that costs nothing to idle still has a hard cap on throughput, and I planned as if it didn&#8217;t.</span>
     </div>
     <div class="cs__reflection" style="border-color:var(--dn);background:var(--dng)">
       <span class="cs__reflection-h" style="color:var(--dn)">What failed</span>
-      <span class="cs__reflection-text">The first photo upload queue failed silently. On my phone, registering a car took 27 seconds and the UI showed three photos uploaded; Sentry showed an IndexedDB transaction error and zero photos persisted. The agents had written the happy path and tested it on desktop. I kept the ticket open until a correction fixed it and the gate was re-measured on a real phone with the network cut. Lesson: an agent team ships exactly what it can observe. The gates where a human measures on a real device are not optional, they are the product.</span>
+      <span class="cs__reflection-text">The first photo upload queue failed silently. On my phone, registering a car took 27 seconds and the UI showed three photos uploaded; Sentry showed an IndexedDB transaction error and zero photos persisted. The agents had written the happy path and tested it on desktop. The ticket stayed open until a correction fixed it and the gate was re-measured on a real phone with the network cut.</span>
     </div>
   </div>
 
@@ -164,6 +224,5 @@ const lb=document.getElementById("lb"),lbImg=lb.querySelector("img");
 document.querySelectorAll(".cs__img img, .cs__screen img").forEach(im=>im.addEventListener("click",()=>{lbImg.src=im.src;lb.classList.add("open")}));
 lb.addEventListener("click",()=>lb.classList.remove("open"));
 </script>
-
 </body>
 </html>

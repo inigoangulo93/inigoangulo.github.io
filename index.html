@@ -743,11 +743,11 @@ window.addEventListener('DOMContentLoaded',function(){
 
 <div class="clients"><div class="clients__inner"><p class="clients__label">Teams I&#8217;ve worked with</p><div class="clients__grid"><span class="clients__item">GetYourGuide</span><span class="clients__item">ING Bank</span><span class="clients__item">Adecco Group</span><span class="clients__item">Ferrari Switzerland</span><span class="clients__item">Moderna</span><span class="clients__item">Schneider Electric</span></div></div></div>
 
-<div class="layer"><div class="mx">
+<div class="layer" style="padding-top:0;padding-bottom:0"><div class="mx">
 
 <!-- Approach — Clarity is a decision (scroll-driven lenses) -->
 <style>
-.lens-wrap{position:relative;height:220vh}
+.lens-wrap{position:relative;height:150vh}
 .lens-sticky{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
 .lens-head{text-align:center;padding:0 20px;margin-bottom:3vh}
 .lens-head .kicker{font-family:var(--m);font-size:12px;color:var(--ac);letter-spacing:3px}
@@ -756,7 +756,7 @@ window.addEventListener('DOMContentLoaded',function(){
 .lens-stage{width:min(1160px,94vw)}
 .lens-stage svg{width:100%;height:auto;display:block}
 #lensM{display:none}
-@media(max-width:700px){#lensD{display:none}#lensM{display:block}.lens-wrap{height:190vh}}
+@media(max-width:700px){#lensD{display:none}#lensM{display:block}.lens-wrap{height:140vh}}
 .trail{fill:none;stroke:var(--ac);stroke-linecap:round;filter:drop-shadow(0 0 5px rgba(45,212,191,.35))}
 .head{filter:drop-shadow(0 0 7px rgba(125,232,216,.95))}
 .ring{fill:none;transition:opacity .25s}
@@ -828,23 +828,27 @@ window.addEventListener('DOMContentLoaded',function(){
 .door:hover .a1 .prod{stroke:var(--ac);transition-delay:1.7s}
 .door:hover .a1 .tick{animation:a1tick .4s 1.8s var(--e) forwards}
 
-/* 02 · product & ux: a loose wireframe snaps into a clean layout, the CTA fills, a cursor clicks it. */
-.a2 .blk{fill:var(--bg3);stroke:var(--b3);stroke-width:1.2;transition:transform .7s var(--e),stroke .4s,fill .4s}
-.a2 .b1{transform:translate(-6px,-5px) rotate(-3deg)}
-.a2 .b2{transform:translate(8px,4px) rotate(2deg)}
-.a2 .b3{transform:translate(-4px,7px) rotate(-2deg)}
-.a2 .b4{transform:translate(5px,-6px) rotate(3deg)}
-.a2 .cta{fill:var(--bg3);stroke:var(--b3);stroke-width:1.2;transition:fill .4s .6s,stroke .4s .6s}
-.a2 .cur{fill:none;stroke:var(--t1);stroke-width:1.2;stroke-linejoin:round;opacity:0;transition:transform .6s .5s var(--e),opacity .3s .5s}
-.a2 .ring{fill:none;stroke:var(--ac);stroke-width:1.2;opacity:0;transform-origin:243px 104px}
+/* 02 · product & ux: an empty frame on a grid; on hover the screen gets built layer by layer: nav, sidebar, cards, CTA. */
+.a2 .grid{stroke:var(--b1);stroke-width:1}
 .a2 .frame{fill:none;stroke:var(--b2);stroke-width:1.2;transition:stroke .4s}
-@keyframes a2click{0%{opacity:.9;transform:scale(.4)}100%{opacity:0;transform:scale(1.8)}}
-.door:hover .a2 .blk{transform:none;stroke:var(--acb)}
+.a2 .ph{fill:none;stroke:var(--b2);stroke-width:1;stroke-dasharray:3 3;animation:a2ph 1.6s ease-in-out infinite}
+@keyframes a2ph{50%{opacity:.35}}
+.a2 .part{opacity:0;transform-box:fill-box;transform-origin:center}
+.a2 .nav{fill:var(--bg4);stroke:var(--b3);stroke-width:1.2;transform:translateY(-14px)}
+.a2 .side{fill:var(--bg4);stroke:var(--b3);stroke-width:1.2;transform:translateX(-14px)}
+.a2 .card{fill:var(--bg3);stroke:var(--b3);stroke-width:1.2;transform:scale(.6)}
+.a2 .line{fill:var(--b3);transform:scaleX(.2);transform-origin:left center}
+.a2 .cta{fill:var(--ac);transform:scale(.6)}
+.a2 .ctat{font-family:var(--m);font-size:7px;fill:var(--bg);font-weight:700;letter-spacing:.08em}
+@keyframes a2in{to{opacity:1;transform:none}}
+.door:hover .a2 .ph{animation:none;opacity:0;transition:opacity .2s}
 .door:hover .a2 .frame{stroke:var(--acb)}
-.door:hover .a2 .cta{fill:rgba(45,212,191,.9);stroke:var(--ac)}
-.door:hover .a2 .cur{opacity:1;transform:translate(0,0)}
-.a2 .cur{transform:translate(40px,30px)}
-.door:hover .a2 .ring{animation:a2click .7s 1.05s var(--e) forwards}
+.door:hover .a2 .part{animation:a2in .45s var(--e) forwards}
+.door:hover .a2 .nav{animation-delay:.05s}
+.door:hover .a2 .side{animation-delay:.25s}
+.door:hover .a2 .c1{animation-delay:.45s}.door:hover .a2 .c2{animation-delay:.58s}.door:hover .a2 .c3{animation-delay:.71s}
+.door:hover .a2 .l1{animation-delay:.85s}.door:hover .a2 .l2{animation-delay:.95s}.door:hover .a2 .l3{animation-delay:1.05s}
+.door:hover .a2 .cta{animation-delay:1.25s}.door:hover .a2 .ctat{animation-delay:1.3s}
 
 /* 03 · cro: a funnel leaking between stages. On hover the leak seals, the flow reaches the bottom and the lift appears. */
 .a3 .stage{fill:rgba(255,255,255,.03);stroke:var(--b3);stroke-width:1.2;transition:stroke .4s,fill .4s}
@@ -865,7 +869,7 @@ window.addEventListener('DOMContentLoaded',function(){
 
 @media(prefers-reduced-motion:reduce){
  .door,.door *{animation:none !important;transition:none !important}
- .a2 .blk,.a2 .cur{transform:none}.a3 .fill{transform:scaleY(1)}.a3 .out{transform:scaleX(1)}.a3 .drop{opacity:0}
+ .a2 .part{opacity:1;transform:none}.a2 .ph{opacity:0}.a3 .fill{transform:scaleY(1)}.a3 .out{transform:scaleX(1)}.a3 .drop{opacity:0}
 }
 </style>
 <div class="layer layer--raised" id="work-with-me"><div class="mx"><div class="sh"><span>// work with me</span><span>one builder &#183; three packages</span></div>
@@ -900,16 +904,25 @@ window.addEventListener('DOMContentLoaded',function(){
 
 <div class="door">
 <div class="door__art"><svg class="a2" viewBox="0 0 320 150" aria-hidden="true">
+  <defs><pattern id="a2g" width="12" height="12" patternUnits="userSpaceOnUse"><path class="grid" d="M12 0 H0 V12" fill="none"/></pattern></defs>
+  <rect x="46" y="18" width="228" height="114" rx="8" fill="url(#a2g)"/>
   <rect class="frame" x="46" y="18" width="228" height="114" rx="8"/>
-  <circle cx="58" cy="29" r="2.5" fill="var(--b3)"/><circle cx="67" cy="29" r="2.5" fill="var(--b3)"/><circle cx="76" cy="29" r="2.5" fill="var(--b3)"/>
-  <g style="transform-box:fill-box;transform-origin:center"><rect class="blk b1" x="60" y="44" width="90" height="10" rx="3"/></g>
-  <g style="transform-box:fill-box;transform-origin:center"><rect class="blk b2" x="60" y="62" width="130" height="6" rx="3"/></g>
-  <g style="transform-box:fill-box;transform-origin:center"><rect class="blk b3" x="60" y="74" width="110" height="6" rx="3"/></g>
-  <g style="transform-box:fill-box;transform-origin:center"><rect class="blk b4" x="206" y="44" width="54" height="42" rx="5"/></g>
-  <rect class="cta" x="206" y="94" width="54" height="22" rx="5"/>
-  <text class="tx" x="233" y="108" text-anchor="middle" fill="var(--bg)" style="font-weight:700">BOOK</text>
-  <circle class="ring" cx="243" cy="104" r="9"/>
-  <path class="cur" d="M236 96 l12 5 l-5 2 l3 6 l-2 1 l-3 -6 l-4 4 z"/>
+  <rect class="ph" x="100" y="58" width="120" height="34" rx="5"/>
+  <!-- layer 1: nav -->
+  <rect class="part nav" x="46" y="18" width="228" height="16" rx="8"/>
+  <!-- layer 2: sidebar -->
+  <rect class="part side" x="46" y="34" width="44" height="98"/>
+  <!-- layer 3: cards -->
+  <rect class="part card c1" x="100" y="44" width="50" height="34" rx="4"/>
+  <rect class="part card c2" x="158" y="44" width="50" height="34" rx="4"/>
+  <rect class="part card c3" x="216" y="44" width="48" height="34" rx="4"/>
+  <!-- layer 4: content lines -->
+  <rect class="part line l1" x="100" y="90" width="150" height="5" rx="2.5"/>
+  <rect class="part line l2" x="100" y="100" width="118" height="5" rx="2.5"/>
+  <rect class="part line l3" x="100" y="110" width="80" height="5" rx="2.5"/>
+  <!-- layer 5: cta -->
+  <rect class="part cta" x="206" y="104" width="58" height="18" rx="4"/>
+  <text class="part ctat" x="235" y="116" text-anchor="middle">SHIP</text>
 </svg></div>
 <div class="door__body">
 <span class="door__k">02 &#183; Product &amp; UX</span>
