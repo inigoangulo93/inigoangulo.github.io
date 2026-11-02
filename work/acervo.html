@@ -25,14 +25,6 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
 <style>
-/* ---- svg expander ---- */
-var svglb=document.createElement('div');svglb.className='svglb';svglb.innerHTML='<span class="svglb__close">&times;</span>';document.body.appendChild(svglb);
-function closeSvgLb(){svglb.classList.remove('open');var s=svglb.querySelector('svg');if(s)s.remove();document.body.style.overflow=''}
-document.querySelectorAll('.wf-swim').forEach(function(w){w.setAttribute('role','button');w.setAttribute('tabindex','0');w.setAttribute('aria-label','Expand diagram');
-  function openIt(){var s=w.querySelector('svg');if(!s)return;var c=svglb.querySelector('svg');if(c)c.remove();svglb.appendChild(s.cloneNode(true));svglb.classList.add('open');document.body.style.overflow='hidden'}
-  w.addEventListener('click',openIt);w.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openIt()}});});
-svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSvgLb()});
-
 /* ---- team map ---- */
 .tm{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:20px;margin:28px 0 10px}
 .tm__k{font-family:var(--m);font-size:11px;letter-spacing:2.5px;color:var(--ac);display:block;margin-bottom:4px}
@@ -47,6 +39,7 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
 .nd--j{color:#fcd38a;border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.05)}.nd--j:hover,.nd--j.on{border-color:var(--am);background:rgba(245,158,11,.14);box-shadow:0 0 18px rgba(245,158,11,.15)}
 .nd--l{color:#d8ccfb;border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.06);min-width:200px}.nd--l:hover,.nd--l.on{border-color:#a78bfa;background:rgba(167,139,250,.16);box-shadow:0 0 18px rgba(167,139,250,.18)}
 .nd--h{color:#bbf7d0;border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.05)}.nd--h:hover,.nd--h.on{border-color:var(--up);background:rgba(34,197,94,.14);box-shadow:0 0 18px rgba(34,197,94,.15)}
+.nd--o{border-style:dashed}
 .nd--x{color:var(--t2);border-color:var(--b2);background:rgba(255,255,255,.02)}.nd--x:hover,.nd--x.on{border-color:var(--b3);background:rgba(255,255,255,.06)}
 .tm__link{text-align:center;font-family:var(--m);font-size:10px;color:var(--mut);letter-spacing:.1em;padding:2px 0 2px 96px}
 .tm__ins{display:grid;grid-template-columns:1fr 1.3fr 1.1fr;gap:16px;margin-top:16px;padding-top:14px;border-top:1px solid var(--b1)}
@@ -75,7 +68,8 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
 .fl .st--g rect{stroke:rgba(34,197,94,.55);animation:gpulse 2.4s ease-in-out infinite}
 .fl .st--g text{fill:#bbf7d0}
 .fl .st--s rect{stroke:rgba(245,158,11,.5)}
-.fl .st:hover rect{stroke:var(--ac2)}
+.fl .st:hover rect,.fl .st:focus-visible rect{stroke:var(--ac2)}
+.fl .st:focus{outline:none}
 .fl .st.on rect{stroke:var(--ac);fill:rgba(45,212,191,.12);animation:none}
 .fl .st.on text{fill:#fff}
 @keyframes gpulse{0%,100%{stroke-opacity:1}50%{stroke-opacity:.35}}
@@ -92,7 +86,7 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
 @media(max-width:700px){
   .fl svg{display:none}
   .fl__list{display:flex;flex-direction:column;gap:6px;margin-top:6px}
-  .fl__li{font-family:var(--m);font-size:11px;color:var(--t2);border:1px solid var(--b1);border-radius:6px;padding:8px 10px;cursor:pointer;display:flex;gap:10px;align-items:center}
+  .fl__li{font-family:var(--m);font-size:11px;color:var(--t2);border:1px solid var(--b1);border-radius:6px;padding:8px 10px;cursor:pointer;display:flex;gap:10px;align-items:center;background:transparent;text-align:left;width:100%}
   .fl__li.on{border-color:var(--ac);color:var(--t1);background:rgba(45,212,191,.08)}
   .fl__li span:first-child{color:var(--t3)}
   .fl__ins{grid-template-columns:1fr}
@@ -144,6 +138,35 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
 @media(max-width:760px){.fg__row,.fg__hd{grid-template-columns:1fr}.fg__hd{display:none}.rl{grid-template-columns:1fr}}
 
 /* ---- throughput chart ---- */
+/* ---- metric groups, tags, IA, validation, governance ---- */
+.mg{font-family:var(--m);font-size:10px;letter-spacing:.14em;color:var(--t3);margin:28px 0 10px}
+.tag{display:inline-block;font-family:var(--m);font-style:normal;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-top:6px;border:1px solid}
+.tag--p{color:var(--ac2);border-color:rgba(45,212,191,.35)}.tag--t{color:var(--t2);border-color:var(--b2)}.tag--w{color:var(--am);border-color:rgba(245,158,11,.4)}
+.ia{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:20px;margin:24px 0 10px}
+.ia__k{font-family:var(--m);font-size:11px;letter-spacing:2.5px;color:var(--ac);display:block;margin-bottom:14px}
+.ia__row{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}
+.ia__n{flex:1 1 160px;border:1px solid var(--b2);border-radius:8px;padding:12px 14px;font-family:var(--m);font-size:11px;letter-spacing:.08em;color:var(--t1);background:rgba(255,255,255,.02);display:flex;flex-direction:column;gap:6px}
+.ia__n i{font-family:var(--s);font-style:normal;font-size:12px;color:var(--t2);letter-spacing:0;line-height:1.45}
+.ia__n--root{border-color:rgba(34,197,94,.35)}.ia__n--car{border-color:var(--acb);background:rgba(45,212,191,.05)}
+.ia__a{align-self:center;color:var(--mut);font-family:var(--m)}
+.ia__log{margin-top:10px;border:1px dashed var(--b2);border-radius:8px;padding:9px 14px;text-align:center;font-family:var(--m);font-size:10px;letter-spacing:.12em;color:var(--t3)}
+.vst{border:1px solid var(--b2);border-radius:12px;padding:18px 20px;margin:16px 0 10px;background:var(--bg2)}
+.vst__k{font-family:var(--m);font-size:11px;letter-spacing:2.5px;color:var(--t3);display:block;margin-bottom:12px}
+.vst__g{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.vst__h{font-family:var(--m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:6px;padding-left:10px;border-left:2px solid}
+.vst__h--ok{color:var(--up);border-color:var(--up)}.vst__h--p{color:var(--ac2);border-color:var(--ac)}.vst__h--w{color:var(--am);border-color:var(--am)}
+.vst__t{font-family:var(--s);font-size:12.5px;color:var(--t2);line-height:1.55;display:block;padding-left:12px}
+.gv{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:20px;margin:24px 0 10px}
+.gv__k{font-family:var(--m);font-size:11px;letter-spacing:2.5px;color:var(--ac);display:block;margin-bottom:14px}
+.gv__g{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.gv__i{padding:14px;border-radius:8px;border:1px solid var(--b1);background:rgba(255,255,255,.015)}
+.gv__n{font-family:var(--m);font-size:10px;color:var(--ac);letter-spacing:.12em;display:block;margin-bottom:6px;font-weight:600}
+.gv__t{font-family:var(--s);font-size:12.5px;color:var(--t2);line-height:1.5}
+.gv__t code,.vst__t code,.tm__sub code{font-family:var(--m);font-size:11px;color:var(--ac2);background:rgba(45,212,191,.08);padding:1px 5px;border-radius:3px}
+.cs__decisions-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media(max-width:760px){.vst__g,.gv__g{grid-template-columns:1fr}.ia__a{display:none}.ia__n{flex-basis:100%}}
+@media(prefers-reduced-motion:reduce){[data-reveal]{opacity:1 !important;transform:none !important;transition:none !important}.ch .bs{transition:none}.mc .gate rect,.fl .st--g rect{animation:none}html{scroll-behavior:auto}}
+
 .ch{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:18px 18px 10px;margin:28px 0 10px}
 .ch__k{font-family:var(--m);font-size:11px;letter-spacing:2.5px;color:var(--ac);display:block;margin-bottom:2px}
 .ch__sub{font-family:var(--m);font-size:11px;color:var(--mut);display:block;margin-bottom:10px}
@@ -176,15 +199,15 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
 <nav class="cs-nav" id="csNav">
 <a href="#s01" class="cs-nav__link"><span class="cs-nav__num">01</span>Context</a>
 <a href="#s02" class="cs-nav__link"><span class="cs-nav__num">02</span>The Team</a>
-<a href="#s03" class="cs-nav__link"><span class="cs-nav__num">03</span>A Ticket</a>
-<a href="#s04" class="cs-nav__link"><span class="cs-nav__num">04</span>A Promotion</a>
-<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>The Machine</a>
-<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>The Product</a>
+<a href="#s03" class="cs-nav__link"><span class="cs-nav__num">03</span>The Product</a>
+<a href="#s04" class="cs-nav__link"><span class="cs-nav__num">04</span>A Ticket</a>
+<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>A Promotion</a>
+<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>The Machine</a>
 <a href="#s07" class="cs-nav__link"><span class="cs-nav__num">07</span>Throughput</a>
 <a href="#s08" class="cs-nav__link"><span class="cs-nav__num">08</span>Hardest Part</a>
 <a href="#s09" class="cs-nav__link"><span class="cs-nav__num">09</span>Decisions</a>
 <a href="#s10" class="cs-nav__link"><span class="cs-nav__num">10</span>Reflection</a>
-<a href="#" class="cs-nav__top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">&#8593; Top</a>
+<a href="#" class="cs-nav__top" onclick="window.scrollTo({top:0,behavior:(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)?'auto':'smooth'});return false">&#8593; Top</a>
 </nav>
 
 <article class="cs">
@@ -197,11 +220,11 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
     </div>
     <div class="cs__tldr-item">
       <span class="cs__tldr-label">Role</span>
-      <span class="cs__tldr-value">Product &amp; Engineering, solo</span>
+      <span class="cs__tldr-value">Founder &#183; Product, Design &amp; Engineering</span>
     </div>
     <div class="cs__tldr-item">
       <span class="cs__tldr-label">Scope</span>
-      <span class="cs__tldr-value">Agent team, delivery system, production</span>
+      <span class="cs__tldr-value">Product, design system, agent team, delivery, production</span>
     </div>
     <div class="cs__tldr-item">
       <span class="cs__tldr-label">Key outcome</span>
@@ -212,18 +235,19 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
   <!-- Hero -->
   <div class="cs__hero" data-reveal>
     <span class="cs__type">Vertical SaaS / AI Build &amp; Deployment / Automotive Collections</span>
-    <h1 class="cs__h">One person, eight agents, two human gates. A production platform for serious car collections.</h1>
-    <p class="cs__sub">Three partners, no engineering team, no funding until the MVP proved itself. I owned product and engineering, built the engineering team out of AI agents, and designed the delivery system that lets one person ship to production every few days without losing control of what ships.</p>
+    <h1 class="cs__h">One person designed and operates a production platform for serious car collections, with an AI engineering team built around it.</h1>
+    <p class="cs__sub">Three partners, no engineering team, no funding until the MVP proved itself. I defined the product, designed it in Figma, built the engineering team out of eight AI agents, and designed the delivery system that lets one person ship to production every few days without losing authority over what ships. Two human gates: every decision is mine, every release is approved by me.</p>
     <p class="cs__sub" style="margin-top:16px;color:var(--t3)">Acervo is a private management platform for automotive collections in Mexico and Latin America: a digital passport per car, garages, parts custody, AI assisted onboarding, an audit trail on every change and a sealed-offer private market. It runs at app.acervogroup.com, by invitation.</p>
-    <p class="cs__sub" style="margin-top:12px;color:var(--t3)">The product problem was never generating code. It was making an agent team supervisable: who decides, who executes, who may touch what, and what counts as done.</p>
+    <p class="cs__sub" style="margin-top:12px;color:var(--t3)">I did not simply use AI to build a product. I designed and operate a product development system in which specialised agents deliver production software under human authority. The hard problem was never generating code. It was deciding who decides, who executes, who may touch what, and what counts as done.</p>
   </div>
 
   <!-- Metrics -->
-  <div class="cs__metrics" data-reveal>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">17 days</span><span class="cs__metric-label">First commit to production (Sept 16 to Oct 3, 2026)</span></div>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">15</span><span class="cs__metric-label">Production promotions in seven weeks, every one security gated</span></div>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">500+</span><span class="cs__metric-label">Pull requests and issues, 420+ tickets, 228 shipped</span></div>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">2</span><span class="cs__metric-label">Human gates per release: the decision and the approval</span></div>
+  <p class="mg" data-reveal>ENGINEERING OUTCOMES &#183; measured in the repository, the task board and the promotion issues &#183; Sept 16 to Nov 2, 2026</p>
+  <div class="cs__metrics" data-reveal style="margin-top:0">
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">17 days</span><span class="cs__metric-label">First commit to first production deploy</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">15</span><span class="cs__metric-label">Production promotions, each behind a pen test and a human approval</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">500+</span><span class="cs__metric-label">Pull requests and issues &#183; 424 tickets opened, 228 shipped</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">2</span><span class="cs__metric-label">Human gates: the decision (per ticket) and the approval (per release)</span></div>
   </div>
 
   <!-- Hero visual -->
@@ -250,7 +274,7 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
   <!-- 02: The team -->
   <div class="cs__section" id="s02" data-reveal>
     <span class="cs__section-num">02 The Team</span>
-    <h2 class="cs__section-h">Three humans with different authority, one lead, seven specialists. The architecture is not what each one does. It is what each one is not allowed to touch.</h2>
+    <h2 class="cs__section-h">Human authority, orchestration, build, judgment. Eight agents and one independent verifier. The architecture is not what each one does. It is what each one is not allowed to touch.</h2>
     <div class="cs__section-text">
       <p>Each agent is a file under <code>.claude/agents/</code>: a mandate, a model, a boundary. Build agents run on the cheaper model. The three judgment agents run on the strongest one and <strong>prove failures, they never fix them</strong>.</p>
     </div>
@@ -258,15 +282,15 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
 
   <div class="tm" id="team" data-reveal>
     <span class="tm__k">WHO IS WHO &#8212; CLICK A NODE</span>
-    <span class="tm__sub">authority flows down &#183; evidence flows up &#183; colour is the kind of power, not the seniority</span>
-    <div class="tm__tier"><span class="tm__tl">HUMANS</span><div class="tm__nodes">
-      <button class="nd nd--h" data-k="inigo">I&#209;IGO<i>decides</i></button>
-      <button class="nd nd--h" data-k="orq">ORCHESTRATOR<i>measures</i></button>
-      <button class="nd nd--x" data-k="partners">TWO PARTNERS<i>sell</i></button>
+    <span class="tm__sub">authority flows down, evidence flows up &#183; eight agents in <code>.claude/agents/</code> plus one independent verifier &#183; colour is the kind of power, not seniority</span>
+    <div class="tm__tier"><span class="tm__tl">HUMAN AUTHORITY</span><div class="tm__nodes">
+      <button class="nd nd--h" data-k="inigo">I&#209;IGO<i>decides &#183; approves</i></button>
+      <button class="nd nd--x" data-k="partners">TWO PARTNERS<i>sell &#183; no repo authority</i></button>
     </div></div>
-    <div class="tm__link">&#8595; instructions &#183; decisions by id and letter &#183; PASS / FAIL</div>
-    <div class="tm__tier"><span class="tm__tl">LEAD</span><div class="tm__nodes">
-      <button class="nd nd--l on" data-k="lead">LEAD<i>Opus</i></button>
+    <div class="tm__link">&#8595; instructions &#183; decisions by id and letter &#183; /aprobar &#8593; evidence &#183; PASS / FAIL</div>
+    <div class="tm__tier"><span class="tm__tl">ORCHESTRATION</span><div class="tm__nodes">
+      <button class="nd nd--l on" data-k="lead">LEAD<i>Opus &#183; integrates &#183; agent 1 of 8</i></button>
+      <button class="nd nd--l nd--o" data-k="orq">ORCHESTRATOR<i>Claude, separate session &#183; verifies</i></button>
     </div></div>
     <div class="tm__link">&#8595; tickets &#183; &#8593; delivery in format F</div>
     <div class="tm__tier"><span class="tm__tl">BUILD</span><div class="tm__nodes">
@@ -288,10 +312,75 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
     <p class="tm__foot">Cheap models build. Strong models judge. The expensive tokens go to saying no.</p>
   </div>
 
-  <!-- 03: A ticket -->
+  <!-- 03: Product -->
   <div class="cs__section" id="s03" data-reveal>
-    <span class="cs__section-num">03 How a Ticket Ships</span>
-    <h2 class="cs__section-h">Eight steps, five lanes, two human gates. A worker never sees main, a decision is one id and one letter, and a merge needs five green checks on the exact SHA.</h2>
+    <span class="cs__section-num">03 The Product</span>
+    <h2 class="cs__section-h">A digital passport per car, garages that log every move, parts with custody, and an onboarding that accepts whatever the collector already has.</h2>
+    <div class="cs__section-text">
+      <p>The owner&#8217;s mental model is simple: <strong>my cars, where they are, what is on them, what paper proves it, and who touched what</strong>. The information architecture follows it literally. One collection holds garages; garages hold cars; a car carries its photos, documents, parts, maintenance and history; every change on any of them lands in one activity log with an author and a timestamp.</p>
+    </div>
+  </div>
+
+  <div class="ia" data-reveal>
+    <span class="ia__k">INFORMATION ARCHITECTURE &#8212; FOUR ENTITIES, ONE LOG</span>
+    <div class="ia__row">
+      <div class="ia__n ia__n--root">COLLECTION<i>owners and managers, per-action permissions</i></div>
+      <span class="ia__a">&#8594;</span>
+      <div class="ia__n">GARAGES<i>a physical place; every move logged, singly or in batch</i></div>
+      <span class="ia__a">&#8594;</span>
+      <div class="ia__n ia__n--car">CAR &#183; PASSPORT<i>photos, documents, maintenance, history, valuation, visibility state</i></div>
+      <span class="ia__a">&#8594;</span>
+      <div class="ia__n">PARTS<i>condition, location, who holds it: in inventory, mounted, wanted</i></div>
+    </div>
+    <div class="ia__log">ACTIVITY LOG &#183; every change, who, when, on what &#183; exportable</div>
+  </div>
+
+  <div class="cs__section-text" data-reveal style="margin-top:8px">
+    <p><strong>The passport.</strong> A collector&#8217;s problem is not storage, it is retrieval under pressure: an insurer, a buyer or a customs lawyer asks for one car&#8217;s proof and it lives in four places. So each car is one page with everything on it and one button to export the report. The gallery comes first because that is how collectors recognise their own cars; data, documents, parts and history are tabs below it.</p>
+    <p><strong>Garages and movements.</strong> A hundred cars across several cities means the most frequent question is &#8220;where is it now&#8221;. Garages are first class, a car always belongs to one, and moving cars is a batch action because cars travel to shows and workshops in groups. The garage card on the passport shows since when the car has been there.</p>
+    <p><strong>Parts and custody.</strong> Parts go missing between workshops because nobody records who has them. Each part has a status (in inventory, mounted, wanted) and a holder, and the activity log shows the hand-offs. That is the whole design: make the ambiguity visible.</p>
+    <p><strong>AI assisted onboarding.</strong> Collectors arrive with folders, photos and spreadsheets. The import accepts them as they are, one folder per car, and produces draft records. From photos the system suggests make, model, generation, body, colour and year range; from a plate photo it reads the VIN. <strong>Every suggestion is a draft until a person confirms it, and the log records who confirmed.</strong> The same rule that governs the agents governs the product.</p>
+  </div>
+
+  <div class="cs__screens" data-reveal>
+    <div class="cs__screen"><img src="../img/acervo/passport-desktop.webp" loading="lazy" alt="Car passport in production: Ferrari 296 GTS gallery, garage, documents, parts, history" width="3056" height="1392"><span class="cs__screen-label">Passport &#183; gallery, garage, documents, parts, history, report export</span></div>
+    <div class="cs__screen"><img src="../img/acervo/activity.webp" loading="lazy" alt="Activity log in production: 1210 changes in 30 days, each tied to a person and a car" width="3056" height="1392"><span class="cs__screen-label">Activity &#183; 1,210 changes in 30 days, each with who and on what</span></div>
+  </div>
+  <div class="cs__screens" data-reveal>
+    <div class="cs__screen"><img src="../img/acervo/import.webp" loading="lazy" alt="Import my collection: drop folders, photos and spreadsheets" width="3056" height="1392"><span class="cs__screen-label">Import &#183; folders, photos and spreadsheets, one folder per car</span></div>
+    <div class="cs__screen"><img src="../img/acervo/cars-light.webp" loading="lazy" alt="Cars gallery in light mode" width="3056" height="1392"><span class="cs__screen-label">Light mode &#183; the brand&#8217;s ivory canvas, same components</span></div>
+  </div>
+  <p class="cs__img-cap">Production, November 2, 2026. The collection shown is my own test set; the first family collection is loading behind it.</p>
+
+  <div class="cs__mobile-pair" data-reveal>
+    <div class="cs__screen"><img src="../img/acervo/car.webp" loading="lazy" alt="Car passport on mobile" width="540" height="1180"><span class="cs__screen-label">Passport</span></div>
+    <div class="cs__screen"><img src="../img/acervo/garages.webp" loading="lazy" alt="Garages on mobile" width="534" height="1168"><span class="cs__screen-label">Garages</span></div>
+    <div class="cs__screen"><img src="../img/acervo/parts.webp" loading="lazy" alt="Parts on mobile" width="532" height="1180"><span class="cs__screen-label">Parts &amp; custody</span></div>
+  </div>
+  <p class="cs__img-cap">Mobile first and one-handed, for the person standing in the garage on a bad connection. Spanish (es-MX) throughout.</p>
+
+  <p class="mg" data-reveal>PRODUCT OUTCOMES &#183; what has been measured, where, and what has not been validated yet</p>
+  <div class="cs__metrics" data-reveal style="margin-top:0">
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">27 s</span><span class="cs__metric-label">Register a car with three photos on a phone over slow 3G <em class="tag tag--p">measured on preview</em></span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">1,210</span><span class="cs__metric-label">Changes in the activity log in 30 days <em class="tag tag--t">my test collection</em></span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">100+</span><span class="cs__metric-label">Cars in the first real collection <em class="tag tag--w">loading now</em></span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">0</span><span class="cs__metric-label">Paying customers. Pricing on request, access by invitation <em class="tag tag--w">not yet validated</em></span></div>
+  </div>
+  <div class="vst" data-reveal>
+    <span class="vst__k">VALIDATION STATUS &#183; NOVEMBER 2026</span>
+    <div class="vst__g">
+      <div class="vst__c"><span class="vst__h vst__h--ok">In production, measured</span><span class="vst__t">Deployments, migrations, promotions, security reviews, the audit log and the passport on my own 28 car test set.</span></div>
+      <div class="vst__c"><span class="vst__h vst__h--p">Measured on staging or preview</span><span class="vst__t">The 27 second registration gate on a real phone with the network throttled and cut. Import and photo recognition, behind flags until the pen test passes.</span></div>
+      <div class="vst__c"><span class="vst__h vst__h--w">Awaiting real customers</span><span class="vst__t">The first family collection is being loaded. No paying customer yet, no retention data, no pricing validated. Engineering throughput is not product-market fit, and this case does not claim it is.</span></div>
+    </div>
+  </div>
+
+
+
+  <!-- 04: A ticket -->
+  <div class="cs__section" id="s04" data-reveal>
+    <span class="cs__section-num">04 How a Ticket Ships</span>
+    <h2 class="cs__section-h">Eight steps, five lanes, one human gate. A worker never sees main, a decision is one id and one letter, and the lead may merge only with five green checks on the exact SHA.</h2>
     <div class="cs__section-text">
       <p>The process is the one I would run with a human team, made stricter because agents will happily report a template as a result. Every ticket carries a measurable acceptance criterion. Every delivery lists those criteria one by one as VERIFIED or IMPLEMENTED, with the PR, the SHA and the CI run id. Every open question comes back as a numbered decision I answer with a letter: <code>374-4 A</code>. Click a step.</p>
     </div>
@@ -299,7 +388,7 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
 
   <div class="fl" id="flowTicket" data-reveal>
     <span class="fl__k">TICKET FLOW &#8212; FROM docs/tickets/NNN.md TO MAIN</span>
-    <span class="fl__sub">green nodes are human gates &#183; amber nodes are conditional &#183; click a node or use next</span>
+    <span class="fl__sub">green: human gate &#183; amber: conditional or evidence bound &#183; click a node, use next, or tab through</span>
     <svg viewBox="0 0 1200 330" role="img" aria-label="Ticket flow: eight steps across five lanes, Inigo, Lead, Worker, Security and CI">
       <defs><marker id="arr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="rgba(255,255,255,.3)"/></marker></defs>
       <!-- lanes -->
@@ -317,24 +406,24 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
       <path class="cx" d="M1016 47 L1036 47 L1036 107 L1056 107"/>
       <path class="cx" d="M1116 134 L1116 287 L1176 287" style="marker-end:none"/>
       <!-- steps -->
-      <g class="st" data-i="0"><rect x="96" y="87" width="140" height="40" rx="6"/><text x="106" y="103" class="num">01</text><text x="106" y="118">Ticket written</text></g>
-      <g class="st" data-i="1"><rect x="276" y="147" width="120" height="40" rx="6"/><text x="286" y="163" class="num">02</text><text x="286" y="178">Own worktree</text></g>
-      <g class="st" data-i="2"><rect x="416" y="147" width="120" height="40" rx="6"/><text x="426" y="163" class="num">03</text><text x="426" y="178">Delivery F</text></g>
-      <g class="st" data-i="3"><rect x="576" y="87" width="120" height="40" rx="6"/><text x="586" y="103" class="num">04</text><text x="586" y="118">In progress</text></g>
-      <g class="st st--s" data-i="4"><rect x="736" y="207" width="120" height="40" rx="6"/><text x="746" y="223" class="num">05</text><text x="746" y="238">Security review</text></g>
-      <g class="st st--g" data-i="5"><rect x="896" y="27" width="120" height="40" rx="6"/><text x="906" y="43" class="num">06</text><text x="906" y="58">Decision</text></g>
-      <g class="st st--g" data-i="6"><rect x="1056" y="87" width="120" height="40" rx="6"/><text x="1066" y="103" class="num">07</text><text x="1066" y="118">Merge</text></g>
-      <g class="st" data-i="7"><rect x="1056" y="267" width="120" height="40" rx="6"/><text x="1066" y="283" class="num">08</text><text x="1066" y="298">CI on main</text></g>
+      <g class="st" tabindex="0" role="button" data-i="0"><rect x="96" y="87" width="140" height="40" rx="6"/><text x="106" y="103" class="num">01</text><text x="106" y="118">Ticket written</text></g>
+      <g class="st" tabindex="0" role="button" data-i="1"><rect x="276" y="147" width="120" height="40" rx="6"/><text x="286" y="163" class="num">02</text><text x="286" y="178">Own worktree</text></g>
+      <g class="st" tabindex="0" role="button" data-i="2"><rect x="416" y="147" width="120" height="40" rx="6"/><text x="426" y="163" class="num">03</text><text x="426" y="178">Delivery F</text></g>
+      <g class="st" tabindex="0" role="button" data-i="3"><rect x="576" y="87" width="120" height="40" rx="6"/><text x="586" y="103" class="num">04</text><text x="586" y="118">In progress</text></g>
+      <g class="st st--s" tabindex="0" role="button" data-i="4"><rect x="736" y="207" width="120" height="40" rx="6"/><text x="746" y="223" class="num">05</text><text x="746" y="238">Security review</text></g>
+      <g class="st st--g" tabindex="0" role="button" data-i="5"><rect x="896" y="27" width="120" height="40" rx="6"/><text x="906" y="43" class="num">06</text><text x="906" y="58">Decision</text></g>
+      <g class="st st--s" tabindex="0" role="button" data-i="6"><rect x="1056" y="87" width="120" height="40" rx="6"/><text x="1066" y="103" class="num">07</text><text x="1066" y="118">Merge</text></g>
+      <g class="st" tabindex="0" role="button" data-i="7"><rect x="1056" y="267" width="120" height="40" rx="6"/><text x="1066" y="283" class="num">08</text><text x="1066" y="298">CI on main</text></g>
     </svg>
     <div class="fl__list"></div>
     <div class="fl__ins"><div><span class="fl__who"></span><span class="fl__h"></span><span class="fl__t"></span></div><div class="fl__nav"><button class="fl__btn" data-d="-1">&#8592; prev</button><button class="fl__btn" data-d="1">next &#8594;</button></div></div>
   </div>
-  <p class="cs__img-cap">Only two steps need a human. Both are the ones where an agent would be cheapest to trust and most expensive to be wrong.</p>
+  <p class="cs__img-cap">One step needs a human: the decision. Everything else is agents bound by evidence they cannot fake: a run id, a SHA, a red suite when a policy is broken on purpose.</p>
 
-  <!-- 04: A promotion -->
-  <div class="cs__section" id="s04" data-reveal>
-    <span class="cs__section-num">04 How a Promotion Reaches Production</span>
-    <h2 class="cs__section-h">Main freezes, a pen test says PASS, nine production queries get measured by someone who is not the lead, and then one human types /aprobar.</h2>
+  <!-- 05: A promotion -->
+  <div class="cs__section" id="s05" data-reveal>
+    <span class="cs__section-num">05 How a Promotion Reaches Production</span>
+    <h2 class="cs__section-h">Main freezes, a pen test says PASS, every screen gets my visual PASS on staging, nine production queries are measured by a session that did not write the code, and then one human types /aprobar.</h2>
     <div class="cs__section-text">
       <p>Promotions are where an agent team is most dangerous, because everything looks done. So the lead cannot touch the promotion workflow at all, the security agent runs a full pen test on the exact candidate, and the production measurements are taken by a separate session that reports back what it actually saw. <strong>A template with placeholders is not a measurement.</strong> Fifteen promotions have gone through this in seven weeks.</p>
     </div>
@@ -342,7 +431,7 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
 
   <div class="fl" id="flowPromo" data-reveal>
     <span class="fl__k">PROMOTION FLOW &#8212; FROM CANDIDATE SHA TO app.acervogroup.com</span>
-    <span class="fl__sub">green nodes are human gates &#183; the lead never touches the last three lanes&#8217; tooling &#183; click a node or use next</span>
+    <span class="fl__sub">green: the human gate &#183; amber: mandatory validation before it &#183; the lead has no credentials in the last three lanes &#183; click, next, or tab</span>
     <svg viewBox="0 0 1200 330" role="img" aria-label="Promotion flow: six steps across five lanes, Security, Lead, Inigo, Orchestrator and promover.yml">
       <rect class="lane" x="90" y="20" width="1100" height="54" rx="6"/><text class="lt" x="14" y="52">SECURITY</text>
       <rect class="lane" x="90" y="80" width="1100" height="54" rx="6"/><text class="lt" x="14" y="112">LEAD</text>
@@ -355,13 +444,13 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
       <path class="cx" d="M766 207 L766 187"/>
       <path class="cx" d="M846 167 L876 167 L876 287 L906 287"/>
       <path class="cx" d="M1046 287 L1076 287 L1076 107 L1106 107" style="marker-end:none"/>
-      <g class="st" data-i="0"><rect x="96" y="27" width="150" height="40" rx="6"/><text x="106" y="43" class="num">01</text><text x="106" y="58">Pen test, mode 2</text></g>
-      <g class="st" data-i="1"><rect x="306" y="87" width="140" height="40" rx="6"/><text x="316" y="103" class="num">02</text><text x="316" y="118">Candidate SHA</text></g>
-      <g class="st st--g" data-i="2"><rect x="506" y="147" width="140" height="40" rx="6"/><text x="516" y="163" class="num">03</text><text x="516" y="178">Main frozen</text></g>
-      <g class="st st--s" data-i="3"><rect x="706" y="207" width="140" height="40" rx="6"/><text x="716" y="223" class="num">04</text><text x="716" y="238">P1 to P9 measured</text></g>
-      <g class="st st--g" data-i="4"><rect x="706" y="147" width="140" height="40" rx="6"/><text x="716" y="163" class="num">05</text><text x="716" y="178">/aprobar</text></g>
-      <g class="st" data-i="5"><rect x="906" y="267" width="140" height="40" rx="6"/><text x="916" y="283" class="num">06</text><text x="916" y="298">Migrate, deploy</text></g>
-      <g class="st" data-i="6"><rect x="1046" y="87" width="140" height="40" rx="6"/><text x="1056" y="103" class="num">07</text><text x="1056" y="118">Close, unfreeze</text></g>
+      <g class="st" tabindex="0" role="button" data-i="0"><rect x="96" y="27" width="150" height="40" rx="6"/><text x="106" y="43" class="num">01</text><text x="106" y="58">Pen test, mode 2</text></g>
+      <g class="st" tabindex="0" role="button" data-i="1"><rect x="306" y="87" width="140" height="40" rx="6"/><text x="316" y="103" class="num">02</text><text x="316" y="118">Candidate SHA</text></g>
+      <g class="st st--s" tabindex="0" role="button" data-i="2"><rect x="506" y="147" width="140" height="40" rx="6"/><text x="516" y="163" class="num">03</text><text x="516" y="178">Main frozen</text></g>
+      <g class="st st--s" tabindex="0" role="button" data-i="3"><rect x="706" y="207" width="140" height="40" rx="6"/><text x="716" y="223" class="num">04</text><text x="716" y="238">PASS + P1 to P9</text></g>
+      <g class="st st--g" tabindex="0" role="button" data-i="4"><rect x="706" y="147" width="140" height="40" rx="6"/><text x="716" y="163" class="num">05</text><text x="716" y="178">/aprobar</text></g>
+      <g class="st" tabindex="0" role="button" data-i="5"><rect x="906" y="267" width="140" height="40" rx="6"/><text x="916" y="283" class="num">06</text><text x="916" y="298">Migrate, deploy</text></g>
+      <g class="st" tabindex="0" role="button" data-i="6"><rect x="1046" y="87" width="140" height="40" rx="6"/><text x="1056" y="103" class="num">07</text><text x="1056" y="118">Close, unfreeze</text></g>
     </svg>
     <div class="fl__list"></div>
     <div class="fl__ins"><div><span class="fl__who"></span><span class="fl__h"></span><span class="fl__t"></span></div><div class="fl__nav"><button class="fl__btn" data-d="-1">&#8592; prev</button><button class="fl__btn" data-d="1">next &#8594;</button></div></div>
@@ -372,9 +461,9 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
     <span class="cs__evidence-text">On October 15 the pen test of candidate 86254f3 came back FAIL on a rule outside the import. Instead of delaying the whole promotion, the automatic photo reading of the car alta went behind a feature flag born in false. Production moved on time; the risky surface stayed dark until it passed.</span>
   </div>
 
-  <!-- 05: The machine -->
-  <div class="cs__section" id="s05" data-reveal>
-    <span class="cs__section-num">05 The Machine</span>
+  <!-- 06: The machine -->
+  <div class="cs__section" id="s06" data-reveal>
+    <span class="cs__section-num">06 The Machine</span>
     <h2 class="cs__section-h">Figma feeds the code, every worker gets its own database, staging is a real environment, and the only road into production is a workflow nobody in the build can edit.</h2>
     <div class="cs__section-text">
       <p>Nothing exotic on purpose: the team was new, the stack should not be. Next.js on Vercel, Supabase for Postgres with row level security, Auth and Storage, the Claude API for recognition and document extraction. What is unusual is how the pieces are wired so that an agent team cannot shortcut them.</p>
@@ -425,47 +514,19 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
 <path class="ar" d="M465 420 L465 330" style="marker-end:none;stroke-dasharray:3 3"/><path class="ar" d="M260 449 L320 449" style="stroke-dasharray:3 3"/><text class="al" x="263" y="440">mirror</text>
 </svg>
   </div>
-  <p class="cs__img-cap">Four zones, one road to production. Green boxes are the two places a human has to act. The lead agent has credentials for the first two zones only.</p>
+  <p class="cs__img-cap">Four zones, one road to production. Green boxes are where a human acts: the visual PASS on staging and the approval. The lead agent holds credentials for the first two zones only.</p>
 
   <div class="mcs" data-reveal>
     <div class="mcs__i"><span class="mcs__n">FIGMA &#8594; CODE</span><span class="mcs__t">A published token library and a 26 component kit. Components carry the same name in Figma and in code (shadcn convention, own ones prefixed). The dise&#241;o agent owns the library and reviews every PR with a screen against it.</span></div>
     <div class="mcs__i"><span class="mcs__n">ISOLATED WORKERS</span><span class="mcs__t">Each ticket runs in its own git worktree and, if it touches data, its own local Supabase stack with its own project id and ports. Workers never see the main checkout and never run linked to a remote database.</span></div>
     <div class="mcs__i"><span class="mcs__n">STAGING IS REAL</span><span class="mcs__t">Custom SMTP, TOTP, captcha, Sentry and the migration workflow all exist in staging exactly as in production. Every screen is PASSed there by a human before it is a candidate.</span></div>
-    <div class="mcs__i"><span class="mcs__n">ONE ROAD IN</span><span class="mcs__t">Production changes only through <code>promover.yml</code>, triggered by an <code>/aprobar</code> from the approver account. Migration first, deploy second, served SHA verified after. Rules 27 and 28 exist so the lead cannot route around it.</span></div>
+    <div class="mcs__i"><span class="mcs__n">ONE ROAD IN &#183; A CONTROL, NOT A PROOF</span><span class="mcs__t">Production is meant to change only through <code>promover.yml</code>, triggered by an <code>/aprobar</code> from the approver account: migration first, deploy second, served SHA verified after. The lead holds no Vercel or production credentials and may not edit the workflow (rules 27 and 28). Three mechanisms I first trusted turned out not to be barriers, so I treat this as an architectural control that is re-verified, not a technical guarantee. The question is never whether a mechanism sounds reasonable, but who can change it.</span></div>
   </div>
 
-  <!-- 06: Product -->
-  <div class="cs__section" id="s06" data-reveal>
-    <span class="cs__section-num">06 The Product</span>
-    <h2 class="cs__section-h">A digital passport per car, garages that log every move, parts with custody, and an onboarding that accepts whatever the collector already has.</h2>
-    <div class="cs__section-text">
-      <p>Owners and managers share one collection with per-action permissions. Each car carries photos, history, maintenance and documents, exportable at any time. Cars belong to garages and every move is logged, individually or in batches. A parts inventory tracks condition, location and who holds each item. Every change writes to an audit log tied to an author and a timestamp.</p>
-      <p>Onboarding takes photos, spreadsheets, PDFs or a Drive folder and turns them into draft records for review, or a concierge team does it. From car photos the system suggests make, model, generation, body, colour and year range, and reads the VIN from a plate photo. <strong>Every suggestion needs a human confirmation, and the log records who confirmed it.</strong> On top sits the business layer: three visibility states per car, buyer wishlists with match alerts, brokerage for a commission, a valuation block and an on-brand PDF report for insurers and buyers.</p>
-    </div>
-  </div>
-
-  <div class="cs__screens" data-reveal>
-    <div class="cs__screen"><img src="../img/acervo/passport-desktop.webp" alt="Car passport in production: Ferrari 296 GTS gallery, garage, documents, parts, history" width="3056" height="1392"><span class="cs__screen-label">Passport &#183; gallery, garage, documents, parts, history, report export</span></div>
-    <div class="cs__screen"><img src="../img/acervo/activity.webp" alt="Activity log in production: 1210 changes in 30 days, each tied to a person and a car" width="3056" height="1392"><span class="cs__screen-label">Activity &#183; 1,210 changes in 30 days, each with who and on what</span></div>
-  </div>
-  <div class="cs__screens" data-reveal>
-    <div class="cs__screen"><img src="../img/acervo/import.webp" alt="Import my collection: drop folders, photos and spreadsheets" width="3056" height="1392"><span class="cs__screen-label">Import &#183; folders, photos and spreadsheets, one folder per car</span></div>
-    <div class="cs__screen"><img src="../img/acervo/cars-light.webp" alt="Cars gallery in light mode" width="3056" height="1392"><span class="cs__screen-label">Light mode &#183; the brand&#8217;s ivory canvas, same components</span></div>
-  </div>
-  <p class="cs__img-cap">Production, November 2, 2026. The collection shown is my own test set; the first family collection is loading behind it.</p>
-
-  <div class="cs__mobile-pair" data-reveal>
-    <div class="cs__screen"><img src="../img/acervo/car.webp" alt="Car passport on mobile" width="540" height="1180"><span class="cs__screen-label">Passport</span></div>
-    <div class="cs__screen"><img src="../img/acervo/garages.webp" alt="Garages on mobile" width="534" height="1168"><span class="cs__screen-label">Garages</span></div>
-    <div class="cs__screen"><img src="../img/acervo/parts.webp" alt="Parts on mobile" width="532" height="1180"><span class="cs__screen-label">Parts &amp; custody</span></div>
-  </div>
-  <p class="cs__img-cap">Mobile first and one-handed, for the person standing in the garage on a bad connection. Spanish (es-MX) throughout.</p>
-
-
-  <!-- 06: Throughput -->
+  <!-- 07: Throughput -->
   <div class="cs__section" id="s07" data-reveal>
     <span class="cs__section-num">07 Throughput</span>
-    <h2 class="cs__section-h">Sixty to eighty tickets opened a week, forty shipped, by one person. The gap is not backlog, it is the specialists and the judgment agents generating the next tickets from what they find.</h2>
+    <h2 class="cs__section-h">Sixty to eighty tickets opened a week, forty shipped, by one person. This is engineering throughput, not product traction, and the gap is not backlog: it is the judgment agents generating the next tickets from what they find.</h2>
     <div class="cs__section-text">
       <p>The board is the honest record: 424 tickets opened since September 16, 228 shipped, the rest open, blocked or archived. Week one was infrastructure. Week three was the first promotion. From week four the rhythm settles at roughly forty tickets shipped a week, with a security review or a pen test behind most of them.</p>
     </div>
@@ -480,13 +541,13 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
 
   <div class="cs__metrics" data-reveal style="margin-top:16px">
     <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">61</span><span class="cs__metric-label">Database migrations in production by week five</span></div>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">27 s</span><span class="cs__metric-label">To register a car with photos on a phone over slow 3G</span></div>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">100+</span><span class="cs__metric-label">Cars in the first real collection being loaded</span></div>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">1</span><span class="cs__metric-label">Person on product and engineering</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">5</span><span class="cs__metric-label">Mandatory checks on the exact SHA before any merge</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">15 / 15</span><span class="cs__metric-label">Promotions preceded by a full pen test</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">1</span><span class="cs__metric-label">Person on product, design and engineering</span></div>
   </div>
   <div class="cs__evidence" data-reveal>
-    <span class="cs__evidence-label">Validation method</span>
-    <span class="cs__evidence-text">Counts come from the task board and the repository (PR and issue numbering). The 27 second gate was measured on my own phone against the branch preview, with the network throttled and then cut. Infrastructure to date: domains, Supabase, Vercel Pro and a Claude Max subscription, paid by me. [TODO: total CHF to date]</span>
+    <span class="cs__evidence-label">Where the numbers come from</span>
+    <span class="cs__evidence-text">Tickets opened and shipped: the Acervo HQ task board, counted by week of creation, Sept 16 to Nov 2, 2026. PRs, issues and promotions: GitHub numbering and the Promover issues. Migrations: the production migration log at the fourth promotion (Oct 16). Infrastructure is paid by me: domains, Supabase, Vercel Pro and a Claude Max subscription.</span>
   </div>
 
   <!-- 07: The hardest part -->
@@ -522,6 +583,18 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
       <div class="rl__i"><span class="rl__n">RULE 4</span><span class="rl__t">Break a policy on purpose; the suite has to turn red. If it does not, the tests do not test what they say.</span></div>
       <div class="rl__i"><span class="rl__n">RULE 26</span><span class="rl__t">&#8220;Compatible with the previous code&#8221; is shown by running that code against the new base, not by reading the migration. That is how the enum failure of October 20 was caught.</span></div>
       <div class="rl__i"><span class="rl__n">SINCE NOV 2</span><span class="rl__t">A measurement must contain something the lead could not have predicted. If it matches the template character for character, it is the template.</span></div>
+    </div>
+  </div>
+
+  <div class="gv" data-reveal>
+    <span class="gv__k">SIX PRINCIPLES THE SYSTEM RUNS ON &#8212; EACH WITH THE INCIDENT THAT TAUGHT IT</span>
+    <div class="gv__g">
+      <div class="gv__i"><span class="gv__n">01 &#183; INDEPENDENT VERIFICATION</span><span class="gv__t">The session that measures is never the session that built. A different model is not independence; a different context, with its own evidence and its own execution, is. The orchestrator exists because on Nov 2 the lead reported a template as a production measurement.</span></div>
+      <div class="gv__i"><span class="gv__n">02 &#183; EVIDENCE BINDING</span><span class="gv__t">No fact without its identifier: run id, SHA, PR (rule 19). Delivery format F lists every acceptance criterion as VERIFIED or IMPLEMENTED. &#8220;CI green&#8221; is not a sentence anyone may write.</span></div>
+      <div class="gv__i"><span class="gv__n">03 &#183; NEGATIVE TESTING</span><span class="gv__t">A suite proves what it tests only when it can fail. Rule 4: break a policy on purpose, the suite must turn red. Rule 26: run the previous code against the new base. That caught the enum failure of Oct 20.</span></div>
+      <div class="gv__i"><span class="gv__n">04 &#183; LEAST PRIVILEGE</span><span class="gv__t">Datos is the only agent that touches migrations. Frontend never queries the database. Judgment agents never fix. The lead holds no Vercel and no production credentials. Each boundary is written in the agent&#8217;s own file.</span></div>
+      <div class="gv__i"><span class="gv__n">05 &#183; HUMAN AUTHORITY</span><span class="gv__t">Two gates, both mine: every open question is answered by id and letter, every release by <code>/aprobar</code> from the approver account. Agents propose, a person decides, the system records who.</span></div>
+      <div class="gv__i"><span class="gv__n">06 &#183; PRODUCTION ISOLATION</span><span class="gv__t">One workflow deploys, nobody in the build can edit it. Three mechanisms I first trusted were not barriers (a reviewer the GitHub plan lacks, a variable my own <code>gh</code> could change, a Vercel session that could bypass the workflow). Rules 27 and 28 came from that. It stays a control I re-verify, not a guarantee I claim.</span></div>
     </div>
   </div>
 
@@ -580,7 +653,7 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
 </article>
 </div><!-- /cs-wrap -->
 
-<div class="lb" id="lb"><span class="lb__close">&times;</span><img alt=""></div>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image preview"><button class="lb__close" aria-label="Close">&times;</button><img alt=""></div>
 <script>
 document.body.classList.add("js");
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("vis");obs.unobserve(e.target)}})},{threshold:.1});
@@ -591,7 +664,8 @@ const secLabel=document.querySelector(".cs-bar__section");
 if(secLabel){const secs=document.querySelectorAll(".cs__section[data-reveal]");
   const secObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const n=e.target.querySelector(".cs__section-num");if(n){secLabel.textContent=n.textContent.trim();secLabel.classList.add("active")}}})},{threshold:0,rootMargin:"-50% 0px -40% 0px"});
   secs.forEach(s=>secObs.observe(s));}
-function animateValue(el,end,suffix,prefix,duration){const startTime=performance.now();const isFloat=String(end).includes(".");
+const RM=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function animateValue(el,end,suffix,prefix,duration){if(RM){return}const startTime=performance.now();const isFloat=String(end).includes(".");
   function update(now){const p=Math.min((now-startTime)/duration,1);const eased=1-Math.pow(1-p,3);const val=end*eased;
     el.textContent=prefix+(isFloat?val.toFixed(1):Math.round(val))+suffix;if(p<1)requestAnimationFrame(update);}
   requestAnimationFrame(update);}
@@ -600,32 +674,35 @@ const metricObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting
   if(match){animateValue(el,parseFloat(match[2]),match[3],match[1],800);}}})},{threshold:.3});
 document.querySelectorAll(".cs__metric").forEach(m=>metricObs.observe(m));
 const lb=document.getElementById("lb");
-if(lb){const lbi=lb.querySelector("img"),lbc=lb.querySelector(".lb__close");
-document.querySelectorAll(".cs__img img, .cs__screen img").forEach(i=>{i.addEventListener("click",()=>{lbi.src=i.src;lbi.alt=i.alt||"";lb.classList.add("open");document.body.style.overflow="hidden"})});
-function closeLb(){lb.classList.remove("open");document.body.style.overflow=""}
+if(lb){const lbi=lb.querySelector("img"),lbc=lb.querySelector(".lb__close");let lbOpener=null;
+document.querySelectorAll(".cs__img img, .cs__screen img").forEach(i=>{i.setAttribute("tabindex","0");i.setAttribute("role","button");i.setAttribute("aria-label","Enlarge: "+(i.alt||"image"));const open=()=>{lbi.src=i.src;lbi.alt=i.alt||"";lb.classList.add("open");document.body.style.overflow="hidden";lbOpener=i;lbc.focus()};i.addEventListener("click",open);i.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}})});
+function closeLb(){lb.classList.remove("open");document.body.style.overflow="";if(lbOpener)lbOpener.focus()}
 lbc.addEventListener("click",closeLb);lb.addEventListener("click",e=>{if(e.target===lb)closeLb()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLb()});}
 var navLinks=document.querySelectorAll(".cs-nav__link");var csNav=document.getElementById("csNav");
 if(navLinks.length){var navObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
     navLinks.forEach(function(l){l.classList.remove("active")});var link=document.querySelector('.cs-nav__link[href="#'+e.target.id+'"]');
-    if(link){link.classList.add("active");if(window.innerWidth<=900&&csNav){link.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});}}}})},{threshold:0,rootMargin:"-30% 0px -60% 0px"});
+    if(link){link.classList.add("active");if(window.innerWidth<=900&&csNav){link.scrollIntoView({behavior:(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)?"auto":"smooth",inline:"center",block:"nearest"});}}}})},{threshold:0,rootMargin:"-30% 0px -60% 0px"});
   document.querySelectorAll(".cs__section[id]").forEach(function(s){navObs.observe(s)});
-  navLinks.forEach(function(l){l.addEventListener("click",function(e){e.preventDefault();var t=document.querySelector(l.getAttribute("href"));if(t)t.scrollIntoView({behavior:"smooth",block:"start"});})});}
+  navLinks.forEach(function(l){l.addEventListener("click",function(e){e.preventDefault();var t=document.querySelector(l.getAttribute("href"));if(t)t.scrollIntoView({behavior:(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)?"auto":"smooth",block:"start"});})});}
 
 /* ---- svg expander ---- */
-var svglb=document.createElement('div');svglb.className='svglb';svglb.innerHTML='<span class="svglb__close">&times;</span>';document.body.appendChild(svglb);
-function closeSvgLb(){svglb.classList.remove('open');var s=svglb.querySelector('svg');if(s)s.remove();document.body.style.overflow=''}
+var svglb=document.createElement('div');svglb.className='svglb';svglb.setAttribute('role','dialog');svglb.setAttribute('aria-modal','true');svglb.setAttribute('aria-label','Diagram, expanded');svglb.innerHTML='<button class="svglb__close" aria-label="Close">&times;</button>';document.body.appendChild(svglb);
+var svglbOpener=null;
+function closeSvgLb(){svglb.classList.remove('open');var s=svglb.querySelector('svg');if(s)s.remove();document.body.style.overflow='';if(svglbOpener)svglbOpener.focus()}
 document.querySelectorAll('.wf-swim').forEach(function(w){w.setAttribute('role','button');w.setAttribute('tabindex','0');w.setAttribute('aria-label','Expand diagram');
-  function openIt(){var s=w.querySelector('svg');if(!s)return;var c=svglb.querySelector('svg');if(c)c.remove();svglb.appendChild(s.cloneNode(true));svglb.classList.add('open');document.body.style.overflow='hidden'}
+  function openIt(){var s=w.querySelector('svg');if(!s)return;var c=svglb.querySelector('svg');if(c)c.remove();var k=s.cloneNode(true);
+    k.querySelectorAll('[id]').forEach(function(el){var old=el.id;el.id=old+'-x';k.querySelectorAll('[marker-end="url(#'+old+')"]').forEach(function(p){p.setAttribute('marker-end','url(#'+old+'-x)')});k.querySelectorAll('[fill="url(#'+old+')"]').forEach(function(p){p.setAttribute('fill','url(#'+old+'-x)')})});
+    svglb.appendChild(k);svglb.classList.add('open');document.body.style.overflow='hidden';svglbOpener=w;svglb.querySelector('.svglb__close').focus()}
   w.addEventListener('click',openIt);w.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openIt()}});});
 svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSvgLb()});
 
 /* ---- team map ---- */
 (function(){
   const T={
-    inigo:{r:"Founder. Product, design, scope, money, security.",d:"Only what no agent may: publish in Figma, the visual PASS on staging, the <code>/aprobar</code> of a promotion, founder actions (panels, billing, advisors).",n:"Code. Decisions arrive as <code>374-4 A</code>, never as a pull request."},
-    orq:{r:"A separate Claude session that does what the lead cannot touch.",d:"Runs the read-only queries in production, measures after a promotion, relays Iñigo's instructions. Corrects the lead when a template is passed off as a measurement.",n:"Code, the repo, the build."},
+    inigo:{r:"Founder. Product, design, scope, money, security. Holds both human gates.",d:"Decides every open question by id and letter. Approves every release with <code>/aprobar</code>. Publishes in Figma, gives the visual PASS on staging, does the founder actions (panels, billing, advisors).",n:"Code. Decisions arrive as <code>374-4 A</code>, never as a pull request."},
+    orq:{r:"Independent verifier. A separate Claude session with its own context, not one of the eight agents.",d:"Runs the read-only queries in production, measures after a promotion, relays Iñigo's instructions. Corrects the lead when a template is passed off as a measurement.",n:"Code, the repo, the build. It never shares context with the lead, which is the point."},
     partners:{r:"Sales, growth, collector network, field knowledge, the first real collection.",d:"Bring collectors and requests. Their requests enter the system as tickets, like everyone else's.",n:"The repository. No authority over it at all."},
-    lead:{r:"The engineering manager. Opus, main session.",d:"Decomposes tickets, launches workers in their own worktrees, integrates, merges with the five checks green on the exact SHA, prepares promotions. Keeps <code>docs/state.md</code>, <code>docs/decisions/</code> and Notion in sync.",n:"<code>promover.yml</code> or any production flow (rule 27). No Vercel credentials. No production data."},
+    lead:{r:"The engineering manager. Opus, main session. One of the eight agents.",d:"Decomposes tickets, launches workers in their own worktrees, integrates, merges with the five checks green on the exact SHA, prepares promotions. Keeps <code>docs/state.md</code>, <code>docs/decisions/</code> and Notion in sync.",n:"<code>promover.yml</code> or any production flow (rule 27). No Vercel credentials. No production data."},
     datos:{r:"Data specialist. Sonnet.",d:"Migrations, row level security, triggers, generated types, synthetic seeds.",n:"Anything outside <code>supabase/migrations</code>. It is also the only one allowed inside."},
     backend:{r:"Backend specialist. Sonnet.",d:"Server Actions, Route Handlers, Edge Functions, the crypto lib, search.",n:"Migrations and visual components."},
     frontend:{r:"Frontend specialist. Sonnet.",d:"Screens, components, PWA, the photo upload queue, accessibility.",n:"Queries to the database."},
@@ -636,7 +713,7 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
   };
   const root=document.getElementById("team");if(!root)return;
   const R=document.getElementById("tmRole"),D=document.getElementById("tmDoes"),N=document.getElementById("tmNever");
-  function set(k){root.querySelectorAll(".nd").forEach(n=>n.classList.toggle("on",n.dataset.k===k));R.innerHTML=T[k].r;D.innerHTML=T[k].d;N.innerHTML=T[k].n;}
+  function set(k){root.querySelectorAll(".nd").forEach(n=>{const on=n.dataset.k===k;n.classList.toggle("on",on);n.setAttribute("aria-pressed",on)});R.innerHTML=T[k].r;D.innerHTML=T[k].d;N.innerHTML=T[k].n;}
   root.querySelectorAll(".nd").forEach(n=>n.addEventListener("click",()=>set(n.dataset.k)));
   set("lead");
 })();
@@ -666,10 +743,10 @@ const FLOWS={
 Object.keys(FLOWS).forEach(id=>{
   const root=document.getElementById(id);if(!root)return;const steps=FLOWS[id];let i=0;
   const nodes=root.querySelectorAll(".st"),who=root.querySelector(".fl__who"),h=root.querySelector(".fl__h"),t=root.querySelector(".fl__t"),list=root.querySelector(".fl__list");
-  steps.forEach((s,k)=>{const li=document.createElement("div");li.className="fl__li";li.innerHTML="<span>0"+(k+1)+"</span><span>"+s.h+"</span>";li.addEventListener("click",()=>set(k));list.appendChild(li);});
-  function set(k){i=(k+steps.length)%steps.length;nodes.forEach(n=>n.classList.toggle("on",+n.dataset.i===i));list.querySelectorAll(".fl__li").forEach((l,k2)=>l.classList.toggle("on",k2===i));
+  steps.forEach((s,k)=>{const li=document.createElement("button");li.type="button";li.className="fl__li";li.innerHTML="<span>0"+(k+1)+"</span><span>"+s.h+"</span>";li.addEventListener("click",()=>set(k));list.appendChild(li);});
+  function set(k){i=(k+steps.length)%steps.length;nodes.forEach(n=>{const on=+n.dataset.i===i;n.classList.toggle("on",on);n.setAttribute("aria-pressed",on)});list.querySelectorAll(".fl__li").forEach((l,k2)=>l.classList.toggle("on",k2===i));
     who.textContent=steps[i].who;h.textContent=steps[i].h;t.innerHTML=steps[i].t;}
-  nodes.forEach(n=>n.addEventListener("click",()=>set(+n.dataset.i)));
+  nodes.forEach(n=>{n.addEventListener("click",()=>set(+n.dataset.i));n.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();set(+n.dataset.i)}});n.setAttribute("aria-label","Step "+(+n.dataset.i+1)+": "+steps[+n.dataset.i].h);});
   root.querySelectorAll(".fl__btn").forEach(b=>b.addEventListener("click",()=>set(i+parseInt(b.dataset.d,10))));
   set(0);
 });
