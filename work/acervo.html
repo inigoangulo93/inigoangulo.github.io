@@ -2,19 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Acervo · AI Build &amp; Deployment · Inigo Angulo</title>
-<meta name="description" content="Acervo: a private platform for automotive collections, scoped, designed and shipped solo with a Claude Code agent team. First commit to production in 17 days.">
-<meta property="og:title" content="Acervo · From first commit to production in 17 days, solo, with an agent team">
-<meta property="og:description" content="How I scoped, designed and shipped a production platform for automotive collections with a Claude Code agent team: 230+ tickets, 61 migrations, security gates, promotion workflow.">
+<title>Acervo · Inigo Angulo</title>
+<meta name="description" content="A production platform for serious car collections, built by one person leading a team of AI agents. First commit to production in 17 days, 15 gated promotions in seven weeks. A case study by Inigo Angulo.">
+<meta property="og:title" content="Acervo / Inigo Angulo">
+<meta property="og:description" content="One person, eight agents, two human gates. From first commit to production in 17 days, 15 promotions in seven weeks.">
 <meta property="og:image" content="https://inigoangulo.com/img/og-acervo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://inigoangulo.com/work/acervo.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Acervo / Inigo Angulo">
-<meta name="twitter:description" content="A production platform for serious car collections, built by one person and a team of AI agents. First commit to production in 17 days.">
+<meta name="twitter:description" content="One person, eight agents, two human gates. From first commit to production in 17 days, 15 promotions in seven weeks.">
 <meta name="twitter:image" content="https://inigoangulo.com/img/og-acervo.png">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,6 +24,110 @@
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
+<style>
+/* ---- team grid ---- */
+.tm{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:20px;margin:28px 0 10px}
+.tm__k{font-family:var(--m);font-size:11px;letter-spacing:2.5px;color:var(--ac);display:block;margin-bottom:4px}
+.tm__sub{font-family:var(--m);font-size:11px;color:var(--mut);display:block;margin-bottom:14px}
+.tm__row{display:grid;gap:10px;margin-bottom:14px}
+.tm__row--h{grid-template-columns:repeat(3,1fr)}
+.tm__row--l{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}
+.tm__row--a{grid-template-columns:repeat(4,1fr)}
+.tm__row--j{grid-template-columns:repeat(3,1fr);max-width:860px;margin-left:auto;margin-right:auto}
+.ag{padding:14px;border-radius:8px;border:1px solid rgba(45,212,191,.14);background:rgba(45,212,191,.04);display:flex;flex-direction:column;gap:6px;min-height:118px}
+.ag--j{border-color:rgba(245,158,11,.16);background:rgba(245,158,11,.04)}
+.ag--l{border-color:rgba(167,139,250,.22);background:rgba(167,139,250,.05)}
+.ag--h{border-color:rgba(34,197,94,.18);background:rgba(34,197,94,.04)}
+.ag--x{border-color:var(--b1);background:rgba(255,255,255,.015)}
+.ag__t{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ag__n{font-family:var(--m);font-size:11px;font-weight:600;color:var(--ac);letter-spacing:.06em}
+.ag--j .ag__n{color:var(--am)}.ag--l .ag__n{color:#c9b8f7}.ag--h .ag__n{color:var(--up)}.ag--x .ag__n{color:var(--t3)}
+.ag__m{font-family:var(--m);font-size:9px;color:var(--t3);border:1px solid var(--b2);border-radius:3px;padding:1px 6px;letter-spacing:.08em}
+.ag__d{font-family:var(--s);font-size:12.5px;color:var(--t2);line-height:1.5}
+.ag__x{font-family:var(--m);font-size:10px;color:var(--mut);line-height:1.45;margin-top:auto;padding-top:6px;border-top:1px dashed var(--b1)}
+.ag__x b{color:var(--dn);font-weight:600;letter-spacing:.06em}
+.tm__arrow{text-align:center;font-family:var(--m);font-size:11px;color:var(--mut);margin:-6px 0 8px;letter-spacing:.1em}
+.tm__foot{font-family:var(--s);font-size:13px;color:var(--t3);margin-top:8px;text-align:center}
+@media(max-width:800px){.tm__row--h,.tm__row--a,.tm__row--j{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.tm__row--h,.tm__row--a,.tm__row--j{grid-template-columns:1fr}}
+
+/* ---- interactive flow (swimlane + inspector) ---- */
+.fl{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:18px 18px 14px;margin:28px 0 10px;position:relative}
+.fl__k{font-family:var(--m);font-size:11px;letter-spacing:2.5px;color:var(--ac);display:block;margin-bottom:2px}
+.fl__sub{font-family:var(--m);font-size:11px;color:var(--mut);display:block;margin-bottom:10px}
+.fl svg{width:100%;height:auto;display:block;font-family:var(--m)}
+.fl .lane{fill:rgba(255,255,255,.015);stroke:var(--b1)}
+.fl .lane--h{fill:rgba(34,197,94,.035)}
+.fl .lt{fill:var(--t3);font-size:10px;letter-spacing:1.5px}
+.fl .lt--h{fill:var(--up)}
+.fl .cx{fill:none;stroke:var(--b3);stroke-width:1.2;marker-end:url(#arr)}
+.fl .st{cursor:pointer}
+.fl .st rect{fill:#15151f;stroke:rgba(255,255,255,.18);stroke-width:1.2;transition:stroke .25s,fill .25s}
+.fl .st text{fill:var(--t1);font-size:11px;pointer-events:none}
+.fl .st .num{fill:var(--t3);font-size:9px}
+.fl .st--g rect{stroke:rgba(34,197,94,.55);animation:gpulse 2.4s ease-in-out infinite}
+.fl .st--g text{fill:#bbf7d0}
+.fl .st--s rect{stroke:rgba(245,158,11,.5)}
+.fl .st:hover rect{stroke:var(--ac2)}
+.fl .st.on rect{stroke:var(--ac);fill:rgba(45,212,191,.12);animation:none}
+.fl .st.on text{fill:#fff}
+@keyframes gpulse{0%,100%{stroke-opacity:1}50%{stroke-opacity:.35}}
+.fl__ins{margin-top:12px;border-top:1px solid var(--b1);padding-top:12px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start}
+.fl__who{font-family:var(--m);font-size:10px;letter-spacing:.12em;color:var(--ac);display:block;margin-bottom:4px}
+.fl__h{font-family:var(--s);font-size:15px;font-weight:700;color:var(--t1);display:block;margin-bottom:4px}
+.fl__t{font-family:var(--s);font-size:13px;color:var(--t2);line-height:1.6;display:block}
+.fl__t code{font-family:var(--m);font-size:11px;color:var(--ac2);background:rgba(45,212,191,.08);padding:1px 5px;border-radius:3px}
+.fl__nav{display:flex;gap:6px;flex-shrink:0}
+.fl__btn{font-family:var(--m);font-size:11px;color:var(--t2);border:1px solid var(--b2);border-radius:6px;padding:7px 11px;background:transparent;cursor:pointer;transition:all .2s}
+.fl__btn:hover{border-color:var(--acb);color:var(--ac2)}
+.fl__gate{font-family:var(--m);font-size:9px;letter-spacing:.12em;color:var(--up);border:1px solid rgba(34,197,94,.35);border-radius:3px;padding:2px 6px;margin-left:8px;vertical-align:middle}
+.fl__list{display:none}
+@media(max-width:700px){
+  .fl svg{display:none}
+  .fl__list{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+  .fl__li{font-family:var(--m);font-size:11px;color:var(--t2);border:1px solid var(--b1);border-radius:6px;padding:8px 10px;cursor:pointer;display:flex;gap:10px;align-items:center}
+  .fl__li.on{border-color:var(--ac);color:var(--t1);background:rgba(45,212,191,.08)}
+  .fl__li span:first-child{color:var(--t3)}
+  .fl__ins{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){.fl .st--g rect{animation:none}}
+
+/* ---- false greens timeline ---- */
+.fg{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:20px;margin:28px 0 10px}
+.fg__k{font-family:var(--m);font-size:11px;letter-spacing:2.5px;color:var(--dn);display:block;margin-bottom:2px}
+.fg__sub{font-family:var(--m);font-size:11px;color:var(--mut);display:block;margin-bottom:14px}
+.fg__row{display:grid;grid-template-columns:86px 1fr 1fr;gap:14px;padding:11px 0;border-top:1px solid var(--b1);align-items:start}
+.fg__row:first-of-type{border-top:none}
+.fg__d{font-family:var(--m);font-size:10.5px;color:var(--t3);letter-spacing:.06em;padding-top:2px}
+.fg__g{font-family:var(--s);font-size:13px;color:var(--t2);line-height:1.5;padding-left:12px;border-left:2px solid rgba(34,197,94,.55)}
+.fg__g b{font-family:var(--m);font-size:9.5px;letter-spacing:.12em;color:var(--up);display:block;margin-bottom:3px;font-weight:600}
+.fg__r{font-family:var(--s);font-size:13px;color:var(--t1);line-height:1.5;padding-left:12px;border-left:2px solid rgba(239,68,68,.6)}
+.fg__r b{font-family:var(--m);font-size:9.5px;letter-spacing:.12em;color:var(--dn);display:block;margin-bottom:3px;font-weight:600}
+.fg__hd{display:grid;grid-template-columns:86px 1fr 1fr;gap:14px;font-family:var(--m);font-size:9.5px;letter-spacing:.14em;color:var(--mut);padding-bottom:8px}
+.rl{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 10px}
+.rl__i{padding:14px;border-radius:8px;border:1px solid rgba(45,212,191,.14);background:rgba(45,212,191,.04)}
+.rl__n{font-family:var(--m);font-size:10px;color:var(--ac);letter-spacing:.12em;display:block;margin-bottom:6px;font-weight:600}
+.rl__t{font-family:var(--s);font-size:12.5px;color:var(--t2);line-height:1.5}
+@media(max-width:760px){.fg__row,.fg__hd{grid-template-columns:1fr}.fg__hd{display:none}.rl{grid-template-columns:1fr}}
+
+/* ---- throughput chart ---- */
+.ch{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:18px 18px 10px;margin:28px 0 10px}
+.ch__k{font-family:var(--m);font-size:11px;letter-spacing:2.5px;color:var(--ac);display:block;margin-bottom:2px}
+.ch__sub{font-family:var(--m);font-size:11px;color:var(--mut);display:block;margin-bottom:10px}
+.ch svg{width:100%;height:auto;display:block;font-family:var(--m)}
+.ch .ax{stroke:var(--b2)}
+.ch .gl{stroke:var(--b1);stroke-dasharray:2 4}
+.ch .tx{fill:var(--t3);font-size:10px}
+.ch .bo{fill:rgba(255,255,255,.04);stroke:var(--b3);stroke-width:1}
+.ch .bs{fill:rgba(45,212,191,.75);transform-origin:50% 100%;transform:scaleY(0);transition:transform .8s var(--e)}
+.ch.vis .bs{transform:scaleY(1)}
+.ch .pm{stroke:var(--am);stroke-width:1.2;stroke-dasharray:3 3}
+.ch .pt{fill:var(--am);font-size:9px;letter-spacing:.08em}
+.ch .lg{font-family:var(--m);font-size:10px;color:var(--t3);display:flex;gap:16px;justify-content:center;margin-top:6px;flex-wrap:wrap}
+.ch .lg i{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:6px}
+.ch .bar:hover .bo{stroke:var(--ac2)}
+.ch .bar title{font-family:var(--m)}
+</style>
 </head>
 <body>
 
@@ -35,14 +141,15 @@
 
 <div class="cs-wrap">
 <nav class="cs-nav" id="csNav">
-<a href="#s01" class="cs-nav__link"><span class="cs-nav__num">01</span>Situation</a>
-<a href="#s02" class="cs-nav__link"><span class="cs-nav__num">02</span>Problem</a>
-<a href="#s03" class="cs-nav__link"><span class="cs-nav__num">03</span>Agent Team</a>
-<a href="#s04" class="cs-nav__link"><span class="cs-nav__num">04</span>Product</a>
-<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>Shipping</a>
-<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>Decisions</a>
-<a href="#s07" class="cs-nav__link"><span class="cs-nav__num">07</span>Impact</a>
-<a href="#s08" class="cs-nav__link"><span class="cs-nav__num">08</span>Reflection</a>
+<a href="#s01" class="cs-nav__link"><span class="cs-nav__num">01</span>Context</a>
+<a href="#s02" class="cs-nav__link"><span class="cs-nav__num">02</span>The Team</a>
+<a href="#s03" class="cs-nav__link"><span class="cs-nav__num">03</span>A Ticket</a>
+<a href="#s04" class="cs-nav__link"><span class="cs-nav__num">04</span>A Promotion</a>
+<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>The Product</a>
+<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>Throughput</a>
+<a href="#s07" class="cs-nav__link"><span class="cs-nav__num">07</span>Hardest Part</a>
+<a href="#s08" class="cs-nav__link"><span class="cs-nav__num">08</span>Decisions</a>
+<a href="#s09" class="cs-nav__link"><span class="cs-nav__num">09</span>Reflection</a>
 <a href="#" class="cs-nav__top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">&#8593; Top</a>
 </nav>
 
@@ -60,29 +167,29 @@
     </div>
     <div class="cs__tldr-item">
       <span class="cs__tldr-label">Scope</span>
-      <span class="cs__tldr-value">0 to production with a Claude Code agent team</span>
+      <span class="cs__tldr-value">Agent team, delivery system, production</span>
     </div>
     <div class="cs__tldr-item">
       <span class="cs__tldr-label">Key outcome</span>
-      <span class="cs__tldr-value cs__tldr-value--ac">First commit to production: 17 days</span>
+      <span class="cs__tldr-value cs__tldr-value--ac">Production in 17 days, 15 gated releases since</span>
     </div>
   </div>
 
   <!-- Hero -->
   <div class="cs__hero" data-reveal>
     <span class="cs__type">Vertical SaaS / AI Build &amp; Deployment / Automotive Collections</span>
-    <h1 class="cs__h">A production platform for serious car collections, built by one person and a team of agents.</h1>
-    <p class="cs__sub">Three partners, no engineering team, no funding until the MVP proved itself. I owned product and engineering, built an engineering team out of AI agents, and shipped to production in 17 days.</p>
+    <h1 class="cs__h">One person, eight agents, two human gates. A production platform for serious car collections.</h1>
+    <p class="cs__sub">Three partners, no engineering team, no funding until the MVP proved itself. I owned product and engineering, built the engineering team out of AI agents, and designed the delivery system that lets one person ship to production every few days without losing control of what ships.</p>
     <p class="cs__sub" style="margin-top:16px;color:var(--t3)">Acervo is a private management platform for automotive collections in Mexico and Latin America: a digital passport per car, garages, parts custody, AI assisted onboarding, an audit trail on every change and a sealed-offer private market. It runs at app.acervogroup.com, by invitation.</p>
-    <p class="cs__sub" style="margin-top:12px;color:var(--t3)">My partners brought the collector network and sales. I brought the product judgment and the build: scope, Figma system, agent orchestration, data model, security gates, promotion workflow, production.</p>
+    <p class="cs__sub" style="margin-top:12px;color:var(--t3)">The product problem was never generating code. It was making an agent team supervisable: who decides, who executes, who may touch what, and what counts as done.</p>
   </div>
 
   <!-- Metrics -->
   <div class="cs__metrics" data-reveal>
     <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">17 days</span><span class="cs__metric-label">First commit to production (Sept 16 to Oct 3, 2026)</span></div>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">230+</span><span class="cs__metric-label">Tickets shipped in seven weeks, 420+ ticketed</span></div>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">61</span><span class="cs__metric-label">Database migrations in production by week five</span></div>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">100+</span><span class="cs__metric-label">Cars in the first real collection being loaded</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">15</span><span class="cs__metric-label">Production promotions in seven weeks, every one security gated</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">500+</span><span class="cs__metric-label">Pull requests and issues, 420+ tickets, 228 shipped</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">2</span><span class="cs__metric-label">Human gates per release: the decision and the approval</span></div>
   </div>
 
   <!-- Hero visual -->
@@ -93,62 +200,147 @@
 
   <!-- 01: Context -->
   <div class="cs__section" id="s01" data-reveal>
-    <span class="cs__section-num">01 The Situation</span>
-    <h2 class="cs__section-h">A hundred cars across several cities, managed in Excel, WhatsApp and one trusted person&#8217;s memory. Nothing ready when an insurer, a buyer or a customs lawyer asks.</h2>
+    <span class="cs__section-num">01 Context</span>
+    <h2 class="cs__section-h">A hundred cars across several cities, managed in Excel, WhatsApp and one trusted person&#8217;s memory. The obvious plan was an agency. The real bottleneck was never typing code.</h2>
     <div class="cs__section-text">
-      <p>Serious collections in Mexico range from a handful of cars to more than a hundred, spread across garages in different states. Records are inconsistent, provenance is hard to prove, parts go missing between workshops, and every request from an insurer or a buyer starts a scramble through folders and chats.</p>
-      <p>In September 2026 I started Acervo with two partners: one with field experience and a network of collectors, the other leading sales and growth. The first test collection was real: <strong>over 100 cars plus a spare parts inventory</strong>, owned by a family in that network. The constraint was explicit: nothing signed and nothing funded until the MVP proved it was worth it. So it had to exist fast, and it had to be good enough for a wealthy, discreet client.</p>
+      <p>Serious collections in Mexico range from a handful of cars to more than a hundred, spread across garages in different states. Records are inconsistent, provenance is hard to prove, parts go missing between workshops, and every request from an insurer, a buyer or a customs lawyer starts a scramble through folders and chats.</p>
+      <p>In September 2026 I started Acervo with two partners: one with field experience and a network of collectors, the other leading sales and growth. The first test collection was real: <strong>over 100 cars plus a spare parts inventory</strong>, owned by a family in that network. The constraint was explicit: nothing signed and nothing funded until the MVP proved it was worth it.</p>
+      <p>A spec, a Figma file and an agency is two to four months and a five figure budget before a collector touches anything. The bottleneck was deciding what to build, in what order, and knowing when something was done. That is product work. If the decisions stayed mine and the typing was delegated, one person could run a small engineering team. <strong>The design problem became the team itself.</strong></p>
     </div>
     <div class="cs__evidence">
-      <span class="cs__evidence-label">How collectors keep their records today</span>
-      <span class="cs__evidence-text">Excel sheets, Drive folders, PDFs and phone photos, in no consistent shape. That answer from the field defined the onboarding: the product had to accept whatever the collector already had, not ask them to start over.</span>
+      <span class="cs__evidence-label">The rule that shaped every feature and every agent</span>
+      <span class="cs__evidence-text">The AI proposes, a person decides, the system records who decided. It applies to the product (photo recognition needs a human confirmation) and to the build (no agent approves, no agent promotes, no agent touches production).</span>
     </div>
   </div>
 
-  <div class="cs__img" data-reveal><img src="../img/acervo/garage.webp" alt="A private garage with classic cars" width="1920" height="720"></div>
-  <p class="cs__img-cap">The job to be done happens standing in a garage, phone in hand, on a bad connection. Every screen was designed for that moment first.</p>
-
-  <!-- 02: The real problem -->
+  <!-- 02: The team -->
   <div class="cs__section" id="s02" data-reveal>
-    <span class="cs__section-num">02 The Real Problem</span>
-    <h2 class="cs__section-h">The obvious plan was a spec, a Figma file and an agency. That is two to four months and a five figure budget before a collector touches anything. The real bottleneck was never typing code.</h2>
+    <span class="cs__section-num">02 The Team</span>
+    <h2 class="cs__section-h">Three humans with different authority, one lead agent, seven specialists. The architecture is not what each one does. It is what each one is not allowed to touch.</h2>
     <div class="cs__section-text">
-      <p>The bottleneck was deciding what to build, in what order, and knowing when something was done. That is product work, and I had done it for ten years. If the decisions stayed mine and the typing was delegated, one person could run a small engineering team.</p>
-      <p>The second problem was trust. A collector will not hand over a hundred cars&#8217; worth of documents to a tool that stores identity papers, lets anyone edit history, or loses photos on a slow garage connection. <strong>The product needed an audit trail, strict permissions and a real security review before it needed features.</strong></p>
-    </div>
-    <div class="cs__evidence">
-      <span class="cs__evidence-label">The rule that shaped every feature</span>
-      <span class="cs__evidence-text">The AI proposes, a person decides, the system records who decided. No autonomous writes, no exceptions. It is the same rule I designed into ShelfFlow&#8217;s human gates, applied here to a wealthy client&#8217;s provenance records.</span>
+      <p>Each agent lives in a file under <code>.claude/agents/</code> with a mandate, a model and a boundary. The lead decomposes tickets, launches workers, integrates and merges with green checks. Specialists build. Three judgment agents on the strongest model review design, code and security, and <strong>they demonstrate failures, they never fix them</strong>. By budget, a ticket&#8217;s worker usually plays data, backend and frontend at once; security always runs separately.</p>
     </div>
   </div>
 
-  <!-- 03: The team -->
+  <div class="tm" data-reveal>
+    <span class="tm__k">WHO IS WHO &#8212; AUTHORITY FLOWS DOWN, EVIDENCE FLOWS UP</span>
+    <span class="tm__sub">humans decide and measure &#183; the lead integrates &#183; specialists build &#183; judgment agents prove failures and never fix them</span>
+    <div class="tm__row tm__row--h">
+      <div class="ag ag--h"><div class="ag__t"><span class="ag__n">I&#209;IGO</span><span class="ag__m">HUMAN</span></div><span class="ag__d">Decides product, design, scope, money and security. Executes only what no agent may: publish in Figma, the visual PASS on staging, the <code>/aprobar</code> of a promotion, founder actions (panels, billing, advisors).</span><span class="ag__x"><b>ONLY ONE WHO</b> approves a release</span></div>
+      <div class="ag ag--h"><div class="ag__t"><span class="ag__n">ORCHESTRATOR</span><span class="ag__m">CLAUDE, SEPARATE SESSION</span></div><span class="ag__d">Does what the lead cannot touch: runs the read-only queries in production, measures production after a promotion, relays I&#241;igo&#8217;s instructions. Corrects the lead when a template is passed off as a measurement.</span><span class="ag__x"><b>NEVER</b> writes code</span></div>
+      <div class="ag ag--x"><div class="ag__t"><span class="ag__n">TWO PARTNERS</span><span class="ag__m">HUMANS</span></div><span class="ag__d">Sales, growth, collector network, field knowledge, the first real collection. Their requests enter the system as tickets, like everyone else&#8217;s.</span><span class="ag__x"><b>NO AUTHORITY</b> over the repository</span></div>
+    </div>
+    <div class="tm__arrow">&#8595; instructions &#183; decisions by id and letter &#183; PASS / FAIL</div>
+    <div class="tm__row tm__row--l">
+      <div class="ag ag--l"><div class="ag__t"><span class="ag__n">LEAD</span><span class="ag__m">OPUS &#183; MAIN SESSION</span></div><span class="ag__d">Decomposes tickets, launches workers in their own worktrees, integrates, merges with the five checks green on the exact SHA, prepares promotions. Keeps <code>docs/state.md</code>, <code>docs/decisions/</code> and the Notion board in sync.</span><span class="ag__x"><b>NEVER</b> touches <code>promover.yml</code> or production flows (rule 27) &#183; no Vercel credentials &#183; no production data</span></div>
+    </div>
+    <div class="tm__arrow">&#8595; tickets with measurable acceptance criteria &#183; delivery in format F</div>
+    <div class="tm__row tm__row--a">
+      <div class="ag"><div class="ag__t"><span class="ag__n">DATOS</span><span class="ag__m">SONNET</span></div><span class="ag__d">Migrations, row level security, triggers, generated types, synthetic seeds.</span><span class="ag__x"><b>ONLY ONE WHO</b> touches <code>supabase/migrations</code></span></div>
+      <div class="ag"><div class="ag__t"><span class="ag__n">BACKEND</span><span class="ag__m">SONNET</span></div><span class="ag__d">Server Actions, Route Handlers, Edge Functions, crypto lib, search.</span><span class="ag__x"><b>NEVER</b> migrations or visual components</span></div>
+      <div class="ag"><div class="ag__t"><span class="ag__n">FRONTEND</span><span class="ag__m">SONNET</span></div><span class="ag__d">Screens, components, PWA, the photo upload queue, accessibility.</span><span class="ag__x"><b>NEVER</b> queries the database</span></div>
+      <div class="ag"><div class="ag__t"><span class="ag__n">IA-DOCUMENTOS</span><span class="ag__m">SONNET</span></div><span class="ag__d">Extraction prompts, schemas, evaluation against 30 synthetic documents.</span><span class="ag__x"><b>NEVER</b> the interface</span></div>
+    </div>
+    <div class="tm__row tm__row--j">
+      <div class="ag ag--j"><div class="ag__t"><span class="ag__n">DISE&#209;O</span><span class="ag__m">OPUS</span></div><span class="ag__d">Flows, states and copy before anything is built. Owns the Figma component library. Design review of every PR with a screen.</span><span class="ag__x"><b>NEVER</b> code &#183; corrects, does not invent: a missing value is escalated</span></div>
+      <div class="ag ag--j"><div class="ag__t"><span class="ag__n">REVISOR</span><span class="ag__m">OPUS</span></div><span class="ag__d">Reviews every PR before I&#241;igo sees it: a list of concrete failures, nothing else.</span><span class="ag__x"><b>NEVER</b> style or opinions</span></div>
+      <div class="ag ag--j"><div class="ag__t"><span class="ag__n">SEGURIDAD</span><span class="ag__m">OPUS</span></div><span class="ag__d">Mode 1: reviews PRs touching migrations, Auth, Storage, Server Actions or AI. Mode 2: pen test of the whole before each promotion. Demonstrates failures.</span><span class="ag__x"><b>NEVER</b> fixes &#183; never production, panels, Auth or merges</span></div>
+    </div>
+    <p class="tm__foot">Build agents run on the cheaper model. Judgment agents run on the strongest one. The expensive tokens go to saying no.</p>
+  </div>
+
+  <!-- 03: A ticket -->
   <div class="cs__section" id="s03" data-reveal>
-    <span class="cs__section-num">03 The Engineering Team</span>
-    <h2 class="cs__section-h">I treated Claude Code as a team, not a tool: a lead that plans and orchestrates, specialists for schema, UI, security and QA, each with its own file, rules and model.</h2>
+    <span class="cs__section-num">03 How a Ticket Ships</span>
+    <h2 class="cs__section-h">Eight steps, five lanes, two human gates. A worker never sees main, a decision is one id and one letter, and a merge needs five green checks on the exact SHA.</h2>
     <div class="cs__section-text">
-      <p>The starter kit went in on September 16: a CLAUDE.md with the working rules, six agent definitions, a docs folder as the canonical source of truth, and migration 0001. From there the process looked like any engineering team I have worked with: tickets with acceptance criteria, pull requests, architecture decision records, a protected main branch, staging and production environments.</p>
-      <p>The lead agent ran on the strongest model and did planning, orchestration and PRs. Specialists for data and migrations, UI components, security and QA were pinned to cheaper models in their frontmatter. <strong>For the first two weeks I merged every PR myself.</strong> Once the review rules had held on real PRs, the lead was allowed to merge its own non critical ones.</p>
-      <p>Design ran in parallel in Figma: a token library, a 26 component kit in three batches, and the same component names in Figma and code (shadcn convention, own components prefixed). The brand palette (ink, ivory, orange) was kept for identity and action only; a separate functional colour set, warm and desaturated for ivory, feeds every status, chip, alert and toast.</p>
-    </div>
-    <div class="cs__evidence">
-      <span class="cs__evidence-label">Week one, closed Sept 21</span>
-      <span class="cs__evidence-text">Tickets 001 to 005 merged. Staging fully wired: Vercel previews, Supabase with custom SMTP and TOTP, Sentry, GitHub environments with migration secrets, main protected by ruleset. Five days from empty repo to a deployable pipeline.</span>
-    </div>
-    <div class="cs__evidence cs__evidence--am">
-      <span class="cs__evidence-label">Stack</span>
-      <span class="cs__evidence-text">Next.js, Supabase (Postgres with row level security), Claude API, Vercel, Sentry, Cloudflare, Resend. Nothing exotic on purpose: the team was new, the stack should not be.</span>
+      <p>The process is the one I would run with a human team, made stricter because agents will happily report a template as a result. Every ticket carries a measurable acceptance criterion. Every delivery lists those criteria one by one as VERIFIED or IMPLEMENTED, with the PR, the SHA and the CI run id. Every open question comes back as a numbered decision I answer with a letter: <code>374-4 A</code>. Click a step.</p>
     </div>
   </div>
 
-  <!-- 04: The product -->
+  <div class="fl" id="flowTicket" data-reveal>
+    <span class="fl__k">TICKET FLOW &#8212; FROM docs/tickets/NNN.md TO MAIN</span>
+    <span class="fl__sub">green nodes are human gates &#183; amber nodes are conditional &#183; click a node or use next</span>
+    <svg viewBox="0 0 1200 330" role="img" aria-label="Ticket flow: eight steps across five lanes, Inigo, Lead, Worker, Security and CI">
+      <defs><marker id="arr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="rgba(255,255,255,.3)"/></marker></defs>
+      <!-- lanes -->
+      <rect class="lane lane--h" x="90" y="20" width="1100" height="54" rx="6"/><text class="lt lt--h" x="14" y="52">I&#209;IGO</text>
+      <rect class="lane" x="90" y="80" width="1100" height="54" rx="6"/><text class="lt" x="14" y="112">LEAD</text>
+      <rect class="lane" x="90" y="140" width="1100" height="54" rx="6"/><text class="lt" x="14" y="172">WORKER</text>
+      <rect class="lane" x="90" y="200" width="1100" height="54" rx="6"/><text class="lt" x="14" y="232">SECURITY</text>
+      <rect class="lane" x="90" y="260" width="1100" height="54" rx="6"/><text class="lt" x="14" y="292">CI</text>
+      <!-- connectors -->
+      <path class="cx" d="M236 107 L256 107 L256 167 L276 167"/>
+      <path class="cx" d="M396 167 L416 167"/>
+      <path class="cx" d="M536 167 L556 167 L556 107 L576 107"/>
+      <path class="cx" d="M696 107 L716 107 L716 227 L736 227"/>
+      <path class="cx" d="M856 227 L876 227 L876 47 L896 47"/>
+      <path class="cx" d="M1016 47 L1036 47 L1036 107 L1056 107"/>
+      <path class="cx" d="M1116 134 L1116 287 L1176 287" style="marker-end:none"/>
+      <!-- steps -->
+      <g class="st" data-i="0"><rect x="96" y="87" width="140" height="40" rx="6"/><text x="106" y="103" class="num">01</text><text x="106" y="118">Ticket written</text></g>
+      <g class="st" data-i="1"><rect x="276" y="147" width="120" height="40" rx="6"/><text x="286" y="163" class="num">02</text><text x="286" y="178">Own worktree</text></g>
+      <g class="st" data-i="2"><rect x="416" y="147" width="120" height="40" rx="6"/><text x="426" y="163" class="num">03</text><text x="426" y="178">Delivery F</text></g>
+      <g class="st" data-i="3"><rect x="576" y="87" width="120" height="40" rx="6"/><text x="586" y="103" class="num">04</text><text x="586" y="118">In progress</text></g>
+      <g class="st st--s" data-i="4"><rect x="736" y="207" width="120" height="40" rx="6"/><text x="746" y="223" class="num">05</text><text x="746" y="238">Security review</text></g>
+      <g class="st st--g" data-i="5"><rect x="896" y="27" width="120" height="40" rx="6"/><text x="906" y="43" class="num">06</text><text x="906" y="58">Decision</text></g>
+      <g class="st st--g" data-i="6"><rect x="1056" y="87" width="120" height="40" rx="6"/><text x="1066" y="103" class="num">07</text><text x="1066" y="118">Merge</text></g>
+      <g class="st" data-i="7"><rect x="1056" y="267" width="120" height="40" rx="6"/><text x="1066" y="283" class="num">08</text><text x="1066" y="298">CI on main</text></g>
+    </svg>
+    <div class="fl__list"></div>
+    <div class="fl__ins"><div><span class="fl__who"></span><span class="fl__h"></span><span class="fl__t"></span></div><div class="fl__nav"><button class="fl__btn" data-d="-1">&#8592; prev</button><button class="fl__btn" data-d="1">next &#8594;</button></div></div>
+  </div>
+  <p class="cs__img-cap">Only two steps need a human. Both are the ones where an agent would be cheapest to trust and most expensive to be wrong.</p>
+
+  <!-- 04: A promotion -->
   <div class="cs__section" id="s04" data-reveal>
-    <span class="cs__section-num">04 The Product</span>
+    <span class="cs__section-num">04 How a Promotion Reaches Production</span>
+    <h2 class="cs__section-h">Main freezes, a pen test says PASS, nine production queries get measured by someone who is not the lead, and then one human types /aprobar.</h2>
+    <div class="cs__section-text">
+      <p>Promotions are where an agent team is most dangerous, because everything looks done. So the lead cannot touch the promotion workflow at all, the security agent runs a full pen test on the exact candidate, and the production measurements are taken by a separate session that reports back what it actually saw. <strong>A template with placeholders is not a measurement.</strong> Fifteen promotions have gone through this in seven weeks.</p>
+    </div>
+  </div>
+
+  <div class="fl" id="flowPromo" data-reveal>
+    <span class="fl__k">PROMOTION FLOW &#8212; FROM CANDIDATE SHA TO app.acervogroup.com</span>
+    <span class="fl__sub">green nodes are human gates &#183; the lead never touches the last three lanes&#8217; tooling &#183; click a node or use next</span>
+    <svg viewBox="0 0 1200 330" role="img" aria-label="Promotion flow: six steps across five lanes, Security, Lead, Inigo, Orchestrator and promover.yml">
+      <rect class="lane" x="90" y="20" width="1100" height="54" rx="6"/><text class="lt" x="14" y="52">SECURITY</text>
+      <rect class="lane" x="90" y="80" width="1100" height="54" rx="6"/><text class="lt" x="14" y="112">LEAD</text>
+      <rect class="lane lane--h" x="90" y="140" width="1100" height="54" rx="6"/><text class="lt lt--h" x="14" y="172">I&#209;IGO</text>
+      <rect class="lane" x="90" y="200" width="1100" height="54" rx="6"/><text class="lt" x="14" y="232">ORCHESTR.</text>
+      <rect class="lane" x="90" y="260" width="1100" height="54" rx="6"/><text class="lt" x="14" y="292">PROMOVER.YML</text>
+      <path class="cx" d="M246 47 L276 47 L276 107 L306 107"/>
+      <path class="cx" d="M446 107 L476 107 L476 167 L506 167"/>
+      <path class="cx" d="M646 167 L676 167 L676 227 L706 227"/>
+      <path class="cx" d="M766 207 L766 187"/>
+      <path class="cx" d="M846 167 L876 167 L876 287 L906 287"/>
+      <path class="cx" d="M1046 287 L1076 287 L1076 107 L1106 107" style="marker-end:none"/>
+      <g class="st" data-i="0"><rect x="96" y="27" width="150" height="40" rx="6"/><text x="106" y="43" class="num">01</text><text x="106" y="58">Pen test, mode 2</text></g>
+      <g class="st" data-i="1"><rect x="306" y="87" width="140" height="40" rx="6"/><text x="316" y="103" class="num">02</text><text x="316" y="118">Candidate SHA</text></g>
+      <g class="st st--g" data-i="2"><rect x="506" y="147" width="140" height="40" rx="6"/><text x="516" y="163" class="num">03</text><text x="516" y="178">Main frozen</text></g>
+      <g class="st st--s" data-i="3"><rect x="706" y="207" width="140" height="40" rx="6"/><text x="716" y="223" class="num">04</text><text x="716" y="238">P1 to P9 measured</text></g>
+      <g class="st st--g" data-i="4"><rect x="706" y="147" width="140" height="40" rx="6"/><text x="716" y="163" class="num">05</text><text x="716" y="178">/aprobar</text></g>
+      <g class="st" data-i="5"><rect x="906" y="267" width="140" height="40" rx="6"/><text x="916" y="283" class="num">06</text><text x="916" y="298">Migrate, deploy</text></g>
+      <g class="st" data-i="6"><rect x="1046" y="87" width="140" height="40" rx="6"/><text x="1056" y="103" class="num">07</text><text x="1056" y="118">Close, unfreeze</text></g>
+    </svg>
+    <div class="fl__list"></div>
+    <div class="fl__ins"><div><span class="fl__who"></span><span class="fl__h"></span><span class="fl__t"></span></div><div class="fl__nav"><button class="fl__btn" data-d="-1">&#8592; prev</button><button class="fl__btn" data-d="1">next &#8594;</button></div></div>
+  </div>
+
+  <div class="cs__evidence" data-reveal>
+    <span class="cs__evidence-label">When the gate said no</span>
+    <span class="cs__evidence-text">On October 15 the pen test of candidate 86254f3 came back FAIL on a rule outside the import. Instead of delaying the whole promotion, the automatic photo reading of the car alta went behind a feature flag born in false. Production moved on time; the risky surface stayed dark until it passed.</span>
+  </div>
+
+  <!-- 05: Product -->
+  <div class="cs__section" id="s05" data-reveal>
+    <span class="cs__section-num">05 The Product</span>
     <h2 class="cs__section-h">A digital passport per car, garages that log every move, parts with custody, and an onboarding that accepts whatever the collector already has.</h2>
     <div class="cs__section-text">
       <p>Owners and managers share one collection with per-action permissions. Each car carries photos, history, maintenance and documents, exportable at any time. Cars belong to garages and every move is logged, individually or in batches. A parts inventory tracks condition, location and who holds each item. Every change writes to an audit log tied to an author and a timestamp.</p>
-      <p>Onboarding takes photos, spreadsheets, PDFs or a Drive folder and turns them into draft records for review, or a concierge team does it. From car photos the system suggests make, model, generation, body, colour and year range, and reads the VIN from a plate photo. <strong>Every suggestion needs a human confirmation, and the log records who confirmed it.</strong></p>
-      <p>On top sits the business layer: three visibility states per car (private, open to offers, for sale), buyer wishlists with match alerts, brokerage and paperwork handled by Acervo for a commission, a valuation block and an on-brand PDF report for insurers and buyers.</p>
+      <p>Onboarding takes photos, spreadsheets, PDFs or a Drive folder and turns them into draft records for review, or a concierge team does it. From car photos the system suggests make, model, generation, body, colour and year range, and reads the VIN from a plate photo. <strong>Every suggestion needs a human confirmation, and the log records who confirmed it.</strong> On top sits the business layer: three visibility states per car, buyer wishlists with match alerts, brokerage for a commission, a valuation block and an on-brand PDF report for insurers and buyers.</p>
+      <p>Design ran in parallel in Figma: a token library, a 26 component kit, the same component names in Figma and code. The brand palette (ink, ivory, orange) is identity and action only; a separate functional colour set feeds every status, chip and alert.</p>
     </div>
   </div>
 
@@ -157,71 +349,111 @@
     <div class="cs__screen"><img src="../img/acervo/garages.webp" alt="Garages list with car counts" width="267" height="584"><span class="cs__screen-label">Garages</span></div>
     <div class="cs__screen"><img src="../img/acervo/parts.webp" alt="Parts inventory with status chips" width="266" height="590"><span class="cs__screen-label">Parts &amp; custody</span></div>
   </div>
-  <p class="cs__img-cap">Mobile first and one-handed: passport, garages and parts with status (in inventory, mounted, wanted). Spanish (es-MX) throughout.</p>
+  <p class="cs__img-cap">Mobile first and one-handed, for the person standing in the garage on a bad connection. Spanish (es-MX) throughout.</p>
 
-  <!-- 05: Shipping -->
-  <div class="cs__section" id="s05" data-reveal>
-    <span class="cs__section-num">05 Shipping to Production</span>
-    <h2 class="cs__section-h">Two environments, a promotion workflow with explicit approval, a pen test agent that can say no, and a backup you have actually restored.</h2>
+  <div class="cs__evidence cs__evidence--am" data-reveal>
+    <span class="cs__evidence-label">Stack</span>
+    <span class="cs__evidence-text">Next.js, Supabase (Postgres with row level security), Claude API, Vercel, Sentry, Cloudflare, Resend. Nothing exotic on purpose: the team was new, the stack should not be.</span>
+  </div>
+
+  <!-- 06: Throughput -->
+  <div class="cs__section" id="s06" data-reveal>
+    <span class="cs__section-num">06 Throughput</span>
+    <h2 class="cs__section-h">Sixty to eighty tickets opened a week, forty shipped, by one person. The gap is not backlog, it is the specialists and the judgment agents generating the next tickets from what they find.</h2>
     <div class="cs__section-text">
-      <p>A candidate SHA is built and migrated in staging, passes a security review by a dedicated agent, and is promoted to production only with an explicit approval comment on the promotion issue. The first promotion happened on October 3, seventeen days after the first commit. Three more followed in the next two weeks, each one gated the same way.</p>
-      <p>Before the first real collection was loaded, storage backups to Cloudflare R2 were in place and a real restore had been verified against staging. Staff accounts in production are the partners&#8217; company mailboxes, not personal ones, bootstrapped by migration. Captcha and custom SMTP on both environments.</p>
-    </div>
-    <div class="cs__evidence">
-      <span class="cs__evidence-label">When the gate said no</span>
-      <span class="cs__evidence-text">On October 15 the security review of candidate 86254f3 came back FAIL on a rule outside the import. Instead of delaying the whole promotion, the automatic photo reading of the car alta went behind a feature flag born in false. Production moved on time; the risky surface stayed dark until it passed.</span>
+      <p>The board is the honest record: 424 tickets opened since September 16, 228 shipped, the rest open, blocked or archived. Week one was infrastructure. Week three was the first promotion. From week four the rhythm settles at roughly forty tickets shipped a week, with a security review or a pen test behind most of them.</p>
     </div>
   </div>
 
-  <div class="cs__img" data-reveal><img src="../img/acervo/hypercars.webp" alt="Modern hypercars in a collection garage" width="1920" height="720"></div>
-  <p class="cs__img-cap">October 16: fourth promotion, 61 migrations in production, the import and the photo reading behind flags. The first family collection starts loading car by car.</p>
+  <div class="ch" id="chart" data-reveal>
+    <span class="ch__k">TICKETS PER WEEK &#8212; OPENED VS SHIPPED</span>
+    <span class="ch__sub">source: the Acervo HQ task board, Sept 16 to Nov 2, 2026 &#183; week 8 is two days old</span>
+    <svg viewBox="0 0 1200 300" role="img" aria-label="Bar chart of tickets opened and shipped per week"></svg>
+    <div class="lg"><span><i style="background:rgba(45,212,191,.75)"></i>shipped (Done)</span><span><i style="border:1px solid var(--b3);background:rgba(255,255,255,.04)"></i>opened</span><span><i style="border-top:1px dashed var(--am);height:0;vertical-align:3px"></i>production promotion</span></div>
+  </div>
 
-  <!-- 06: Decisions -->
-  <div class="cs__section" id="s06" data-reveal>
-    <span class="cs__section-num">06 Key Decisions</span>
+  <div class="cs__metrics" data-reveal style="margin-top:16px">
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">61</span><span class="cs__metric-label">Database migrations in production by week five</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">27 s</span><span class="cs__metric-label">To register a car with photos on a phone over slow 3G</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">100+</span><span class="cs__metric-label">Cars in the first real collection being loaded</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">1</span><span class="cs__metric-label">Person on product and engineering</span></div>
+  </div>
+  <div class="cs__evidence" data-reveal>
+    <span class="cs__evidence-label">Validation method</span>
+    <span class="cs__evidence-text">Counts come from the task board and the repository (PR and issue numbering). The 27 second gate was measured on my own phone against the branch preview, with the network throttled and then cut. Infrastructure to date: domains, Supabase, Vercel Pro and a Claude Max subscription, paid by me. [TODO: total CHF to date]</span>
+  </div>
+
+  <!-- 07: The hardest part -->
+  <div class="cs__section" id="s07" data-reveal>
+    <span class="cs__section-num">07 The Hardest Part</span>
+    <h2 class="cs__section-h">Not a technical problem. Telling the difference between something that looks verified and something that is. Seven times a green check proved nothing, and each time it came through a different door.</h2>
+    <div class="cs__section-text">
+      <p>I asked the lead agent, on day 48, what the biggest challenge of the whole build had been. Its answer is the most honest thing in this case study, and it is the same lesson the human gates exist for. Every false signal looks exactly like a good one: a green check, a <code>success</code>, a <code>0 pending</code>, a block that matches what was expected. And the result you most want to believe is the one that says you are done.</p>
+    </div>
+  </div>
+
+  <div class="cs__quote" data-reveal>
+    <p class="cs__quote-text">&#8220;Every false signal looks exactly like a real one. A green check, a success, a zero pending, a block that matches the expected values: they read the same whether they are true or not. And the result most tempting to believe is precisely the one that confirms you have finished.&#8221;</p>
+    <span class="cs__quote-author">The lead agent, asked what the hardest part had been. November 2, 2026, translated from Spanish.</span>
+  </div>
+
+  <div class="fg" data-reveal>
+    <span class="fg__k">SEVEN GREENS THAT PROVED NOTHING</span>
+    <span class="fg__sub">from docs/context/lessons.md &#183; what the signal said, and what was true</span>
+    <div class="fg__hd"><span>DATE</span><span>WHAT LOOKED GREEN</span><span>WHAT WAS TRUE</span></div>
+    <div class="fg__row"><span class="fg__d">SEP 27</span><div class="fg__g"><b>SUCCESS</b>Vercel environment variables saved, build passing.</div><div class="fg__r"><b>500</b>Internal Server Error on every route. It built fine and failed at runtime.</div></div>
+    <div class="fg__row"><span class="fg__d">SEP 28</span><div class="fg__g"><b>EXIT 0</b>vitest green with the local stack down. Same day, an Auth suite green.</div><div class="fg__r"><b>100 SKIPPED</b>Not one integration tested. The Auth hook was still off after a reset, so the suite never touched the door.</div></div>
+    <div class="fg__row"><span class="fg__d">SEP 29</span><div class="fg__g"><b>BUILD · TSC · LINT</b>A &#8220;use server&#8221; file passed all three.</div><div class="fg__r"><b>500</b>Every POST from the panel failed in production.</div></div>
+    <div class="fg__row"><span class="fg__d">OCT 3</span><div class="fg__g"><b>READY</b>First promotion reported as deployed.</div><div class="fg__r"><b>404</b>The domain was serving Vercel&#8217;s not found page.</div></div>
+    <div class="fg__row"><span class="fg__d">OCT 6</span><div class="fg__g"><b>8 OF 8 CHECKS</b>Merged on a full green row.</div><div class="fg__r"><b>E2E NEVER RAN</b>A navigation change entered main with 12 broken tests and no way to add a car on desktop.</div></div>
+    <div class="fg__row"><span class="fg__d">OCT 12</span><div class="fg__g"><b>A11Y GATE PASS</b>Accessibility gate green run after run.</div><div class="fg__r"><b>0 DIALOGS</b>It measured zero dialogs in 176 of 200 runs. It was passing because it saw nothing.</div></div>
+    <div class="fg__row"><span class="fg__d">NOV 2</span><div class="fg__g"><b>P1 TO P9 MEASURED</b>The lead reported the nine production queries as done.</div><div class="fg__r"><b>8 PLACEHOLDERS</b>It was the template with the expected values, flags unfilled. The orchestrator caught it.</div></div>
+    <span class="fg__sub" style="margin:16px 0 0;color:var(--t3)">WHAT CONTAINED IT &#8212; NOT MORE CARE. RULES THAT CHANGE WHAT COUNTS AS PROOF</span>
+    <div class="rl">
+      <div class="rl__i"><span class="rl__n">RULE 19</span><span class="rl__t">No fact without its identifier: run id, SHA, PR. &#8220;CI green&#8221; does not exist as a sentence.</span></div>
+      <div class="rl__i"><span class="rl__n">SKIPPED IS NOT GREEN</span><span class="rl__t">The e2e run is opened and read: which steps executed, how many tests passed.</span></div>
+      <div class="rl__i"><span class="rl__n">PROVE IT WHERE IT ACTS</span><span class="rl__t">Auth by its URL with curl, not by calling the SQL function. A deploy by requesting the page on its domain.</span></div>
+      <div class="rl__i"><span class="rl__n">RULE 4</span><span class="rl__t">Break a policy on purpose; the suite has to turn red. If it does not, the tests do not test what they say.</span></div>
+      <div class="rl__i"><span class="rl__n">RULE 26</span><span class="rl__t">&#8220;Compatible with the previous code&#8221; is shown by running that code against the new base, not by reading the migration. That is how the enum failure of October 20 was caught.</span></div>
+      <div class="rl__i"><span class="rl__n">SINCE NOV 2</span><span class="rl__t">A measurement must contain something the lead could not have predicted. If it matches the template character for character, it is the template.</span></div>
+    </div>
+  </div>
+
+  <div class="cs__evidence" data-reveal>
+    <span class="cs__evidence-label">The second hardest part: a production barrier that holds against the lead itself</span>
+    <span class="cs__evidence-text">Three reasonable mechanisms turned out not to be barriers: a mandatory environment reviewer the GitHub plan does not include; an id stored in a variable the lead&#8217;s own <code>gh</code> could change; a Vercel session that could deploy without going through promover.yml. Rules 27 and 28 came out of that. The question that settled every case was never whether a mechanism sounds reasonable, but who can change it.</span>
+  </div>
+
+  <!-- 08: Decisions -->
+  <div class="cs__section" id="s08" data-reveal>
+    <span class="cs__section-num">08 Key Decisions</span>
     <h2 class="cs__section-h">What was chosen, what was rejected, and why.</h2>
     <div class="cs__decisions-wrap">
     <table class="cs__decisions">
       <thead><tr><th>Decision</th><th>What we chose</th><th>What we rejected</th><th>Why</th></tr></thead>
       <tbody>
-        <tr><td>Scope</td><td>Six week MVP: registry, parts, document digitisation, roles, maintenance reminders</td><td>Import/export and insurance in v1</td><td>Those pillars need the registry to exist first. Nothing built for hypothetical needs.</td></tr>
-        <tr><td>Identity</td><td>No KYC documents stored; manual verification, access by referral and approval</td><td>Built-in KYC with document upload</td><td>A collector&#8217;s trust is the product. Storing passports is a liability, not a feature.</td></tr>
-        <tr><td>AI in the workflow</td><td>AI proposes, a person confirms, the audit log records who</td><td>Auto-apply recognition results</td><td>A wrong make or year on a six figure car is not a UX bug, it is a provenance problem.</td></tr>
-        <tr><td>Authentication</td><td>Email magic link plus TOTP, for everyone including the mechanic</td><td>Phone and SMS login</td><td>No SMS provider to contract, one auth path to secure. If a mechanic has no email, we create one.</td></tr>
-        <tr><td>Security gate</td><td>Ship the risky feature behind a flag, off in production, after a FAIL</td><td>Delay the whole promotion</td><td>The collection loading could start on time; the risky surface stayed dark until it passed.</td></tr>
-        <tr><td>Who merges</td><td>Only me for two weeks, then the lead agent for non critical PRs</td><td>Agents merging from day one</td><td>Trust the process once the review rules have been tested on real PRs, not before.</td></tr>
+        <tr><td>Team shape</td><td>Cheap models build, strong models judge; judgment agents prove failures and never fix them</td><td>One strong model doing everything</td><td>The expensive tokens go to saying no. A reviewer that also fixes stops being a reviewer.</td></tr>
+        <tr><td>Who merges</td><td>Only me for two weeks, then the lead for non critical PRs, five checks green on the exact SHA</td><td>Agents merging from day one</td><td>Trust the process once the review rules have been tested on real PRs, not before.</td></tr>
+        <tr><td>Who touches production</td><td>Nobody in the build. The lead has no production credentials; measurements come from a separate session</td><td>Lead runs its own production checks</td><td>An agent reporting on its own release will report a template as a result. It did, once.</td></tr>
+        <tr><td>Decisions</td><td>Numbered questions in each delivery, answered by id and letter, recorded in docs and Notion</td><td>Free text conversations</td><td>A decision you cannot grep did not happen.</td></tr>
+        <tr><td>Identity</td><td>No KYC documents stored; manual verification, access by referral</td><td>Built-in KYC with document upload</td><td>A collector&#8217;s trust is the product. Storing passports is a liability, not a feature.</td></tr>
+        <tr><td>Security gate</td><td>Ship the risky feature behind a flag, off in production, after a FAIL</td><td>Delay the whole promotion</td><td>Production moved on time; the risky surface stayed dark until it passed.</td></tr>
       </tbody>
     </table>
     </div>
   </div>
 
-  <!-- 07: Impact -->
-  <div class="cs__section" id="s07" data-reveal>
-    <span class="cs__section-num">07 What Happened</span>
-    <h2 class="cs__section-h">A product that would have been a quarter of agency time existed in seventeen days, with the controls a wealthy client expects.</h2>
-    <div class="cs__metrics">
-      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">17</span><span class="cs__metric-label">Days from first commit to production</span></div>
-      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">4</span><span class="cs__metric-label">Production promotions in two weeks, each security gated</span></div>
-      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">27 s</span><span class="cs__metric-label">To register a car with photos on a phone over slow 3G</span></div>
-      <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">1</span><span class="cs__metric-label">Person on product and engineering</span></div>
-    </div>
-    <div class="cs__evidence">
-      <span class="cs__evidence-label">Validation method</span>
-      <span class="cs__evidence-text">Dates and counts come from the repository, the task board and the promotion issues. The 27 second gate was measured on my own phone against the branch preview, with the network throttled and then cut. Infrastructure to date: domains, Supabase, Vercel Pro and a Claude Max subscription, paid by me. [TODO: total CHF to date]</span>
-    </div>
-  </div>
-
   <!-- 08: Reflection -->
-  <div class="cs__section" id="s08" data-reveal>
-    <span class="cs__section-num">08 What I Learned</span>
+  <div class="cs__section" id="s09" data-reveal>
+    <span class="cs__section-num">09 What I Learned</span>
     <h2 class="cs__section-h">An agent team ships exactly what it can observe. The gates where a human measures on a real device are not overhead. They are the product.</h2>
     <div class="cs__reflection">
       <span class="cs__reflection-h">What I would do differently</span>
-      <span class="cs__reflection-text">Fix the brand and the domain before the first screen. We renamed the venture twice during the build (the first name clashed with a UK app, the second had no available domain) and every rename touched environment names, email templates and copy.</span>
+      <span class="cs__reflection-text">Fix the brand and the domain before the first screen. We renamed the venture twice during the build and every rename touched environment names, email templates and copy. And budget tokens like money: the weekly limit on my plan stopped the lead for two days right before the first promotion.</span>
     </div>
     <div class="cs__reflection">
-      <span class="cs__reflection-h">Budget tokens like you budget money</span>
-      <span class="cs__reflection-text">The weekly limit on my plan stopped the lead agent for two days right before the first promotion. A team that costs nothing to idle still has a hard cap on throughput, and I planned as if it didn&#8217;t.</span>
+      <span class="cs__reflection-h">What surprised me</span>
+      <span class="cs__reflection-text">The orchestrator role was not in the original design. It appeared on the day the lead passed a query template off as a production measurement. Separating who runs the check from who wrote the code is the oldest rule in engineering, and it applies to agents harder than to people, because an agent&#8217;s false green is indistinguishable from a real one.</span>
     </div>
     <div class="cs__reflection" style="border-color:var(--dn);background:var(--dng)">
       <span class="cs__reflection-h" style="color:var(--dn)">What failed</span>
@@ -245,22 +477,16 @@ document.querySelectorAll("[data-reveal]").forEach(el=>obs.observe(el));
 const prog=document.getElementById("progress");
 window.addEventListener("scroll",()=>{const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-window.innerHeight;prog.style.width=Math.min(100,s/h*100)+"%"},{passive:true});
 const secLabel=document.querySelector(".cs-bar__section");
-if(secLabel){
-  const secs=document.querySelectorAll(".cs__section[data-reveal]");
+if(secLabel){const secs=document.querySelectorAll(".cs__section[data-reveal]");
   const secObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const n=e.target.querySelector(".cs__section-num");if(n){secLabel.textContent=n.textContent.trim();secLabel.classList.add("active")}}})},{threshold:0,rootMargin:"-50% 0px -40% 0px"});
-  secs.forEach(s=>secObs.observe(s));
-}
-function animateValue(el,end,suffix,prefix,duration){
-  const start=0;const startTime=performance.now();const isFloat=String(end).includes(".");
-  function update(now){const p=Math.min((now-startTime)/duration,1);const eased=1-Math.pow(1-p,3);const val=start+(end-start)*eased;
+  secs.forEach(s=>secObs.observe(s));}
+function animateValue(el,end,suffix,prefix,duration){const startTime=performance.now();const isFloat=String(end).includes(".");
+  function update(now){const p=Math.min((now-startTime)/duration,1);const eased=1-Math.pow(1-p,3);const val=end*eased;
     el.textContent=prefix+(isFloat?val.toFixed(1):Math.round(val))+suffix;if(p<1)requestAnimationFrame(update);}
-  requestAnimationFrame(update);
-}
-const metricObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&!e.target.dataset.counted){
-  e.target.dataset.counted="1";const el=e.target.querySelector(".cs__metric-val");if(!el)return;
-  const raw=el.textContent.trim();const match=raw.match(/^([^\d]*?)([\d.]+)(.*)$/);
-  if(match){const prefix=match[1],num=parseFloat(match[2]),suffix=match[3];animateValue(el,num,suffix,prefix,800);}
-}})},{threshold:.3});
+  requestAnimationFrame(update);}
+const metricObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&!e.target.dataset.counted){e.target.dataset.counted="1";
+  const el=e.target.querySelector(".cs__metric-val");if(!el)return;const raw=el.textContent.trim();const match=raw.match(/^([^\d]*?)([\d.]+)(.*)$/);
+  if(match){animateValue(el,parseFloat(match[2]),match[3],match[1],800);}}})},{threshold:.3});
 document.querySelectorAll(".cs__metric").forEach(m=>metricObs.observe(m));
 const lb=document.getElementById("lb");
 if(lb){const lbi=lb.querySelector("img"),lbc=lb.querySelector(".lb__close");
@@ -268,15 +494,61 @@ document.querySelectorAll(".cs__img img, .cs__screen img").forEach(i=>{i.addEven
 function closeLb(){lb.classList.remove("open");document.body.style.overflow=""}
 lbc.addEventListener("click",closeLb);lb.addEventListener("click",e=>{if(e.target===lb)closeLb()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLb()});}
 var navLinks=document.querySelectorAll(".cs-nav__link");var csNav=document.getElementById("csNav");
-if(navLinks.length){
-  var navObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
-    navLinks.forEach(function(l){l.classList.remove("active")});var id=e.target.id;
-    var link=document.querySelector('.cs-nav__link[href="#'+id+'"]');
-    if(link){link.classList.add("active");if(window.innerWidth<=900&&csNav){link.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});}}
-  }})},{threshold:0,rootMargin:"-30% 0px -60% 0px"});
+if(navLinks.length){var navObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
+    navLinks.forEach(function(l){l.classList.remove("active")});var link=document.querySelector('.cs-nav__link[href="#'+e.target.id+'"]');
+    if(link){link.classList.add("active");if(window.innerWidth<=900&&csNav){link.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});}}}})},{threshold:0,rootMargin:"-30% 0px -60% 0px"});
   document.querySelectorAll(".cs__section[id]").forEach(function(s){navObs.observe(s)});
-  navLinks.forEach(function(l){l.addEventListener("click",function(e){e.preventDefault();var t=document.querySelector(l.getAttribute("href"));if(t)t.scrollIntoView({behavior:"smooth",block:"start"});})});
-}
+  navLinks.forEach(function(l){l.addEventListener("click",function(e){e.preventDefault();var t=document.querySelector(l.getAttribute("href"));if(t)t.scrollIntoView({behavior:"smooth",block:"start"});})});}
+
+/* ---- interactive flows ---- */
+const FLOWS={
+  flowTicket:[
+    {who:"LEAD",h:"The ticket is written down before anyone builds",t:"<code>docs/tickets/NNN.md</code> with valid frontmatter, a measurable acceptance criterion and its row in Notion, in To do, assigned to Iñigo. No criterion, no ticket."},
+    {who:"WORKER",h:"A worker gets its own worktree and branch",t:"Branch <code>ticket/NNN-name</code> cut from main. If it touches the database it runs its own Supabase stack, with its own project id and ports. Never in the main checkout, never with <code>--linked</code>."},
+    {who:"WORKER",h:"Delivery in format F",t:"PR, SHA, CI run id, each acceptance criterion marked VERIFIED or IMPLEMENTED, and the decisions a human has to take. With a migration: rule 26, main's code run against the migrated base; rule 4, a policy broken on purpose must turn the suite red."},
+    {who:"LEAD",h:"The board moves with the PR",t:"The Notion row goes to In progress with the PR link. The board mirrors the repo, never the other way round."},
+    {who:"SECURITY · conditional",h:"Security review if the PR touches RLS, Storage, Auth or Server Actions",t:"A single commit with the report on the branch. A FAIL blocks the merge. Low findings become a new ticket (as 377 did), they are not fixed in place."},
+    {who:"IÑIGO · HUMAN GATE",h:"Decisions by id and letter",t:"Each open question in the delivery has an id. The answer is one line: <code>374-4 A</code>. The lead records it in <code>docs/decisions/</code> and Notion. A decision you cannot grep did not happen."},
+    {who:"LEAD · GATE",h:"Merge only when the evidence is exact",t:"The five mandatory checks green on the exact SHA, read without pipes; the e2e suite actually ran; <code>--match-head-commit</code>; and no Promover issue open, because an open promotion freezes main."},
+    {who:"CI",h:"Main is verified by run id",t:"The lead waits for main's CI by its id. With a migration, it checks in the Migrar staging log that it applied. Only then the Notion row goes to Done."}
+  ],
+  flowPromo:[
+    {who:"SECURITY · MODE 2",h:"Pen test of the whole, on the last commit with code",t:"It has to bring the rule 4 breaks and the rule 26 proof with production code, the nine pre-promotion queries P1 to P9, and the rollback query R1."},
+    {who:"LEAD",h:"A docs PR carries the report and the state",t:"Its merge commit is the candidate SHA. Everything that will be promoted is now one hash you can point at."},
+    {who:"IÑIGO · HUMAN GATE",h:"The Promover issue freezes main",t:"<code>Promover &lt;sha&gt;</code> is opened only on Iñigo's order. While it is open, nothing merges."},
+    {who:"ORCHESTRATOR · conditional",h:"Nine queries run in production by someone who is not the lead",t:"Before approval: the set in PASS (rule 29), the migration applied in staging, Iñigo's visual PASS on every provisional screen, the Supabase advisors clean, and P1 to P9 executed in production by the orchestrator. Only results actually seen count: a template or a block with placeholders is not a measurement."},
+    {who:"IÑIGO · HUMAN GATE",h:"/aprobar",t:"One comment from the approver account. It is the only moment in the whole system where a human presses the button, and it is the only button there is."},
+    {who:"PROMOVER.YML",h:"Migrate first, then deploy",t:"The workflow applies the migration to production and only then deploys the build. The lead has no credentials for any of it (rule 27)."},
+    {who:"LEAD + ORCHESTRATOR",h:"Close, measure again, unfreeze",t:"The served SHA is verified, P1 and P4 are read again in production, the migration is frozen, <code>state.md</code> and the production state doc are updated, the issue is closed and main unfreezes."}
+  ]
+};
+Object.keys(FLOWS).forEach(id=>{
+  const root=document.getElementById(id);if(!root)return;const steps=FLOWS[id];let i=0;
+  const nodes=root.querySelectorAll(".st"),who=root.querySelector(".fl__who"),h=root.querySelector(".fl__h"),t=root.querySelector(".fl__t"),list=root.querySelector(".fl__list");
+  steps.forEach((s,k)=>{const li=document.createElement("div");li.className="fl__li";li.innerHTML="<span>0"+(k+1)+"</span><span>"+s.h+"</span>";li.addEventListener("click",()=>set(k));list.appendChild(li);});
+  function set(k){i=(k+steps.length)%steps.length;nodes.forEach(n=>n.classList.toggle("on",+n.dataset.i===i));list.querySelectorAll(".fl__li").forEach((l,k2)=>l.classList.toggle("on",k2===i));
+    who.textContent=steps[i].who;h.textContent=steps[i].h;t.innerHTML=steps[i].t;}
+  nodes.forEach(n=>n.addEventListener("click",()=>set(+n.dataset.i)));
+  root.querySelectorAll(".fl__btn").forEach(b=>b.addEventListener("click",()=>set(i+parseInt(b.dataset.d,10))));
+  set(0);
+});
+
+/* ---- throughput chart ---- */
+(function(){
+  const root=document.getElementById("chart");if(!root)return;const svg=root.querySelector("svg");
+  const weeks=[{l:"W1",d:"Sep 16",o:24,s:7},{l:"W2",d:"Sep 21",o:48,s:26},{l:"W3",d:"Sep 28",o:69,s:31,p:"1st prod"},{l:"W4",d:"Oct 5",o:83,s:42},{l:"W5",d:"Oct 12",o:59,s:41,p:"4th prod"},{l:"W6",d:"Oct 19",o:71,s:37},{l:"W7",d:"Oct 26",o:62,s:40,p:"15th prod"},{l:"W8",d:"Nov 2",o:8,s:4}];
+  const W=1200,H=300,L=56,R=20,T=28,B=46,max=90,bw=70;const cw=(W-L-R)/weeks.length;
+  let out="";const y=v=>T+(H-T-B)*(1-v/max);
+  [0,30,60,90].forEach(v=>{out+=`<line class="gl" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text class="tx" x="${L-10}" y="${y(v)+3}" text-anchor="end">${v}</text>`;});
+  weeks.forEach((w,k)=>{const x=L+cw*k+cw/2;const hs=y(0)-y(w.s),ho=y(0)-y(w.o);
+    out+=`<g class="bar"><title>${w.d}: ${w.o} opened, ${w.s} shipped</title><rect class="bo" x="${x-bw/2}" y="${y(w.o)}" width="${bw}" height="${ho}" rx="4"/><rect class="bs" x="${x-bw/2}" y="${y(w.s)}" width="${bw}" height="${hs}" rx="4"/>`;
+    out+=`<text class="tx" x="${x}" y="${y(w.s)-6}" text-anchor="middle" fill="var(--ac2)">${w.s}</text>`;
+    out+=`<text class="tx" x="${x}" y="${H-B+18}" text-anchor="middle">${w.l}</text><text class="tx" x="${x}" y="${H-B+32}" text-anchor="middle" fill="var(--mut)">${w.d}</text>`;
+    if(w.p){out+=`<line class="pm" x1="${x+bw/2+8}" x2="${x+bw/2+8}" y1="${T-6}" y2="${y(0)}"/><text class="pt" x="${x+bw/2+12}" y="${T+4}">${w.p.toUpperCase()}</text>`;}
+    out+=`</g>`;});
+  out+=`<line class="ax" x1="${L}" x2="${W-R}" y1="${y(0)}" y2="${y(0)}"/>`;
+  svg.innerHTML=out;
+})();
 </script>
 </body>
 </html>

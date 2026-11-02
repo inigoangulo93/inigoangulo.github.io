@@ -4,7 +4,7 @@ Product builder, Zurich. Ten years across commerce, fintech, PropTech, travel (G
 
 ## Case studies
 
-- /work/acervo.html — Acervo (co-founder, product and engineering): private platform for automotive collections in Mexico. Built solo with a Claude Code agent team: Next.js, Supabase, Claude API, Vercel. First commit to production in 17 days, 230+ tickets shipped and 61 migrations in six weeks, staging/prod promotion workflow with security gates. Live at app.acervogroup.com.
+- /work/acervo.html — Acervo (co-founder, product and engineering): private platform for automotive collections in Mexico. Built solo leading a Claude Code agent team (lead + 7 specialists, 2 human gates): Next.js, Supabase, Claude API, Vercel. First commit to production in 17 days, 15 security gated promotions and 500+ PRs in seven weeks, 228 of 424 tickets shipped. Interactive ticket and promotion flow diagrams, weekly throughput chart, and the "seven greens that proved nothing" lessons. Live at app.acervogroup.com.
 - /work/checkout.html — GetYourGuide checkout: 10 A/B experiments, +11% conversion, experiment log with kills, receipts still live in production.
 - /work/shelfflow.html — Agentic content pipeline (confidential client): 6 AI agents, 4 human gates, 1 brief → 36 packages, launch cycle weeks → days. Includes an operable Gate 4 demo (/work/gate4-demo.html).
 - /work/enso.html — ENSO Co-Living: AI-enhanced onboarding, −22% friction, +34% booking conversion, 4x adoption, 4 European markets.
