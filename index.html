@@ -1221,6 +1221,49 @@ window.addEventListener('DOMContentLoaded',function(){
 </div></div>
 </section>
 
+<style>
+.lp{border:1px solid var(--b1);border-radius:12px;padding:18px 18px 16px;background:var(--glass);margin:4px 0 14px}
+.lp__head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.lp__k{font-family:var(--m);font-size:.66rem;color:var(--t3);letter-spacing:.12em}
+.lp__tg{display:flex;border:1px solid var(--b2);border-radius:8px;overflow:hidden}
+.lp__tb{font-family:var(--m);font-size:.66rem;letter-spacing:.08em;color:var(--t3);padding:8px 12px;display:flex;flex-direction:column;align-items:center;gap:2px;transition:all .25s}
+.lp__tb i{font-style:normal;font-size:.56rem;color:var(--mut)}
+.lp__tb.on{background:rgba(45,212,191,.12);color:#fff}.lp__tb.on i{color:var(--ac2)}
+.lp__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.lp__st{border:1px solid var(--b1);border-radius:8px;padding:12px 12px 10px;display:flex;flex-direction:column;gap:6px;min-height:150px;background:rgba(255,255,255,.015)}
+.lp__n{font-family:var(--m);font-size:.6rem;color:var(--ac);letter-spacing:.12em}
+.lp__h{font-family:var(--s);font-size:.95rem;font-weight:800;letter-spacing:-.02em;color:var(--t1)}
+.lp__me{font-family:var(--s);font-size:.76rem;color:var(--t2);line-height:1.45}
+.lp__who{font-family:var(--m);font-size:.64rem;color:var(--t3);line-height:1.5;margin-top:auto;padding-top:8px;border-top:1px dashed var(--b1);transition:opacity .25s,transform .25s}
+.lp.sw .lp__who,.lp.sw .lp__bv,.lp.sw .lp__foot{opacity:0;transform:translateY(4px)}
+.lp.agents .lp__who{color:var(--ac2)}
+.lp__bar{display:flex;align-items:center;gap:12px;margin-top:14px}
+.lp__bl{font-family:var(--m);font-size:.6rem;color:var(--t3);letter-spacing:.12em;white-space:nowrap}
+.lp__fill{flex:1;height:4px;background:var(--b1);border-radius:2px;overflow:hidden}
+.lp__fill i{display:block;height:100%;width:100%;background:var(--t3);transition:width .7s var(--e),background .4s}
+.lp.agents .lp__fill i{width:6%;background:var(--ac)}
+.lp__bv{font-family:var(--m);font-size:.7rem;color:var(--t1);min-width:80px;text-align:right;transition:opacity .25s}
+.lp.agents .lp__bv{color:var(--ac2)}
+.lp__foot{font-family:var(--s);font-size:.8rem;color:var(--t3);margin-top:12px;line-height:1.5;transition:opacity .25s}
+.jd{border:1px solid var(--b1);border-radius:12px;padding:18px;background:var(--glass);margin-bottom:8px}
+.jd__chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.jd__c{font-family:var(--m);font-size:.66rem;letter-spacing:.06em;color:var(--t2);border:1px solid var(--b2);border-radius:6px;padding:7px 11px;transition:all .2s}
+.jd__c:hover{border-color:var(--acb);color:var(--ac2)}.jd__c.on{background:rgba(45,212,191,.12);border-color:var(--ac);color:#fff}
+.jd__c--ac{border-color:rgba(45,212,191,.35)}
+.jd__ins{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:start;padding-top:12px;border-top:1px solid var(--b1)}
+.jd__role{font-family:var(--m);font-size:.62rem;color:var(--ac);letter-spacing:.12em;display:block;margin-bottom:6px}
+.jd__t{font-family:var(--s);font-size:.88rem;color:var(--t2);line-height:1.6;display:block}
+.jd__m{text-align:right;min-width:120px}
+.jd__mv{display:block;font-family:var(--s);font-size:1.5rem;font-weight:800;letter-spacing:-.02em;color:var(--t1);line-height:1}
+.jd__ml{font-family:var(--m);font-size:.6rem;color:var(--t3);letter-spacing:.08em;display:block;margin-top:6px}
+.hw{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hw__i{border:1px solid var(--b1);border-radius:8px;padding:12px 14px}
+.hw__n{font-family:var(--m);font-size:.62rem;color:var(--ac);letter-spacing:.12em;display:block;margin-bottom:6px}
+.hw__t{font-family:var(--s);font-size:.8rem;color:var(--t2);line-height:1.5}
+@media(max-width:900px){.lp__grid{grid-template-columns:1fr 1fr}.lp__st{min-height:0}}
+@media(max-width:600px){.lp__grid{grid-template-columns:1fr}.hw{grid-template-columns:1fr}.jd__ins{grid-template-columns:1fr}.jd__m{text-align:left}.ab-stats{grid-template-columns:1fr 1fr !important}}
+@media(prefers-reduced-motion:reduce){.lp *,.jd *{transition:none !important}}
+</style>
 <section class="v" id="v-logs"><div class="layer"><div class="mx">
 <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start">
 <div>
@@ -1236,19 +1279,40 @@ window.addEventListener('DOMContentLoaded',function(){
 <div class="sh" style="margin-bottom:24px"><span>// about me</span></div>
 <h2 style="font-family:var(--s);font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:6px">Inigo Angulo</h2>
 <p style="font-family:var(--m);font-size:.7rem;color:var(--ac2);letter-spacing:.06em;margin-bottom:16px">PRODUCT BUILDER &#183; I SCOPE, DESIGN AND SHIP WITH AI AGENT TEAMS</p>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">Ten years in product and commerce: GetYourGuide, ING, Adecco, Crowdhouse, WPP. I spent that decade learning what makes products convert, and what makes teams ship: checkout flows, onboarding, design systems, the analytics that prove a decision, and the roadmap fights that stop one from happening.</p>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">In 2026 I started shipping the software myself. Not by learning to type code faster, but by doing with AI agents what I had always done with people: define what is worth building, give each role a mandate and a boundary, decide what counts as done, and keep authority over what reaches production. The product judgment did not change. The distance between a decision and a shipped feature did.</p>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">The proof is <a href="work/acervo.html" style="color:var(--ac2);border-bottom:1px solid var(--acb)">Acervo</a>: a production platform for serious car collections that I founded, designed and built alone, leading eight agents under two human gates. First commit to production in 17 days, fifteen security gated releases since, and a case study that says plainly what is validated and what is not yet.</p>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">That experience is now the three ways I work: <strong style="color:var(--t1);font-weight:600">AI build &amp; deployment</strong> for founders and teams who need working software inside their business; <strong style="color:var(--t1);font-weight:600">product &amp; UX leadership</strong>, fractional or on contract, for teams who need a senior lead who can also build; and <strong style="color:var(--t1);font-weight:600">CRO &amp; commerce</strong> for funnels that leak money, with experiments that prove the fix.</p>
-<div class="ab-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:8px 0 24px">
-<div style="padding:12px 14px;border:1px solid var(--b1);border-radius:8px"><span style="display:block;font-family:var(--s);font-size:1.25rem;font-weight:800;letter-spacing:-.02em;color:var(--t1)">10 yrs</span><span style="font-family:var(--m);font-size:.62rem;color:var(--t3);letter-spacing:.06em">PRODUCT &amp; COMMERCE</span></div>
-<div style="padding:12px 14px;border:1px solid var(--b1);border-radius:8px"><span style="display:block;font-family:var(--s);font-size:1.25rem;font-weight:800;letter-spacing:-.02em;color:var(--ac2)">17 days</span><span style="font-family:var(--m);font-size:.62rem;color:var(--t3);letter-spacing:.06em">IDEA TO PRODUCTION</span></div>
-<div style="padding:12px 14px;border:1px solid var(--b1);border-radius:8px"><span style="display:block;font-family:var(--s);font-size:1.25rem;font-weight:800;letter-spacing:-.02em;color:var(--t1)">+11%</span><span style="font-family:var(--m);font-size:.62rem;color:var(--t3);letter-spacing:.06em">CHECKOUT CONVERSION</span></div>
-<div style="padding:12px 14px;border:1px solid var(--b1);border-radius:8px"><span style="display:block;font-family:var(--s);font-size:1.25rem;font-weight:800;letter-spacing:-.02em;color:var(--t1)">8 + 1</span><span style="font-family:var(--m);font-size:.62rem;color:var(--t3);letter-spacing:.06em">AGENTS &#183; ONE HUMAN</span></div>
+<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">Ten years learning what makes products convert and what makes teams ship. In 2026 I started shipping the software myself, doing with AI agents what I had always done with people. The judgment did not change. The distance between a decision and a shipped feature did. Toggle it.</p>
+
+<!-- The same loop, two teams -->
+<div class="lp" id="loop">
+<div class="lp__head"><span class="lp__k">// THE SAME LOOP, TWO TEAMS</span>
+<div class="lp__tg" role="tablist" aria-label="Team mode"><button class="lp__tb on" role="tab" aria-selected="true" data-m="people">WITH PEOPLE <i>2016 to 2025</i></button><button class="lp__tb" role="tab" aria-selected="false" data-m="agents">WITH AGENTS <i>2026 &#8594;</i></button></div></div>
+<div class="lp__grid">
+<div class="lp__st"><span class="lp__n">01</span><span class="lp__h">Listen</span><span class="lp__me">I find the friction in the data and the field</span><span class="lp__who" data-people="PostHog, GA4, interviews, a research squad" data-agents="PostHog, GA4, interviews, the same"></span></div>
+<div class="lp__st"><span class="lp__n">02</span><span class="lp__h">Frame</span><span class="lp__me">I decide what is worth building and what is not</span><span class="lp__who" data-people="Roadmap slot in the next quarter" data-agents="Ticket with a measurable criterion, today"></span></div>
+<div class="lp__st"><span class="lp__n">03</span><span class="lp__h">Architect</span><span class="lp__me">I design the system and its boundaries</span><span class="lp__who" data-people="A squad of 6: design, FE, BE, data, QA" data-agents="A lead and 7 specialist agents, each with a mandate and a boundary"></span></div>
+<div class="lp__st"><span class="lp__n">04</span><span class="lp__h">Prove</span><span class="lp__me">I decide what counts as done</span><span class="lp__who" data-people="A/B test, a quarter later" data-agents="Run id, SHA, red suite on purpose, my PASS on a real phone"></span></div>
+<div class="lp__st"><span class="lp__n">05</span><span class="lp__h">Close the loop</span><span class="lp__me">I own what reaches production</span><span class="lp__who" data-people="Release train, sign-offs, a deploy I do not touch" data-agents="/aprobar from my account, 15 releases in 7 weeks"></span></div>
 </div>
-<div class="sh" style="margin-bottom:10px"><span>// how I work</span></div>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">Decide first, build second. Every open question becomes a numbered decision with a letter for an answer, so nothing ships on an assumption. Evidence over status: a green check is not proof, a run id and a SHA are. The expensive effort goes to saying no: review, security and design judgment are where I spend the most attention, whether the reviewer is a person or an agent. And the user is measured on a real device, on a bad connection, before anything is called done.</p>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">I use PostHog, GA4 and Mixpanel to find the friction before I design around it; Figma as the source of truth for tokens and components; Claude Code to run the engineering team; Next.js, Supabase and Vercel when I own the stack. Spanish and English at native level of work; based near Zurich, available remote, hybrid or on site in Switzerland, and open to contracts through my own firm or a permanent role.</p>
+<div class="lp__bar"><span class="lp__bl">DECISION &#8594; SHIPPED FEATURE</span><span class="lp__fill"><i></i></span><span class="lp__bv" data-people="one quarter" data-agents="days"></span></div>
+<p class="lp__foot" data-people="What I did at GetYourGuide, ING, Crowdhouse and WPP: the product lead in a human team." data-agents="What I did at Acervo: the same lead, with an engineering team made of agents and two human gates."></p>
+</div>
+
+<!-- Where the judgment comes from -->
+<div class="jd" id="judg">
+<span class="lp__k" style="display:block;margin-bottom:12px">// WHERE THE JUDGMENT COMES FROM &#183; CLICK</span>
+<div class="jd__chips">
+<button class="jd__c on" data-k="gyg">GetYourGuide</button><button class="jd__c" data-k="ing">ING</button><button class="jd__c" data-k="adecco">Adecco</button><button class="jd__c" data-k="pitcher">Pitcher</button><button class="jd__c" data-k="crowd">Crowdhouse</button><button class="jd__c" data-k="wpp">WPP</button><button class="jd__c jd__c--ac" data-k="acervo">Acervo</button>
+</div>
+<div class="jd__ins"><div><span class="jd__role" id="jdRole"></span><span class="jd__t" id="jdText"></span></div><div class="jd__m"><span class="jd__mv" id="jdVal"></span><span class="jd__ml" id="jdLab"></span></div></div>
+</div>
+
+<div class="sh" style="margin:24px 0 10px"><span>// how I work</span></div>
+<div class="hw">
+<div class="hw__i"><span class="hw__n">DECIDE FIRST, BUILD SECOND</span><span class="hw__t">Every open question becomes a numbered decision with a letter for an answer. Nothing ships on an assumption.</span></div>
+<div class="hw__i"><span class="hw__n">EVIDENCE OVER STATUS</span><span class="hw__t">A green check is not proof. A run id, a SHA and a suite that turns red on purpose are.</span></div>
+<div class="hw__i"><span class="hw__n">SPEND ON SAYING NO</span><span class="hw__t">Review, security and design judgment get the most attention, whether the reviewer is a person or an agent.</span></div>
+<div class="hw__i"><span class="hw__n">MEASURE ON A REAL DEVICE</span><span class="hw__t">On a bad connection, before anything is called done. The gates where a human looks are the product.</span></div>
+</div>
+<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px;margin-top:18px">Three ways to work with me: <a href="#work-with-me" onclick="go('index');setTimeout(function(){document.getElementById('work-with-me').scrollIntoView({behavior:'smooth'})},150);return false" style="color:var(--ac2);border-bottom:1px solid var(--acb)">AI build &amp; deployment, product &amp; UX leadership, CRO &amp; commerce</a>. Based near Zurich; remote, hybrid or on site in Switzerland; contracts through my own firm or a permanent role. Spanish and English at native working level.</p>
 <div style="display:flex;flex-direction:column;gap:12px;padding:20px 0;border-top:1px solid var(--b1)">
 <div class="sh" style="margin-bottom:4px"><span>// beyond work</span></div>
 <p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.75;margin-bottom:8px">Outside of work, I&#8217;m deeply drawn to European medieval history, especially the symbolic weight, visual language, and cultural continuity of the period. I have a particular fascination with Gothic typography and the way form can carry identity, authority, and atmosphere across centuries.</p>
@@ -1722,6 +1786,28 @@ onScroll();
 (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
 Cal("init", "intro", {origin:"https://app.cal.com"});
 Cal.ns.intro("ui", {"theme":"dark","cssVarsPerTheme":{"dark":{"cal-brand":"#2dd4bf"}},"hideEventTypeDetails":false,"layout":"month_view"});
+
+/* about: loop toggle + judgment chips */
+(function(){
+  const lp=document.getElementById("loop"); if(!lp)return;
+  function mode(m){lp.classList.add("sw");setTimeout(()=>{lp.classList.toggle("agents",m==="agents");lp.querySelectorAll("[data-people]").forEach(el=>{el.textContent=el.dataset[m]});lp.classList.remove("sw")},220);
+    lp.querySelectorAll(".lp__tb").forEach(b=>{const on=b.dataset.m===m;b.classList.toggle("on",on);b.setAttribute("aria-selected",on)});}
+  lp.querySelectorAll(".lp__tb").forEach(b=>b.addEventListener("click",()=>mode(b.dataset.m)));
+  lp.querySelectorAll("[data-people]").forEach(el=>{el.textContent=el.dataset.people});
+  const J={
+    gyg:{r:"GETYOURGUIDE · PRODUCT DESIGNER, CHECKOUT",t:"The team was optimising the wrong step. 38% of converters left checkout and came back with no re-entry. Ten experiments later I had learned that the biggest wins hide in the gap nobody measures.",v:"+11%",l:"CONVERSION · 4 EU MARKETS"},
+    ing:{r:"ING · MULTI-COUNTRY DESIGN SYSTEM",t:"A system is only a system if five countries can ship from it without asking. Tokens, names and rules before components. The same discipline I later gave to agents.",v:"5",l:"COUNTRIES, ONE SYSTEM"},
+    adecco:{r:"ADECCO · PRODUCT DESIGN, HR PLATFORMS",t:"Enterprise users do not forgive ambiguity. I learned to design for the person on a deadline, not for the demo.",v:"B2B",l:"SCALE AND CONSTRAINTS"},
+    pitcher:{r:"PITCHER · SALES ENABLEMENT",t:"Field tools live on tablets, offline, in front of a customer. Latency and failure states are the product, not an edge case.",v:"OFFLINE",l:"FIRST, ALWAYS"},
+    crowd:{r:"CROWDHOUSE · PRODUCT LEAD, LUXURY TRADING",t:"Leading product for a trading platform taught me to reduce dozens of signals to the one decision the operator needs. KŌDO, my own bot, is the same lesson with my own money.",v:"23 → 1",l:"METRICS TO ONE DECISION"},
+    wpp:{r:"WPP / VML · COMMERCE STUDIO",t:"Retail content at enterprise scale is a coordination problem, not a creativity problem. ShelfFlow: six agents drafting, four human gates deciding. The first time I designed a supervised agent system.",v:"1 → 36",l:"PACKAGES PER BRIEF"},
+    acervo:{r:"ACERVO · FOUNDER, PRODUCT, DESIGN & ENGINEERING",t:"Everything above, applied to a team of agents. Scope, Figma system, data model, security gates, promotion workflow, production. First commit to production in 17 days.",v:"17 days",l:"IDEA TO PRODUCTION"}
+  };
+  const jd=document.getElementById("judg"); if(!jd)return;
+  function setJ(k){jd.querySelectorAll(".jd__c").forEach(c=>c.classList.toggle("on",c.dataset.k===k));document.getElementById("jdRole").textContent=J[k].r;document.getElementById("jdText").textContent=J[k].t;document.getElementById("jdVal").textContent=J[k].v;document.getElementById("jdLab").textContent=J[k].l;}
+  jd.querySelectorAll(".jd__c").forEach(c=>c.addEventListener("click",()=>setJ(c.dataset.k)));
+  setJ("gyg");
+})();
 </script>
 </body>
 </html>
