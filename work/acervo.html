@@ -183,6 +183,12 @@
 .ch .lg i{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:6px}
 .ch .bar:hover .bo{stroke:var(--ac2)}
 .ch .bar title{font-family:var(--m)}
+/* ---- brand notes ---- */
+.brn{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:8px 0 56px}
+.brn__i{background:rgba(255,255,255,.015);border:1px solid var(--b1);border-radius:12px;padding:20px 22px}
+.brn__n{display:block;font-family:var(--m);font-size:10px;letter-spacing:.14em;color:var(--ac2);margin-bottom:10px}
+.brn__t{display:block;font-family:var(--s);font-size:.88rem;line-height:1.6;color:var(--t2)}
+@media(max-width:768px){.brn{grid-template-columns:1fr;gap:12px;margin-bottom:40px}.brn__i{padding:18px}}
 /* ---- CTA buttons ---- */
 .cs__try-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex-shrink:0}
 .cs__try-btns .cs__try-btn{text-align:center}
