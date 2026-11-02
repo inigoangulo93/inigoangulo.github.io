@@ -498,17 +498,17 @@
 <rect class="zone" x="650" y="40" width="330" height="470" rx="10"/><text class="zk" x="666" y="66">STAGING</text>
 <rect class="zone zone--p" x="1000" y="40" width="410" height="470" rx="10"/><text class="zk zk--p" x="1016" y="66">PRODUCTION &#183; app.acervogroup.com</text>
 <!-- design -->
-<rect class="bx bx--f" x="50" y="96" width="210" height="58" rx="8"/><text class="bt" x="64" y="120">FIGMA &#183; TOKENS</text><text class="bs" x="64" y="138">ink / ivory / orange + functional colours</text>
+<rect class="bx bx--f" x="50" y="96" width="210" height="58" rx="8"/><text class="bt" x="64" y="120">FIGMA &#183; TOKENS</text><text class="bs" x="64" y="138">ink, ivory, orange, functional set</text>
 <rect class="bx bx--f" x="50" y="176" width="210" height="58" rx="8"/><text class="bt" x="64" y="200">FIGMA &#183; 26 COMPONENTS</text><text class="bs" x="64" y="218">same names in Figma and code</text>
 <rect class="bx bx--f" x="50" y="256" width="210" height="58" rx="8"/><text class="bt" x="64" y="280">FIGMA &#183; SCREENS</text><text class="bs" x="64" y="298">flows and states before code</text>
-<rect class="bx bx--n" x="50" y="420" width="210" height="58" rx="8"/><text class="bt" x="64" y="444">NOTION &#183; ACERVO HQ</text><text class="bs" x="64" y="462">board mirrors docs/ after each merge</text>
+<rect class="bx bx--n" x="50" y="420" width="210" height="58" rx="8"/><text class="bt" x="64" y="444">NOTION &#183; ACERVO HQ</text><text class="bs" x="64" y="462">mirrors docs/ after each merge</text>
 <!-- build -->
 <rect class="bx bx--g" x="320" y="96" width="290" height="58" rx="8"/><text class="bt" x="334" y="120">REPO &#183; PROTECTED MAIN</text><text class="bs" x="334" y="138">ruleset: PR required, no force push, 5 checks</text>
 <rect class="bx bx--s" x="320" y="176" width="290" height="74" rx="8"/><text class="bt" x="334" y="200">WORKER WORKTREE &#215; N</text><text class="bs" x="334" y="218">branch ticket/NNN &#183; own Supabase stack</text><text class="bs" x="334" y="234">own project id and ports (OrbStack)</text>
 <rect class="bx bx--g" x="320" y="272" width="290" height="58" rx="8"/><text class="bt" x="334" y="296">CI &#183; GITHUB ACTIONS</text><text class="bs" x="334" y="314">lint, types, unit, RLS suite, e2e</text>
 <rect class="bx bx--n" x="320" y="420" width="290" height="58" rx="8"/><text class="bt" x="334" y="444">docs/ &#183; CANONICAL</text><text class="bs" x="334" y="462">tickets, decisions (ADR), state, lessons</text>
 <!-- staging -->
-<rect class="bx bx--v" x="670" y="96" width="290" height="58" rx="8"/><text class="bt" x="684" y="120">VERCEL &#183; PREVIEWS</text><text class="bs" x="684" y="138">one deployment per branch, Pro plan</text>
+<rect class="bx bx--v" x="670" y="96" width="290" height="58" rx="8"/><text class="bt" x="684" y="120">VERCEL &#183; PREVIEWS</text><text class="bs" x="684" y="138">one deployment per branch</text>
 <rect class="bx bx--s" x="670" y="176" width="290" height="58" rx="8"/><text class="bt" x="684" y="200">SUPABASE &#183; STAGING</text><text class="bs" x="684" y="218">Postgres + RLS, Auth, Storage</text>
 <rect class="bx bx--g" x="670" y="256" width="290" height="58" rx="8"/><text class="bt" x="684" y="280">MIGRATE STAGING &#183; WORKFLOW</text><text class="bs" x="684" y="298">applies migrations on merge, verified by run id</text>
 <rect class="bx bx--c" x="670" y="336" width="290" height="58" rx="8"/><text class="bt" x="684" y="360">SENTRY &#183; STAGING</text><text class="bs" x="684" y="378">caught the silent IndexedDB failure</text>
@@ -517,11 +517,11 @@
 <g class="gate"><rect class="bx" x="1020" y="96" width="370" height="58" rx="8" stroke="rgba(34,197,94,.6)"/><text class="bt" x="1034" y="120" fill="#bbf7d0">PROMOTION WORKFLOW &#183; /aprobar</text><text class="bs" x="1034" y="138">approver account only &#183; migrate, then deploy</text></g>
 <rect class="bx bx--v" x="1020" y="176" width="178" height="58" rx="8"/><text class="bt" x="1034" y="200">VERCEL &#183; PROD</text><text class="bs" x="1034" y="218">Next.js, served SHA checked</text>
 <rect class="bx bx--s" x="1212" y="176" width="178" height="58" rx="8"/><text class="bt" x="1226" y="200">SUPABASE &#183; PROD</text><text class="bs" x="1226" y="218">Pro plan, 61+ migrations</text>
-<rect class="bx bx--c" x="1020" y="256" width="178" height="58" rx="8"/><text class="bt" x="1034" y="280">CLOUDFLARE</text><text class="bs" x="1034" y="298">DNS, landing, Turnstile captcha</text>
-<rect class="bx bx--c" x="1212" y="256" width="178" height="58" rx="8"/><text class="bt" x="1226" y="280">R2 &#183; BACKUPS</text><text class="bs" x="1226" y="298">storage backup, restore tested</text>
+<rect class="bx bx--c" x="1020" y="256" width="178" height="58" rx="8"/><text class="bt" x="1034" y="280">CLOUDFLARE</text><text class="bs" x="1034" y="298">DNS, landing, captcha</text>
+<rect class="bx bx--c" x="1212" y="256" width="178" height="58" rx="8"/><text class="bt" x="1226" y="280">R2 &#183; BACKUPS</text><text class="bs" x="1226" y="298">backups, restore tested</text>
 <rect class="bx bx--c" x="1020" y="336" width="178" height="58" rx="8"/><text class="bt" x="1034" y="360">SENTRY &#183; PROD</text><text class="bs" x="1034" y="378">errors by release SHA</text>
-<rect class="bx bx--c" x="1212" y="336" width="178" height="58" rx="8"/><text class="bt" x="1226" y="360">RESEND &#183; SMTP</text><text class="bs" x="1226" y="378">magic links, es-MX templates</text>
-<rect class="bx bx--s" x="1020" y="420" width="370" height="58" rx="8"/><text class="bt" x="1034" y="444">CLAUDE API</text><text class="bs" x="1034" y="462">recognition, VIN from plate, document extraction &#183; behind flags until the pen test passes</text>
+<rect class="bx bx--c" x="1212" y="336" width="178" height="58" rx="8"/><text class="bt" x="1226" y="360">RESEND &#183; SMTP</text><text class="bs" x="1226" y="378">magic links, es-MX mail</text>
+<rect class="bx bx--s" x="1020" y="420" width="370" height="58" rx="8"/><text class="bt" x="1034" y="444">CLAUDE API</text><text class="bs" x="1034" y="462">recognition, VIN, document extraction &#183; behind flags</text>
 <!-- arrows -->
 <path class="ar" d="M260 205 L320 205"/><text class="al" x="263" y="196">components</text>
 <path class="ar" d="M465 154 L465 176"/><path class="ar" d="M465 250 L465 272"/><text class="al" x="474" y="265">PR + 5 checks</text>
