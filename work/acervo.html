@@ -25,31 +25,38 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
 <style>
-/* ---- team grid ---- */
+/* ---- svg expander ---- */
+var svglb=document.createElement('div');svglb.className='svglb';svglb.innerHTML='<span class="svglb__close">&times;</span>';document.body.appendChild(svglb);
+function closeSvgLb(){svglb.classList.remove('open');var s=svglb.querySelector('svg');if(s)s.remove();document.body.style.overflow=''}
+document.querySelectorAll('.wf-swim').forEach(function(w){w.setAttribute('role','button');w.setAttribute('tabindex','0');w.setAttribute('aria-label','Expand diagram');
+  function openIt(){var s=w.querySelector('svg');if(!s)return;var c=svglb.querySelector('svg');if(c)c.remove();svglb.appendChild(s.cloneNode(true));svglb.classList.add('open');document.body.style.overflow='hidden'}
+  w.addEventListener('click',openIt);w.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openIt()}});});
+svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSvgLb()});
+
+/* ---- team map ---- */
 .tm{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:20px;margin:28px 0 10px}
 .tm__k{font-family:var(--m);font-size:11px;letter-spacing:2.5px;color:var(--ac);display:block;margin-bottom:4px}
-.tm__sub{font-family:var(--m);font-size:11px;color:var(--mut);display:block;margin-bottom:14px}
-.tm__row{display:grid;gap:10px;margin-bottom:14px}
-.tm__row--h{grid-template-columns:repeat(3,1fr)}
-.tm__row--l{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}
-.tm__row--a{grid-template-columns:repeat(4,1fr)}
-.tm__row--j{grid-template-columns:repeat(3,1fr);max-width:860px;margin-left:auto;margin-right:auto}
-.ag{padding:14px;border-radius:8px;border:1px solid rgba(45,212,191,.14);background:rgba(45,212,191,.04);display:flex;flex-direction:column;gap:6px;min-height:118px}
-.ag--j{border-color:rgba(245,158,11,.16);background:rgba(245,158,11,.04)}
-.ag--l{border-color:rgba(167,139,250,.22);background:rgba(167,139,250,.05)}
-.ag--h{border-color:rgba(34,197,94,.18);background:rgba(34,197,94,.04)}
-.ag--x{border-color:var(--b1);background:rgba(255,255,255,.015)}
-.ag__t{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.ag__n{font-family:var(--m);font-size:11px;font-weight:600;color:var(--ac);letter-spacing:.06em}
-.ag--j .ag__n{color:var(--am)}.ag--l .ag__n{color:#c9b8f7}.ag--h .ag__n{color:var(--up)}.ag--x .ag__n{color:var(--t3)}
-.ag__m{font-family:var(--m);font-size:9px;color:var(--t3);border:1px solid var(--b2);border-radius:3px;padding:1px 6px;letter-spacing:.08em}
-.ag__d{font-family:var(--s);font-size:12.5px;color:var(--t2);line-height:1.5}
-.ag__x{font-family:var(--m);font-size:10px;color:var(--mut);line-height:1.45;margin-top:auto;padding-top:6px;border-top:1px dashed var(--b1)}
-.ag__x b{color:var(--dn);font-weight:600;letter-spacing:.06em}
-.tm__arrow{text-align:center;font-family:var(--m);font-size:11px;color:var(--mut);margin:-6px 0 8px;letter-spacing:.1em}
-.tm__foot{font-family:var(--s);font-size:13px;color:var(--t3);margin-top:8px;text-align:center}
-@media(max-width:800px){.tm__row--h,.tm__row--a,.tm__row--j{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.tm__row--h,.tm__row--a,.tm__row--j{grid-template-columns:1fr}}
+.tm__sub{font-family:var(--m);font-size:11px;color:var(--mut);display:block;margin-bottom:16px}
+.tm__tier{display:grid;grid-template-columns:84px 1fr;gap:12px;align-items:center;padding:8px 0}
+.tm__tl{font-family:var(--m);font-size:9.5px;letter-spacing:.16em;color:var(--mut)}
+.tm__nodes{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.nd{font-family:var(--m);font-size:11px;letter-spacing:.08em;color:var(--ac2);background:rgba(45,212,191,.05);border:1px solid rgba(45,212,191,.25);border-radius:8px;padding:9px 14px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:120px;transition:all .2s}
+.nd i{font-style:normal;font-size:9px;color:var(--t3);letter-spacing:.06em}
+.nd:hover{border-color:var(--ac);background:rgba(45,212,191,.1)}
+.nd.on{background:rgba(45,212,191,.16);border-color:var(--ac);color:#fff;box-shadow:0 0 18px var(--acg)}
+.nd--j{color:#fcd38a;border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.05)}.nd--j:hover,.nd--j.on{border-color:var(--am);background:rgba(245,158,11,.14);box-shadow:0 0 18px rgba(245,158,11,.15)}
+.nd--l{color:#d8ccfb;border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.06);min-width:200px}.nd--l:hover,.nd--l.on{border-color:#a78bfa;background:rgba(167,139,250,.16);box-shadow:0 0 18px rgba(167,139,250,.18)}
+.nd--h{color:#bbf7d0;border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.05)}.nd--h:hover,.nd--h.on{border-color:var(--up);background:rgba(34,197,94,.14);box-shadow:0 0 18px rgba(34,197,94,.15)}
+.nd--x{color:var(--t2);border-color:var(--b2);background:rgba(255,255,255,.02)}.nd--x:hover,.nd--x.on{border-color:var(--b3);background:rgba(255,255,255,.06)}
+.tm__link{text-align:center;font-family:var(--m);font-size:10px;color:var(--mut);letter-spacing:.1em;padding:2px 0 2px 96px}
+.tm__ins{display:grid;grid-template-columns:1fr 1.3fr 1.1fr;gap:16px;margin-top:16px;padding-top:14px;border-top:1px solid var(--b1)}
+.tm__lbl{font-family:var(--m);font-size:9.5px;letter-spacing:.14em;color:var(--t3);display:block;margin-bottom:6px}
+.tm__col--x .tm__lbl{color:var(--dn)}
+.tm__v{font-family:var(--s);font-size:13px;color:var(--t2);line-height:1.55;display:block}
+.tm__col--x .tm__v{color:var(--t1)}
+.tm__v code{font-family:var(--m);font-size:11px;color:var(--ac2);background:rgba(45,212,191,.08);padding:1px 5px;border-radius:3px}
+.tm__foot{font-family:var(--s);font-size:13px;color:var(--t3);margin-top:14px;text-align:center}
+@media(max-width:700px){.tm__tier{grid-template-columns:1fr}.tm__tl{text-align:center}.tm__link{padding-left:0}.tm__ins{grid-template-columns:1fr}.nd{min-width:0;flex:1 1 40%}}
 
 /* ---- interactive flow (swimlane + inspector) ---- */
 .fl{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:18px 18px 14px;margin:28px 0 10px;position:relative}
@@ -91,6 +98,32 @@
   .fl__ins{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){.fl .st--g rect{animation:none}}
+
+/* ---- machine diagram (expandable, ShelfFlow pattern) ---- */
+.wf-swim{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:20px;margin:28px 0 10px;cursor:zoom-in;position:relative}
+.wf-swim::after{content:"\2922  expand";position:absolute;top:10px;right:14px;font-family:var(--m);font-size:10px;color:var(--t3);opacity:.7}
+.wf-swim svg{width:100%;height:auto;display:block;font-family:var(--m)}
+.svglb{position:fixed;inset:0;background:rgba(6,6,10,.96);z-index:1000;display:none;align-items:center;justify-content:center;padding:3vh 2vw;cursor:zoom-out;overflow:auto}
+.svglb.open{display:flex}
+.svglb svg{width:min(96vw,1600px);height:auto}
+.svglb .svglb__close{position:fixed;top:14px;right:20px;font-size:28px;color:var(--t3);cursor:pointer;font-family:var(--s)}
+.mc .zone{fill:rgba(255,255,255,.015);stroke:var(--b1);stroke-dasharray:4 4}
+.mc .zone--p{fill:rgba(34,197,94,.03);stroke:rgba(34,197,94,.25)}
+.mc .zk{fill:var(--t3);font-size:10px;letter-spacing:2px}
+.mc .zk--p{fill:var(--up)}
+.mc .bx{fill:#15151f;stroke:rgba(255,255,255,.2);stroke-width:1.2}
+.mc .bx--f{stroke:rgba(167,139,250,.45)}.mc .bx--g{stroke:rgba(255,255,255,.3)}.mc .bx--s{stroke:rgba(45,212,191,.45)}.mc .bx--v{stroke:rgba(255,255,255,.3)}.mc .bx--c{stroke:rgba(245,158,11,.45)}.mc .bx--n{stroke:rgba(255,255,255,.14)}
+.mc .bt{fill:var(--t1);font-size:11.5px;font-weight:600}
+.mc .bs{fill:var(--t3);font-size:9.5px}
+.mc .ar{fill:none;stroke:rgba(255,255,255,.28);stroke-width:1.2;marker-end:url(#marr)}
+.mc .ar--h{stroke:rgba(34,197,94,.6)}
+.mc .al{fill:var(--mut);font-size:9px;letter-spacing:.08em}
+.mc .gate rect{animation:gpulse 2.4s ease-in-out infinite}
+.mcs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 10px}
+.mcs__i{padding:12px 14px;border-radius:8px;border:1px solid var(--b1);background:rgba(255,255,255,.015)}
+.mcs__n{font-family:var(--m);font-size:10px;color:var(--ac);letter-spacing:.12em;display:block;margin-bottom:5px;font-weight:600}
+.mcs__t{font-family:var(--s);font-size:12.5px;color:var(--t2);line-height:1.5}
+@media(max-width:760px){.mcs{grid-template-columns:1fr 1fr}}
 
 /* ---- false greens timeline ---- */
 .fg{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:20px;margin:28px 0 10px}
@@ -145,11 +178,12 @@
 <a href="#s02" class="cs-nav__link"><span class="cs-nav__num">02</span>The Team</a>
 <a href="#s03" class="cs-nav__link"><span class="cs-nav__num">03</span>A Ticket</a>
 <a href="#s04" class="cs-nav__link"><span class="cs-nav__num">04</span>A Promotion</a>
-<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>The Product</a>
-<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>Throughput</a>
-<a href="#s07" class="cs-nav__link"><span class="cs-nav__num">07</span>Hardest Part</a>
-<a href="#s08" class="cs-nav__link"><span class="cs-nav__num">08</span>Decisions</a>
-<a href="#s09" class="cs-nav__link"><span class="cs-nav__num">09</span>Reflection</a>
+<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>The Machine</a>
+<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>The Product</a>
+<a href="#s07" class="cs-nav__link"><span class="cs-nav__num">07</span>Throughput</a>
+<a href="#s08" class="cs-nav__link"><span class="cs-nav__num">08</span>Hardest Part</a>
+<a href="#s09" class="cs-nav__link"><span class="cs-nav__num">09</span>Decisions</a>
+<a href="#s10" class="cs-nav__link"><span class="cs-nav__num">10</span>Reflection</a>
 <a href="#" class="cs-nav__top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">&#8593; Top</a>
 </nav>
 
@@ -193,10 +227,10 @@
   </div>
 
   <!-- Hero visual -->
-  <div class="cs__img cs__img--wide" data-reveal><img src="../img/acervo/hero.webp" alt="Acervo: private automotive collections" width="1920" height="720"></div>
+  <div class="cs__img cs__img--wide" data-reveal><img src="../img/acervo/header.webp" alt="Acervo: a digital garage for car collectors" width="1187" height="559"></div>
 
-  <div class="cs__img" data-reveal><img src="../img/acervo/dashboard.webp" alt="Acervo owner dashboard: 28 cars, 3 garages, 37 parts, distribution by garage" width="1511" height="671"></div>
-  <p class="cs__img-cap">The owner&#8217;s home. One collection, its garages, parts and documents, and the breakdown an owner actually asks for: by garage, by brand, by decade, by situation.</p>
+  <div class="cs__img" data-reveal><img src="../img/acervo/cars-dark.webp" alt="Acervo in production: the cars gallery with filters by status" width="1512" height="689"></div>
+  <p class="cs__img-cap">Production, November 2026. The collection, filtered the way an owner thinks: favourites, in the workshop, lent, for sale, with pending items, history.</p>
 
   <!-- 01: Context -->
   <div class="cs__section" id="s01" data-reveal>
@@ -216,37 +250,42 @@
   <!-- 02: The team -->
   <div class="cs__section" id="s02" data-reveal>
     <span class="cs__section-num">02 The Team</span>
-    <h2 class="cs__section-h">Three humans with different authority, one lead agent, seven specialists. The architecture is not what each one does. It is what each one is not allowed to touch.</h2>
+    <h2 class="cs__section-h">Three humans with different authority, one lead, seven specialists. The architecture is not what each one does. It is what each one is not allowed to touch.</h2>
     <div class="cs__section-text">
-      <p>Each agent lives in a file under <code>.claude/agents/</code> with a mandate, a model and a boundary. The lead decomposes tickets, launches workers, integrates and merges with green checks. Specialists build. Three judgment agents on the strongest model review design, code and security, and <strong>they demonstrate failures, they never fix them</strong>. By budget, a ticket&#8217;s worker usually plays data, backend and frontend at once; security always runs separately.</p>
+      <p>Each agent is a file under <code>.claude/agents/</code>: a mandate, a model, a boundary. Build agents run on the cheaper model. The three judgment agents run on the strongest one and <strong>prove failures, they never fix them</strong>.</p>
     </div>
   </div>
 
-  <div class="tm" data-reveal>
-    <span class="tm__k">WHO IS WHO &#8212; AUTHORITY FLOWS DOWN, EVIDENCE FLOWS UP</span>
-    <span class="tm__sub">humans decide and measure &#183; the lead integrates &#183; specialists build &#183; judgment agents prove failures and never fix them</span>
-    <div class="tm__row tm__row--h">
-      <div class="ag ag--h"><div class="ag__t"><span class="ag__n">I&#209;IGO</span><span class="ag__m">HUMAN</span></div><span class="ag__d">Decides product, design, scope, money and security. Executes only what no agent may: publish in Figma, the visual PASS on staging, the <code>/aprobar</code> of a promotion, founder actions (panels, billing, advisors).</span><span class="ag__x"><b>ONLY ONE WHO</b> approves a release</span></div>
-      <div class="ag ag--h"><div class="ag__t"><span class="ag__n">ORCHESTRATOR</span><span class="ag__m">CLAUDE, SEPARATE SESSION</span></div><span class="ag__d">Does what the lead cannot touch: runs the read-only queries in production, measures production after a promotion, relays I&#241;igo&#8217;s instructions. Corrects the lead when a template is passed off as a measurement.</span><span class="ag__x"><b>NEVER</b> writes code</span></div>
-      <div class="ag ag--x"><div class="ag__t"><span class="ag__n">TWO PARTNERS</span><span class="ag__m">HUMANS</span></div><span class="ag__d">Sales, growth, collector network, field knowledge, the first real collection. Their requests enter the system as tickets, like everyone else&#8217;s.</span><span class="ag__x"><b>NO AUTHORITY</b> over the repository</span></div>
+  <div class="tm" id="team" data-reveal>
+    <span class="tm__k">WHO IS WHO &#8212; CLICK A NODE</span>
+    <span class="tm__sub">authority flows down &#183; evidence flows up &#183; colour is the kind of power, not the seniority</span>
+    <div class="tm__tier"><span class="tm__tl">HUMANS</span><div class="tm__nodes">
+      <button class="nd nd--h" data-k="inigo">I&#209;IGO<i>decides</i></button>
+      <button class="nd nd--h" data-k="orq">ORCHESTRATOR<i>measures</i></button>
+      <button class="nd nd--x" data-k="partners">TWO PARTNERS<i>sell</i></button>
+    </div></div>
+    <div class="tm__link">&#8595; instructions &#183; decisions by id and letter &#183; PASS / FAIL</div>
+    <div class="tm__tier"><span class="tm__tl">LEAD</span><div class="tm__nodes">
+      <button class="nd nd--l on" data-k="lead">LEAD<i>Opus</i></button>
+    </div></div>
+    <div class="tm__link">&#8595; tickets &#183; &#8593; delivery in format F</div>
+    <div class="tm__tier"><span class="tm__tl">BUILD</span><div class="tm__nodes">
+      <button class="nd" data-k="datos">DATOS<i>Sonnet</i></button>
+      <button class="nd" data-k="backend">BACKEND<i>Sonnet</i></button>
+      <button class="nd" data-k="frontend">FRONTEND<i>Sonnet</i></button>
+      <button class="nd" data-k="iadocs">IA-DOCUMENTOS<i>Sonnet</i></button>
+    </div></div>
+    <div class="tm__tier"><span class="tm__tl">JUDGMENT</span><div class="tm__nodes">
+      <button class="nd nd--j" data-k="diseno">DISE&#209;O<i>Opus</i></button>
+      <button class="nd nd--j" data-k="revisor">REVISOR<i>Opus</i></button>
+      <button class="nd nd--j" data-k="seguridad">SEGURIDAD<i>Opus</i></button>
+    </div></div>
+    <div class="tm__ins">
+      <div class="tm__col"><span class="tm__lbl">ROLE</span><span class="tm__v" id="tmRole"></span></div>
+      <div class="tm__col"><span class="tm__lbl">DOES</span><span class="tm__v" id="tmDoes"></span></div>
+      <div class="tm__col tm__col--x"><span class="tm__lbl">NEVER TOUCHES</span><span class="tm__v" id="tmNever"></span></div>
     </div>
-    <div class="tm__arrow">&#8595; instructions &#183; decisions by id and letter &#183; PASS / FAIL</div>
-    <div class="tm__row tm__row--l">
-      <div class="ag ag--l"><div class="ag__t"><span class="ag__n">LEAD</span><span class="ag__m">OPUS &#183; MAIN SESSION</span></div><span class="ag__d">Decomposes tickets, launches workers in their own worktrees, integrates, merges with the five checks green on the exact SHA, prepares promotions. Keeps <code>docs/state.md</code>, <code>docs/decisions/</code> and the Notion board in sync.</span><span class="ag__x"><b>NEVER</b> touches <code>promover.yml</code> or production flows (rule 27) &#183; no Vercel credentials &#183; no production data</span></div>
-    </div>
-    <div class="tm__arrow">&#8595; tickets with measurable acceptance criteria &#183; delivery in format F</div>
-    <div class="tm__row tm__row--a">
-      <div class="ag"><div class="ag__t"><span class="ag__n">DATOS</span><span class="ag__m">SONNET</span></div><span class="ag__d">Migrations, row level security, triggers, generated types, synthetic seeds.</span><span class="ag__x"><b>ONLY ONE WHO</b> touches <code>supabase/migrations</code></span></div>
-      <div class="ag"><div class="ag__t"><span class="ag__n">BACKEND</span><span class="ag__m">SONNET</span></div><span class="ag__d">Server Actions, Route Handlers, Edge Functions, crypto lib, search.</span><span class="ag__x"><b>NEVER</b> migrations or visual components</span></div>
-      <div class="ag"><div class="ag__t"><span class="ag__n">FRONTEND</span><span class="ag__m">SONNET</span></div><span class="ag__d">Screens, components, PWA, the photo upload queue, accessibility.</span><span class="ag__x"><b>NEVER</b> queries the database</span></div>
-      <div class="ag"><div class="ag__t"><span class="ag__n">IA-DOCUMENTOS</span><span class="ag__m">SONNET</span></div><span class="ag__d">Extraction prompts, schemas, evaluation against 30 synthetic documents.</span><span class="ag__x"><b>NEVER</b> the interface</span></div>
-    </div>
-    <div class="tm__row tm__row--j">
-      <div class="ag ag--j"><div class="ag__t"><span class="ag__n">DISE&#209;O</span><span class="ag__m">OPUS</span></div><span class="ag__d">Flows, states and copy before anything is built. Owns the Figma component library. Design review of every PR with a screen.</span><span class="ag__x"><b>NEVER</b> code &#183; corrects, does not invent: a missing value is escalated</span></div>
-      <div class="ag ag--j"><div class="ag__t"><span class="ag__n">REVISOR</span><span class="ag__m">OPUS</span></div><span class="ag__d">Reviews every PR before I&#241;igo sees it: a list of concrete failures, nothing else.</span><span class="ag__x"><b>NEVER</b> style or opinions</span></div>
-      <div class="ag ag--j"><div class="ag__t"><span class="ag__n">SEGURIDAD</span><span class="ag__m">OPUS</span></div><span class="ag__d">Mode 1: reviews PRs touching migrations, Auth, Storage, Server Actions or AI. Mode 2: pen test of the whole before each promotion. Demonstrates failures.</span><span class="ag__x"><b>NEVER</b> fixes &#183; never production, panels, Auth or merges</span></div>
-    </div>
-    <p class="tm__foot">Build agents run on the cheaper model. Judgment agents run on the strongest one. The expensive tokens go to saying no.</p>
+    <p class="tm__foot">Cheap models build. Strong models judge. The expensive tokens go to saying no.</p>
   </div>
 
   <!-- 03: A ticket -->
@@ -333,32 +372,99 @@
     <span class="cs__evidence-text">On October 15 the pen test of candidate 86254f3 came back FAIL on a rule outside the import. Instead of delaying the whole promotion, the automatic photo reading of the car alta went behind a feature flag born in false. Production moved on time; the risky surface stayed dark until it passed.</span>
   </div>
 
-  <!-- 05: Product -->
+  <!-- 05: The machine -->
   <div class="cs__section" id="s05" data-reveal>
-    <span class="cs__section-num">05 The Product</span>
+    <span class="cs__section-num">05 The Machine</span>
+    <h2 class="cs__section-h">Figma feeds the code, every worker gets its own database, staging is a real environment, and the only road into production is a workflow nobody in the build can edit.</h2>
+    <div class="cs__section-text">
+      <p>Nothing exotic on purpose: the team was new, the stack should not be. Next.js on Vercel, Supabase for Postgres with row level security, Auth and Storage, the Claude API for recognition and document extraction. What is unusual is how the pieces are wired so that an agent team cannot shortcut them.</p>
+    </div>
+  </div>
+
+  <div class="wf-swim" data-reveal>
+<svg class="mc" viewBox="0 0 1440 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Architecture: Figma design system feeds code in GitHub; workers build in isolated local stacks; CI deploys to staging on Vercel and Supabase; a promotion workflow with human approval deploys to production; Cloudflare, Sentry and Resend around it; Notion mirrors docs">
+<defs><marker id="marr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="rgba(255,255,255,.3)"/></marker></defs>
+<!-- zones -->
+<rect class="zone" x="30" y="40" width="250" height="470" rx="10"/><text class="zk" x="46" y="66">DESIGN</text>
+<rect class="zone" x="300" y="40" width="330" height="470" rx="10"/><text class="zk" x="316" y="66">BUILD &#183; GITHUB</text>
+<rect class="zone" x="650" y="40" width="330" height="470" rx="10"/><text class="zk" x="666" y="66">STAGING</text>
+<rect class="zone zone--p" x="1000" y="40" width="410" height="470" rx="10"/><text class="zk zk--p" x="1016" y="66">PRODUCTION &#183; app.acervogroup.com</text>
+<!-- design -->
+<rect class="bx bx--f" x="50" y="96" width="210" height="58" rx="8"/><text class="bt" x="64" y="120">FIGMA &#183; TOKENS</text><text class="bs" x="64" y="138">ink / ivory / orange + functional colours</text>
+<rect class="bx bx--f" x="50" y="176" width="210" height="58" rx="8"/><text class="bt" x="64" y="200">FIGMA &#183; 26 COMPONENTS</text><text class="bs" x="64" y="218">same names in Figma and code</text>
+<rect class="bx bx--f" x="50" y="256" width="210" height="58" rx="8"/><text class="bt" x="64" y="280">FIGMA &#183; SCREENS</text><text class="bs" x="64" y="298">flows and states before code</text>
+<rect class="bx bx--n" x="50" y="420" width="210" height="58" rx="8"/><text class="bt" x="64" y="444">NOTION &#183; ACERVO HQ</text><text class="bs" x="64" y="462">board mirrors docs/ after each merge</text>
+<!-- build -->
+<rect class="bx bx--g" x="320" y="96" width="290" height="58" rx="8"/><text class="bt" x="334" y="120">REPO &#183; PROTECTED MAIN</text><text class="bs" x="334" y="138">ruleset: PR required, no force push, 5 checks</text>
+<rect class="bx bx--s" x="320" y="176" width="290" height="74" rx="8"/><text class="bt" x="334" y="200">WORKER WORKTREE &#215; N</text><text class="bs" x="334" y="218">branch ticket/NNN &#183; own Supabase stack</text><text class="bs" x="334" y="234">own project id and ports (OrbStack)</text>
+<rect class="bx bx--g" x="320" y="272" width="290" height="58" rx="8"/><text class="bt" x="334" y="296">CI &#183; GITHUB ACTIONS</text><text class="bs" x="334" y="314">lint, types, unit, RLS suite, e2e</text>
+<rect class="bx bx--n" x="320" y="420" width="290" height="58" rx="8"/><text class="bt" x="334" y="444">docs/ &#183; CANONICAL</text><text class="bs" x="334" y="462">tickets, decisions (ADR), state, lessons</text>
+<!-- staging -->
+<rect class="bx bx--v" x="670" y="96" width="290" height="58" rx="8"/><text class="bt" x="684" y="120">VERCEL &#183; PREVIEWS</text><text class="bs" x="684" y="138">one deployment per branch, Pro plan</text>
+<rect class="bx bx--s" x="670" y="176" width="290" height="58" rx="8"/><text class="bt" x="684" y="200">SUPABASE &#183; STAGING</text><text class="bs" x="684" y="218">Postgres + RLS, Auth, Storage</text>
+<rect class="bx bx--g" x="670" y="256" width="290" height="58" rx="8"/><text class="bt" x="684" y="280">MIGRAR STAGING &#183; WORKFLOW</text><text class="bs" x="684" y="298">applies migrations on merge, verified by run id</text>
+<rect class="bx bx--c" x="670" y="336" width="290" height="58" rx="8"/><text class="bt" x="684" y="360">SENTRY &#183; STAGING</text><text class="bs" x="684" y="378">caught the silent IndexedDB failure</text>
+<g class="gate"><rect class="bx" x="670" y="420" width="290" height="58" rx="8" stroke="rgba(34,197,94,.6)"/><text class="bt" x="684" y="444" fill="#bbf7d0">VISUAL PASS &#183; I&#209;IGO</text><text class="bs" x="684" y="462">every provisional screen, on a real phone</text></g>
+<!-- production -->
+<g class="gate"><rect class="bx" x="1020" y="96" width="370" height="58" rx="8" stroke="rgba(34,197,94,.6)"/><text class="bt" x="1034" y="120" fill="#bbf7d0">PROMOVER.YML &#183; /aprobar</text><text class="bs" x="1034" y="138">approver account only &#183; migrate, then deploy</text></g>
+<rect class="bx bx--v" x="1020" y="176" width="178" height="58" rx="8"/><text class="bt" x="1034" y="200">VERCEL &#183; PROD</text><text class="bs" x="1034" y="218">Next.js, served SHA checked</text>
+<rect class="bx bx--s" x="1212" y="176" width="178" height="58" rx="8"/><text class="bt" x="1226" y="200">SUPABASE &#183; PROD</text><text class="bs" x="1226" y="218">Pro plan, 61+ migrations</text>
+<rect class="bx bx--c" x="1020" y="256" width="178" height="58" rx="8"/><text class="bt" x="1034" y="280">CLOUDFLARE</text><text class="bs" x="1034" y="298">DNS, landing, Turnstile captcha</text>
+<rect class="bx bx--c" x="1212" y="256" width="178" height="58" rx="8"/><text class="bt" x="1226" y="280">R2 &#183; BACKUPS</text><text class="bs" x="1226" y="298">storage backup, restore tested</text>
+<rect class="bx bx--c" x="1020" y="336" width="178" height="58" rx="8"/><text class="bt" x="1034" y="360">SENTRY &#183; PROD</text><text class="bs" x="1034" y="378">errors by release SHA</text>
+<rect class="bx bx--c" x="1212" y="336" width="178" height="58" rx="8"/><text class="bt" x="1226" y="360">RESEND &#183; SMTP</text><text class="bs" x="1226" y="378">magic links, es-MX templates</text>
+<rect class="bx bx--s" x="1020" y="420" width="370" height="58" rx="8"/><text class="bt" x="1034" y="444">CLAUDE API</text><text class="bs" x="1034" y="462">recognition, VIN from plate, document extraction &#183; behind flags until the pen test passes</text>
+<!-- arrows -->
+<path class="ar" d="M260 205 L320 205"/><text class="al" x="263" y="196">components</text>
+<path class="ar" d="M465 154 L465 176"/><path class="ar" d="M465 250 L465 272"/><text class="al" x="474" y="265">PR + 5 checks</text>
+<path class="ar" d="M610 301 L640 301 L640 125 L670 125"/><text class="al" x="614" y="118">merge</text>
+<path class="ar" d="M610 301 L640 301 L640 285 L670 285"/>
+<path class="ar" d="M815 314 L815 336"/><path class="ar" d="M815 394 L815 420"/>
+<path class="ar ar--h" d="M960 449 L990 449 L990 125 L1020 125"/><text class="al" x="966" y="118" fill="var(--up)">PASS + P1..P9</text>
+<path class="ar" d="M1109 154 L1109 176"/><path class="ar" d="M1301 154 L1301 176"/>
+<path class="ar" d="M465 420 L465 330" style="marker-end:none;stroke-dasharray:3 3"/><path class="ar" d="M260 449 L320 449" style="stroke-dasharray:3 3"/><text class="al" x="263" y="440">mirror</text>
+</svg>
+  </div>
+  <p class="cs__img-cap">Four zones, one road to production. Green boxes are the two places a human has to act. The lead agent has credentials for the first two zones only.</p>
+
+  <div class="mcs" data-reveal>
+    <div class="mcs__i"><span class="mcs__n">FIGMA &#8594; CODE</span><span class="mcs__t">A published token library and a 26 component kit. Components carry the same name in Figma and in code (shadcn convention, own ones prefixed). The dise&#241;o agent owns the library and reviews every PR with a screen against it.</span></div>
+    <div class="mcs__i"><span class="mcs__n">ISOLATED WORKERS</span><span class="mcs__t">Each ticket runs in its own git worktree and, if it touches data, its own local Supabase stack with its own project id and ports. Workers never see the main checkout and never run linked to a remote database.</span></div>
+    <div class="mcs__i"><span class="mcs__n">STAGING IS REAL</span><span class="mcs__t">Custom SMTP, TOTP, captcha, Sentry and the migration workflow all exist in staging exactly as in production. Every screen is PASSed there by a human before it is a candidate.</span></div>
+    <div class="mcs__i"><span class="mcs__n">ONE ROAD IN</span><span class="mcs__t">Production changes only through <code>promover.yml</code>, triggered by an <code>/aprobar</code> from the approver account. Migration first, deploy second, served SHA verified after. Rules 27 and 28 exist so the lead cannot route around it.</span></div>
+  </div>
+
+  <!-- 06: Product -->
+  <div class="cs__section" id="s06" data-reveal>
+    <span class="cs__section-num">06 The Product</span>
     <h2 class="cs__section-h">A digital passport per car, garages that log every move, parts with custody, and an onboarding that accepts whatever the collector already has.</h2>
     <div class="cs__section-text">
       <p>Owners and managers share one collection with per-action permissions. Each car carries photos, history, maintenance and documents, exportable at any time. Cars belong to garages and every move is logged, individually or in batches. A parts inventory tracks condition, location and who holds each item. Every change writes to an audit log tied to an author and a timestamp.</p>
       <p>Onboarding takes photos, spreadsheets, PDFs or a Drive folder and turns them into draft records for review, or a concierge team does it. From car photos the system suggests make, model, generation, body, colour and year range, and reads the VIN from a plate photo. <strong>Every suggestion needs a human confirmation, and the log records who confirmed it.</strong> On top sits the business layer: three visibility states per car, buyer wishlists with match alerts, brokerage for a commission, a valuation block and an on-brand PDF report for insurers and buyers.</p>
-      <p>Design ran in parallel in Figma: a token library, a 26 component kit, the same component names in Figma and code. The brand palette (ink, ivory, orange) is identity and action only; a separate functional colour set feeds every status, chip and alert.</p>
     </div>
   </div>
 
+  <div class="cs__screens" data-reveal>
+    <div class="cs__screen"><img src="../img/acervo/passport-desktop.webp" alt="Car passport in production: Ferrari 296 GTS gallery, garage, documents, parts, history" width="1512" height="689"><span class="cs__screen-label">Passport &#183; gallery, garage, documents, parts, history, report export</span></div>
+    <div class="cs__screen"><img src="../img/acervo/activity.webp" alt="Activity log in production: 1210 changes in 30 days, each tied to a person and a car" width="1512" height="689"><span class="cs__screen-label">Activity &#183; 1,210 changes in 30 days, each with who and on what</span></div>
+  </div>
+  <div class="cs__screens" data-reveal>
+    <div class="cs__screen"><img src="../img/acervo/import.webp" alt="Import my collection: drop folders, photos and spreadsheets" width="1512" height="689"><span class="cs__screen-label">Import &#183; folders, photos and spreadsheets, one folder per car</span></div>
+    <div class="cs__screen"><img src="../img/acervo/cars-light.webp" alt="Cars gallery in light mode" width="1512" height="680"><span class="cs__screen-label">Light mode &#183; the brand&#8217;s ivory canvas, same components</span></div>
+  </div>
+  <p class="cs__img-cap">Production, November 2, 2026. The collection shown is my own test set; the first family collection is loading behind it.</p>
+
   <div class="cs__mobile-pair" data-reveal>
-    <div class="cs__screen"><img src="../img/acervo/car.webp" alt="Car passport: Pontiac Grand Prix NASCAR, garage, documents and parts" width="270" height="590"><span class="cs__screen-label">Car passport</span></div>
-    <div class="cs__screen"><img src="../img/acervo/garages.webp" alt="Garages list with car counts" width="267" height="584"><span class="cs__screen-label">Garages</span></div>
-    <div class="cs__screen"><img src="../img/acervo/parts.webp" alt="Parts inventory with status chips" width="266" height="590"><span class="cs__screen-label">Parts &amp; custody</span></div>
+    <div class="cs__screen"><img src="../img/acervo/car.webp" alt="Car passport on mobile" width="270" height="590"><span class="cs__screen-label">Passport</span></div>
+    <div class="cs__screen"><img src="../img/acervo/garages.webp" alt="Garages on mobile" width="267" height="584"><span class="cs__screen-label">Garages</span></div>
+    <div class="cs__screen"><img src="../img/acervo/parts.webp" alt="Parts on mobile" width="266" height="590"><span class="cs__screen-label">Parts &amp; custody</span></div>
   </div>
   <p class="cs__img-cap">Mobile first and one-handed, for the person standing in the garage on a bad connection. Spanish (es-MX) throughout.</p>
 
-  <div class="cs__evidence cs__evidence--am" data-reveal>
-    <span class="cs__evidence-label">Stack</span>
-    <span class="cs__evidence-text">Next.js, Supabase (Postgres with row level security), Claude API, Vercel, Sentry, Cloudflare, Resend. Nothing exotic on purpose: the team was new, the stack should not be.</span>
-  </div>
 
   <!-- 06: Throughput -->
-  <div class="cs__section" id="s06" data-reveal>
-    <span class="cs__section-num">06 Throughput</span>
+  <div class="cs__section" id="s07" data-reveal>
+    <span class="cs__section-num">07 Throughput</span>
     <h2 class="cs__section-h">Sixty to eighty tickets opened a week, forty shipped, by one person. The gap is not backlog, it is the specialists and the judgment agents generating the next tickets from what they find.</h2>
     <div class="cs__section-text">
       <p>The board is the honest record: 424 tickets opened since September 16, 228 shipped, the rest open, blocked or archived. Week one was infrastructure. Week three was the first promotion. From week four the rhythm settles at roughly forty tickets shipped a week, with a security review or a pen test behind most of them.</p>
@@ -384,8 +490,8 @@
   </div>
 
   <!-- 07: The hardest part -->
-  <div class="cs__section" id="s07" data-reveal>
-    <span class="cs__section-num">07 The Hardest Part</span>
+  <div class="cs__section" id="s08" data-reveal>
+    <span class="cs__section-num">08 The Hardest Part</span>
     <h2 class="cs__section-h">Not a technical problem. Telling the difference between something that looks verified and something that is. Seven times a green check proved nothing, and each time it came through a different door.</h2>
     <div class="cs__section-text">
       <p>I asked the lead agent, on day 48, what the biggest challenge of the whole build had been. Its answer is the most honest thing in this case study, and it is the same lesson the human gates exist for. Every false signal looks exactly like a good one: a green check, a <code>success</code>, a <code>0 pending</code>, a block that matches what was expected. And the result you most want to believe is the one that says you are done.</p>
@@ -425,8 +531,8 @@
   </div>
 
   <!-- 08: Decisions -->
-  <div class="cs__section" id="s08" data-reveal>
-    <span class="cs__section-num">08 Key Decisions</span>
+  <div class="cs__section" id="s09" data-reveal>
+    <span class="cs__section-num">09 Key Decisions</span>
     <h2 class="cs__section-h">What was chosen, what was rejected, and why.</h2>
     <div class="cs__decisions-wrap">
     <table class="cs__decisions">
@@ -444,8 +550,8 @@
   </div>
 
   <!-- 08: Reflection -->
-  <div class="cs__section" id="s09" data-reveal>
-    <span class="cs__section-num">09 What I Learned</span>
+  <div class="cs__section" id="s10" data-reveal>
+    <span class="cs__section-num">10 What I Learned</span>
     <h2 class="cs__section-h">An agent team ships exactly what it can observe. The gates where a human measures on a real device are not overhead. They are the product.</h2>
     <div class="cs__reflection">
       <span class="cs__reflection-h">What I would do differently</span>
@@ -459,6 +565,11 @@
       <span class="cs__reflection-h" style="color:var(--dn)">What failed</span>
       <span class="cs__reflection-text">The first photo upload queue failed silently. On my phone, registering a car took 27 seconds and the UI showed three photos uploaded; Sentry showed an IndexedDB transaction error and zero photos persisted. The agents had written the happy path and tested it on desktop. The ticket stayed open until a correction fixed it and the gate was re-measured on a real phone with the network cut.</span>
     </div>
+  </div>
+
+  <div class="cs__try" data-reveal>
+    <div><span class="cs__try-text">Acervo runs in production, by invitation.</span><span class="cs__try-sub">Request an account and I will approve it, or book 30 minutes and I will walk you through the system live: the agents, a ticket, a promotion.</span></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><a href="https://app.acervogroup.com" target="_blank" rel="noopener" class="cs__try-btn">Open the app &#8594;</a><a href="https://cal.com/inigoangulo/30min" target="_blank" rel="noopener" class="cs__try-btn" style="background:transparent;color:var(--ac2);border:1px solid var(--acb);box-shadow:none">Book a walkthrough</a></div>
   </div>
 
   <div class="cs__next">
@@ -499,6 +610,36 @@ if(navLinks.length){var navObs=new IntersectionObserver(function(es){es.forEach(
     if(link){link.classList.add("active");if(window.innerWidth<=900&&csNav){link.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});}}}})},{threshold:0,rootMargin:"-30% 0px -60% 0px"});
   document.querySelectorAll(".cs__section[id]").forEach(function(s){navObs.observe(s)});
   navLinks.forEach(function(l){l.addEventListener("click",function(e){e.preventDefault();var t=document.querySelector(l.getAttribute("href"));if(t)t.scrollIntoView({behavior:"smooth",block:"start"});})});}
+
+/* ---- svg expander ---- */
+var svglb=document.createElement('div');svglb.className='svglb';svglb.innerHTML='<span class="svglb__close">&times;</span>';document.body.appendChild(svglb);
+function closeSvgLb(){svglb.classList.remove('open');var s=svglb.querySelector('svg');if(s)s.remove();document.body.style.overflow=''}
+document.querySelectorAll('.wf-swim').forEach(function(w){w.setAttribute('role','button');w.setAttribute('tabindex','0');w.setAttribute('aria-label','Expand diagram');
+  function openIt(){var s=w.querySelector('svg');if(!s)return;var c=svglb.querySelector('svg');if(c)c.remove();svglb.appendChild(s.cloneNode(true));svglb.classList.add('open');document.body.style.overflow='hidden'}
+  w.addEventListener('click',openIt);w.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openIt()}});});
+svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSvgLb()});
+
+/* ---- team map ---- */
+(function(){
+  const T={
+    inigo:{r:"Founder. Product, design, scope, money, security.",d:"Only what no agent may: publish in Figma, the visual PASS on staging, the <code>/aprobar</code> of a promotion, founder actions (panels, billing, advisors).",n:"Code. Decisions arrive as <code>374-4 A</code>, never as a pull request."},
+    orq:{r:"A separate Claude session that does what the lead cannot touch.",d:"Runs the read-only queries in production, measures after a promotion, relays Iñigo's instructions. Corrects the lead when a template is passed off as a measurement.",n:"Code, the repo, the build."},
+    partners:{r:"Sales, growth, collector network, field knowledge, the first real collection.",d:"Bring collectors and requests. Their requests enter the system as tickets, like everyone else's.",n:"The repository. No authority over it at all."},
+    lead:{r:"The engineering manager. Opus, main session.",d:"Decomposes tickets, launches workers in their own worktrees, integrates, merges with the five checks green on the exact SHA, prepares promotions. Keeps <code>docs/state.md</code>, <code>docs/decisions/</code> and Notion in sync.",n:"<code>promover.yml</code> or any production flow (rule 27). No Vercel credentials. No production data."},
+    datos:{r:"Data specialist. Sonnet.",d:"Migrations, row level security, triggers, generated types, synthetic seeds.",n:"Anything outside <code>supabase/migrations</code>. It is also the only one allowed inside."},
+    backend:{r:"Backend specialist. Sonnet.",d:"Server Actions, Route Handlers, Edge Functions, the crypto lib, search.",n:"Migrations and visual components."},
+    frontend:{r:"Frontend specialist. Sonnet.",d:"Screens, components, PWA, the photo upload queue, accessibility.",n:"Queries to the database."},
+    iadocs:{r:"Document AI specialist. Sonnet.",d:"Extraction prompts, schemas, evaluation against 30 synthetic documents.",n:"The interface."},
+    diseno:{r:"Design authority. Opus.",d:"Flows, states and copy before anything is built. Owns the Figma component library. Design review of every PR with a screen.",n:"Code. It corrects, it does not invent: a missing value is escalated, never guessed."},
+    revisor:{r:"Code reviewer. Opus.",d:"Reviews every PR before Iñigo sees it and returns a list of concrete failures.",n:"Style and opinions."},
+    seguridad:{r:"Security. Opus. Two modes.",d:"Mode 1 reviews PRs touching migrations, Auth, Storage, Server Actions or AI. Mode 2 pen tests the whole candidate before each promotion. It demonstrates failures.",n:"Fixing anything. Production, panels, Auth, merges."}
+  };
+  const root=document.getElementById("team");if(!root)return;
+  const R=document.getElementById("tmRole"),D=document.getElementById("tmDoes"),N=document.getElementById("tmNever");
+  function set(k){root.querySelectorAll(".nd").forEach(n=>n.classList.toggle("on",n.dataset.k===k));R.innerHTML=T[k].r;D.innerHTML=T[k].d;N.innerHTML=T[k].n;}
+  root.querySelectorAll(".nd").forEach(n=>n.addEventListener("click",()=>set(n.dataset.k)));
+  set("lead");
+})();
 
 /* ---- interactive flows ---- */
 const FLOWS={
