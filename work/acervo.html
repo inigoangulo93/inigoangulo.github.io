@@ -84,7 +84,14 @@
       <p><strong>The business layer.</strong> Each car has one of three visibility states (private, open to offers, for sale). Buyers keep wishlists and get match alerts; Acervo handles brokerage and paperwork for a commission. A per-car valuation block and an on-brand PDF report close the loop for insurers and buyers.</p>
       <p><strong>The machine behind it.</strong> Next.js, Supabase (Postgres with row level security), Claude API, Vercel, Sentry, Cloudflare. Two environments with a promotion workflow: a candidate SHA is built and migrated in staging, passes a security review by a dedicated pen test agent, and is promoted to production only with an explicit approval. Storage backups to R2 with a tested restore before the first real collection was loaded.</p>
     </div>
-    <div class="cs__img" data-reveal><img src="../img/acervo/garage.webp" alt="Acervo garage view" width="1920" height="720"></div>
+    <div class="cs__img cs__img--wide" data-reveal><img src="../img/acervo/dashboard.webp" alt="Acervo collection dashboard: 28 cars, 3 garages, 37 parts, with distribution by garage" width="1511" height="671"></div>
+    <div class="cs__img-cap">Owner dashboard: one collection, its garages, parts and documents, and the distribution the owner actually asks about (by garage, brand, decade, situation).</div>
+    <div class="cs__mobile-pair" data-reveal>
+      <div class="cs__screen"><img src="../img/acervo/car.webp" alt="Car passport: Pontiac Grand Prix NASCAR, garage, documents and parts" width="270" height="590"><span class="cs__screen-label">Car passport</span></div>
+      <div class="cs__screen"><img src="../img/acervo/garages.webp" alt="Garages list with car counts" width="267" height="584"><span class="cs__screen-label">Garages</span></div>
+      <div class="cs__screen"><img src="../img/acervo/parts.webp" alt="Parts inventory with status chips" width="266" height="590"><span class="cs__screen-label">Parts &amp; custody</span></div>
+    </div>
+    <div class="cs__img-cap">Mobile first, one-handed, for the person standing in the garage: passport, garages and parts with status (in inventory, mounted, wanted).</div>
     <div class="cs__evidence">
       <span class="cs__evidence-label">The team</span>
       <span class="cs__evidence-text">One lead agent (planning, orchestration, PRs) on the strongest model; specialist agents for data and migrations, UI components, security and QA pinned to cheaper models in their frontmatter. 26 UI components designed in Figma as a token library and built with the same names in code. I merged every PR for the first two weeks, then let the lead merge its own non critical PRs once the review rules held.</span>
@@ -154,7 +161,7 @@ document.querySelectorAll("[data-reveal]").forEach(el=>obs.observe(el));
 const prog=document.getElementById("progress");
 window.addEventListener("scroll",()=>{const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-window.innerHeight;prog.style.width=Math.min(100,s/h*100)+"%"},{passive:true});
 const lb=document.getElementById("lb"),lbImg=lb.querySelector("img");
-document.querySelectorAll(".cs__img img").forEach(im=>im.addEventListener("click",()=>{lbImg.src=im.src;lb.classList.add("open")}));
+document.querySelectorAll(".cs__img img, .cs__screen img").forEach(im=>im.addEventListener("click",()=>{lbImg.src=im.src;lb.classList.add("open")}));
 lb.addEventListener("click",()=>lb.classList.remove("open"));
 </script>
 
