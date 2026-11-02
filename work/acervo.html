@@ -9,11 +9,19 @@
 <meta property="og:description" content="How I scoped, designed and shipped a production platform for automotive collections with a Claude Code agent team: 230+ tickets, 61 migrations, security gates, promotion workflow.">
 <meta property="og:image" content="https://inigoangulo.com/img/og-acervo.png">
 <meta property="og:type" content="article">
+<meta property="og:url" content="https://inigoangulo.com/work/acervo.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Acervo / Inigo Angulo">
+<meta name="twitter:description" content="A production platform for serious car collections, built by one person and a team of AI agents. First commit to production in 17 days.">
+<meta name="twitter:image" content="https://inigoangulo.com/img/og-acervo.png">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="cs.css">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
 </head>
 <body>
 
@@ -21,8 +29,22 @@
 
 <nav class="cs-bar"><div class="cs-bar__inner">
   <a href="../">&#8592; Back to portfolio</a>
-  <span class="cs-bar__title"><span class="cs-bar__dot"></span>Acervo</span>
+  <span class="cs-bar__title"><span class="cs-bar__dot"></span>ACERVO</span>
+  <span class="cs-bar__section"></span>
 </div></nav>
+
+<div class="cs-wrap">
+<nav class="cs-nav" id="csNav">
+<a href="#s01" class="cs-nav__link"><span class="cs-nav__num">01</span>Situation</a>
+<a href="#s02" class="cs-nav__link"><span class="cs-nav__num">02</span>Problem</a>
+<a href="#s03" class="cs-nav__link"><span class="cs-nav__num">03</span>Agent Team</a>
+<a href="#s04" class="cs-nav__link"><span class="cs-nav__num">04</span>Product</a>
+<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>Shipping</a>
+<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>Decisions</a>
+<a href="#s07" class="cs-nav__link"><span class="cs-nav__num">07</span>Impact</a>
+<a href="#s08" class="cs-nav__link"><span class="cs-nav__num">08</span>Reflection</a>
+<a href="#" class="cs-nav__top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">&#8593; Top</a>
+</nav>
 
 <article class="cs">
 
@@ -213,16 +235,48 @@
   </div>
 
 </article>
+</div><!-- /cs-wrap -->
 
 <div class="lb" id="lb"><span class="lb__close">&times;</span><img alt=""></div>
 <script>
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("vis");obs.unobserve(e.target)}})},{threshold:.12});
+document.body.classList.add("js");
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("vis");obs.unobserve(e.target)}})},{threshold:.1});
 document.querySelectorAll("[data-reveal]").forEach(el=>obs.observe(el));
 const prog=document.getElementById("progress");
 window.addEventListener("scroll",()=>{const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-window.innerHeight;prog.style.width=Math.min(100,s/h*100)+"%"},{passive:true});
-const lb=document.getElementById("lb"),lbImg=lb.querySelector("img");
-document.querySelectorAll(".cs__img img, .cs__screen img").forEach(im=>im.addEventListener("click",()=>{lbImg.src=im.src;lb.classList.add("open")}));
-lb.addEventListener("click",()=>lb.classList.remove("open"));
+const secLabel=document.querySelector(".cs-bar__section");
+if(secLabel){
+  const secs=document.querySelectorAll(".cs__section[data-reveal]");
+  const secObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const n=e.target.querySelector(".cs__section-num");if(n){secLabel.textContent=n.textContent.trim();secLabel.classList.add("active")}}})},{threshold:0,rootMargin:"-50% 0px -40% 0px"});
+  secs.forEach(s=>secObs.observe(s));
+}
+function animateValue(el,end,suffix,prefix,duration){
+  const start=0;const startTime=performance.now();const isFloat=String(end).includes(".");
+  function update(now){const p=Math.min((now-startTime)/duration,1);const eased=1-Math.pow(1-p,3);const val=start+(end-start)*eased;
+    el.textContent=prefix+(isFloat?val.toFixed(1):Math.round(val))+suffix;if(p<1)requestAnimationFrame(update);}
+  requestAnimationFrame(update);
+}
+const metricObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&!e.target.dataset.counted){
+  e.target.dataset.counted="1";const el=e.target.querySelector(".cs__metric-val");if(!el)return;
+  const raw=el.textContent.trim();const match=raw.match(/^([^\d]*?)([\d.]+)(.*)$/);
+  if(match){const prefix=match[1],num=parseFloat(match[2]),suffix=match[3];animateValue(el,num,suffix,prefix,800);}
+}})},{threshold:.3});
+document.querySelectorAll(".cs__metric").forEach(m=>metricObs.observe(m));
+const lb=document.getElementById("lb");
+if(lb){const lbi=lb.querySelector("img"),lbc=lb.querySelector(".lb__close");
+document.querySelectorAll(".cs__img img, .cs__screen img").forEach(i=>{i.addEventListener("click",()=>{lbi.src=i.src;lbi.alt=i.alt||"";lb.classList.add("open");document.body.style.overflow="hidden"})});
+function closeLb(){lb.classList.remove("open");document.body.style.overflow=""}
+lbc.addEventListener("click",closeLb);lb.addEventListener("click",e=>{if(e.target===lb)closeLb()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLb()});}
+var navLinks=document.querySelectorAll(".cs-nav__link");var csNav=document.getElementById("csNav");
+if(navLinks.length){
+  var navObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
+    navLinks.forEach(function(l){l.classList.remove("active")});var id=e.target.id;
+    var link=document.querySelector('.cs-nav__link[href="#'+id+'"]');
+    if(link){link.classList.add("active");if(window.innerWidth<=900&&csNav){link.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});}}
+  }})},{threshold:0,rootMargin:"-30% 0px -60% 0px"});
+  document.querySelectorAll(".cs__section[id]").forEach(function(s){navObs.observe(s)});
+  navLinks.forEach(function(l){l.addEventListener("click",function(e){e.preventDefault();var t=document.querySelector(l.getAttribute("href"));if(t)t.scrollIntoView({behavior:"smooth",block:"start"});})});
+}
 </script>
 </body>
 </html>
