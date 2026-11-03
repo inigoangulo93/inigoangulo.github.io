@@ -815,8 +815,6 @@ window.addEventListener('DOMContentLoaded',function(){
 .door__k{font-family:var(--m);font-size:.66rem;color:var(--ac);letter-spacing:.14em;text-transform:uppercase}
 .door__h{font-family:var(--s);font-size:1.2rem;font-weight:800;letter-spacing:-.02em;line-height:1.25}
 .door__p{font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.6}
-.door__fmt{font-family:var(--m);font-size:.68rem;color:var(--t3);margin-top:6px;padding-top:12px;border-top:1px solid var(--b1)}
-.door__fmt b{color:var(--t1);font-weight:600}
 @media(max-width:900px){.doors{grid-template-columns:1fr}}
 
 /* shared svg styles */
@@ -870,21 +868,27 @@ window.addEventListener('DOMContentLoaded',function(){
 .a3 .drop{fill:var(--dn);opacity:.85;animation:a3drip 1.4s linear infinite}
 .a3 .drop.d2{animation-delay:.45s}.a3 .drop.d3{animation-delay:.9s}
 @keyframes a3drip{0%{transform:translateY(0);opacity:0}15%{opacity:.85}100%{transform:translateY(34px);opacity:0}}
-.a3 .seal{fill:none;stroke:var(--ac);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:40;stroke-dashoffset:40}
-.a3 .fill{fill:rgba(45,212,191,.22);transform-origin:50% 100%;transform:scaleY(0);transition:transform .9s .5s var(--e)}
-.a3 .out{fill:var(--ac);transform-origin:0 50%;transform:scaleX(.42);transition:transform .9s .8s var(--e)}
-.a3 .lift{font-family:var(--s);font-weight:800;font-size:13px;fill:var(--up);opacity:0;transition:opacity .4s 1.5s,transform .5s 1.5s var(--e);transform:translateY(6px)}
-@keyframes a3seal{to{stroke-dashoffset:0}}
-.door:hover .a3 .drop{animation:none;opacity:0;transition:opacity .3s}
-.door:hover .a3 .seal{animation:a3seal .5s .2s var(--e) forwards}
+.a3 .fl{fill:rgba(45,212,191,.22);transform-origin:50% 0;transform:scaleY(0);transition:transform .45s var(--e)}
+.a3 .f1{transition-delay:.35s}.a3 .f2{transition-delay:.75s}.a3 .f3{transition-delay:1.1s}
+.a3 .patch{opacity:0;transition:opacity .25s .1s}
+.a3 .clamp{fill:none;stroke:var(--ac);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.a3 .pulse{fill:none;stroke:var(--ac);stroke-width:1.2;opacity:0;transform-origin:222px 52px}
+.a3 .stream{fill:none;stroke:var(--ac);stroke-width:2;stroke-linecap:round;stroke-dasharray:10;stroke-dashoffset:10;transition:stroke-dashoffset .25s 1.45s}
+.a3 .out{fill:var(--ac);transform-origin:0 50%;transform:scaleX(.42);transition:transform .7s 1.6s var(--e)}
+.a3 .lift{font-family:var(--s);font-weight:800;font-size:13px;fill:var(--up);opacity:0;transition:opacity .4s 2s,transform .5s 2s var(--e);transform:translateY(6px)}
+@keyframes a3pulse{0%{opacity:.9;transform:scale(.4)}100%{opacity:0;transform:scale(2.6)}}
+.door:hover .a3 .drop{animation:none;opacity:0;transition:opacity .25s}
+.door:hover .a3 .patch{opacity:1}
+.door:hover .a3 .pulse{animation:a3pulse .8s .15s var(--e) forwards}
 .door:hover .a3 .stage{stroke:var(--acb);fill:rgba(45,212,191,.05)}
-.door:hover .a3 .fill{transform:scaleY(1)}
+.door:hover .a3 .fl{transform:scaleY(1)}
+.door:hover .a3 .stream{stroke-dashoffset:0}
 .door:hover .a3 .out{transform:scaleX(1)}
 .door:hover .a3 .lift{opacity:1;transform:translateY(0)}
 
 @media(prefers-reduced-motion:reduce){
  .door,.door *{animation:none !important;transition:none !important}
- .a2 .part{opacity:1;transform:none}.a2 .ph{opacity:0}.a3 .fill{transform:scaleY(1)}.a3 .out{transform:scaleX(1)}.a3 .drop{opacity:0}
+ .a2 .part{opacity:1;transform:none}.a2 .ph{opacity:0}.a3 .fl{transform:scaleY(1)}.a3 .out{transform:scaleX(1)}.a3 .drop{opacity:0}.a3 .patch{opacity:1}.a3 .stream{stroke-dashoffset:0}
 }
 </style>
 <div class="layer layer--raised" id="work-with-me"><div class="mx"><div class="sh"><span>// work with me</span><span>one builder &#183; three packages</span></div>
@@ -914,7 +918,6 @@ window.addEventListener('DOMContentLoaded',function(){
 <span class="door__k">01 &#183; AI build &amp; deployment</span>
 <h3 class="door__h">Working software, not a roadmap slot.</h3>
 <p class="door__p">I scope what&#8217;s worth building, orchestrate a team of AI agents to build it, and own the rollout to production, inside your business.</p>
-<div class="door__fmt"><b>Build sprint</b> 3 to 6 weeks, fixed scope &#183; <b>AI ops retainer</b> monthly</div>
 </div></div>
 
 <div class="door">
@@ -943,7 +946,6 @@ window.addEventListener('DOMContentLoaded',function(){
 <span class="door__k">02 &#183; Product &amp; UX</span>
 <h3 class="door__h">Senior product and design lead, in one person.</h3>
 <p class="door__p">Ten years turning ambiguous, data-heavy problems into products people trust: checkout, onboarding, design systems, dashboards.</p>
-<div class="door__fmt"><b>Fractional</b> 2 to 3 days a week &#183; <b>Contract</b> 3 to 12 months</div>
 </div></div>
 
 <div class="door">
@@ -952,21 +954,23 @@ window.addEventListener('DOMContentLoaded',function(){
   <path class="stage" d="M80 22 H240 L222 52 H98 Z"/>
   <path class="stage" d="M100 58 H220 L204 88 H116 Z"/>
   <path class="stage" d="M120 94 H200 L188 118 H132 Z"/>
-  <!-- flow fill, grows downward on hover -->
-  <path class="fill" d="M80 22 H240 L222 52 H98 Z M100 58 H220 L204 88 H116 Z M120 94 H200 L188 118 H132 Z"/>
+  <!-- flow, fills stage by stage from the top on hover -->
+  <path class="fl f1" d="M80 22 H240 L222 52 H98 Z"/>
+  <path class="fl f2" d="M100 58 H220 L204 88 H116 Z"/>
+  <path class="fl f3" d="M120 94 H200 L188 118 H132 Z"/>
   <!-- leak between stage 1 and 2 -->
   <g transform="translate(222 52)"><path class="drop d1" d="M0 0 l3 5 a3 3 0 1 1 -6 0 z"/><path class="drop d2" d="M8 -2 l3 5 a3 3 0 1 1 -6 0 z"/><path class="drop d3" d="M-6 2 l3 5 a3 3 0 1 1 -6 0 z"/></g>
-  <path class="seal" d="M208 50 L236 50"/>
-  <!-- output bar -->
+  <!-- patch: a clamp over the leak, pulses once -->
+  <g class="patch"><circle class="pulse" cx="222" cy="52" r="6"/><path class="clamp" d="M212 56 L222 50 L232 56"/></g>
+  <!-- outlet stream and output bar -->
+  <path class="stream" d="M160 118 V126"/>
   <rect class="out" x="120" y="126" width="80" height="6" rx="3"/>
   <text class="lift" x="206" y="133">+11%</text>
-  
 </svg></div>
 <div class="door__body">
 <span class="door__k">03 &#183; CRO &amp; commerce</span>
 <h3 class="door__h">Find where the funnel leaks. Prove the fix.</h3>
 <p class="door__p">Checkout, onboarding and catalogue audits for ecommerce. Agents trace the funnel, I decide what to test first, every fix ships A/B ready.</p>
-<div class="door__fmt"><b>Audit</b> 5 days, fixed price &#183; <b>Experimentation programme</b> ongoing</div>
 </div></div>
 
 </div>
