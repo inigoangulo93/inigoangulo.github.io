@@ -183,6 +183,15 @@
 .ch .lg i{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:6px}
 .ch .bar:hover .bo{stroke:var(--ac2)}
 .ch .bar title{font-family:var(--m)}
+.cs__screens--ev{grid-template-columns:1fr 1fr;margin:20px 0 8px}
+.cs__screens--ev .cs__screen{max-width:none;background:#0d1117}
+.cs__screens--ev .cs__screen{position:relative;display:flex;flex-direction:column;height:auto;aspect-ratio:auto}
+.cs__screens--ev .cs__screen img{position:static;width:100%;height:auto;display:block;object-fit:contain;inset:auto}
+.cs__screens--ev .cs__screen-label{position:static;display:block;margin-top:auto;text-align:left;font-family:var(--m);font-size:10px;letter-spacing:.1em;padding:10px 14px;border-top:1px solid var(--b1)}
+.cs__screens--ev2{grid-template-columns:1fr 1.15fr;align-items:start}
+.cs__screens--ev2 .cs__screen{background:#161616}
+.cs__img--ev{border:1px solid var(--b2);border-radius:12px;overflow:hidden;background:#0a0a0a}
+@media(max-width:760px){.cs__screens--ev{grid-template-columns:1fr}.cs__screens--ev .cs__screen{min-width:0;max-width:none}}
 /* ---- timeline, triplet, failure story, decision stories ---- */
 .tl{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:20px;margin:24px 0 10px}
 .tl__k{font-family:var(--m);font-size:11px;letter-spacing:2.5px;color:var(--ac);display:block;margin-bottom:6px}
@@ -632,6 +641,12 @@
     </div>
   </div>
 
+  <div class="cs__screens cs__screens--ev" data-reveal>
+    <div class="cs__screen"><img src="../img/acervo/evidence/gh-pr502-checks.webp" loading="lazy" alt="GitHub pull request 502 checks: lint, typecheck, tests, mail confirmations, gitleaks and eight e2e jobs, all green" width="966" height="960"><span class="cs__screen-label">GitHub &#183; PR 502, the 14 checks on the final commit</span></div>
+    <div class="cs__screen"><img src="../img/acervo/evidence/gh-promotion-run.webp" loading="lazy" alt="GitHub Actions promotion job: eight numbered steps from verifying the approved commit to verifying the served commit, 4 minutes 2 seconds" width="1568" height="779"><span class="cs__screen-label">GitHub Actions &#183; the promotion job of release 15, step names as written in Spanish</span></div>
+  </div>
+  <p class="cs__img-cap">Left: what the lead needed before merging. Right: what the workflow checks before anything reaches production, in order: approved commit on disk, exists on main, five checks green on it, descends from what is served, build, migrate, deploy, verify the served commit. Captured from the repository on November 3.</p>
+
   <div class="tri" data-reveal>
     <div class="tri__i"><span class="tri__n">445</span><span class="tri__h">MERGES</span><span class="tri__t">A pull request accepted into main. Code, not a release. Done by the lead with five checks green on the exact commit.</span></div>
     <div class="tri__a">&#8594;</div>
@@ -768,6 +783,12 @@
   </div>
   <p class="cs__img-cap">Teal is the collection&#8217;s data, violet is people and access, grey is global, amber is what the AI may touch, green is the record. Tap to expand.</p>
 
+  <div class="cs__screens cs__screens--ev cs__screens--ev2" data-reveal>
+    <div class="cs__screen"><img src="../img/acervo/evidence/supabase-vehicles-schema.webp" loading="lazy" alt="Supabase schema visualizer: the vehicles table with vin_encrypted, vin_last4, plate_encrypted, plate_last4, status, visibility, location_since and status_since, linked to locations" width="1060" height="1070"><span class="cs__screen-label">Supabase &#183; the vehicles table in the staging schema</span></div>
+    <div class="cs__screen"><img src="../img/acervo/evidence/supabase-vehicles-policies.webp" loading="lazy" alt="Supabase policies for the vehicles table: RLS enabled, three policies, insert, select and update, no delete" width="1100" height="445"><span class="cs__screen-label">Supabase &#183; row level security on vehicles: insert, select, update. No delete</span></div>
+  </div>
+  <p class="cs__img-cap">The same entity, as the base sees it. VIN and plate are stored as encrypted bytes plus their last four characters; the blind index is a separate column. Where a car lives and what is happening to it are two columns with two dates. And there is no delete policy: a car leaves the collection by a dated retirement, never by a row disappearing. Staging schema, identical to production by migration.</p>
+
   <div class="mcs mcs--3" data-reveal>
     <div class="mcs__i"><span class="mcs__n">ISOLATION IN THE BASE, NOT THE UI</span><span class="mcs__t">Every business table has a collection id and a row level policy. A foreign key between two such tables is checked by a trigger so a row can never point at another collection, and a lint rule turns red when a new key arrives without one.</span></div>
     <div class="mcs__i"><span class="mcs__n">THE AI PROPOSES, A PERSON DISPOSES</span><span class="mcs__t">Recognition and document extraction write only to proposals. Accepting one is a single transaction that applies the value and records who decided. No code path writes a pending proposal into a car, a part or a document, and a test proves it.</span></div>
@@ -832,9 +853,12 @@
     <span class="pt__sub">15 numbered releases, 19 distinct commits served, 20 green runs (one commit promoted twice while fixing the domain). Five failures: the very first run on October 1 died on a missing workflow permission, two more on October 3 while the domain still served a 404, one retry, and one on a configuration change. A failed promotion changes nothing in production: migration and deploy both wait for the previous step&#8217;s identifier.</span>
   </div>
 
+  <div class="cs__img cs__img--wide cs__img--ev" data-reveal><img src="../img/acervo/evidence/vercel-prod-deployments.webp" loading="lazy" alt="Vercel production deployments list: nine releases, each Ready, each with its commit hash, from October 19 to November 2" width="1568" height="558"></div>
+  <p class="cs__img-cap">The hosting side of the same story: the production project&#8217;s deployment list, read on November 3. Every row is one promoted commit, and the hashes match the promotion runs above (d59445b is release 15, 5f3d15d release 14). Commit titles are the repository&#8217;s own, in Spanish.</p>
+
   <div class="cs__evidence" data-reveal>
     <span class="cs__evidence-label">Where the numbers come from</span>
-    <span class="cs__evidence-text">Pull requests, CI runs and promotion runs: the GitHub REST API for the repository, read on November 3, 2026. Tickets opened and shipped: the task board, counted by week of creation. Tests: counted in the repository (vitest files, pgTAP plans, Playwright specs). What I could not read from here and do not claim: the hosting dashboard&#8217;s own deployment list and the production database&#8217;s applied migration count.</span>
+    <span class="cs__evidence-text">Pull requests, CI runs and promotion runs: the GitHub REST API for the repository, read on November 3, 2026. Tickets opened and shipped: the task board, counted by week of creation. Tests: counted in the repository (vitest files, pgTAP plans, Playwright specs). Screenshots: GitHub, the hosting dashboard and the staging database console, captured on November 3 and cropped. What I do not claim: the production database&#8217;s applied migration count, which I did not read directly.</span>
   </div>
 
   <!-- 10: Trust -->
