@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inigo Angulo · Product Builder · AI Build, Product &amp; UX, CRO</title>
-<meta name="description" content="I scope what's worth building, design it, and ship it with AI agent teams. Ten years in product and commerce; now delivering production software solo, in weeks.">
+<title>Inigo Angulo · Product Designer &amp; Product Builder</title>
+<meta name="description" content="I decide what's worth building. Then I build it. Ten years in product and commerce (GetYourGuide, ING, WPP, Crowdhouse); now shipping with AI agent teams, from scope to production.">
 <meta property="og:title" content="Inigo Angulo &#183; Product Builder &#183; AI Build, Product &amp; UX, CRO">
-<meta property="og:description" content="I scope what's worth building, design it, and ship it with AI agent teams. Ten years in product and commerce; now delivering production software solo, in weeks.">
+<meta property="og:description" content="I decide what's worth building. Then I build it. Ten years in product and commerce (GetYourGuide, ING, WPP, Crowdhouse); now shipping with AI agent teams, from scope to production.">
 <meta property="og:image" content="https://inigoangulo.com/img/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -16,7 +16,7 @@
 <meta property="og:url" content="https://inigoangulo.com">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Inigo Angulo &#183; Product Builder &#183; AI Build, Product &amp; UX, CRO">
-<meta name="twitter:description" content="I scope what's worth building, design it, and ship it with AI agent teams. Ten years in product and commerce; now delivering production software solo, in weeks.">
+<meta name="twitter:description" content="I decide what's worth building. Then I build it. Ten years in product and commerce (GetYourGuide, ING, WPP, Crowdhouse); now shipping with AI agent teams, from scope to production.">
 <meta name="twitter:image" content="https://inigoangulo.com/img/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -214,6 +214,10 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .hero__proof-ctx{font-size:.6rem;color:var(--t3);font-family:var(--m);max-width:160px;line-height:1.4}
 .hero__cta{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:#000;background:var(--ac);padding:12px 28px;border-radius:8px;transition:all .3s var(--e);box-shadow:0 0 20px var(--acg);letter-spacing:.01em}
 .hero__cta:hover{background:var(--ac2);box-shadow:0 4px 28px var(--acg),0 0 80px var(--acg2);transform:translateY(-2px)}
+.hero__sub{font-family:var(--m);font-size:.74rem;color:var(--ac2);letter-spacing:.04em;margin:-16px 0 36px;animation:heroFadeUp 1s var(--e) both;animation-delay:.8s}
+.hero__ctas{display:flex;align-items:center;gap:24px;flex-wrap:wrap;animation:heroFadeUp 1s var(--e) both;animation-delay:1s}
+.hero__cta2{font-family:var(--m);font-size:.78rem;color:var(--t2);padding:12px 4px;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.hero__cta2:hover{color:var(--ac2);border-bottom-color:var(--acb)}
 .hero__meta{position:absolute;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:flex-end;gap:6px;opacity:.25}
 .hero__meta span{font-size:.58rem;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;writing-mode:vertical-rl}
 
@@ -539,19 +543,25 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   .hero__h{font-size:1.8rem !important;letter-spacing:-.03em;line-height:1.1;font-weight:300 !important}
   .hero__keyword{font-size:3.2rem !important;margin:4px 0 28px}
   .hero__p{font-size:.88rem;line-height:1.7}
-  .hero__proof{gap:0;margin-bottom:32px;flex-wrap:nowrap;overflow-x:auto}
-  .hero__proof-item{padding:0 14px 0 0 !important;flex-shrink:0}
-  .hero__proof-item:not(:first-child){padding-left:14px !important}
-  .hero__proof-val{font-size:1.4rem}
-  .hero__proof-ctx{display:none}
-  .hero__cta{width:100%;justify-content:center;padding:14px 24px}
+  .hero__p{max-width:none;margin-bottom:28px}
+  .hero__sub{margin:-12px 0 28px;font-size:.7rem}
+  .hero__proof{display:grid;grid-template-columns:1fr 1fr;gap:20px 16px;margin-bottom:32px}
+  .hero__proof-item{padding:0 0 0 12px !important;border-left:1px solid var(--b1)}
+  .hero__proof-item::after{display:none}
+  .hero__proof-val{font-size:1.7rem}
+  .hero__proof-label{font-size:.72rem}
+  .hero__proof-ctx{font-size:.6rem;max-width:none}
+  .hero__ctas{gap:8px 20px}
+  .hero__cta{padding:14px 28px}
+  .hero__cta2{padding:12px 4px}
   .hero__meta{display:none}
 
   /* Clients: scrollable row */
-  .clients{padding:24px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .clients{padding:28px 20px}
   .clients__label{font-size:.58rem;margin-bottom:16px}
-  .clients__grid{flex-wrap:nowrap;justify-content:flex-start;gap:0;min-width:max-content}
-  .clients__item{min-width:auto;padding:8px 16px;font-size:.72rem;white-space:nowrap}
+  .clients__grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px}
+  .clients__item{min-width:0;max-width:none;padding:10px 8px;font-size:.78rem;white-space:nowrap}
+  .clients__item::after{display:none}
 
   /* Thinking timeline — no column on mobile */
   /* Hide the timeline line divs on mobile */
@@ -730,16 +740,18 @@ window.addEventListener('DOMContentLoaded',function(){
 <section class="v on" id="v-index">
 
 <div class="hero-wrap"><div class="hero-mesh" id="heroMesh"></div><div class="mx hero">
-<h1 class="hero__h">I scope what&#8217;s worth building,<br>design it, and ship it with AI agent teams.</h1>
+<div class="hero__tag">Product designer &#183; Product builder</div>
+<h1 class="hero__h">I decide what&#8217;s worth building.<br>Then I build it.</h1>
 <span class="hero__keyword">Inigo <em>Angulo</em></span>
-<p class="hero__p">Ten years in product and commerce: GetYourGuide, ING, WPP, Crowdhouse. In 2026 I started shipping the software myself, leading teams of AI agents from scope to production. The product judgment didn&#8217;t change. The distance between a decision and a shipped feature did.</p>
+<p class="hero__p">Ten years in product and commerce: GetYourGuide, ING, WPP and Crowdhouse. Now I combine product strategy, design and AI agent teams to take products from scope to production.</p>
+<p class="hero__sub">Same product judgment. Shorter distance to shipping.</p>
 <div class="hero__proof">
-<div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">17 days</span><span class="hero__proof-label">Idea to production</span><span class="hero__proof-ctx">Acervo &#183; solo, with agents</span></div>
-<div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">+11%</span><span class="hero__proof-label">Checkout conversion</span><span class="hero__proof-ctx">GetYourGuide &#183; 4 EU markets</span></div>
-<div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">+34%</span><span class="hero__proof-label">Booking conversion</span><span class="hero__proof-ctx">ENSO &#183; PropTech</span></div>
-<div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">1&#8594;36</span><span class="hero__proof-label">Packages per brief</span><span class="hero__proof-ctx">Agentic pipeline &#183; NDA</span></div>
+<div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">17 days</span><span class="hero__proof-label">Idea to production</span><span class="hero__proof-ctx">Acervo</span></div>
+<div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">+11%</span><span class="hero__proof-label">Checkout conversion</span><span class="hero__proof-ctx">GetYourGuide</span></div>
+<div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">+34%</span><span class="hero__proof-label">Booking conversion</span><span class="hero__proof-ctx">ENSO</span></div>
+<div class="hero__proof-item"><span class="hero__proof-val hero__proof-val--g">1&#8594;36</span><span class="hero__proof-label">Packages per brief</span><span class="hero__proof-ctx">Agentic pipeline</span></div>
 </div>
-<div style="display:flex;gap:12px;flex-wrap:wrap"><a href="#contact" class="hero__cta" onclick="event.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in touch &#8594;</a><a href="inigo-angulo-cv-2026.pdf" download class="hero__cta" style="background:transparent;color:var(--ac2);border:1px solid var(--acb);box-shadow:none" onmouseover="this.style.background='var(--acg2)';this.style.boxShadow='0 0 20px var(--acg)'" onmouseout="this.style.background='transparent';this.style.boxShadow='none'">Download CV &#8595;</a></div>
+<div class="hero__ctas"><a href="#contact" class="hero__cta" onclick="event.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in touch &#8594;</a><a href="inigo-angulo-cv-2026.pdf" download class="hero__cta2">Download CV &#8595;</a></div>
 </div></div>
 
 <div class="clients"><div class="clients__inner"><p class="clients__label">Teams I&#8217;ve worked with</p><div class="clients__grid"><span class="clients__item">GetYourGuide</span><span class="clients__item">ING Bank</span><span class="clients__item">Adecco Group</span><span class="clients__item">Ferrari Switzerland</span><span class="clients__item">Moderna</span><span class="clients__item">Schneider Electric</span></div></div></div>
