@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ShelfFlow · Gate 4 — interactive demo · Inigo Angulo</title>
+<title>ShelfFlow / Gate 4 — interactive demo / Inigo Angulo</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <meta name="description" content="Hold Gate 4 yourself: an operable slice of ShelfFlow's decision architecture. Approve, reject, and meet the guardrail that blocks unreviewed batch approvals.">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
@@ -82,7 +82,7 @@ body.embed .wrap{margin-top:0!important}
 <script>if(new URLSearchParams(location.search).get('embed')==='1')document.body.classList.add('embed');</script>
 <nav style="position:fixed;top:0;left:0;right:0;background:rgba(10,10,15,.9);backdrop-filter:blur(8px);border-bottom:1px solid #1e1e28;padding:10px 16px;z-index:10;font-size:11px"><a href="shelfflow.html" style="color:#8a8a98;text-decoration:none">&#8592; Back to the ShelfFlow case study</a></nav>
 <div class="wrap" style="margin-top:34px">
-<p class="tag">SHELFFLOW · INTERACTIVE DEMO · SYNTHETIC DATA</p>
+<p class="tag">SHELFFLOW, INTERACTIVE DEMO, SYNTHETIC DATA</p>
 <h1>Gate 4: you hold launch authority.</h1>
 <p class="sub">AI agents produced the packages. Nothing ships until a human signs each cell. This slice shows 3 of the 6 SKUs — 9 of the 18 launch decisions.</p>
 
@@ -94,10 +94,10 @@ body.embed .wrap{margin-top:0!important}
   <button class="ap" id="apB">Approve B</button>
   <button class="rj" id="rej">Reject</button>
 </div>
-<p class="keys">Keyboard: A / B approve variant · R reject</p>
+<p class="keys">Keyboard: A / B approve variant, R reject</p>
 
 <div class="mx">
-  <p class="sl">MATRIX · 3 OF 6 SKUs × 3 RETAILERS</p>
+  <p class="sl">MATRIX, 3 OF 6 SKUs × 3 RETAILERS</p>
   <div class="mgrid" id="mgrid">
     <div></div><div class="mh" style="color:var(--am)">AMZ</div><div class="mh" style="color:var(--t3)">SEPH</div><div class="mh" style="color:#60a5fa">WMT</div>
   </div>
@@ -135,7 +135,7 @@ function guard(fn){return function(){try{fn.apply(null,arguments)}catch(err){
 SKUS.forEach(function(s,si){
  var lab=document.createElement('div');lab.className='msku';lab.textContent=s;mgrid.appendChild(lab);
  RET.forEach(function(r){
-  var d=document.createElement('div');d.className='dot';d.textContent='·';mgrid.appendChild(d);
+  var d=document.createElement('div');d.className='dot';d.textContent=',';mgrid.appendChild(d);
   cells.push({sku:s,ret:r,st:'pend',v:null,gen:1,dot:d});});});
 
 function log(html){var d=document.createElement('div');
@@ -143,7 +143,7 @@ function log(html){var d=document.createElement('div');
  logEl.prepend(d);while(logEl.children.length>5)logEl.removeChild(logEl.lastChild);}
 function approvedCount(){var n=0;for(var i=0;i<N;i++)if(cells[i].st==='ok')n++;return n}
 function paintDot(c,isCur){c.dot.className='dot'+(c.st==='ok'?' ok':c.st==='rej'?' rej':'')+(isCur?' cur':'');
- c.dot.textContent=c.st==='ok'?c.v:c.st==='rej'?'✗':'·'}
+ c.dot.textContent=c.st==='ok'?c.v:c.st==='rej'?'✗':','}
 function paintAll(){for(var j=0;j<N;j++)paintDot(cells[j],j===cur)}
 function nextPending(){for(var i=0;i<N;i++)if(cells[i].st==='pend')return i;return -1}
 function setHint(t){hint.innerHTML=t}
@@ -159,10 +159,10 @@ function show(i){cur=i;paintAll();
  var c=cells[i];decide.style.display='flex';
  var regen=c.gen>1?'<p class="regen">Regenerated with your reviewer notes — v'+c.gen+'</p>':'';
  card.innerHTML='<p class="cellid">'+c.sku+' × <b>'+c.ret+'</b></p>'
- +'<p class="qn">Decision '+(approvedCount()+1)+' of '+N+' · which variant ships?</p>'+regen
+ +'<p class="qn">Decision '+(approvedCount()+1)+' of '+N+', which variant ships?</p>'+regen
  +'<div class="vars">'
- +'<div class="var"><p class="vl">A · STANDARD</p><p>'+COPY[c.ret][0]+'</p></div>'
- +'<div class="var vb"><p class="vl">B · AI ENHANCED'+(c.gen>1?' · v'+c.gen:'')+'</p><p>'+COPY[c.ret][1]+'</p></div>'
+ +'<div class="var"><p class="vl">A, STANDARD</p><p>'+COPY[c.ret][0]+'</p></div>'
+ +'<div class="var vb"><p class="vl">B, AI ENHANCED'+(c.gen>1?', v'+c.gen:'')+'</p><p>'+COPY[c.ret][1]+'</p></div>'
  +'</div>'}
 
 function afterDecision(){decided++;
@@ -206,9 +206,9 @@ $('ff').onclick=guard(function(){if(ffRunning||launched)return;ffRunning=true;ev
 $('launch').onclick=guard(function(){if(approvedCount()!==N||launched)return;launched=true;ev('launch_approved',{decisions:N});
  msg.textContent='';decide.style.display='none';
  card.innerHTML='<div class="done"><div class="big">✓</div><h2>Launch approved</h2>'
- +'<p><span class="n">'+N+'/'+N+'</span> decisions on this slice · <span class="n">18/18</span> on the full gate<br>'
- +'Every approval has an owner and a timestamp · audit trail complete<br>'
- +'<span class="n">36 packages → Amazon · Sephora · Walmart</span></p></div>';
+ +'<p><span class="n">'+N+'/'+N+'</span> decisions on this slice, <span class="n">18/18</span> on the full gate<br>'
+ +'Every approval has an owner and a timestamp, audit trail complete<br>'
+ +'<span class="n">36 packages → Amazon, Sephora, Walmart</span></p></div>';
  ['batch','ff','launch'].forEach(function(id){$(id).style.display='none'});
  setHint('That is the whole thesis: <b>agents do the work, humans own what ships.</b>');
  log('<span style="color:#22c55e">LAUNCH APPROVED — 36 packages → 3 retailers</span>')});
@@ -217,7 +217,7 @@ document.addEventListener('keydown',guard(function(e){if(cur<0||ffRunning||launc
  var k=(e.key||'').toLowerCase();
  if(k==='a')approve(cur,'A');else if(k==='b')approve(cur,'B');else if(k==='r')reject(cur)}));
 
-log('Gate 4 opened · '+N+' decisions pending · owner: Brand Manager');
+log('Gate 4 opened, '+N+' decisions pending, owner: Brand Manager');
 show(0);
 })();
 
