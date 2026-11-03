@@ -1257,29 +1257,7 @@ window.addEventListener('DOMContentLoaded',function(){
 </section>
 
 <style>
-.lp{border:1px solid var(--b1);border-radius:12px;padding:18px 18px 16px;background:var(--glass);margin:4px 0 14px}
-.lp__head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .lp__k{font-family:var(--m);font-size:.66rem;color:var(--t3);letter-spacing:.12em}
-.lp__tg{display:flex;border:1px solid var(--b2);border-radius:8px;overflow:hidden}
-.lp__tb{font-family:var(--m);font-size:.66rem;letter-spacing:.08em;color:var(--t3);padding:8px 12px;display:flex;flex-direction:column;align-items:center;gap:2px;transition:all .25s}
-.lp__tb i{font-style:normal;font-size:.56rem;color:var(--mut)}
-.lp__tb.on{background:rgba(45,212,191,.12);color:#fff}.lp__tb.on i{color:var(--ac2)}
-.lp__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-.lp__st{border:1px solid var(--b1);border-radius:8px;padding:12px 12px 10px;display:flex;flex-direction:column;gap:6px;min-height:150px;background:rgba(255,255,255,.015)}
-.lp__n{font-family:var(--m);font-size:.6rem;color:var(--ac);letter-spacing:.12em}
-.lp__h{font-family:var(--s);font-size:.95rem;font-weight:800;letter-spacing:-.02em;color:var(--t1)}
-.lp__me{font-family:var(--s);font-size:.76rem;color:var(--t2);line-height:1.45}
-.lp__who{font-family:var(--m);font-size:.64rem;color:var(--t3);line-height:1.5;margin-top:auto;padding-top:8px;border-top:1px dashed var(--b1);transition:opacity .25s,transform .25s}
-.lp.sw .lp__who,.lp.sw .lp__bv,.lp.sw .lp__foot{opacity:0;transform:translateY(4px)}
-.lp.agents .lp__who{color:var(--ac2)}
-.lp__bar{display:flex;align-items:center;gap:12px;margin-top:14px}
-.lp__bl{font-family:var(--m);font-size:.6rem;color:var(--t3);letter-spacing:.12em;white-space:nowrap}
-.lp__fill{flex:1;height:4px;background:var(--b1);border-radius:2px;overflow:hidden}
-.lp__fill i{display:block;height:100%;width:100%;background:var(--t3);transition:width .7s var(--e),background .4s}
-.lp.agents .lp__fill i{width:6%;background:var(--ac)}
-.lp__bv{font-family:var(--m);font-size:.7rem;color:var(--t1);min-width:80px;text-align:right;transition:opacity .25s}
-.lp.agents .lp__bv{color:var(--ac2)}
-.lp__foot{font-family:var(--s);font-size:.8rem;color:var(--t3);margin-top:12px;line-height:1.5;transition:opacity .25s}
 .jd{border:1px solid var(--b1);border-radius:12px;padding:18px;background:var(--glass);margin-bottom:8px}
 .jd__chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .jd__c{font-family:var(--m);font-size:.66rem;letter-spacing:.06em;color:var(--t2);border:1px solid var(--b2);border-radius:6px;padding:7px 11px;transition:all .2s}
@@ -1295,9 +1273,9 @@ window.addEventListener('DOMContentLoaded',function(){
 .hw__i{border:1px solid var(--b1);border-radius:8px;padding:12px 14px}
 .hw__n{font-family:var(--m);font-size:.62rem;color:var(--ac);letter-spacing:.12em;display:block;margin-bottom:6px}
 .hw__t{font-family:var(--s);font-size:.8rem;color:var(--t2);line-height:1.5}
-@media(max-width:900px){.lp__grid{grid-template-columns:1fr 1fr}.lp__st{min-height:0}}
-@media(max-width:600px){.lp__grid{grid-template-columns:1fr}.hw{grid-template-columns:1fr}.jd__ins{grid-template-columns:1fr}.jd__m{text-align:left}.ab-stats{grid-template-columns:1fr 1fr !important}}
-@media(prefers-reduced-motion:reduce){.lp *,.jd *{transition:none !important}}
+
+@media(max-width:600px){.hw{grid-template-columns:1fr}.jd__ins{grid-template-columns:1fr}.jd__m{text-align:left}.ab-stats{grid-template-columns:1fr 1fr !important}}
+@media(prefers-reduced-motion:reduce){.jd *{transition:none !important}}
 </style>
 <section class="v" id="v-logs"><div class="layer"><div class="mx">
 <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start">
@@ -1314,22 +1292,7 @@ window.addEventListener('DOMContentLoaded',function(){
 <div class="sh" style="margin-bottom:24px"><span>// about me</span></div>
 <h2 style="font-family:var(--s);font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:6px">Inigo Angulo</h2>
 <p style="font-family:var(--m);font-size:.7rem;color:var(--ac2);letter-spacing:.06em;margin-bottom:16px">PRODUCT BUILDER: I SCOPE, DESIGN AND SHIP WITH AI AGENT TEAMS</p>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">Ten years learning what makes products convert and what makes teams ship. In 2026 I started shipping the software myself, doing with AI agents what I had always done with people. The judgment did not change. The distance between a decision and a shipped feature did. Toggle it.</p>
-
-<!-- The same loop, two teams -->
-<div class="lp" id="loop">
-<div class="lp__head"><span class="lp__k">// THE SAME LOOP, TWO TEAMS</span>
-<div class="lp__tg" role="tablist" aria-label="Team mode"><button class="lp__tb on" role="tab" aria-selected="true" data-m="people">WITH PEOPLE <i>2016 to 2025</i></button><button class="lp__tb" role="tab" aria-selected="false" data-m="agents">WITH AGENTS <i>2026 &#8594;</i></button></div></div>
-<div class="lp__grid">
-<div class="lp__st"><span class="lp__n">01</span><span class="lp__h">Listen</span><span class="lp__me">I find the friction in the data and the field</span><span class="lp__who" data-people="PostHog, GA4, interviews, a research squad" data-agents="PostHog, GA4, interviews, the same"></span></div>
-<div class="lp__st"><span class="lp__n">02</span><span class="lp__h">Frame</span><span class="lp__me">I decide what is worth building and what is not</span><span class="lp__who" data-people="Roadmap slot in the next quarter" data-agents="Ticket with a measurable criterion, today"></span></div>
-<div class="lp__st"><span class="lp__n">03</span><span class="lp__h">Architect</span><span class="lp__me">I design the system and its boundaries</span><span class="lp__who" data-people="A squad of 6: design, FE, BE, data, QA" data-agents="A lead and 7 specialist agents, each with a mandate and a boundary"></span></div>
-<div class="lp__st"><span class="lp__n">04</span><span class="lp__h">Prove</span><span class="lp__me">I decide what counts as done</span><span class="lp__who" data-people="A/B test, a quarter later" data-agents="Run id, SHA, red suite on purpose, my PASS on a real phone"></span></div>
-<div class="lp__st"><span class="lp__n">05</span><span class="lp__h">Close the loop</span><span class="lp__me">I own what reaches production</span><span class="lp__who" data-people="Release train, sign-offs, a deploy I do not touch" data-agents="/aprobar from my account, 15 releases in 7 weeks"></span></div>
-</div>
-<div class="lp__bar"><span class="lp__bl">DECISION &#8594; SHIPPED FEATURE</span><span class="lp__fill"><i></i></span><span class="lp__bv" data-people="one quarter" data-agents="days"></span></div>
-<p class="lp__foot" data-people="What I did at GetYourGuide, ING, Crowdhouse and WPP: the product lead in a human team." data-agents="What I did at Acervo: the same lead, with an engineering team made of agents and two human gates."></p>
-</div>
+<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">Ten years learning what makes products convert and what makes teams ship. In 2026 I started shipping the software myself, with AI agent teams instead of human ones. The judgment did not change; the distance between a decision and a shipped feature did. The judgment is the part that took ten years, and that is what the rest of this page is about.</p>
 
 <!-- Where the judgment comes from -->
 <div class="jd" id="judg">
@@ -1822,13 +1785,9 @@ onScroll();
 Cal("init", "intro", {origin:"https://app.cal.com"});
 Cal.ns.intro("ui", {"theme":"dark","cssVarsPerTheme":{"dark":{"cal-brand":"#2dd4bf"}},"hideEventTypeDetails":false,"layout":"month_view"});
 
-/* about: loop toggle + judgment chips */
+/* about: judgment chips */
 (function(){
-  const lp=document.getElementById("loop"); if(!lp)return;
-  function mode(m){lp.classList.add("sw");setTimeout(()=>{lp.classList.toggle("agents",m==="agents");lp.querySelectorAll("[data-people]").forEach(el=>{el.textContent=el.dataset[m]});lp.classList.remove("sw")},220);
-    lp.querySelectorAll(".lp__tb").forEach(b=>{const on=b.dataset.m===m;b.classList.toggle("on",on);b.setAttribute("aria-selected",on)});}
-  lp.querySelectorAll(".lp__tb").forEach(b=>b.addEventListener("click",()=>mode(b.dataset.m)));
-  lp.querySelectorAll("[data-people]").forEach(el=>{el.textContent=el.dataset.people});
+  const lp=document.getElementById("judg"); if(!lp)return;
   const J={
     gyg:{r:"GETYOURGUIDE, PRODUCT DESIGNER, CHECKOUT",t:"The team was optimising the wrong step. 38% of converters left checkout and came back with no re-entry. Ten experiments later I had learned that the biggest wins hide in the gap nobody measures.",v:"+11%",l:"CONVERSION, 4 EU MARKETS"},
     ing:{r:"ING, MULTI-COUNTRY DESIGN SYSTEM",t:"A system is only a system if five countries can ship from it without asking. Tokens, names and rules before components. The same discipline I later gave to agents.",v:"5",l:"COUNTRIES, ONE SYSTEM"},
