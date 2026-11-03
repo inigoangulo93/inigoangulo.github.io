@@ -304,6 +304,23 @@
 .pt__lg .pt__d{position:static;display:inline-block;transform:none;width:10px;height:10px;vertical-align:-1px;margin-right:6px}
 .pt__sub{font-family:var(--s);font-size:12.5px;color:var(--t2);line-height:1.5;display:block;margin-top:12px}
 @media(max-width:760px){.pt__d{width:9px;height:9px}.ev{grid-template-columns:1fr}.ck__row{grid-template-columns:1fr 1fr}.ev__n{font-size:1.6rem}.pt__strip{height:72px}.pt__m:nth-child(even){display:none}}
+/* ---- brand book resource card ---- */
+.res{display:grid;grid-template-columns:auto 1fr auto;gap:20px 22px;align-items:center;padding:20px 24px;margin:24px 0 10px;border:1px solid var(--b2);border-radius:12px;background:var(--bg2);transition:border-color .3s}
+.res:hover{border-color:var(--b3)}
+.res__ico{width:40px;height:48px;flex-shrink:0}
+.res__body{display:flex;flex-direction:column;gap:4px;min-width:0}
+.res__k{font-family:var(--m);font-size:10px;letter-spacing:2px;color:var(--ac);display:block}
+.res__t{font-family:var(--s);font-size:15px;font-weight:600;color:var(--t1)}
+.res__d{font-family:var(--s);font-size:12.5px;color:var(--t2);line-height:1.5;max-width:560px}
+.res__m{font-family:var(--m);font-size:10px;color:var(--t3);letter-spacing:.08em;display:flex;gap:6px 14px;flex-wrap:wrap;margin-top:4px}
+.res__m span+span::before{content:"\00b7";margin-right:14px;color:var(--t4)}
+.res__acts{display:flex;gap:10px;flex-shrink:0}
+.res__btn{font-family:var(--m);font-size:12px;font-weight:600;padding:11px 16px;border-radius:8px;border:1px solid var(--acb);color:var(--ac2);background:transparent;white-space:nowrap;transition:background .2s,color .2s,border-color .2s;min-height:44px;display:inline-flex;align-items:center}
+.res__btn:hover{background:var(--acg2)}
+.res__btn:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.res__btn--p{background:var(--ac);color:#000;border-color:var(--ac)}
+.res__btn--p:hover{background:var(--ac2)}
+@media(max-width:760px){.res__m span+span::before{content:none;margin:0}.res__m{gap:4px 12px}.res{grid-template-columns:auto 1fr;gap:14px 16px;padding:18px}.res__acts{grid-column:1/-1;flex-direction:column}.res__btn{justify-content:center}.res__d{max-width:none}}
 /* ---- brand notes ---- */
 .brn{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:8px 0 56px}
 .brn__i{background:rgba(255,255,255,.015);border:1px solid var(--b1);border-radius:12px;padding:20px 22px}
@@ -529,6 +546,20 @@
     <div class="brn__i"><span class="brn__n">ONE ACTION COLOUR</span><span class="brn__t">Orange is the double stripe and the primary button, nothing else. It never becomes a background or a text colour. Status and feedback use a separate functional set, warm and desaturated for ivory.</span></div>
     <div class="brn__i"><span class="brn__n">THE CAR, IN THE SAME HAND</span><span class="brn__t">A classic GT in profile, vectorised in the engraving&#8217;s stroke. Full engraving for hero and empty states above 480 px, ink silhouette from 200 px for cards and the app.</span></div>
   </div>
+
+  <aside class="res" data-reveal aria-labelledby="resTitle">
+    <svg class="res__ico" viewBox="0 0 40 48" aria-hidden="true"><path d="M4 2h22l10 10v32a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="#E04444"/><path d="M26 2v10h10" fill="#F08A8A"/><text x="20" y="35" text-anchor="middle" font-family="IBM Plex Sans, Manrope, sans-serif" font-size="12" font-weight="700" fill="#fff" letter-spacing=".06em">PDF</text></svg>
+    <div class="res__body">
+      <span class="res__k">ACERVO &#183; BRAND GUIDELINES</span>
+      <span class="res__t" id="resTitle">Brand Strategy &amp; Digital Product Identity</span>
+      <span class="res__d">An eight page overview of Acervo&#8217;s brand strategy, visual identity and how its design principles translate into the digital product.</span>
+      <span class="res__m"><span>PDF document</span><span>8 pages</span><span>Version 1.0</span><span>November 2026</span></span>
+    </div>
+    <div class="res__acts">
+      <a class="res__btn res__btn--p" href="../docs/Acervo-Brand-Guidelines-v1.0.pdf" target="_blank" rel="noopener" aria-label="Read the Acervo brand guidelines online, opens the PDF in a new tab">Read online &#8599;</a>
+      <a class="res__btn" href="../docs/Acervo-Brand-Guidelines-v1.0.pdf" download="Acervo-Brand-Guidelines-v1.0.pdf" aria-label="Download the Acervo brand guidelines PDF, 1.6 MB">Download PDF &#8595;</a>
+    </div>
+  </aside>
 
   <!-- 05: A ticket -->
   <div class="cs__section" id="s05" data-reveal>
