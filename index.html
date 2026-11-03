@@ -163,6 +163,23 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .bar__cta{font-size:.68rem;font-weight:500;color:var(--ac2);border:1px solid var(--acb);background:var(--acg2);padding:5px 16px;border-radius:6px;transition:all .3s var(--e);letter-spacing:.02em}
 .bar__cta:hover{background:var(--ac);color:#000;border-color:var(--ac);box-shadow:0 0 20px var(--acg),0 0 60px var(--acg2)}
 
+/* ---- header: full bar at top, floating island on scroll ---- */
+.bar{left:50%;right:auto;transform:translateX(-50%);width:100%;will-change:width,top,height,border-radius;transition:width .55s cubic-bezier(.22,1,.36,1),top .55s cubic-bezier(.22,1,.36,1),height .55s cubic-bezier(.22,1,.36,1),border-radius .55s cubic-bezier(.22,1,.36,1),background-color .4s,box-shadow .4s,border-color .4s}
+.bar__inner{transition:padding .55s cubic-bezier(.22,1,.36,1)}
+.bar__name,.bar__btn,.bar__cta{transition:font-size .4s,padding .4s,color .2s}
+.bar--island{top:12px;width:min(760px,calc(100% - 32px));height:44px;border-radius:999px;border:1px solid var(--b2);background:rgba(10,10,16,.78);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);box-shadow:0 10px 40px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06)}
+.bar--island .bar__inner{padding:0 10px 0 22px}
+.bar--island .bar__name{font-size:.82rem}
+.bar--island .bar__btn{font-size:.74rem;padding:5px 12px}
+.bar--island .bar__btn.on::after{bottom:2px;left:12px;right:12px}
+.bar--island .bar__cta{padding:5px 14px;border-radius:999px}
+@media(max-width:768px){
+  .bar.bar--island{top:10px;width:calc(100% - 24px);height:50px;border-radius:999px}
+  .bar--island .bar__inner{padding:0 8px 0 18px}
+  .mob-menu.open~.bar,.bar.menu-open{top:0;width:100%;height:56px;border-radius:0}
+}
+@media(prefers-reduced-motion:reduce){.bar,.bar__inner,.bar__name,.bar__btn,.bar__cta{transition:none}}
+
 /* layers + depth */
 .vp{padding-top:48px;min-height:100vh;position:relative;z-index:1}
 .v{display:none;padding:0}.v.on{display:block}
@@ -1825,6 +1842,13 @@ Cal.ns.intro("ui", {"theme":"dark","cssVarsPerTheme":{"dark":{"cal-brand":"#2dd4
   function setJ(k){jd.querySelectorAll(".jd__c").forEach(c=>c.classList.toggle("on",c.dataset.k===k));document.getElementById("jdRole").textContent=J[k].r;document.getElementById("jdText").textContent=J[k].t;document.getElementById("jdVal").textContent=J[k].v;document.getElementById("jdLab").textContent=J[k].l;}
   jd.querySelectorAll(".jd__c").forEach(c=>c.addEventListener("click",()=>setJ(c.dataset.k)));
   setJ("gyg");
+})();
+
+/* ---- header island on scroll ---- */
+(function(){var bar=document.querySelector('.bar');if(!bar)return;var on=false;
+function upd(){var y=window.scrollY||document.documentElement.scrollTop;var want=y>40;if(want!==on){on=want;bar.classList.toggle('bar--island',on)}}
+window.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd,{passive:true});upd();
+var _t=window.toggleMenu;if(typeof _t==='function'){window.toggleMenu=function(){_t.apply(this,arguments);bar.classList.toggle('menu-open',!!window.menuOpen)}}
 })();
 </script>
 </body>
