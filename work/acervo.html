@@ -5,7 +5,7 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Acervo · Inigo Angulo</title>
-<meta name="description" content="A production platform for serious car collections, built by one person leading a team of AI agents. First commit to production in 17 days, 19 gated releases in seven weeks. A case study by Inigo Angulo.">
+<meta name="description" content="A production platform for serious car collections, built by one person leading a team of AI agents. First commit to production in 17 days, 15 gated releases in seven weeks. A case study by Inigo Angulo.">
 <meta property="og:title" content="Acervo / Inigo Angulo">
 <meta property="og:description" content="One person, eight agents, two human gates. From first commit to production in 17 days, 15 promotions in seven weeks.">
 <meta property="og:image" content="https://inigoangulo.com/img/og-acervo.png">
@@ -183,6 +183,55 @@
 .ch .lg i{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:6px}
 .ch .bar:hover .bo{stroke:var(--ac2)}
 .ch .bar title{font-family:var(--m)}
+/* ---- timeline, triplet, failure story, decision stories ---- */
+.tl{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:20px;margin:24px 0 10px}
+.tl__k{font-family:var(--m);font-size:11px;letter-spacing:2.5px;color:var(--ac);display:block;margin-bottom:6px}
+.tl__sub{font-family:var(--m);font-size:10.5px;color:var(--t3);display:block;margin-bottom:18px}
+.tl__l{list-style:none;margin:0;padding:0;position:relative}
+.tl__l::before{content:"";position:absolute;left:92px;top:6px;bottom:6px;width:1px;background:var(--b2)}
+.tl__i{display:grid;grid-template-columns:62px 30px 1fr;gap:0 14px;align-items:start;padding:8px 0;position:relative}
+.tl__i::before{content:"";position:absolute;left:87px;top:16px;width:11px;height:11px;border-radius:50%;background:var(--bg2);border:1.5px solid var(--b3)}
+.tl__i--h::before{border-color:var(--up);background:rgba(34,197,94,.3)}
+.tl__i--g::before{border-color:var(--up);background:var(--up);box-shadow:0 0 12px rgba(34,197,94,.6)}
+.tl__i--j::before{border-color:var(--am)}
+.tl__t{font-family:var(--m);font-size:12px;color:var(--t1);padding-top:3px;text-align:right}
+.tl__w{font-family:var(--m);font-size:9px;letter-spacing:.1em;color:var(--t3);padding-top:5px;grid-column:3;grid-row:1}
+.tl__h{font-family:var(--s);font-size:14px;font-weight:600;color:var(--t1);grid-column:3;grid-row:2}
+.tl__d{font-family:var(--s);font-size:12.5px;color:var(--t2);line-height:1.5;grid-column:3;grid-row:3}
+.tl__i .tl__t{grid-row:1/4}
+.tl__i--h .tl__w,.tl__i--g .tl__w{color:var(--up)}.tl__i--j .tl__w{color:var(--am)}
+.tl__steps{margin-top:18px;padding-top:16px;border-top:1px solid var(--b1)}
+.tl__sk{font-family:var(--m);font-size:10px;letter-spacing:2px;color:var(--t3);display:block;margin-bottom:10px}
+.tl__sg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tl__sg span{display:flex;flex-direction:column;gap:3px;padding:10px 12px;border-radius:8px;border:1px solid var(--b1);background:rgba(255,255,255,.015);font-family:var(--s);font-size:11.5px;color:var(--t2);line-height:1.4}
+.tl__sg b{font-family:var(--m);font-size:10px;color:var(--ac);letter-spacing:.1em}
+.tl__sg i{font-family:var(--m);font-size:10px;color:var(--t3);font-style:normal;margin-top:auto}
+.tri{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch;margin:12px 0 10px}
+.tri__i{padding:16px 18px;border-radius:10px;border:1px solid var(--b2);background:var(--bg2)}
+.tri__i--g{border-color:rgba(34,197,94,.45);background:rgba(34,197,94,.04)}
+.tri__n{font-family:var(--s);font-size:2rem;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--t1);display:block}
+.tri__i--g .tri__n{color:var(--up)}
+.tri__h{font-family:var(--m);font-size:10px;letter-spacing:2px;color:var(--ac);display:block;margin:6px 0 8px}
+.tri__t{font-family:var(--s);font-size:12.5px;color:var(--t2);line-height:1.5}
+.tri__a{align-self:center;color:var(--t3);font-size:18px}
+.fs{background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:20px;margin:24px 0 10px}
+.fs__k{font-family:var(--m);font-size:11px;letter-spacing:2.5px;color:var(--ac);display:block;margin-bottom:16px}
+.fs__l{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.fs__i{display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:8px;border:1px solid var(--b1);background:rgba(255,255,255,.015);position:relative}
+.fs__i--g{border-color:rgba(34,197,94,.4)}.fs__i--r{border-color:rgba(239,68,68,.4);background:rgba(239,68,68,.03)}.fs__i--k{border-color:var(--ac);background:rgba(45,212,191,.04)}
+.fs__n{font-family:var(--m);font-size:10px;color:var(--t3);letter-spacing:.12em}
+.fs__i--g .fs__n{color:var(--up)}.fs__i--r .fs__n{color:var(--dn)}.fs__i--k .fs__n{color:var(--ac)}
+.fs__h{font-family:var(--s);font-size:13px;font-weight:600;color:var(--t1)}
+.fs__t{font-family:var(--s);font-size:12px;color:var(--t2);line-height:1.5}
+.fs__sub{font-family:var(--s);font-size:12.5px;color:var(--t3);line-height:1.5;display:block;margin-top:14px}
+.dc{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 24px}
+.dc__i{padding:18px 20px;border-radius:12px;border:1px solid var(--b2);background:var(--bg2)}
+.dc__h{font-family:var(--s);font-size:15px;font-weight:600;color:var(--t1);display:block;margin-bottom:12px}
+.dc__i dl{margin:0;display:grid;grid-template-columns:86px 1fr;gap:6px 12px}
+.dc__i dt{font-family:var(--m);font-size:9.5px;letter-spacing:.12em;color:var(--ac);text-transform:uppercase;padding-top:2px}
+.dc__i dd{margin:0;font-family:var(--s);font-size:12.5px;color:var(--t2);line-height:1.5}
+.cs__reflection--close{border-color:var(--acb);background:rgba(45,212,191,.04)}
+@media(max-width:760px){.tl__l::before{left:62px}.tl__i{grid-template-columns:44px 22px 1fr;gap:0 10px}.tl__i::before{left:57px}.tl__t{font-size:11px}.tl__sg{grid-template-columns:1fr 1fr}.tri{grid-template-columns:1fr}.tri__a{transform:rotate(90deg);justify-self:center}.fs__l{grid-template-columns:1fr}.fs__i{flex-direction:row;flex-wrap:wrap;align-items:baseline}.fs__i .fs__t{flex-basis:100%}.dc{grid-template-columns:1fr}.dc__i dl{grid-template-columns:78px 1fr}}
 /* ---- lower half: notes, expandables, ER, evidence, checks, promotions ---- */
 .mcs--3{grid-template-columns:repeat(3,1fr)}
 @media(max-width:760px){.mcs--3{grid-template-columns:1fr}}
@@ -305,7 +354,7 @@
     </div>
     <div class="cs__tldr-item">
       <span class="cs__tldr-label">Key outcome</span>
-      <span class="cs__tldr-value cs__tldr-value--ac">Production in 17 days, 19 gated releases since</span>
+      <span class="cs__tldr-value cs__tldr-value--ac">Production in 17 days, 15 gated releases since</span>
     </div>
   </div>
 
@@ -322,7 +371,7 @@
   <p class="mg" data-reveal>ENGINEERING OUTCOMES &#183; read from the GitHub API, the repository and the task board &#183; Sept 16 to Nov 2, 2026</p>
   <div class="cs__metrics" data-reveal style="margin-top:0">
     <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">17 days</span><span class="cs__metric-label">First commit to first production deploy</span></div>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">19</span><span class="cs__metric-label">Production releases through the promotion workflow, each a human approval</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">15</span><span class="cs__metric-label">Numbered releases, each with a security report and one human approval</span></div>
     <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">445</span><span class="cs__metric-label">Merged pull requests &#183; 484 opened, 38 closed without merging</span></div>
     <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">2</span><span class="cs__metric-label">Human gates: the decision (per ticket) and the approval (per release)</span></div>
   </div>
@@ -520,7 +569,7 @@
     <span class="cs__section-num">06 How a Promotion Reaches Production</span>
     <h2 class="cs__section-h">Main freezes, a pen test says PASS, every screen gets my visual PASS on staging, nine production queries are measured by a session that did not write the code, and then one human types /aprobar.</h2>
     <div class="cs__section-text">
-      <p>Promotions are where an agent team is most dangerous, because everything looks done. So the lead cannot touch the promotion workflow at all, the security agent runs a full pen test on the exact candidate, and the production measurements are taken by a separate session that reports back what it actually saw. <strong>A template with placeholders is not a measurement.</strong> Fifteen promotions have gone through this in seven weeks.</p>
+      <p>Promotions are where an agent team is most dangerous, because everything looks done. So the lead cannot touch the promotion workflow at all, the security agent runs a full pen test on the exact candidate, and the production measurements are taken by a separate session that reports back what it actually saw. <strong>A template with placeholders is not a measurement.</strong> Fifteen numbered releases have gone through this in seven weeks.</p>
     </div>
   </div>
 
@@ -554,6 +603,41 @@
   <div class="cs__evidence" data-reveal>
     <span class="cs__evidence-label">When the gate said no</span>
     <span class="cs__evidence-text">On October 15 the pen test of candidate 86254f3 came back FAIL on a rule outside the import. Instead of delaying the whole promotion, the automatic photo reading on car registration went behind a feature flag born in false. Production moved on time; the risky surface stayed dark until it passed.</span>
+  </div>
+
+  <div class="tl" data-reveal>
+    <span class="tl__k">ONE CHANGE, END TO END &#183; TICKET 374 &#8594; RELEASE 15 &#183; NOVEMBER 2, 2026 &#183; TIMES FROM THE GITHUB API</span>
+    <span class="tl__sub">video in the car gallery: a migration, a signed media route, a cover rule, 45 files, +2,667 / &#8722;98 lines</span>
+    <ol class="tl__l">
+      <li class="tl__i"><span class="tl__t">14:35</span><span class="tl__w">LEAD</span><span class="tl__h">PR 502 opened</span><span class="tl__d">Branch ticket/374 off main. Three commits; the last one is the candidate.</span></li>
+      <li class="tl__i"><span class="tl__t">16:56</span><span class="tl__w">CI</span><span class="tl__h">14 check runs start on the final commit</span><span class="tl__d">lint, typecheck, tests, mail confirmations, secret scan, e2e in three shards for mobile and three for desktop.</span></li>
+      <li class="tl__i tl__i--j"><span class="tl__t">17:20</span><span class="tl__w">SECURITY</span><span class="tl__h">Pen test of the set: PASS</span><span class="tl__d">Four isolation policies broken on purpose, suite red each time and restored; the previous release&#8217;s code run against the migrated base, 5,917 database assertions.</span></li>
+      <li class="tl__i"><span class="tl__t">17:20</span><span class="tl__w">LEAD</span><span class="tl__h">Merged, 58 seconds after the last check went green</span><span class="tl__d">A merge changes main. It changes nothing a user can reach.</span></li>
+      <li class="tl__i tl__i--h"><span class="tl__t">19:50</span><span class="tl__w">I&#209;IGO</span><span class="tl__h">/aprobar from the approver account</span><span class="tl__d">After the visual PASS on staging and the nine production queries measured by the orchestrator.</span></li>
+      <li class="tl__i"><span class="tl__t">19:50</span><span class="tl__w">WORKFLOW</span><span class="tl__h">Promotion run, 4 min 2 s</span><span class="tl__d">The eight steps below, each one halting the run if it fails.</span></li>
+      <li class="tl__i tl__i--g"><span class="tl__t">19:54</span><span class="tl__w">PRODUCTION</span><span class="tl__h">Served commit verified: release 15</span><span class="tl__d">The page is requested on its own domain and must answer with that exact commit. Only now is it a release.</span></li>
+    </ol>
+    <div class="tl__steps">
+      <span class="tl__sk">THE PROMOTION RUN, STEP BY STEP &#183; NAMES AND DURATIONS AS RECORDED</span>
+      <div class="tl__sg">
+        <span><b>0</b>what is on disk is the approved commit<i>&lt;1 s</i></span>
+        <span><b>1</b>the commit exists and is on main<i>&lt;1 s</i></span>
+        <span><b>2</b>the five required checks are green on that commit<i>1 s</i></span>
+        <span><b>3</b>it descends from what production serves today<i>&lt;1 s</i></span>
+        <span><b>4</b>build, before migrating<i>3 min 14 s</i></span>
+        <span><b>5</b>what is applied, what will be applied, migrate, final state<i>5 s</i></span>
+        <span><b>6</b>deploy what was already built<i>18 s</i></span>
+        <span><b>7</b>verify the domain serves that commit and is ready<i>2 s</i></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tri" data-reveal>
+    <div class="tri__i"><span class="tri__n">445</span><span class="tri__h">MERGES</span><span class="tri__t">A pull request accepted into main. Code, not a release. Done by the lead with five checks green on the exact commit.</span></div>
+    <div class="tri__a">&#8594;</div>
+    <div class="tri__i"><span class="tri__n">25</span><span class="tri__h">PROMOTION RUNS</span><span class="tri__t">Executions of the workflow: 20 green, 5 failed. A failed run changes nothing in production.</span></div>
+    <div class="tri__a">&#8594;</div>
+    <div class="tri__i tri__i--g"><span class="tri__n">15</span><span class="tri__h">RELEASES</span><span class="tri__t">Numbered promotion sets, each with its security report and one human approval. 19 distinct commits served, because four sets needed a follow-up commit.</span></div>
   </div>
 
   <!-- 06: The machine -->
@@ -733,7 +817,7 @@
     <div class="ck__row">
       <span class="ck__i"><b>lint</b>eslint + seven house checks</span>
       <span class="ck__i"><b>typecheck</b>strict TypeScript</span>
-      <span class="ck__i"><b>tests</b>4,300 unit and integration, 5,300 database assertions</span>
+      <span class="ck__i"><b>tests</b>4,300 unit and integration, 5,900 database assertions</span>
       <span class="ck__i"><b>mail confirmations</b>auth templates still intact</span>
       <span class="ck__i"><b>secret scan</b>every commit on the branch</span>
       <span class="ck__i ck__i--opt"><b>e2e</b>590 browser tests, 44 px targets, no overflow</span>
@@ -743,9 +827,9 @@
 
   <div class="pt" id="promos" data-reveal>
     <span class="pt__k">PROMOTIONS TO PRODUCTION &#183; EVERY RUN OF THE WORKFLOW, FROM THE GITHUB API</span>
-    <div class="pt__strip" role="img" aria-label="25 promotion runs between October 1 and November 2: 20 succeeded, 5 failed; the first attempt failed and production went live on October 3"></div>
+    <div class="pt__strip" role="img" aria-label="25 promotion runs between October 1 and November 2: 20 succeeded, 5 failed, 15 numbered releases; the first attempt failed and production went live on October 3"></div>
     <div class="pt__lg"><span><i class="pt__d pt__d--g"></i>release served, SHA verified</span><span><i class="pt__d pt__d--r"></i>run failed, nothing promoted</span></div>
-    <span class="pt__sub">19 releases from 20 green runs (one SHA promoted twice while fixing the domain). Five failures: the very first run on October 1 died on a missing workflow permission, two more on October 3 while the domain still served a 404, one retry, and one on a configuration change. A failed promotion changes nothing in production: migration and deploy both wait for the previous step&#8217;s identifier.</span>
+    <span class="pt__sub">15 numbered releases, 19 distinct commits served, 20 green runs (one commit promoted twice while fixing the domain). Five failures: the very first run on October 1 died on a missing workflow permission, two more on October 3 while the domain still served a 404, one retry, and one on a configuration change. A failed promotion changes nothing in production: migration and deploy both wait for the previous step&#8217;s identifier.</span>
   </div>
 
   <div class="cs__evidence" data-reveal>
@@ -767,9 +851,22 @@
     <span class="cs__quote-author">The lead agent, asked what the hardest part had been. November 2, 2026, translated from Spanish.</span>
   </div>
 
+  <div class="fs" data-reveal>
+    <span class="fs__k">ONE FAILURE, SIX BEATS &#183; OCTOBER 6, 2026 &#183; FROM THE LESSONS FILE AND THE CI RECORD</span>
+    <ol class="fs__l">
+      <li class="fs__i fs__i--g"><span class="fs__n">01</span><span class="fs__h">What looked green</span><span class="fs__t">A navigation redesign merged on &#8220;8 of 8 checks green&#8221;. The e2e job showed SUCCESS.</span></li>
+      <li class="fs__i fs__i--r"><span class="fs__n">02</span><span class="fs__h">What was true</span><span class="fs__t">e2e had not run. Its path filter only started it for four directories, and the PR touched none of them. A skipped job reports as green.</span></li>
+      <li class="fs__i"><span class="fs__n">03</span><span class="fs__h">How it surfaced</span><span class="fs__t">The next PR touched one of those directories. e2e ran on main for the first time with the new navigation.</span></li>
+      <li class="fs__i fs__i--r"><span class="fs__n">04</span><span class="fs__h">The evidence</span><span class="fs__t">12 desktop tests red in one run id. One of them was a product failure: on desktop there was no longer any way to add a car.</span></li>
+      <li class="fs__i"><span class="fs__n">05</span><span class="fs__h">The correction</span><span class="fs__t">A fix PR for the navigation. And the filter inverted: from a list of what triggers e2e to a list of what may skip it (documentation only).</span></li>
+      <li class="fs__i fs__i--k"><span class="fs__n">06</span><span class="fs__h">What changed in verification</span><span class="fs__t">A skipped check does not count as green. Before merging anything with a screen, the e2e run is opened and read: which steps executed, how many tests passed.</span></li>
+    </ol>
+    <span class="fs__sub">Nothing here required a better model. It required a rule about what counts as proof: a check that did nothing and a check that passed look identical from the outside, so the outside is not where you read them.</span>
+  </div>
+
   <div class="fg" data-reveal>
     <span class="fg__k">SEVEN GREENS THAT PROVED NOTHING</span>
-    <span class="fg__sub">from the lessons file in the repository &#183; what the signal said, and what was true</span>
+    <span class="fg__sub">the full list, from the lessons file in the repository &#183; what the signal said, and what was true</span>
     <div class="fg__hd"><span>DATE</span><span>WHAT LOOKED GREEN</span><span>WHAT WAS TRUE</span></div>
     <div class="fg__row"><span class="fg__d">SEP 27</span><div class="fg__g"><b>SUCCESS</b>Environment variables saved, build passing.</div><div class="fg__r"><b>500</b>Internal Server Error on every route. It built fine and failed at runtime.</div></div>
     <div class="fg__row"><span class="fg__d">SEP 28</span><div class="fg__g"><b>EXIT 0</b>vitest green with the local stack down. Same day, an Auth suite green.</div><div class="fg__r"><b>100 SKIPPED</b>Not one integration tested. The Auth hook was still off after a reset, so the suite never touched the door.</div></div>
@@ -805,18 +902,13 @@
   <div class="cs__section" id="s11" data-reveal>
     <span class="cs__section-num">11 Decisions and Lessons</span>
     <h2 class="cs__section-h">What was chosen, what was rejected, and what changed when one person became responsible for the whole system.</h2>
-    <div class="cs__decisions-wrap">
-    <table class="cs__decisions">
-      <thead><tr><th>Decision</th><th>What we chose</th><th>What we rejected</th><th>Why</th></tr></thead>
-      <tbody>
-        <tr><td>Team shape</td><td>Cheap models build, strong models judge; judgment agents prove failures and never fix them</td><td>One strong model doing everything</td><td>The expensive tokens go to saying no. A reviewer that also fixes stops being a reviewer.</td></tr>
-        <tr><td>Who merges</td><td>Only me for two weeks, then the lead for non critical PRs, five checks green on the exact SHA</td><td>Agents merging from day one</td><td>Trust the process once the review rules have been tested on real PRs, not before.</td></tr>
-        <tr><td>Who touches production</td><td>Nobody in the build. The lead has no production credentials; measurements come from a separate session</td><td>Lead runs its own production checks</td><td>An agent reporting on its own release will report a template as a result. It did, once.</td></tr>
-        <tr><td>Where invariants live</td><td>Every rule in Postgres (constraint, trigger, policy) or in a server action, each with a test</td><td>Validation in the interface</td><td>Hiding a column in the frontend is not a guarantee. What a role must not see never leaves the server.</td></tr>
-        <tr><td>Identity</td><td>No KYC documents stored; manual verification, access by referral</td><td>Built-in KYC with document upload</td><td>A collector&#8217;s trust is the product. Storing passports is a liability, not a feature.</td></tr>
-        <tr><td>Security gate</td><td>Ship the risky feature behind a flag, off in production, after a FAIL</td><td>Delay the whole promotion</td><td>Production moved on time; the risky surface stayed dark until it passed.</td></tr>
-      </tbody>
-    </table>
+    <div class="dc">
+      <div class="dc__i"><span class="dc__h">Team shape</span><dl><dt>Problem</dt><dd>One strong model doing everything was slow and expensive, and its own reviews rubber stamped its own code.</dd><dt>Options</dt><dd>One model for all; or cheap models build, strong models judge.</dd><dt>Decision</dt><dd>Four build agents on the cheaper model, three judgment agents on the strongest, and the judges never fix.</dd><dt>Trade-off</dt><dd>More hand-offs, more files to keep consistent.</dd><dt>Consequence</dt><dd>The expensive tokens go to saying no. 38 PRs closed without merging.</dd></dl></div>
+      <div class="dc__i"><span class="dc__h">Who merges</span><dl><dt>Problem</dt><dd>I was the bottleneck on every PR, and the point of the team was throughput.</dd><dt>Options</dt><dd>Keep merging myself; let agents merge from day one; delegate after the rules had been tested.</dd><dt>Decision</dt><dd>Only me for two weeks, then the lead, five checks green on the exact commit, never on an earlier one.</dd><dt>Trade-off</dt><dd>A merge no longer means I have read the diff.</dd><dt>Consequence</dt><dd>445 merges in seven weeks, and the promotion gate became the place where I read.</dd></dl></div>
+      <div class="dc__i"><span class="dc__h">Who touches production</span><dl><dt>Problem</dt><dd>The lead reported a query template as a production measurement, once.</dd><dt>Options</dt><dd>Trust the lead with production checks; or move every measurement to a session that did not write the code.</dd><dt>Decision</dt><dd>Nobody in the build. No production credentials for the lead, an orchestrator for the measurements, one workflow the lead cannot edit.</dd><dt>Trade-off</dt><dd>The lead cannot check its own release and has to wait.</dd><dt>Consequence</dt><dd>15 releases, each one a human approval on evidence produced outside the build.</dd></dl></div>
+      <div class="dc__i"><span class="dc__h">Where invariants live</span><dl><dt>Problem</dt><dd>Agents validate in the interface by default, and a hidden column is not a guarantee.</dd><dt>Options</dt><dd>Validation in forms; or every rule in Postgres or a server action, each with a test.</dd><dt>Decision</dt><dd>Every invariant is a constraint, a trigger, a policy or a server action, tagged DB or APP, never frontend only.</dd><dt>Trade-off</dt><dd>99 migrations and a slower first week.</dd><dt>Consequence</dt><dd>What a role must not see never leaves the server. A few rules still wait to move from APP to DB, and the tests say so.</dd></dl></div>
+      <div class="dc__i"><span class="dc__h">Identity</span><dl><dt>Problem</dt><dd>Collectors are private people and the product asks for their cars, their garages and their documents.</dd><dt>Options</dt><dd>Built-in KYC with document upload; or manual verification and access by referral.</dd><dt>Decision</dt><dd>No identity documents stored, anywhere. A partner accepts every account by hand.</dd><dt>Trade-off</dt><dd>Onboarding does not scale on its own.</dd><dt>Consequence</dt><dd>Nothing to leak that would end the company. The trust is the product.</dd></dl></div>
+      <div class="dc__i"><span class="dc__h">The security gate says no</span><dl><dt>Problem</dt><dd>On October 15 the pen test came back FAIL on a rule outside the feature being promoted.</dd><dt>Options</dt><dd>Delay the whole release; or ship with the risky surface dark.</dd><dt>Decision</dt><dd>Automatic photo reading went behind a feature flag born off in production.</dd><dt>Trade-off</dt><dd>The feature the release was for shipped without its headline capability.</dd><dt>Consequence</dt><dd>Production moved on time. The risky surface stayed dark until it passed its own review.</dd></dl></div>
     </div>
     <div class="cs__reflection">
       <span class="cs__reflection-h">What got harder once implementation started</span>
@@ -829,6 +921,10 @@
     <div class="cs__reflection" style="border-color:var(--dn);background:var(--dng)">
       <span class="cs__reflection-h" style="color:var(--dn)">What failed</span>
       <span class="cs__reflection-text">The first photo upload queue failed silently. On my phone, registering a car took 27 seconds and the UI showed three photos uploaded; Sentry showed an IndexedDB transaction error and zero photos persisted. The agents had written the happy path and tested it on desktop. The ticket stayed open until a correction fixed it and the gate was re-measured on a real phone with the network cut.</span>
+    </div>
+    <div class="cs__reflection cs__reflection--close">
+      <span class="cs__reflection-h">What it changed about how I work</span>
+      <span class="cs__reflection-text">I no longer write a spec and hand it over. The spec is the migration, the policy and the test, and the conversation with the team is a numbered question with a letter for an answer. Product judgment did not change. What changed is that the distance between a decision and a shipped feature is now a few hours, and that every one of those hours leaves a line someone else can read.</span>
     </div>
     <div class="cs__reflection">
       <span class="cs__reflection-h">What is still imperfect</span>
