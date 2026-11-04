@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to build an MVP with AI agents: the full method, from scope to production / Inigo Angulo</title>
+<meta name="description" content="A step by step method for building a real MVP with AI coding agents: how to scope it, the project rules file, tickets agents cannot misread, the team structure, the gates before production, and what it costs. From a build that shipped 445 PRs in seven weeks.">
+<link rel="canonical" href="https://inigoangulo.com/writing/how-to-build-an-mvp-with-ai-agents/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta property="og:title" content="How to build an MVP with AI agents: the full method, from scope to production">
+<meta property="og:description" content="A step by step method for building a real MVP with AI coding agents: how to scope it, the project rules file, tickets agents cannot misread, the team structure, the gates before production, and what it costs. From a build that shipped 445 PRs in seven weeks.">
+<meta property="og:image" content="https://inigoangulo.com/img/og.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://inigoangulo.com/writing/how-to-build-an-mvp-with-ai-agents/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/services/services.css?v=b439033">
+<style>.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
+.art .k{margin-bottom:12px}.art h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:none}
+.art .meta{font-family:var(--m);font-size:.74rem;color:var(--t3);margin:16px 0 34px;display:flex;gap:16px;flex-wrap:wrap}
+.art p{max-width:none;font-size:1.05rem;line-height:1.7;margin:0 0 18px}
+.art h2{font-size:1.35rem;margin:38px 0 12px;max-width:none}
+.art ul,.art ol{margin:0 0 18px 22px;color:var(--t2);font-size:1.02rem;line-height:1.65}
+.art li{margin-bottom:6px}
+.art .num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0}
+.art .num div{border:1px solid var(--b1);border-radius:10px;padding:14px;background:var(--glass)}
+.art .num b{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--ac2);line-height:1}
+.art .num span{display:block;font-family:var(--m);font-size:.66rem;color:var(--t3);margin-top:7px;line-height:1.45}
+@media(max-width:700px){.art .num{grid-template-columns:1fr 1fr}}
+.art blockquote{border-left:3px solid var(--ac);padding:4px 0 4px 18px;margin:22px 0;color:var(--t1);font-size:1.1rem;font-weight:500}
+.art .box{border:1px solid var(--acb);border-radius:12px;padding:20px 22px;background:var(--acg2);margin:26px 0}
+.art .box p{margin:0;font-size:.98rem}
+.art .box a{color:var(--ac2);border-bottom:1px solid var(--acb)}
+.art a{color:var(--ac2)}
+.art .fig{margin:26px 0;border:1px solid var(--b1);border-radius:12px;padding:16px;background:var(--glass)}.art .fig svg{width:100%;height:auto;display:block}.art figcaption{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-top:10px}
+.art .series{border:1px solid var(--b1);border-radius:12px;padding:16px 20px;margin:0 0 30px;background:var(--glass)}.art .series__k{font-family:var(--m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);display:block;margin-bottom:8px}.art .series ul{list-style:none;margin:0;display:grid;gap:6px}.art .series li{font-size:.92rem;margin:0}.art .series em{font-style:normal;font-family:var(--m);font-size:.68rem;color:var(--t3)}
+.art .tag{font-family:var(--m);font-size:.7rem;color:var(--ac2);border:1px solid var(--acb);border-radius:999px;padding:3px 10px}
+.art table{width:100%;border-collapse:collapse;margin:22px 0;font-size:.92rem;line-height:1.5}.art th,.art td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--b1)}.art th{font-family:var(--m);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);font-weight:500}.art td{color:var(--t2)}.art td:first-child{color:var(--t1)}
+.art pre{background:#0b0b10;border:1px solid var(--b1);border-radius:12px;padding:18px 20px;margin:22px 0;overflow-x:auto;font-family:var(--m);font-size:.8rem;line-height:1.6;color:var(--t2)}.art pre code{font-family:inherit}
+.art .faq{margin:40px 0 0}.art .faq h2{margin-bottom:6px}.art .faq details{border-bottom:1px solid var(--b1);padding:14px 0}.art .faq summary{cursor:pointer;font-weight:600;color:var(--t1);font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;gap:16px}.art .faq summary::after{content:'+';color:var(--ac2);font-family:var(--m)}.art .faq details[open] summary::after{content:'3'}.art .faq p{margin:10px 0 0;font-size:.98rem;color:var(--t2)}
+@media(max-width:700px){.art table{display:block;overflow-x:auto;white-space:normal}}
+.art .cta{margin-top:40px}
+.art .cta h2{margin:0 0 6px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
+<script src="/analytics.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to build an MVP with AI agents: the full method, from scope to production", "description": "A step by step method for building a real MVP with AI coding agents: how to scope it, the project rules file, tickets agents cannot misread, the team structure, the gates before production, and what it costs. From a build that shipped 445 PRs in seven weeks.", "datePublished": "2026-11-04", "dateModified": "2026-11-04", "author": {"@type": "Person", "@id": "https://inigoangulo.com/#person", "name": "Inigo Angulo", "url": "https://inigoangulo.com/"}, "publisher": {"@type": "Person", "name": "Inigo Angulo"}, "mainEntityOfPage": "https://inigoangulo.com/writing/how-to-build-an-mvp-with-ai-agents/", "image": "https://inigoangulo.com/img/og.png", "keywords": "Building with AI agents", "articleSection": "Building with AI agents", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inigo Angulo", "item": "https://inigoangulo.com/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://inigoangulo.com/writing/"}, {"@type": "ListItem", "position": 3, "name": "How to build an MVP with AI agents: the full method, from scope to production", "item": "https://inigoangulo.com/writing/how-to-build-an-mvp-with-ai-agents/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can a non technical founder build an MVP with AI agents?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, up to a point. Agents write the code; they do not decide what the product is, what it must never do, or whether a green check means anything. If you can write a one page scope and read a test result, you can run the method. If you cannot, you need one person who can, part time."}}, {"@type": "Question", "name": "How long does it take to build an MVP with AI agents?", "acceptedAnswer": {"@type": "Answer", "text": "For a focused product with one core workflow, two to four weeks of calendar time is realistic when scope is written before the first prompt. My own build went from first commit to a first gated release in 17 days and to 15 releases in seven weeks. The time that does not compress is deciding, verifying and design."}}, {"@type": "Question", "name": "Which tool do you use, Claude Code or Cursor?", "acceptedAnswer": {"@type": "Answer", "text": "The method does not depend on the tool. I use Claude Code because it runs multiple agents with their own mandate files and worktrees, which is what the team structure needs. The rules file, ticket template and gates work with any agent that reads files from the repository."}}, {"@type": "Question", "name": "What is the biggest mistake people make?", "acceptedAnswer": {"@type": "Answer", "text": "Starting to build before writing what the product must never do. Agents are excellent at adding features and terrible at knowing which feature breaks the thesis. Every expensive failure I have seen traces back to a missing invariant, not to a wrong line of code."}}]}</script>
+</head>
+<body>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header>
+<script src="/services/bar.js?v=b439033" defer></script>
+<main><article class="art">
+<span class="k">Writing</span>
+<h1>How to build an MVP with AI agents: the full method, from scope to production</h1>
+<div class="meta"><span>Inigo Angulo</span><span>November 4, 2026</span><span>12 min read</span><a class="tag" href="/writing/#build">Building with AI agents</a></div>
+<nav class="series" aria-label="In this series"><span class="series__k">In this series: Building with AI agents</span><ul><li><a href="/writing/scope-an-mvp-for-ai-agents/">How to scope an MVP for AI agents: the one workflow rule and the list of what you will not build</a></li><li><a href="/writing/claude-md-example-project-rules-file/">CLAUDE.md example: the project rules file that made 445 pull requests mergeable</a></li><li><a href="/writing/tickets-for-ai-agents-template/">Writing tickets for AI agents: the template that stops them inventing requirements</a></li><li><a href="/writing/ai-agent-team-structure-solo-builder/">AI agent team structure for a solo builder: roles, handoffs and who merges</a></li><li><a href="/writing/where-ai-coding-agents-fail/">Where AI coding agents fail on real products: the eight failures I hit and the gate for each</a></li></ul></nav>
+
+<p>This is the method I use to build a production MVP with a team of AI coding agents, written as steps you can follow. It is not a weekend tutorial and it is not a warning. It is what produced 445 merged pull requests, 15 gated releases and a product with paying customers in seven weeks, with one person scoping, deciding and approving, and no engineers on payroll. Every step links to a deeper piece.</p>
+
+<div class="num"><div><b>7</b><span>steps, in the order they have to happen</span></div><div><b>1</b><span>page of scope before the first prompt</span></div><div><b>5</b><span>checks before main accepts a merge</span></div><div><b>0</b><span>agents with production credentials</span></div></div>
+
+<h2>Step 0: decide whether agents are the right tool</h2>
+<p>Agents compress the writing of code. They do not compress deciding what to write, verifying that what was written works, or designing something a customer wants to look at. If your product's risk is in the code (a hard algorithm, a novel integration), agents help less than you hope. If the risk is in the product (will anyone pay, does the workflow hold up), agents are the cheapest way ever invented to find out, because the first version costs weeks instead of quarters.</p>
+<p>The test: can you write, in one page, what the product must do, what it must never do, and who may see what? If yes, go. If no, the week you would spend building is better spent writing that page, and you should not touch an agent until it exists.</p>
+
+<h2>Step 1: scope the MVP as invariants, not features</h2>
+<p>A feature list tells an agent what to add. An invariant tells it what it may never break. The second is what keeps a fast build from turning into a pile of features that contradict each other.</p>
+<p>My scope document has four parts: the thesis in one sentence (what the user can trust the product for), the one workflow the MVP must prove, the invariants (the things that must hold in every state, each marked as enforced in the database, in the application, or both), and the explicit list of what is not built. That last list is the one that saves the most money, because agents will happily build everything you do not forbid.</p>
+<p>Read the detail in <a href="/writing/scope-an-mvp-for-ai-agents/">how to scope an MVP for AI agents</a>.</p>
+
+<h2>Step 2: write the project rules file before the first line of code</h2>
+<p>Every agent session starts by reading one file at the root of the repository. In Claude Code it is called CLAUDE.md; other tools have an equivalent. It is the single highest leverage artefact of the whole build, because it is the only thing that is true in every session, for every agent, after every context reset.</p>
+<p>Mine holds: the thesis, the fixed stack with an explicit "nothing else", the hard rules (numbered, each with the incident that produced it), what counts as proof, the states a task can be reported in, and how an agent escalates a decision to me. It grew from 12 rules to 29 over seven weeks, and every addition has a date and a reason. A rules file without reasons gets argued with; one with reasons gets followed.</p>
+<p>The structure, with a neutral example, is in <a href="/writing/claude-md-example-project-rules-file/">CLAUDE.md example: the project rules file</a>.</p>
+
+<h2>Step 3: turn the scope into tickets agents cannot misread</h2>
+<p>An agent given "add user invitations" will invent the half of the requirement you did not write. A ticket with a measurable acceptance criterion, a list of what is out of scope, and the decisions that are already taken cannot be invented around. The template is short and the discipline is total: no ticket, no work; no acceptance criterion, the ticket goes back.</p>
+<p>The template, and the three fields that stop the most expensive mistakes, are in <a href="/writing/tickets-for-ai-agents-template/">writing tickets for AI agents</a>.</p>
+
+<h2>Step 4: structure the team so that trust comes from the edges</h2>
+<p>One agent doing everything works for a demo and fails at the first week of real scope, because it cannot review its own work and it holds every credential. The structure that held: a lead that decomposes tickets, assigns work and integrates but does not merge; workers with a mandate each (frontend, backend, data, design) that write only in the files they are assigned; a reviewer that returns a list of concrete faults; a security agent that runs a full penetration test before every release; and a verifier that can only answer from the output of a script.</p>
+<p>The rule that mattered most: the orchestrator does not write code, and no agent to the right of it holds production credentials. The detail is in <a href="/writing/ai-agent-team-structure-solo-builder/">AI agent team structure for a solo builder</a>, and the operating model with its numbers is in <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a>.</p>
+
+<figure class="fig"><svg viewBox="0 0 720 150" role="img" aria-label="The seven steps of the method as a horizontal sequence: scope, rules file, tickets, team, gates, release, measure">
+<g font-family="JetBrains Mono,monospace" font-size="11" fill="#9a9aae">
+<defs><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6b6b80"/></marker></defs>
+<g fill="none" stroke="#6b6b80" stroke-width="1.2" marker-end="url(#b)"><path d="M100 60 L118 60"/><path d="M200 60 L218 60"/><path d="M300 60 L318 60"/><path d="M400 60 L418 60"/><path d="M500 60 L518 60"/><path d="M600 60 L618 60"/></g>
+<rect x="20" y="36" width="80" height="48" rx="8" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.55)"/><text x="60" y="64" text-anchor="middle" fill="#bbf7d0">scope</text>
+<rect x="120" y="36" width="80" height="48" rx="8" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.55)"/><text x="160" y="64" text-anchor="middle" fill="#bbf7d0">rules</text>
+<rect x="220" y="36" width="80" height="48" rx="8" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.55)"/><text x="260" y="64" text-anchor="middle" fill="#bbf7d0">tickets</text>
+<rect x="320" y="36" width="80" height="48" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="360" y="64" text-anchor="middle" fill="#f4f4f6">team</text>
+<rect x="420" y="36" width="80" height="48" rx="8" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.5)"/><text x="460" y="64" text-anchor="middle" fill="#fcd34d">gates</text>
+<rect x="520" y="36" width="80" height="48" rx="8" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.5)"/><text x="560" y="64" text-anchor="middle" fill="#fcd34d">release</text>
+<rect x="620" y="36" width="80" height="48" rx="8" fill="#101018" stroke="#2dd4bf"/><text x="660" y="64" text-anchor="middle" fill="#5eead4">measure</text>
+<text x="20" y="120" font-size="10" fill="#6b6b80">green: human work that does not compress / amber: where agents are checked / the first three steps happen before any code</text>
+</g></svg><figcaption>The order is the method. Teams that start at "team" or "gates" rebuild the first three steps later, at ten times the price.</figcaption></figure>
+
+<h2>Step 5: put gates between the agents and main</h2>
+<p>Volume is the problem agents create. Ten times the pull requests, the same number of eyes. The answer is not reading faster, it is gates that mean something: lint with house rules, strict types, unit and database tests, a secrets scan on every commit of the branch, browser tests on every change that is not documentation. And the rule under all of them: a skipped check does not count as green, and nothing is declared, everything is produced by a script with an identifier.</p>
+<p>Why that matters, with the incident that taught it, is in <a href="/writing/green-check-is-not-proof/">why a green check is not proof</a>. The specific case of database security, where the test has to run as the user who must not get in, is in <a href="/writing/row-level-security-tests-ai-agents/">row level security with AI agents</a>.</p>
+
+<h2>Step 6: release through one human gate, in numbered sets</h2>
+<p>Agents deploy to production through a workflow that holds the secrets; they never see them. Before each promotion, a security agent runs a full penetration test against local and staging, never production, and writes a verdict. A FAIL blocks the release like a red check. Then one human command, logged with who and when. Releases are batched into numbered sets because verification is a fixed cost per release and it is the cost that does not compress.</p>
+<p>The two gates where a human must sit, and why those two and not more, are in <a href="/writing/human-in-the-loop-coding-agents/">human in the loop for coding agents</a>. The full path from ticket to production is in <a href="/writing/ticket-to-production-in-five-hours/">from ticket to production in five hours</a>.</p>
+
+<h2>Step 7: measure the build, not the activity</h2>
+<p>Four numbers told me whether the method was working: pull requests merged per week (volume), the share of CI runs that went red for a reason that was not the code (noise), decisions escalated per week (whether the scope was holding), and releases with a PASS verdict (trust). Lines of code and agent hours are activity; none of them predicts whether a customer can use the product.</p>
+<p>What the whole thing costs, split into agent usage, infrastructure and human time, is in <a href="/writing/cost-to-build-mvp-with-ai-agents/">how much it costs to build an MVP with AI agents</a>.</p>
+
+<h2>Where it goes wrong</h2>
+<p>Every failure I hit in seven weeks fits one of eight patterns, and each has a gate now. The three most expensive: a check that reported green without running; a ticket that contradicted itself eighty lines apart and an agent that built on the wrong half; and a test written to document a bug, which then protected the bug. The full list, with the gate for each, is in <a href="/writing/where-ai-coding-agents-fail/">where AI coding agents fail on real products</a>.</p>
+
+<div class="box"><p><strong>Want this run for your product?</strong> I scope, design and build MVPs this way in fixed price sprints, with the agent costs passed through. See <a href="/ai-product-builder/">AI product builder</a>, or <a href="https://cal.com/inigoangulo/30min">book thirty minutes</a>.</p></div>
+
+<section class="faq"><h2>Questions people ask</h2><details><summary>Can a non technical founder build an MVP with AI agents?</summary><p>Yes, up to a point. Agents write the code; they do not decide what the product is, what it must never do, or whether a green check means anything. If you can write a one page scope and read a test result, you can run the method. If you cannot, you need one person who can, part time.</p></details><details><summary>How long does it take to build an MVP with AI agents?</summary><p>For a focused product with one core workflow, two to four weeks of calendar time is realistic when scope is written before the first prompt. My own build went from first commit to a first gated release in 17 days and to 15 releases in seven weeks. The time that does not compress is deciding, verifying and design.</p></details><details><summary>Which tool do you use, Claude Code or Cursor?</summary><p>The method does not depend on the tool. I use Claude Code because it runs multiple agents with their own mandate files and worktrees, which is what the team structure needs. The rules file, ticket template and gates work with any agent that reads files from the repository.</p></details><details><summary>What is the biggest mistake people make?</summary><p>Starting to build before writing what the product must never do. Agents are excellent at adding features and terrible at knowing which feature breaks the thesis. Every expensive failure I have seen traces back to a missing invariant, not to a wrong line of code.</p></details></section>
+<div class="cta"><h2>Working on something like this?</h2><p>Thirty minutes, no deck. <a href="https://cal.com/inigoangulo/30min">Book a call</a> or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
+</article></main>
+<footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/writing/">All writing</a> &nbsp; <a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" rel="noopener" target="_blank">LinkedIn</a> &nbsp; <a href="https://github.com/inigoangulo93" rel="noopener" target="_blank">GitHub</a></span></div></footer>
+</body>
+</html>

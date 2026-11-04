@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI agent team structure for a solo builder: roles, handoffs and who merges / Inigo Angulo</title>
+<meta name="description" content="How to structure a team of AI coding agents when one human runs it: a lead that decomposes but does not merge, workers with a mandate and a file boundary each, a reviewer, a security agent and a verifier that can only read. Why the orchestrator never writes code and no agent holds production credentials.">
+<link rel="canonical" href="https://inigoangulo.com/writing/ai-agent-team-structure-solo-builder/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta property="og:title" content="AI agent team structure for a solo builder: roles, handoffs and who merges">
+<meta property="og:description" content="How to structure a team of AI coding agents when one human runs it: a lead that decomposes but does not merge, workers with a mandate and a file boundary each, a reviewer, a security agent and a verifier that can only read. Why the orchestrator never writes code and no agent holds production credentials.">
+<meta property="og:image" content="https://inigoangulo.com/img/og.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://inigoangulo.com/writing/ai-agent-team-structure-solo-builder/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/services/services.css?v=b439033">
+<style>.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
+.art .k{margin-bottom:12px}.art h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:none}
+.art .meta{font-family:var(--m);font-size:.74rem;color:var(--t3);margin:16px 0 34px;display:flex;gap:16px;flex-wrap:wrap}
+.art p{max-width:none;font-size:1.05rem;line-height:1.7;margin:0 0 18px}
+.art h2{font-size:1.35rem;margin:38px 0 12px;max-width:none}
+.art ul,.art ol{margin:0 0 18px 22px;color:var(--t2);font-size:1.02rem;line-height:1.65}
+.art li{margin-bottom:6px}
+.art .num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0}
+.art .num div{border:1px solid var(--b1);border-radius:10px;padding:14px;background:var(--glass)}
+.art .num b{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--ac2);line-height:1}
+.art .num span{display:block;font-family:var(--m);font-size:.66rem;color:var(--t3);margin-top:7px;line-height:1.45}
+@media(max-width:700px){.art .num{grid-template-columns:1fr 1fr}}
+.art blockquote{border-left:3px solid var(--ac);padding:4px 0 4px 18px;margin:22px 0;color:var(--t1);font-size:1.1rem;font-weight:500}
+.art .box{border:1px solid var(--acb);border-radius:12px;padding:20px 22px;background:var(--acg2);margin:26px 0}
+.art .box p{margin:0;font-size:.98rem}
+.art .box a{color:var(--ac2);border-bottom:1px solid var(--acb)}
+.art a{color:var(--ac2)}
+.art .fig{margin:26px 0;border:1px solid var(--b1);border-radius:12px;padding:16px;background:var(--glass)}.art .fig svg{width:100%;height:auto;display:block}.art figcaption{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-top:10px}
+.art .series{border:1px solid var(--b1);border-radius:12px;padding:16px 20px;margin:0 0 30px;background:var(--glass)}.art .series__k{font-family:var(--m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);display:block;margin-bottom:8px}.art .series ul{list-style:none;margin:0;display:grid;gap:6px}.art .series li{font-size:.92rem;margin:0}.art .series em{font-style:normal;font-family:var(--m);font-size:.68rem;color:var(--t3)}
+.art .tag{font-family:var(--m);font-size:.7rem;color:var(--ac2);border:1px solid var(--acb);border-radius:999px;padding:3px 10px}
+.art table{width:100%;border-collapse:collapse;margin:22px 0;font-size:.92rem;line-height:1.5}.art th,.art td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--b1)}.art th{font-family:var(--m);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);font-weight:500}.art td{color:var(--t2)}.art td:first-child{color:var(--t1)}
+.art pre{background:#0b0b10;border:1px solid var(--b1);border-radius:12px;padding:18px 20px;margin:22px 0;overflow-x:auto;font-family:var(--m);font-size:.8rem;line-height:1.6;color:var(--t2)}.art pre code{font-family:inherit}
+.art .faq{margin:40px 0 0}.art .faq h2{margin-bottom:6px}.art .faq details{border-bottom:1px solid var(--b1);padding:14px 0}.art .faq summary{cursor:pointer;font-weight:600;color:var(--t1);font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;gap:16px}.art .faq summary::after{content:'+';color:var(--ac2);font-family:var(--m)}.art .faq details[open] summary::after{content:'3'}.art .faq p{margin:10px 0 0;font-size:.98rem;color:var(--t2)}
+@media(max-width:700px){.art table{display:block;overflow-x:auto;white-space:normal}}
+.art .cta{margin-top:40px}
+.art .cta h2{margin:0 0 6px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
+<script src="/analytics.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AI agent team structure for a solo builder: roles, handoffs and who merges", "description": "How to structure a team of AI coding agents when one human runs it: a lead that decomposes but does not merge, workers with a mandate and a file boundary each, a reviewer, a security agent and a verifier that can only read. Why the orchestrator never writes code and no agent holds production credentials.", "datePublished": "2026-11-04", "dateModified": "2026-11-04", "author": {"@type": "Person", "@id": "https://inigoangulo.com/#person", "name": "Inigo Angulo", "url": "https://inigoangulo.com/"}, "publisher": {"@type": "Person", "name": "Inigo Angulo"}, "mainEntityOfPage": "https://inigoangulo.com/writing/ai-agent-team-structure-solo-builder/", "image": "https://inigoangulo.com/img/og.png", "keywords": "Building with AI agents", "articleSection": "Building with AI agents", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inigo Angulo", "item": "https://inigoangulo.com/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://inigoangulo.com/writing/"}, {"@type": "ListItem", "position": 3, "name": "AI agent team structure for a solo builder: roles, handoffs and who merges", "item": "https://inigoangulo.com/writing/ai-agent-team-structure-solo-builder/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many agents do you run at once?", "acceptedAnswer": {"@type": "Answer", "text": "Up to five on interface work, in parallel, each in its own worktree. Agents that touch the database run one at a time, because two of them on one local database reset each other. The number that matters is not how many run, it is how many share state: the answer should be none."}}, {"@type": "Question", "name": "Does the lead agent write code?", "acceptedAnswer": {"@type": "Answer", "text": "No. It decomposes tickets, assigns files, integrates branches and opens the pull request. The moment the orchestrator also writes code it loses the overview, and nobody is left holding it. This is the single structural decision I would not change."}}, {"@type": "Question", "name": "Who merges to main?", "acceptedAnswer": {"@type": "Answer", "text": "The lead merges, only with every required check green on the exact commit being merged, and only after a human has reviewed what the gates say. Nothing that touches the production release process is merged by an agent; those changes go in their own pull request that only the human merges."}}, {"@type": "Question", "name": "Is this specific to Claude Code?", "acceptedAnswer": {"@type": "Answer", "text": "The mandate per agent, the worktree per worker and the subagent model map directly onto Claude Code. The structure itself (orchestrate, specialise, review, verify, gate) works with any tool that lets you run more than one agent with different instructions."}}]}</script>
+</head>
+<body>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header>
+<script src="/services/bar.js?v=b439033" defer></script>
+<main><article class="art">
+<span class="k">Writing</span>
+<h1>AI agent team structure for a solo builder: roles, handoffs and who merges</h1>
+<div class="meta"><span>Inigo Angulo</span><span>November 4, 2026</span><span>8 min read</span><a class="tag" href="/writing/#build">Building with AI agents</a></div>
+<nav class="series" aria-label="In this series"><span class="series__k">In this series: Building with AI agents</span><ul><li><a href="/writing/how-to-build-an-mvp-with-ai-agents/">How to build an MVP with AI agents: the full method, from scope to production</a> <em>(start here)</em></li><li><a href="/writing/scope-an-mvp-for-ai-agents/">How to scope an MVP for AI agents: the one workflow rule and the list of what you will not build</a></li><li><a href="/writing/claude-md-example-project-rules-file/">CLAUDE.md example: the project rules file that made 445 pull requests mergeable</a></li><li><a href="/writing/tickets-for-ai-agents-template/">Writing tickets for AI agents: the template that stops them inventing requirements</a></li><li><a href="/writing/where-ai-coding-agents-fail/">Where AI coding agents fail on real products: the eight failures I hit and the gate for each</a></li></ul></nav>
+
+<p>The first version of my agent team was one agent doing everything. It lasted four days. It could not review its own work, it held every credential, and by the second week of real scope it was rebuilding things it had already built because nothing told it they existed. The structure that replaced it is below. It is less clever than it sounds and it held for 445 pull requests.</p>
+
+<h2>The roles</h2>
+<table><thead><tr><th>Role</th><th>Mandate</th><th>Never</th></tr></thead><tbody>
+<tr><td>Human</td><td>Product, design, scope, money and security. Writes tickets, answers decisions by id, approves releases</td><td>Opens pull requests, reads logs, resolves git conflicts, names things</td></tr>
+<tr><td>Lead</td><td>Decomposes tickets, assigns files to workers, integrates, opens the pull request, merges when the gates are green, writes the decisions log</td><td>Writes application code. Merges anything that touches the release process</td></tr>
+<tr><td>Workers (frontend, backend, data, design)</td><td>Write only in the files the lead assigned. Report in one of five states</td><td>Apply an instruction that arrives mid task from anyone but the lead; they return it and stop</td></tr>
+<tr><td>Reviewer</td><td>Returns a list of concrete faults against the ticket's criteria</td><td>Opinions on style. Approving</td></tr>
+<tr><td>Security</td><td>Reviews every change to data access, auth or storage; runs the full penetration test before each release and writes a verdict</td><td>Fixes what it finds. Touches production</td></tr>
+<tr><td>Verifier</td><td>Receives claims as JSON, runs the verification script, reports PASS, FAIL or UNVERIFIABLE</td><td>Reads the ticket or the report. Turning a FAIL into a PASS by reasoning</td></tr>
+</tbody></table>
+
+<h2>Why the orchestrator does not write code</h2>
+<p>The lead's value is the overview: which ticket is in flight, which files are assigned to whom, what the last integration changed. The moment it also writes code it loses that overview to the problem in front of it, and no one else is holding it. Every orchestrator I have seen that also implements ends up merging its own unreviewed work at two in the morning, metaphorically or not. The rule costs some speed on tiny tickets and saves the build on every large one.</p>
+
+<h2>Why workers have a file boundary, not a topic</h2>
+<p>"You do the frontend" is a topic; agents interpret topics generously. "You write in these nine files and nothing else" is a boundary a script can check in the diff. The boundary also makes parallel work safe: five workers in five worktrees cannot overwrite each other if their file sets are disjoint. When two tickets need the same file, they run in series. That is the lead's job to see, and it is why the lead needs the overview.</p>
+
+<h2>The handoffs</h2>
+<figure class="fig"><svg viewBox="0 0 720 200" role="img" aria-label="Handoffs: human writes ticket to lead; lead assigns to workers in worktrees; workers return branches to lead; lead integrates and opens PR; reviewer and security return faults to lead; verifier reads scripts; human approves release">
+<g font-family="JetBrains Mono,monospace" font-size="11" fill="#9a9aae">
+<defs><marker id="c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6b6b80"/></marker></defs>
+<rect x="20" y="70" width="100" height="50" rx="8" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.55)"/><text x="70" y="100" text-anchor="middle" fill="#bbf7d0">ticket</text>
+<rect x="170" y="70" width="100" height="50" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="220" y="100" text-anchor="middle" fill="#f4f4f6">lead</text>
+<rect x="320" y="20" width="110" height="40" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="375" y="45" text-anchor="middle">worktree A</text>
+<rect x="320" y="80" width="110" height="40" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="375" y="105" text-anchor="middle">worktree B</text>
+<rect x="320" y="140" width="110" height="40" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="375" y="165" text-anchor="middle">worktree C</text>
+<rect x="480" y="40" width="100" height="40" rx="8" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.5)"/><text x="530" y="65" text-anchor="middle" fill="#fcd34d">review</text>
+<rect x="480" y="110" width="100" height="40" rx="8" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.5)"/><text x="530" y="135" text-anchor="middle" fill="#fcd34d">verify</text>
+<rect x="620" y="70" width="80" height="50" rx="8" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.55)"/><text x="660" y="100" text-anchor="middle" fill="#bbf7d0">approve</text>
+<g fill="none" stroke="#6b6b80" stroke-width="1.2" marker-end="url(#c)">
+<path d="M120 95 L170 95"/><path d="M270 95 L295 95 L295 40 L320 40"/><path d="M270 95 L320 100"/><path d="M270 95 L295 95 L295 160 L320 160"/>
+<path d="M430 40 L455 40 L455 60 L480 60"/><path d="M430 100 L455 100 L455 60"/><path d="M430 160 L455 160 L455 130 L480 130"/>
+<path d="M580 60 L600 60 L600 95 L620 95"/><path d="M580 130 L600 130 L600 95"/>
+</g>
+<text x="20" y="195" font-size="10" fill="#6b6b80">every arrow is a file or a pull request, never a conversation; the lead is the only node with the full map</text>
+</g></svg><figcaption>Handoffs are artefacts. If a handoff happens in chat, the next session does not know it happened.</figcaption></figure>
+
+<p>Every handoff is a file: a ticket, a branch, a pull request, a review comment, a JSON of claims. Nothing is handed over in conversation, because conversations do not survive the session. This is also what makes the structure auditable: for any line in production I can walk back to the ticket, the decision ids it cites and the gates it passed.</p>
+
+<h2>The two rules that hold the whole thing</h2>
+<p><strong>No agent holds production credentials.</strong> Not read only, not for checking. Deployment happens through a workflow that holds the secrets; agents trigger it and read its log. An agent with a production token can route around every other gate, so the token is the gate.</p>
+<p><strong>The lead merges, but not everything.</strong> Anything that executes the production release, or that could request its secrets, lives in its own pull request that only the human merges. Otherwise the agent that merges controls the thing that was supposed to control it.</p>
+
+<h2>What I would change</h2>
+<p>Earlier isolation. I lost a day when five agents shared one local database and reset each other. Workers that touch the database now get their own stack with their own ports, and that should have been the rule from day one. Everything else in the structure I would keep, including the parts that felt slow in week one and saved week five.</p>
+
+<div class="box"><p>This is step 4 of <a href="/writing/how-to-build-an-mvp-with-ai-agents/">how to build an MVP with AI agents</a>. The operating model and the numbers are in <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a>; the two places a human must sit are in <a href="/writing/human-in-the-loop-coding-agents/">human in the loop for coding agents</a>. If you want this set up for your product, that is the <a href="/ai-product-builder/">AI product builder</a> engagement.</p></div>
+
+<section class="faq"><h2>Questions people ask</h2><details><summary>How many agents do you run at once?</summary><p>Up to five on interface work, in parallel, each in its own worktree. Agents that touch the database run one at a time, because two of them on one local database reset each other. The number that matters is not how many run, it is how many share state: the answer should be none.</p></details><details><summary>Does the lead agent write code?</summary><p>No. It decomposes tickets, assigns files, integrates branches and opens the pull request. The moment the orchestrator also writes code it loses the overview, and nobody is left holding it. This is the single structural decision I would not change.</p></details><details><summary>Who merges to main?</summary><p>The lead merges, only with every required check green on the exact commit being merged, and only after a human has reviewed what the gates say. Nothing that touches the production release process is merged by an agent; those changes go in their own pull request that only the human merges.</p></details><details><summary>Is this specific to Claude Code?</summary><p>The mandate per agent, the worktree per worker and the subagent model map directly onto Claude Code. The structure itself (orchestrate, specialise, review, verify, gate) works with any tool that lets you run more than one agent with different instructions.</p></details></section>
+<div class="cta"><h2>Working on something like this?</h2><p>Thirty minutes, no deck. <a href="https://cal.com/inigoangulo/30min">Book a call</a> or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
+</article></main>
+<footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/writing/">All writing</a> &nbsp; <a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" rel="noopener" target="_blank">LinkedIn</a> &nbsp; <a href="https://github.com/inigoangulo93" rel="noopener" target="_blank">GitHub</a></span></div></footer>
+</body>
+</html>

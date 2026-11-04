@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing tickets for AI agents: the template that stops them inventing requirements / Inigo Angulo</title>
+<meta name="description" content="A ticket template for AI coding agents: a measurable acceptance criterion, the explicit out of scope list, decisions already taken, and frontmatter a script can validate. The three fields that prevent the most expensive failures, with an example ticket.">
+<link rel="canonical" href="https://inigoangulo.com/writing/tickets-for-ai-agents-template/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta property="og:title" content="Writing tickets for AI agents: the template that stops them inventing requirements">
+<meta property="og:description" content="A ticket template for AI coding agents: a measurable acceptance criterion, the explicit out of scope list, decisions already taken, and frontmatter a script can validate. The three fields that prevent the most expensive failures, with an example ticket.">
+<meta property="og:image" content="https://inigoangulo.com/img/og.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://inigoangulo.com/writing/tickets-for-ai-agents-template/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/services/services.css?v=b439033">
+<style>.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
+.art .k{margin-bottom:12px}.art h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:none}
+.art .meta{font-family:var(--m);font-size:.74rem;color:var(--t3);margin:16px 0 34px;display:flex;gap:16px;flex-wrap:wrap}
+.art p{max-width:none;font-size:1.05rem;line-height:1.7;margin:0 0 18px}
+.art h2{font-size:1.35rem;margin:38px 0 12px;max-width:none}
+.art ul,.art ol{margin:0 0 18px 22px;color:var(--t2);font-size:1.02rem;line-height:1.65}
+.art li{margin-bottom:6px}
+.art .num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0}
+.art .num div{border:1px solid var(--b1);border-radius:10px;padding:14px;background:var(--glass)}
+.art .num b{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--ac2);line-height:1}
+.art .num span{display:block;font-family:var(--m);font-size:.66rem;color:var(--t3);margin-top:7px;line-height:1.45}
+@media(max-width:700px){.art .num{grid-template-columns:1fr 1fr}}
+.art blockquote{border-left:3px solid var(--ac);padding:4px 0 4px 18px;margin:22px 0;color:var(--t1);font-size:1.1rem;font-weight:500}
+.art .box{border:1px solid var(--acb);border-radius:12px;padding:20px 22px;background:var(--acg2);margin:26px 0}
+.art .box p{margin:0;font-size:.98rem}
+.art .box a{color:var(--ac2);border-bottom:1px solid var(--acb)}
+.art a{color:var(--ac2)}
+.art .fig{margin:26px 0;border:1px solid var(--b1);border-radius:12px;padding:16px;background:var(--glass)}.art .fig svg{width:100%;height:auto;display:block}.art figcaption{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-top:10px}
+.art .series{border:1px solid var(--b1);border-radius:12px;padding:16px 20px;margin:0 0 30px;background:var(--glass)}.art .series__k{font-family:var(--m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);display:block;margin-bottom:8px}.art .series ul{list-style:none;margin:0;display:grid;gap:6px}.art .series li{font-size:.92rem;margin:0}.art .series em{font-style:normal;font-family:var(--m);font-size:.68rem;color:var(--t3)}
+.art .tag{font-family:var(--m);font-size:.7rem;color:var(--ac2);border:1px solid var(--acb);border-radius:999px;padding:3px 10px}
+.art table{width:100%;border-collapse:collapse;margin:22px 0;font-size:.92rem;line-height:1.5}.art th,.art td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--b1)}.art th{font-family:var(--m);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);font-weight:500}.art td{color:var(--t2)}.art td:first-child{color:var(--t1)}
+.art pre{background:#0b0b10;border:1px solid var(--b1);border-radius:12px;padding:18px 20px;margin:22px 0;overflow-x:auto;font-family:var(--m);font-size:.8rem;line-height:1.6;color:var(--t2)}.art pre code{font-family:inherit}
+.art .faq{margin:40px 0 0}.art .faq h2{margin-bottom:6px}.art .faq details{border-bottom:1px solid var(--b1);padding:14px 0}.art .faq summary{cursor:pointer;font-weight:600;color:var(--t1);font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;gap:16px}.art .faq summary::after{content:'+';color:var(--ac2);font-family:var(--m)}.art .faq details[open] summary::after{content:'3'}.art .faq p{margin:10px 0 0;font-size:.98rem;color:var(--t2)}
+@media(max-width:700px){.art table{display:block;overflow-x:auto;white-space:normal}}
+.art .cta{margin-top:40px}
+.art .cta h2{margin:0 0 6px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
+<script src="/analytics.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Writing tickets for AI agents: the template that stops them inventing requirements", "description": "A ticket template for AI coding agents: a measurable acceptance criterion, the explicit out of scope list, decisions already taken, and frontmatter a script can validate. The three fields that prevent the most expensive failures, with an example ticket.", "datePublished": "2026-11-04", "dateModified": "2026-11-04", "author": {"@type": "Person", "@id": "https://inigoangulo.com/#person", "name": "Inigo Angulo", "url": "https://inigoangulo.com/"}, "publisher": {"@type": "Person", "name": "Inigo Angulo"}, "mainEntityOfPage": "https://inigoangulo.com/writing/tickets-for-ai-agents-template/", "image": "https://inigoangulo.com/img/og.png", "keywords": "Building with AI agents", "articleSection": "Building with AI agents", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inigo Angulo", "item": "https://inigoangulo.com/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://inigoangulo.com/writing/"}, {"@type": "ListItem", "position": 3, "name": "Writing tickets for AI agents: the template that stops them inventing requirements", "item": "https://inigoangulo.com/writing/tickets-for-ai-agents-template/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How detailed should a ticket for an AI agent be?", "acceptedAnswer": {"@type": "Answer", "text": "Detailed in the three places agents fail: what done looks like (measurable), what is out of scope (explicit), and which decisions are already taken (by id). Everything else can be short, because the agent reads the domain model and the rules file anyway."}}, {"@type": "Question", "name": "Who writes the tickets, the human or the lead agent?", "acceptedAnswer": {"@type": "Answer", "text": "The human writes the ticket: intent, acceptance criterion, bounds. The lead agent decomposes it into work for the workers. An agent writing its own acceptance criterion is grading its own homework."}}, {"@type": "Question", "name": "What happens when a ticket is wrong?", "acceptedAnswer": {"@type": "Answer", "text": "It goes back before any work starts. A ticket without a measurable criterion or with invalid frontmatter is returned, by rule. The cost of returning a ticket is minutes; the cost of building against a wrong one is the ticket plus everything that was built on top."}}]}</script>
+</head>
+<body>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header>
+<script src="/services/bar.js?v=b439033" defer></script>
+<main><article class="art">
+<span class="k">Writing</span>
+<h1>Writing tickets for AI agents: the template that stops them inventing requirements</h1>
+<div class="meta"><span>Inigo Angulo</span><span>November 4, 2026</span><span>7 min read</span><a class="tag" href="/writing/#build">Building with AI agents</a></div>
+<nav class="series" aria-label="In this series"><span class="series__k">In this series: Building with AI agents</span><ul><li><a href="/writing/how-to-build-an-mvp-with-ai-agents/">How to build an MVP with AI agents: the full method, from scope to production</a> <em>(start here)</em></li><li><a href="/writing/scope-an-mvp-for-ai-agents/">How to scope an MVP for AI agents: the one workflow rule and the list of what you will not build</a></li><li><a href="/writing/claude-md-example-project-rules-file/">CLAUDE.md example: the project rules file that made 445 pull requests mergeable</a></li><li><a href="/writing/ai-agent-team-structure-solo-builder/">AI agent team structure for a solo builder: roles, handoffs and who merges</a></li><li><a href="/writing/where-ai-coding-agents-fail/">Where AI coding agents fail on real products: the eight failures I hit and the gate for each</a></li></ul></nav>
+
+<p>The most expensive thing an AI coding agent does is not write a bug. It is invent a requirement. Given "add invitations to the team page", an agent will decide who can invite, what happens to a pending invitation after seven days, and whether the email goes out before or after the record exists. All three are product decisions, and it will take them in the most reasonable way, which is not necessarily yours. The ticket template below exists to leave no room for the reasonable guess.</p>
+
+<h2>The rule under the template</h2>
+<p>No ticket, no work. No measurable acceptance criterion, the ticket goes back to the human before anything starts. The frontmatter is validated by a script in CI, so a ticket missing a field cannot be worked on. It sounds bureaucratic until the first time an agent builds the wrong half of a self contradicting ticket, which on my build took eighty lines of distance between the two contradictory sentences and cost a day.</p>
+
+<h2>The template</h2>
+<pre><code>---
+id: 143
+title: Invite a teammate to a collection
+status: todo
+area: team
+depends_on: [131]
+decisions: [0088, 0091]
+baseline: {design: 18, tokens: 7}
+board: &lt;url of the row on the board&gt;
+---
+
+## Why
+One sentence linking this to the thesis.
+
+## What done looks like (measurable)
+- A member with the owner role sends an invitation to an
+  email; the invitee receives it within 60 seconds in the
+  test mailbox.
+- A pending invitation grants zero rows of any table,
+  proven by a test that runs as the pending user.
+- Accepting makes the invitee a member with the role
+  chosen by the owner; the audit log records who invited
+  and who accepted, with timestamps.
+- Browser test on mobile and desktop passes.
+
+## Out of scope (explicit)
+- Resending or expiring invitations (ticket 144).
+- Inviting by link.
+- Any change to the roles themselves (decision 0088 fixes them).
+
+## Decisions already taken
+- 0088: the four roles and what each may do.
+- 0091: invitations are per collection, not per account.
+
+## Open questions
+- None. (If there were, the ticket would be blocked, not started.)</code></pre>
+
+<h2>The three fields that do the work</h2>
+<p><strong>What done looks like, measurably.</strong> Every line has a number, a role, or a test in it. "The invitation works" is not a criterion. "The invitee receives it within 60 seconds in the test mailbox" is one, and an agent can make it true and prove it. This is also what the reviewer checks against, so a vague criterion makes the review vague too.</p>
+<p><strong>Out of scope, explicitly.</strong> Agents build what you do not forbid. Listing the adjacent features, with the ticket where each one lives, turns "while I was there I also added resending" into a rule violation instead of initiative. On my build this list is the single most effective scope control, more than any conversation.</p>
+<p><strong>Decisions already taken, by id.</strong> A decision in a chat is gone next session. A decision with an id in a log is citable, and a ticket that cites it tells the agent "this is settled; do not reopen it". Half the escalations I received in the first two weeks were questions that had already been decided; the field removed them.</p>
+
+<h2>Frontmatter, because a script has to read it</h2>
+<p>The fields above the line exist so that scripts can check what humans forget: that the ticket has an id and a status, that its dependencies are merged before it starts, that it cites decisions that exist, that it has a row on the board (the board mirrors the tickets, never the other way), and which version of the design it was built against. A ticket that fails the schema is returned automatically. The validation took an hour to write and has caught something every week since.</p>
+
+<h2>What a ticket is not</h2>
+<p>It is not a specification of the implementation. The data model, the permissions and the design live in their own documents, and the ticket references them. A ticket that restates the domain model goes stale the day the model changes, and an agent will follow the stale copy. One source of truth per fact, and the ticket points at it.</p>
+
+<div class="box"><p>This is step 3 of <a href="/writing/how-to-build-an-mvp-with-ai-agents/">how to build an MVP with AI agents</a>. The decisions log it cites is described in <a href="/writing/claude-md-example-project-rules-file/">the project rules file</a>; who takes the ticket from here is in <a href="/writing/ai-agent-team-structure-solo-builder/">the team structure</a>.</p></div>
+
+<section class="faq"><h2>Questions people ask</h2><details><summary>How detailed should a ticket for an AI agent be?</summary><p>Detailed in the three places agents fail: what done looks like (measurable), what is out of scope (explicit), and which decisions are already taken (by id). Everything else can be short, because the agent reads the domain model and the rules file anyway.</p></details><details><summary>Who writes the tickets, the human or the lead agent?</summary><p>The human writes the ticket: intent, acceptance criterion, bounds. The lead agent decomposes it into work for the workers. An agent writing its own acceptance criterion is grading its own homework.</p></details><details><summary>What happens when a ticket is wrong?</summary><p>It goes back before any work starts. A ticket without a measurable criterion or with invalid frontmatter is returned, by rule. The cost of returning a ticket is minutes; the cost of building against a wrong one is the ticket plus everything that was built on top.</p></details></section>
+<div class="cta"><h2>Working on something like this?</h2><p>Thirty minutes, no deck. <a href="https://cal.com/inigoangulo/30min">Book a call</a> or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
+</article></main>
+<footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/writing/">All writing</a> &nbsp; <a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" rel="noopener" target="_blank">LinkedIn</a> &nbsp; <a href="https://github.com/inigoangulo93" rel="noopener" target="_blank">GitHub</a></span></div></footer>
+</body>
+</html>

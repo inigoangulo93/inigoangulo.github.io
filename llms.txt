@@ -22,7 +22,7 @@ cal.com/inigoangulo/30min · inigoangulo@gmail.com · CV: /inigo-angulo-cv-2026.
 - https://inigoangulo.com/ai-product-builder/ : AI build and deployment with agent teams and human gates
 
 ## Writing
-- https://inigoangulo.com/writing/ : index with tags; RSS at /writing/feed.xml
+- https://inigoangulo.com/writing/ : index with search and series; RSS at /writing/feed.xml
 - https://inigoangulo.com/writing/ai-agent-teams-software-development/
 - https://inigoangulo.com/writing/human-in-the-loop-coding-agents/
 - https://inigoangulo.com/writing/one-person-ai-agent-team-445-prs/
@@ -34,3 +34,9 @@ cal.com/inigoangulo/30min · inigoangulo@gmail.com · CV: /inigo-angulo-cv-2026.
 - https://inigoangulo.com/writing/figma-design-system-that-mirrors-code/
 - https://inigoangulo.com/writing/instrument-the-gaps-not-the-stages/
 - https://inigoangulo.com/writing/ticket-to-production-in-five-hours/
+- https://inigoangulo.com/writing/how-to-build-an-mvp-with-ai-agents/
+- https://inigoangulo.com/writing/scope-an-mvp-for-ai-agents/
+- https://inigoangulo.com/writing/claude-md-example-project-rules-file/
+- https://inigoangulo.com/writing/tickets-for-ai-agents-template/
+- https://inigoangulo.com/writing/ai-agent-team-structure-solo-builder/
+- https://inigoangulo.com/writing/where-ai-coding-agents-fail/

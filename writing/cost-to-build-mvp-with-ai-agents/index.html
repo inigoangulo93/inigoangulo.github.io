@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://inigoangulo.com/writing/cost-to-build-mvp-with-ai-agents/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/services/services.css?v=0e47e78">
+<link rel="stylesheet" href="/services/services.css?v=b439033">
 <style>.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
 .art .k{margin-bottom:12px}.art h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:none}
 .art .meta{font-family:var(--m);font-size:.74rem;color:var(--t3);margin:16px 0 34px;display:flex;gap:16px;flex-wrap:wrap}
@@ -36,6 +36,10 @@
 .art .fig{margin:26px 0;border:1px solid var(--b1);border-radius:12px;padding:16px;background:var(--glass)}.art .fig svg{width:100%;height:auto;display:block}.art figcaption{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-top:10px}
 .art .series{border:1px solid var(--b1);border-radius:12px;padding:16px 20px;margin:0 0 30px;background:var(--glass)}.art .series__k{font-family:var(--m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);display:block;margin-bottom:8px}.art .series ul{list-style:none;margin:0;display:grid;gap:6px}.art .series li{font-size:.92rem;margin:0}.art .series em{font-style:normal;font-family:var(--m);font-size:.68rem;color:var(--t3)}
 .art .tag{font-family:var(--m);font-size:.7rem;color:var(--ac2);border:1px solid var(--acb);border-radius:999px;padding:3px 10px}
+.art table{width:100%;border-collapse:collapse;margin:22px 0;font-size:.92rem;line-height:1.5}.art th,.art td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--b1)}.art th{font-family:var(--m);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);font-weight:500}.art td{color:var(--t2)}.art td:first-child{color:var(--t1)}
+.art pre{background:#0b0b10;border:1px solid var(--b1);border-radius:12px;padding:18px 20px;margin:22px 0;overflow-x:auto;font-family:var(--m);font-size:.8rem;line-height:1.6;color:var(--t2)}.art pre code{font-family:inherit}
+.art .faq{margin:40px 0 0}.art .faq h2{margin-bottom:6px}.art .faq details{border-bottom:1px solid var(--b1);padding:14px 0}.art .faq summary{cursor:pointer;font-weight:600;color:var(--t1);font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;gap:16px}.art .faq summary::after{content:'+';color:var(--ac2);font-family:var(--m)}.art .faq details[open] summary::after{content:'3'}.art .faq p{margin:10px 0 0;font-size:.98rem;color:var(--t2)}
+@media(max-width:700px){.art table{display:block;overflow-x:auto;white-space:normal}}
 .art .cta{margin-top:40px}
 .art .cta h2{margin:0 0 6px}
 </style>
@@ -44,17 +48,18 @@
 <script src="/analytics.js" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How much does it cost to build an MVP with AI agents? Real numbers from one build", "description": "What a production MVP built with an AI agent team actually costs: the agent bill, the infrastructure, the human time, and where the money really goes. Numbers from seven weeks on Acervo.", "datePublished": "2026-11-04", "dateModified": "2026-11-04", "author": {"@type": "Person", "@id": "https://inigoangulo.com/#person", "name": "Inigo Angulo", "url": "https://inigoangulo.com/"}, "publisher": {"@type": "Person", "name": "Inigo Angulo"}, "mainEntityOfPage": "https://inigoangulo.com/writing/cost-to-build-mvp-with-ai-agents/", "image": "https://inigoangulo.com/img/og.png", "keywords": "Product and consulting", "articleSection": "Product and consulting", "inLanguage": "en"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inigo Angulo", "item": "https://inigoangulo.com/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://inigoangulo.com/writing/"}, {"@type": "ListItem", "position": 3, "name": "How much does it cost to build an MVP with AI agents? Real numbers from one build", "item": "https://inigoangulo.com/writing/cost-to-build-mvp-with-ai-agents/"}]}</script>
+
 </head>
 <body>
 <header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header>
-<script src="/services/bar.js?v=0e47e78" defer></script>
+<script src="/services/bar.js?v=b439033" defer></script>
 <main><article class="art">
 <span class="k">Writing</span>
 <h1>How much does it cost to build an MVP with AI agents? Real numbers from one build</h1>
 <div class="meta"><span>Inigo Angulo</span><span>November 4, 2026</span><span>6 min read</span><a class="tag" href="/writing/#product">Product and consulting</a></div>
 <nav class="series" aria-label="In this series"><span class="series__k">In this series: Product and consulting</span><ul><li><a href="/writing/fractional-product-manager-vs-product-consultant/">Fractional product manager vs product consultant: which one do you actually need?</a></li></ul></nav>
 
-<p>Everyone asks the same question in the first call: what does it cost? Here is what one build cost, with the caveat that it was my own product, so the human time was mine and the decisions were fast. Treat the numbers as an honest floor, not a quote.</p>
+<p>Everyone asks the same question in the first call: what does it cost? Here is what one build cost, with the caveat that it was my own product, so the human time was mine and the decisions were fast. Treat the numbers as an honest floor, not a quote. The method that produced them is in <a href="/writing/how-to-build-an-mvp-with-ai-agents/">how to build an MVP with AI agents</a>.</p>
 
 <div class="num"><div><b>7 weeks</b><span>from first commit to 15 releases in production</span></div><div><b>~CHF 300</b><span>per month in agent usage, passed through at cost</span></div><div><b>~CHF 60</b><span>per month in hosting, database and monitoring at MVP scale</span></div><div><b>1 person</b><span>scoping, deciding, approving. Zero engineers on payroll</span></div></div>
 
@@ -77,6 +82,7 @@
 <p>Real code in a repository you own, with tests, a release process and a decision log, that any engineer can continue. Not a prototype on a no code platform and not a chat transcript. The <a href="/work/acervo.html">Acervo case</a> shows the artefacts: the data model, the promotion flow, the evidence from the CI record.</p>
 
 <div class="box"><p>How the build is run: <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a>. The human gates that make it safe: <a href="/writing/human-in-the-loop-coding-agents/">Human in the loop for coding agents</a>. To talk about yours: <a href="/ai-product-builder/">AI build and deployment</a>.</p></div>
+
 
 <div class="cta"><h2>Working on something like this?</h2><p>Thirty minutes, no deck. <a href="https://cal.com/inigoangulo/30min">Book a call</a> or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
 </article></main>

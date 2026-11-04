@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to scope an MVP for AI agents: the one workflow rule and the list of what you will not build / Inigo Angulo</title>
+<meta name="description" content="Scoping an MVP that AI coding agents will build is different from scoping one for a team. Four parts: the thesis, one workflow, invariants marked by where they are enforced, and the explicit list of what is not built. With a worked example.">
+<link rel="canonical" href="https://inigoangulo.com/writing/scope-an-mvp-for-ai-agents/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta property="og:title" content="How to scope an MVP for AI agents: the one workflow rule and the list of what you will not build">
+<meta property="og:description" content="Scoping an MVP that AI coding agents will build is different from scoping one for a team. Four parts: the thesis, one workflow, invariants marked by where they are enforced, and the explicit list of what is not built. With a worked example.">
+<meta property="og:image" content="https://inigoangulo.com/img/og.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://inigoangulo.com/writing/scope-an-mvp-for-ai-agents/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/services/services.css?v=b439033">
+<style>.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
+.art .k{margin-bottom:12px}.art h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:none}
+.art .meta{font-family:var(--m);font-size:.74rem;color:var(--t3);margin:16px 0 34px;display:flex;gap:16px;flex-wrap:wrap}
+.art p{max-width:none;font-size:1.05rem;line-height:1.7;margin:0 0 18px}
+.art h2{font-size:1.35rem;margin:38px 0 12px;max-width:none}
+.art ul,.art ol{margin:0 0 18px 22px;color:var(--t2);font-size:1.02rem;line-height:1.65}
+.art li{margin-bottom:6px}
+.art .num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0}
+.art .num div{border:1px solid var(--b1);border-radius:10px;padding:14px;background:var(--glass)}
+.art .num b{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--ac2);line-height:1}
+.art .num span{display:block;font-family:var(--m);font-size:.66rem;color:var(--t3);margin-top:7px;line-height:1.45}
+@media(max-width:700px){.art .num{grid-template-columns:1fr 1fr}}
+.art blockquote{border-left:3px solid var(--ac);padding:4px 0 4px 18px;margin:22px 0;color:var(--t1);font-size:1.1rem;font-weight:500}
+.art .box{border:1px solid var(--acb);border-radius:12px;padding:20px 22px;background:var(--acg2);margin:26px 0}
+.art .box p{margin:0;font-size:.98rem}
+.art .box a{color:var(--ac2);border-bottom:1px solid var(--acb)}
+.art a{color:var(--ac2)}
+.art .fig{margin:26px 0;border:1px solid var(--b1);border-radius:12px;padding:16px;background:var(--glass)}.art .fig svg{width:100%;height:auto;display:block}.art figcaption{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-top:10px}
+.art .series{border:1px solid var(--b1);border-radius:12px;padding:16px 20px;margin:0 0 30px;background:var(--glass)}.art .series__k{font-family:var(--m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);display:block;margin-bottom:8px}.art .series ul{list-style:none;margin:0;display:grid;gap:6px}.art .series li{font-size:.92rem;margin:0}.art .series em{font-style:normal;font-family:var(--m);font-size:.68rem;color:var(--t3)}
+.art .tag{font-family:var(--m);font-size:.7rem;color:var(--ac2);border:1px solid var(--acb);border-radius:999px;padding:3px 10px}
+.art table{width:100%;border-collapse:collapse;margin:22px 0;font-size:.92rem;line-height:1.5}.art th,.art td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--b1)}.art th{font-family:var(--m);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);font-weight:500}.art td{color:var(--t2)}.art td:first-child{color:var(--t1)}
+.art pre{background:#0b0b10;border:1px solid var(--b1);border-radius:12px;padding:18px 20px;margin:22px 0;overflow-x:auto;font-family:var(--m);font-size:.8rem;line-height:1.6;color:var(--t2)}.art pre code{font-family:inherit}
+.art .faq{margin:40px 0 0}.art .faq h2{margin-bottom:6px}.art .faq details{border-bottom:1px solid var(--b1);padding:14px 0}.art .faq summary{cursor:pointer;font-weight:600;color:var(--t1);font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;gap:16px}.art .faq summary::after{content:'+';color:var(--ac2);font-family:var(--m)}.art .faq details[open] summary::after{content:'3'}.art .faq p{margin:10px 0 0;font-size:.98rem;color:var(--t2)}
+@media(max-width:700px){.art table{display:block;overflow-x:auto;white-space:normal}}
+.art .cta{margin-top:40px}
+.art .cta h2{margin:0 0 6px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
+<script src="/analytics.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to scope an MVP for AI agents: the one workflow rule and the list of what you will not build", "description": "Scoping an MVP that AI coding agents will build is different from scoping one for a team. Four parts: the thesis, one workflow, invariants marked by where they are enforced, and the explicit list of what is not built. With a worked example.", "datePublished": "2026-11-04", "dateModified": "2026-11-04", "author": {"@type": "Person", "@id": "https://inigoangulo.com/#person", "name": "Inigo Angulo", "url": "https://inigoangulo.com/"}, "publisher": {"@type": "Person", "name": "Inigo Angulo"}, "mainEntityOfPage": "https://inigoangulo.com/writing/scope-an-mvp-for-ai-agents/", "image": "https://inigoangulo.com/img/og.png", "keywords": "Building with AI agents", "articleSection": "Building with AI agents", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inigo Angulo", "item": "https://inigoangulo.com/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://inigoangulo.com/writing/"}, {"@type": "ListItem", "position": 3, "name": "How to scope an MVP for AI agents: the one workflow rule and the list of what you will not build", "item": "https://inigoangulo.com/writing/scope-an-mvp-for-ai-agents/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many features should an MVP built with AI agents have?", "acceptedAnswer": {"@type": "Answer", "text": "One workflow, end to end, that proves the thesis. Not one feature: a workflow has several screens and a data model. But one. Agents make adding a second workflow feel free, and it is not: every workflow multiplies the states the gates have to cover."}}, {"@type": "Question", "name": "Why write what will not be built?", "acceptedAnswer": {"@type": "Answer", "text": "Because agents build what you do not forbid. A feature list bounds the human team by effort; it does not bound agents, for whom the marginal feature costs minutes. The not built list is the only bound that works."}}, {"@type": "Question", "name": "What is an invariant in this context?", "acceptedAnswer": {"@type": "Answer", "text": "A statement that must hold in every state of the product, such as 'no proposal from the model writes to an entity; a person decides and the system records who'. Each one is marked with where it is enforced: the database, the application, or both. Never only the interface."}}]}</script>
+</head>
+<body>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header>
+<script src="/services/bar.js?v=b439033" defer></script>
+<main><article class="art">
+<span class="k">Writing</span>
+<h1>How to scope an MVP for AI agents: the one workflow rule and the list of what you will not build</h1>
+<div class="meta"><span>Inigo Angulo</span><span>November 4, 2026</span><span>7 min read</span><a class="tag" href="/writing/#build">Building with AI agents</a></div>
+<nav class="series" aria-label="In this series"><span class="series__k">In this series: Building with AI agents</span><ul><li><a href="/writing/how-to-build-an-mvp-with-ai-agents/">How to build an MVP with AI agents: the full method, from scope to production</a> <em>(start here)</em></li><li><a href="/writing/claude-md-example-project-rules-file/">CLAUDE.md example: the project rules file that made 445 pull requests mergeable</a></li><li><a href="/writing/tickets-for-ai-agents-template/">Writing tickets for AI agents: the template that stops them inventing requirements</a></li><li><a href="/writing/ai-agent-team-structure-solo-builder/">AI agent team structure for a solo builder: roles, handoffs and who merges</a></li><li><a href="/writing/where-ai-coding-agents-fail/">Where AI coding agents fail on real products: the eight failures I hit and the gate for each</a></li></ul></nav>
+
+<p>Scoping an MVP for a human team is about effort: what can four people ship in a quarter. Scoping an MVP for AI agents is about bounds: what must the product never do, and what must always hold, because the effort constraint is gone and nothing else stops the build from sprawling. The scope document I use has four parts and fits on one page. The page took a week to write and it was the most valuable week of the build.</p>
+
+<h2>Part 1: the thesis, in one sentence</h2>
+<p>What can the user trust the product for? Not what it does; what it is for. Mine was: the user can trust a single record of their collection, knowing where each item is, what is happening to it, and who made each change. Every ticket for seven weeks was tested against that sentence. A feature that did not serve it was not built, however easy it was.</p>
+<p>The thesis goes at the top of the project rules file, so every agent reads it in every session. It is also the sentence an agent uses when it escalates a decision: "this does or does not serve the thesis" is a question I can answer in seconds.</p>
+
+<h2>Part 2: one workflow, end to end</h2>
+<p>The MVP proves one workflow. For mine: a user adds an item with a photo, the model proposes the fields, the user confirms, the record exists with an audit trail. Screens, data model, permissions and the model call, for that workflow and nothing else.</p>
+<p>The rule is not "one feature". A workflow is a path through the product that a customer would pay for on its own. What the rule forbids is the second path. With agents the second path feels free, because the code arrives in an afternoon. It is not free: every path multiplies the states that the tests, the browser suite and the penetration test have to cover, and those are the costs that do not compress.</p>
+
+<table><thead><tr><th>Scoping for a team</th><th>Scoping for agents</th></tr></thead><tbody>
+<tr><td>Bounded by effort: what fits in the quarter</td><td>Bounded by invariants: what must never break</td></tr>
+<tr><td>Feature list, prioritised</td><td>One workflow, plus a list of what is not built</td></tr>
+<tr><td>Requirements in prose, clarified in meetings</td><td>Requirements as acceptance criteria an agent can test</td></tr>
+<tr><td>Security as a phase near the end</td><td>Permissions matrix written before the first screen</td></tr>
+<tr><td>Decisions taken in conversation</td><td>Decisions logged with an id, because sessions forget</td></tr>
+</tbody></table>
+
+<h2>Part 3: invariants, marked by where they are enforced</h2>
+<p>An invariant is something that holds in every state. Mine included: no proposal from the model writes to an entity, a person decides and the system records who; sensitive identifiers are encrypted before they reach the database and are never searchable; a user whose account is pending reads zero rows of any table; every business write leaves an audit entry.</p>
+<p>Each invariant carries a mark: enforced in the database, enforced in the application, or both. The one place an invariant is never enforced is only the interface, because hiding a column in the frontend is not a guarantee and an agent will not know the difference unless told. This list becomes the permissions matrix, and the permissions matrix becomes the security tests. Writing it first means the tests exist before the screens do.</p>
+
+<h2>Part 4: what is not built</h2>
+<p>This is the part teams skip and the part that saves the most money with agents. Mine said, among other things: no search by sensitive identifier, no identity documents stored anywhere, no infrastructure for a hypothetical need, no second backend, no queue, no cache layer until a measurement justifies it. Each line has a reason.</p>
+<p>The effect on the build was immediate. When an agent proposed a cache for a page that loaded in 80 milliseconds, the rules file already said no, with the reason, and the proposal cost one line of reply. Without that list the same proposal costs a conversation, and the tenth such conversation is where scope dies.</p>
+
+<h2>What the page produces</h2>
+<p>From this one page come three artefacts that the agents work from: the project rules file (thesis, stack, hard rules), the domain model with its invariants, and the permissions matrix. Tickets reference them instead of restating them. When something is not in one of the three, for an agent it does not exist, which is exactly the property you want: the scope is the documents, not the memory of a conversation.</p>
+
+<div class="box"><p>This is step 1 of <a href="/writing/how-to-build-an-mvp-with-ai-agents/">how to build an MVP with AI agents</a>. Next: <a href="/writing/claude-md-example-project-rules-file/">the project rules file</a>, then <a href="/writing/tickets-for-ai-agents-template/">tickets agents cannot misread</a>. If you want the scoping done with you, that is the first week of an <a href="/ai-product-builder/">AI build sprint</a>.</p></div>
+
+<section class="faq"><h2>Questions people ask</h2><details><summary>How many features should an MVP built with AI agents have?</summary><p>One workflow, end to end, that proves the thesis. Not one feature: a workflow has several screens and a data model. But one. Agents make adding a second workflow feel free, and it is not: every workflow multiplies the states the gates have to cover.</p></details><details><summary>Why write what will not be built?</summary><p>Because agents build what you do not forbid. A feature list bounds the human team by effort; it does not bound agents, for whom the marginal feature costs minutes. The not built list is the only bound that works.</p></details><details><summary>What is an invariant in this context?</summary><p>A statement that must hold in every state of the product, such as &#x27;no proposal from the model writes to an entity; a person decides and the system records who&#x27;. Each one is marked with where it is enforced: the database, the application, or both. Never only the interface.</p></details></section>
+<div class="cta"><h2>Working on something like this?</h2><p>Thirty minutes, no deck. <a href="https://cal.com/inigoangulo/30min">Book a call</a> or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
+</article></main>
+<footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/writing/">All writing</a> &nbsp; <a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" rel="noopener" target="_blank">LinkedIn</a> &nbsp; <a href="https://github.com/inigoangulo93" rel="noopener" target="_blank">GitHub</a></span></div></footer>
+</body>
+</html>

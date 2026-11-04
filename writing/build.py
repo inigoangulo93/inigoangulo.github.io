@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Builds the articles under /writing/. Run from the repo root: python3 writing/build.py"""
-import json, html, os, subprocess, datetime
+import json, html, os, subprocess, datetime, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from build_posts import BUILD_POSTS
 VER = subprocess.run(["git","rev-parse","--short","HEAD"],capture_output=True,text=True).stdout.strip() or "0"
 
 GA = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>\n<script src="/analytics.js" defer></script>'
@@ -25,6 +27,10 @@ CSS = '''.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
 .art .fig{margin:26px 0;border:1px solid var(--b1);border-radius:12px;padding:16px;background:var(--glass)}.art .fig svg{width:100%;height:auto;display:block}.art figcaption{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-top:10px}
 .art .series{border:1px solid var(--b1);border-radius:12px;padding:16px 20px;margin:0 0 30px;background:var(--glass)}.art .series__k{font-family:var(--m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);display:block;margin-bottom:8px}.art .series ul{list-style:none;margin:0;display:grid;gap:6px}.art .series li{font-size:.92rem;margin:0}.art .series em{font-style:normal;font-family:var(--m);font-size:.68rem;color:var(--t3)}
 .art .tag{font-family:var(--m);font-size:.7rem;color:var(--ac2);border:1px solid var(--acb);border-radius:999px;padding:3px 10px}
+.art table{width:100%;border-collapse:collapse;margin:22px 0;font-size:.92rem;line-height:1.5}.art th,.art td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--b1)}.art th{font-family:var(--m);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);font-weight:500}.art td{color:var(--t2)}.art td:first-child{color:var(--t1)}
+.art pre{background:#0b0b10;border:1px solid var(--b1);border-radius:12px;padding:18px 20px;margin:22px 0;overflow-x:auto;font-family:var(--m);font-size:.8rem;line-height:1.6;color:var(--t2)}.art pre code{font-family:inherit}
+.art .faq{margin:40px 0 0}.art .faq h2{margin-bottom:6px}.art .faq details{border-bottom:1px solid var(--b1);padding:14px 0}.art .faq summary{cursor:pointer;font-weight:600;color:var(--t1);font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;gap:16px}.art .faq summary::after{content:'+';color:var(--ac2);font-family:var(--m)}.art .faq details[open] summary::after{content:'\2013'}.art .faq p{margin:10px 0 0;font-size:.98rem;color:var(--t2)}
+@media(max-width:700px){.art table{display:block;overflow-x:auto;white-space:normal}}
 .art .cta{margin-top:40px}
 .art .cta h2{margin:0 0 6px}
 '''
@@ -36,7 +42,7 @@ POSTS = {
   date="2026-11-04", read="9 min",
   body="""
 <p>Most of what is written about AI coding agents is either a demo or a warning. This is neither. It is the operating model I used to build and run a production platform with eight agents and no engineers on payroll: 445 merged pull requests, 1,456 CI runs and 15 gated releases in seven weeks. The model is not clever. It is a set of boring decisions about who may do what, and it is the reason the numbers are real instead of a story.</p>
-<p>This is the hub of a series. Each section links to a deeper piece.</p>
+<p>This is the hub of a series. Each section links to a deeper piece. If you want the method as steps to follow rather than the operating model, start with <a href="/writing/how-to-build-an-mvp-with-ai-agents/">how to build an MVP with AI agents</a>.</p>
 
 <figure class="fig"><svg viewBox="0 0 720 300" role="img" aria-label="Diagram: a human writes tickets and takes decisions; a lead agent decomposes work to worker agents; a reviewer and a security agent gate the output; a human approves promotion to production">
 <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6b6b80"/></marker></defs>
@@ -262,7 +268,7 @@ POSTS = {
   desc="What a production MVP built with an AI agent team actually costs: the agent bill, the infrastructure, the human time, and where the money really goes. Numbers from seven weeks on Acervo.",
   date="2026-11-04", read="6 min", tag="product",
   body="""
-<p>Everyone asks the same question in the first call: what does it cost? Here is what one build cost, with the caveat that it was my own product, so the human time was mine and the decisions were fast. Treat the numbers as an honest floor, not a quote.</p>
+<p>Everyone asks the same question in the first call: what does it cost? Here is what one build cost, with the caveat that it was my own product, so the human time was mine and the decisions were fast. Treat the numbers as an honest floor, not a quote. The method that produced them is in <a href="/writing/how-to-build-an-mvp-with-ai-agents/">how to build an MVP with AI agents</a>.</p>
 
 <div class="num"><div><b>7 weeks</b><span>from first commit to 15 releases in production</span></div><div><b>~CHF 300</b><span>per month in agent usage, passed through at cost</span></div><div><b>~CHF 60</b><span>per month in hosting, database and monitoring at MVP scale</span></div><div><b>1 person</b><span>scoping, deciding, approving. Zero engineers on payroll</span></div></div>
 
@@ -416,7 +422,8 @@ POSTS = {
 
 }
 
-TAGS = {"agents":"AI agent teams","conversion":"Conversion and funnels","design":"Design systems","product":"Product and consulting"}
+POSTS.update(BUILD_POSTS)
+TAGS = {"build":"Building with AI agents","agents":"AI agent teams","conversion":"Conversion and funnels","design":"Design systems","product":"Product and consulting"}
 
 def esc(s): return html.escape(s, quote=True)
 
@@ -430,9 +437,16 @@ def series_box(slug, d):
     return f'<nav class="series" aria-label="In this series"><span class="series__k">In this series: {esc(TAGS[tag])}</span><ul>{items}</ul></nav>'
 
 
+def faq_block(d):
+    faq = d.get("faq")
+    if not faq: return ""
+    items = "".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q,a in faq)
+    return f'<section class="faq"><h2>Questions people ask</h2>{items}</section>'
+
 def page(slug, d):
     url = f"https://inigoangulo.com/writing/{slug}/"
-    ld = {"@context":"https://schema.org","@type":"Article","headline":d["title"],"description":d["desc"],"datePublished":d["date"],"dateModified":d["date"],"author":{"@type":"Person","@id":"https://inigoangulo.com/#person","name":"Inigo Angulo","url":"https://inigoangulo.com/"},"publisher":{"@type":"Person","name":"Inigo Angulo"},"mainEntityOfPage":url,"image":"https://inigoangulo.com/img/og.png","keywords":TAGS.get(d.get("tag",""),""),"articleSection":TAGS.get(d.get("tag",""),""),"inLanguage":"en"}
+    faq_ld = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in d.get("faq",[])]} if d.get("faq") else None
+    ld = {"@context":"https://schema.org","@type":"Article","headline":d["title"],"description":d["desc"],"datePublished":d["date"],"dateModified":d.get("updated",d["date"]),"author":{"@type":"Person","@id":"https://inigoangulo.com/#person","name":"Inigo Angulo","url":"https://inigoangulo.com/"},"publisher":{"@type":"Person","name":"Inigo Angulo"},"mainEntityOfPage":url,"image":"https://inigoangulo.com/img/og.png","keywords":TAGS.get(d.get("tag",""),""),"articleSection":TAGS.get(d.get("tag",""),""),"inLanguage":"en"}
     bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inigo Angulo","item":"https://inigoangulo.com/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://inigoangulo.com/writing/"},{"@type":"ListItem","position":3,"name":d["title"],"item":url}]}
     nice = datetime.date.fromisoformat(d["date"]).strftime("%B %-d, %Y")
     return f'''<!DOCTYPE html>
@@ -456,6 +470,7 @@ def page(slug, d):
 {GA}
 <script type="application/ld+json">{json.dumps(ld,ensure_ascii=False)}</script>
 <script type="application/ld+json">{json.dumps(bc,ensure_ascii=False)}</script>
+{('<script type="application/ld+json">'+json.dumps(faq_ld,ensure_ascii=False)+'</script>') if faq_ld else ''}
 </head>
 <body>
 <header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header>
@@ -466,6 +481,7 @@ def page(slug, d):
 <div class="meta"><span>Inigo Angulo</span><span>{nice}</span><span>{d["read"]} read</span><a class="tag" href="/writing/#{d.get("tag","")}">{esc(TAGS.get(d.get("tag",""),""))}</a></div>
 {series_box(slug,d)}
 {d["body"]}
+{faq_block(d)}
 <div class="cta"><h2>Working on something like this?</h2><p>Thirty minutes, no deck. <a href="https://cal.com/inigoangulo/30min">Book a call</a> or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
 </article></main>
 <footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/writing/">All writing</a> &nbsp; <a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" rel="noopener" target="_blank">LinkedIn</a> &nbsp; <a href="https://github.com/inigoangulo93" rel="noopener" target="_blank">GitHub</a></span></div></footer>
@@ -474,30 +490,80 @@ def page(slug, d):
 '''
 
 def index():
+    order = sorted(POSTS.items(), key=lambda kv: (not kv[1].get("hub"), kv[1]["date"]), reverse=False)
     order = sorted(POSTS.items(), key=lambda kv: kv[1]["date"], reverse=True)
-    items = "".join(f'<a class="post" data-tag="{d.get("tag","")}" href="/writing/{s}/"><span class="k" style="margin-bottom:6px">{datetime.date.fromisoformat(d["date"]).strftime("%B %-d, %Y")} / {d["read"]} / {esc(TAGS.get(d.get("tag",""),""))}{" / series hub" if d.get("hub") else ""}</span><h2>{esc(d["title"])}</h2><p>{esc(d["desc"])}</p></a>' for s,d in order)
+    def card(s,d):
+        words = esc(" ".join([d["title"], d["desc"], TAGS.get(d.get("tag",""),""), s.replace("-"," ")]).lower())
+        return (f'<a class="post{" post--hub" if d.get("hub") else ""}" data-tag="{d.get("tag","")}" data-s="{words}" href="/writing/{s}/">'
+                f'<span class="k" style="margin-bottom:6px">{datetime.date.fromisoformat(d["date"]).strftime("%B %-d, %Y")} / {d["read"]}{" / start here" if d.get("hub") else ""}</span>'
+                f'<h2>{esc(d["title"])}</h2><p>{esc(d["desc"])}</p></a>')
+    groups = ""
+    for k,label in TAGS.items():
+        members = [(s,d) for s,d in order if d.get("tag")==k]
+        members = [m for m in members if m[1].get("hub")] + [m for m in members if not m[1].get("hub")]
+        if not members: continue
+        groups += f'<section class="grp" data-tag="{k}" id="{k}"><h2 class="grp__h">{esc(label)} <span>{len(members)}</span></h2>{"".join(card(s,d) for s,d in members)}</section>'
     chips = '<a class="chip on" href="#" data-f="">All</a>' + "".join(f'<a class="chip" href="#{k}" data-f="{k}">{esc(v)}</a>' for k,v in TAGS.items())
     blog_ld = {"@context":"https://schema.org","@type":"Blog","name":"Writing by Inigo Angulo","url":"https://inigoangulo.com/writing/","author":{"@type":"Person","@id":"https://inigoangulo.com/#person","name":"Inigo Angulo"},"blogPost":[{"@type":"BlogPosting","headline":d["title"],"url":f"https://inigoangulo.com/writing/{s}/","datePublished":d["date"]} for s,d in order]}
+    n = len(order)
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Writing: product, AI agent teams, conversion / Inigo Angulo</title>
-<meta name="description" content="Notes from building products with AI agent teams, running experiments on checkout funnels, and deciding what is worth building.">
+<title>Writing: building with AI agents, product, conversion / Inigo Angulo</title>
+<meta name="description" content="Notes from building products with AI agent teams, running experiments on checkout funnels, and deciding what is worth building. {n} articles in four series.">
 <link rel="canonical" href="https://inigoangulo.com/writing/">
 <link rel="alternate" type="application/rss+xml" title="Inigo Angulo, writing" href="https://inigoangulo.com/writing/feed.xml">
-<meta property="og:title" content="Writing: product, AI agent teams, conversion"><meta property="og:description" content="Notes from building products with AI agent teams, running experiments on checkout funnels, and deciding what is worth building."><meta property="og:image" content="https://inigoangulo.com/img/og.png"><meta property="og:url" content="https://inigoangulo.com/writing/">
+<meta property="og:title" content="Writing: building with AI agents, product, conversion"><meta property="og:description" content="Notes from building products with AI agent teams, running experiments on checkout funnels, and deciding what is worth building."><meta property="og:image" content="https://inigoangulo.com/img/og.png"><meta property="og:url" content="https://inigoangulo.com/writing/">
 <script type="application/ld+json">{json.dumps(blog_ld,ensure_ascii=False)}</script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">\n<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 {FONTS}
 <link rel="stylesheet" href="/services/services.css?v={VER}">
-<style>.chips{{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}}.chip{{font-family:var(--m);font-size:.72rem;color:var(--t2);border:1px solid var(--b2);border-radius:999px;padding:7px 12px;transition:color .2s,border-color .2s}}.chip.on,.chip:hover{{color:var(--ac2);border-color:var(--acb)}}.post.hide{{display:none}}.intro{{color:var(--t2);font-size:1.02rem;max-width:640px;margin:0 0 24px}}.list{{max-width:760px;margin:0 auto;padding:110px 24px 40px}}.post{{display:block;border:1px solid var(--b1);border-radius:12px;padding:22px 24px;margin-bottom:14px;background:var(--glass);transition:border-color .2s,transform .2s}}.post:hover{{border-color:var(--acb);transform:translateY(-2px)}}.post h2{{font-size:1.25rem;margin:0 0 8px}}.post p{{font-size:.95rem}}.post .k::before{{content:""}}</style>
+<style>
+.list{{max-width:760px;margin:0 auto;padding:110px 24px 40px}}
+.intro{{color:var(--t2);font-size:1.02rem;max-width:640px;margin:0 0 24px}}
+.search{{position:relative;margin:0 0 14px}}
+.search input{{width:100%;height:50px;border:1px solid var(--b2);border-radius:12px;background:var(--glass);color:var(--t1);font-family:var(--s);font-size:1rem;padding:0 44px 0 44px;outline:none;transition:border-color .2s,box-shadow .2s}}
+.search input::placeholder{{color:var(--t3)}}
+.search input:focus{{border-color:var(--acb);box-shadow:0 0 0 3px var(--acg2)}}
+.search svg{{position:absolute;left:16px;top:17px;width:16px;height:16px;color:var(--t3);pointer-events:none}}
+.search kbd{{position:absolute;right:14px;top:15px;font-family:var(--m);font-size:.66rem;color:var(--t3);border:1px solid var(--b1);border-radius:6px;padding:3px 6px;pointer-events:none}}
+.chips{{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 26px}}
+.chip{{font-family:var(--m);font-size:.72rem;color:var(--t2);border:1px solid var(--b2);border-radius:999px;padding:7px 12px;transition:color .2s,border-color .2s}}
+.chip.on,.chip:hover{{color:var(--ac2);border-color:var(--acb)}}
+.grp{{margin:0 0 34px;padding:0;border-top:none}}
+.grp__h{{font-family:var(--m);font-size:.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin:0 0 12px;display:flex;align-items:center;gap:10px}}
+.grp__h::after{{content:"";flex:1;height:1px;background:var(--b1)}}
+.grp__h span{{color:var(--ac2)}}
+.post{{display:block;border:1px solid var(--b1);border-radius:12px;padding:20px 22px;margin-bottom:12px;background:var(--glass);transition:border-color .2s,transform .2s}}
+.post:hover{{border-color:var(--acb);transform:translateY(-2px)}}
+.post h2{{font-size:1.18rem;margin:0 0 6px}}.post p{{font-size:.93rem;margin:0}}.post .k::before{{content:""}}
+.post--hub{{border-color:var(--acb);background:var(--acg2)}}
+.post.hide,.grp.hide{{display:none}}
+.empty{{display:none;color:var(--t3);font-family:var(--m);font-size:.8rem;padding:30px 0}}.empty.show{{display:block}}
+.count{{font-family:var(--m);font-size:.68rem;color:var(--t3);margin:-14px 0 20px}}
+@media(max-width:700px){{.search kbd{{display:none}}.list{{padding-top:96px}}}}
+</style>
 {GA}
 </head>
 <body>
 <header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header>
 <script src="/services/bar.js?v={VER}" defer></script>
-<main><div class="list"><span class="k">Writing</span><h1 style="font-size:2rem;margin-bottom:14px">What I learned shipping, written down.</h1><p class="intro">Notes on building product with AI agent teams, human in the loop gates, conversion experiments on real funnels, and design systems that match the code. Everything here comes from work I did, with the numbers.</p><div class="chips">{chips}</div>{items}<script>(function(){{var chips=document.querySelectorAll(".chip"),posts=document.querySelectorAll(".post");function apply(f){{chips.forEach(function(c){{c.classList.toggle("on",c.dataset.f===f)}});posts.forEach(function(p){{p.classList.toggle("hide",!!f&&p.dataset.tag!==f)}})}}chips.forEach(function(c){{c.addEventListener("click",function(e){{e.preventDefault();var f=c.dataset.f;history.replaceState(null,"",f?"#"+f:"/writing/");apply(f)}})}});var h=location.hash.slice(1);if(h)apply(h)}})();</script></div></main>
+<main><div class="list"><span class="k">Writing</span><h1 style="font-size:2rem;margin-bottom:14px">What I learned shipping, written down.</h1><p class="intro">{n} articles in four series: building products with AI agent teams, the gates between an agent and production, conversion experiments on real funnels, and design systems that match the code. Each series has a place to start.</p>
+<form class="search" role="search" onsubmit="return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search {n} articles: tickets, CLAUDE.md, checkout, RLS, cost..." aria-label="Search articles" autocomplete="off"><kbd>/</kbd></form>
+<div class="chips">{chips}</div>
+<p class="count" id="count"></p>
+{groups}
+<p class="empty" id="empty">Nothing matches. Try a shorter word, or <a href="mailto:inigoangulo@gmail.com">ask me</a>.</p>
+<script>(function(){{var q=document.getElementById("q"),chips=document.querySelectorAll(".chip"),posts=document.querySelectorAll(".post"),grps=document.querySelectorAll(".grp"),count=document.getElementById("count"),empty=document.getElementById("empty"),f="";
+function apply(){{var t=q.value.trim().toLowerCase().split(/\\s+/).filter(Boolean),n=0;chips.forEach(function(c){{c.classList.toggle("on",c.dataset.f===f)}});
+posts.forEach(function(p){{var ok=(!f||p.dataset.tag===f)&&t.every(function(w){{return p.dataset.s.indexOf(w)>-1}});p.classList.toggle("hide",!ok);if(ok)n++}});
+grps.forEach(function(g){{g.classList.toggle("hide",!g.querySelector(".post:not(.hide)"))}});
+count.textContent=(t.length||f)?n+" of "+posts.length+" articles":"";empty.classList.toggle("show",n===0)}}
+chips.forEach(function(c){{c.addEventListener("click",function(e){{e.preventDefault();f=c.dataset.f;history.replaceState(null,"",f?"#"+f:"/writing/");apply()}})}});
+q.addEventListener("input",apply);
+document.addEventListener("keydown",function(e){{if(e.key==="/"&&document.activeElement!==q){{e.preventDefault();q.focus()}}if(e.key==="Escape"&&document.activeElement===q){{q.value="";apply();q.blur()}}}});
+var h=location.hash.slice(1);if(h&&document.querySelector('.chip[data-f="'+h+'"]')){{f=h}}apply()}})();</script></div></main>
 <footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/">Home</a></span></div></footer>
 </body>
 </html>

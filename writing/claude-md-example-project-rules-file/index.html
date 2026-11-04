@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLAUDE.md example: the project rules file that made 445 pull requests mergeable / Inigo Angulo</title>
+<meta name="description" content="What goes in a CLAUDE.md, with a neutral example: thesis, fixed stack, numbered hard rules with the incident behind each, what counts as proof, task states and an escalation format. Why rules without reasons get argued with and rules with reasons get followed.">
+<link rel="canonical" href="https://inigoangulo.com/writing/claude-md-example-project-rules-file/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta property="og:title" content="CLAUDE.md example: the project rules file that made 445 pull requests mergeable">
+<meta property="og:description" content="What goes in a CLAUDE.md, with a neutral example: thesis, fixed stack, numbered hard rules with the incident behind each, what counts as proof, task states and an escalation format. Why rules without reasons get argued with and rules with reasons get followed.">
+<meta property="og:image" content="https://inigoangulo.com/img/og.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://inigoangulo.com/writing/claude-md-example-project-rules-file/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/services/services.css?v=b439033">
+<style>.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
+.art .k{margin-bottom:12px}.art h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:none}
+.art .meta{font-family:var(--m);font-size:.74rem;color:var(--t3);margin:16px 0 34px;display:flex;gap:16px;flex-wrap:wrap}
+.art p{max-width:none;font-size:1.05rem;line-height:1.7;margin:0 0 18px}
+.art h2{font-size:1.35rem;margin:38px 0 12px;max-width:none}
+.art ul,.art ol{margin:0 0 18px 22px;color:var(--t2);font-size:1.02rem;line-height:1.65}
+.art li{margin-bottom:6px}
+.art .num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0}
+.art .num div{border:1px solid var(--b1);border-radius:10px;padding:14px;background:var(--glass)}
+.art .num b{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--ac2);line-height:1}
+.art .num span{display:block;font-family:var(--m);font-size:.66rem;color:var(--t3);margin-top:7px;line-height:1.45}
+@media(max-width:700px){.art .num{grid-template-columns:1fr 1fr}}
+.art blockquote{border-left:3px solid var(--ac);padding:4px 0 4px 18px;margin:22px 0;color:var(--t1);font-size:1.1rem;font-weight:500}
+.art .box{border:1px solid var(--acb);border-radius:12px;padding:20px 22px;background:var(--acg2);margin:26px 0}
+.art .box p{margin:0;font-size:.98rem}
+.art .box a{color:var(--ac2);border-bottom:1px solid var(--acb)}
+.art a{color:var(--ac2)}
+.art .fig{margin:26px 0;border:1px solid var(--b1);border-radius:12px;padding:16px;background:var(--glass)}.art .fig svg{width:100%;height:auto;display:block}.art figcaption{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-top:10px}
+.art .series{border:1px solid var(--b1);border-radius:12px;padding:16px 20px;margin:0 0 30px;background:var(--glass)}.art .series__k{font-family:var(--m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);display:block;margin-bottom:8px}.art .series ul{list-style:none;margin:0;display:grid;gap:6px}.art .series li{font-size:.92rem;margin:0}.art .series em{font-style:normal;font-family:var(--m);font-size:.68rem;color:var(--t3)}
+.art .tag{font-family:var(--m);font-size:.7rem;color:var(--ac2);border:1px solid var(--acb);border-radius:999px;padding:3px 10px}
+.art table{width:100%;border-collapse:collapse;margin:22px 0;font-size:.92rem;line-height:1.5}.art th,.art td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--b1)}.art th{font-family:var(--m);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);font-weight:500}.art td{color:var(--t2)}.art td:first-child{color:var(--t1)}
+.art pre{background:#0b0b10;border:1px solid var(--b1);border-radius:12px;padding:18px 20px;margin:22px 0;overflow-x:auto;font-family:var(--m);font-size:.8rem;line-height:1.6;color:var(--t2)}.art pre code{font-family:inherit}
+.art .faq{margin:40px 0 0}.art .faq h2{margin-bottom:6px}.art .faq details{border-bottom:1px solid var(--b1);padding:14px 0}.art .faq summary{cursor:pointer;font-weight:600;color:var(--t1);font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;gap:16px}.art .faq summary::after{content:'+';color:var(--ac2);font-family:var(--m)}.art .faq details[open] summary::after{content:'3'}.art .faq p{margin:10px 0 0;font-size:.98rem;color:var(--t2)}
+@media(max-width:700px){.art table{display:block;overflow-x:auto;white-space:normal}}
+.art .cta{margin-top:40px}
+.art .cta h2{margin:0 0 6px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
+<script src="/analytics.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "CLAUDE.md example: the project rules file that made 445 pull requests mergeable", "description": "What goes in a CLAUDE.md, with a neutral example: thesis, fixed stack, numbered hard rules with the incident behind each, what counts as proof, task states and an escalation format. Why rules without reasons get argued with and rules with reasons get followed.", "datePublished": "2026-11-04", "dateModified": "2026-11-04", "author": {"@type": "Person", "@id": "https://inigoangulo.com/#person", "name": "Inigo Angulo", "url": "https://inigoangulo.com/"}, "publisher": {"@type": "Person", "name": "Inigo Angulo"}, "mainEntityOfPage": "https://inigoangulo.com/writing/claude-md-example-project-rules-file/", "image": "https://inigoangulo.com/img/og.png", "keywords": "Building with AI agents", "articleSection": "Building with AI agents", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inigo Angulo", "item": "https://inigoangulo.com/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://inigoangulo.com/writing/"}, {"@type": "ListItem", "position": 3, "name": "CLAUDE.md example: the project rules file that made 445 pull requests mergeable", "item": "https://inigoangulo.com/writing/claude-md-example-project-rules-file/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is CLAUDE.md?", "acceptedAnswer": {"@type": "Answer", "text": "The file at the root of a repository that Claude Code reads at the start of every session. It is where the rules of the project live: what the product is, which stack is allowed, what an agent may never do, and how it reports. Other agent tools read an equivalent file under another name."}}, {"@type": "Question", "name": "How long should a CLAUDE.md be?", "acceptedAnswer": {"@type": "Answer", "text": "Mine is about 300 lines after seven weeks, and every line is there because of something that happened. Shorter is better only if nothing is missing. The test is not length, it is whether a fresh agent with no memory would make the same mistake twice."}}, {"@type": "Question", "name": "Should CLAUDE.md contain code style rules?", "acceptedAnswer": {"@type": "Answer", "text": "A few, where a linter cannot catch them. Most style goes in the linter and the formatter, and the rules file says 'the linter decides'. The file is for decisions a machine cannot take: what the product is for, who decides what, what counts as proof."}}, {"@type": "Question", "name": "Can I copy your CLAUDE.md?", "acceptedAnswer": {"@type": "Answer", "text": "You can copy the structure, which is in this article. You cannot copy the rules, because each one is the answer to an incident on a specific product. A rule you did not earn is a rule the agents will talk you out of in the first week."}}]}</script>
+</head>
+<body>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header>
+<script src="/services/bar.js?v=b439033" defer></script>
+<main><article class="art">
+<span class="k">Writing</span>
+<h1>CLAUDE.md example: the project rules file that made 445 pull requests mergeable</h1>
+<div class="meta"><span>Inigo Angulo</span><span>November 4, 2026</span><span>8 min read</span><a class="tag" href="/writing/#build">Building with AI agents</a></div>
+<nav class="series" aria-label="In this series"><span class="series__k">In this series: Building with AI agents</span><ul><li><a href="/writing/how-to-build-an-mvp-with-ai-agents/">How to build an MVP with AI agents: the full method, from scope to production</a> <em>(start here)</em></li><li><a href="/writing/scope-an-mvp-for-ai-agents/">How to scope an MVP for AI agents: the one workflow rule and the list of what you will not build</a></li><li><a href="/writing/tickets-for-ai-agents-template/">Writing tickets for AI agents: the template that stops them inventing requirements</a></li><li><a href="/writing/ai-agent-team-structure-solo-builder/">AI agent team structure for a solo builder: roles, handoffs and who merges</a></li><li><a href="/writing/where-ai-coding-agents-fail/">Where AI coding agents fail on real products: the eight failures I hit and the gate for each</a></li></ul></nav>
+
+<p>Every agent session on my build starts by reading one file. It is the only thing that is true in every session, for every agent, after every context reset, and it is why 445 pull requests from eight agents could be merged by one person without reading most of them line by line. Here is what is in it, why each part exists, and a neutral example you can adapt.</p>
+
+<h2>What it is for</h2>
+<p>An agent has no memory between sessions. Whatever you told it yesterday is gone, and whatever a colleague agent learned this morning never existed for it. The rules file is the fix: the set of facts and rules that every session inherits. If it is not in the file, for the agents it does not exist. That is the design principle, and it cuts both ways: the file has to carry everything that matters, and nothing that matters may live only in a conversation.</p>
+
+<h2>The structure</h2>
+<p>Seven sections, in this order, because the order is how an agent reads it.</p>
+
+<table><thead><tr><th>Section</th><th>What it holds</th><th>Why first readers need it</th></tr></thead><tbody>
+<tr><td>Thesis</td><td>One sentence: what the user can trust the product for. One principle: the model proposes, a person decides, the system records who</td><td>Every scope question resolves against it</td></tr>
+<tr><td>Read before touching anything</td><td>The five documents that are the source of truth: architecture, domain model, permissions matrix, design, decisions</td><td>Stops an agent inventing a requirement that is written elsewhere</td></tr>
+<tr><td>Stack, closed</td><td>The exact stack, and the sentence "nothing else". Amendments listed by decision id</td><td>Agents propose infrastructure for free; this is what says no</td></tr>
+<tr><td>Hard rules</td><td>Numbered, each with the date and the incident that produced it</td><td>A rule with a reason is followed; one without is argued with</td></tr>
+<tr><td>Task states</td><td>The only words a task may be reported in: VERIFIED, IMPLEMENTED, NEEDS_REVIEW, BLOCKED, DECISION_REQUIRED</td><td>Removes "done" as a word, because it means nothing</td></tr>
+<tr><td>Escalation format</td><td>How an agent asks a human a question: a stable id, three options, a recommendation, what happens if nobody answers</td><td>Decisions take seconds instead of conversations</td></tr>
+<tr><td>Conventions</td><td>Where files go, how commits are written, which language in code and which in the interface</td><td>The boring consistency that makes diffs readable</td></tr>
+</tbody></table>
+
+<h2>A neutral example of the rules section</h2>
+<p>These are not my rules; they are the shape of my rules, on a product that does not exist.</p>
+<pre><code>## Hard rules
+
+1. Build nothing for a hypothetical need. Every piece of
+   infrastructure names the MVP requirement it serves. No
+   requirement, no build.
+2. Never real data. Seeds, tests and screenshots use synthetic
+   records only.
+3. Never secrets in the repository. Production secrets live in
+   the deployment environment and are never in an agent's reach.
+4. Row level security on every new table, with a test that runs
+   as the role that must not get in. No test, no pull request.
+5. What a role must not see does not leave the server. Hiding a
+   column in the frontend is not a guarantee.
+6. No model output writes to an entity. It writes to a proposals
+   table; a person decides; the application applies it and logs
+   who decided.
+7. Never say a test passed if it was not run. Never say a
+   migration is safe without reading it. Never invent a
+   requirement. (Added after an agent reported a suite green
+   that had skipped every integration test.)
+8. No agent declares an external fact. A script produces it as
+   JSON and the agent interprets it. "CI is green" and "the
+   preview works" are not sentences; a run id and a URL are.
+9. A test never asserts a behaviour as "existing, not introduced
+   by this ticket". A suspected bug becomes a ticket and the test
+   is marked pending, never green. (Added the day it happened
+   three times.)</code></pre>
+<p>Notice what each rule has: a boundary that can be checked, and, for the ones that came from incidents, the incident. Rule 7 exists because a test suite reported success with a hundred skipped files. Rule 9 exists because a comment saying "existing behaviour" sat on top of a bug for three weeks and the green test made the fix look like a regression. The reason is not decoration. It is what makes an agent, two weeks later, recognise the same situation in a different shape.</p>
+
+<h2>The escalation format, because it is the part people miss</h2>
+<p>Agents stop at real decisions. If they do not have a format for stopping, they either guess or they write three paragraphs. Mine is fixed:</p>
+<pre><code>DECISION 014-3: the question in one line
+A) option  B) option  C) option
+RECOMMENDATION: B. WHY: one line. IF UNDECIDED: what happens
+
+DECISIONS REQUIRED: 014-3, 014-4
+ACTIONS FOR YOU: open the preview at &lt;url&gt; and say what is off</code></pre>
+<p>I answer with the id and a letter. The lead records the answer in the decisions log, citing the id. Over seven weeks that was more than 170 decisions, most answered in under a minute, every one of them findable later. Without the id, a decision lives in a chat and the next session does not know it was taken.</p>
+
+<h2>How the file grows</h2>
+<p>It started at 12 rules. It is 29 now. Every one of the 17 additions has a date, and most have a one line incident. The file never shrinks; a rule that stops applying is struck through with the reason, so the next person knows why it was there. A lessons table lives next to it, one line per incident, with the rule it left. That table is the real history of the build, and it is more useful than the commit log.</p>
+
+<div class="box"><p>This is step 2 of <a href="/writing/how-to-build-an-mvp-with-ai-agents/">how to build an MVP with AI agents</a>. It follows <a href="/writing/scope-an-mvp-for-ai-agents/">scoping as invariants</a> and feeds <a href="/writing/tickets-for-ai-agents-template/">the ticket template</a>. The gates the rules refer to are in <a href="/writing/green-check-is-not-proof/">why a green check is not proof</a>.</p></div>
+
+<section class="faq"><h2>Questions people ask</h2><details><summary>What is CLAUDE.md?</summary><p>The file at the root of a repository that Claude Code reads at the start of every session. It is where the rules of the project live: what the product is, which stack is allowed, what an agent may never do, and how it reports. Other agent tools read an equivalent file under another name.</p></details><details><summary>How long should a CLAUDE.md be?</summary><p>Mine is about 300 lines after seven weeks, and every line is there because of something that happened. Shorter is better only if nothing is missing. The test is not length, it is whether a fresh agent with no memory would make the same mistake twice.</p></details><details><summary>Should CLAUDE.md contain code style rules?</summary><p>A few, where a linter cannot catch them. Most style goes in the linter and the formatter, and the rules file says &#x27;the linter decides&#x27;. The file is for decisions a machine cannot take: what the product is for, who decides what, what counts as proof.</p></details><details><summary>Can I copy your CLAUDE.md?</summary><p>You can copy the structure, which is in this article. You cannot copy the rules, because each one is the answer to an incident on a specific product. A rule you did not earn is a rule the agents will talk you out of in the first week.</p></details></section>
+<div class="cta"><h2>Working on something like this?</h2><p>Thirty minutes, no deck. <a href="https://cal.com/inigoangulo/30min">Book a call</a> or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
+</article></main>
+<footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/writing/">All writing</a> &nbsp; <a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" rel="noopener" target="_blank">LinkedIn</a> &nbsp; <a href="https://github.com/inigoangulo93" rel="noopener" target="_blank">GitHub</a></span></div></footer>
+</body>
+</html>
