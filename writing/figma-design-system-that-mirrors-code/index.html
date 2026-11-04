@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Figma design system that mirrors the codebase: tokens first, then components, then screens / Inigo Angulo</title>
+<meta name="description" content="How to build a design system so that Figma and code say the same thing: a single token source exported to CSS by script, a component library that consumes it, and checks that fail when a raw value sneaks in.">
+<link rel="canonical" href="https://inigoangulo.com/writing/figma-design-system-that-mirrors-code/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="A Figma design system that mirrors the codebase: tokens first, then components, then screens">
+<meta property="og:description" content="How to build a design system so that Figma and code say the same thing: a single token source exported to CSS by script, a component library that consumes it, and checks that fail when a raw value sneaks in.">
+<meta property="og:image" content="https://inigoangulo.com/img/og.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://inigoangulo.com/writing/figma-design-system-that-mirrors-code/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/services/services.css?v=0e47e78">
+<style>.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
+.art .k{margin-bottom:12px}.art h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:none}
+.art .meta{font-family:var(--m);font-size:.74rem;color:var(--t3);margin:16px 0 34px;display:flex;gap:16px;flex-wrap:wrap}
+.art p{max-width:none;font-size:1.05rem;line-height:1.7;margin:0 0 18px}
+.art h2{font-size:1.35rem;margin:38px 0 12px;max-width:none}
+.art ul,.art ol{margin:0 0 18px 22px;color:var(--t2);font-size:1.02rem;line-height:1.65}
+.art li{margin-bottom:6px}
+.art .num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0}
+.art .num div{border:1px solid var(--b1);border-radius:10px;padding:14px;background:var(--glass)}
+.art .num b{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--ac2);line-height:1}
+.art .num span{display:block;font-family:var(--m);font-size:.66rem;color:var(--t3);margin-top:7px;line-height:1.45}
+@media(max-width:700px){.art .num{grid-template-columns:1fr 1fr}}
+.art blockquote{border-left:3px solid var(--ac);padding:4px 0 4px 18px;margin:22px 0;color:var(--t1);font-size:1.1rem;font-weight:500}
+.art .box{border:1px solid var(--acb);border-radius:12px;padding:20px 22px;background:var(--acg2);margin:26px 0}
+.art .box p{margin:0;font-size:.98rem}
+.art .box a{color:var(--ac2);border-bottom:1px solid var(--acb)}
+.art a{color:var(--ac2)}
+.art .fig{margin:26px 0;border:1px solid var(--b1);border-radius:12px;padding:16px;background:var(--glass)}.art .fig svg{width:100%;height:auto;display:block}.art figcaption{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-top:10px}
+.art .series{border:1px solid var(--b1);border-radius:12px;padding:16px 20px;margin:0 0 30px;background:var(--glass)}.art .series__k{font-family:var(--m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);display:block;margin-bottom:8px}.art .series ul{list-style:none;margin:0;display:grid;gap:6px}.art .series li{font-size:.92rem;margin:0}.art .series em{font-style:normal;font-family:var(--m);font-size:.68rem;color:var(--t3)}
+.art .tag{font-family:var(--m);font-size:.7rem;color:var(--ac2);border:1px solid var(--acb);border-radius:999px;padding:3px 10px}
+.art .cta{margin-top:40px}
+.art .cta h2{margin:0 0 6px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
+<script src="/analytics.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "A Figma design system that mirrors the codebase: tokens first, then components, then screens", "description": "How to build a design system so that Figma and code say the same thing: a single token source exported to CSS by script, a component library that consumes it, and checks that fail when a raw value sneaks in.", "datePublished": "2026-11-04", "dateModified": "2026-11-04", "author": {"@type": "Person", "@id": "https://inigoangulo.com/#person", "name": "Inigo Angulo", "url": "https://inigoangulo.com/"}, "publisher": {"@type": "Person", "name": "Inigo Angulo"}, "mainEntityOfPage": "https://inigoangulo.com/writing/figma-design-system-that-mirrors-code/", "image": "https://inigoangulo.com/img/og.png", "keywords": "Design systems", "articleSection": "Design systems", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inigo Angulo", "item": "https://inigoangulo.com/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://inigoangulo.com/writing/"}, {"@type": "ListItem", "position": 3, "name": "A Figma design system that mirrors the codebase: tokens first, then components, then screens", "item": "https://inigoangulo.com/writing/figma-design-system-that-mirrors-code/"}]}</script>
+</head>
+<body>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header>
+<script src="/services/bar.js?v=0e47e78" defer></script>
+<main><article class="art">
+<span class="k">Writing</span>
+<h1>A Figma design system that mirrors the codebase: tokens first, then components, then screens</h1>
+<div class="meta"><span>Inigo Angulo</span><span>November 4, 2026</span><span>7 min read</span><a class="tag" href="/writing/#design">Design systems</a></div>
+
+
+<p>Most design systems die the same way: Figma says 44 and the code says 42, and nobody notices until someone builds on top of the wrong one. On Acervo, where the code is written by agents at speed, that drift would have been fatal within a week. So the system was set up to make drift expensive to introduce and cheap to catch.</p>
+
+<figure class="fig"><svg viewBox="0 0 720 150" role="img" aria-label="Diagram: tokens file feeds a components library which feeds screens; a script exports tokens to CSS; lint checks fail on raw values">
+<defs><marker id="c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6b6b80"/></marker></defs>
+<g font-family="JetBrains Mono,monospace" font-size="11" fill="#9a9aae">
+<rect x="20" y="40" width="130" height="56" rx="8" fill="#101018" stroke="#2dd4bf"/><text x="85" y="64" text-anchor="middle" fill="#5eead4" font-weight="600">Tokens</text><text x="85" y="82" text-anchor="middle">the source</text>
+<rect x="200" y="40" width="140" height="56" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="270" y="64" text-anchor="middle" fill="#f4f4f6" font-weight="600">Components</text><text x="270" y="82" text-anchor="middle">consumes tokens</text>
+<rect x="390" y="40" width="130" height="56" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="455" y="64" text-anchor="middle" fill="#f4f4f6" font-weight="600">Screens</text><text x="455" y="82" text-anchor="middle">consume components</text>
+<rect x="570" y="40" width="130" height="56" rx="8" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.5)"/><text x="635" y="64" text-anchor="middle" fill="#fcd34d" font-weight="600">tokens.css</text><text x="635" y="82" text-anchor="middle">by script, checked</text>
+<g fill="none" stroke="#6b6b80" stroke-width="1.2" marker-end="url(#c)"><path d="M150 68 L200 68"/><path d="M340 68 L390 68"/><path d="M85 96 L85 125 L635 125 L635 96"/></g>
+<text x="360" y="140" text-anchor="middle" font-size="10" fill="#6b6b80">no layer redefines a value from the layer above; no raw value survives lint</text>
+</g></svg><figcaption>Three files, one direction. The code reads from the top of the chain, not from a screenshot.</figcaption></figure>
+
+<h2>One source, three files, one direction</h2>
+<p>Tokens is the source: colour, type, spacing, radii, shadows. Components consumes Tokens and publishes the library. Screens consume Components. No file skips a link, and no layer redefines a value from above. When the library was started from a kit, the kit's six colour collections were kept only as a translation table: every variable resolves to a token within two hops, with no literals and no dead ends, and that is measured by a script, not by looking.</p>
+
+<h2>The code reads tokens by script</h2>
+<p>A script exports the token file to CSS variables and writes the token version it exported from into the header of the CSS. Lint runs the same script in check mode: if the exported CSS does not match the current tokens, the build is red. A second check fails on any raw value in a component (a hex, a pixel size that is not a token), and a third measures contrast on the rendered page, not on declared pairs, because a utility that merges class names once dropped a colour silently and the primary button rendered ink on ink while every declared pair passed.</p>
+
+<h2>Figma traps that only show in numbers</h2>
+<p>Everything that went wrong in Figma shared one shape: the component looked right and what rendered was wrong. Fixing a master does not fix instances that were resized by hand; after correcting two components, 192 instances were still off size and pointed at the right master. Cloning a variant drops the property bindings of its layers, so the instance holds the right text and nothing displays it. Binding a colour variable to a paint built in black keeps the literal black. None of these are visible in a screenshot. All are visible by reading a number, so the design agent's mandate is: measure before, change, measure after, and report with node ids.</p>
+
+<h2>Who owns the library</h2>
+<p>A design agent, continuously, with one limit: it corrects, it does not design. If a value can be pointed at (the code, a verified screen), the agent applies it. If a value would have to be invented, it is escalated as a decision with a measurement and a recommendation. That line kept the library honest when a component was built at 56 pixels "because it felt like garage mode" and nobody could say where the 56 came from. The ticket said 44.</p>
+
+<h2>What it bought</h2>
+<p>Twenty six components in the library, every screen built from them, a light and a dark mode from the same tokens, and a brand that an agent cannot drift from by accident. More in the <a href="/work/acervo.html#s04">brand chapter of the Acervo case</a>, and the service is <a href="/ux-design-consultant/">UX and product design consulting</a>.</p>
+
+<div class="box"><p>Part of the series: <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a>. The checks that make "green" mean something: <a href="/writing/green-check-is-not-proof/">Why a green check is not proof</a>.</p></div>
+
+<div class="cta"><h2>Working on something like this?</h2><p>Thirty minutes, no deck. <a href="https://cal.com/inigoangulo/30min">Book a call</a> or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
+</article></main>
+<footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/writing/">All writing</a> &nbsp; <a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" rel="noopener" target="_blank">LinkedIn</a> &nbsp; <a href="https://github.com/inigoangulo93" rel="noopener" target="_blank">GitHub</a></span></div></footer>
+</body>
+</html>

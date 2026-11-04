@@ -23,15 +23,17 @@ CSS = '''.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
 .art .box a{color:var(--ac2);border-bottom:1px solid var(--acb)}
 .art a{color:var(--ac2)}
 .art .fig{margin:26px 0;border:1px solid var(--b1);border-radius:12px;padding:16px;background:var(--glass)}.art .fig svg{width:100%;height:auto;display:block}.art figcaption{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-top:10px}
+.art .series{border:1px solid var(--b1);border-radius:12px;padding:16px 20px;margin:0 0 30px;background:var(--glass)}.art .series__k{font-family:var(--m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);display:block;margin-bottom:8px}.art .series ul{list-style:none;margin:0;display:grid;gap:6px}.art .series li{font-size:.92rem;margin:0}.art .series em{font-style:normal;font-family:var(--m);font-size:.68rem;color:var(--t3)}
+.art .tag{font-family:var(--m);font-size:.7rem;color:var(--ac2);border:1px solid var(--acb);border-radius:999px;padding:3px 10px}
 .art .cta{margin-top:40px}
 .art .cta h2{margin:0 0 6px}
 '''
 
 POSTS = {
 "ai-agent-teams-software-development": dict(
-  title="AI agent teams for software development: what actually works in 2026",
+  tag="agents", hub=True, title="AI agent teams for software development: what actually works in 2026",
   desc="How to run a team of AI coding agents that ships to production: roles with mandates, isolation, gates, a decision log, and the numbers from seven weeks of doing it.",
-  date="2026-11-05", read="9 min",
+  date="2026-11-04", read="9 min",
   body="""
 <p>Most of what is written about AI coding agents is either a demo or a warning. This is neither. It is the operating model I used to build and run a production platform with eight agents and no engineers on payroll: 445 merged pull requests, 1,456 CI runs and 15 gated releases in seven weeks. The model is not clever. It is a set of boring decisions about who may do what, and it is the reason the numbers are real instead of a story.</p>
 <p>This is the hub of a series. Each section links to a deeper piece.</p>
@@ -85,9 +87,9 @@ POSTS = {
 <div class="box"><p>Next in the series: <a href="/writing/human-in-the-loop-coding-agents/">Human in the loop for coding agents: the two gates that matter</a>. If you want this set up inside your company: <a href="/ai-product-builder/">AI build and deployment</a>.</p></div>
 """),
 "human-in-the-loop-coding-agents": dict(
-  title="Human in the loop for coding agents: the two gates that matter",
+  tag="agents", title="Human in the loop for coding agents: the two gates that matter",
   desc="Where a person must sit when AI agents write and ship code: the decision gate (one id, one letter) and the release gate (one approval with a security report). Everything else can be automated.",
-  date="2026-11-05", read="7 min",
+  date="2026-11-04", read="7 min",
   body="""
 <p>"Human in the loop" usually means a person watching a stream of output and clicking approve until they stop reading. That is not a gate, it is a ritual. After seven weeks of running an AI engineering team to production, I ended up with exactly two places where a human must act, and a rule for keeping both cheap enough that they are actually used.</p>
 
@@ -126,7 +128,7 @@ POSTS = {
 <div class="box"><p>This is part of a series on running AI agent teams. The hub: <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a>. The numbers: <a href="/writing/one-person-ai-agent-team-445-prs/">445 PRs in seven weeks</a>. The product: <a href="/work/acervo.html">Acervo</a>. If you want the gates set up in your team: <a href="/ai-product-builder/">AI build and deployment</a>.</p></div>
 """),
 "one-person-ai-agent-team-445-prs": dict(
-  title="445 PRs in seven weeks: what a one person team with AI agents actually looks like",
+  tag="agents", title="445 PRs in seven weeks: what a one person team with AI agents actually looks like",
   desc="Real numbers from building Acervo with an AI engineering team: 484 pull requests, 1,456 CI runs, 15 gated releases, and what the human did all day.",
   date="2026-11-04", read="7 min",
   body="""
@@ -161,7 +163,7 @@ POSTS = {
 <div class="box"><p>This post is part of a series: the hub is <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a>, and the gates are in <a href="/writing/human-in-the-loop-coding-agents/">Human in the loop for coding agents</a>. The full case, with the evidence from the GitHub API, the data model, the promotion flow and the day the security gate said no: <a href="/work/acervo.html">Acervo, the case study</a>. If you want this for your company: <a href="/ai-product-builder/">AI build and deployment</a>.</p></div>
 """),
 "green-check-is-not-proof": dict(
-  title="Why a green check is not proof: the gates between an AI agent and production",
+  tag="agents", title="Why a green check is not proof: the gates between an AI agent and production",
   desc="On October 6 a navigation redesign merged on 8 of 8 green checks. The e2e job had not run. What that taught me about verification when agents write the code.",
   date="2026-11-04", read="6 min",
   body="""
@@ -189,7 +191,7 @@ POSTS = {
 <div class="box"><p>Part of a series: <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a> and <a href="/writing/human-in-the-loop-coding-agents/">the two human gates</a>. The failure story, beat by beat, with the run ids, is in the <a href="/work/acervo.html#s10">Trust chapter of the Acervo case</a>. If your team is introducing agents and wants the guardrails with them: <a href="/ai-product-builder/">how I set that up</a>.</p></div>
 """),
 "checkout-conversion-ten-experiments": dict(
-  title="Checkout conversion: the ten experiments behind +11%",
+  tag="conversion", title="Checkout conversion: the ten experiments behind +11%",
   desc="At GetYourGuide, 38% of converters left checkout and came back with no re-entry experience. Ten experiments, four EU markets, +11% conversion, and the ones that lost.",
   date="2026-11-04", read="6 min",
   body="""
@@ -221,13 +223,216 @@ POSTS = {
 
 <div class="box"><p>The full case with all ten experiments is here: <a href="/work/checkout.html">GetYourGuide checkout redesign</a>. If your funnel has a leak you cannot find: <a href="/cro-ecommerce-consultant/">how a CRO engagement runs</a>.</p></div>
 """),
+"row-level-security-tests-ai-agents": dict(
+  title="Row level security with AI agents: tests that run as the user who must not get in",
+  desc="How to keep multi tenant isolation honest when agents write the migrations: every rule lives in the database, every policy has a test that runs as the wrong user, and the reviewer breaks a policy on purpose.",
+  date="2026-11-04", read="7 min", tag="agents",
+  body="""
+<p>When AI agents write your database migrations, the risk is not that they forget row level security. They are diligent; they add the policy. The risk is that the policy looks right, the test is green, and the test never actually tried to cross the tenant boundary. On Acervo, a platform where each car collection is a tenant and the data is someone's private property, that failure mode was the one I designed against first.</p>
+
+<h2>The rule: every invariant has a home and a test</h2>
+<p>Every rule in the domain model is tagged with where it lives: in the database (a constraint, a policy, a trigger) or in the application (a server action). Nothing lives only in the frontend. Hiding a column in the interface is not a guarantee, and an agent will happily "fix" a permissions bug by hiding a button.</p>
+<p>Every table has RLS enabled before it has data, and every policy has a test that runs <em>as the role that must not pass</em>. The suite is written in pgTAP and sets the JWT claims and the role to a user from another collection, then asserts zero rows. Not "the right user sees their rows": that test passes with RLS switched off. The test that matters is the negative one.</p>
+
+<figure class="fig"><svg viewBox="0 0 720 200" role="img" aria-label="Diagram: a test sets the role to a user from collection B and queries collection A's table; the expected answer is zero rows; a second test breaks the policy on purpose and expects the suite to go red">
+<g font-family="JetBrains Mono,monospace" font-size="11" fill="#9a9aae">
+<rect x="20" y="40" width="200" height="110" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="120" y="66" text-anchor="middle" fill="#f4f4f6" font-weight="600">test, as user of B</text><text x="120" y="90" text-anchor="middle">set role, set jwt claims</text><text x="120" y="108" text-anchor="middle">select * from A.cars</text><text x="120" y="132" text-anchor="middle" fill="#bbf7d0">expect 0 rows</text>
+<rect x="260" y="40" width="200" height="110" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="360" y="66" text-anchor="middle" fill="#f4f4f6" font-weight="600">reviewer, on purpose</text><text x="360" y="90" text-anchor="middle">drop one isolation policy</text><text x="360" y="108" text-anchor="middle">run the suite</text><text x="360" y="132" text-anchor="middle" fill="#fca5a5">expect red</text>
+<rect x="500" y="40" width="200" height="110" rx="8" fill="rgba(239,68,68,.06)" stroke="rgba(239,68,68,.5)"/><text x="600" y="66" text-anchor="middle" fill="#fca5a5" font-weight="600">still green?</text><text x="600" y="90" text-anchor="middle">the tests do not test</text><text x="600" y="108" text-anchor="middle">what they claim</text><text x="600" y="132" text-anchor="middle" fill="#fca5a5">PR blocked</text>
+</g></svg><figcaption>Two tests per policy: one as the wrong user, one that proves the first can fail.</figcaption></figure>
+
+<h2>Break a policy on purpose</h2>
+<p>A negative test can still lie. If the test's setup is wrong, the user it impersonates is a member of nothing, and zero rows comes back for a reason that has nothing to do with the policy. So the rule for reviewing any change to security is: the reviewer deletes one isolation policy, runs the suite, and confirms it goes red. If it stays green, the pull request is blocked, whatever else it does. It is the cheapest proof I know that a suite tests what it says.</p>
+<p>It caught a real one. Five new triggers written to run with the caller's privileges put an existing test in red for the wrong reason: at a lower auth level the user was a member of nothing, RLS hid the row, and the coherence check concluded "not your tenant" on perfectly coherent data, masking the real denial. The fix was not to adjust the expectation. It was to recognise that a coherence invariant is a property of the data, not of the observer, run it with definer rights, and let RLS do the denying with the right message.</p>
+
+<h2>Three habits that keep it true over 99 migrations</h2>
+<ul>
+<li><b>Functions carry a pinned search path.</b> Every security function sets it explicitly. A function that resolves names from the caller's path is an injection surface, and an agent will not think of that unless the rule is written down.</li>
+<li><b>Foreign keys that cross tenants are a leak and a lever.</b> A reference from one collection's row to another collection's rule does not only let the wrong person read; it can occupy a unique slot the other tenant needed, with an error their own RLS will not let them understand. Every cross table reference gets a check that both sides belong to the same collection.</li>
+<li><b>Suites that share a database do not share state.</b> Each starts from its own reset. A security test red because of rows another suite left behind gets read as a regression and chased where it is not.</li>
+</ul>
+
+<h2>Pending users read zero rows, by the database</h2>
+<p>Registration is open; access is not. A new account is pending until a person approves it, and pending means zero rows from any table, guaranteed by RLS, with a test that proves it, never by the interface. Who approved whom, and when, goes to the audit log. This is the pattern for anything an agent might be tempted to enforce in a component: if it must be true, it is true in the database, and there is a test that runs as the person it must be true against.</p>
+
+<div class="box"><p>Part of the series on running AI agent teams: the hub is <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a>, the verification rules are in <a href="/writing/green-check-is-not-proof/">Why a green check is not proof</a>, and the data model is in the <a href="/work/acervo.html#s08">Acervo case, chapter 08</a>. If you want this discipline in your own build: <a href="/ai-product-builder/">AI build and deployment</a>.</p></div>
+"""),
+"cost-to-build-mvp-with-ai-agents": dict(
+  title="How much does it cost to build an MVP with AI agents? Real numbers from one build",
+  desc="What a production MVP built with an AI agent team actually costs: the agent bill, the infrastructure, the human time, and where the money really goes. Numbers from seven weeks on Acervo.",
+  date="2026-11-04", read="6 min", tag="product",
+  body="""
+<p>Everyone asks the same question in the first call: what does it cost? Here is what one build cost, with the caveat that it was my own product, so the human time was mine and the decisions were fast. Treat the numbers as an honest floor, not a quote.</p>
+
+<div class="num"><div><b>7 weeks</b><span>from first commit to 15 releases in production</span></div><div><b>~CHF 300</b><span>per month in agent usage, passed through at cost</span></div><div><b>~CHF 60</b><span>per month in hosting, database and monitoring at MVP scale</span></div><div><b>1 person</b><span>scoping, deciding, approving. Zero engineers on payroll</span></div></div>
+
+<h2>Where the money does not go</h2>
+<p>Not to writing code. That is the part that collapsed. 445 pull requests in seven weeks with an agent bill in the low hundreds of francs a month. Infrastructure at MVP scale is a rounding error: a hosted Postgres with auth and storage, a frontend host, error tracking. All on plans that cost less than a lunch in Zurich.</p>
+
+<h2>Where it goes</h2>
+<ol>
+<li><b>Scoping.</b> Week one was spent on what the product must do, what it must never do, the data model and the security boundaries, written as tickets with acceptance criteria. This is the week that decides whether the following six produce a product or a pile of features. It is human time, and it is the most expensive line.</li>
+<li><b>Deciding.</b> Agents stop at every real decision and ask. Over seven weeks that was more than 170 recorded decisions, each answered in seconds because the format is fixed, but each requiring someone who knows what the product is for. You cannot outsource this to the agents without getting their guess.</li>
+<li><b>Verification.</b> Reading what the gates say instead of trusting their colour, opening the deployment by URL, running the pen test before every release. This is what separates a demo from something you can put a customer on. It is a fixed cost per release, which is why the releases are batched into numbered sets instead of shipped one by one.</li>
+<li><b>Design.</b> A brand, a token system, 26 components. Agents built the components from the tokens; the taste and the decisions were human. Skipping this is how MVPs end up looking like every other agent built app, which customers notice.</li>
+</ol>
+
+<h2>How to read a quote</h2>
+<p>When I quote a build for a client, the first version is a fixed price for a sprint of two to six weeks, with the agent costs passed through at cost. What varies the price is almost entirely scope clarity: a client who can say what the product must never do saves a week. A client who wants to find out by building pays for the finding out, which is a legitimate thing to pay for, but it should be called that.</p>
+<p>What should make you suspicious: a quote that is mostly "development hours". If the building is being done by agents, the hours that matter are scoping, deciding and verifying, and an honest quote says so.</p>
+
+<h2>What you get for it</h2>
+<p>Real code in a repository you own, with tests, a release process and a decision log, that any engineer can continue. Not a prototype on a no code platform and not a chat transcript. The <a href="/work/acervo.html">Acervo case</a> shows the artefacts: the data model, the promotion flow, the evidence from the CI record.</p>
+
+<div class="box"><p>How the build is run: <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a>. The human gates that make it safe: <a href="/writing/human-in-the-loop-coding-agents/">Human in the loop for coding agents</a>. To talk about yours: <a href="/ai-product-builder/">AI build and deployment</a>.</p></div>
+"""),
+"fractional-product-manager-vs-product-consultant": dict(
+  title="Fractional product manager vs product consultant: which one do you actually need?",
+  desc="A consultant diagnoses and recommends. A fractional product manager owns outcomes inside your team for a period. How to tell which one your company needs, and what each should cost you.",
+  date="2026-11-04", read="5 min", tag="product",
+  body="""
+<p>The two titles get used interchangeably, and companies hire the wrong one all the time: a consultant when they needed someone to own the roadmap, a fractional lead when they needed a second opinion. The difference is not seniority or price. It is who owns the outcome.</p>
+
+<h2>The consultant</h2>
+<p>Comes in with a question, leaves with an answer. Audits the funnel, reviews the roadmap, runs the workshop, writes the recommendation. Owns the quality of the diagnosis; does not own what happens next. Right when you have a specific question, a team that can execute, and a decision maker who will act on the answer. Wrong when the answer is "you need someone to run this", because the consultant is already gone.</p>
+
+<h2>The fractional product manager</h2>
+<p>Sits inside the team for two or three days a week over months, owns the roadmap and the outcomes, makes the daily calls, and is judged on whether the number moved. Right when the founder is still the product manager and it has stopped scaling, when you are between hires, or when the product function does not exist yet and someone has to build it. Wrong when what you need is a deck for the board, or when nobody on your side will own the product after they leave.</p>
+
+<h2>Four questions that settle it</h2>
+<ol>
+<li><b>Is there a decision maker who will act on a recommendation?</b> If yes, a consultant works. If the recommendation would land on nobody's desk, you need the fractional lead.</li>
+<li><b>Is the problem known?</b> "Checkout converts badly" is a consultant's problem. "We do not know what to build next quarter" is a fractional lead's.</li>
+<li><b>How long until the next hire?</b> If a full time product lead starts in two months, a consultant bridges. If the search has not started, the fractional lead is the bridge and often helps run the search.</li>
+<li><b>Who executes?</b> A consultant assumes your team ships. If your team is two engineers and no designer, the fractional lead needs to be able to do, not just direct.</li>
+</ol>
+
+<h2>What each should cost</h2>
+<p>A consulting engagement is priced per deliverable: an audit, a plan, a workshop series. A fractional engagement is priced per days per week, with a minimum term of three months, because owning an outcome in less than that is theatre. Both should come with a first call where the person tells you honestly which one you need, including when it is neither.</p>
+
+<h2>Where I sit</h2>
+<p>I do both, and I say which one I think you need on the first call. The thing I bring that is less common is that I also build: on my own product I ship with AI agent teams, so a fractional engagement with me can include working software, not only a roadmap. The details are on <a href="/product-consultant-zurich/">Product consultant, Zurich</a> and <a href="/ai-product-builder/">AI build and deployment</a>.</p>
+
+<div class="box"><p>Related: <a href="/writing/checkout-conversion-ten-experiments/">the ten checkout experiments</a>, which is the consultant kind of work, and <a href="/writing/one-person-ai-agent-team-445-prs/">445 PRs in seven weeks</a>, which is the building kind.</p></div>
+"""),
+"figma-design-system-that-mirrors-code": dict(
+  title="A Figma design system that mirrors the codebase: tokens first, then components, then screens",
+  desc="How to build a design system so that Figma and code say the same thing: a single token source exported to CSS by script, a component library that consumes it, and checks that fail when a raw value sneaks in.",
+  date="2026-11-04", read="7 min", tag="design",
+  body="""
+<p>Most design systems die the same way: Figma says 44 and the code says 42, and nobody notices until someone builds on top of the wrong one. On Acervo, where the code is written by agents at speed, that drift would have been fatal within a week. So the system was set up to make drift expensive to introduce and cheap to catch.</p>
+
+<figure class="fig"><svg viewBox="0 0 720 150" role="img" aria-label="Diagram: tokens file feeds a components library which feeds screens; a script exports tokens to CSS; lint checks fail on raw values">
+<defs><marker id="c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6b6b80"/></marker></defs>
+<g font-family="JetBrains Mono,monospace" font-size="11" fill="#9a9aae">
+<rect x="20" y="40" width="130" height="56" rx="8" fill="#101018" stroke="#2dd4bf"/><text x="85" y="64" text-anchor="middle" fill="#5eead4" font-weight="600">Tokens</text><text x="85" y="82" text-anchor="middle">the source</text>
+<rect x="200" y="40" width="140" height="56" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="270" y="64" text-anchor="middle" fill="#f4f4f6" font-weight="600">Components</text><text x="270" y="82" text-anchor="middle">consumes tokens</text>
+<rect x="390" y="40" width="130" height="56" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="455" y="64" text-anchor="middle" fill="#f4f4f6" font-weight="600">Screens</text><text x="455" y="82" text-anchor="middle">consume components</text>
+<rect x="570" y="40" width="130" height="56" rx="8" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.5)"/><text x="635" y="64" text-anchor="middle" fill="#fcd34d" font-weight="600">tokens.css</text><text x="635" y="82" text-anchor="middle">by script, checked</text>
+<g fill="none" stroke="#6b6b80" stroke-width="1.2" marker-end="url(#c)"><path d="M150 68 L200 68"/><path d="M340 68 L390 68"/><path d="M85 96 L85 125 L635 125 L635 96"/></g>
+<text x="360" y="140" text-anchor="middle" font-size="10" fill="#6b6b80">no layer redefines a value from the layer above; no raw value survives lint</text>
+</g></svg><figcaption>Three files, one direction. The code reads from the top of the chain, not from a screenshot.</figcaption></figure>
+
+<h2>One source, three files, one direction</h2>
+<p>Tokens is the source: colour, type, spacing, radii, shadows. Components consumes Tokens and publishes the library. Screens consume Components. No file skips a link, and no layer redefines a value from above. When the library was started from a kit, the kit's six colour collections were kept only as a translation table: every variable resolves to a token within two hops, with no literals and no dead ends, and that is measured by a script, not by looking.</p>
+
+<h2>The code reads tokens by script</h2>
+<p>A script exports the token file to CSS variables and writes the token version it exported from into the header of the CSS. Lint runs the same script in check mode: if the exported CSS does not match the current tokens, the build is red. A second check fails on any raw value in a component (a hex, a pixel size that is not a token), and a third measures contrast on the rendered page, not on declared pairs, because a utility that merges class names once dropped a colour silently and the primary button rendered ink on ink while every declared pair passed.</p>
+
+<h2>Figma traps that only show in numbers</h2>
+<p>Everything that went wrong in Figma shared one shape: the component looked right and what rendered was wrong. Fixing a master does not fix instances that were resized by hand; after correcting two components, 192 instances were still off size and pointed at the right master. Cloning a variant drops the property bindings of its layers, so the instance holds the right text and nothing displays it. Binding a colour variable to a paint built in black keeps the literal black. None of these are visible in a screenshot. All are visible by reading a number, so the design agent's mandate is: measure before, change, measure after, and report with node ids.</p>
+
+<h2>Who owns the library</h2>
+<p>A design agent, continuously, with one limit: it corrects, it does not design. If a value can be pointed at (the code, a verified screen), the agent applies it. If a value would have to be invented, it is escalated as a decision with a measurement and a recommendation. That line kept the library honest when a component was built at 56 pixels "because it felt like garage mode" and nobody could say where the 56 came from. The ticket said 44.</p>
+
+<h2>What it bought</h2>
+<p>Twenty six components in the library, every screen built from them, a light and a dark mode from the same tokens, and a brand that an agent cannot drift from by accident. More in the <a href="/work/acervo.html#s04">brand chapter of the Acervo case</a>, and the service is <a href="/ux-design-consultant/">UX and product design consulting</a>.</p>
+
+<div class="box"><p>Part of the series: <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a>. The checks that make "green" mean something: <a href="/writing/green-check-is-not-proof/">Why a green check is not proof</a>.</p></div>
+"""),
+"instrument-the-gaps-not-the-stages": dict(
+  title="Instrument the gaps, not the stages: funnel analytics that find the real leak",
+  desc="Stage by stage funnels hide where people actually drop: the back button, the tab switch, the return visit. How to rebuild a funnel per user and find the leak nobody measured.",
+  date="2026-11-04", read="6 min", tag="conversion",
+  body="""
+<p>Every analytics setup I have inherited counts people at each step of the funnel. Product page, cart, checkout step one, payment, confirmation. The numbers are right and the picture is wrong, because the leak is almost never inside a stage. It is between stages, in the moments the stage counters cannot see.</p>
+
+<h2>What stage counters miss</h2>
+<ul>
+<li><b>The back button.</b> A user reaches checkout, goes back to compare, returns. Two checkout entries, one person, and a stage funnel counts a drop that did not happen and misses the friction that did.</li>
+<li><b>The tab switch.</b> Opens the price in a new tab, opens the competitor, comes back forty minutes later. Session timed out; a new session starts at step one.</li>
+<li><b>The return visit.</b> Comes back the next day with no memory of the cart. At GetYourGuide this was the number that changed everything: 38% of the people who eventually converted had left checkout and come back, and the product treated them like strangers.</li>
+</ul>
+
+<h2>Rebuild the funnel per user</h2>
+<p>The fix is a query, not a tool. Take every user who reached the final step in a period, and walk their events backwards: how many checkout entries, how many hours between the first and the last, which step they left from each time. Then do the same for users who did not convert. The gap between the two populations is your leak, and it is usually not a step. It is a re-entry with no memory, a price that changed between visits, a form that cleared.</p>
+<p>Three dimensions make the query useful: <em>entries per converter</em> (if the median is above one, re-entry is your biggest surface), <em>time to convert</em> (if it is hours, the session model is lying to you), and <em>exit step on the first visit</em> (which tells you where to put the memory).</p>
+
+<h2>Then instrument what you found</h2>
+<p>Only now add events, and add them for the gaps: a <code>checkout_reentry</code> event with the step and the hours since last exit, a <code>cart_restored</code> event, a <code>price_changed_since_last_visit</code> event. These are the events that will tell you whether the fix worked, and they are the ones no default setup ships with.</p>
+
+<h2>What this looked like twice</h2>
+<p>At GetYourGuide it became ten experiments and +11% checkout conversion, with the single largest lift from re-entry: a returning visitor lands on the step they left, with their choices intact. At a co-living platform the same query found the drop between application and booking was people returning after the roommate conversation, and the redesign took booking conversion up 34%. Different products, same blind spot. The <a href="/writing/checkout-conversion-ten-experiments/">ten experiments</a> are written up separately.</p>
+
+<h2>A note on tools</h2>
+<p>Any analytics product can do this if it exports raw events; most cannot do it in their funnel UI, which is why the funnel UI keeps telling you payment is the problem. Session recordings are the fastest way to see a re-entry with your own eyes; the per user query is how you know how many there are.</p>
+
+<div class="box"><p>If your funnel has a leak you cannot find: <a href="/cro-ecommerce-consultant/">how a CRO engagement runs</a>. The case: <a href="/work/checkout.html">GetYourGuide checkout redesign</a>.</p></div>
+"""),
+"ticket-to-production-in-five-hours": dict(
+  title="From ticket to production in five hours: a release process for a one person team",
+  desc="One real change, end to end: ticket at 14:35, pull request at 16:56, fourteen checks, pen test PASS, merge, promotion at 19:50, served at 19:54. The process that makes that routine and safe.",
+  date="2026-11-04", read="6 min", tag="agents",
+  body="""
+<p>Here is one change on Acervo, as recorded by the ticket, the pull request, the CI run and the deployment. Not a highlight: a Tuesday.</p>
+
+<ol class="steps">
+<li><div><b>14:35, ticket written</b><span>A numbered ticket with a measurable acceptance criterion and valid metadata. Without both, the lead returns it before starting.</span></div></li>
+<li><div><b>Branch from main</b><span>One branch per ticket, from an up to date main, never from another ticket's branch. The worker gets its own worktree and database.</span></div></li>
+<li><div><b>16:56, pull request opened</b><span>By the lead, after integrating the worker's output and the reviewer's list of faults. The PR carries screenshots and the preview URL with its commit.</span></div></li>
+<li><div><b>Fourteen checks</b><span>Five required by the branch ruleset (lint, types, tests, auth templates, secrets) plus the browser suite and the house checks. All read on the exact commit to be merged, not an earlier one.</span></div></li>
+<li><div><b>17:20, pen test PASS</b><span>The security agent runs the full test against local and staging and writes a report with a verdict for that commit.</span></div></li>
+<li><div><b>Merge</b><span>The lead merges, only with every required check green on that commit. It does not merge on anyone's say so, including mine.</span></div></li>
+<li><div><b>19:50, promotion</b><span>A human command names the commit. The workflow holds the credentials; no person and no agent does. Migrations run before the deploy and are compatible with the previous code by rule: add first, remove in a later release.</span></div></li>
+<li><div><b>19:54, served</b><span>The final check fetches the production domain and looks for the content. A deployment that reports READY can serve a 404; the first promotion did exactly that, so the check reads the page, not the status.</span></div></li>
+</ol>
+
+<h2>Why it is five hours and not five minutes</h2>
+<p>Because three of the steps are human and two are slow on purpose. The ticket takes thought. The merge waits for every check on the exact commit. The promotion waits for a security report. Everything between those points is agents and scripts, and that is where the hours went from days to minutes. The human gates did not get faster; they got cheaper, which is what lets them stay.</p>
+
+<h2>Why it is routine</h2>
+<p>Because nothing in it depends on memory. The ticket has a schema. The decision format is fixed. The checks are the same fourteen. The promotion is one command with one input. A process that depends on someone remembering a step is a process that skips the step on the day it matters, and with agents producing 445 merges in seven weeks, that day comes weekly.</p>
+
+<h2>What I would copy first</h2>
+<ul>
+<li>Read checks on the commit you are merging. Not the branch, the commit.</li>
+<li>Make the final deployment check fetch the real page by its domain.</li>
+<li>Migrations compatible with the previous version, always. A deploy that fails after migrating must not break what is running.</li>
+<li>One human command for production, logged, with the secrets in the workflow and nowhere else.</li>
+</ul>
+
+<div class="box"><p>The whole promotion flow with its lanes is in the <a href="/work/acervo.html#s06">Acervo case, chapter 06</a>. The series: <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a> and <a href="/writing/human-in-the-loop-coding-agents/">the two human gates</a>. To set this up for your team: <a href="/ai-product-builder/">AI build and deployment</a>.</p></div>
+"""),
+
 }
+
+TAGS = {"agents":"AI agent teams","conversion":"Conversion and funnels","design":"Design systems","product":"Product and consulting"}
 
 def esc(s): return html.escape(s, quote=True)
 
+def series_box(slug, d):
+    tag = d.get("tag")
+    others = [(k,v) for k,v in POSTS.items() if v.get("tag")==tag and k!=slug]
+    if not others: return ""
+    hub = [(k,v) for k,v in others if v.get("hub")]
+    rest = [(k,v) for k,v in others if not v.get("hub")]
+    items = "".join(f'<li><a href="/writing/{k}/">{esc(v["title"])}</a>{" <em>(start here)</em>" if v.get("hub") else ""}</li>' for k,v in hub+rest)
+    return f'<nav class="series" aria-label="In this series"><span class="series__k">In this series: {esc(TAGS[tag])}</span><ul>{items}</ul></nav>'
+
+
 def page(slug, d):
     url = f"https://inigoangulo.com/writing/{slug}/"
-    ld = {"@context":"https://schema.org","@type":"Article","headline":d["title"],"description":d["desc"],"datePublished":d["date"],"dateModified":d["date"],"author":{"@type":"Person","@id":"https://inigoangulo.com/#person","name":"Inigo Angulo","url":"https://inigoangulo.com/"},"publisher":{"@type":"Person","name":"Inigo Angulo"},"mainEntityOfPage":url,"image":"https://inigoangulo.com/img/og.png"}
+    ld = {"@context":"https://schema.org","@type":"Article","headline":d["title"],"description":d["desc"],"datePublished":d["date"],"dateModified":d["date"],"author":{"@type":"Person","@id":"https://inigoangulo.com/#person","name":"Inigo Angulo","url":"https://inigoangulo.com/"},"publisher":{"@type":"Person","name":"Inigo Angulo"},"mainEntityOfPage":url,"image":"https://inigoangulo.com/img/og.png","keywords":TAGS.get(d.get("tag",""),""),"articleSection":TAGS.get(d.get("tag",""),""),"inLanguage":"en"}
     bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inigo Angulo","item":"https://inigoangulo.com/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://inigoangulo.com/writing/"},{"@type":"ListItem","position":3,"name":d["title"],"item":url}]}
     nice = datetime.date.fromisoformat(d["date"]).strftime("%B %-d, %Y")
     return f'''<!DOCTYPE html>
@@ -258,7 +463,8 @@ def page(slug, d):
 <main><article class="art">
 <span class="k">Writing</span>
 <h1>{esc(d["title"])}</h1>
-<div class="meta"><span>Inigo Angulo</span><span>{nice}</span><span>{d["read"]} read</span></div>
+<div class="meta"><span>Inigo Angulo</span><span>{nice}</span><span>{d["read"]} read</span><a class="tag" href="/writing/#{d.get("tag","")}">{esc(TAGS.get(d.get("tag",""),""))}</a></div>
+{series_box(slug,d)}
 {d["body"]}
 <div class="cta"><h2>Working on something like this?</h2><p>Thirty minutes, no deck. <a href="https://cal.com/inigoangulo/30min">Book a call</a> or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
 </article></main>
@@ -268,7 +474,10 @@ def page(slug, d):
 '''
 
 def index():
-    items = "".join(f'<a class="post" href="/writing/{s}/"><span class="k" style="margin-bottom:6px">{datetime.date.fromisoformat(d["date"]).strftime("%B %-d, %Y")} / {d["read"]}</span><h2>{esc(d["title"])}</h2><p>{esc(d["desc"])}</p></a>' for s,d in POSTS.items())
+    order = sorted(POSTS.items(), key=lambda kv: kv[1]["date"], reverse=True)
+    items = "".join(f'<a class="post" data-tag="{d.get("tag","")}" href="/writing/{s}/"><span class="k" style="margin-bottom:6px">{datetime.date.fromisoformat(d["date"]).strftime("%B %-d, %Y")} / {d["read"]} / {esc(TAGS.get(d.get("tag",""),""))}{" / series hub" if d.get("hub") else ""}</span><h2>{esc(d["title"])}</h2><p>{esc(d["desc"])}</p></a>' for s,d in order)
+    chips = '<a class="chip on" href="#" data-f="">All</a>' + "".join(f'<a class="chip" href="#{k}" data-f="{k}">{esc(v)}</a>' for k,v in TAGS.items())
+    blog_ld = {"@context":"https://schema.org","@type":"Blog","name":"Writing by Inigo Angulo","url":"https://inigoangulo.com/writing/","author":{"@type":"Person","@id":"https://inigoangulo.com/#person","name":"Inigo Angulo"},"blogPost":[{"@type":"BlogPosting","headline":d["title"],"url":f"https://inigoangulo.com/writing/{s}/","datePublished":d["date"]} for s,d in order]}
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -276,23 +485,32 @@ def index():
 <title>Writing: product, AI agent teams, conversion / Inigo Angulo</title>
 <meta name="description" content="Notes from building products with AI agent teams, running experiments on checkout funnels, and deciding what is worth building.">
 <link rel="canonical" href="https://inigoangulo.com/writing/">
+<link rel="alternate" type="application/rss+xml" title="Inigo Angulo, writing" href="https://inigoangulo.com/writing/feed.xml">
+<meta property="og:title" content="Writing: product, AI agent teams, conversion"><meta property="og:description" content="Notes from building products with AI agent teams, running experiments on checkout funnels, and deciding what is worth building."><meta property="og:image" content="https://inigoangulo.com/img/og.png"><meta property="og:url" content="https://inigoangulo.com/writing/">
+<script type="application/ld+json">{json.dumps(blog_ld,ensure_ascii=False)}</script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 {FONTS}
 <link rel="stylesheet" href="/services/services.css?v={VER}">
-<style>.list{{max-width:760px;margin:0 auto;padding:110px 24px 40px}}.post{{display:block;border:1px solid var(--b1);border-radius:12px;padding:22px 24px;margin-bottom:14px;background:var(--glass);transition:border-color .2s,transform .2s}}.post:hover{{border-color:var(--acb);transform:translateY(-2px)}}.post h2{{font-size:1.25rem;margin:0 0 8px}}.post p{{font-size:.95rem}}.post .k::before{{content:""}}</style>
+<style>.chips{{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}}.chip{{font-family:var(--m);font-size:.72rem;color:var(--t2);border:1px solid var(--b2);border-radius:999px;padding:7px 12px;transition:color .2s,border-color .2s}}.chip.on,.chip:hover{{color:var(--ac2);border-color:var(--acb)}}.post.hide{{display:none}}.intro{{color:var(--t2);font-size:1.02rem;max-width:640px;margin:0 0 24px}}.list{{max-width:760px;margin:0 auto;padding:110px 24px 40px}}.post{{display:block;border:1px solid var(--b1);border-radius:12px;padding:22px 24px;margin-bottom:14px;background:var(--glass);transition:border-color .2s,transform .2s}}.post:hover{{border-color:var(--acb);transform:translateY(-2px)}}.post h2{{font-size:1.25rem;margin:0 0 8px}}.post p{{font-size:.95rem}}.post .k::before{{content:""}}</style>
 {GA}
 </head>
 <body>
 <header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header>
 <script src="/services/bar.js?v={VER}" defer></script>
-<main><div class="list"><span class="k">Writing</span><h1 style="font-size:2rem;margin-bottom:28px">What I learned shipping, written down.</h1>{items}</div></main>
+<main><div class="list"><span class="k">Writing</span><h1 style="font-size:2rem;margin-bottom:14px">What I learned shipping, written down.</h1><p class="intro">Notes on building product with AI agent teams, human in the loop gates, conversion experiments on real funnels, and design systems that match the code. Everything here comes from work I did, with the numbers.</p><div class="chips">{chips}</div>{items}<script>(function(){{var chips=document.querySelectorAll(".chip"),posts=document.querySelectorAll(".post");function apply(f){{chips.forEach(function(c){{c.classList.toggle("on",c.dataset.f===f)}});posts.forEach(function(p){{p.classList.toggle("hide",!!f&&p.dataset.tag!==f)}})}}chips.forEach(function(c){{c.addEventListener("click",function(e){{e.preventDefault();var f=c.dataset.f;history.replaceState(null,"",f?"#"+f:"/writing/");apply(f)}})}});var h=location.hash.slice(1);if(h)apply(h)}})();</script></div></main>
 <footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/">Home</a></span></div></footer>
 </body>
 </html>
 '''
 
+def feed():
+    order = sorted(POSTS.items(), key=lambda kv: kv[1]["date"], reverse=True)
+    items = "".join(f"<item><title>{esc(d['title'])}</title><link>https://inigoangulo.com/writing/{s}/</link><guid>https://inigoangulo.com/writing/{s}/</guid><pubDate>{datetime.datetime.combine(datetime.date.fromisoformat(d['date']),datetime.time(8)).strftime('%a, %d %b %Y %H:%M:%S +0000')}</pubDate><description>{esc(d['desc'])}</description></item>" for s,d in order)
+    return f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Inigo Angulo, writing</title><link>https://inigoangulo.com/writing/</link><description>Notes on building product with AI agent teams, conversion experiments and design systems.</description><language>en</language>{items}</channel></rss>'
+
 if __name__ == "__main__":
     os.makedirs("writing", exist_ok=True)
+    open("writing/feed.xml","w").write(feed())
     open("writing/index.html","w").write(index())
     for s,d in POSTS.items():
         os.makedirs(f"writing/{s}", exist_ok=True)

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Row level security with AI agents: tests that run as the user who must not get in / Inigo Angulo</title>
+<meta name="description" content="How to keep multi tenant isolation honest when agents write the migrations: every rule lives in the database, every policy has a test that runs as the wrong user, and the reviewer breaks a policy on purpose.">
+<link rel="canonical" href="https://inigoangulo.com/writing/row-level-security-tests-ai-agents/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Row level security with AI agents: tests that run as the user who must not get in">
+<meta property="og:description" content="How to keep multi tenant isolation honest when agents write the migrations: every rule lives in the database, every policy has a test that runs as the wrong user, and the reviewer breaks a policy on purpose.">
+<meta property="og:image" content="https://inigoangulo.com/img/og.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://inigoangulo.com/writing/row-level-security-tests-ai-agents/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/services/services.css?v=0e47e78">
+<style>.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
+.art .k{margin-bottom:12px}.art h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:none}
+.art .meta{font-family:var(--m);font-size:.74rem;color:var(--t3);margin:16px 0 34px;display:flex;gap:16px;flex-wrap:wrap}
+.art p{max-width:none;font-size:1.05rem;line-height:1.7;margin:0 0 18px}
+.art h2{font-size:1.35rem;margin:38px 0 12px;max-width:none}
+.art ul,.art ol{margin:0 0 18px 22px;color:var(--t2);font-size:1.02rem;line-height:1.65}
+.art li{margin-bottom:6px}
+.art .num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0}
+.art .num div{border:1px solid var(--b1);border-radius:10px;padding:14px;background:var(--glass)}
+.art .num b{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--ac2);line-height:1}
+.art .num span{display:block;font-family:var(--m);font-size:.66rem;color:var(--t3);margin-top:7px;line-height:1.45}
+@media(max-width:700px){.art .num{grid-template-columns:1fr 1fr}}
+.art blockquote{border-left:3px solid var(--ac);padding:4px 0 4px 18px;margin:22px 0;color:var(--t1);font-size:1.1rem;font-weight:500}
+.art .box{border:1px solid var(--acb);border-radius:12px;padding:20px 22px;background:var(--acg2);margin:26px 0}
+.art .box p{margin:0;font-size:.98rem}
+.art .box a{color:var(--ac2);border-bottom:1px solid var(--acb)}
+.art a{color:var(--ac2)}
+.art .fig{margin:26px 0;border:1px solid var(--b1);border-radius:12px;padding:16px;background:var(--glass)}.art .fig svg{width:100%;height:auto;display:block}.art figcaption{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-top:10px}
+.art .series{border:1px solid var(--b1);border-radius:12px;padding:16px 20px;margin:0 0 30px;background:var(--glass)}.art .series__k{font-family:var(--m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);display:block;margin-bottom:8px}.art .series ul{list-style:none;margin:0;display:grid;gap:6px}.art .series li{font-size:.92rem;margin:0}.art .series em{font-style:normal;font-family:var(--m);font-size:.68rem;color:var(--t3)}
+.art .tag{font-family:var(--m);font-size:.7rem;color:var(--ac2);border:1px solid var(--acb);border-radius:999px;padding:3px 10px}
+.art .cta{margin-top:40px}
+.art .cta h2{margin:0 0 6px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
+<script src="/analytics.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Row level security with AI agents: tests that run as the user who must not get in", "description": "How to keep multi tenant isolation honest when agents write the migrations: every rule lives in the database, every policy has a test that runs as the wrong user, and the reviewer breaks a policy on purpose.", "datePublished": "2026-11-04", "dateModified": "2026-11-04", "author": {"@type": "Person", "@id": "https://inigoangulo.com/#person", "name": "Inigo Angulo", "url": "https://inigoangulo.com/"}, "publisher": {"@type": "Person", "name": "Inigo Angulo"}, "mainEntityOfPage": "https://inigoangulo.com/writing/row-level-security-tests-ai-agents/", "image": "https://inigoangulo.com/img/og.png", "keywords": "AI agent teams", "articleSection": "AI agent teams", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inigo Angulo", "item": "https://inigoangulo.com/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://inigoangulo.com/writing/"}, {"@type": "ListItem", "position": 3, "name": "Row level security with AI agents: tests that run as the user who must not get in", "item": "https://inigoangulo.com/writing/row-level-security-tests-ai-agents/"}]}</script>
+</head>
+<body>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header>
+<script src="/services/bar.js?v=0e47e78" defer></script>
+<main><article class="art">
+<span class="k">Writing</span>
+<h1>Row level security with AI agents: tests that run as the user who must not get in</h1>
+<div class="meta"><span>Inigo Angulo</span><span>November 4, 2026</span><span>7 min read</span><a class="tag" href="/writing/#agents">AI agent teams</a></div>
+<nav class="series" aria-label="In this series"><span class="series__k">In this series: AI agent teams</span><ul><li><a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development: what actually works in 2026</a> <em>(start here)</em></li><li><a href="/writing/human-in-the-loop-coding-agents/">Human in the loop for coding agents: the two gates that matter</a></li><li><a href="/writing/one-person-ai-agent-team-445-prs/">445 PRs in seven weeks: what a one person team with AI agents actually looks like</a></li><li><a href="/writing/green-check-is-not-proof/">Why a green check is not proof: the gates between an AI agent and production</a></li><li><a href="/writing/ticket-to-production-in-five-hours/">From ticket to production in five hours: a release process for a one person team</a></li></ul></nav>
+
+<p>When AI agents write your database migrations, the risk is not that they forget row level security. They are diligent; they add the policy. The risk is that the policy looks right, the test is green, and the test never actually tried to cross the tenant boundary. On Acervo, a platform where each car collection is a tenant and the data is someone's private property, that failure mode was the one I designed against first.</p>
+
+<h2>The rule: every invariant has a home and a test</h2>
+<p>Every rule in the domain model is tagged with where it lives: in the database (a constraint, a policy, a trigger) or in the application (a server action). Nothing lives only in the frontend. Hiding a column in the interface is not a guarantee, and an agent will happily "fix" a permissions bug by hiding a button.</p>
+<p>Every table has RLS enabled before it has data, and every policy has a test that runs <em>as the role that must not pass</em>. The suite is written in pgTAP and sets the JWT claims and the role to a user from another collection, then asserts zero rows. Not "the right user sees their rows": that test passes with RLS switched off. The test that matters is the negative one.</p>
+
+<figure class="fig"><svg viewBox="0 0 720 200" role="img" aria-label="Diagram: a test sets the role to a user from collection B and queries collection A's table; the expected answer is zero rows; a second test breaks the policy on purpose and expects the suite to go red">
+<g font-family="JetBrains Mono,monospace" font-size="11" fill="#9a9aae">
+<rect x="20" y="40" width="200" height="110" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="120" y="66" text-anchor="middle" fill="#f4f4f6" font-weight="600">test, as user of B</text><text x="120" y="90" text-anchor="middle">set role, set jwt claims</text><text x="120" y="108" text-anchor="middle">select * from A.cars</text><text x="120" y="132" text-anchor="middle" fill="#bbf7d0">expect 0 rows</text>
+<rect x="260" y="40" width="200" height="110" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="360" y="66" text-anchor="middle" fill="#f4f4f6" font-weight="600">reviewer, on purpose</text><text x="360" y="90" text-anchor="middle">drop one isolation policy</text><text x="360" y="108" text-anchor="middle">run the suite</text><text x="360" y="132" text-anchor="middle" fill="#fca5a5">expect red</text>
+<rect x="500" y="40" width="200" height="110" rx="8" fill="rgba(239,68,68,.06)" stroke="rgba(239,68,68,.5)"/><text x="600" y="66" text-anchor="middle" fill="#fca5a5" font-weight="600">still green?</text><text x="600" y="90" text-anchor="middle">the tests do not test</text><text x="600" y="108" text-anchor="middle">what they claim</text><text x="600" y="132" text-anchor="middle" fill="#fca5a5">PR blocked</text>
+</g></svg><figcaption>Two tests per policy: one as the wrong user, one that proves the first can fail.</figcaption></figure>
+
+<h2>Break a policy on purpose</h2>
+<p>A negative test can still lie. If the test's setup is wrong, the user it impersonates is a member of nothing, and zero rows comes back for a reason that has nothing to do with the policy. So the rule for reviewing any change to security is: the reviewer deletes one isolation policy, runs the suite, and confirms it goes red. If it stays green, the pull request is blocked, whatever else it does. It is the cheapest proof I know that a suite tests what it says.</p>
+<p>It caught a real one. Five new triggers written to run with the caller's privileges put an existing test in red for the wrong reason: at a lower auth level the user was a member of nothing, RLS hid the row, and the coherence check concluded "not your tenant" on perfectly coherent data, masking the real denial. The fix was not to adjust the expectation. It was to recognise that a coherence invariant is a property of the data, not of the observer, run it with definer rights, and let RLS do the denying with the right message.</p>
+
+<h2>Three habits that keep it true over 99 migrations</h2>
+<ul>
+<li><b>Functions carry a pinned search path.</b> Every security function sets it explicitly. A function that resolves names from the caller's path is an injection surface, and an agent will not think of that unless the rule is written down.</li>
+<li><b>Foreign keys that cross tenants are a leak and a lever.</b> A reference from one collection's row to another collection's rule does not only let the wrong person read; it can occupy a unique slot the other tenant needed, with an error their own RLS will not let them understand. Every cross table reference gets a check that both sides belong to the same collection.</li>
+<li><b>Suites that share a database do not share state.</b> Each starts from its own reset. A security test red because of rows another suite left behind gets read as a regression and chased where it is not.</li>
+</ul>
+
+<h2>Pending users read zero rows, by the database</h2>
+<p>Registration is open; access is not. A new account is pending until a person approves it, and pending means zero rows from any table, guaranteed by RLS, with a test that proves it, never by the interface. Who approved whom, and when, goes to the audit log. This is the pattern for anything an agent might be tempted to enforce in a component: if it must be true, it is true in the database, and there is a test that runs as the person it must be true against.</p>
+
+<div class="box"><p>Part of the series on running AI agent teams: the hub is <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a>, the verification rules are in <a href="/writing/green-check-is-not-proof/">Why a green check is not proof</a>, and the data model is in the <a href="/work/acervo.html#s08">Acervo case, chapter 08</a>. If you want this discipline in your own build: <a href="/ai-product-builder/">AI build and deployment</a>.</p></div>
+
+<div class="cta"><h2>Working on something like this?</h2><p>Thirty minutes, no deck. <a href="https://cal.com/inigoangulo/30min">Book a call</a> or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
+</article></main>
+<footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/writing/">All writing</a> &nbsp; <a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" rel="noopener" target="_blank">LinkedIn</a> &nbsp; <a href="https://github.com/inigoangulo93" rel="noopener" target="_blank">GitHub</a></span></div></footer>
+</body>
+</html>
