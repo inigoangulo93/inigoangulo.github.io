@@ -1,0 +1,161 @@
+#!/usr/bin/env python3
+"""Builds the four service pages from one template. Run from the repo root: python3 services/build.py"""
+import json, html, os
+
+GA = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>\n<script src="/analytics.js" defer></script>'
+FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">'
+
+PAGES = {
+"product-consultant-zurich": dict(
+  title="Product Consultant in Zurich, fractional or contract / Inigo Angulo",
+  h1="A senior product lead, in your team, for as long as you need one.",
+  desc="Fractional product manager and product consultant based in Zurich. Ten years at GetYourGuide, ING, WPP and Crowdhouse. I decide what is worth building, then I build it.",
+  kicker="Product consultant, Zurich and remote",
+  lead="Fractional product management for companies that need senior judgment without a senior hire: strategy, roadmap, discovery, and the design and engineering decisions that follow. Ten years across GetYourGuide, ING, WPP and Crowdhouse, now shipping with AI agent teams.",
+  proof=[("10 yrs","product, design and growth across commerce and complex systems"),("+11%","checkout conversion at GetYourGuide, ten experiments, four markets"),("5","countries shipping from one design system at ING"),("17 days","idea to production on my own product, Acervo")],
+  problems_h="When a fractional product lead makes sense",
+  problems=[("Founder led product has stopped scaling","You are the product manager, the CEO and the sales lead. Decisions wait for you, and the team builds what is easiest to specify instead of what moves the metric."),("A roadmap full of features, no outcomes","Everything on the list is reasonable, nothing is prioritized by evidence. A fractional lead brings the discipline of measuring before deciding and killing what does not pay."),("Between hires","You need someone senior now, for three to six months, and a full time hire takes that long to find and onboard. I start in a week and hand over cleanly.")],
+  how_h="How I work with product teams",
+  how=[("Listen","Two weeks inside your data and your customers: analytics, sales calls, support tickets, the field. I come back with the three problems that matter and the evidence for each."),("Frame","A roadmap with outcomes, not features. Each item has a number it should move and the cheapest experiment that proves it."),("Architect","I design the system and its boundaries with your engineers: what we build, what we buy, what we do not touch."),("Prove","Experiments with pre registered success criteria. A/B tests, prototypes with real users, or a thin slice in production."),("Close the loop","I stay until it ships and the number moves. Decisions are written down with the reasoning, so the team can carry on without me.")],
+  case=("GetYourGuide, checkout","+11% checkout conversion from the step nobody was measuring","The team was optimising the wrong step. 38% of converters left checkout and came back with no re-entry experience. Ten experiments later: +11% conversion across four EU markets.","../work/checkout.html","../img/gyg-card.webp"),
+  fit_yes=["Series A to C companies with a product team of 3 to 30","Founder led products that need a product function","E-commerce, marketplaces, fintech and B2B SaaS","Teams in Zurich, Switzerland or remote across Europe"],
+  fit_no=["You want a deck and no involvement in delivery","The decision has already been made and you need a signature","You need someone on site five days a week in Zurich (I work hybrid)"],
+  faq=[("What does a fractional product manager cost?","Day rate or monthly retainer, scoped by days per week. Typical engagements are two to three days a week for three to six months. I give a fixed number after a first call, once I know the scope."),("Do you work on site in Zurich?","Hybrid. I am based near Zurich and come on site for workshops, kickoffs and the moments where being in the room matters. The rest is remote."),("Do you only do strategy, or do you execute?","Both. I run discovery and roadmap, and I stay through design and delivery. On my own product I shipped the software myself with AI agents; with your team I lead the people who do."),("What is the difference between a product consultant and a fractional product manager?","A consultant diagnoses and recommends. A fractional product manager owns outcomes inside your team for a period of time. I do the second, which includes the first."),("Which languages do you work in?","English and Spanish, native level in Spanish and Basque. No German, which matters for some Swiss roles and not for most product teams.")],
+  also=[("ai-product-builder","AI build and deployment"),("ux-design-consultant","Product and UX design"),("cro-ecommerce-consultant","CRO and commerce")],
+  service_type="Product management consulting",
+),
+"ux-design-consultant": dict(
+  title="UX and Product Design Consultant, Zurich / Inigo Angulo",
+  h1="Product design that ships, from the first flow to the design system.",
+  desc="Senior product and UX design consultant in Zurich. Checkout, onboarding, dashboards and design systems for commerce and complex products. GetYourGuide, ING, WPP, Enso.",
+  kicker="UX and product design, fractional or contract",
+  lead="Senior product designer for teams that need the work done, not just reviewed: research, flows, interface, design system, and the hand off to engineering. I design in Figma and I can read the code it becomes.",
+  proof=[("+34%","booking conversion at Enso across four European markets"),("4x","adoption of the Enso tenant platform after the redesign"),("5","countries on one design system at ING, tokens first"),("26","components in the Acervo library, built and shipped")],
+  problems_h="What I get called for",
+  problems=[("A flow that leaks users","Checkout, onboarding, sign up, KYC. I map where people drop, why, and redesign the step with a measurable target, not a prettier screen."),("A product that grew without a system","Twelve shades of the same button, three date pickers. I build the design system from the tokens up, and I make sure engineering adopts it, which is the hard part."),("Complex data, no clear interface","Dashboards, admin panels, operational tools. Products where the user is on a deadline and ambiguity costs money.")],
+  how_h="How I work with design and engineering",
+  how=[("Research with a question","Not a persona exercise. Interviews, session recordings and analytics aimed at one decision we need to make."),("Flows before screens","The state machine of the product first: every path, every error, every empty state. Screens come after, and they are faster."),("Figma that mirrors code","Components, variables and tokens named like the codebase. Engineers get a spec, not a picture."),("Measured hand off","Each change ships with the metric it should move and how we will read it."),("The library stays alive","I leave a documented system and a routine for keeping it in sync with production.")],
+  case=("Enso Co-living","4x adoption and +34% booking conversion on one platform","Two product challenges, one platform: a tenant app nobody used and a booking flow that lost people at the end. Rebuilt both across Lisbon, Valencia, Madrid and Barcelona.","../work/enso.html","../img/enso-card.webp"),
+  fit_yes=["Product teams of 2 to 20 with engineers but no senior designer","E-commerce, marketplaces, fintech, operational B2B tools","Redesigns with a metric attached","Design system builds with engineering buy in"],
+  fit_no=["Brand identity or marketing campaigns","Pixel polishing without access to data or users","Agency style deliverables with no contact with the team"],
+  faq=[("Fractional, contract or project?","All three. Fractional (two to three days a week), a fixed contract for a redesign, or a scoped project like a design system. Pricing follows the format; I quote after a first call."),("Do you do research as well as UI?","Yes. Most of what makes a redesign work is upstream of the interface. I run interviews and read analytics before I open Figma."),("Can you work with our existing design system?","Yes, and I prefer it. I audit what exists, fix what blocks the team, and extend rather than replace."),("Do you code?","I ship production software on my own product with AI agent teams, so I know what a Figma file costs to build. With your team I design and hand off; I do not replace your engineers."),("Where are you based?","Near Zurich, Switzerland. Hybrid for Swiss teams, remote across Europe.")],
+  also=[("product-consultant-zurich","Product consulting"),("cro-ecommerce-consultant","CRO and commerce"),("ai-product-builder","AI build and deployment")],
+  service_type="UX and product design consulting",
+),
+"cro-ecommerce-consultant": dict(
+  title="Conversion Optimization Consultant for E-commerce / Inigo Angulo",
+  h1="Find where the funnel leaks. Prove the fix.",
+  desc="CRO consultant for e-commerce and marketplaces. Checkout, onboarding and catalogue audits, experiments with pre registered criteria. +11% checkout conversion at GetYourGuide.",
+  kicker="CRO and commerce",
+  lead="Conversion rate optimization for e-commerce and marketplace teams: a funnel audit that finds the real leak, a prioritized experiment plan, and fixes that ship A/B ready. Ten years in commerce at GetYourGuide, WPP and Enso.",
+  proof=[("+11%","checkout conversion at GetYourGuide, four EU markets"),("38%","of converters were leaving checkout and coming back: the leak nobody measured"),("10","experiments in the programme, each with a written hypothesis"),("+34%","booking conversion at Enso after the flow redesign")],
+  problems_h="The leaks I find most often",
+  problems=[("The step you are not measuring","Most funnels are instrumented at the stage level. The drop is between stages: the back button, the tab switch, the return visit with no memory of the cart."),("Trust gaps, not payment problems","Shipping, returns, price surprises and reassurance at the moment of commitment convert more than another payment method."),("Catalogue and search friction","Filters that hide inventory, product pages that answer the wrong questions, search that returns the catalogue instead of the answer.")],
+  how_h="How a CRO engagement runs",
+  how=[("Audit","Two weeks: analytics, session recordings, support tickets and a walk through your funnel on a real phone. Output: the ranked list of leaks with the evidence for each."),("Plan","Experiments ordered by expected impact and cost, with success criteria written before anything is built."),("Build","I design the fix and work with your engineers, or with AI agents if you have no bandwidth, so every test ships A/B ready."),("Read","Statistical reads with sample sizes agreed in advance. No peeking, no calling winners at 80% confidence."),("Compound","The wins go into a playbook your team keeps running after I leave.")],
+  case=("GetYourGuide, checkout","Ten experiments, +11% conversion, four markets","The team was optimising the wrong step. The problem was not payment, it was the re-entry experience nobody had measured. The case walks through all ten experiments, including the ones that lost.","../work/checkout.html","../img/gyg-card.webp"),
+  fit_yes=["E-commerce and marketplaces with enough traffic to test (roughly 10k conversions a year or more)","Teams with a developer available or willing to let AI agents build the variants","Retail media and catalogue heavy businesses","DTC brands at the point where paid traffic stops scaling"],
+  fit_no=["Sites with too little traffic for experiments (I will tell you, and suggest what to do instead)","Pure SEO or paid media work: I touch the funnel, not the acquisition"],
+  faq=[("How is CRO consulting priced?","A fixed price for the audit, then a monthly retainer for the experiment programme, usually three to six months. Numbers after a first call and a look at your traffic."),("Do you need access to our analytics?","Yes. GA4 or equivalent, session recordings if you have them, and read access to the experiment tool. Without data it is opinion, and you can get opinion for free."),("What if we do not have an A/B testing tool?","I set one up. For most stacks that is a day of work, and for low traffic sites I will tell you when sequential tests are a better idea than a tool."),("Can AI agents build the test variants?","Yes, that is how I work on my own product. For a CRO programme it means variants ship in days, not sprints, and your engineers review instead of build."),("Which markets do you know?","Mainly Europe: Switzerland, Germany, Spain, Portugal, UK, with multi market checkout experience from GetYourGuide and Enso.")],
+  also=[("product-consultant-zurich","Product consulting"),("ux-design-consultant","Product and UX design"),("ai-product-builder","AI build and deployment")],
+  service_type="Conversion rate optimization consulting",
+),
+"ai-product-builder": dict(
+  title="AI Product Builder: scope, build and ship with AI agent teams / Inigo Angulo",
+  h1="Working software in weeks, built with AI agent teams and human gates.",
+  desc="AI build and deployment for companies that need a product shipped, not a roadmap slot. One person scopes, designs and ships with an orchestrated team of AI agents, with security and human approval gates. Acervo: production in 17 days.",
+  kicker="AI build and deployment",
+  lead="I scope what is worth building, orchestrate a team of AI coding agents to build it, and own the rollout to production inside your business. Not a prototype: a system with tests, security review and a release process. I have done it on my own product first.",
+  proof=[("17 days","first commit to first production deploy on Acervo"),("445","pull requests merged in seven weeks, every one through five checks"),("15","gated releases, each with a security report and one human approval"),("0","production incidents caused by an agent change")],
+  problems_h="What this is for",
+  problems=[("An internal tool nobody has time to build","Operations, back office, a customer portal. The business case is obvious and it has been on the backlog for a year. Weeks, not quarters."),("A product bet you want to test with real software","Not a Figma prototype and not a no code mock. A thin product in production with real users, so the decision is made on evidence."),("A team that wants to adopt agents safely","You have engineers and you want the method: how to split work, what gates to put in, what to never let an agent touch. I bring the system I run and adapt it to yours.")],
+  how_h="How a build runs",
+  how=[("Scope","One week. What the product must do, what it must never do, the data model and the security boundaries. Written as tickets with acceptance criteria."),("Build with gates","Agents work in isolated branches. Every change passes lint, types, tests, a secrets scan and a review before it reaches main. No agent has production credentials."),("Human approval","Releases are promoted by a person, after a security pass. The approval is one id and one letter, and it is logged."),("Ship and measure","Production from week two or three. Analytics and an audit log from day one, so we know what is used."),("Hand over or operate","Documentation, decision log and the agent playbook. You keep the system, or I keep operating it on a retainer.")],
+  case=("Acervo","A production platform for car collections, one person plus eight agents","I defined the product, designed it and shipped it with an AI engineering team under two human gates. The case shows the real numbers from the GitHub API: 445 merges, 1,456 CI runs, 15 releases, and the day the security gate said no.","../work/acervo.html","../img/acervo-card.webp"),
+  fit_yes=["Companies with a clear problem and no engineering bandwidth","Founders who want a real product in production before raising or hiring","Engineering leads who want to introduce agents with guardrails","Internal tools, portals, dashboards, workflow products"],
+  fit_no=["Hard real time systems, embedded, or anything where a mistake is physical","Regulated workloads that require certified processes I do not hold","Projects where nobody on your side can own the product after hand over"],
+  faq=[("Is this no code?","No. It is real code in a real repository, with tests and a release process, written mostly by AI agents under my direction and review. You own it and any engineer can continue it."),("How do you keep agents from breaking production?","Isolation and gates. Agents never hold production credentials, every change passes automated checks and a review, and promotion to production is a human decision with a security report attached. The Acervo case documents the whole flow."),("What does a build cost?","Fixed price sprints of two to six weeks for the first version, then a retainer if you want me to keep shipping. The agent costs are a few hundred francs a month and I pass them through at cost."),("Which stack?","TypeScript, Next.js, Postgres (Supabase), Vercel for most products, because agents are strongest there and the ecosystem is boring in the good way. I adapt to yours when there is a reason."),("Do you work on site?","Hybrid near Zurich, remote across Europe. A build needs one kickoff in the room and weekly demos; the rest does not.")],
+  also=[("product-consultant-zurich","Product consulting"),("ux-design-consultant","Product and UX design"),("cro-ecommerce-consultant","CRO and commerce")],
+  service_type="AI software development with agent teams",
+),
+}
+
+def esc(s): return html.escape(s, quote=True)
+
+def page(slug, d):
+    url = f"https://inigoangulo.com/{slug}/"
+    faq_ld = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in d["faq"]]}
+    svc_ld = {"@context":"https://schema.org","@type":"Service","name":d["title"].split(" / ")[0],"serviceType":d["service_type"],"url":url,"provider":{"@id":"https://inigoangulo.com/#person","@type":"Person","name":"Inigo Angulo","url":"https://inigoangulo.com/"},"areaServed":[{"@type":"City","name":"Zurich"},{"@type":"Country","name":"Switzerland"},{"@type":"Place","name":"Europe (remote)"}],"description":d["desc"]}
+    bc_ld = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inigo Angulo","item":"https://inigoangulo.com/"},{"@type":"ListItem","position":2,"name":d["kicker"],"item":url}]}
+    proof = "".join(f"<div><b>{esc(b)}</b><span>{esc(s)}</span></div>" for b,s in d["proof"])
+    problems = "".join(f'<article><span class="n">0{i+1}</span><h3>{esc(h)}</h3><p>{esc(p)}</p></article>' for i,(h,p) in enumerate(d["problems"]))
+    how = "".join(f"<li><div><b>{esc(h)}</b><span>{esc(p)}</span></div></li>" for h,p in d["how"])
+    tag,ch,cp,chref,cimg = d["case"]
+    yes = "".join(f"<li>{esc(x)}</li>" for x in d["fit_yes"]); no = "".join(f"<li>{esc(x)}</li>" for x in d["fit_no"])
+    faq = "".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q,a in d["faq"])
+    also = "".join(f'<a href="../{s}/">{esc(n)}</a>' for s,n in d["also"])
+    return f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{esc(d["title"])}</title>
+<meta name="description" content="{esc(d["desc"])}">
+<link rel="canonical" href="{url}">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="{esc(d["title"].split(" / ")[0])}">
+<meta property="og:description" content="{esc(d["desc"])}">
+<meta property="og:image" content="https://inigoangulo.com/img/og.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{url}">
+<meta name="twitter:card" content="summary_large_image">
+{FONTS}
+<link rel="stylesheet" href="/services/services.css">
+{GA}
+<script type="application/ld+json">{json.dumps(svc_ld,ensure_ascii=False)}</script>
+<script type="application/ld+json">{json.dumps(faq_ld,ensure_ascii=False)}</script>
+<script type="application/ld+json">{json.dumps(bc_ld,ensure_ascii=False)}</script>
+</head>
+<body>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a></nav><a class="bar__cta" href="https://cal.com/inigoangulo/30min" data-cal-link="inigoangulo/30min">Book a call</a></div></header>
+
+<main>
+<div class="hero"><div class="mx">
+<span class="k">{esc(d["kicker"])}</span>
+<h1>{esc(d["h1"])}</h1>
+<p class="lead">{esc(d["lead"])}</p>
+<div class="ctas"><a class="btn" href="https://cal.com/inigoangulo/30min" data-cal-link="inigoangulo/30min">Book a 30 min call &#8594;</a><a class="btn btn--o" href="mailto:inigoangulo@gmail.com">Email me</a></div>
+<div class="proof">{proof}</div>
+</div></div>
+
+<section><div class="mx"><h2>{esc(d["problems_h"])}</h2><div class="grid">{problems}</div></div></section>
+
+<section><div class="mx"><h2>{esc(d["how_h"])}</h2><ol class="steps">{how}</ol></div></section>
+
+<section><div class="mx"><h2>Proof, not promises</h2>
+<div class="case"><div><span class="tag">{esc(tag)}</span><h3>{esc(ch)}</h3><p>{esc(cp)}</p><a class="more" href="{chref}">Read the case study &#8594;</a></div><a href="{chref}"><img src="{cimg}" alt="{esc(ch)}" loading="lazy" decoding="async"></a></div>
+</div></section>
+
+<section><div class="mx"><h2>Who this is for</h2>
+<div class="fit"><div><h3>A good fit</h3><ul>{yes}</ul></div><div class="no"><h3>Probably not</h3><ul>{no}</ul></div></div>
+</div></section>
+
+<section class="faq"><div class="mx"><h2>Questions I get asked</h2>{faq}</div></section>
+
+<section><div class="mx">
+<div class="cta"><div><h2>Tell me what you are trying to ship.</h2><p>30 minutes, no deck. I will tell you if I am the right person and, if not, who might be.</p></div><div class="ctas"><a class="btn" href="https://cal.com/inigoangulo/30min" data-cal-link="inigoangulo/30min">Book a call &#8594;</a><a class="btn btn--o" href="mailto:inigoangulo@gmail.com">Email</a></div></div>
+<h2 style="margin-top:36px;font-size:1.1rem">Other ways to work with me</h2><div class="also">{also}<a href="/">All work</a></div>
+</div></section>
+</main>
+
+<footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" rel="noopener" target="_blank">LinkedIn</a> &nbsp; <a href="https://github.com/inigoangulo93" rel="noopener" target="_blank">GitHub</a> &nbsp; <a href="/inigo-angulo-cv-2026.pdf" download>CV</a></span></div></footer>
+<script>(function(C,A,L){{let p=function(a,ar){{a.q.push(ar)}};let d=C.document;C.Cal=C.Cal||function(){{let cal=C.Cal;let ar=arguments;if(!cal.loaded){{cal.ns={{}};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}}if(ar[0]===L){{const api=function(){{p(api,arguments)}};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){{cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,["initNamespace",namespace])}}else p(cal,ar);return}}p(cal,ar)}}}})(window,"https://app.cal.com/embed/embed.js","init");Cal("init",{{origin:"https://app.cal.com"}});Cal("ui",{{"theme":"dark","cssVarsPerTheme":{{"dark":{{"cal-brand":"#2dd4bf"}}}},"hideEventTypeDetails":false,"layout":"month_view"}});</script>
+</body>
+</html>
+'''
+
+if __name__ == "__main__":
+    for slug, d in PAGES.items():
+        os.makedirs(slug, exist_ok=True)
+        open(f"{slug}/index.html","w").write(page(slug,d))
+        print("built", slug)

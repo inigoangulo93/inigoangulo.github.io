@@ -452,7 +452,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 
 /* footer */
 .footer{background:linear-gradient(180deg,#06080e 0%,#080c16 100%);border-top:1px solid rgba(45,212,191,.08);padding:56px 24px 36px;position:relative;z-index:1}
-.footer__inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.footer__inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr 1fr;gap:32px}
 .footer__brand{font-family:var(--s);font-weight:700;font-size:.95rem;margin-bottom:12px;display:block}
 .footer__desc{font-family:var(--s);font-size:.76rem;color:var(--t3);line-height:1.6;max-width:280px}
 .footer__col-title{font-size:.6rem;color:var(--t3);text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px}
@@ -830,6 +830,7 @@ window.addEventListener('DOMContentLoaded',function(){
 .door__art svg{width:100%;height:100%;display:block}
 .door__body{padding:20px 22px 0;display:flex;flex-direction:column;gap:10px}
 .door__k{font-family:var(--m);font-size:.66rem;color:var(--ac);letter-spacing:.14em;text-transform:uppercase}
+.door__more{display:inline-block;font-family:var(--m);font-size:.72rem;color:var(--ac2);margin:10px 14px 0 0;border-bottom:1px solid transparent;transition:border-color .2s}.door__more:hover{border-bottom-color:var(--acb)}
 .door__h{font-family:var(--s);font-size:1.2rem;font-weight:800;letter-spacing:-.02em;line-height:1.25}
 .door__p{font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.6}
 @media(max-width:900px){.doors{grid-template-columns:1fr}}
@@ -935,6 +936,7 @@ window.addEventListener('DOMContentLoaded',function(){
 <span class="door__k">01&nbsp;&nbsp;AI build &amp; deployment</span>
 <h3 class="door__h">Working software, not a roadmap slot.</h3>
 <p class="door__p">I scope what&#8217;s worth building, orchestrate a team of AI agents to build it, and own the rollout to production, inside your business.</p>
+<a class="door__more" href="ai-product-builder/">How a build runs &#8594;</a>
 </div></div>
 
 <div class="door">
@@ -963,6 +965,7 @@ window.addEventListener('DOMContentLoaded',function(){
 <span class="door__k">02&nbsp;&nbsp;Product &amp; UX</span>
 <h3 class="door__h">Senior product and design lead, in one person.</h3>
 <p class="door__p">Ten years turning ambiguous, data-heavy problems into products people trust: checkout, onboarding, design systems, dashboards.</p>
+<a class="door__more" href="product-consultant-zurich/">Product consulting &#8594;</a> <a class="door__more" href="ux-design-consultant/">UX design &#8594;</a>
 </div></div>
 
 <div class="door">
@@ -988,6 +991,7 @@ window.addEventListener('DOMContentLoaded',function(){
 <span class="door__k">03&nbsp;&nbsp;CRO &amp; commerce</span>
 <h3 class="door__h">Find where the funnel leaks. Prove the fix.</h3>
 <p class="door__p">Checkout, onboarding and catalogue audits for ecommerce. Agents trace the funnel, I decide what to test first, every fix ships A/B ready.</p>
+<a class="door__more" href="cro-ecommerce-consultant/">How a CRO engagement runs &#8594;</a>
 </div></div>
 
 </div>
@@ -1336,6 +1340,7 @@ window.addEventListener('DOMContentLoaded',function(){
 <div><span class="footer__brand">Inigo Angulo</span><p class="footer__desc">Product builder. AI build and deployment, product and UX, CRO. Based in Zurich, ten years building systems that move metrics.</p></div>
 <div><p class="footer__col-title">Navigation</p><div class="footer__links"><a href="#work" onclick="go('index');return false">Work</a><a href="#how-i-think" onclick="go('about');return false">How I think</a><a href="#about" onclick="go('logs');return false">About</a></div></div>
 <div><p class="footer__col-title">Connect</p><div class="footer__links"><a href="mailto:inigoangulo@gmail.com">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank">LinkedIn</a><a href="tel:+41799528321">Phone</a><a href="https://github.com/inigoangulo93" target="_blank" rel="noopener">GitHub</a></div></div>
+<div><p class="footer__col-title">Services</p><div class="footer__links"><a href="product-consultant-zurich/">Product consultant, Zurich</a><a href="ux-design-consultant/">UX design consultant</a><a href="cro-ecommerce-consultant/">CRO for e-commerce</a><a href="ai-product-builder/">AI product builder</a></div></div>
 <div><p class="footer__col-title">Resources</p><div class="footer__links"><a href="inigo-angulo-cv-2026.pdf" download>Download CV</a></div></div>
 </div>
 <div class="footer__bottom"><span class="footer__copy">2026 Inigo Angulo</span><span class="footer__built">Built with code, not templates</span></div>
