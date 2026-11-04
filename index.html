@@ -234,10 +234,10 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .hero__caret{display:inline-block;width:.06em;height:.9em;background:var(--ac);vertical-align:-.08em;margin-left:.06em;animation:heroCaret 1s steps(2) infinite;border-radius:1px}
 @keyframes heroCaret{50%{opacity:0}}
 .hero__h.typing .hero__caret{animation:none;opacity:1}
-.hero__I-wrap{float:left;position:relative;width:1.5em;height:2.05em;margin:-.06em .2em 0 -.1em}
-.hero__I{position:absolute;left:0;top:0;height:2.3em;width:auto;color:var(--ac);filter:drop-shadow(0 0 22px rgba(45,212,191,.38))}
+.hero__I-wrap{float:left;position:relative;width:1.5em;height:2.05em;margin:0 .22em 0 -.08em}
+.hero__I{position:absolute;left:0;top:0;height:100%;width:auto;color:var(--ac);filter:drop-shadow(0 0 22px rgba(45,212,191,.38))}
 .hero__h::after{content:"";display:block;clear:both}
-@media(max-width:768px){.hero__I-wrap{width:1.5em;height:2.1em;margin:-.06em .18em 0 -.08em}.hero__I{height:2.25em}}
+@media(max-width:768px){.hero__I-wrap{width:2.27em;height:3.1em;margin:0 .18em 0 -.06em}}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .hero__h .x{color:var(--t4);text-decoration:line-through;text-decoration-thickness:1.5px;font-weight:300;font-style:italic}
 .hero__keyword{display:block;font-family:var(--s);font-size:4.4rem;font-weight:800;letter-spacing:-.05em;line-height:.9;color:var(--t2);margin:26px 0 30px;position:relative}
@@ -254,7 +254,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .hero__proof-ctx{font-size:.6rem;color:var(--t3);font-family:var(--m);max-width:160px;line-height:1.4}
 .hero__cta{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:#000;background:var(--ac);padding:12px 28px;border-radius:8px;transition:all .3s var(--e);box-shadow:0 0 20px var(--acg);letter-spacing:.01em}
 .hero__cta:hover{background:var(--ac2);box-shadow:0 4px 28px var(--acg),0 0 80px var(--acg2);transform:translateY(-2px)}
-.hero__sub{font-family:var(--s);font-size:1.25rem;font-weight:300;color:var(--t2);letter-spacing:-.01em;line-height:1.4;margin:4px 0 36px;padding-left:16px;border-left:2px solid var(--ac);animation:heroFadeUp 1s var(--e) both;animation-delay:.95s}
+.hero__sub{font-family:var(--s);font-size:1.25rem;font-weight:300;color:var(--t2);letter-spacing:-.01em;line-height:1.4;margin:34px 0 36px;padding-left:16px;border-left:2px solid var(--ac);animation:heroFadeUp 1s var(--e) both;animation-delay:.95s}
 .hero__sub em{font-style:normal;color:var(--ac2)}
 .hero__ctas{display:flex;align-items:center;gap:24px;flex-wrap:wrap;animation:heroFadeUp 1s var(--e) both;animation-delay:1s}
 .hero__cta2{font-family:var(--m);font-size:.78rem;color:var(--t2);padding:12px 4px;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
@@ -586,7 +586,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   .hero__keyword{font-size:2.6rem !important;margin:14px 0 24px}
   .hero__p{font-size:.88rem;line-height:1.7}
   .hero__p{max-width:none;margin-bottom:28px}
-  .hero__sub{margin:-4px 0 28px;font-size:1rem}
+  .hero__sub{margin:22px 0 28px;font-size:1rem}
   .hero__proof{display:grid;grid-template-columns:1fr 1fr;gap:20px 16px;margin-bottom:32px}
   .hero__proof-item{padding:0 0 0 12px !important;border-left:1px solid var(--b1)}
   .hero__proof-item::after{display:none}
@@ -786,7 +786,6 @@ window.addEventListener('DOMContentLoaded',function(){
 <div class="hero-wrap"><div class="hero-mesh" id="heroMesh"></div><div class="mx hero">
 <div class="hero__tag">Product / Strategy / Design / Build</div>
 <h1 class="hero__h"><span class="hero__I-wrap"><span class="sr">I</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="42.2 0 1278.7 1744.7" class="hero__I" aria-hidden="true" focusable="false"><path transform="translate(0,1503.1) scale(1,-1)" fill="currentColor" d="M775 682Q784 662 762 650Q540 533 338.0 641.5Q136 750 121.5 960.0Q107 1170 242.5 1333.5Q378 1497 621 1503Q717 1505 812.5 1464.5Q908 1424 950 1388Q1052 1297 1124.5 1243.5Q1197 1190 1274 1228Q1299 1242 1311.0 1223.5Q1323 1205 1286 1181Q1067 1041 1052.0 934.0Q1037 827 1202 578Q1356 345 1310.5 177.5Q1265 10 1102 -108Q945 -221 757.5 -239.5Q570 -258 405 -111Q325 -39 257.0 20.5Q189 80 90 17Q64 -2 49.0 13.0Q34 28 52 47Q353 353 640 36Q772 -108 878.0 -125.0Q984 -142 1062 -72Q1137 -1 1123.0 105.0Q1109 211 992 391Q828 639 833.5 769.0Q839 899 1028 1052Q1040 1062 1037.0 1072.0Q1034 1082 1018 1081Q895 1082 785.5 1189.0Q676 1296 517 1299Q370 1290 292.0 1198.5Q214 1107 230.0 933.0Q246 759 409.5 686.5Q573 614 741 688Q765 699 775 682Z"/></svg></span><span class="hero__type" id="heroType">decide what&#8217;s worth building. Then I build it.</span><span class="hero__caret" aria-hidden="true"></span></h1>
-<span class="hero__keyword">Inigo <em>Angulo</em></span>
 <p class="hero__sub">Same product judgment. <em>Shorter distance to shipping.</em></p>
 <div class="hero__ctas"><a href="#contact" class="hero__cta" onclick="event.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in touch &#8594;</a><a href="inigo-angulo-cv-2026.pdf" download class="hero__cta2">Download CV &#8595;</a></div>
 </div></div>
