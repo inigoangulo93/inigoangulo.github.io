@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /utm.html
+Disallow: /work/case-study-template.html
+
+Sitemap: https://inigoangulo.com/sitemap.xml
