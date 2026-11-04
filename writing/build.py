@@ -21,11 +21,109 @@ CSS = '''.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
 .art .box p{margin:0;font-size:.98rem}
 .art .box a{color:var(--ac2);border-bottom:1px solid var(--acb)}
 .art a{color:var(--ac2)}
+.art .fig{margin:26px 0;border:1px solid var(--b1);border-radius:12px;padding:16px;background:var(--glass)}.art .fig svg{width:100%;height:auto;display:block}.art figcaption{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-top:10px}
 .art .cta{margin-top:40px}
 .art .cta h2{margin:0 0 6px}
 '''
 
 POSTS = {
+"ai-agent-teams-software-development": dict(
+  title="AI agent teams for software development: what actually works in 2026",
+  desc="How to run a team of AI coding agents that ships to production: roles with mandates, isolation, gates, a decision log, and the numbers from seven weeks of doing it.",
+  date="2026-11-05", read="9 min",
+  body="""
+<p>Most of what is written about AI coding agents is either a demo or a warning. This is neither. It is the operating model I used to build and run a production platform with eight agents and no engineers on payroll: 445 merged pull requests, 1,456 CI runs and 15 gated releases in seven weeks. The model is not clever. It is a set of boring decisions about who may do what, and it is the reason the numbers are real instead of a story.</p>
+<p>This is the hub of a series. Each section links to a deeper piece.</p>
+
+<figure class="fig"><svg viewBox="0 0 720 300" role="img" aria-label="Diagram: a human writes tickets and takes decisions; a lead agent decomposes work to worker agents; a reviewer and a security agent gate the output; a human approves promotion to production">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6b6b80"/></marker></defs>
+<g font-family="JetBrains Mono,monospace" font-size="11" fill="#9a9aae">
+<rect x="20" y="110" width="120" height="80" rx="8" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.55)"/><text x="80" y="140" text-anchor="middle" fill="#bbf7d0" font-weight="600">HUMAN</text><text x="80" y="158" text-anchor="middle">tickets</text><text x="80" y="173" text-anchor="middle">decisions</text>
+<rect x="190" y="110" width="110" height="80" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="245" y="140" text-anchor="middle" fill="#f4f4f6" font-weight="600">LEAD</text><text x="245" y="158" text-anchor="middle">decompose</text><text x="245" y="173" text-anchor="middle">integrate</text>
+<rect x="350" y="30" width="110" height="46" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="405" y="58" text-anchor="middle">frontend</text>
+<rect x="350" y="92" width="110" height="46" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="405" y="120" text-anchor="middle">backend</text>
+<rect x="350" y="154" width="110" height="46" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="405" y="182" text-anchor="middle">data</text>
+<rect x="350" y="216" width="110" height="46" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="405" y="244" text-anchor="middle">design</text>
+<rect x="510" y="70" width="110" height="46" rx="8" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.5)"/><text x="565" y="98" text-anchor="middle" fill="#fcd34d">review</text>
+<rect x="510" y="140" width="110" height="46" rx="8" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.5)"/><text x="565" y="168" text-anchor="middle" fill="#fcd34d">security</text>
+<rect x="510" y="210" width="110" height="46" rx="8" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.55)"/><text x="565" y="232" text-anchor="middle" fill="#bbf7d0">approve</text><text x="565" y="247" text-anchor="middle">human</text>
+<rect x="650" y="210" width="60" height="46" rx="8" fill="#101018" stroke="#2dd4bf"/><text x="680" y="238" text-anchor="middle" fill="#5eead4">PROD</text>
+<g fill="none" stroke="#6b6b80" stroke-width="1.2" marker-end="url(#a)">
+<path d="M140 150 L190 150"/><path d="M300 150 L325 150 L325 53 L350 53"/><path d="M300 150 L325 150 L325 115 L350 115"/><path d="M300 150 L325 150 L325 177 L350 177"/><path d="M300 150 L325 150 L325 239 L350 239"/>
+<path d="M460 53 L485 53 L485 93 L510 93"/><path d="M460 115 L485 115 L485 93"/><path d="M460 177 L485 177 L485 93"/><path d="M460 239 L485 239 L485 93"/>
+<path d="M565 116 L565 140"/><path d="M565 186 L565 210"/><path d="M620 233 L650 233"/>
+</g>
+<text x="20" y="285" font-size="10" fill="#6b6b80">green: a human decides / amber: an agent gates / nobody right of the lead holds production credentials</text>
+</g></svg><figcaption>The shape of the team. The volume comes from the middle; the trust comes from the edges.</figcaption></figure>
+
+<h2>1. Roles with mandates, not prompts</h2>
+<p>Each agent has a file that says what it does, which files it may touch, and what it must never do. A lead that decomposes tickets and integrates. Workers for frontend, backend and data. A reviewer that returns a list of concrete faults, not opinions. A security agent that runs a full penetration test before every release. A design agent with the only write access to the design tool. A verifier that only reads and can only answer PASS, FAIL or UNVERIFIABLE from a script's output.</p>
+<p>The mandate outlives the session. That is the difference between a team and a chat: a worker that receives an instruction mid task from anyone but the lead does not apply it, it returns it. That rule alone removed a class of failures where a stray instruction in a file or a log was treated as a command.</p>
+
+<h2>2. Isolation before speed</h2>
+<p>Every ticket gets a branch from an up to date main, never from another ticket's branch. Every worker gets its own worktree and, when it needs a database, its own local stack with its own ports. Two agents sharing one database reset each other and measure the neighbour's schema; I learned that on a day five of them did it at once.</p>
+<p>No agent holds production credentials. Not read only, not "just for checking". Agents deploy to production through a workflow that holds the secrets; they never see them. The reasoning is simple: an agent with a production token can route around every other gate, so the token is the gate.</p>
+
+<h2>3. Gates that mean something</h2>
+<p>Five required checks before main accepts a merge: lint with house rules, strict types, the test suites, a check that auth templates are intact, and a secrets scan on every commit of the branch. Browser tests on every change that is not documentation. A penetration test with a written verdict before every promotion. Then one human approval.</p>
+<p>The subtle part is what counts as proof. A skipped check reports as green. A test that documents a bug protects the bug. A deployment that says READY can serve a 404. I wrote the rules for that in <a href="/writing/green-check-is-not-proof/">Why a green check is not proof</a>, and the two human gates in <a href="/writing/human-in-the-loop-coding-agents/">Human in the loop for coding agents</a>.</p>
+
+<h2>4. A decision log with ids</h2>
+<p>Agents hit decisions constantly: a name, a boundary, a trade off. Every one becomes a numbered item with lettered options and a recommendation, and I answer with an id and a letter. The answer is written into the repository with the reasoning and the alternatives. Over seven weeks that is more than 140 decisions, and it is why a fresh session can continue the work without re-arguing it. Configuration, naming, test structure and git conflicts never reach me; those are the lead's.</p>
+
+<h2>5. Facts come from scripts</h2>
+<p>No agent declares an external fact. "CI is green", "the preview works", "the migration is safe" are not sentences in this system. A script produces JSON with the run id, the commit, the deployment id or the URL, and the agent interprets it. If the script says FAIL, no amount of text turns it into PASS. This sounds pedantic until you have watched a fluent, confident summary describe a deployment that never happened.</p>
+
+<h2>What it produced</h2>
+<div class="num"><div><b>17 days</b><span>first commit to first production release</span></div><div><b>445</b><span>pull requests merged, 38 closed unmerged</span></div><div><b>147</b><span>red CI runs: the gates working</span></div><div><b>15</b><span>numbered releases with a security report</span></div></div>
+<p>The full story with the evidence read from the GitHub API is in <a href="/writing/one-person-ai-agent-team-445-prs/">445 PRs in seven weeks</a>, and the product itself in the <a href="/work/acervo.html">Acervo case study</a>.</p>
+
+<h2>What it costs, and what it does not replace</h2>
+<p>The agent bill was a few hundred francs a month. The expensive part was still judgment: what the product should be, which invariants live in the database, what counts as done. Agents made execution cheap enough that the gates where a human looks became the product. If you take one thing from this: do not start with the agents. Start with the rules for what counts as proof, then let the agents be fast inside them.</p>
+
+<div class="box"><p>Next in the series: <a href="/writing/human-in-the-loop-coding-agents/">Human in the loop for coding agents: the two gates that matter</a>. If you want this set up inside your company: <a href="/ai-product-builder/">AI build and deployment</a>.</p></div>
+"""),
+"human-in-the-loop-coding-agents": dict(
+  title="Human in the loop for coding agents: the two gates that matter",
+  desc="Where a person must sit when AI agents write and ship code: the decision gate (one id, one letter) and the release gate (one approval with a security report). Everything else can be automated.",
+  date="2026-11-05", read="7 min",
+  body="""
+<p>"Human in the loop" usually means a person watching a stream of output and clicking approve until they stop reading. That is not a gate, it is a ritual. After seven weeks of running an AI engineering team to production, I ended up with exactly two places where a human must act, and a rule for keeping both cheap enough that they are actually used.</p>
+
+<figure class="fig"><svg viewBox="0 0 730 220" role="img" aria-label="Diagram: a ticket flows through build and automated checks; two human gates sit at decision and at release; between them everything is automated">
+<defs><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6b6b80"/></marker></defs>
+<g font-family="JetBrains Mono,monospace" font-size="11" fill="#9a9aae">
+<rect x="20" y="80" width="90" height="56" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="65" y="113" text-anchor="middle">ticket</text>
+<rect x="150" y="80" width="110" height="56" rx="8" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.6)"/><text x="205" y="103" text-anchor="middle" fill="#bbf7d0" font-weight="600">GATE 1</text><text x="205" y="121" text-anchor="middle">decision</text>
+<rect x="300" y="80" width="90" height="56" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="345" y="113" text-anchor="middle">build</text>
+<rect x="420" y="80" width="90" height="56" rx="8" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.5)"/><text x="465" y="106" text-anchor="middle" fill="#fcd34d">checks</text><text x="465" y="122" text-anchor="middle" fill="#fcd34d">pen test</text>
+<rect x="550" y="80" width="110" height="56" rx="8" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.6)"/><text x="605" y="103" text-anchor="middle" fill="#bbf7d0" font-weight="600">GATE 2</text><text x="605" y="121" text-anchor="middle">release</text>
+<g fill="none" stroke="#6b6b80" stroke-width="1.2" marker-end="url(#b)"><path d="M110 108 L150 108"/><path d="M260 108 L300 108"/><path d="M390 108 L420 108"/><path d="M510 108 L550 108"/><path d="M660 108 L690 108"/></g>
+<text x="693" y="112" fill="#5eead4" font-size="11">prod</text>
+<path d="M300 160 L510 160" stroke="rgba(255,255,255,.18)" stroke-dasharray="3 3"/><text x="405" y="182" text-anchor="middle" font-size="10" fill="#6b6b80">automated, read by scripts, never declared</text>
+<text x="205" y="60" text-anchor="middle" font-size="10" fill="#6b6b80">one id, one letter</text><text x="605" y="60" text-anchor="middle" font-size="10" fill="#6b6b80">one approval, one report</text>
+</g></svg><figcaption>Two gates. Both answered in seconds, both logged, neither skippable.</figcaption></figure>
+
+<h2>Gate 1: the decision</h2>
+<p>Agents stop when they hit a question that changes the product: a boundary, a trade off, a scope. They do not guess. The lead writes the question in a fixed format: a one line question, lettered options, a recommendation with the reason, and what happens if nobody answers. I reply with the id and the letter. "014-3 B". Nothing else.</p>
+<p>Three things make this a real gate. The format is fixed, so I can answer twenty in ten minutes. The answer is recorded in the repository with the reasoning, so it is never re-asked. And the list of what gets escalated is closed: architecture, data model, security, destructive migrations, new infrastructure, scope, irreversible operations, large behaviour changes. Names, configuration, test structure and git conflicts never reach me. If they did, I would stop reading, and the gate would become the ritual I described above.</p>
+
+<h2>Gate 2: the release</h2>
+<p>Code reaches main through automated checks and an agent review. It reaches production through one human command, and only when three things are true for the exact commit being promoted: all required checks are green on that commit (not an earlier one), the security agent's penetration test says PASS for that commit, and the pre-promotion queries about data compatibility have been run. The approval is logged with who and when. The person approving cannot be the agent that built it, by construction: no agent holds the credentials the workflow uses.</p>
+<p>On October 15 the pen test came back FAIL on a rule unrelated to the feature being promoted. The gate held. The feature shipped behind a flag and the rule was fixed first. That is what the gate is for: not to review every line, but to make "no" cheap at the one moment where "yes" is irreversible.</p>
+
+<h2>What is not a human gate</h2>
+<ul>
+<li><b>Reading every pull request.</b> At 445 merges in seven weeks, nobody does. The reviewer agent returns concrete faults; the automated checks are the floor. I read the ones the lead flags and the ones that touch security.</li>
+<li><b>Watching the agents work.</b> They work in tramos: write a file, check, write the next. A silent ten minute run is killed, not supervised.</li>
+<li><b>Declaring facts.</b> Whether a deployment is live is read from a script with the deployment id, not from a person looking at a page and saying so. The human gates decide; they do not verify. Verification belongs to scripts, and the rules for it are in <a href="/writing/green-check-is-not-proof/">Why a green check is not proof</a>.</li>
+</ul>
+
+<h2>Why two and not five</h2>
+<p>Every gate you add has a cost that compounds: the agents wait, the human skims, and skimming is worse than absence because it looks like review. Two gates, both with a fixed format and a closed list of triggers, survived seven weeks and 15 releases without being skipped once. Five would have been skipped by week two.</p>
+
+<div class="box"><p>This is part of a series on running AI agent teams. The hub: <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a>. The numbers: <a href="/writing/one-person-ai-agent-team-445-prs/">445 PRs in seven weeks</a>. The product: <a href="/work/acervo.html">Acervo</a>. If you want the gates set up in your team: <a href="/ai-product-builder/">AI build and deployment</a>.</p></div>
+"""),
 "one-person-ai-agent-team-445-prs": dict(
   title="445 PRs in seven weeks: what a one person team with AI agents actually looks like",
   desc="Real numbers from building Acervo with an AI engineering team: 484 pull requests, 1,456 CI runs, 15 gated releases, and what the human did all day.",
@@ -59,7 +157,7 @@ POSTS = {
 <li>Count the closed pull requests. If none are closed, the review is not reviewing.</li>
 </ul>
 
-<div class="box"><p>The full case, with the evidence from the GitHub API, the data model, the promotion flow and the day the security gate said no: <a href="/work/acervo.html">Acervo, the case study</a>. If you want this for your company: <a href="/ai-product-builder/">AI build and deployment</a>.</p></div>
+<div class="box"><p>This post is part of a series: the hub is <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a>, and the gates are in <a href="/writing/human-in-the-loop-coding-agents/">Human in the loop for coding agents</a>. The full case, with the evidence from the GitHub API, the data model, the promotion flow and the day the security gate said no: <a href="/work/acervo.html">Acervo, the case study</a>. If you want this for your company: <a href="/ai-product-builder/">AI build and deployment</a>.</p></div>
 """),
 "green-check-is-not-proof": dict(
   title="Why a green check is not proof: the gates between an AI agent and production",
@@ -87,7 +185,7 @@ POSTS = {
 
 <blockquote>Nothing here required a better model. It required a rule about what counts as proof.</blockquote>
 
-<div class="box"><p>The failure story, beat by beat, with the run ids, is in the <a href="/work/acervo.html#s10">Trust chapter of the Acervo case</a>. If your team is introducing agents and wants the guardrails with them: <a href="/ai-product-builder/">how I set that up</a>.</p></div>
+<div class="box"><p>Part of a series: <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a> and <a href="/writing/human-in-the-loop-coding-agents/">the two human gates</a>. The failure story, beat by beat, with the run ids, is in the <a href="/work/acervo.html#s10">Trust chapter of the Acervo case</a>. If your team is introducing agents and wants the guardrails with them: <a href="/ai-product-builder/">how I set that up</a>.</p></div>
 """),
 "checkout-conversion-ten-experiments": dict(
   title="Checkout conversion: the ten experiments behind +11%",

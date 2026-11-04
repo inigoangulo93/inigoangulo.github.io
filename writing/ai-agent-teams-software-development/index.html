@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI agent teams for software development: what actually works in 2026 / Inigo Angulo</title>
+<meta name="description" content="How to run a team of AI coding agents that ships to production: roles with mandates, isolation, gates, a decision log, and the numbers from seven weeks of doing it.">
+<link rel="canonical" href="https://inigoangulo.com/writing/ai-agent-teams-software-development/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="AI agent teams for software development: what actually works in 2026">
+<meta property="og:description" content="How to run a team of AI coding agents that ships to production: roles with mandates, isolation, gates, a decision log, and the numbers from seven weeks of doing it.">
+<meta property="og:image" content="https://inigoangulo.com/img/og.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://inigoangulo.com/writing/ai-agent-teams-software-development/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/services/services.css">
+<style>.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
+.art .k{margin-bottom:12px}.art h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:none}
+.art .meta{font-family:var(--m);font-size:.74rem;color:var(--t3);margin:16px 0 34px;display:flex;gap:16px;flex-wrap:wrap}
+.art p{max-width:none;font-size:1.05rem;line-height:1.7;margin:0 0 18px}
+.art h2{font-size:1.35rem;margin:38px 0 12px;max-width:none}
+.art ul,.art ol{margin:0 0 18px 22px;color:var(--t2);font-size:1.02rem;line-height:1.65}
+.art li{margin-bottom:6px}
+.art .num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0}
+.art .num div{border:1px solid var(--b1);border-radius:10px;padding:14px;background:var(--glass)}
+.art .num b{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--ac2);line-height:1}
+.art .num span{display:block;font-family:var(--m);font-size:.66rem;color:var(--t3);margin-top:7px;line-height:1.45}
+@media(max-width:700px){.art .num{grid-template-columns:1fr 1fr}}
+.art blockquote{border-left:3px solid var(--ac);padding:4px 0 4px 18px;margin:22px 0;color:var(--t1);font-size:1.1rem;font-weight:500}
+.art .box{border:1px solid var(--acb);border-radius:12px;padding:20px 22px;background:var(--acg2);margin:26px 0}
+.art .box p{margin:0;font-size:.98rem}
+.art .box a{color:var(--ac2);border-bottom:1px solid var(--acb)}
+.art a{color:var(--ac2)}
+.art .fig{margin:26px 0;border:1px solid var(--b1);border-radius:12px;padding:16px;background:var(--glass)}.art .fig svg{width:100%;height:auto;display:block}.art figcaption{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-top:10px}
+.art .cta{margin-top:40px}
+.art .cta h2{margin:0 0 6px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
+<script src="/analytics.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AI agent teams for software development: what actually works in 2026", "description": "How to run a team of AI coding agents that ships to production: roles with mandates, isolation, gates, a decision log, and the numbers from seven weeks of doing it.", "datePublished": "2026-11-05", "dateModified": "2026-11-05", "author": {"@type": "Person", "@id": "https://inigoangulo.com/#person", "name": "Inigo Angulo", "url": "https://inigoangulo.com/"}, "publisher": {"@type": "Person", "name": "Inigo Angulo"}, "mainEntityOfPage": "https://inigoangulo.com/writing/ai-agent-teams-software-development/", "image": "https://inigoangulo.com/img/og.png"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inigo Angulo", "item": "https://inigoangulo.com/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://inigoangulo.com/writing/"}, {"@type": "ListItem", "position": 3, "name": "AI agent teams for software development: what actually works in 2026", "item": "https://inigoangulo.com/writing/ai-agent-teams-software-development/"}]}</script>
+</head>
+<body>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/writing/">Writing</a><a class="bar__btn" href="/#about">About</a></nav><a class="bar__cta" href="https://cal.com/inigoangulo/30min">Book a call</a></div></header>
+<main><article class="art">
+<span class="k">Writing</span>
+<h1>AI agent teams for software development: what actually works in 2026</h1>
+<div class="meta"><span>Inigo Angulo</span><span>November 5, 2026</span><span>9 min read</span></div>
+
+<p>Most of what is written about AI coding agents is either a demo or a warning. This is neither. It is the operating model I used to build and run a production platform with eight agents and no engineers on payroll: 445 merged pull requests, 1,456 CI runs and 15 gated releases in seven weeks. The model is not clever. It is a set of boring decisions about who may do what, and it is the reason the numbers are real instead of a story.</p>
+<p>This is the hub of a series. Each section links to a deeper piece.</p>
+
+<figure class="fig"><svg viewBox="0 0 720 300" role="img" aria-label="Diagram: a human writes tickets and takes decisions; a lead agent decomposes work to worker agents; a reviewer and a security agent gate the output; a human approves promotion to production">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6b6b80"/></marker></defs>
+<g font-family="JetBrains Mono,monospace" font-size="11" fill="#9a9aae">
+<rect x="20" y="110" width="120" height="80" rx="8" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.55)"/><text x="80" y="140" text-anchor="middle" fill="#bbf7d0" font-weight="600">HUMAN</text><text x="80" y="158" text-anchor="middle">tickets</text><text x="80" y="173" text-anchor="middle">decisions</text>
+<rect x="190" y="110" width="110" height="80" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="245" y="140" text-anchor="middle" fill="#f4f4f6" font-weight="600">LEAD</text><text x="245" y="158" text-anchor="middle">decompose</text><text x="245" y="173" text-anchor="middle">integrate</text>
+<rect x="350" y="30" width="110" height="46" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="405" y="58" text-anchor="middle">frontend</text>
+<rect x="350" y="92" width="110" height="46" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="405" y="120" text-anchor="middle">backend</text>
+<rect x="350" y="154" width="110" height="46" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="405" y="182" text-anchor="middle">data</text>
+<rect x="350" y="216" width="110" height="46" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="405" y="244" text-anchor="middle">design</text>
+<rect x="510" y="70" width="110" height="46" rx="8" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.5)"/><text x="565" y="98" text-anchor="middle" fill="#fcd34d">review</text>
+<rect x="510" y="140" width="110" height="46" rx="8" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.5)"/><text x="565" y="168" text-anchor="middle" fill="#fcd34d">security</text>
+<rect x="510" y="210" width="110" height="46" rx="8" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.55)"/><text x="565" y="232" text-anchor="middle" fill="#bbf7d0">approve</text><text x="565" y="247" text-anchor="middle">human</text>
+<rect x="650" y="210" width="60" height="46" rx="8" fill="#101018" stroke="#2dd4bf"/><text x="680" y="238" text-anchor="middle" fill="#5eead4">PROD</text>
+<g fill="none" stroke="#6b6b80" stroke-width="1.2" marker-end="url(#a)">
+<path d="M140 150 L190 150"/><path d="M300 150 L325 150 L325 53 L350 53"/><path d="M300 150 L325 150 L325 115 L350 115"/><path d="M300 150 L325 150 L325 177 L350 177"/><path d="M300 150 L325 150 L325 239 L350 239"/>
+<path d="M460 53 L485 53 L485 93 L510 93"/><path d="M460 115 L485 115 L485 93"/><path d="M460 177 L485 177 L485 93"/><path d="M460 239 L485 239 L485 93"/>
+<path d="M565 116 L565 140"/><path d="M565 186 L565 210"/><path d="M620 233 L650 233"/>
+</g>
+<text x="20" y="285" font-size="10" fill="#6b6b80">green: a human decides / amber: an agent gates / nobody right of the lead holds production credentials</text>
+</g></svg><figcaption>The shape of the team. The volume comes from the middle; the trust comes from the edges.</figcaption></figure>
+
+<h2>1. Roles with mandates, not prompts</h2>
+<p>Each agent has a file that says what it does, which files it may touch, and what it must never do. A lead that decomposes tickets and integrates. Workers for frontend, backend and data. A reviewer that returns a list of concrete faults, not opinions. A security agent that runs a full penetration test before every release. A design agent with the only write access to the design tool. A verifier that only reads and can only answer PASS, FAIL or UNVERIFIABLE from a script's output.</p>
+<p>The mandate outlives the session. That is the difference between a team and a chat: a worker that receives an instruction mid task from anyone but the lead does not apply it, it returns it. That rule alone removed a class of failures where a stray instruction in a file or a log was treated as a command.</p>
+
+<h2>2. Isolation before speed</h2>
+<p>Every ticket gets a branch from an up to date main, never from another ticket's branch. Every worker gets its own worktree and, when it needs a database, its own local stack with its own ports. Two agents sharing one database reset each other and measure the neighbour's schema; I learned that on a day five of them did it at once.</p>
+<p>No agent holds production credentials. Not read only, not "just for checking". Agents deploy to production through a workflow that holds the secrets; they never see them. The reasoning is simple: an agent with a production token can route around every other gate, so the token is the gate.</p>
+
+<h2>3. Gates that mean something</h2>
+<p>Five required checks before main accepts a merge: lint with house rules, strict types, the test suites, a check that auth templates are intact, and a secrets scan on every commit of the branch. Browser tests on every change that is not documentation. A penetration test with a written verdict before every promotion. Then one human approval.</p>
+<p>The subtle part is what counts as proof. A skipped check reports as green. A test that documents a bug protects the bug. A deployment that says READY can serve a 404. I wrote the rules for that in <a href="/writing/green-check-is-not-proof/">Why a green check is not proof</a>, and the two human gates in <a href="/writing/human-in-the-loop-coding-agents/">Human in the loop for coding agents</a>.</p>
+
+<h2>4. A decision log with ids</h2>
+<p>Agents hit decisions constantly: a name, a boundary, a trade off. Every one becomes a numbered item with lettered options and a recommendation, and I answer with an id and a letter. The answer is written into the repository with the reasoning and the alternatives. Over seven weeks that is more than 140 decisions, and it is why a fresh session can continue the work without re-arguing it. Configuration, naming, test structure and git conflicts never reach me; those are the lead's.</p>
+
+<h2>5. Facts come from scripts</h2>
+<p>No agent declares an external fact. "CI is green", "the preview works", "the migration is safe" are not sentences in this system. A script produces JSON with the run id, the commit, the deployment id or the URL, and the agent interprets it. If the script says FAIL, no amount of text turns it into PASS. This sounds pedantic until you have watched a fluent, confident summary describe a deployment that never happened.</p>
+
+<h2>What it produced</h2>
+<div class="num"><div><b>17 days</b><span>first commit to first production release</span></div><div><b>445</b><span>pull requests merged, 38 closed unmerged</span></div><div><b>147</b><span>red CI runs: the gates working</span></div><div><b>15</b><span>numbered releases with a security report</span></div></div>
+<p>The full story with the evidence read from the GitHub API is in <a href="/writing/one-person-ai-agent-team-445-prs/">445 PRs in seven weeks</a>, and the product itself in the <a href="/work/acervo.html">Acervo case study</a>.</p>
+
+<h2>What it costs, and what it does not replace</h2>
+<p>The agent bill was a few hundred francs a month. The expensive part was still judgment: what the product should be, which invariants live in the database, what counts as done. Agents made execution cheap enough that the gates where a human looks became the product. If you take one thing from this: do not start with the agents. Start with the rules for what counts as proof, then let the agents be fast inside them.</p>
+
+<div class="box"><p>Next in the series: <a href="/writing/human-in-the-loop-coding-agents/">Human in the loop for coding agents: the two gates that matter</a>. If you want this set up inside your company: <a href="/ai-product-builder/">AI build and deployment</a>.</p></div>
+
+<div class="cta"><h2>Working on something like this?</h2><p>Thirty minutes, no deck. <a href="https://cal.com/inigoangulo/30min">Book a call</a> or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
+</article></main>
+<footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/writing/">All writing</a> &nbsp; <a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" rel="noopener" target="_blank">LinkedIn</a> &nbsp; <a href="https://github.com/inigoangulo93" rel="noopener" target="_blank">GitHub</a></span></div></footer>
+</body>
+</html>

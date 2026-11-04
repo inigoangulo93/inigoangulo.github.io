@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human in the loop for coding agents: the two gates that matter / Inigo Angulo</title>
+<meta name="description" content="Where a person must sit when AI agents write and ship code: the decision gate (one id, one letter) and the release gate (one approval with a security report). Everything else can be automated.">
+<link rel="canonical" href="https://inigoangulo.com/writing/human-in-the-loop-coding-agents/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Human in the loop for coding agents: the two gates that matter">
+<meta property="og:description" content="Where a person must sit when AI agents write and ship code: the decision gate (one id, one letter) and the release gate (one approval with a security report). Everything else can be automated.">
+<meta property="og:image" content="https://inigoangulo.com/img/og.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://inigoangulo.com/writing/human-in-the-loop-coding-agents/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/services/services.css">
+<style>.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
+.art .k{margin-bottom:12px}.art h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:none}
+.art .meta{font-family:var(--m);font-size:.74rem;color:var(--t3);margin:16px 0 34px;display:flex;gap:16px;flex-wrap:wrap}
+.art p{max-width:none;font-size:1.05rem;line-height:1.7;margin:0 0 18px}
+.art h2{font-size:1.35rem;margin:38px 0 12px;max-width:none}
+.art ul,.art ol{margin:0 0 18px 22px;color:var(--t2);font-size:1.02rem;line-height:1.65}
+.art li{margin-bottom:6px}
+.art .num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0}
+.art .num div{border:1px solid var(--b1);border-radius:10px;padding:14px;background:var(--glass)}
+.art .num b{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--ac2);line-height:1}
+.art .num span{display:block;font-family:var(--m);font-size:.66rem;color:var(--t3);margin-top:7px;line-height:1.45}
+@media(max-width:700px){.art .num{grid-template-columns:1fr 1fr}}
+.art blockquote{border-left:3px solid var(--ac);padding:4px 0 4px 18px;margin:22px 0;color:var(--t1);font-size:1.1rem;font-weight:500}
+.art .box{border:1px solid var(--acb);border-radius:12px;padding:20px 22px;background:var(--acg2);margin:26px 0}
+.art .box p{margin:0;font-size:.98rem}
+.art .box a{color:var(--ac2);border-bottom:1px solid var(--acb)}
+.art a{color:var(--ac2)}
+.art .fig{margin:26px 0;border:1px solid var(--b1);border-radius:12px;padding:16px;background:var(--glass)}.art .fig svg{width:100%;height:auto;display:block}.art figcaption{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-top:10px}
+.art .cta{margin-top:40px}
+.art .cta h2{margin:0 0 6px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
+<script src="/analytics.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Human in the loop for coding agents: the two gates that matter", "description": "Where a person must sit when AI agents write and ship code: the decision gate (one id, one letter) and the release gate (one approval with a security report). Everything else can be automated.", "datePublished": "2026-11-05", "dateModified": "2026-11-05", "author": {"@type": "Person", "@id": "https://inigoangulo.com/#person", "name": "Inigo Angulo", "url": "https://inigoangulo.com/"}, "publisher": {"@type": "Person", "name": "Inigo Angulo"}, "mainEntityOfPage": "https://inigoangulo.com/writing/human-in-the-loop-coding-agents/", "image": "https://inigoangulo.com/img/og.png"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inigo Angulo", "item": "https://inigoangulo.com/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://inigoangulo.com/writing/"}, {"@type": "ListItem", "position": 3, "name": "Human in the loop for coding agents: the two gates that matter", "item": "https://inigoangulo.com/writing/human-in-the-loop-coding-agents/"}]}</script>
+</head>
+<body>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/writing/">Writing</a><a class="bar__btn" href="/#about">About</a></nav><a class="bar__cta" href="https://cal.com/inigoangulo/30min">Book a call</a></div></header>
+<main><article class="art">
+<span class="k">Writing</span>
+<h1>Human in the loop for coding agents: the two gates that matter</h1>
+<div class="meta"><span>Inigo Angulo</span><span>November 5, 2026</span><span>7 min read</span></div>
+
+<p>"Human in the loop" usually means a person watching a stream of output and clicking approve until they stop reading. That is not a gate, it is a ritual. After seven weeks of running an AI engineering team to production, I ended up with exactly two places where a human must act, and a rule for keeping both cheap enough that they are actually used.</p>
+
+<figure class="fig"><svg viewBox="0 0 730 220" role="img" aria-label="Diagram: a ticket flows through build and automated checks; two human gates sit at decision and at release; between them everything is automated">
+<defs><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6b6b80"/></marker></defs>
+<g font-family="JetBrains Mono,monospace" font-size="11" fill="#9a9aae">
+<rect x="20" y="80" width="90" height="56" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="65" y="113" text-anchor="middle">ticket</text>
+<rect x="150" y="80" width="110" height="56" rx="8" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.6)"/><text x="205" y="103" text-anchor="middle" fill="#bbf7d0" font-weight="600">GATE 1</text><text x="205" y="121" text-anchor="middle">decision</text>
+<rect x="300" y="80" width="90" height="56" rx="8" fill="#101018" stroke="rgba(255,255,255,.2)"/><text x="345" y="113" text-anchor="middle">build</text>
+<rect x="420" y="80" width="90" height="56" rx="8" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.5)"/><text x="465" y="106" text-anchor="middle" fill="#fcd34d">checks</text><text x="465" y="122" text-anchor="middle" fill="#fcd34d">pen test</text>
+<rect x="550" y="80" width="110" height="56" rx="8" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.6)"/><text x="605" y="103" text-anchor="middle" fill="#bbf7d0" font-weight="600">GATE 2</text><text x="605" y="121" text-anchor="middle">release</text>
+<g fill="none" stroke="#6b6b80" stroke-width="1.2" marker-end="url(#b)"><path d="M110 108 L150 108"/><path d="M260 108 L300 108"/><path d="M390 108 L420 108"/><path d="M510 108 L550 108"/><path d="M660 108 L690 108"/></g>
+<text x="693" y="112" fill="#5eead4" font-size="11">prod</text>
+<path d="M300 160 L510 160" stroke="rgba(255,255,255,.18)" stroke-dasharray="3 3"/><text x="405" y="182" text-anchor="middle" font-size="10" fill="#6b6b80">automated, read by scripts, never declared</text>
+<text x="205" y="60" text-anchor="middle" font-size="10" fill="#6b6b80">one id, one letter</text><text x="605" y="60" text-anchor="middle" font-size="10" fill="#6b6b80">one approval, one report</text>
+</g></svg><figcaption>Two gates. Both answered in seconds, both logged, neither skippable.</figcaption></figure>
+
+<h2>Gate 1: the decision</h2>
+<p>Agents stop when they hit a question that changes the product: a boundary, a trade off, a scope. They do not guess. The lead writes the question in a fixed format: a one line question, lettered options, a recommendation with the reason, and what happens if nobody answers. I reply with the id and the letter. "014-3 B". Nothing else.</p>
+<p>Three things make this a real gate. The format is fixed, so I can answer twenty in ten minutes. The answer is recorded in the repository with the reasoning, so it is never re-asked. And the list of what gets escalated is closed: architecture, data model, security, destructive migrations, new infrastructure, scope, irreversible operations, large behaviour changes. Names, configuration, test structure and git conflicts never reach me. If they did, I would stop reading, and the gate would become the ritual I described above.</p>
+
+<h2>Gate 2: the release</h2>
+<p>Code reaches main through automated checks and an agent review. It reaches production through one human command, and only when three things are true for the exact commit being promoted: all required checks are green on that commit (not an earlier one), the security agent's penetration test says PASS for that commit, and the pre-promotion queries about data compatibility have been run. The approval is logged with who and when. The person approving cannot be the agent that built it, by construction: no agent holds the credentials the workflow uses.</p>
+<p>On October 15 the pen test came back FAIL on a rule unrelated to the feature being promoted. The gate held. The feature shipped behind a flag and the rule was fixed first. That is what the gate is for: not to review every line, but to make "no" cheap at the one moment where "yes" is irreversible.</p>
+
+<h2>What is not a human gate</h2>
+<ul>
+<li><b>Reading every pull request.</b> At 445 merges in seven weeks, nobody does. The reviewer agent returns concrete faults; the automated checks are the floor. I read the ones the lead flags and the ones that touch security.</li>
+<li><b>Watching the agents work.</b> They work in tramos: write a file, check, write the next. A silent ten minute run is killed, not supervised.</li>
+<li><b>Declaring facts.</b> Whether a deployment is live is read from a script with the deployment id, not from a person looking at a page and saying so. The human gates decide; they do not verify. Verification belongs to scripts, and the rules for it are in <a href="/writing/green-check-is-not-proof/">Why a green check is not proof</a>.</li>
+</ul>
+
+<h2>Why two and not five</h2>
+<p>Every gate you add has a cost that compounds: the agents wait, the human skims, and skimming is worse than absence because it looks like review. Two gates, both with a fixed format and a closed list of triggers, survived seven weeks and 15 releases without being skipped once. Five would have been skipped by week two.</p>
+
+<div class="box"><p>This is part of a series on running AI agent teams. The hub: <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a>. The numbers: <a href="/writing/one-person-ai-agent-team-445-prs/">445 PRs in seven weeks</a>. The product: <a href="/work/acervo.html">Acervo</a>. If you want the gates set up in your team: <a href="/ai-product-builder/">AI build and deployment</a>.</p></div>
+
+<div class="cta"><h2>Working on something like this?</h2><p>Thirty minutes, no deck. <a href="https://cal.com/inigoangulo/30min">Book a call</a> or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
+</article></main>
+<footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/writing/">All writing</a> &nbsp; <a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" rel="noopener" target="_blank">LinkedIn</a> &nbsp; <a href="https://github.com/inigoangulo93" rel="noopener" target="_blank">GitHub</a></span></div></footer>
+</body>
+</html>
