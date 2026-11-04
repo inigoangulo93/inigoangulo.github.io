@@ -505,7 +505,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .bf-wrap{position:fixed;inset:0;z-index:1000;display:none;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .bf-wrap.open{display:block}
 .bf-bg{position:fixed;inset:0;background:rgba(0,0,0,0);transition:background .6s;z-index:0}
-.bf-wrap.open .bf-bg{background:rgba(0,0,0,.94)}
+.bf-wrap.open .bf-bg{background:radial-gradient(ellipse at 50% 30%,#1a1006,#000 70%)}
 
 /* Parchment texture overlay */
 .bf-bg::after{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.4' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;opacity:0;transition:opacity .8s}
@@ -518,12 +518,20 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .bf__x:hover{color:#d4b88a;border-color:rgba(200,160,100,.35)}
 
 /* Fire image */
-.bf__fire{width:260px;position:relative;margin-bottom:32px;opacity:0;transform:scale(.9);transition:opacity .8s .2s,transform .8s .2s var(--e)}
+.bf__fire{width:min(100%,520px);position:relative;margin-bottom:34px;opacity:0;transform:scale(.96);transition:opacity .9s .2s,transform .9s .2s var(--e)}
 .bf-wrap.open .bf__fire{opacity:1;transform:scale(1)}
-.bf__fire-glow{position:absolute;inset:-60px;background:radial-gradient(circle,rgba(200,120,40,.12),transparent 70%);border-radius:50%;animation:bf-breathe 5s ease infinite}
-.bf__fire-inner{position:relative;display:flex;align-items:center;justify-content:center}
-.bf__img{width:100%;border-radius:4px;image-rendering:pixelated;image-rendering:crisp-edges}
-@keyframes bf-breathe{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.06);opacity:.85}}
+.bf__fire-glow{position:absolute;inset:-40px -30px;background:radial-gradient(ellipse at 46% 70%,rgba(230,140,40,.22),rgba(200,120,40,.06) 45%,transparent 72%);border-radius:50%;animation:bf-breathe 4.5s ease-in-out infinite;pointer-events:none}
+.bf__fire-inner{position:relative;border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(200,160,100,.14)}
+.bf__img{display:block;width:100%;height:auto;aspect-ratio:1200/672;image-rendering:pixelated;image-rendering:crisp-edges}
+.bf__fire-inner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 46% 62%,rgba(255,170,60,.18),transparent 38%);mix-blend-mode:screen;animation:bf-flicker 1.6s steps(6) infinite;pointer-events:none}
+.bf__fire-inner::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 60px rgba(0,0,0,.65);pointer-events:none}
+.bf__ember{position:absolute;bottom:34%;left:46%;width:3px;height:3px;border-radius:50%;background:#ffb547;box-shadow:0 0 6px #ff9a2a;opacity:0;animation:bf-ember 3.2s linear infinite;pointer-events:none}
+.bf__ember:nth-child(2){left:44%;animation-delay:.7s;animation-duration:3.8s}.bf__ember:nth-child(3){left:48%;animation-delay:1.4s;animation-duration:2.9s}.bf__ember:nth-child(4){left:45%;animation-delay:2.1s;animation-duration:4.2s;width:2px;height:2px}.bf__ember:nth-child(5){left:49%;animation-delay:2.7s;animation-duration:3.5s;width:2px;height:2px}
+@keyframes bf-ember{0%{transform:translate(0,0);opacity:0}10%{opacity:.9}100%{transform:translate(calc(var(--dx,8px)),-150px);opacity:0}}
+.bf__ember:nth-child(odd){--dx:-14px}.bf__ember:nth-child(even){--dx:12px}
+@keyframes bf-flicker{0%{opacity:.7}25%{opacity:1}50%{opacity:.6}75%{opacity:.95}100%{opacity:.75}}
+@keyframes bf-breathe{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.06);opacity:.8}}
+@media(prefers-reduced-motion:reduce){.bf__ember,.bf__fire-inner::before,.bf__fire-glow{animation:none}}
 
 /* Title */
 .bf__title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;font-style:italic;color:#d4b88a;text-align:center;margin-bottom:10px;opacity:0;transform:translateY(10px);transition:opacity .7s .4s,transform .7s .4s var(--e)}
@@ -556,8 +564,8 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .bf-wrap.open .bf__sanctuary{opacity:1}
 
 @media(max-width:768px){
-  .bf__body{padding:32px 20px 60px;justify-content:flex-start;padding-top:60px}
-  .bf__fire{width:200px;margin-bottom:24px}
+  .bf__body{padding:72px 16px 60px;justify-content:flex-start}
+  .bf__fire{width:100%;margin-bottom:26px}
   .bf__title{font-size:1.4rem}
   .bf__sub{font-size:.76rem;margin-bottom:28px}
   .bf__prompt{font-size:.92rem}
@@ -1525,7 +1533,7 @@ function mgo(n){
 <div class="bf__body">
 <div class="bf__fire">
 <div class="bf__fire-glow"></div>
-<div class="bf__fire-inner"><img class="bf__img" src="img/rest-here-weary-traveller.webp" width="1200" height="672" decoding="async" loading="lazy" alt="Bonfire"></div>
+<div class="bf__fire-inner"><img class="bf__img" src="img/rest-here-weary-traveller.webp" width="1200" height="672" decoding="async" loading="lazy" alt="A knight resting by a bonfire"><i class="bf__ember"></i><i class="bf__ember"></i><i class="bf__ember"></i><i class="bf__ember"></i><i class="bf__ember"></i></div>
 </div>
 <div class="bf__title">Rest here, weary traveller.</div>
 <div class="bf__sub">No signal to chase. No decisions to make.<br>Just a quiet place between battles.</div>
