@@ -156,7 +156,7 @@ img{max-width:100%;height:auto}
 .cs__try-btn:hover{transform:translateY(-2px);box-shadow:0 4px 24px var(--acg),0 0 60px var(--acg)}
 
 /* ─── Next project — full-width card ─── */
-.cs__related{margin-top:40px;padding:20px 24px;border:1px solid var(--b1);border-radius:12px;display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center}.cs__related a{font-family:var(--m);font-size:.8rem;color:var(--ac2);border-bottom:1px solid transparent;transition:border-color .2s}.cs__related a:hover{border-bottom-color:var(--acb)}
+.cs__related{margin-top:40px;padding:20px 24px;border:1px solid var(--b1);border-radius:12px;display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center}.cs__related .cs__next-label{width:100%}.cs__related a{font-family:var(--m);font-size:.8rem;color:var(--ac2);border-bottom:1px solid transparent;transition:border-color .2s}.cs__related a:hover{border-bottom-color:var(--acb)}
 .cs__next{margin-top:32px;padding:40px 36px;border:1px solid var(--b2);border-radius:16px;background:var(--bg2);display:flex;justify-content:space-between;align-items:center;transition:border-color .3s,box-shadow .4s,transform .4s var(--e)}
 .cs__next:hover{border-color:var(--b3);box-shadow:0 16px 48px rgba(0,0,0,.3);transform:translateY(-4px)}
 .cs__next-label{font-size:.64rem;color:var(--t3);text-transform:uppercase;letter-spacing:.12em}
