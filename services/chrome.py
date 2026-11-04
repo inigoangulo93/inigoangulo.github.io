@@ -28,10 +28,10 @@ def mobmenu(active):
 
 FOOTER = f'''<footer class="footer">
 <div class="footer__inner">
-<div><span class="footer__brand">Inigo Angulo</span><p class="footer__desc">Product builder. AI build and deployment, product and UX, CRO. Based in Zurich, ten years building systems that move metrics.</p></div>
+<div><span class="footer__brand">Inigo Angulo</span><p class="footer__desc">Senior product designer and product builder. Strategy, design and AI native development, from scope to production. Based in Zurich, ten years building systems that move metrics.</p></div>
 <div><p class="footer__col-title">Navigation</p><div class="footer__links"><a href="/#work">Work</a><a href="/#how-i-think">How I think</a><a href="/#about">About</a></div></div>
 <div><p class="footer__col-title">Connect</p><div class="footer__links"><a href="mailto:inigoangulo@gmail.com">Email</a><a href="{LI}" target="_blank" rel="noopener">LinkedIn</a><a href="tel:+41799528321">Phone</a><a href="https://github.com/inigoangulo93" target="_blank" rel="noopener">GitHub</a></div></div>
-<div><p class="footer__col-title">Services</p><div class="footer__links"><a href="/product-consultant-zurich/">Product consultant, Zurich</a><a href="/ux-design-consultant/">UX design consultant</a><a href="/cro-ecommerce-consultant/">CRO for e-commerce</a><a href="/ai-product-builder/">AI product builder</a></div></div>
+<div><p class="footer__col-title">Work with me</p><div class="footer__links"><a href="/ai-product-builder/">Build: AI native development</a><a href="/product-consultant-zurich/">Lead: product strategy and design</a><a href="/cro-ecommerce-consultant/">Optimize: conversion and growth</a><a href="/ux-design-consultant/">UX and product design</a></div></div>
 <div><p class="footer__col-title">Resources</p><div class="footer__links"><a href="/writing/">Writing</a><a href="/inigo-angulo-cv-2026.pdf" download>Download CV</a></div></div>
 </div>
 <div class="footer__bottom"><span class="footer__copy">2026 Inigo Angulo</span><span class="footer__built">Built with code, not templates</span></div>

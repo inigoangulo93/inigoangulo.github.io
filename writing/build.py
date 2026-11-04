@@ -439,6 +439,17 @@ def series_box(slug, d):
     return f'<nav class="series" aria-label="In this series"><span class="series__k">In this series: {esc(TAGS[tag])}</span><ul>{items}</ul></nav>'
 
 
+CTA = {
+  "build":      ("Working on something like this?", "This is how I build products with AI agent teams, from scope to production.", "/ai-product-builder/", "Discuss a product idea"),
+  "agents":     ("Working on something like this?", "This is the method behind how I build: AI native development with human gates.", "/ai-product-builder/", "Discuss a product idea"),
+  "product":    ("Working on a product decision like this?", "Discovery, direction and ownership of outcomes is the core of how I lead product work.", "/product-consultant-zurich/", "Explore a product challenge"),
+  "design":     ("Working on a design problem like this?", "Research, flows, interface and design systems are the hands-on part of my work.", "/ux-design-consultant/", "Discuss a design problem"),
+  "conversion": ("Working on a funnel like this?", "Finding the leak and proving the fix is what the conversion work looks like.", "/cro-ecommerce-consultant/", "Explore a conversion opportunity"),
+}
+def cta_block(d):
+    h, p, href, label = CTA.get(d.get("tag",""), CTA["build"])
+    return f'<div class="cta"><h2>{esc(h)}</h2><p>{esc(p)} <a href="{href}">{esc(label)} &#8594;</a> Or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>'
+
 def faq_block(d):
     faq = d.get("faq")
     if not faq: return ""
@@ -484,7 +495,7 @@ def page(slug, d):
 {series_box(slug,d)}
 {d["body"]}
 {faq_block(d)}
-<div class="cta"><h2>Working on something like this?</h2><p>Thirty minutes, no deck. <a href="https://cal.com/inigoangulo/30min">Book a call</a> or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
+{cta_block(d)}
 </article></main>
 {FOOTER}
 </body>
