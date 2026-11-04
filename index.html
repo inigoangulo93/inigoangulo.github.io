@@ -227,10 +227,10 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .hero-wrap{position:relative;overflow:visible}
 .hero-mesh{position:absolute;top:0;left:0;right:0;height:180%;z-index:0;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.5) 0%,black 8%,black 80%,transparent 100%);mask-image:linear-gradient(180deg,rgba(0,0,0,.5) 0%,black 8%,black 80%,transparent 100%)}
 .hero-mesh canvas{width:100%;height:100%;display:block}
-.hero{position:relative;z-index:1;margin-bottom:0;max-width:1060px;padding:100px 24px 88px}
+.hero{position:relative;z-index:1;margin-bottom:0;max-width:1100px;padding:100px 24px 88px}
 .hero__tag{font-size:.72rem;color:var(--ac);text-transform:uppercase;letter-spacing:.18em;margin-bottom:32px;display:flex;align-items:center;gap:12px;font-weight:500}
 .hero__tag::before{content:'';width:40px;height:1px;background:var(--ac);box-shadow:0 0 8px var(--acg)}
-.hero__h{font-family:var(--s);font-size:4.6rem;font-weight:800;line-height:1.02;margin-bottom:0;letter-spacing:-.045em;color:var(--t1);min-height:2.1em}
+.hero__h{font-family:var(--s);font-size:5.6rem;font-weight:800;line-height:1;margin-bottom:0;letter-spacing:-.05em;color:var(--t1);min-height:2.05em}
 .hero__caret{display:inline-block;width:.06em;height:.9em;background:var(--ac);vertical-align:-.08em;margin-left:.06em;animation:heroCaret 1s steps(2) infinite;border-radius:1px}
 @keyframes heroCaret{50%{opacity:0}}
 .hero__h.typing .hero__caret{animation:none;opacity:1}
@@ -266,11 +266,9 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .clients{padding:48px 24px;background:var(--bg2);border-top:1px solid var(--b1);border-bottom:1px solid var(--b1)}
 .clients__inner{max-width:1100px;margin:0 auto}
 .clients__label{font-size:.65rem;color:var(--t2);text-transform:uppercase;letter-spacing:.14em;margin-bottom:28px;text-align:center}
-.clients__marquee{overflow:hidden;position:relative;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
-.clients__track{display:flex;width:max-content;animation:clientsScroll 38s linear infinite}
-.clients__marquee:hover .clients__track{animation-play-state:paused}
-@keyframes clientsScroll{to{transform:translateX(-50%)}}
-.clients__item{flex:none;padding:14px 36px;white-space:nowrap;text-align:center;font-family:var(--s);font-size:.9rem;font-weight:700;color:var(--t2);letter-spacing:.01em;transition:color .3s;position:relative}
+.clients__marquee{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}.clients__marquee::-webkit-scrollbar{display:none}
+.clients__track{display:flex;justify-content:center;width:max-content;min-width:100%}
+.clients__item{flex:none;padding:14px 34px;white-space:nowrap;text-align:center;font-family:var(--s);font-size:.9rem;font-weight:700;color:var(--t2);letter-spacing:.01em;transition:color .3s;position:relative}
 .clients__item:hover{color:var(--t1)}
 .clients__item::after{content:'';position:absolute;right:0;top:25%;height:50%;width:1px;background:var(--b1)}
 .clients__item:last-child::after{display:none}
@@ -584,7 +582,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   .hero-mesh{height:120%}
   .hero{padding:48px 20px 56px;max-width:100%}
   .hero__tag{font-size:.62rem;margin-bottom:20px}
-  .hero__h{font-size:2.7rem !important;letter-spacing:-.045em;line-height:1.04;font-weight:800 !important;min-height:3.1em}
+  .hero__h{font-size:3rem !important;letter-spacing:-.05em;line-height:1.02;font-weight:800 !important;min-height:3.1em}
   .hero__keyword{font-size:2.6rem !important;margin:14px 0 24px}
   .hero__p{font-size:.88rem;line-height:1.7}
   .hero__p{max-width:none;margin-bottom:28px}
@@ -603,8 +601,9 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   /* Clients: scrollable row */
   .clients{padding:28px 20px}
   .clients__label{font-size:.58rem;margin-bottom:16px}
-  .clients__item{padding:10px 22px;font-size:.8rem}
-  .clients__track{animation-duration:26s}
+  .clients__item{padding:10px 20px;font-size:.8rem}
+  .clients__track{justify-content:flex-start;padding:0 8px}
+  .clients__marquee{mask-image:linear-gradient(90deg,#000 85%,transparent);-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent)}
   .clients__item::after{display:none}
 
   /* Thinking timeline — no column on mobile */
@@ -710,7 +709,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 /* ═══ SMALL MOBILE: 420px ═══ */
 @media(max-width:420px){
   /* bar handled by hamburger */
-  .hero__h{font-size:2.35rem !important}
+  .hero__h{font-size:2.6rem !important}
   .hero__keyword{font-size:2.3rem !important}
   .hero__p{font-size:.86rem}
   /* sigs removed */
@@ -792,7 +791,7 @@ window.addEventListener('DOMContentLoaded',function(){
 <div class="hero__ctas"><a href="#contact" class="hero__cta" onclick="event.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in touch &#8594;</a><a href="inigo-angulo-cv-2026.pdf" download class="hero__cta2">Download CV &#8595;</a></div>
 </div></div>
 
-<div class="clients"><div class="clients__inner"><p class="clients__label">Teams I&#8217;ve worked with</p><div class="clients__marquee" aria-label="GetYourGuide, ING Bank, Adecco Group, Ferrari Switzerland, Moderna, Schneider Electric, WPP, Crowdhouse, Enso Co-living, Pitcher"><div class="clients__track"><span class="clients__item">GetYourGuide</span><span class="clients__item">ING Bank</span><span class="clients__item">Adecco Group</span><span class="clients__item">Ferrari Switzerland</span><span class="clients__item">Moderna</span><span class="clients__item">Schneider Electric</span><span class="clients__item">WPP</span><span class="clients__item">Crowdhouse</span><span class="clients__item">Enso Co-living</span><span class="clients__item">Pitcher</span><span class="clients__item">GetYourGuide</span><span class="clients__item">ING Bank</span><span class="clients__item">Adecco Group</span><span class="clients__item">Ferrari Switzerland</span><span class="clients__item">Moderna</span><span class="clients__item">Schneider Electric</span><span class="clients__item">WPP</span><span class="clients__item">Crowdhouse</span><span class="clients__item">Enso Co-living</span><span class="clients__item">Pitcher</span></div></div></div></div>
+<div class="clients"><div class="clients__inner"><p class="clients__label">Teams I&#8217;ve worked with</p><div class="clients__marquee"><div class="clients__track"><span class="clients__item">GetYourGuide</span><span class="clients__item">ING Bank</span><span class="clients__item">Adecco Group</span><span class="clients__item">Ferrari Switzerland</span><span class="clients__item">Moderna</span><span class="clients__item">Schneider Electric</span></div></div></div></div>
 
 <div class="layer" style="padding-top:0;padding-bottom:0"><div class="mx">
 
