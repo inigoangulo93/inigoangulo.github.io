@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /utm.html
 Disallow: /work/case-study-template.html
+Disallow: /docs/github-profile-README.md
 
 Sitemap: https://inigoangulo.com/sitemap.xml
