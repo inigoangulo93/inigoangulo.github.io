@@ -230,8 +230,11 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .hero{position:relative;z-index:1;margin-bottom:0;max-width:1060px;padding:100px 24px 88px}
 .hero__tag{font-size:.72rem;color:var(--ac);text-transform:uppercase;letter-spacing:.18em;margin-bottom:32px;display:flex;align-items:center;gap:12px;font-weight:500}
 .hero__tag::before{content:'';width:40px;height:1px;background:var(--ac);box-shadow:0 0 8px var(--acg)}
-.hero__h{font-family:var(--s);font-size:4.3rem;font-weight:400;line-height:1.06;margin-bottom:0;letter-spacing:-.025em;color:var(--t1)}
-.hero__I-wrap{float:left;position:relative;width:1.55em;height:2.1em;margin:-.08em .22em 0 -.12em}
+.hero__h{font-family:var(--s);font-size:4.6rem;font-weight:800;line-height:1.02;margin-bottom:0;letter-spacing:-.045em;color:var(--t1);min-height:2.1em}
+.hero__caret{display:inline-block;width:.06em;height:.9em;background:var(--ac);vertical-align:-.08em;margin-left:.06em;animation:heroCaret 1s steps(2) infinite;border-radius:1px}
+@keyframes heroCaret{50%{opacity:0}}
+.hero__h.typing .hero__caret{animation:none;opacity:1}
+.hero__I-wrap{float:left;position:relative;width:1.5em;height:2.05em;margin:-.06em .2em 0 -.1em}
 .hero__I{position:absolute;left:0;top:0;height:2.3em;width:auto;color:var(--ac);filter:drop-shadow(0 0 22px rgba(45,212,191,.38))}
 .hero__h::after{content:"";display:block;clear:both}
 @media(max-width:768px){.hero__I-wrap{width:1.5em;height:2.1em;margin:-.06em .18em 0 -.08em}.hero__I{height:2.25em}}
@@ -263,8 +266,11 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 .clients{padding:48px 24px;background:var(--bg2);border-top:1px solid var(--b1);border-bottom:1px solid var(--b1)}
 .clients__inner{max-width:1100px;margin:0 auto}
 .clients__label{font-size:.65rem;color:var(--t2);text-transform:uppercase;letter-spacing:.14em;margin-bottom:28px;text-align:center}
-.clients__grid{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap}
-.clients__item{flex:1;min-width:120px;max-width:180px;padding:18px 28px;text-align:center;font-family:var(--s);font-size:.9rem;font-weight:700;color:var(--t2);letter-spacing:.01em;transition:color .3s;position:relative}
+.clients__marquee{overflow:hidden;position:relative;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.clients__track{display:flex;width:max-content;animation:clientsScroll 38s linear infinite}
+.clients__marquee:hover .clients__track{animation-play-state:paused}
+@keyframes clientsScroll{to{transform:translateX(-50%)}}
+.clients__item{flex:none;padding:14px 36px;white-space:nowrap;text-align:center;font-family:var(--s);font-size:.9rem;font-weight:700;color:var(--t2);letter-spacing:.01em;transition:color .3s;position:relative}
 .clients__item:hover{color:var(--t1)}
 .clients__item::after{content:'';position:absolute;right:0;top:25%;height:50%;width:1px;background:var(--b1)}
 .clients__item:last-child::after{display:none}
@@ -578,7 +584,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   .hero-mesh{height:120%}
   .hero{padding:48px 20px 56px;max-width:100%}
   .hero__tag{font-size:.62rem;margin-bottom:20px}
-  .hero__h{font-size:2.5rem !important;letter-spacing:-.03em;line-height:1.08;font-weight:400 !important}
+  .hero__h{font-size:2.7rem !important;letter-spacing:-.045em;line-height:1.04;font-weight:800 !important;min-height:3.1em}
   .hero__keyword{font-size:2.6rem !important;margin:14px 0 24px}
   .hero__p{font-size:.88rem;line-height:1.7}
   .hero__p{max-width:none;margin-bottom:28px}
@@ -597,8 +603,8 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   /* Clients: scrollable row */
   .clients{padding:28px 20px}
   .clients__label{font-size:.58rem;margin-bottom:16px}
-  .clients__grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px}
-  .clients__item{min-width:0;max-width:none;padding:10px 8px;font-size:.78rem;white-space:nowrap}
+  .clients__item{padding:10px 22px;font-size:.8rem}
+  .clients__track{animation-duration:26s}
   .clients__item::after{display:none}
 
   /* Thinking timeline — no column on mobile */
@@ -704,7 +710,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
 /* ═══ SMALL MOBILE: 420px ═══ */
 @media(max-width:420px){
   /* bar handled by hamburger */
-  .hero__h{font-size:2.2rem !important}
+  .hero__h{font-size:2.35rem !important}
   .hero__keyword{font-size:2.3rem !important}
   .hero__p{font-size:.86rem}
   /* sigs removed */
@@ -780,13 +786,13 @@ window.addEventListener('DOMContentLoaded',function(){
 
 <div class="hero-wrap"><div class="hero-mesh" id="heroMesh"></div><div class="mx hero">
 <div class="hero__tag">Product / Strategy / Design / Build</div>
-<h1 class="hero__h"><span class="hero__I-wrap"><span class="sr">I</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="42.2 0 1278.7 1744.7" class="hero__I" aria-hidden="true" focusable="false"><path transform="translate(0,1503.1) scale(1,-1)" fill="currentColor" d="M775 682Q784 662 762 650Q540 533 338.0 641.5Q136 750 121.5 960.0Q107 1170 242.5 1333.5Q378 1497 621 1503Q717 1505 812.5 1464.5Q908 1424 950 1388Q1052 1297 1124.5 1243.5Q1197 1190 1274 1228Q1299 1242 1311.0 1223.5Q1323 1205 1286 1181Q1067 1041 1052.0 934.0Q1037 827 1202 578Q1356 345 1310.5 177.5Q1265 10 1102 -108Q945 -221 757.5 -239.5Q570 -258 405 -111Q325 -39 257.0 20.5Q189 80 90 17Q64 -2 49.0 13.0Q34 28 52 47Q353 353 640 36Q772 -108 878.0 -125.0Q984 -142 1062 -72Q1137 -1 1123.0 105.0Q1109 211 992 391Q828 639 833.5 769.0Q839 899 1028 1052Q1040 1062 1037.0 1072.0Q1034 1082 1018 1081Q895 1082 785.5 1189.0Q676 1296 517 1299Q370 1290 292.0 1198.5Q214 1107 230.0 933.0Q246 759 409.5 686.5Q573 614 741 688Q765 699 775 682Z"/></svg></span>decide what&#8217;s worth building.<br>Then I build it.</h1>
+<h1 class="hero__h"><span class="hero__I-wrap"><span class="sr">I</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="42.2 0 1278.7 1744.7" class="hero__I" aria-hidden="true" focusable="false"><path transform="translate(0,1503.1) scale(1,-1)" fill="currentColor" d="M775 682Q784 662 762 650Q540 533 338.0 641.5Q136 750 121.5 960.0Q107 1170 242.5 1333.5Q378 1497 621 1503Q717 1505 812.5 1464.5Q908 1424 950 1388Q1052 1297 1124.5 1243.5Q1197 1190 1274 1228Q1299 1242 1311.0 1223.5Q1323 1205 1286 1181Q1067 1041 1052.0 934.0Q1037 827 1202 578Q1356 345 1310.5 177.5Q1265 10 1102 -108Q945 -221 757.5 -239.5Q570 -258 405 -111Q325 -39 257.0 20.5Q189 80 90 17Q64 -2 49.0 13.0Q34 28 52 47Q353 353 640 36Q772 -108 878.0 -125.0Q984 -142 1062 -72Q1137 -1 1123.0 105.0Q1109 211 992 391Q828 639 833.5 769.0Q839 899 1028 1052Q1040 1062 1037.0 1072.0Q1034 1082 1018 1081Q895 1082 785.5 1189.0Q676 1296 517 1299Q370 1290 292.0 1198.5Q214 1107 230.0 933.0Q246 759 409.5 686.5Q573 614 741 688Q765 699 775 682Z"/></svg></span><span class="hero__type" id="heroType">decide what&#8217;s worth building. Then I build it.</span><span class="hero__caret" aria-hidden="true"></span></h1>
 <span class="hero__keyword">Inigo <em>Angulo</em></span>
 <p class="hero__sub">Same product judgment. <em>Shorter distance to shipping.</em></p>
 <div class="hero__ctas"><a href="#contact" class="hero__cta" onclick="event.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in touch &#8594;</a><a href="inigo-angulo-cv-2026.pdf" download class="hero__cta2">Download CV &#8595;</a></div>
 </div></div>
 
-<div class="clients"><div class="clients__inner"><p class="clients__label">Teams I&#8217;ve worked with</p><div class="clients__grid"><span class="clients__item">GetYourGuide</span><span class="clients__item">ING Bank</span><span class="clients__item">Adecco Group</span><span class="clients__item">Ferrari Switzerland</span><span class="clients__item">Moderna</span><span class="clients__item">Schneider Electric</span></div></div></div>
+<div class="clients"><div class="clients__inner"><p class="clients__label">Teams I&#8217;ve worked with</p><div class="clients__marquee" aria-label="GetYourGuide, ING Bank, Adecco Group, Ferrari Switzerland, Moderna, Schneider Electric, WPP, Crowdhouse, Enso Co-living, Pitcher"><div class="clients__track"><span class="clients__item">GetYourGuide</span><span class="clients__item">ING Bank</span><span class="clients__item">Adecco Group</span><span class="clients__item">Ferrari Switzerland</span><span class="clients__item">Moderna</span><span class="clients__item">Schneider Electric</span><span class="clients__item">WPP</span><span class="clients__item">Crowdhouse</span><span class="clients__item">Enso Co-living</span><span class="clients__item">Pitcher</span><span class="clients__item">GetYourGuide</span><span class="clients__item">ING Bank</span><span class="clients__item">Adecco Group</span><span class="clients__item">Ferrari Switzerland</span><span class="clients__item">Moderna</span><span class="clients__item">Schneider Electric</span><span class="clients__item">WPP</span><span class="clients__item">Crowdhouse</span><span class="clients__item">Enso Co-living</span><span class="clients__item">Pitcher</span></div></div></div></div>
 
 <div class="layer" style="padding-top:0;padding-bottom:0"><div class="mx">
 
@@ -1699,6 +1705,17 @@ bar.addEventListener('click',function(e){if(state==='mini'){e.preventDefault();s
 if(window.matchMedia&&window.matchMedia('(hover:hover) and (pointer:fine)').matches){bar.addEventListener('mouseenter',function(){if(state==='mini')bar.classList.add('bar--peek')});bar.addEventListener('mouseleave',function(){bar.classList.remove('bar--peek')})}
 var _t=window.toggleMenu;if(typeof _t==='function'){window.toggleMenu=function(){_t.apply(this,arguments);bar.classList.toggle('menu-open',!!window.menuOpen);if(window.menuOpen)set('full')}}
 var mo=new MutationObserver(label);document.querySelectorAll('.bar__btn').forEach(function(b){mo.observe(b,{attributes:true,attributeFilter:['class']})});
+})();
+</script>
+<script>
+(function(){var el=document.getElementById('heroType'),h=el&&el.closest('.hero__h');if(!el)return;
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduce)return;
+var P=["decide what\u2019s worth building. Then I build it.","ship working software, not roadmap slots.","turn product judgment into shipped code."];
+var i=0,t=null;
+function type(str,cb){var k=0;h.classList.add('typing');(function st(){if(document.hidden){t=setTimeout(st,300);return}k++;el.textContent=str.slice(0,k);if(k<str.length)t=setTimeout(st,str[k-1]===' '?70:34);else{h.classList.remove('typing');cb()}})()}
+function erase(cb){var str=el.textContent;h.classList.add('typing');(function st(){str=str.slice(0,-1);el.textContent=str;if(str.length)t=setTimeout(st,14);else{h.classList.remove('typing');cb()}})()}
+function loop(){t=setTimeout(function(){erase(function(){i=(i+1)%P.length;type(P[i],loop)})},i===0?4200:3600)}
+setTimeout(loop,1600);
 })();
 </script>
 </body>
