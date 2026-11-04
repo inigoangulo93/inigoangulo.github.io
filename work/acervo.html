@@ -59,6 +59,8 @@
 .fl svg{width:100%;height:auto;display:block;font-family:var(--m)}
 .fl .lane{fill:rgba(255,255,255,.015);stroke:var(--b1)}
 .fl .lane--h{fill:rgba(34,197,94,.035)}
+.fl .lane{transition:fill .35s,stroke .35s}.fl .lane.on{fill:rgba(45,212,191,.07);stroke:rgba(45,212,191,.35)}.fl .lane--h.on{fill:rgba(34,197,94,.09);stroke:rgba(34,197,94,.45)}
+.fl .lt{transition:fill .35s}.fl .lt.on{fill:var(--ac2)}.fl .lt--h.on{fill:#bbf7d0}
 .fl .lt{fill:var(--t3);font-size:10px;letter-spacing:1.5px}
 .fl .lt--h{fill:var(--up)}
 .fl .cx{fill:none;stroke:var(--b3);stroke-width:1.2;marker-end:url(#arr)}
@@ -1126,7 +1128,9 @@ Object.keys(FLOWS).forEach(id=>{
   const nodes=root.querySelectorAll(".st"),who=root.querySelector(".fl__who"),h=root.querySelector(".fl__h"),t=root.querySelector(".fl__t"),list=root.querySelector(".fl__list");
   steps.forEach((s,k)=>{const li=document.createElement("button");li.type="button";li.className="fl__li";li.innerHTML="<span>0"+(k+1)+"</span><span>"+s.h+"</span>";li.addEventListener("click",()=>set(k));list.appendChild(li);});
   function set(k){i=(k+steps.length)%steps.length;nodes.forEach(n=>{const on=+n.dataset.i===i;n.classList.toggle("on",on);n.setAttribute("aria-pressed",on)});list.querySelectorAll(".fl__li").forEach((l,k2)=>l.classList.toggle("on",k2===i));
-    who.textContent=steps[i].who;h.textContent=steps[i].h;t.innerHTML=steps[i].t;}
+    who.textContent=steps[i].who;h.textContent=steps[i].h;t.innerHTML=steps[i].t;
+    const act=root.querySelector(".st.on rect"),lanes=root.querySelectorAll(".lane"),lts=root.querySelectorAll(".lt");
+    if(act){const li=Math.floor((+act.getAttribute("y")-20)/60);lanes.forEach((l,k)=>l.classList.toggle("on",k===li));lts.forEach((l,k)=>l.classList.toggle("on",k===li))}}
   nodes.forEach(n=>{n.addEventListener("click",()=>set(+n.dataset.i));n.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();set(+n.dataset.i)}});n.setAttribute("aria-label","Step "+(+n.dataset.i+1)+": "+steps[+n.dataset.i].h);});
   root.querySelectorAll(".fl__btn").forEach(b=>b.addEventListener("click",()=>set(i+parseInt(b.dataset.d,10))));
   set(0);
