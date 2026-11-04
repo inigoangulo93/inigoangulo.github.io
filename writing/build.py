@@ -486,7 +486,7 @@ def page(slug, d):
 {('<script type="application/ld+json">'+json.dumps(faq_ld,ensure_ascii=False)+'</script>') if faq_ld else ''}
 </head>
 <body>
-{header('writing','Writing')}{mobmenu('writing')}
+{header('writing',TAGS.get(d.get('tag',''),'Writing'))}{mobmenu('writing')}
 <script src="/services/bar.js?v={VER}" defer></script>
 <main><article class="art">
 <span class="k">Writing</span>

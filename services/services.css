@@ -22,7 +22,7 @@ a{color:inherit;text-decoration:none}
 .bar__mini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--m);font-size:.72rem;letter-spacing:.06em;color:var(--t1);opacity:0;pointer-events:none;transition:opacity .25s;white-space:nowrap}
 .bar__mini i{width:7px;height:7px;border-radius:50%;background:var(--ac);box-shadow:0 0 10px var(--ac);flex-shrink:0}
 .bar__mini b{font-family:var(--s);font-weight:800;letter-spacing:-.03em;font-size:.8rem}
-.bar__mini span{color:var(--t1)}
+.bar__mini span{color:var(--t1);overflow:hidden;text-overflow:ellipsis;max-width:calc(100vw - 120px)}
 .bar--mini{width:150px;height:40px;top:12px;cursor:pointer}
 .bar--mini.bar--peek{width:min(760px,calc(100% - 32px));height:44px;cursor:default}.bar--mini.bar--peek .bar__inner{opacity:1;pointer-events:auto;transition:opacity .3s .2s}.bar--mini.bar--peek .bar__mini{opacity:0;pointer-events:none;transition:opacity .15s}
 .bar--mini .bar__inner{opacity:0;pointer-events:none;transition:opacity .2s}

@@ -97,6 +97,8 @@ PAGES = {
 
 def esc(s): return html.escape(s, quote=True)
 
+MINI={'ai-product-builder':'Build / AI development','product-consultant-zurich':'Lead / Product strategy','cro-ecommerce-consultant':'Optimize / Conversion','ux-design-consultant':'Senior product design'}
+
 def page(slug, d):
     url = f"https://inigoangulo.com/{slug}/"
     faq_ld = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in d["faq"]]}
@@ -137,7 +139,7 @@ def page(slug, d):
 <script type="application/ld+json">{json.dumps(bc_ld,ensure_ascii=False)}</script>
 </head>
 <body>
-{header('services','Services')}{mobmenu('services')}
+{header('services',MINI[slug])}{mobmenu('services')}
 <script src="/services/bar.js?v={VER}" defer></script>
 
 <main>
