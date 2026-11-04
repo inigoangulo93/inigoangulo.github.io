@@ -8,4 +8,5 @@ function upd(){var y=window.scrollY||document.documentElement.scrollTop;var dy=y
   else if(state==='full')set('island');}
 window.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd,{passive:true});upd();
 bar.addEventListener('click',function(e){if(state==='mini'){e.preventDefault();set('island');acc=0}});
+if(window.matchMedia&&window.matchMedia('(hover:hover) and (pointer:fine)').matches){bar.addEventListener('mouseenter',function(){if(state==='mini')bar.classList.add('bar--peek')});bar.addEventListener('mouseleave',function(){bar.classList.remove('bar--peek')})}
 })();
