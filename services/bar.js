@@ -1,6 +1,7 @@
 /* Header states shared by the service and writing pages: full at the top, island when scrolled, mini pill when scrolling down. */
+window.menuOpen=false;window.toggleMenu=function(){window.menuOpen=!window.menuOpen;var h=document.getElementById('hamBtn'),m=document.getElementById('mobMenu'),b=document.querySelector('.bar');if(h)h.classList.toggle('open',window.menuOpen);if(m)m.classList.toggle('open',window.menuOpen);if(b)b.classList.toggle('menu-open',window.menuOpen);document.body.style.overflow=window.menuOpen?'hidden':''};
 (function(){var bar=document.querySelector('.bar');if(!bar)return;var state='full',lastY=window.scrollY||0,acc=0;
-function set(st){if(st===state)return;state=st;bar.classList.toggle('bar--island',st!=='full');bar.classList.toggle('bar--mini',st==='mini')}
+function set(st){if(window.menuOpen)st='full';if(st===state)return;state=st;bar.classList.toggle('bar--island',st!=='full');bar.classList.toggle('bar--mini',st==='mini')}
 function upd(){var y=window.scrollY||document.documentElement.scrollTop;var dy=y-lastY;lastY=y;
   if(y<=40){set('full');acc=0;return}
   if(dy>0){acc=Math.max(0,acc)+dy;if(y>220&&acc>12)set('mini');else if(state==='full')set('island')}

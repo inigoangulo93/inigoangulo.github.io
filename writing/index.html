@@ -11,7 +11,7 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/services/services.css?v=765f081">
+<link rel="stylesheet" href="/services/services.css?v=1aa43c2">
 <style>
 .list{max-width:760px;margin:0 auto;padding:110px 24px 40px}
 .intro{color:var(--t2);font-size:1.02rem;max-width:640px;margin:0 0 24px}
@@ -42,8 +42,8 @@
 <script src="/analytics.js" defer></script>
 </head>
 <body>
-<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header>
-<script src="/services/bar.js?v=765f081" defer></script>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a><div class="bar__ham" id="hamBtn" onclick="toggleMenu()"><span></span><span></span><span></span></div></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header><div class="mob-menu" id="mobMenu"><div class="mob-menu__bg" onclick="toggleMenu()"></div><div class="mob-menu__inner"><a class="mob-menu__link" href="/#work"><span>Work</span><span class="mob-menu__link-num">01</span></a><a class="mob-menu__link" href="/#how-i-think"><span>How I think</span><span class="mob-menu__link-num">02</span></a><a class="mob-menu__link" href="/#about"><span>About</span><span class="mob-menu__link-num">03</span></a><a class="mob-menu__link on" href="/writing/"><span>Writing</span><span class="mob-menu__link-num">04</span></a><div class="mob-menu__cta"><a href="/#contact">Get in touch &#8594;</a></div><div class="mob-menu__contact"><a href="mailto:inigoangulo@gmail.com">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank" rel="noopener">LinkedIn</a><a href="tel:+41799528321">Phone</a></div></div></div>
+<script src="/services/bar.js?v=1aa43c2" defer></script>
 <main><div class="list"><span class="k">Writing</span><h1 style="font-size:2rem;margin-bottom:14px">What I learned shipping, written down.</h1><p class="intro">17 articles in four series: building products with AI agent teams, the gates between an agent and production, conversion experiments on real funnels, and design systems that match the code. Each series has a place to start.</p>
 <form class="search" role="search" onsubmit="return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search 17 articles: tickets, CLAUDE.md, checkout, RLS, cost..." aria-label="Search articles" autocomplete="off"><kbd>/</kbd></form>
 <div class="chips"><a class="chip on" href="#" data-f="">All</a><a class="chip" href="#build" data-f="build">Building with AI agents</a><a class="chip" href="#agents" data-f="agents">AI agent teams</a><a class="chip" href="#conversion" data-f="conversion">Conversion and funnels</a><a class="chip" href="#design" data-f="design">Design systems</a><a class="chip" href="#product" data-f="product">Product and consulting</a></div>
@@ -59,6 +59,15 @@ chips.forEach(function(c){c.addEventListener("click",function(e){e.preventDefaul
 q.addEventListener("input",apply);
 document.addEventListener("keydown",function(e){if(e.key==="/"&&document.activeElement!==q){e.preventDefault();q.focus()}if(e.key==="Escape"&&document.activeElement===q){q.value="";apply();q.blur()}});
 var h=location.hash.slice(1);if(h&&document.querySelector('.chip[data-f="'+h+'"]')){f=h}apply()})();</script></div></main>
-<footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/">Home</a></span></div></footer>
+<footer class="footer">
+<div class="footer__inner">
+<div><span class="footer__brand">Inigo Angulo</span><p class="footer__desc">Product builder. AI build and deployment, product and UX, CRO. Based in Zurich, ten years building systems that move metrics.</p></div>
+<div><p class="footer__col-title">Navigation</p><div class="footer__links"><a href="/#work">Work</a><a href="/#how-i-think">How I think</a><a href="/#about">About</a></div></div>
+<div><p class="footer__col-title">Connect</p><div class="footer__links"><a href="mailto:inigoangulo@gmail.com">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank" rel="noopener">LinkedIn</a><a href="tel:+41799528321">Phone</a><a href="https://github.com/inigoangulo93" target="_blank" rel="noopener">GitHub</a></div></div>
+<div><p class="footer__col-title">Services</p><div class="footer__links"><a href="/product-consultant-zurich/">Product consultant, Zurich</a><a href="/ux-design-consultant/">UX design consultant</a><a href="/cro-ecommerce-consultant/">CRO for e-commerce</a><a href="/ai-product-builder/">AI product builder</a></div></div>
+<div><p class="footer__col-title">Resources</p><div class="footer__links"><a href="/writing/">Writing</a><a href="/inigo-angulo-cv-2026.pdf" download>Download CV</a></div></div>
+</div>
+<div class="footer__bottom"><span class="footer__copy">2026 Inigo Angulo</span><span class="footer__built">Built with code, not templates</span></div>
+</footer>
 </body>
 </html>

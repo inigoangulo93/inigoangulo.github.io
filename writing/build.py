@@ -3,6 +3,8 @@
 import json, html, os, subprocess, datetime, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build_posts import BUILD_POSTS
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'services'))
+from chrome import header, mobmenu, FOOTER
 VER = subprocess.run(["git","rev-parse","--short","HEAD"],capture_output=True,text=True).stdout.strip() or "0"
 
 GA = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>\n<script src="/analytics.js" defer></script>'
@@ -473,7 +475,7 @@ def page(slug, d):
 {('<script type="application/ld+json">'+json.dumps(faq_ld,ensure_ascii=False)+'</script>') if faq_ld else ''}
 </head>
 <body>
-<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header>
+{header('writing','Writing')}{mobmenu('writing')}
 <script src="/services/bar.js?v={VER}" defer></script>
 <main><article class="art">
 <span class="k">Writing</span>
@@ -484,7 +486,7 @@ def page(slug, d):
 {faq_block(d)}
 <div class="cta"><h2>Working on something like this?</h2><p>Thirty minutes, no deck. <a href="https://cal.com/inigoangulo/30min">Book a call</a> or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
 </article></main>
-<footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/writing/">All writing</a> &nbsp; <a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" rel="noopener" target="_blank">LinkedIn</a> &nbsp; <a href="https://github.com/inigoangulo93" rel="noopener" target="_blank">GitHub</a></span></div></footer>
+{FOOTER}
 </body>
 </html>
 '''
@@ -547,7 +549,7 @@ def index():
 {GA}
 </head>
 <body>
-<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header>
+{header('writing','Writing')}{mobmenu('writing')}
 <script src="/services/bar.js?v={VER}" defer></script>
 <main><div class="list"><span class="k">Writing</span><h1 style="font-size:2rem;margin-bottom:14px">What I learned shipping, written down.</h1><p class="intro">{n} articles in four series: building products with AI agent teams, the gates between an agent and production, conversion experiments on real funnels, and design systems that match the code. Each series has a place to start.</p>
 <form class="search" role="search" onsubmit="return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search {n} articles: tickets, CLAUDE.md, checkout, RLS, cost..." aria-label="Search articles" autocomplete="off"><kbd>/</kbd></form>
@@ -564,7 +566,7 @@ chips.forEach(function(c){{c.addEventListener("click",function(e){{e.preventDefa
 q.addEventListener("input",apply);
 document.addEventListener("keydown",function(e){{if(e.key==="/"&&document.activeElement!==q){{e.preventDefault();q.focus()}}if(e.key==="Escape"&&document.activeElement===q){{q.value="";apply();q.blur()}}}});
 var h=location.hash.slice(1);if(h&&document.querySelector('.chip[data-f="'+h+'"]')){{f=h}}apply()}})();</script></div></main>
-<footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/">Home</a></span></div></footer>
+{FOOTER}
 </body>
 </html>
 '''

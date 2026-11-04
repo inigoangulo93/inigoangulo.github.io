@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Builds the four service pages from one template. Run from the repo root: python3 services/build.py"""
-import json, html, os, subprocess, re
+import json, html, os, subprocess, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from chrome import header, mobmenu, FOOTER
 VER = subprocess.run(["git","rev-parse","--short","HEAD"],capture_output=True,text=True).stdout.strip() or "0"
 
 GA = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>\n<script src="/analytics.js" defer></script>'
@@ -121,7 +123,7 @@ def page(slug, d):
 <script type="application/ld+json">{json.dumps(bc_ld,ensure_ascii=False)}</script>
 </head>
 <body>
-<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><span>Services</span></div></header>
+{header('services','Services')}{mobmenu('services')}
 <script src="/services/bar.js?v={VER}" defer></script>
 
 <main>
@@ -156,7 +158,7 @@ def page(slug, d):
 </div></section>
 </main>
 
-<footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" rel="noopener" target="_blank">LinkedIn</a> &nbsp; <a href="https://github.com/inigoangulo93" rel="noopener" target="_blank">GitHub</a> &nbsp; <a href="/inigo-angulo-cv-2026.pdf" download>CV</a></span></div></footer>
+{FOOTER}
 <script>(function(C,A,L){{let p=function(a,ar){{a.q.push(ar)}};let d=C.document;C.Cal=C.Cal||function(){{let cal=C.Cal;let ar=arguments;if(!cal.loaded){{cal.ns={{}};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}}if(ar[0]===L){{const api=function(){{p(api,arguments)}};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){{cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,["initNamespace",namespace])}}else p(cal,ar);return}}p(cal,ar)}}}})(window,"https://app.cal.com/embed/embed.js","init");Cal("init",{{origin:"https://app.cal.com"}});Cal("ui",{{"theme":"dark","cssVarsPerTheme":{{"dark":{{"cal-brand":"#2dd4bf"}}}},"hideEventTypeDetails":false,"layout":"month_view"}});</script>
 </body>
 </html>
