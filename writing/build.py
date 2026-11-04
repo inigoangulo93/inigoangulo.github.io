@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Builds the articles under /writing/. Run from the repo root: python3 writing/build.py"""
-import json, html, os, datetime
+import json, html, os, subprocess, datetime
+VER = subprocess.run(["git","rev-parse","--short","HEAD"],capture_output=True,text=True).stdout.strip() or "0"
 
 GA = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>\n<script src="/analytics.js" defer></script>'
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">'
@@ -245,7 +246,7 @@ def page(slug, d):
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary_large_image">
 {FONTS}
-<link rel="stylesheet" href="/services/services.css">
+<link rel="stylesheet" href="/services/services.css?v={VER}">
 <style>{CSS}</style>
 {GA}
 <script type="application/ld+json">{json.dumps(ld,ensure_ascii=False)}</script>
@@ -253,7 +254,7 @@ def page(slug, d):
 </head>
 <body>
 <header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><b>IA</b><span>Writing</span></div></header>
-<script src="/services/bar.js" defer></script>
+<script src="/services/bar.js?v={VER}" defer></script>
 <main><article class="art">
 <span class="k">Writing</span>
 <h1>{esc(d["title"])}</h1>
@@ -277,13 +278,13 @@ def index():
 <link rel="canonical" href="https://inigoangulo.com/writing/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 {FONTS}
-<link rel="stylesheet" href="/services/services.css">
+<link rel="stylesheet" href="/services/services.css?v={VER}">
 <style>.list{{max-width:760px;margin:0 auto;padding:110px 24px 40px}}.post{{display:block;border:1px solid var(--b1);border-radius:12px;padding:22px 24px;margin-bottom:14px;background:var(--glass);transition:border-color .2s,transform .2s}}.post:hover{{border-color:var(--acb);transform:translateY(-2px)}}.post h2{{font-size:1.25rem;margin:0 0 8px}}.post p{{font-size:.95rem}}.post .k::before{{content:""}}</style>
 {GA}
 </head>
 <body>
 <header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><b>IA</b><span>Writing</span></div></header>
-<script src="/services/bar.js" defer></script>
+<script src="/services/bar.js?v={VER}" defer></script>
 <main><div class="list"><span class="k">Writing</span><h1 style="font-size:2rem;margin-bottom:28px">What I learned shipping, written down.</h1>{items}</div></main>
 <footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/">Home</a></span></div></footer>
 </body>

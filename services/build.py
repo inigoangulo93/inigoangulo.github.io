@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Builds the four service pages from one template. Run from the repo root: python3 services/build.py"""
-import json, html, os
+import json, html, os, subprocess
+VER = subprocess.run(["git","rev-parse","--short","HEAD"],capture_output=True,text=True).stdout.strip() or "0"
 
 GA = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>\n<script src="/analytics.js" defer></script>'
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">'
@@ -110,7 +111,7 @@ def page(slug, d):
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary_large_image">
 {FONTS}
-<link rel="stylesheet" href="/services/services.css">
+<link rel="stylesheet" href="/services/services.css?v={VER}">
 {GA}
 <script type="application/ld+json">{json.dumps(svc_ld,ensure_ascii=False)}</script>
 <script type="application/ld+json">{json.dumps(faq_ld,ensure_ascii=False)}</script>
@@ -118,7 +119,7 @@ def page(slug, d):
 </head>
 <body>
 <header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><b>IA</b><span>Services</span></div></header>
-<script src="/services/bar.js" defer></script>
+<script src="/services/bar.js?v={VER}" defer></script>
 
 <main>
 <div class="hero"><div class="mx">
