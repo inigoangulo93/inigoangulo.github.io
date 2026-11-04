@@ -103,7 +103,7 @@ def page(slug, d):
 <title>{esc(d["title"])}</title>
 <meta name="description" content="{esc(d["desc"])}">
 <link rel="canonical" href="{url}">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">\n<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <meta property="og:title" content="{esc(d["title"].split(" / ")[0])}">
 <meta property="og:description" content="{esc(d["desc"])}">
 <meta property="og:image" content="https://inigoangulo.com/img/og.png">

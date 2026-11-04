@@ -443,7 +443,7 @@ def page(slug, d):
 <title>{esc(d["title"])} / Inigo Angulo</title>
 <meta name="description" content="{esc(d["desc"])}">
 <link rel="canonical" href="{url}">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">\n<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <meta property="og:title" content="{esc(d["title"])}">
 <meta property="og:description" content="{esc(d["desc"])}">
 <meta property="og:image" content="https://inigoangulo.com/img/og.png">
@@ -488,7 +488,7 @@ def index():
 <link rel="alternate" type="application/rss+xml" title="Inigo Angulo, writing" href="https://inigoangulo.com/writing/feed.xml">
 <meta property="og:title" content="Writing: product, AI agent teams, conversion"><meta property="og:description" content="Notes from building products with AI agent teams, running experiments on checkout funnels, and deciding what is worth building."><meta property="og:image" content="https://inigoangulo.com/img/og.png"><meta property="og:url" content="https://inigoangulo.com/writing/">
 <script type="application/ld+json">{json.dumps(blog_ld,ensure_ascii=False)}</script>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">\n<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 {FONTS}
 <link rel="stylesheet" href="/services/services.css?v={VER}">
 <style>.chips{{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}}.chip{{font-family:var(--m);font-size:.72rem;color:var(--t2);border:1px solid var(--b2);border-radius:999px;padding:7px 12px;transition:color .2s,border-color .2s}}.chip.on,.chip:hover{{color:var(--ac2);border-color:var(--acb)}}.post.hide{{display:none}}.intro{{color:var(--t2);font-size:1.02rem;max-width:640px;margin:0 0 24px}}.list{{max-width:760px;margin:0 auto;padding:110px 24px 40px}}.post{{display:block;border:1px solid var(--b1);border-radius:12px;padding:22px 24px;margin-bottom:14px;background:var(--glass);transition:border-color .2s,transform .2s}}.post:hover{{border-color:var(--acb);transform:translateY(-2px)}}.post h2{{font-size:1.25rem;margin:0 0 8px}}.post p{{font-size:.95rem}}.post .k::before{{content:""}}</style>
