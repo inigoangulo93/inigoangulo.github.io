@@ -423,17 +423,13 @@
   <div class="cs__img cs__img--wide" data-reveal><img src="../img/acervo/header.webp" alt="Acervo: a digital garage for car collectors" width="2374" height="1118"></div>
 
   <div class="cs__img" data-reveal><img src="../img/acervo/cars-dark.webp" alt="Acervo in production: the cars gallery with filters by status" width="3016" height="1352"></div>
-  <p class="cs__img-cap">Production, November 2026. The collection, filtered the way an owner thinks: favourites, in the workshop, lent, for sale, with pending items, history.</p>
+  <p class="cs__img-cap">Production, November 2026. The collection, filtered the way an owner thinks.</p>
 
   <!-- 01: Context -->
   <div class="cs__section" id="s01" data-reveal>
     <span class="cs__section-num">01 Context</span>
     <h2 class="cs__section-h">A hundred cars across several cities, managed in Excel, WhatsApp and one trusted person&#8217;s memory. The obvious plan was an agency. The real bottleneck was never typing code.</h2>
-    <div class="cs__section-text">
-      <p>Serious collections in Mexico range from a handful of cars to more than a hundred, spread across garages in different states. Records are inconsistent, provenance is hard to prove, parts go missing between workshops, and every request from an insurer, a buyer or a customs lawyer starts a scramble through folders and chats.</p>
-      <p>In September 2026 I started Acervo with two partners: one with field experience and a network of collectors, the other leading sales and growth. The first test collection was real: <strong>over 100 cars plus a spare parts inventory</strong>, owned by a family in that network. The constraint was explicit: nothing signed and nothing funded until the MVP proved it was worth it.</p>
-      <p>A spec, a Figma file and an agency is two to four months and a five figure budget before a collector touches anything. The bottleneck was deciding what to build, in what order, and knowing when something was done. That is product work. If the decisions stayed mine and the typing was delegated, one person could run a small engineering team. <strong>The design problem became the team itself.</strong></p>
-    </div>
+    <div class="cs__section-text"><p>Serious collections in Mexico run from a handful of cars to more than a hundred, across garages in different states. Records are inconsistent, provenance is hard to prove, parts go missing between workshops, and every request from an insurer or a buyer starts a scramble through folders and chats.<br><br>In September 2026 I started Acervo with two partners, one with a network of collectors and one leading sales. The first test collection was real: over a hundred cars plus a parts inventory. The constraint: nothing signed and nothing funded until the MVP proved it.<br><br>A spec, a Figma file and an agency is months and a five figure budget before a collector touches anything. The bottleneck was deciding, not typing. So I decided, and had an agent team type.</p></div>
     <div class="cs__evidence">
       <span class="cs__evidence-label">The rule that shaped every feature and every agent</span>
       <span class="cs__evidence-text">The AI proposes, a person decides, the system records who decided. It applies to the product (photo recognition needs a human confirmation) and to the build (no agent approves, no agent promotes, no agent touches production).</span>
@@ -444,19 +440,17 @@
   <div class="cs__section" id="s02" data-reveal>
     <span class="cs__section-num">02 The Team</span>
     <h2 class="cs__section-h">Human authority, orchestration, build, judgment. Eight agents and one independent verifier. The architecture is not what each one does. It is what each one is not allowed to touch.</h2>
-    <div class="cs__section-text">
-      <p>Each agent is a file under <code>.claude/agents/</code>: a mandate, a model, a boundary. Build agents run on the cheaper model. The three judgment agents run on the strongest one and <strong>prove failures, they never fix them</strong>.</p>
-    </div>
+    <div class="cs__section-text"><p>Each agent is a mandate file: what it does, which model it runs on, what it may not touch. Build agents run on the cheaper model; the three judgment agents run on the strongest one and prove failures, they never fix them.</p></div>
   </div>
 
   <div class="tm" id="team" data-reveal>
     <span class="tm__k">WHO IS WHO &#8212; CLICK A NODE</span>
-    <span class="tm__sub">authority flows down, evidence flows up. Eight agents in <code>.claude/agents/</code> plus one independent verifier, colour is the kind of power, not seniority</span>
+    <span class="tm__sub">authority flows down, evidence flows up. Eight agents plus one independent verifier, colour is the kind of power, not seniority</span>
     <div class="tm__tier"><span class="tm__tl">HUMAN AUTHORITY</span><div class="tm__nodes">
       <button class="nd nd--h" data-k="inigo">I&#209;IGO<i>decides, approves</i></button>
       <button class="nd nd--x" data-k="partners">TWO PARTNERS<i>sell, no repo authority</i></button>
     </div></div>
-    <div class="tm__link">&#8595; instructions, decisions by id and letter, /aprobar &#8593; evidence, PASS / FAIL</div>
+    <div class="tm__link">&#8595; instructions, decisions by id and letter, one approval &#8593; evidence, PASS / FAIL</div>
     <div class="tm__tier"><span class="tm__tl">ORCHESTRATION</span><div class="tm__nodes">
       <button class="nd nd--l on" data-k="lead">LEAD<i>Opus, integrates, agent 1 of 8</i></button>
       <button class="nd nd--l nd--o" data-k="orq">ORCHESTRATOR<i>Claude, separate session, verifies</i></button>
@@ -485,9 +479,7 @@
   <div class="cs__section" id="s03" data-reveal>
     <span class="cs__section-num">03 The Product</span>
     <h2 class="cs__section-h">A digital passport per car, garages that log every move, parts with custody, and an onboarding that accepts whatever the collector already has.</h2>
-    <div class="cs__section-text">
-      <p>The owner&#8217;s mental model is simple: <strong>my cars, where they are, what is on them, what paper proves it, and who touched what</strong>. The information architecture follows it literally. One collection holds garages; garages hold cars; a car carries its photos, documents, parts, maintenance and history; every change on any of them lands in one activity log with an author and a timestamp.</p>
-    </div>
+    <div class="cs__section-text"><p>The owner&#8217;s mental model: my cars, where they are, what is on them, what paper proves it, who touched what. The information architecture follows it literally, and every change lands in one activity log with an author and a timestamp.</p></div>
   </div>
 
   <div class="ia" data-reveal>
@@ -504,12 +496,7 @@
     <div class="ia__log">ACTIVITY LOG, every change, who, when, on what, exportable</div>
   </div>
 
-  <div class="cs__section-text" data-reveal style="margin-top:8px">
-    <p><strong>The passport.</strong> A collector&#8217;s problem is not storage, it is retrieval under pressure: an insurer, a buyer or a customs lawyer asks for one car&#8217;s proof and it lives in four places. So each car is one page with everything on it and one button to export the report. The gallery comes first because that is how collectors recognise their own cars; data, documents, parts and history are tabs below it.</p>
-    <p><strong>Garages and movements.</strong> A hundred cars across several cities means the most frequent question is &#8220;where is it now&#8221;. Garages are first class, a car always belongs to one, and moving cars is a batch action because cars travel to shows and workshops in groups. The garage card on the passport shows since when the car has been there.</p>
-    <p><strong>Parts and custody.</strong> Parts go missing between workshops because nobody records who has them. Each part has a status (in inventory, mounted, wanted) and a holder, and the activity log shows the hand-offs. That is the whole design: make the ambiguity visible.</p>
-    <p><strong>AI assisted onboarding.</strong> Collectors arrive with folders, photos and spreadsheets. The import accepts them as they are, one folder per car, and produces draft records. From photos the system suggests make, model, generation, body, colour and year range; from a plate photo it reads the VIN. <strong>Every suggestion is a draft until a person confirms it, and the log records who confirmed.</strong> The same rule that governs the agents governs the product.</p>
-  </div>
+  <div class="cs__section-text" data-reveal style="margin-top:8px"><p><strong>The passport.</strong> A collector&#8217;s problem is retrieval under pressure: an insurer asks for one car&#8217;s proof and it lives in four places. So each car is one page with everything on it and one button to export the report. The gallery comes first because that is how collectors recognise their cars.<br><br><strong>Garages and movements.</strong> With a hundred cars across cities the most frequent question is &#8220;where is it now&#8221;. Garages are first class, a car always belongs to one, and moving cars is a batch action.<br><br><strong>Parts with custody.</strong> A part is in a car, in a garage, or with someone. Lending and recovering leave a trail.<br><br><strong>Documents confirmed by a person.</strong> The AI reads a document and proposes; a person confirms; the record says who.</p></div>
 
   <div class="cs__screens" data-reveal>
     <div class="cs__screen"><img src="../img/acervo/passport-desktop.webp" loading="lazy" alt="Car passport in production: Ferrari 296 GTS gallery and report export" width="3016" height="1352"><span class="cs__screen-label">Passport / gallery, garage, documents, parts, history, one report export</span></div>
@@ -519,14 +506,14 @@
     <div class="cs__screen"><img src="../img/acervo/import.webp" loading="lazy" alt="Import my collection: drop folders, photos and spreadsheets" width="3016" height="1352"><span class="cs__screen-label">Import / folders, photos and spreadsheets, one folder per car</span></div>
     <div class="cs__screen"><img src="../img/acervo/cars-light.webp" loading="lazy" alt="Cars gallery in light mode" width="3004" height="1344"><span class="cs__screen-label">Light mode / the brand&#8217;s ivory canvas, same components</span></div>
   </div>
-  <p class="cs__img-cap">Production, November 2, 2026. The collection shown is my own test set; the first family collection is loading behind it.</p>
+  <p class="cs__img-cap">Production, November 2, 2026. My own test set; the first family collection loads behind it.</p>
 
   <div class="cs__mobile-pair" data-reveal>
     <div class="cs__screen"><img src="../img/acervo/car.webp" loading="lazy" alt="Car passport on mobile" width="540" height="1180"><span class="cs__screen-label">Passport</span></div>
     <div class="cs__screen"><img src="../img/acervo/garages.webp" loading="lazy" alt="Garages on mobile" width="534" height="1168"><span class="cs__screen-label">Garages</span></div>
     <div class="cs__screen"><img src="../img/acervo/parts.webp" loading="lazy" alt="Parts on mobile" width="532" height="1180"><span class="cs__screen-label">Parts &amp; custody</span></div>
   </div>
-  <p class="cs__img-cap">Mobile first and one-handed, for the person standing in the garage on a bad connection. Spanish (es-MX) throughout.</p>
+  <p class="cs__img-cap">Mobile first and one handed, for the person standing in the garage on a bad connection.</p>
 
   <p class="mg" data-reveal>PRODUCT OUTCOMES: what has been measured, where, and what has not been validated yet</p>
   <div class="cs__metrics" data-reveal style="margin-top:0">
@@ -550,13 +537,11 @@
   <div class="cs__section" id="s04" data-reveal>
     <span class="cs__section-num">04 The Brand</span>
     <h2 class="cs__section-h">Ink, ivory and a griffin. A brand built to feel like the paperwork of a serious house, not like software.</h2>
-    <div class="cs__section-text">
-      <p>I designed the identity before the first screen, because a collector decides in seconds whether a tool deserves his cars. The reference is ceremonial paper: ink on ivory, a double orange stripe as the only signal of action, a heraldic griffin holding a shield with the house initial, and a car drawn in the same engraved language as the emblem. Cormorant Garamond for everything the house says, Manrope for everything the system says. The brand lives in Figma as variables and components; the app and the landing consume the same tokens.</p>
-    </div>
+    <div class="cs__section-text"><p>I designed the identity before the first screen, because a collector decides in seconds whether a tool deserves his cars. The reference is ceremonial paper: ink on ivory, a double orange stripe as the only signal of action, a heraldic griffin with the house initial. Cormorant Garamond for the house, Manrope for the system. The brand lives in Figma as variables; the app, the landing and the PDF read the same tokens.</p></div>
   </div>
 
   <div class="cs__img cs__img--wide" data-reveal><img src="../img/acervo/brand/brand-slide.webp" alt="Acervo brand slide: griffin emblem, ACERVO wordmark, double orange stripe, GT ink illustration, typography note and the seven colour palette on ivory, with the griffin as a filigree" width="3200" height="1800" loading="lazy"></div>
-  <p class="cs__img-cap">Brand identity system v1.0, September 2026. Designed in Figma as a variable collection and a component library; this slide is built from those components, and the app, the landing and the PDF report read from the same tokens.</p>
+  <p class="cs__img-cap">Brand system v1.0, September 2026. Figma variables and components; app, landing and PDF read the same tokens.</p>
 
   <div class="brn" data-reveal>
     <div class="brn__i"><span class="brn__n">THE GRIFFIN</span><span class="brn__t">Guardian of treasure in heraldry. Drawn as an ink engraving so it prints on paper and renders at 16 px as an app icon. Ivory on dark, ink on light, never a third colour.</span></div>
@@ -582,9 +567,7 @@
   <div class="cs__section" id="s05" data-reveal>
     <span class="cs__section-num">05 How a Ticket Ships</span>
     <h2 class="cs__section-h">Eight steps, five lanes, one human gate. A worker never sees main, a decision is one id and one letter, and the lead may merge only with five green checks on the exact SHA.</h2>
-    <div class="cs__section-text">
-      <p>The process is the one I would run with a human team, made stricter because agents will happily report a template as a result. Every ticket carries a measurable acceptance criterion. Every delivery lists those criteria one by one as VERIFIED or IMPLEMENTED, with the PR, the SHA and the CI run id. Every open question comes back as a numbered decision I answer with a letter: <code>374-4 A</code>. Click a step.</p>
-    </div>
+    <div class="cs__section-text"><p>The process I would run with a human team, made stricter because agents will happily report a template as a result. Every ticket carries a measurable acceptance criterion; every delivery lists them as VERIFIED or IMPLEMENTED with the PR, the SHA and the run id; every open question comes back as a numbered decision I answer with a letter. Click a step.</p></div>
   </div>
 
   <div class="fl" id="flowTicket" data-reveal>
@@ -619,15 +602,13 @@
     <div class="fl__list"></div>
     <div class="fl__ins"><div><span class="fl__who"></span><span class="fl__h"></span><span class="fl__t"></span></div><div class="fl__nav"><button class="fl__btn" data-d="-1">&#8592; prev</button><button class="fl__btn" data-d="1">next &#8594;</button></div></div>
   </div>
-  <p class="cs__img-cap">One step needs a human: the decision. Everything else is agents bound by evidence they cannot fake: a run id, a SHA, a red suite when a policy is broken on purpose.</p>
+  <p class="cs__img-cap">One step needs a human: the decision. Everything else is agents bound by evidence they cannot fake.</p>
 
   <!-- 05: A promotion -->
   <div class="cs__section" id="s06" data-reveal>
     <span class="cs__section-num">06 How a Promotion Reaches Production</span>
-    <h2 class="cs__section-h">Main freezes, a pen test says PASS, every screen gets my visual PASS on staging, nine production queries are measured by a session that did not write the code, and then one human types /aprobar.</h2>
-    <div class="cs__section-text">
-      <p>Promotions are where an agent team is most dangerous, because everything looks done. So the lead cannot touch the promotion workflow at all, the security agent runs a full pen test on the exact candidate, and the production measurements are taken by a separate session that reports back what it actually saw. <strong>A template with placeholders is not a measurement.</strong> Fifteen numbered releases have gone through this in seven weeks.</p>
-    </div>
+    <h2 class="cs__section-h">Main freezes, a pen test says PASS, every screen gets my visual PASS on staging, nine production queries are measured by a session that did not write the code, and then one human types the approval.</h2>
+    <div class="cs__section-text"><p>Promotions are where an agent team is most dangerous, because everything looks done. So the lead cannot touch the promotion workflow, the security agent pen tests the exact candidate, and the production measurements are taken by a session that did not write the code. Fifteen releases have gone through this in seven weeks.</p></div>
   </div>
 
   <div class="fl" id="flowPromo" data-reveal>
@@ -645,11 +626,11 @@
       <path class="cx" d="M766 207 L766 187"/>
       <path class="cx" d="M846 167 L876 167 L876 287 L906 287"/>
       <path class="cx" d="M1046 287 L1076 287 L1076 107 L1106 107" style="marker-end:none"/>
-      <g class="st" tabindex="0" role="button" data-i="0"><rect x="96" y="27" width="150" height="40" rx="6"/><text x="106" y="43" class="num">01</text><text x="106" y="58">Pen test, mode 2</text></g>
+      <g class="st" tabindex="0" role="button" data-i="0"><rect x="96" y="27" width="150" height="40" rx="6"/><text x="106" y="43" class="num">01</text><text x="106" y="58">Full pen test</text></g>
       <g class="st" tabindex="0" role="button" data-i="1"><rect x="306" y="87" width="140" height="40" rx="6"/><text x="316" y="103" class="num">02</text><text x="316" y="118">Candidate SHA</text></g>
       <g class="st st--s" tabindex="0" role="button" data-i="2"><rect x="506" y="147" width="140" height="40" rx="6"/><text x="516" y="163" class="num">03</text><text x="516" y="178">Main frozen</text></g>
-      <g class="st st--s" tabindex="0" role="button" data-i="3"><rect x="706" y="207" width="140" height="40" rx="6"/><text x="716" y="223" class="num">04</text><text x="716" y="238">PASS + P1 to P9</text></g>
-      <g class="st st--g" tabindex="0" role="button" data-i="4"><rect x="706" y="147" width="140" height="40" rx="6"/><text x="716" y="163" class="num">05</text><text x="716" y="178">/aprobar</text></g>
+      <g class="st st--s" tabindex="0" role="button" data-i="3"><rect x="706" y="207" width="140" height="40" rx="6"/><text x="716" y="223" class="num">04</text><text x="716" y="238">PASS + 9 checks</text></g>
+      <g class="st st--g" tabindex="0" role="button" data-i="4"><rect x="706" y="147" width="140" height="40" rx="6"/><text x="716" y="163" class="num">05</text><text x="716" y="178">Approve</text></g>
       <g class="st" tabindex="0" role="button" data-i="5"><rect x="906" y="267" width="140" height="40" rx="6"/><text x="916" y="283" class="num">06</text><text x="916" y="298">Migrate, deploy</text></g>
       <g class="st" tabindex="0" role="button" data-i="6"><rect x="1046" y="87" width="140" height="40" rx="6"/><text x="1056" y="103" class="num">07</text><text x="1056" y="118">Close, unfreeze</text></g>
     </svg>
@@ -659,7 +640,7 @@
 
   <div class="cs__evidence" data-reveal>
     <span class="cs__evidence-label">When the gate said no</span>
-    <span class="cs__evidence-text">On October 15 the pen test of candidate 86254f3 came back FAIL on a rule outside the import. Instead of delaying the whole promotion, the automatic photo reading on car registration went behind a feature flag born in false. Production moved on time; the risky surface stayed dark until it passed.</span>
+    <span class="cs__evidence-text">On October 15 the pen test came back FAIL on a rule outside the feature being promoted. Instead of delaying the release, the risky surface went behind a feature flag born in false. Production moved on time; the flag opened once it passed.</span>
   </div>
 
   <div class="tl" data-reveal>
@@ -670,7 +651,7 @@
       <li class="tl__i"><span class="tl__t">16:56</span><span class="tl__w">CI</span><span class="tl__h">14 check runs start on the final commit</span><span class="tl__d">lint, typecheck, tests, mail confirmations, secret scan, e2e in three shards for mobile and three for desktop.</span></li>
       <li class="tl__i tl__i--j"><span class="tl__t">17:20</span><span class="tl__w">SECURITY</span><span class="tl__h">Pen test of the set: PASS</span><span class="tl__d">Four isolation policies broken on purpose, suite red each time and restored; the previous release&#8217;s code run against the migrated base, 5,917 database assertions.</span></li>
       <li class="tl__i"><span class="tl__t">17:20</span><span class="tl__w">LEAD</span><span class="tl__h">Merged, 58 seconds after the last check went green</span><span class="tl__d">A merge changes main. It changes nothing a user can reach.</span></li>
-      <li class="tl__i tl__i--h"><span class="tl__t">19:50</span><span class="tl__w">I&#209;IGO</span><span class="tl__h">/aprobar from the approver account</span><span class="tl__d">After the visual PASS on staging and the nine production queries measured by the orchestrator.</span></li>
+      <li class="tl__i tl__i--h"><span class="tl__t">19:50</span><span class="tl__w">I&#209;IGO</span><span class="tl__h">Approval from the approver account</span><span class="tl__d">After the visual PASS on staging and the nine production queries measured by the orchestrator.</span></li>
       <li class="tl__i"><span class="tl__t">19:50</span><span class="tl__w">WORKFLOW</span><span class="tl__h">Promotion run, 4 min 2 s</span><span class="tl__d">The eight steps below, each one halting the run if it fails.</span></li>
       <li class="tl__i tl__i--g"><span class="tl__t">19:54</span><span class="tl__w">PRODUCTION</span><span class="tl__h">Served commit verified: release 15</span><span class="tl__d">The page is requested on its own domain and must answer with that exact commit. Only now is it a release.</span></li>
     </ol>
@@ -691,9 +672,9 @@
 
   <div class="cs__screens cs__screens--ev" data-reveal>
     <div class="cs__screen"><img src="../img/acervo/evidence/gh-pr502-checks.webp" loading="lazy" alt="GitHub pull request 502 checks: lint, typecheck, tests, mail confirmations, gitleaks and eight e2e jobs, all green" width="966" height="960"><span class="cs__screen-label">GitHub / PR 502, the 14 checks on the final commit</span></div>
-    <div class="cs__screen"><img src="../img/acervo/evidence/gh-promotion-run.webp" loading="lazy" alt="GitHub Actions promotion job: eight numbered steps from verifying the approved commit to verifying the served commit, 4 minutes 2 seconds" width="1568" height="779"><span class="cs__screen-label">GitHub Actions / the promotion job of release 15, step names as written in Spanish</span></div>
+    <div class="cs__screen"><svg viewBox="0 0 580 400" role="img" aria-label="Promotion workflow of release 15: eight steps, all green, 4 minutes 2 seconds" style="width:100%;height:auto;display:block;font-family:var(--m)"><rect width="580" height="400" fill="#0d1117"/><text x="12" y="20" font-size="13" fill="#58a6ff" font-weight="600">promotion</text><text x="90" y="20" font-size="11" fill="#8b949e">succeeded in 4m 2s</text><g transform="translate(0,40)"><circle cx="22" cy="12" r="8" fill="rgba(34,197,94,.18)" stroke="#22c55e" stroke-width="1.4"/><path d="M18 12l3 3 5-6" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="44" y="16" font-size="12.5" fill="#e6edf3">00 &#160;Approved commit is what is on disk</text><text x="560" y="16" font-size="11" fill="#8b949e" text-anchor="end">0s</text><line x1="12" y1="30" x2="560" y2="30" stroke="rgba(255,255,255,.07)"/></g><g transform="translate(0,84)"><circle cx="22" cy="12" r="8" fill="rgba(34,197,94,.18)" stroke="#22c55e" stroke-width="1.4"/><path d="M18 12l3 3 5-6" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="44" y="16" font-size="12.5" fill="#e6edf3">01 &#160;It exists and is on main</text><text x="560" y="16" font-size="11" fill="#8b949e" text-anchor="end">0s</text><line x1="12" y1="30" x2="560" y2="30" stroke="rgba(255,255,255,.07)"/></g><g transform="translate(0,128)"><circle cx="22" cy="12" r="8" fill="rgba(34,197,94,.18)" stroke="#22c55e" stroke-width="1.4"/><path d="M18 12l3 3 5-6" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="44" y="16" font-size="12.5" fill="#e6edf3">02 &#160;Five required checks green on that commit</text><text x="560" y="16" font-size="11" fill="#8b949e" text-anchor="end">1s</text><line x1="12" y1="30" x2="560" y2="30" stroke="rgba(255,255,255,.07)"/></g><g transform="translate(0,172)"><circle cx="22" cy="12" r="8" fill="rgba(34,197,94,.18)" stroke="#22c55e" stroke-width="1.4"/><path d="M18 12l3 3 5-6" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="44" y="16" font-size="12.5" fill="#e6edf3">03 &#160;Descends from what is served today</text><text x="560" y="16" font-size="11" fill="#8b949e" text-anchor="end">0s</text><line x1="12" y1="30" x2="560" y2="30" stroke="rgba(255,255,255,.07)"/></g><g transform="translate(0,216)"><circle cx="22" cy="12" r="8" fill="rgba(34,197,94,.18)" stroke="#22c55e" stroke-width="1.4"/><path d="M18 12l3 3 5-6" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="44" y="16" font-size="12.5" fill="#e6edf3">04 &#160;Build, before migrating</text><text x="560" y="16" font-size="11" fill="#8b949e" text-anchor="end">3m 14s</text><line x1="12" y1="30" x2="560" y2="30" stroke="rgba(255,255,255,.07)"/></g><g transform="translate(0,260)"><circle cx="22" cy="12" r="8" fill="rgba(34,197,94,.18)" stroke="#22c55e" stroke-width="1.4"/><path d="M18 12l3 3 5-6" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="44" y="16" font-size="12.5" fill="#e6edf3">05 &#160;What is applied, what will apply, migrate, final state</text><text x="560" y="16" font-size="11" fill="#8b949e" text-anchor="end">5s</text><line x1="12" y1="30" x2="560" y2="30" stroke="rgba(255,255,255,.07)"/></g><g transform="translate(0,304)"><circle cx="22" cy="12" r="8" fill="rgba(34,197,94,.18)" stroke="#22c55e" stroke-width="1.4"/><path d="M18 12l3 3 5-6" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="44" y="16" font-size="12.5" fill="#e6edf3">06 &#160;Deploy what was built</text><text x="560" y="16" font-size="11" fill="#8b949e" text-anchor="end">18s</text><line x1="12" y1="30" x2="560" y2="30" stroke="rgba(255,255,255,.07)"/></g><g transform="translate(0,348)"><circle cx="22" cy="12" r="8" fill="rgba(34,197,94,.18)" stroke="#22c55e" stroke-width="1.4"/><path d="M18 12l3 3 5-6" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="44" y="16" font-size="12.5" fill="#e6edf3">07 &#160;Fetch the domain, confirm it serves that commit</text><text x="560" y="16" font-size="11" fill="#8b949e" text-anchor="end">2s</text><line x1="12" y1="30" x2="560" y2="30" stroke="rgba(255,255,255,.07)"/></g></svg><span class="cs__screen-label">GitHub Actions / the promotion job of release 15, steps redrawn from the run</span></div>
   </div>
-  <p class="cs__img-cap">Left: what the lead needed before merging. Right: what the workflow checks before anything reaches production, in order: approved commit on disk, exists on main, five checks green on it, descends from what is served, build, migrate, deploy, verify the served commit. Captured from the repository on November 3.</p>
+  <p class="cs__img-cap">Left: what the lead needed before merging. Right: what the workflow checks before anything reaches production.</p>
 
   <div class="tri" data-reveal>
     <div class="tri__i"><span class="tri__n">445</span><span class="tri__h">MERGES</span><span class="tri__t">A pull request accepted into main. Code, not a release. Done by the lead with five checks green on the exact commit.</span></div>
@@ -707,9 +688,7 @@
   <div class="cs__section" id="s07" data-reveal>
     <span class="cs__section-num">07 Under the Hood</span>
     <h2 class="cs__section-h">Four zones and one road into production. Figma feeds the code, every worker gets its own database, staging is a real environment, and the only way to deploy is a workflow nobody in the build can edit.</h2>
-    <div class="cs__section-text">
-      <p>Nothing exotic on purpose: the team was new, the stack should not be. Next.js on Vercel, Supabase for Postgres with row level security, Auth and Storage, the Claude API for recognition and document extraction, Sentry for errors. What is unusual is how the pieces are wired so that an agent team cannot shortcut them.</p>
-    </div>
+    <div class="cs__section-text"><p>Nothing exotic on purpose: the team was new, the stack should not be. Next.js on Vercel, Supabase for Postgres with row level security, Auth and Storage, the Claude API for recognition and extraction, Sentry for errors. What is unusual is how the pieces are wired so that an agent team cannot shortcut them.</p></div>
   </div>
 
   <div class="wf-swim" data-reveal>
@@ -737,7 +716,7 @@
 <rect class="bx bx--c" x="670" y="336" width="290" height="58" rx="8"/><text class="bt" x="684" y="360">SENTRY / STAGING</text><text class="bs" x="684" y="378">caught the silent IndexedDB failure</text>
 <g class="gate"><rect class="bx" x="670" y="420" width="290" height="58" rx="8" stroke="rgba(34,197,94,.6)"/><text class="bt" x="684" y="444" fill="#bbf7d0">VISUAL PASS / I&#209;IGO</text><text class="bs" x="684" y="462">every provisional screen, on a real phone</text></g>
 <!-- production -->
-<g class="gate"><rect class="bx" x="1020" y="96" width="370" height="58" rx="8" stroke="rgba(34,197,94,.6)"/><text class="bt" x="1034" y="120" fill="#bbf7d0">PROMOTION WORKFLOW, /aprobar</text><text class="bs" x="1034" y="138">approver account only / migrate, then deploy</text></g>
+<g class="gate"><rect class="bx" x="1020" y="96" width="370" height="58" rx="8" stroke="rgba(34,197,94,.6)"/><text class="bt" x="1034" y="120" fill="#bbf7d0">PROMOTION WORKFLOW, one approval</text><text class="bs" x="1034" y="138">approver account only / migrate, then deploy</text></g>
 <rect class="bx bx--v" x="1020" y="176" width="178" height="58" rx="8"/><text class="bt" x="1034" y="200">VERCEL / PROD</text><text class="bs" x="1034" y="218">Next.js, served SHA checked</text>
 <rect class="bx bx--s" x="1212" y="176" width="178" height="58" rx="8"/><text class="bt" x="1226" y="200">SUPABASE / PROD</text><text class="bs" x="1226" y="218">Postgres + RLS, 99 migrations</text>
 <rect class="bx bx--c" x="1020" y="256" width="178" height="58" rx="8"/><text class="bt" x="1034" y="280">EDGE</text><text class="bs" x="1034" y="298">DNS, landing, captcha</text>
@@ -756,20 +735,20 @@
 <path class="ar" d="M465 420 L465 330" style="marker-end:none;stroke-dasharray:3 3"/><path class="ar" d="M260 449 L320 449" style="stroke-dasharray:3 3"/><text class="al" x="263" y="440">mirror</text>
 </svg>
   </div>
-  <p class="cs__img-cap">Green boxes are where a human acts: the visual PASS on staging and the approval. The lead agent holds credentials for the first two zones only.</p>
+  <p class="cs__img-cap">Green is where a human acts. The lead holds credentials for the first two zones only.</p>
 
   <div class="mcs mcs--3" data-reveal>
     <div class="mcs__i"><span class="mcs__n">FIGMA &#8594; CODE</span><span class="mcs__t">A published token library and a 26 component kit, same names in Figma and in code. The design agent owns the library and reviews every PR that has a screen.</span></div>
-    <div class="mcs__i"><span class="mcs__n">ISOLATED WORKERS</span><span class="mcs__t">Each ticket runs in its own git worktree and, if it touches data, its own local Supabase stack. Workers never see the main checkout and never run linked to a remote database.</span></div>
-    <div class="mcs__i"><span class="mcs__n">ONE ROAD IN</span><span class="mcs__t">Production changes only through the promotion workflow, triggered by an approval from a dedicated account: migration first, deploy second, served SHA verified after. The lead holds no production credentials and cannot edit the workflow.</span></div>
+    <div class="mcs__i"><span class="mcs__n">ISOLATED WORKERS</span><span class="mcs__t">Each ticket runs in its own worktree and, if it touches data, its own local database. Workers never see the main checkout or a remote database.</span></div>
+    <div class="mcs__i"><span class="mcs__n">ONE ROAD IN</span><span class="mcs__t">Production changes only through the promotion workflow, on a human approval: migrate, deploy, verify the served commit. The lead holds no production credentials and cannot edit the workflow.</span></div>
   </div>
 
   <details class="cs__more" data-reveal>
     <summary>Technical notes: what each boundary is made of</summary>
     <div class="cs__more-b">
-      <p><b>Staging is real.</b> Transactional mail, second factor, captcha, error reporting and the migration workflow exist in staging exactly as in production. Every screen gets a human PASS there, on a real phone, before it is a release candidate.</p>
-      <p><b>Migrations are append only.</b> Every migration already applied in production is frozen and checked by hash; schema changes are new, backward compatible migrations tested on staging first. Adding comes first, removing waits for a later promotion.</p>
-      <p><b>The control is re-verified, not assumed.</b> Three mechanisms I first trusted turned out not to be barriers: a mandatory environment reviewer the GitHub plan does not include, an id stored in a variable the lead&#8217;s own CLI could change, and a hosting session that could deploy around the workflow. Each was replaced by something the lead cannot edit, and the question that settled every case was never whether a mechanism sounds reasonable, but who can change it.</p>
+      <p><b>Staging is real.</b> Everything that exists in production exists in staging, and every screen gets a human PASS there, on a real phone, before it is a release candidate.</p>
+      <p><b>Migrations are append only.</b> Applied migrations are frozen and checked by hash; changes are new, backward compatible migrations tested on staging first. Adding comes first, removing waits for a later release.</p>
+      <p><b>The control is re-verified, not assumed.</b> Three mechanisms I first trusted turned out not to be barriers, because the lead could change them. Each was replaced by something it cannot edit. The question that settled every case was not whether a mechanism sounds reasonable, but who can change it.</p>
     </div>
   </details>
 
@@ -777,9 +756,7 @@
   <div class="cs__section" id="s08" data-reveal>
     <span class="cs__section-num">08 Everything Has a Place</span>
     <h2 class="cs__section-h">A collection is the unit of isolation. Every business row carries it, every cross reference is checked against it, and every write leaves a line that says who did it.</h2>
-    <div class="cs__section-text">
-      <p>The model is small on purpose: a car is a passport, a garage is where it lives, a part has custody, a document is confirmed by a person. What the model refuses to do matters as much. The AI never writes into an entity, identifiers are encrypted before they reach the base, and identity documents are not stored anywhere.</p>
-    </div>
+    <div class="cs__section-text"><p>The model is small on purpose: a car is a passport, a garage is where it lives, a part has custody, a document is confirmed by a person. What it refuses to do matters as much: the AI never writes into an entity, identifiers are encrypted before they reach the base, identity documents are never stored.</p></div>
   </div>
 
   <div class="wf-swim" data-reveal>
@@ -829,18 +806,18 @@
 <path class="ar ar--k" d="M1070 460 L1030 460"/><text class="al al--k" x="1086" y="540">every business write lands here, from inside the base</text>
 </svg>
   </div>
-  <p class="cs__img-cap">Teal is the collection&#8217;s data, violet is people and access, grey is global, amber is what the AI may touch, green is the record. Tap to expand.</p>
+  <p class="cs__img-cap">Teal is the collection&#8217;s data, violet is people, grey is global, amber is what the AI may touch, green is the record. Tap to expand.</p>
 
   <div class="cs__screens cs__screens--ev cs__screens--ev2" data-reveal>
     <div class="cs__screen"><img src="../img/acervo/evidence/supabase-vehicles-schema.webp" loading="lazy" alt="Supabase schema visualizer: the vehicles table with vin_encrypted, vin_last4, plate_encrypted, plate_last4, status, visibility, location_since and status_since, linked to locations" width="1060" height="1070"><span class="cs__screen-label">Supabase / the vehicles table in the staging schema</span></div>
     <div class="cs__screen"><img src="../img/acervo/evidence/supabase-vehicles-policies.webp" loading="lazy" alt="Supabase policies for the vehicles table: RLS enabled, three policies, insert, select and update, no delete" width="1100" height="445"><span class="cs__screen-label">Supabase / row level security on vehicles: insert, select, update. No delete</span></div>
   </div>
-  <p class="cs__img-cap">The same entity, as the base sees it. VIN and plate are stored as encrypted bytes plus their last four characters; the blind index is a separate column. Where a car lives and what is happening to it are two columns with two dates. And there is no delete policy: a car leaves the collection by a dated retirement, never by a row disappearing. Staging schema, identical to production by migration.</p>
+  <p class="cs__img-cap">VIN and plate stored as encrypted bytes plus their last four characters. No delete policy: a car leaves by a dated retirement, never by a row disappearing.</p>
 
   <div class="mcs mcs--3" data-reveal>
-    <div class="mcs__i"><span class="mcs__n">ISOLATION IN THE BASE, NOT THE UI</span><span class="mcs__t">Every business table has a collection id and a row level policy. A foreign key between two such tables is checked by a trigger so a row can never point at another collection, and a lint rule turns red when a new key arrives without one.</span></div>
-    <div class="mcs__i"><span class="mcs__n">THE AI PROPOSES, A PERSON DISPOSES</span><span class="mcs__t">Recognition and document extraction write only to proposals. Accepting one is a single transaction that applies the value and records who decided. No code path writes a pending proposal into a car, a part or a document, and a test proves it.</span></div>
-    <div class="mcs__i"><span class="mcs__n">WHAT IS NOT THERE</span><span class="mcs__t">No identity documents, in any table or bucket. Legal name and phone live in a separate schema the browser never reaches. VIN and plate are encrypted in the application before the base and cannot be searched; a blind index only answers &#8220;do I already have this car&#8221;.</span></div>
+    <div class="mcs__i"><span class="mcs__n">ISOLATION IN THE BASE, NOT THE UI</span><span class="mcs__t">Every business table has a collection id and a row level policy. A foreign key between two such tables is checked so a row can never point at another collection.</span></div>
+    <div class="mcs__i"><span class="mcs__n">THE AI PROPOSES, A PERSON DISPOSES</span><span class="mcs__t">Recognition and document extraction write only to proposals. Accepting one is a single transaction that applies the value and records who decided, and a test proves no other path exists.</span></div>
+    <div class="mcs__i"><span class="mcs__n">WHAT IS NOT THERE</span><span class="mcs__t">No identity documents, anywhere. Personal data lives in a schema the browser never reaches. VIN and plate are encrypted before the base and cannot be searched; a blind index only answers &#8220;do I already have this car&#8221;.</span></div>
   </div>
 
   <div class="cs__metrics" data-reveal style="margin-top:16px">
@@ -854,9 +831,7 @@
   <div class="cs__section" id="s09" data-reveal>
     <span class="cs__section-num">09 From Decision to Deployment</span>
     <h2 class="cs__section-h">Forty tickets shipped a week by one person, and every one of them through the same six checks, the same review, and the same workflow into production. The numbers below are read from GitHub, not remembered.</h2>
-    <div class="cs__section-text">
-      <p>Week one was infrastructure. Day 17 was the first production release. From week four the rhythm settles at roughly forty tickets a week, with a security review or a pen test behind most of them. This is engineering throughput, not product traction, and the gap between opened and shipped is not backlog: it is the judgment agents generating the next tickets from what they find.</p>
-    </div>
+    <div class="cs__section-text"><p>Week one was infrastructure. Day 17 was the first production release. From week four, roughly forty tickets a week, most with a security review behind them. This is engineering throughput, not product traction.</p></div>
   </div>
 
   <div class="ch" id="chart" data-reveal>
@@ -898,24 +873,22 @@
     <span class="pt__k">PROMOTIONS TO PRODUCTION / EVERY RUN OF THE WORKFLOW, FROM THE GITHUB API</span>
     <div class="pt__strip" role="img" aria-label="25 promotion runs between October 1 and November 2: 20 succeeded, 5 failed, 15 numbered releases; the first attempt failed and production went live on October 3"></div>
     <div class="pt__lg"><span><i class="pt__d pt__d--g"></i>release served, SHA verified</span><span><i class="pt__d pt__d--r"></i>run failed, nothing promoted</span></div>
-    <span class="pt__sub">15 numbered releases, 19 distinct commits served, 20 green runs (one commit promoted twice while fixing the domain). Five failures: the very first run on October 1 died on a missing workflow permission, two more on October 3 while the domain still served a 404, one retry, and one on a configuration change. A failed promotion changes nothing in production: migration and deploy both wait for the previous step&#8217;s identifier.</span>
+    <span class="pt__sub">15 numbered releases, 19 distinct commits served, 20 green runs, 5 failed. A failed promotion changes nothing in production: every step waits for the previous one&#8217;s identifier.</span>
   </div>
 
   <div class="cs__img cs__img--wide cs__img--ev" data-reveal><img src="../img/acervo/evidence/vercel-prod-deployments.webp" loading="lazy" alt="Vercel production deployments list: nine releases, each Ready, each with its commit hash, from October 19 to November 2" width="1568" height="558"></div>
-  <p class="cs__img-cap">The hosting side of the same story: the production project&#8217;s deployment list, read on November 3. Every row is one promoted commit, and the hashes match the promotion runs above (d59445b is release 15, 5f3d15d release 14). Commit titles are the repository&#8217;s own, in Spanish.</p>
+  <p class="cs__img-cap">The production deployment list, read on November 3. Every row is one promoted commit; the hashes match the promotion runs above.</p>
 
   <div class="cs__evidence" data-reveal>
     <span class="cs__evidence-label">Where the numbers come from</span>
-    <span class="cs__evidence-text">Pull requests, CI runs and promotion runs: the GitHub REST API for the repository, read on November 3, 2026. Tickets opened and shipped: the task board, counted by week of creation. Tests: counted in the repository (vitest files, pgTAP plans, Playwright specs). Screenshots: GitHub, the hosting dashboard and the staging database console, captured on November 3 and cropped. What I do not claim: the production database&#8217;s applied migration count, which I did not read directly.</span>
+    <span class="cs__evidence-text">Pull requests, CI runs and promotion runs: the GitHub API, read on November 3, 2026. Tickets: the task board, by week. Tests: counted in the repository. Screenshots: GitHub, the hosting dashboard and the staging database console. What I do not claim: anything I did not read directly.</span>
   </div>
 
   <!-- 10: Trust -->
   <div class="cs__section" id="s10" data-reveal>
     <span class="cs__section-num">10 Trust Is an Architectural Decision</span>
     <h2 class="cs__section-h">The hardest part was not technical. It was telling the difference between something that looks verified and something that is. Seven times a green check proved nothing, and each time it came through a different door.</h2>
-    <div class="cs__section-text">
-      <p>I asked the lead agent, on day 48, what the biggest challenge of the whole build had been. Its answer is the same lesson the human gates exist for. Every false signal looks exactly like a good one, and the result you most want to believe is the one that says you are done.</p>
-    </div>
+    <div class="cs__section-text"><p>On day 48 I asked the lead agent what the hardest part of the build had been. Its answer is the lesson the human gates exist for: every false signal looks exactly like a good one.</p></div>
   </div>
 
   <div class="cs__quote" data-reveal>
@@ -984,23 +957,23 @@
     </div>
     <div class="cs__reflection">
       <span class="cs__reflection-h">What got harder once implementation started</span>
-      <span class="cs__reflection-text">Deciding what a word means. &#8220;Retired&#8221; is not a status, it is a date on the row and the car keeps its status. &#8220;Where a car lives&#8221; and &#8220;what is happening to it&#8221; are two columns with two dates, because a car can belong to one city and be in another. Half the migrations are a product definition written in SQL, and I could not have written them as a PM handing a spec to someone else.</span>
+      <span class="cs__reflection-text">&#8220;Retired&#8221; is not a status, it is a date on the row. &#8220;Where a car lives&#8221; and &#8220;what is happening to it&#8221; are two columns with two dates. Half the migrations are a product definition written in SQL, and I could not have written them handing a spec to someone else.</span>
     </div>
     <div class="cs__reflection">
       <span class="cs__reflection-h">What surprised me</span>
-      <span class="cs__reflection-text">The orchestrator role was not in the original design. It appeared on the day the lead passed a query template off as a production measurement. Separating who runs the check from who wrote the code is the oldest rule in engineering, and it applies to agents harder than to people, because an agent&#8217;s false green is indistinguishable from a real one.</span>
+      <span class="cs__reflection-text">The orchestrator role appeared the day the lead passed a query template off as a production measurement. Separating who runs the check from who wrote the code applies to agents harder than to people: an agent&#8217;s false green is indistinguishable from a real one.</span>
     </div>
     <div class="cs__reflection" style="border-color:var(--dn);background:var(--dng)">
       <span class="cs__reflection-h" style="color:var(--dn)">What failed</span>
-      <span class="cs__reflection-text">The first photo upload queue failed silently. On my phone, registering a car took 27 seconds and the UI showed three photos uploaded; Sentry showed an IndexedDB transaction error and zero photos persisted. The agents had written the happy path and tested it on desktop. The ticket stayed open until a correction fixed it and the gate was re-measured on a real phone with the network cut.</span>
+      <span class="cs__reflection-text">The first photo upload queue failed silently: the UI showed three photos uploaded, Sentry showed zero persisted. The agents had tested the happy path on desktop. The ticket stayed open until the gate was re-measured on a real phone with the network cut.</span>
     </div>
     <div class="cs__reflection cs__reflection--close">
       <span class="cs__reflection-h">What it changed about how I work</span>
-      <span class="cs__reflection-text">I no longer write a spec and hand it over. The spec is the migration, the policy and the test, and the conversation with the team is a numbered question with a letter for an answer. Product judgment did not change. What changed is that the distance between a decision and a shipped feature is now a few hours, and that every one of those hours leaves a line someone else can read.</span>
+      <span class="cs__reflection-text">I no longer write a spec and hand it over. The spec is the migration, the policy and the test; the conversation is a numbered question with a letter for an answer. The judgment did not change. The distance from decision to shipped feature is now hours, and every hour leaves a line someone else can read.</span>
     </div>
     <div class="cs__reflection">
       <span class="cs__reflection-h">What is still imperfect</span>
-      <span class="cs__reflection-text">A few invariants still live only in server actions and not yet in the base; the tests carry them as pending, not green. The e2e suite is not mandatory in the ruleset. And I would fix the brand and the domain before the first screen: two renames during the build touched environment names, mail templates and copy.</span>
+      <span class="cs__reflection-text">A few invariants still live only in server actions, carried as pending tests, not green. The e2e suite is not mandatory in the ruleset. And I would fix the brand and the domain before the first screen: two renames touched environment names, mail templates and copy.</span>
     </div>
   </div>
 
@@ -1086,7 +1059,7 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
 /* ---- team map ---- */
 (function(){
   const T={
-    inigo:{r:"Founder. Product, design, scope, money, security. Holds both human gates.",d:"Decides every open question by id and letter. Approves every release with the <code>/aprobar</code> command. Publishes in Figma, gives the visual PASS on staging, does the founder actions (panels, billing, advisors).",n:"Code. Decisions arrive as <code>374-4 A</code>, never as a pull request."},
+    inigo:{r:"Founder. Product, design, scope, money, security. Holds both human gates.",d:"Decides every open question by id and letter. Approves every release with a single command. Publishes in Figma, gives the visual PASS on staging, does the founder actions (panels, billing, advisors).",n:"Code. Decisions arrive as <code>374-4 A</code>, never as a pull request."},
     orq:{r:"Independent verifier. A separate Claude session with its own context, not one of the eight agents.",d:"Runs the read-only queries in production, measures after a promotion, relays Iñigo's instructions. Corrects the lead when a template is passed off as a measurement.",n:"Code, the repo, the build. It never shares context with the lead, which is the point."},
     partners:{r:"Sales, growth, collector network, field knowledge, the first real collection.",d:"Bring collectors and requests. Their requests enter the system as tickets, like everyone else's.",n:"The repository. No authority over it at all."},
     lead:{r:"The engineering manager. Opus, main session. One of the eight agents.",d:"Decomposes tickets, launches workers in their own worktrees, integrates, merges with the five checks green on the exact SHA, prepares promotions. Keeps <code>docs/state.md</code>, <code>docs/decisions/</code> and Notion in sync.",n:"the promotion workflow or any production flow. No Vercel credentials. No production data."},
@@ -1096,7 +1069,7 @@ svglb.addEventListener('click',closeSvgLb);document.addEventListener('keydown',f
     iadocs:{r:"Document AI specialist. Sonnet.",d:"Extraction prompts, schemas, evaluation against 30 synthetic documents.",n:"The interface."},
     diseno:{r:"Design authority. Opus.",d:"Flows, states and copy before anything is built. Owns the Figma component library. Design review of every PR with a screen.",n:"Code. It corrects, it does not invent: a missing value is escalated, never guessed."},
     revisor:{r:"Code reviewer. Opus.",d:"Reviews every PR before Iñigo sees it and returns a list of concrete failures.",n:"Style and opinions."},
-    seguridad:{r:"Security. Opus. Two modes.",d:"Mode 1 reviews PRs touching migrations, Auth, Storage, Server Actions or AI. Mode 2 pen tests the whole candidate before each promotion. It demonstrates failures.",n:"Fixing anything. Production, panels, Auth, merges."}
+    seguridad:{r:"Security. Strongest model. Two modes.",d:"Mode 1 reviews PRs touching migrations, Auth, Storage, Server Actions or AI. The full mode pen tests the whole candidate before each promotion. It demonstrates failures.",n:"Fixing anything. Production, panels, Auth, merges."}
   };
   const root=document.getElementById("team");if(!root)return;
   const R=document.getElementById("tmRole"),D=document.getElementById("tmDoes"),N=document.getElementById("tmNever");
@@ -1118,11 +1091,11 @@ const FLOWS={
     {who:"CI",h:"Main is verified by run id",t:"The lead waits for main's CI by its run id. With a migration, it checks in the staging migration log that it applied. Only then the Notion row goes to Done."}
   ],
   flowPromo:[
-    {who:"SECURITY, MODE 2",h:"Pen test of the whole, on the last commit with code",t:"It has to bring the break-a-policy checks and the previous-code proof with production code, the nine pre-promotion queries P1 to P9, and the rollback query R1."},
+    {who:"SECURITY, FULL PEN TEST",h:"Pen test of the whole, on the last commit with code",t:"It has to bring the break-a-policy checks and the previous-code proof with production code, nine pre-promotion checks and one rollback check."},
     {who:"LEAD",h:"A docs PR carries the report and the state",t:"Its merge commit is the candidate SHA. Everything that will be promoted is now one hash you can point at."},
     {who:"IÑIGO, ORDER",h:"The promotion issue freezes main",t:"The <code>Promover &lt;sha&gt;</code> issue (promote) is opened only on Iñigo's order. While it is open, nothing merges."},
-    {who:"ORCHESTRATOR, conditional",h:"Nine queries run in production by someone who is not the lead",t:"Before approval: the set in PASS, the migration applied in staging, Iñigo's visual PASS on every provisional screen, the Supabase advisors clean, and P1 to P9 executed in production by the orchestrator. Only results actually seen count: a template or a block with placeholders is not a measurement."},
-    {who:"IÑIGO, HUMAN GATE",h:"/aprobar",t:"One comment from the approver account. It is the only moment in the whole system where a human presses the button, and it is the only button there is."},
+    {who:"ORCHESTRATOR, conditional",h:"Nine queries run in production by someone who is not the lead",t:"Before approval: the set in PASS, the migration applied in staging, Iñigo's visual PASS on every provisional screen, the Supabase advisors clean, and the nine checks executed in production by the orchestrator. Only results actually seen count: a template or a block with placeholders is not a measurement."},
+    {who:"IÑIGO, HUMAN GATE",h:"The approval",t:"One comment from the approver account. It is the only moment in the whole system where a human presses the button, and it is the only button there is."},
     {who:"PROMOTION WORKFLOW",h:"Migrate first, then deploy",t:"The workflow applies the migration to production and only then deploys the build. The lead has no credentials for any of it."},
     {who:"LEAD + ORCHESTRATOR",h:"Close, measure again, unfreeze",t:"The served SHA is verified, P1 and P4 are read again in production, the migration is frozen, <code>state.md</code> and the production state doc are updated, the issue is closed and main unfreezes."}
   ]
