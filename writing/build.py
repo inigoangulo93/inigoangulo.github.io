@@ -270,7 +270,7 @@ POSTS = {
   desc="What a production MVP built with an AI agent team actually costs: the agent bill, the infrastructure, the human time, and where the money really goes. Numbers from seven weeks on Acervo.",
   date="2026-11-04", read="6 min", tag="product",
   body="""
-<p>Everyone asks the same question in the first call: what does it cost? Here is what one build cost, with the caveat that it was my own product, so the human time was mine and the decisions were fast. Treat the numbers as an honest floor, not a quote. The method that produced them is in <a href="/writing/how-to-build-an-mvp-with-ai-agents/">how to build an MVP with AI agents</a>.</p>
+<p>Everyone asks the same question in the first call: what does it cost? Here is what one build cost, with the caveat that it was a build I ran end to end for one client, so the human time was mine and the decisions were fast. Treat the numbers as an honest floor, not a quote. The method that produced them is in <a href="/writing/how-to-build-an-mvp-with-ai-agents/">how to build an MVP with AI agents</a>.</p>
 
 <div class="num"><div><b>7 weeks</b><span>from first commit to 15 releases in production</span></div><div><b>~CHF 300</b><span>per month in agent usage, passed through at cost</span></div><div><b>~CHF 60</b><span>per month in hosting, database and monitoring at MVP scale</span></div><div><b>1 person</b><span>scoping, deciding, approving. Zero engineers on payroll</span></div></div>
 
@@ -319,7 +319,7 @@ POSTS = {
 <p>A consulting engagement is priced per deliverable: an audit, a plan, a workshop series. A fractional engagement is priced per days per week, with a minimum term of three months, because owning an outcome in less than that is theatre. Both should come with a first call where the person tells you honestly which one you need, including when it is neither.</p>
 
 <h2>Where I sit</h2>
-<p>I do both, and I say which one I think you need on the first call. The thing I bring that is less common is that I also build: on my own product I ship with AI agent teams, so a fractional engagement with me can include working software, not only a roadmap. The details are on <a href="/product-consultant-zurich/">Product consultant, Zurich</a> and <a href="/ai-product-builder/">AI build and deployment</a>.</p>
+<p>I do both, and I say which one I think you need on the first call. The thing I bring that is less common is that I also build: on Acervo I shipped with AI agent teams, so an engagement with me can include working software, not only a roadmap. The details are on <a href="/product-consultant-zurich/">Product consultant, Zurich</a> and <a href="/ai-product-builder/">AI build and deployment</a>.</p>
 
 <div class="box"><p>Related: <a href="/writing/checkout-conversion-ten-experiments/">the ten checkout experiments</a>, which is the consultant kind of work, and <a href="/writing/one-person-ai-agent-team-445-prs/">445 PRs in seven weeks</a>, which is the building kind.</p></div>
 """),
