@@ -1403,32 +1403,34 @@ function draw(){
     ctx.stroke();
   }
   
-  // Draw intersection nodes
+  // Draw intersection nodes: dots batched into four alpha buckets (one fill each),
+  // proximity halos drawn individually only for the few nodes near the pointer
+  var B=[[],[],[],[]],glow=[];
   for(var i=0;i<nodes.length;i++){
     var n=nodes[i];
     var pulse=Math.sin(t*4+n.col*.7+n.row*.5)*.3+.7;
-    var alpha=.02*pulse;
-    var r=.45;
-    
-    // Proximity glow
     var dx=mx-n.x, dy=my-n.y;
-    var d=Math.sqrt(dx*dx+dy*dy);
-    if(d<100){
-      var prox=(1-d/100);
-      prox=prox*prox; // quadratic = tighter glow
-      alpha+=prox*.2;
-      r+=prox*2;
-      
-      // Soft halo
-      if(prox>.1){
-        var grad=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,r+prox*5);
-        grad.addColorStop(0,"rgba(45,212,191,"+(prox*.08)+")");
-        grad.addColorStop(1,"rgba(45,212,191,0)");
-        ctx.fillStyle=grad;
-        ctx.beginPath();ctx.arc(n.x,n.y,r+prox*5,0,Math.PI*2);ctx.fill();
-      }
+    var d2=dx*dx+dy*dy;
+    if(d2<10000){glow.push([n,Math.sqrt(d2),pulse]);continue}
+    B[Math.min(3,Math.floor((pulse-.4)/.6*4))].push(n);
+  }
+  for(var b=0;b<4;b++){
+    if(!B[b].length)continue;
+    ctx.beginPath();
+    for(var j=0;j<B[b].length;j++){var n=B[b][j];ctx.moveTo(n.x+.45,n.y);ctx.arc(n.x,n.y,.45,0,Math.PI*2)}
+    ctx.fillStyle="rgba(45,212,191,"+(.02*(.475+b*.15))+")";
+    ctx.fill();
+  }
+  for(var g=0;g<glow.length;g++){
+    var n=glow[g][0],prox=1-glow[g][1]/100;prox=prox*prox;
+    var alpha=.02*glow[g][2]+prox*.2,r=.45+prox*2;
+    if(prox>.1){
+      var grad=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,r+prox*5);
+      grad.addColorStop(0,"rgba(45,212,191,"+(prox*.08)+")");
+      grad.addColorStop(1,"rgba(45,212,191,0)");
+      ctx.fillStyle=grad;
+      ctx.beginPath();ctx.arc(n.x,n.y,r+prox*5,0,Math.PI*2);ctx.fill();
     }
-    
     ctx.fillStyle="rgba(45,212,191,"+alpha+")";
     ctx.beginPath();ctx.arc(n.x,n.y,r,0,Math.PI*2);ctx.fill();
   }
@@ -1466,7 +1468,6 @@ var s=window.scrollY,h=hw.offsetHeight;
 var p=Math.min(s/(h*2.2),1);
 if(p===1&&last===1)return; last=p;
 hw.style.opacity=1-p*.7;
-if(!isMobile)hw.style.transform="translateY("+s*.04+"px)";
 if(hm){hm.style.opacity=1-p;hm.style.display=p>=1?"none":""}}
 window.addEventListener("scroll",function(){if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});
 })();
