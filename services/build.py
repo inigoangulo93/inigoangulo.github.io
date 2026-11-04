@@ -117,7 +117,8 @@ def page(slug, d):
 <script type="application/ld+json">{json.dumps(bc_ld,ensure_ascii=False)}</script>
 </head>
 <body>
-<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a></nav><a class="bar__cta" href="https://cal.com/inigoangulo/30min" data-cal-link="inigoangulo/30min">Book a call</a></div></header>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><b>IA</b><span>Services</span></div></header>
+<script src="/services/bar.js" defer></script>
 
 <main>
 <div class="hero"><div class="mx">

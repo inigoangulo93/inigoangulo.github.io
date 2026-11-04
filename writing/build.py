@@ -252,7 +252,8 @@ def page(slug, d):
 <script type="application/ld+json">{json.dumps(bc,ensure_ascii=False)}</script>
 </head>
 <body>
-<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/writing/">Writing</a><a class="bar__btn" href="/#about">About</a></nav><a class="bar__cta" href="https://cal.com/inigoangulo/30min">Book a call</a></div></header>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><b>IA</b><span>Writing</span></div></header>
+<script src="/services/bar.js" defer></script>
 <main><article class="art">
 <span class="k">Writing</span>
 <h1>{esc(d["title"])}</h1>
@@ -281,7 +282,8 @@ def index():
 {GA}
 </head>
 <body>
-<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/writing/">Writing</a><a class="bar__btn" href="/#about">About</a></nav><a class="bar__cta" href="https://cal.com/inigoangulo/30min">Book a call</a></div></header>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a></div><div class="bar__mini" aria-hidden="true"><i></i><b>IA</b><span>Writing</span></div></header>
+<script src="/services/bar.js" defer></script>
 <main><div class="list"><span class="k">Writing</span><h1 style="font-size:2rem;margin-bottom:28px">What I learned shipping, written down.</h1>{items}</div></main>
 <footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/">Home</a></span></div></footer>
 </body>
