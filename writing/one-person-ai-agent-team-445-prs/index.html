@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>445 PRs in seven weeks: what a one person team with AI agents actually looks like / Inigo Angulo</title>
+<meta name="description" content="Real numbers from building Acervo with an AI engineering team: 484 pull requests, 1,456 CI runs, 15 gated releases, and what the human did all day.">
+<link rel="canonical" href="https://inigoangulo.com/writing/one-person-ai-agent-team-445-prs/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="445 PRs in seven weeks: what a one person team with AI agents actually looks like">
+<meta property="og:description" content="Real numbers from building Acervo with an AI engineering team: 484 pull requests, 1,456 CI runs, 15 gated releases, and what the human did all day.">
+<meta property="og:image" content="https://inigoangulo.com/img/og.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://inigoangulo.com/writing/one-person-ai-agent-team-445-prs/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/services/services.css">
+<style>.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
+.art .k{margin-bottom:12px}.art h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:none}
+.art .meta{font-family:var(--m);font-size:.74rem;color:var(--t3);margin:16px 0 34px;display:flex;gap:16px;flex-wrap:wrap}
+.art p{max-width:none;font-size:1.05rem;line-height:1.7;margin:0 0 18px}
+.art h2{font-size:1.35rem;margin:38px 0 12px;max-width:none}
+.art ul,.art ol{margin:0 0 18px 22px;color:var(--t2);font-size:1.02rem;line-height:1.65}
+.art li{margin-bottom:6px}
+.art .num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0}
+.art .num div{border:1px solid var(--b1);border-radius:10px;padding:14px;background:var(--glass)}
+.art .num b{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--ac2);line-height:1}
+.art .num span{display:block;font-family:var(--m);font-size:.66rem;color:var(--t3);margin-top:7px;line-height:1.45}
+@media(max-width:700px){.art .num{grid-template-columns:1fr 1fr}}
+.art blockquote{border-left:3px solid var(--ac);padding:4px 0 4px 18px;margin:22px 0;color:var(--t1);font-size:1.1rem;font-weight:500}
+.art .box{border:1px solid var(--acb);border-radius:12px;padding:20px 22px;background:var(--acg2);margin:26px 0}
+.art .box p{margin:0;font-size:.98rem}
+.art .box a{color:var(--ac2);border-bottom:1px solid var(--acb)}
+.art a{color:var(--ac2)}
+.art .cta{margin-top:40px}
+.art .cta h2{margin:0 0 6px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
+<script src="/analytics.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "445 PRs in seven weeks: what a one person team with AI agents actually looks like", "description": "Real numbers from building Acervo with an AI engineering team: 484 pull requests, 1,456 CI runs, 15 gated releases, and what the human did all day.", "datePublished": "2026-11-04", "dateModified": "2026-11-04", "author": {"@type": "Person", "@id": "https://inigoangulo.com/#person", "name": "Inigo Angulo", "url": "https://inigoangulo.com/"}, "publisher": {"@type": "Person", "name": "Inigo Angulo"}, "mainEntityOfPage": "https://inigoangulo.com/writing/one-person-ai-agent-team-445-prs/", "image": "https://inigoangulo.com/img/og.png"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inigo Angulo", "item": "https://inigoangulo.com/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://inigoangulo.com/writing/"}, {"@type": "ListItem", "position": 3, "name": "445 PRs in seven weeks: what a one person team with AI agents actually looks like", "item": "https://inigoangulo.com/writing/one-person-ai-agent-team-445-prs/"}]}</script>
+</head>
+<body>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/writing/">Writing</a><a class="bar__btn" href="/#about">About</a></nav><a class="bar__cta" href="https://cal.com/inigoangulo/30min">Book a call</a></div></header>
+<main><article class="art">
+<span class="k">Writing</span>
+<h1>445 PRs in seven weeks: what a one person team with AI agents actually looks like</h1>
+<div class="meta"><span>Inigo Angulo</span><span>November 4, 2026</span><span>7 min read</span></div>
+
+<p>Between September 16 and November 2, 2026, I built and shipped a production platform for car collections with no engineers on payroll. The GitHub API says 484 pull requests were opened, 445 merged, 38 closed without merging. 1,456 CI runs, 1,026 green. Fifteen numbered releases to production, each with a security report and one human approval. I want to describe what that looked like from the inside, because "I built it with AI" has started to mean anything, and the useful version is specific.</p>
+
+<div class="num"><div><b>17 days</b><span>first commit to first production deploy</span></div><div><b>445</b><span>pull requests merged</span></div><div><b>1,456</b><span>CI runs, 147 red</span></div><div><b>15</b><span>gated releases</span></div></div>
+
+<h2>The team, and why it is a team</h2>
+<p>The work was done by eight AI agents with fixed roles: a lead that decomposes tickets and integrates, workers for frontend, backend and data, a reviewer, a security agent that runs a full penetration test before every promotion, a design agent with the only write access to Figma, and a verifier that only reads. Each one has a mandate written in a file, with what it may touch and what it must never touch. None of them has production credentials. That last sentence is the whole architecture.</p>
+<p>Calling it a team is not marketing. The roles matter because the failure modes are the same as with people: a worker that starts from the wrong branch, a reviewer that approves its own work, a check that looks green because it did not run. Every rule in the repository exists because one of those happened and cost a day.</p>
+
+<h2>What the human did all day</h2>
+<p>Not code. I wrote tickets with acceptance criteria, answered decisions and approved releases. Every open question the agents hit became a numbered decision with lettered options and a recommendation; I answered with an id and a letter, "014-3 B", and the answer was written into the repository with the reasoning. Over seven weeks that produced more than 140 recorded decisions. That log is the product's memory, and it is why a new agent session can pick up where the last one stopped.</p>
+<p>The other thing I did was say no. 38 pull requests were closed without merging. 147 CI runs went red. A red check on the exact commit blocks the merge, whoever asks, and the "whoever" includes me on a Friday evening wanting the feature out.</p>
+
+<h2>The rhythm</h2>
+<p>Week one was infrastructure: database, auth, row level security with tests that run as the role that must not pass, the CI pipeline. Day 17 was the first production release. From week four the rhythm settled at roughly forty tickets a week. A typical ticket, from a real day: written at 14:35, pull request opened by the lead at 16:56, fourteen checks green, pen test PASS at 17:20, merged, promoted at 19:50, served from the production domain at 19:54. Five hours, with a human at two of the gates.</p>
+
+<h2>What was not fast</h2>
+<p>Judgment. Deciding what the product should be took as long as it always has. The data model was argued over for days. The agents are very fast at building the wrong thing, which is why the first week was spent on invariants: which rules live in the database, which in the application, and the test that proves each one.</p>
+<p>And verification. Reading a CI run instead of trusting its colour. Opening the deployment by its URL and looking for the content instead of asking the provider whether it was "READY". The gates where a human looks are the product; the agents are what make them affordable.</p>
+
+<h2>What I would tell a team adopting this</h2>
+<ul>
+<li>Give agents roles and files, not prompts. A mandate that survives the session is worth ten clever instructions.</li>
+<li>Isolation before speed. No agent holds production credentials. Promotion is a human act with a security report attached.</li>
+<li>Write decisions down with ids. It is the only way to stop re-arguing them.</li>
+<li>A check that did not run looks exactly like a check that passed. Read the run.</li>
+<li>Count the closed pull requests. If none are closed, the review is not reviewing.</li>
+</ul>
+
+<div class="box"><p>The full case, with the evidence from the GitHub API, the data model, the promotion flow and the day the security gate said no: <a href="/work/acervo.html">Acervo, the case study</a>. If you want this for your company: <a href="/ai-product-builder/">AI build and deployment</a>.</p></div>
+
+<div class="cta"><h2>Working on something like this?</h2><p>Thirty minutes, no deck. <a href="https://cal.com/inigoangulo/30min">Book a call</a> or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
+</article></main>
+<footer><div class="mx"><span>2026 Inigo Angulo, Zurich</span><span><a href="/writing/">All writing</a> &nbsp; <a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" rel="noopener" target="_blank">LinkedIn</a> &nbsp; <a href="https://github.com/inigoangulo93" rel="noopener" target="_blank">GitHub</a></span></div></footer>
+</body>
+</html>
