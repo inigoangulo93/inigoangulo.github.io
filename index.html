@@ -178,6 +178,18 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   .bar--island .bar__inner{padding:0 8px 0 18px}
   .mob-menu.open~.bar,.bar.menu-open{top:0;width:100%;height:56px;border-radius:0}
 }
+
+/* mini state: scrolling down, the island collapses to the smallest unit of information */
+.bar__mini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--m);font-size:.72rem;letter-spacing:.06em;color:var(--t1);opacity:0;pointer-events:none;transition:opacity .25s;white-space:nowrap}
+.bar__mini i{width:7px;height:7px;border-radius:50%;background:var(--ac);box-shadow:0 0 10px var(--ac);flex-shrink:0}
+.bar__mini b{font-family:var(--s);font-weight:800;letter-spacing:-.03em;font-size:.8rem}
+.bar__mini span{color:var(--t3)}
+.bar--mini{width:170px;height:40px;top:12px;cursor:pointer}
+.bar--mini .bar__inner{opacity:0;pointer-events:none;transition:opacity .2s}
+.bar--mini .bar__mini{opacity:1;pointer-events:auto;transition:opacity .3s .2s}
+.bar__inner{transition:padding .55s cubic-bezier(.22,1,.36,1),opacity .25s .15s}
+@media(max-width:768px){.bar.bar--mini{width:150px;height:40px;top:10px}}
+@media(prefers-reduced-motion:reduce){.bar__mini,.bar--mini .bar__inner{transition:none}}
 @media(prefers-reduced-motion:reduce){.bar,.bar__inner,.bar__name,.bar__btn,.bar__cta{transition:none}}
 
 /* layers + depth */
@@ -705,7 +717,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 </head>
 <body>
 <div class="ambient"><i></i><i></i></div>
-<header class="bar"><div class="bar__inner"><span class="bar__name">Inigo Angulo</span><nav class="bar__nav"><button class="bar__btn on" onclick="go('index')" data-v="index">Work</button><button class="bar__btn" onclick="go('about')" data-v="about">How I think</button><button class="bar__btn" onclick="go('logs')" data-v="logs">About</button></nav><button class="bar__cta" onclick="go('index');setTimeout(function(){document.getElementById('contact').scrollIntoView({behavior:'smooth'})},100)">Contact</button><div class="bar__ham" id="hamBtn" onclick="toggleMenu()"><span></span><span></span><span></span></div></div></header>
+<header class="bar"><div class="bar__inner"><span class="bar__name">Inigo Angulo</span><nav class="bar__nav"><button class="bar__btn on" onclick="go('index')" data-v="index">Work</button><button class="bar__btn" onclick="go('about')" data-v="about">How I think</button><button class="bar__btn" onclick="go('logs')" data-v="logs">About</button></nav><button class="bar__cta" onclick="go('index');setTimeout(function(){document.getElementById('contact').scrollIntoView({behavior:'smooth'})},100)">Contact</button><div class="bar__ham" id="hamBtn" onclick="toggleMenu()"><span></span><span></span><span></span></div></div><div class="bar__mini" aria-hidden="true"><i></i><b>IA</b><span id="barMiniSec">Work</span></div></header>
 
 <div class="mob-menu" id="mobMenu">
 <div class="mob-menu__bg" onclick="toggleMenu()"></div>
@@ -1822,10 +1834,20 @@ Cal.ns.intro("ui", {"theme":"dark","cssVarsPerTheme":{"dark":{"cal-brand":"#2dd4
 })();
 
 /* ---- header island on scroll ---- */
-(function(){var bar=document.querySelector('.bar');if(!bar)return;var on=false;
-function upd(){var y=window.scrollY||document.documentElement.scrollTop;var want=y>40;if(want!==on){on=want;bar.classList.toggle('bar--island',on)}}
+(function(){var bar=document.querySelector('.bar');if(!bar)return;var state='full',lastY=window.scrollY||0,acc=0;
+var sec=document.getElementById('barMiniSec');
+function label(){var b=document.querySelector('.bar__btn.on');if(b&&sec)sec.textContent=b.textContent.trim()}
+function set(st){if(st===state)return;state=st;bar.classList.toggle('bar--island',st!=='full');bar.classList.toggle('bar--mini',st==='mini');if(st==='mini')label()}
+function upd(){var y=window.scrollY||document.documentElement.scrollTop;var dy=y-lastY;lastY=y;
+  if(window.menuOpen){set('full');return}
+  if(y<=40){set('full');acc=0;return}
+  if(dy>0){acc=Math.max(0,acc)+dy;if(y>220&&acc>12)set('mini');else if(state==='full')set('island')}
+  else if(dy<0){acc=Math.min(0,acc)+dy;if(acc<-10)set('island');else if(state==='full')set('island')}
+  else if(state==='full')set('island');}
 window.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd,{passive:true});upd();
-var _t=window.toggleMenu;if(typeof _t==='function'){window.toggleMenu=function(){_t.apply(this,arguments);bar.classList.toggle('menu-open',!!window.menuOpen)}}
+bar.addEventListener('click',function(e){if(state==='mini'){e.preventDefault();set('island');acc=0}});
+var _t=window.toggleMenu;if(typeof _t==='function'){window.toggleMenu=function(){_t.apply(this,arguments);bar.classList.toggle('menu-open',!!window.menuOpen);if(window.menuOpen)set('full')}}
+var mo=new MutationObserver(label);document.querySelectorAll('.bar__btn').forEach(function(b){mo.observe(b,{attributes:true,attributeFilter:['class']})});
 })();
 </script>
 </body>
