@@ -544,6 +544,7 @@ def index():
 .post.hide,.grp.hide{{display:none}}
 .empty{{display:none;color:var(--t3);font-family:var(--m);font-size:.8rem;padding:30px 0}}.empty.show{{display:block}}
 .count{{font-family:var(--m);font-size:.68rem;color:var(--t3);margin:-14px 0 20px}}
+mark{{background:rgba(45,212,191,.22);color:var(--t1);border-radius:3px;padding:0 2px;box-shadow:0 0 0 1px rgba(45,212,191,.18)}}
 @media(max-width:700px){{.search kbd{{display:none}}.list{{padding-top:96px}}}}
 </style>
 {GA}
@@ -558,9 +559,12 @@ def index():
 {groups}
 <p class="empty" id="empty">Nothing matches. Try a shorter word, or <a href="mailto:inigoangulo@gmail.com">ask me</a>.</p>
 <script>(function(){{var q=document.getElementById("q"),chips=document.querySelectorAll(".chip"),posts=document.querySelectorAll(".post"),grps=document.querySelectorAll(".grp"),count=document.getElementById("count"),empty=document.getElementById("empty"),f="";
+posts.forEach(function(p){{p.querySelectorAll("h2,p").forEach(function(el){{el.dataset.t=el.textContent}})}});
+function esc(w){{return w.replace(/[.*+?^${{}}()|[\\]\\\\]/g,"\\\\$&")}}
+function mark(el,t){{var raw=el.dataset.t;if(!t.length){{el.textContent=raw;return}}var re=new RegExp("("+t.map(esc).join("|")+")","gi"),parts=raw.split(re);el.textContent="";parts.forEach(function(s,i){{if(!s)return;if(i%2){{var m=document.createElement("mark");m.textContent=s;el.appendChild(m)}}else el.appendChild(document.createTextNode(s))}})}}
 function apply(){{var t=q.value.trim().toLowerCase().split(/\\s+/).filter(Boolean),n=0;chips.forEach(function(c){{c.classList.toggle("on",c.dataset.f===f)}});
-posts.forEach(function(p){{var ok=(!f||p.dataset.tag===f)&&t.every(function(w){{return p.dataset.s.indexOf(w)>-1}});p.classList.toggle("hide",!ok);if(ok)n++}});
-grps.forEach(function(g){{g.classList.toggle("hide",!g.querySelector(".post:not(.hide)"))}});
+posts.forEach(function(p){{var ok=(!f||p.dataset.tag===f)&&t.every(function(w){{return p.dataset.s.indexOf(w)>-1}});p.classList.toggle("hide",!ok);if(ok){{n++;p.querySelectorAll("h2,p").forEach(function(el){{mark(el,t)}})}}}});
+grps.forEach(function(g){{var k=g.querySelectorAll(".post:not(.hide)").length;g.classList.toggle("hide",!k);var c=g.querySelector(".grp__h span");if(c){{c.textContent=k}}}});
 count.textContent=(t.length||f)?n+" of "+posts.length+" articles":"";empty.classList.toggle("show",n===0)}}
 chips.forEach(function(c){{c.addEventListener("click",function(e){{e.preventDefault();f=c.dataset.f;history.replaceState(null,"",f?"#"+f:"/writing/");apply()}})}});
 q.addEventListener("input",apply);
