@@ -715,7 +715,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;border:none;back
   /* Logs / About me */
   .log__title{font-size:.82rem}
   .log__excerpt{font-size:.76rem}
-  #v-logs .mx > div{grid-template-columns:1fr !important;gap:32px}
+  
 }
 
 /* ═══ SMALL MOBILE: 420px ═══ */
@@ -741,22 +741,21 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 </head>
 <body>
 <div class="ambient"><i></i><i></i></div>
-<header class="bar"><div class="bar__inner"><a class="bar__name" href="#work" onclick="go('index');window.scrollTo({top:0,behavior:'smooth'});return false">Inigo Angulo</a><nav class="bar__nav"><button class="bar__btn on" onclick="go('index')" data-v="index">Work</button><button class="bar__btn" onclick="go('about')" data-v="about">How I think</button><button class="bar__btn" onclick="go('logs')" data-v="logs">About</button><a class="bar__btn" href="lab/">Lab</a><a class="bar__btn" href="writing/">Writing</a></nav><button class="bar__cta" onclick="go('index');setTimeout(function(){document.getElementById('contact').scrollIntoView({behavior:'smooth'})},100)">Contact</button><div class="bar__ham" id="hamBtn" onclick="toggleMenu()"><span></span><span></span><span></span></div></div><div class="bar__mini" aria-hidden="true"><i></i><span id="barMiniSec">Work</span></div></header>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="#work" onclick="go('index');window.scrollTo({top:0,behavior:'smooth'});return false">Inigo Angulo</a><nav class="bar__nav"><button class="bar__btn on" onclick="go('index')" data-v="index">Work</button><button class="bar__btn" onclick="go('about')" data-v="about">How I think</button><a class="bar__btn" href="lab/">Lab</a><a class="bar__btn" href="writing/">Writing</a></nav><button class="bar__cta" onclick="go('index');setTimeout(function(){document.getElementById('contact').scrollIntoView({behavior:'smooth'})},100)">Contact</button><div class="bar__ham" id="hamBtn" onclick="toggleMenu()"><span></span><span></span><span></span></div></div><div class="bar__mini" aria-hidden="true"><i></i><span id="barMiniSec">Work</span></div></header>
 
 <div class="mob-menu" id="mobMenu">
 <div class="mob-menu__bg" onclick="toggleMenu()"></div>
 <div class="mob-menu__inner">
 <div class="mob-menu__link on" onclick="mgo('index')"><span>Work</span><span class="mob-menu__link-num">01</span></div>
 <div class="mob-menu__link" onclick="mgo('about')"><span>How I think</span><span class="mob-menu__link-num">02</span></div>
-<div class="mob-menu__link" onclick="mgo('logs')"><span>About</span><span class="mob-menu__link-num">03</span></div>
-<a class="mob-menu__link" href="lab/"><span>Lab</span><span class="mob-menu__link-num">04</span></a><a class="mob-menu__link" href="writing/"><span>Writing</span><span class="mob-menu__link-num">05</span></a>
+<a class="mob-menu__link" href="lab/"><span>Lab</span><span class="mob-menu__link-num">03</span></a><a class="mob-menu__link" href="writing/"><span>Writing</span><span class="mob-menu__link-num">04</span></a>
 <div class="mob-menu__cta"><a onclick="mgo('_contact')">Get in touch &#8594;</a></div>
 <div class="mob-menu__contact"><a href="mailto:inigoangulo@gmail.com">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank">LinkedIn</a><a href="tel:+41799528321">Phone</a></div>
 </div>
 </div>
 <script>
 var _hashFor={index:'#work',about:'#how-i-think',logs:'#about'};
-var _viewFor={'work':'index','how-i-think':'about','about':'logs'};
+var _viewFor={'work':'index','how-i-think':'about','about':'about'};
 if(location.pathname.endsWith('/index.html'))history.replaceState(null,'',location.pathname.slice(0,-10)+location.search+location.hash);
 function render(n){
   document.querySelectorAll('.v').forEach(function(v){v.classList.remove('on')});
@@ -770,12 +769,14 @@ function render(n){
   window.scrollTo({top:0,behavior:'instant'});
 }
 function go(n){
+  if(n==='logs'){go('about');setTimeout(function(){var w=document.getElementById('who');if(w)w.scrollIntoView({behavior:'smooth'})},120);return}
   if(location.hash!==_hashFor[n]){history.pushState(null,'',_hashFor[n]);}
   render(n);
 }
 function _route(){
   var hh=location.hash.slice(1);
   if(hh==='contact'){render('index');var c=document.getElementById('contact');if(c)setTimeout(function(){c.scrollIntoView({behavior:'smooth'})},50);return}
+  if(hh==='about'){render('about');setTimeout(function(){var w=document.getElementById('who');if(w)w.scrollIntoView()},80);return}
   if(_viewFor[hh]){render(_viewFor[hh]);}else if(!hh){render('index');}
 }
 window.addEventListener('popstate',_route);
@@ -1153,6 +1154,20 @@ window.addEventListener('DOMContentLoaded',function(){
 })();
 </script>
 <!-- HX-SECTION END -->
+
+<!-- WHO: merged from the old About view, styled to match the steps -->
+<div class="hm" id="who">
+<div class="hx__link" aria-hidden="true"></div>
+<div class="hm__sep"><span>// who is thinking</span></div>
+<div class="hm__id">
+<img class="hm__pic" src="img/portrait-inigo.webp" width="832" height="1069" decoding="async" loading="lazy" alt="Inigo Angulo">
+<div><h2 class="hm__name">Inigo Angulo</h2><p class="hm__role">Senior product designer and product builder: I scope, design and ship</p><p class="hm__loc">Zurich, Switzerland / Remote or hybrid</p></div>
+</div>
+<p class="hm__p hm__bio">9+ years learning what makes products convert and what makes teams ship. In 2026 I started shipping the software myself, with AI agent teams instead of human ones. The judgment did not change; the distance between a decision and a shipped feature did. The judgment is the part that took 9+ years, and that is what the five steps above are made of.</p>
+<p class="hm__p hm__small">Outside of work, I&#8217;m deeply drawn to European medieval history, especially the symbolic weight, visual language, and cultural continuity of the period. I have a particular fascination with Gothic typography and the way form can carry identity, authority, and atmosphere across centuries.</p>
+<p class="hm__p hm__small">Art keeps my sense of composition and balance alive. Photography helps me slow down and notice what most people miss. Hiking through Swiss trails is how I reset, think clearly, and usually where new ideas begin to take shape.</p>
+<div class="hm__foot"><span class="bf-trigger" onclick="openBonfire()" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openBonfire()}"><i>&#128293;</i>rest here, weary traveller<em>&#10022; a quiet place</em></span><div class="hm__langs"><span>English</span><span>Spanish (native)</span><span>Russian</span><span>Portuguese</span><span>German (basic)</span></div></div>
+</div>
 </div></div>
 </section>
 
@@ -1177,56 +1192,32 @@ window.addEventListener('DOMContentLoaded',function(){
 @media(max-width:600px){.hw{grid-template-columns:1fr}.jd__ins{grid-template-columns:1fr}.jd__m{text-align:left}.ab-stats{grid-template-columns:1fr 1fr !important}}
 @media(prefers-reduced-motion:reduce){.jd *{transition:none !important}}
 </style>
-<section class="v" id="v-logs"><div class="layer"><div class="mx">
-<div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start">
-<div>
-<div style="position:relative;width:100%;aspect-ratio:3/4;border-radius:12px;overflow:hidden;border:1px solid var(--b1)">
-<img src="img/portrait-inigo.webp" width="832" height="1069" decoding="async" loading="lazy" alt="Inigo Angulo" style="width:100%;height:100%;object-fit:cover">
-</div>
-<div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap">
-<span style="font-family:var(--m);font-size:.68rem;color:var(--t3)">Zurich, Switzerland</span>
-<span style="font-family:var(--m);font-size:.68rem;color:var(--t3)">Remote / Hybrid</span>
-</div>
-</div>
-<div>
-<div class="sh" style="margin-bottom:24px"><span>// about me</span></div>
-<h2 style="font-family:var(--s);font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:6px">Inigo Angulo</h2>
-<p style="font-family:var(--m);font-size:.7rem;color:var(--ac2);letter-spacing:.06em;margin-bottom:16px">SENIOR PRODUCT DESIGNER AND PRODUCT BUILDER: I SCOPE, DESIGN AND SHIP</p>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px">9+ years learning what makes products convert and what makes teams ship. In 2026 I started shipping the software myself, with AI agent teams instead of human ones. The judgment did not change; the distance between a decision and a shipped feature did. The judgment is the part that took 9+ years, and that is what the rest of this page is about.</p>
+<style>
+.hm{max-width:700px;margin:24px auto 0}
+.hm .hx__link{height:56px;margin:0 auto 20px}
+.hm__sep{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 0 30px;font-family:var(--m);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ac)}
+.hm__sep::before,.hm__sep::after{content:"";height:1px;width:48px;background:linear-gradient(90deg,transparent,var(--acb))}.hm__sep::after{transform:scaleX(-1)}
+.hm__id{display:flex;align-items:center;gap:20px;margin:0 0 20px}
+.hm__pic{flex:none;width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:50% 22%;border:1px solid var(--b2);box-shadow:0 0 0 4px #000,0 0 0 5px var(--acb),0 0 30px var(--acg);transition:box-shadow .4s}
+.hm__id:hover .hm__pic{box-shadow:0 0 0 4px #000,0 0 0 5px var(--ac),0 0 36px var(--acg)}
+.hm__name{font-family:var(--s);font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:0 0 6px;color:var(--t1)}
+.hm__role{font-family:var(--m);font-size:.66rem;color:var(--ac2);letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px;line-height:1.5}
+.hm__loc{font-family:var(--m);font-size:.64rem;color:var(--t3);margin:0}
+.hm__p{font-family:var(--s);font-size:.95rem;color:var(--t2);line-height:1.75;margin:0 0 18px}
+.hm__p a{color:var(--ac2);border-bottom:1px solid var(--acb)}
+.hm__small{font-size:.88rem}
+.hm .jd{margin:6px 0 0}
+.hm .hw{margin:0 0 22px;gap:10px}
+.hm .hw__i{padding:16px 18px;background:var(--glass);border-radius:12px;transition:border-color .3s,box-shadow .3s,transform .3s}
+.hm .hw__i:hover{border-color:var(--acb);box-shadow:0 0 18px var(--acg2);transform:translateY(-2px)}
+.hm .hw__t{font-size:.84rem}
+.hm__foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:18px;margin-top:6px;border-top:1px solid var(--b1)}
+.hm__langs{display:flex;flex-wrap:wrap;gap:6px}
+.hm__langs span{font-family:var(--m);font-size:.62rem;color:var(--t2);padding:4px 10px;border-radius:999px;border:1px solid var(--b1)}
+@media(max-width:600px){.hm__id{gap:16px}.hm__pic{width:72px;height:72px}.hm__name{font-size:1.35rem}}
+@media(prefers-reduced-motion:reduce){.hm *{transition:none!important}}
+</style>
 
-<!-- Where the judgment comes from -->
-<div class="jd" id="judg">
-<span class="lp__k" style="display:block;margin-bottom:12px">// WHERE THE JUDGMENT COMES FROM / CLICK</span>
-<div class="jd__chips">
-<button class="jd__c on" data-k="gyg">GetYourGuide</button><button class="jd__c" data-k="ing">ING</button><button class="jd__c" data-k="adecco">Adecco</button><button class="jd__c" data-k="pitcher">Pitcher</button><button class="jd__c" data-k="crowd">Crowdhouse</button><button class="jd__c" data-k="wpp">WPP</button><button class="jd__c jd__c--ac" data-k="acervo">Acervo</button>
-</div>
-<div class="jd__ins"><div><span class="jd__role" id="jdRole"></span><span class="jd__t" id="jdText"></span></div><div class="jd__m"><span class="jd__mv" id="jdVal"></span><span class="jd__ml" id="jdLab"></span></div></div>
-</div>
-
-<div class="sh" style="margin:24px 0 10px"><span>// how I work</span></div>
-<div class="hw">
-<div class="hw__i"><span class="hw__n">DECIDE FIRST, BUILD SECOND</span><span class="hw__t">Every open question becomes a numbered decision with a letter for an answer. Nothing ships on an assumption.</span></div>
-<div class="hw__i"><span class="hw__n">EVIDENCE OVER STATUS</span><span class="hw__t">A green check is not proof. A run id, a SHA and a suite that turns red on purpose are.</span></div>
-<div class="hw__i"><span class="hw__n">SPEND ON SAYING NO</span><span class="hw__t">Review, security and design judgment get the most attention, whether the reviewer is a person or an agent.</span></div>
-<div class="hw__i"><span class="hw__n">MEASURE ON A REAL DEVICE</span><span class="hw__t">On a bad connection, before anything is called done. The gates where a human looks are the product.</span></div>
-</div>
-<p style="font-family:var(--s);font-size:.92rem;color:var(--t2);line-height:1.75;margin-bottom:16px;margin-top:18px">Three ways to work with me: <a href="#proof" onclick="go('index');setTimeout(function(){document.getElementById('proof').scrollIntoView({behavior:'smooth'})},150);return false" style="color:var(--ac2);border-bottom:1px solid var(--acb)">build, lead or optimize</a>, with hands-on product design in all three. Based near Zurich; remote, hybrid or on site in Switzerland; as a senior designer or product lead in your team, or on a project through my own firm. Spanish and English at native working level.</p>
-<div style="display:flex;flex-direction:column;gap:12px;padding:20px 0;border-top:1px solid var(--b1)">
-<div class="sh" style="margin-bottom:4px"><span>// beyond work</span></div>
-<p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.75;margin-bottom:8px">Outside of work, I&#8217;m deeply drawn to European medieval history, especially the symbolic weight, visual language, and cultural continuity of the period. I have a particular fascination with Gothic typography and the way form can carry identity, authority, and atmosphere across centuries.</p>
-<p style="font-family:var(--s);font-size:.86rem;color:var(--t2);line-height:1.75">Art keeps my sense of composition and balance alive. Photography helps me slow down and notice what most people miss. Hiking through Swiss trails is how I reset, think clearly, and usually where new ideas begin to take shape.</p>
-<span class="bf-trigger" onclick="openBonfire()" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openBonfire()}"><i>&#128293;</i>rest here, weary traveller<em>&#10022; a quiet place</em></span>
-</div>
-<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--b1)">
-<span style="font-family:var(--m);font-size:.65rem;color:var(--t2);padding:4px 11px;border-radius:4px;border:1px solid var(--b1)">English</span>
-<span style="font-family:var(--m);font-size:.65rem;color:var(--t2);padding:4px 11px;border-radius:4px;border:1px solid var(--b1)">Spanish (native)</span>
-<span style="font-family:var(--m);font-size:.65rem;color:var(--t2);padding:4px 11px;border-radius:4px;border:1px solid var(--b1)">Russian</span>
-<span style="font-family:var(--m);font-size:.65rem;color:var(--t2);padding:4px 11px;border-radius:4px;border:1px solid var(--b1)">Portuguese</span>
-<span style="font-family:var(--m);font-size:.65rem;color:var(--t2);padding:4px 11px;border-radius:4px;border:1px solid var(--b1)">German (basic)</span>
-</div>
-</div>
-</div>
-</div></div></section>
 
 </main>
 
@@ -1234,7 +1225,7 @@ window.addEventListener('DOMContentLoaded',function(){
 <footer class="footer">
 <div class="footer__inner">
 <div><span class="footer__brand">Inigo Angulo</span><p class="footer__desc">Senior product designer and product builder. Strategy, design and AI native development, from scope to production. Based in Zurich, 9+ years building systems that move metrics.</p></div>
-<div><p class="footer__col-title">Navigation</p><div class="footer__links"><a href="#work" onclick="go('index');return false">Work</a><a href="#how-i-think" onclick="go('about');return false">How I think</a><a href="#about" onclick="go('logs');return false">About</a></div></div>
+<div><p class="footer__col-title">Navigation</p><div class="footer__links"><a href="#work" onclick="go('index');return false">Work</a><a href="#how-i-think" onclick="go('about');return false">How I think</a></div></div>
 <div><p class="footer__col-title">Connect</p><div class="footer__links"><a href="mailto:inigoangulo@gmail.com">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank">LinkedIn</a><a href="tel:+41799528321">Phone</a><a href="https://github.com/inigoangulo93" target="_blank" rel="noopener">GitHub</a></div></div>
 <div><p class="footer__col-title">Work with me</p><div class="footer__links"><a href="ai-product-builder/">Build: AI native development</a><a href="product-consultant-zurich/">Lead: product strategy and design</a><a href="cro-ecommerce-consultant/">Optimize: conversion and growth</a><a href="ux-design-consultant/">Senior product design</a></div></div>
 <div><p class="footer__col-title">Resources</p><div class="footer__links"><a href="lab/">Lab</a><a href="writing/">Writing</a><a href="inigo-angulo-cv-2026.pdf" download>Download CV</a></div></div>
@@ -1521,7 +1512,7 @@ function mgo(n){
     go(n);
   }
   document.querySelectorAll('.mob-menu__link').forEach(function(l,i){
-    var views=['index','work','about','logs'];
+    var views=['index','about'];
     l.classList.toggle('on',views[i]===n);
   });
 }
