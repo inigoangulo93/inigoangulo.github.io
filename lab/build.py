@@ -95,7 +95,6 @@ def index():
 </div>
 
 </div>
-<p class="lab__note"><span>Same numbers as the case studies</span><span>No sign up</span><span>Works on a phone</span></p>
 </div></main>
 '''
     out += FOOTER + '\n</body>\n</html>\n'
