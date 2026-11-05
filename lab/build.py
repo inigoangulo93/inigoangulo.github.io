@@ -65,7 +65,7 @@ def index():
 </div></div>
 <div class="lc__body">
 <span class="lc__k">DECIDE / 2 MIN</span>
-<span class="lc__h">Would you ship it?</span>
+<span class="lc__h">Would You Ship It?</span>
 <span class="lc__p">Six checkout decisions. Real trade-offs. No obvious answers. Make each call, then see what the team actually decided, and why.</span>
 <div class="lc__shows"><b>WHAT IT SHOWS</b><span>Experiment judgment: success criteria first, segments over averages.</span></div>
 <div class="lc__foot"><span>GetYourGuide checkout</span><span class="lc__go">Play &#8594;</span></div>
@@ -101,38 +101,44 @@ def index():
     return out
 
 
+SCENARIO_KEYS = ["id", "title", "context", "hypothesis", "rows", "gain", "risk", "more"]
+DECISION_KEYS = ["id", "call", "why", "lesson", "alt"]
+
+
 def game():
     d = json.load(open(os.path.join(HERE, 'gyg-calls.json')))
     calls = d["calls"]
     url = "https://inigoangulo.com/lab/would-you-ship-it/"
-    out = head("Would you ship it? Six real checkout A/B test decisions / Lab, Inigo Angulo",
+    out = head("Would You Ship It? Six real checkout A/B test decisions / Lab, Inigo Angulo",
                "Six checkout decisions from the GetYourGuide experiment programme. Real trade-offs, no obvious answers. Make each call, then see what the team decided and why.",
-               url, [("Inigo Angulo", "https://inigoangulo.com/"), ("Lab", "https://inigoangulo.com/lab/"), ("Would you ship it?", url)])
+               url, [("Inigo Angulo", "https://inigoangulo.com/"), ("Lab", "https://inigoangulo.com/lab/"), ("Would You Ship It?", url)])
 
     def ev(r):
         if r["type"] == "sig":
             return f'{r["label"]}: {r["text"]}'
         v = r.get("display") or (("+" if r["v"] > 0 else "\u2212" if r["v"] < 0 else "") + str(abs(r["v"])) + r["unit"])
         return f'{r["label"]} {v}' + (" (not significant)" if r.get("ns") else "")
-    log = "".join(
-        f'<li><span class="lg__id">{esc(c["id"])}</span><div>'
-        f'<p class="lg__t">{esc(c["title"])}</p>'
+    # Scenarios only: context and evidence, never the team's decision. Shown if the interactive version cannot start.
+    scen = "".join(
+        f'<li><span class="lg__id">{esc(c["id"])}</span><div><p class="lg__t">{esc(c["title"])}</p>'
         f'<p><b>Context.</b> {esc(c["context"])} <b>We expected:</b> {esc(c["hypothesis"])}</p>'
-        f'<p><b>Evidence.</b> {esc("; ".join(ev(r) for r in c["rows"]))}.</p>'
-        f'<p><b>Decision: {LABEL[c["call"]]}.</b> {esc(c["why"])}</p>'
-        f'<p class="lg__l">{esc(c["lesson"])}</p></div></li>' for c in calls)
+        f'<p><b>Evidence.</b> {esc("; ".join(ev(r) for r in c["rows"]))}.</p></div></li>' for c in calls)
+    page_data = {"programme": d["programme"], "calls": [{k: c[k] for k in SCENARIO_KEYS} for c in calls]}
 
     out += f'''<main class="lab"><div class="mx">
 <a class="lab__back" href="/lab/">&#8592; Lab</a>
 <span class="lab__k">Decide / 2 min / Growth and CRO</span>
-<h1 class="lab__h1">Would you ship it?</h1>
+<h1 class="lab__h1">Would You Ship It?</h1>
 <p class="lab__sub">Six checkout decisions. Real trade-offs. No obvious answers.</p>
 <p class="lab__lead">From the GetYourGuide checkout experiment programme. Make each call, then see what the team actually decided, and why.</p>
 <div class="lab__meta"><span>6 decisions</span><span>About 2 minutes</span><span>Real A/B tests</span><span class="lab__keys">Keys: S, I, K, Enter</span></div>
+<details class="more lab__data"><summary>About the data</summary><p>{esc(d["programme"])}</p></details>
 
-<section class="wys" id="wys" aria-label="Would you ship it?">
-<div class="wys__top"><span class="wys__count">Decision 1 of {len(calls)}</span><div class="wys__rail" role="img"></div></div>
-<div class="wys__stage"><noscript><p>This piece needs JavaScript. All six decisions are listed below.</p></noscript></div>
+<section class="wys" id="wys" aria-label="Would You Ship It?" aria-busy="true">
+<div class="wys__top"><span class="wys__count">Decision 1 of {len(calls)}</span><div class="wys__rail" role="img" aria-label="Progress"></div></div>
+<div class="wys__stage">
+<div class="wys__load" role="status"><span class="wys__spin" aria-hidden="true"></span><span>Loading the first decision</span></div>
+</div>
 <div class="wys__end" hidden>
 <div class="ra"><p class="ra__n"></p><div class="ra__dots"></div><p class="ra__note">Alignment with what the team decided at the time, not a measure of product skill.</p></div>
 <div class="end__grid">
@@ -148,30 +154,34 @@ def game():
 <span class="end__k">SHARE</span>
 <pre class="share__txt"></pre>
 <div class="end__acts">
-<button type="button" class="wys__btn" data-act="copy">Copy result</button>
+<button type="button" class="wys__btn" data-act="copy">Copy your result</button>
 <a class="wys__btn" data-act="li" href="#" target="_blank" rel="noopener">Share on LinkedIn</a>
 </div>
 </div>
 <div class="end__cta">
 <a class="wys__btn wys__btn--p" href="/work/checkout.html#s06">See how I think about product decisions &#8594;</a>
 <button type="button" class="wys__btn" data-act="explore">Explore all six decisions</button>
-<button type="button" class="wys__btn" data-act="again">Retake</button>
+<button type="button" class="wys__btn" data-act="again">Play again</button>
 </div>
+</div>
+<div class="wys__fail" id="wysFail">
+<p class="wys__fail-h">The interactive version did not start.</p>
+<p class="wys__fail-p">It needs JavaScript, and it may have been blocked or failed to load. <button type="button" class="wys__retry" onclick="location.reload()">Try again</button> or read the six scenarios below. The decisions the team made are in the <a href="/work/checkout.html#s05">checkout case study</a>.</p>
+<ol class="wys__scen">{scen}</ol>
 </div>
 </section>
 
-<section class="lg" id="wysLog" hidden aria-labelledby="lgH">
-<h2 id="lgH" class="lg__h">All six decisions</h2>
-<p class="lg__p">{esc(d["programme"])}</p>
-<ol>{log}</ol>
-<div class="links"><a href="/work/checkout.html">Read the full checkout case &#8594;</a><a href="/cro-ecommerce-consultant/">CRO and commerce &#8594;</a><a href="/writing/checkout-conversion-ten-experiments/">Ten checkout experiments, written up &#8594;</a></div>
-</section>
-<noscript><style>#wysLog{{display:block!important}}</style></noscript>
+<details class="lg" id="wysLog" hidden><summary><h2 class="lg__h">Explore all six decisions</h2></summary><div class="lg__body"></div></details>
+<noscript><style>#wys .wys__load{{display:none}}#wys .wys__fail{{display:block}}</style></noscript>
 </div></main>
 '''
     out += FOOTER + '\n'
-    out += '<script type="application/json" id="wysData">' + json.dumps(d, ensure_ascii=False).replace('</', '<\\/') + '</script>\n'
-    out += f'<script src="/lab/wys.js?v={VER}" defer></script>\n</body>\n</html>\n'
+    out += '<script type="application/json" id="wysData">' + json.dumps(page_data, ensure_ascii=False).replace('</', '<\\/') + '</script>\n'
+    out += f'<script src="/lab/wys.js?v={VER}" defer onerror="var w=document.getElementById(\'wys\');if(w)w.classList.add(\'is-failed\')"></script>\n'
+    out += '<script>setTimeout(function(){var w=document.getElementById("wys");if(w&&!w.classList.contains("is-live"))w.classList.add("is-failed")},9000)</script>\n'
+    out += '</body>\n</html>\n'
+    dec = {"calls": [{k: c[k] for k in DECISION_KEYS} for c in calls]}
+    open(os.path.join(HERE, 'would-you-ship-it', 'decisions.json'), 'w').write(json.dumps(dec, ensure_ascii=False))
     return out
 
 

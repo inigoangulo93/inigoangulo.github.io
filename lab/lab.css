@@ -255,3 +255,34 @@ a.lc:hover{border-color:var(--acb);transform:translateY(-3px);box-shadow:0 20px 
 *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
 }
 
+
+/* loading, failure */
+.wys__load{min-height:520px;display:flex;align-items:center;justify-content:center;gap:12px;font-family:var(--m);font-size:.74rem;color:var(--t3);letter-spacing:.06em}
+.wys__spin{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--b2);border-top-color:var(--ac);animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wys__fail{display:none;padding:32px 28px}
+.wys.is-failed .wys__fail{display:block}
+.wys.is-failed .wys__stage,.wys.is-failed .wys__top,.wys.is-failed .wys__end{display:none}
+.wys__fail-h{color:var(--t1);font-size:1.25rem;font-weight:700;letter-spacing:-.02em}
+.wys__fail-p{color:var(--t2);margin-top:8px;font-size:.95rem}
+.wys__fail-p a{color:var(--ac)}
+.wys__retry{background:none;border:0;padding:0;color:var(--ac);font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.wys__scen{list-style:none;margin-top:20px}
+.wys__scen li{display:grid;grid-template-columns:90px minmax(0,1fr);gap:16px;padding:16px 0;border-top:1px solid var(--b1)}
+.wys__scen p{font-size:.9rem;color:var(--t2);margin-top:6px}
+.wys__scen p b{color:var(--t1);font-weight:600}
+.wys__scen .lg__t{color:var(--t1);font-weight:600;margin-top:0}
+.wys__card.is-out{opacity:0;transform:translateY(-6px);transition:opacity .18s ease,transform .18s ease}
+.lab__data{margin-top:14px}
+.lab__data p{font-size:.84rem;color:var(--t3);margin-top:6px;max-width:680px}
+
+/* explore all six decisions */
+.lg summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;border-top:1px solid var(--b2);border-bottom:1px solid var(--b1)}
+.lg summary::-webkit-details-marker{display:none}
+.lg summary::after{content:'+';font-family:var(--m);font-size:1.2rem;color:var(--ac)}
+.lg[open] summary::after{content:'\2212'}
+.lg summary:focus-visible{outline:2px solid var(--ac);outline-offset:4px;border-radius:4px}
+.lg summary h2{margin:0}
+.lg .lg__you{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-left:6px;white-space:nowrap}
+.lg .lg__m{font-size:.84rem;color:var(--t3)}
+@media(max-width:560px){.wys__scen li{grid-template-columns:1fr;gap:4px}.wys__fail{padding:24px 16px}.wys__load{min-height:360px}}

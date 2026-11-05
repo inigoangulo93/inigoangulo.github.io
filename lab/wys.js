@@ -1,13 +1,14 @@
-/* Lab: Would you ship it? Six real decisions from the GetYourGuide checkout programme.
-   Data: the JSON block in the page, built from /lab/gyg-calls.json. No backend, nothing stored. */
+/* Lab: Would You Ship It? Six real decisions from the GetYourGuide checkout programme.
+   The page carries the scenarios only. The team's decisions live in decisions.json and are
+   fetched by this script, so the answer key is not in the rendered page. Both are built from
+   /lab/gyg-calls.json. No backend, nothing stored. */
 (function () {
   var root = document.getElementById('wys');
   var src = document.getElementById('wysData');
   if (!root || !src) return;
-  var D = JSON.parse(src.textContent);
-  var DATA = D.calls;
-  var N = DATA.length;
-  var BY = {}; DATA.forEach(function (c, j) { BY[c.id] = j; });
+  var D, DATA, N, BY = {};
+  try { D = JSON.parse(src.textContent); DATA = D.calls; N = DATA.length; DATA.forEach(function (c, j) { BY[c.id] = j; }); }
+  catch (e) { root.classList.add('is-failed'); return; }
   var LABEL = { ship: 'Ship', iterate: 'Iterate', kill: 'Kill' };
   var DESC = { ship: 'Roll it out', iterate: 'Improve or investigate first', kill: 'Stop the experiment' };
   var KEYS = { s: 'ship', i: 'iterate', k: 'kill' };
@@ -19,6 +20,7 @@
   var stage = root.querySelector('.wys__stage');
   var end = root.querySelector('.wys__end');
   var log = document.getElementById('wysLog');
+  var logBody = log ? log.querySelector('.lg__body') : null;
 
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function track(name, p) { if (typeof window.gtag === 'function') window.gtag('event', name, p || {}); }
@@ -79,7 +81,7 @@
 
   function drawCard() {
     var c = DATA[st.i];
-    var more = c.more.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '<li class="prog">' + esc(D.programme) + '</li>';
+    var more = c.more.length ? '<details class="more"><summary>More context</summary><ul>' + c.more.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '</ul></details>' : '';
     var btns = ['ship', 'iterate', 'kill'].map(function (k) {
       return '<button type="button" class="wys__b" data-k="' + k + '"><b>' + LABEL[k] + ' <kbd>' + k.charAt(0).toUpperCase() + '</kbd></b><span>' + DESC[k] + '</span></button>';
     }).join('');
@@ -91,10 +93,10 @@
           '<dl class="brief"><dt>Context</dt><dd>' + esc(c.context) + '</dd><dt>We expected</dt><dd>' + esc(c.hypothesis) + '</dd></dl>' +
         '</div>' +
         '<div class="wys__res">' +
-          '<div class="wys__res-k">EVIDENCE<i><u class="u-good">better</u><u class="u-bad">worse</u><u class="u-flat">flat</u></i></div>' +
+          '<div class="wys__res-k">WHAT THE TEST SHOWED<i><u class="u-good">better</u><u class="u-bad">worse</u><u class="u-flat">flat</u></i></div>' +
           evidence(c) +
           '<div class="to"><div class="to__i to__i--g"><b>Gain</b><span>' + esc(c.gain) + '</span></div><div class="to__i to__i--r"><b>Risk</b><span>' + esc(c.risk) + '</span></div></div>' +
-          '<details class="more"><summary>More context</summary><ul>' + more + '</ul></details>' +
+          more +
         '</div>' +
         '<div class="wys__ask">' +
           '<span class="wys__q" id="wysQ">YOUR CALL: WHAT SHOULD WE DO NEXT?</span>' +
@@ -110,6 +112,8 @@
     }); });
     stage.querySelectorAll('.wys__b').forEach(function (b) { b.addEventListener('click', function () { pick(b.getAttribute('data-k')); }); });
   }
+
+  function otherSide(c) { var o = ['ship', 'iterate', 'kill'].filter(function (x) { return x !== c.call && c.alt[x]; }); return o[0]; }
 
   function pick(k) {
     if (st.phase !== 'ask') return;
@@ -133,8 +137,9 @@
       '</div>' +
       '<p class="fb__state">' + (same ? 'Aligned with the original team.' : 'A different call from the original team.') + '</p>' +
       '<span class="fb__k">WHY</span><p class="fb__why">' + esc(c.why) + '</p>' +
-      (same ? '' : '<p class="fb__alt"><b>The case for your call.</b> ' + esc(c.alt[k]) + '</p>') +
-      '<div class="fb__lesson"><span>PRODUCT LESSON</span><p>' + esc(c.lesson) + '</p></div>' +
+      (same ? (otherSide(c) ? '<p class="fb__alt"><b>The case for ' + LABEL[otherSide(c)].toLowerCase() + '.</b> ' + esc(c.alt[otherSide(c)]) + '</p>' : '')
+            : '<p class="fb__alt"><b>The case for your call.</b> ' + esc(c.alt[k]) + '</p>') +
+      '<div class="fb__lesson"><span>THE PRODUCT LESSON</span><p>' + esc(c.lesson) + '</p></div>' +
       '<button type="button" class="wys__next">' + (last ? 'See how you decided' : 'Next decision') + ' <kbd>Enter</kbd></button>';
     rev.querySelector('.wys__next').addEventListener('click', next);
     rev.querySelector('.wys__next').focus({ preventScroll: true });
@@ -147,8 +152,13 @@
   function next() {
     if (st.phase !== 'rev') return;
     if (st.i < N - 1) {
-      st.i++; st.phase = 'ask'; drawRail(); drawCard(); scrollTo(root);
-      var first = stage.querySelector('.wys__b'); if (first) first.focus({ preventScroll: true });
+      st.i++; st.phase = 'swap'; drawRail();
+      var old = stage.querySelector('.wys__card'); if (old) old.classList.add('is-out');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      setTimeout(function () {
+        st.phase = 'ask'; drawCard(); scrollTo(root);
+        var first = stage.querySelector('.wys__b'); if (first) first.focus({ preventScroll: true });
+      }, reduce ? 0 : 180);
     } else finish();
   }
 
@@ -195,10 +205,10 @@
     // share
     var url = location.origin + location.pathname;
     var strongest = T.tied ? T.tied[0].name + ' and ' + T.tied[1].name : T.top.name;
-    var share = 'Would you ship it?\nI made 6 product decisions based on real checkout experiments.\n' + aligned + '/6 aligned with the original team decisions.\nMy strongest tendency: ' + strongest + '.\n' + url;
+    var share = 'Would You Ship It?\nI made six product decisions based on real checkout experiments.\n' + aligned + '/' + N + ' aligned with the original team decisions.\nMy strongest tendency: ' + strongest + '.\n' + url;
     end.querySelector('.share__txt').textContent = share;
     var copyBtn = end.querySelector('[data-act="copy"]');
-    copyBtn.textContent = 'Copy result';
+    copyBtn.textContent = 'Copy your result';
     copyBtn.onclick = function () {
       var ok = function () { copyBtn.textContent = 'Copied'; }, fail = function () { selectShare(); copyBtn.textContent = 'Selected, press Ctrl+C'; };
       try { navigator.clipboard.writeText(share).then(ok, fail); } catch (e) { fail(); }
@@ -209,23 +219,41 @@
     li.onclick = function () { track('lab_share', { lab: 'would_you_ship_it', via: 'linkedin' }); };
     end.querySelectorAll('[data-act="again"]').forEach(function (b) { b.onclick = reset; });
     end.querySelector('[data-act="explore"]').onclick = function () { openLog(true); };
-    openLog(false);
+    buildLog();
     track('lab_complete', { lab: 'would_you_ship_it', aligned: aligned, tendency: T.top.key });
     scrollTo(root);
     var h = end.querySelector('.ra__n'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
   }
   function selectShare() { var r = document.createRange(); r.selectNodeContents(end.querySelector('.share__txt')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
 
+  function evText(r) { return r.type === 'sig' ? r.label + ': ' + r.text : r.label + ' ' + fmt(r) + (r.ns ? ' (not significant)' : ''); }
+  function buildLog() {
+    if (!log || !logBody) return;
+    var DONE = { ship: 'Shipped', iterate: 'Iterated', kill: 'Killed' };
+    logBody.innerHTML = '<ol>' + DATA.map(function (c, j) {
+      var p = st.picks[j];
+      return '<li><span class="lg__id">' + c.id + '</span><div>' +
+        '<p class="lg__t">' + esc(c.title) + '</p>' +
+        '<p><b>Context.</b> ' + esc(c.context) + ' <b>We expected:</b> ' + esc(c.hypothesis) + '</p>' +
+        '<p><b>Evidence.</b> ' + esc(c.rows.map(evText).join('; ')) + '.</p>' +
+        '<p><b>Team decision: ' + DONE[c.call] + '.</b> ' + esc(c.why) + ' <span class="lg__you">Your call: ' + LABEL[p] + '.</span></p>' +
+        (c.more.length ? '<p class="lg__m">' + esc(c.more.join(' ')) + '</p>' : '') +
+        '<p class="lg__l">' + esc(c.lesson) + '</p></div></li>';
+    }).join('') + '</ol>' +
+      '<div class="links"><a href="/work/checkout.html">Read the full checkout case &#8594;</a><a href="/cro-ecommerce-consultant/">CRO and commerce &#8594;</a><a href="/writing/checkout-conversion-ten-experiments/">Ten checkout experiments, written up &#8594;</a></div>';
+    log.open = false; log.hidden = false;
+  }
   function openLog(go) {
     if (!log) return;
-    log.hidden = false; log.classList.add('is-open');
-    if (go) { log.scrollIntoView({ behavior: 'smooth', block: 'start' }); var h = log.querySelector('h2'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } }
+    if (log.hidden) buildLog();
+    log.open = true;
+    if (go) { log.scrollIntoView({ behavior: 'smooth', block: 'start' }); var h = log.querySelector('summary'); if (h) h.focus({ preventScroll: true }); }
   }
 
   function reset() {
     st = { i: 0, picks: [], phase: 'ask' };
     end.hidden = true; end.classList.remove('is-open');
-    if (log) { log.hidden = true; log.classList.remove('is-open'); }
+    if (log) { log.hidden = true; log.open = false; if (logBody) logBody.innerHTML = ''; }
     stage.hidden = false;
     drawRail(); drawCard(); scrollTo(root);
     var first = stage.querySelector('.wys__b'); if (first) first.focus({ preventScroll: true });
@@ -244,7 +272,27 @@
     }
   });
 
-  if (log) { log.hidden = true; log.classList.remove('is-open'); }
+  /* ---------- start: only when the decisions have loaded ---------- */
+  function fail() {
+    root.classList.add('is-failed'); root.setAttribute('aria-busy', 'false');
+    var l = stage.querySelector('.wys__load'); if (l) l.remove();
+  }
+  function ready(dec) {
+    var map = {}; dec.calls.forEach(function (x) { map[x.id] = x; });
+    if (!DATA.every(function (c) { return map[c.id] && map[c.id].call; })) return fail();
+    DATA.forEach(function (c) { var x = map[c.id]; c.call = x.call; c.why = x.why; c.lesson = x.lesson; c.alt = x.alt || {}; });
+    root.classList.remove('is-failed'); root.classList.add('is-live'); root.setAttribute('aria-busy', 'false');
+    drawRail(); drawCard();
+  }
+  if (log) { log.hidden = true; }
   end.hidden = true;
-  drawRail(); drawCard();
+  drawRail();
+  var done = false;
+  var timer = setTimeout(function () { if (!done) { done = true; fail(); } }, 8000);
+  try {
+    fetch('/lab/would-you-ship-it/decisions.json', { credentials: 'same-origin' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (j) { if (done) return; done = true; clearTimeout(timer); ready(j); })
+      .catch(function () { if (done) return; done = true; clearTimeout(timer); fail(); });
+  } catch (e) { done = true; clearTimeout(timer); fail(); }
 })();
