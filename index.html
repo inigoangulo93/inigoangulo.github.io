@@ -1016,7 +1016,7 @@ window.addEventListener('DOMContentLoaded',function(){
 .hy__who>div{overflow:hidden}
 .hy__name{font-family:var(--s);font-size:1.5rem;font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--t1);margin:0 0 6px}
 .hy__role{font-family:var(--m);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ac2);line-height:1.55;margin:0 0 16px}
-.hy__meta{font-family:var(--m);font-size:.64rem;color:var(--t3);letter-spacing:.04em;display:flex;align-items:center;gap:8px;margin:0 0 18px}
+.hy__meta{font-family:var(--m);font-size:.64rem;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin:0 0 18px}
 .hy__meta i{width:6px;height:6px;border-radius:50%;background:var(--ac);box-shadow:0 0 8px var(--ac)}
 .hy__say{position:relative;border:1px solid var(--b2);border-radius:4px 16px 16px 16px;background:linear-gradient(180deg,rgba(14,14,20,.92),rgba(8,8,12,.92));padding:16px 18px 18px;min-height:150px;transition:border-color .5s var(--e)}
 .hy[data-s="1"] .hy__say,.hy[data-s="2"] .hy__say,.hy[data-s="3"] .hy__say,.hy[data-s="4"] .hy__say,.hy[data-s="5"] .hy__say{border-color:var(--acb)}
@@ -1076,7 +1076,7 @@ window.addEventListener('DOMContentLoaded',function(){
 <div class="hy__card">
 <div class="hy__av"><span class="hy__glow" aria-hidden="true"></span><img src="img/portrait-inigo.webp" width="832" height="1069" decoding="async" loading="lazy" alt="Inigo Angulo"><svg class="hy__ring" viewBox="0 0 140 140" aria-hidden="true"><circle class="hy__seg" data-i="0" cx="70" cy="70" r="66" transform="rotate(-87 70 70)"/><circle class="hy__seg" data-i="1" cx="70" cy="70" r="66" transform="rotate(-15 70 70)"/><circle class="hy__seg" data-i="2" cx="70" cy="70" r="66" transform="rotate(57 70 70)"/><circle class="hy__seg" data-i="3" cx="70" cy="70" r="66" transform="rotate(129 70 70)"/><circle class="hy__seg" data-i="4" cx="70" cy="70" r="66" transform="rotate(201 70 70)"/></svg><span class="hy__dot" aria-hidden="true"></span></div>
 <div class="hy__who"><div><h2 class="hy__name">Inigo Angulo</h2><p class="hy__role">Senior product designer and product builder: I scope, design and ship</p></div></div>
-<p class="hy__meta"><i aria-hidden="true"></i><span id="hyClock">Zurich</span><span aria-hidden="true">/</span><span>remote or hybrid</span></p>
+<p class="hy__meta"><i aria-hidden="true"></i><span id="hyMeta">5 steps, about a minute</span></p>
 <div class="hy__say" aria-live="polite"><span class="hy__k">Hi</span><p class="hy__t">I&#8217;m Inigo. Scroll, and I&#8217;ll tell you how each step works in practice.</p><span class="hy__dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
 <p class="hy__hint"><b aria-hidden="true"></b>scroll</p>
 </div>
@@ -1326,15 +1326,14 @@ window.addEventListener('DOMContentLoaded',function(){
     if(who){var w=who.getBoundingClientRect();if(w.top<vh*.62)s=6}
     steps.forEach(function(st,j){st.classList.toggle('hx-in',j===s-1)});
     hy.classList.toggle('is-live',s>=1&&s<=5);
-    if(s!==cur){cur=s;hy.setAttribute('data-s',String(s));ring(s);speak(s)}
+    if(s!==cur){cur=s;hy.setAttribute('data-s',String(s));ring(s);speak(s);meta(s)}
   }
+  var mt=document.getElementById('hyMeta');
+  function meta(i){if(!mt)return;mt.textContent=i===0?'5 steps, about a minute':(i===6?'Based near Zurich, remote or hybrid':'Step '+i+' of 5')}
   function req(){if(!ticking){ticking=true;requestAnimationFrame(pick)}}
   window.addEventListener('scroll',req,{passive:true});window.addEventListener('resize',req,{passive:true});
   document.addEventListener('click',function(){setTimeout(req,60)});window.addEventListener('popstate',function(){setTimeout(req,60)});
   req();
-  var clock=document.getElementById('hyClock');
-  function tick(){try{clock.textContent='Zurich, '+new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Zurich',hour:'2-digit',minute:'2-digit'}).format(new Date())}catch(e){}}
-  if(clock){tick();setInterval(tick,30000)}
 })();
 </script>
 
