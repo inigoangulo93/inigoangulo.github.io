@@ -1653,13 +1653,19 @@ sync();
 var isMobile=window.innerWidth<768;
 var hw=document.querySelector(".hero-wrap");if(!hw)return;
 var hm=document.getElementById("heroMesh"),tick=false,last=-1;
+/* Fade the hero as it leaves the screen. Measured from the hero's own position, never the page scroll,
+   so it can't stay faded when a view switch, a reload or a back navigation lands at the top without a scroll event. */
 function upd(){tick=false;
-var s=window.scrollY,h=hw.offsetHeight;
-var p=Math.min(s/(h*2.2),1);
-if(p===1&&last===1)return; last=p;
-hw.style.opacity=1-p*.7;
-if(hm){hm.style.opacity=1-p;hm.style.display=p>=1?"none":""}}
-window.addEventListener("scroll",function(){if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});
+var r=hw.getBoundingClientRect(),h=hw.offsetHeight;
+var p=(h&&r.top<0)?Math.min(-r.top/(h*2.2),1):0;
+if(p===last)return; last=p;
+hw.style.opacity=p?String(1-p*.7):"";
+if(hm){hm.style.opacity=p?String(1-p):"";hm.style.display=p>=1?"none":""}}
+function req(){if(!tick){tick=true;requestAnimationFrame(upd)}}
+window.addEventListener("scroll",req,{passive:true});
+["resize","load","pageshow","popstate","hashchange","focus"].forEach(function(e){window.addEventListener(e,req)});
+document.addEventListener("visibilitychange",req);document.addEventListener("click",function(){setTimeout(req,60)});
+req();
 })();
 </script>
 
