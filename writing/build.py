@@ -3,6 +3,7 @@
 import json, html, os, subprocess, datetime, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build_posts import BUILD_POSTS
+from kit import KIT, ORDER as KIT_ORDER, CAPS as KIT_CAPS, ARTICLE_TO_KIT
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'services'))
 from chrome import header, mobmenu, FOOTER
 VER = subprocess.run(["git","rev-parse","--short","HEAD"],capture_output=True,text=True).stdout.strip() or "0"
@@ -459,7 +460,7 @@ def faq_block(d):
 def page(slug, d):
     url = f"https://inigoangulo.com/writing/{slug}/"
     faq_ld = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in d.get("faq",[])]} if d.get("faq") else None
-    ld = {"@context":"https://schema.org","@type":"Article","headline":d["title"],"description":d["desc"],"datePublished":d["date"],"dateModified":d.get("updated",d["date"]),"author":{"@type":"Person","@id":"https://inigoangulo.com/#person","name":"Inigo Angulo","url":"https://inigoangulo.com/"},"publisher":{"@type":"Person","name":"Inigo Angulo"},"mainEntityOfPage":url,"image":"https://inigoangulo.com/img/og.png","keywords":TAGS.get(d.get("tag",""),""),"articleSection":TAGS.get(d.get("tag",""),""),"inLanguage":"en"}
+    ld = {"@context":"https://schema.org","@type":"Article","headline":d["title"],"description":d["desc"],"datePublished":d["date"],"dateModified":d.get("updated",d["date"]),"author":{"@type":"Person","@id":"https://inigoangulo.com/#person","name":"Inigo Angulo","url":"https://inigoangulo.com/"},"publisher":{"@type":"Person","name":"Inigo Angulo"},"mainEntityOfPage":url,"image":"https://inigoangulo.com/img/og-home.png","keywords":TAGS.get(d.get("tag",""),""),"articleSection":TAGS.get(d.get("tag",""),""),"inLanguage":"en"}
     bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inigo Angulo","item":"https://inigoangulo.com/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://inigoangulo.com/writing/"},{"@type":"ListItem","position":3,"name":d["title"],"item":url}]}
     nice = datetime.date.fromisoformat(d["date"]).strftime("%B %-d, %Y")
     return f'''<!DOCTYPE html>
@@ -473,7 +474,7 @@ def page(slug, d):
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">\n<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <meta property="og:title" content="{esc(d["title"])}">
 <meta property="og:description" content="{esc(d["desc"])}">
-<meta property="og:image" content="https://inigoangulo.com/img/og.png">
+<meta property="og:image" content="https://inigoangulo.com/img/og-home.png">
 <meta property="og:type" content="article">
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary_large_image">
@@ -495,6 +496,7 @@ def page(slug, d):
 <div class="meta"><span>Inigo Angulo</span><span>{nice}</span><span>{d["read"]} read</span><a class="tag" href="/writing/#{d.get("tag","")}">{esc(TAGS.get(d.get("tag",""),""))}</a></div>
 {series_box(slug,d)}
 {d["body"]}
+{kit_box(slug)}
 {faq_block(d)}
 {cta_block(d)}
 </article></main>
@@ -528,7 +530,7 @@ def index():
 <meta name="description" content="Notes from building products with AI agent teams, running experiments on checkout funnels, and deciding what is worth building. {n} articles in four series.">
 <link rel="canonical" href="https://inigoangulo.com/writing/">
 <link rel="alternate" type="application/rss+xml" title="Inigo Angulo, writing" href="https://inigoangulo.com/writing/feed.xml">
-<meta property="og:title" content="Writing: building with AI agents, product, conversion"><meta property="og:description" content="Notes from building products with AI agent teams, running experiments on checkout funnels, and deciding what is worth building."><meta property="og:image" content="https://inigoangulo.com/img/og.png"><meta property="og:url" content="https://inigoangulo.com/writing/">
+<meta property="og:title" content="Writing: building with AI agents, product, conversion"><meta property="og:description" content="Notes from building products with AI agent teams, running experiments on checkout funnels, and deciding what is worth building."><meta property="og:image" content="https://inigoangulo.com/img/og-home.png"><meta property="og:url" content="https://inigoangulo.com/writing/">
 <script type="application/ld+json">{json.dumps(blog_ld,ensure_ascii=False)}</script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">\n<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 {FONTS}
@@ -555,6 +557,7 @@ def index():
 .post--hub{{border-color:var(--acb);background:var(--acg2)}}
 .post.hide,.grp.hide{{display:none}}
 .empty{{display:none;color:var(--t3);font-family:var(--m);font-size:.8rem;padding:30px 0}}.empty.show{{display:block}}
+.kitban{{display:flex;align-items:center;gap:14px;border:1px solid var(--acb);background:var(--acg2);border-radius:12px;padding:14px 18px;margin:0 0 22px;transition:border-color .2s,transform .2s}}.kitban:hover{{transform:translateY(-2px);border-color:var(--ac)}}.kitban__k{{flex:none;font-family:var(--m);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:#000;background:var(--ac);border-radius:6px;padding:4px 8px}}.kitban__t{{flex:1;font-size:.92rem;color:var(--t2);line-height:1.45}}.kitban__t b{{color:var(--t1);font-weight:600}}.kitban__a{{flex:none;font-family:var(--m);font-size:.72rem;color:var(--ac2)}}@media(max-width:700px){{.kitban{{flex-wrap:wrap}}.kitban__a{{width:100%}}}}
 .count{{font-family:var(--m);font-size:.68rem;color:var(--t3);margin:-14px 0 20px}}
 mark{{background:rgba(45,212,191,.22);color:var(--t1);border-radius:3px;padding:0 2px;box-shadow:0 0 0 1px rgba(45,212,191,.18)}}
 @media(max-width:700px){{.search kbd{{display:none}}.list{{padding-top:96px}}}}
@@ -566,6 +569,7 @@ mark{{background:rgba(45,212,191,.22);color:var(--t1);border-radius:3px;padding:
 <script src="/services/bar.js?v={VER}" defer></script>
 <script src="/services/copy.js?v={VER}" defer></script>
 <main><div class="list"><span class="k">Writing</span><h1 style="font-size:2rem;margin-bottom:14px">What I learned shipping, written down.</h1><p class="intro">{n} articles in four series: building products with AI agent teams, the gates between an agent and production, conversion experiments on real funnels, and design systems that match the code. Each series has a place to start.</p>
+<a class="kitban" href="/writing/kit/"><span class="kitban__k">Kit</span><span class="kitban__t"><b>{len(KIT)} templates, checklists and prompts</b> from the method, ready to copy: CLAUDE.md, tickets, release gates, MVP scope, checkout audit.</span><span class="kitban__a">Open the kit &#8594;</span></a>
 <form class="search" role="search" onsubmit="return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search {n} articles: tickets, CLAUDE.md, checkout, RLS, cost..." aria-label="Search articles" autocomplete="off"><kbd>/</kbd></form>
 <div class="chips">{chips}</div>
 <p class="count" id="count"></p>
@@ -593,7 +597,160 @@ def feed():
     items = "".join(f"<item><title>{esc(d['title'])}</title><link>https://inigoangulo.com/writing/{s}/</link><guid>https://inigoangulo.com/writing/{s}/</guid><pubDate>{datetime.datetime.combine(datetime.date.fromisoformat(d['date']),datetime.time(8)).strftime('%a, %d %b %Y %H:%M:%S +0000')}</pubDate><description>{esc(d['desc'])}</description></item>" for s,d in order)
     return f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Inigo Angulo, writing</title><link>https://inigoangulo.com/writing/</link><description>Notes on building product with AI agent teams, conversion experiments and design systems.</description><language>en</language>{items}</channel></rss>'
 
+# ---------- Kit ----------
+KIT_CTA = {"build": "agents", "lead": "product", "optimize": "conversion"}
+KIT_CSS = '''
+.kitbox{display:flex;gap:14px;align-items:center}.kitbox .kitban__k{flex:none;font-family:var(--m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#000;background:var(--ac);border-radius:6px;padding:4px 8px}
+.art .kmeta{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 26px}
+.art .kpill{font-family:var(--m);font-size:.68rem;color:var(--t2);border:1px solid var(--b2);border-radius:999px;padding:4px 10px}
+.art .kpill--ac{color:var(--ac2);border-color:var(--acb)}
+.art .lede{font-size:1.12rem;color:var(--t1)}
+.art ol.use{counter-reset:u;list-style:none;margin:0 0 10px;padding:0}
+.art ol.use li{counter-increment:u;position:relative;padding:0 0 0 38px;margin:0 0 12px}
+.art ol.use li::before{content:counter(u);position:absolute;left:0;top:1px;width:24px;height:24px;border-radius:7px;border:1px solid var(--acb);color:var(--ac2);font-family:var(--m);font-size:.7rem;display:grid;place-items:center}
+.kb{margin:24px 0 0}
+.kb__h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 -12px;padding:0 2px}
+.kb__h span{font-family:var(--m);font-size:.7rem;color:var(--t3);letter-spacing:.04em}
+.kb__h span b{color:var(--t1);font-weight:500}
+.kb__dl{display:inline-flex;align-items:center;gap:6px;font-family:var(--m);font-size:.7rem;color:var(--ac2)!important;border:none!important}
+.kb__dl svg{width:13px;height:13px}
+.art .kb pre{white-space:pre-wrap;word-break:break-word}.kb .cb>pre{padding-top:54px}
+.kb--prompt pre{background:linear-gradient(180deg,rgba(45,212,191,.05),rgba(45,212,191,.015));border-color:var(--acb)}
+.art .log{list-style:none;margin:0;padding:0;border-left:1px solid var(--b2)}
+.art .log li{position:relative;padding:0 0 14px 20px;margin:0}
+.art .log li::before{content:"";position:absolute;left:-4px;top:7px;width:7px;height:7px;border-radius:50%;background:var(--ac);box-shadow:0 0 10px var(--acg)}
+.art .log b{font-family:var(--m);font-size:.74rem;color:var(--ac2);font-weight:500;margin-right:8px}
+.art .log em{font-style:normal;font-family:var(--m);font-size:.7rem;color:var(--t3);margin-right:8px}
+.krel{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 0}
+.kcard{display:flex;flex-direction:column;gap:8px;border:1px solid var(--b1);border-radius:12px;padding:18px;background:var(--glass);color:inherit!important;transition:border-color .2s,transform .2s}
+.kcard:hover{border-color:var(--acb);transform:translateY(-2px)}
+.kcard__k{font-family:var(--m);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac)}
+.kcard h2,.kcard h3{font-size:1.02rem;margin:0;color:var(--t1);line-height:1.3;max-width:none}
+.kcard p{font-size:.88rem!important;color:var(--t2);margin:0!important;line-height:1.5!important}
+.kcard__f{margin-top:auto;padding-top:6px;font-family:var(--m);font-size:.66rem;color:var(--t3)}
+@media(max-width:700px){.krel{grid-template-columns:1fr}}
+'''
+DL_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>'
+
+def kit_box(slug):
+    k = ARTICLE_TO_KIT.get(slug)
+    if not k: return ""
+    d = KIT[k]
+    return f'<div class="box kitbox"><span class="kitban__k">Kit</span><p>Copy the {esc(d["kind"].lower())}: <a href="/writing/kit/{k}/">{esc(d["short"])}</a>, with a prompt to use it and its changelog.</p></div>'
+
+def kit_card(k, tag="h3"):
+    d = KIT[k]
+    return (f'<a class="kcard" href="/writing/kit/{k}/" data-cap="{d["cap"]}"><span class="kcard__k">{esc(d["kind"])} / {esc(KIT_CAPS[d["cap"]])}</span>'
+            f'<{tag}>{esc(d["short"])}</{tag}><p>{esc(d["card"])}</p><span class="kcard__f">v{d["version"]} / {esc(d["file"])}</span></a>')
+
+def kit_head(title, desc, url, extra_css, lds):
+    ld = "".join(f'<script type="application/ld+json">{json.dumps(x,ensure_ascii=False)}</script>\n' for x in lds)
+    return f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{esc(title)} / Inigo Angulo</title>
+<meta name="description" content="{esc(desc)}">
+<link rel="canonical" href="{url}">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta property="og:title" content="{esc(title)}">
+<meta property="og:description" content="{esc(desc)}">
+<meta property="og:image" content="https://inigoangulo.com/img/og-home.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{url}">
+<meta name="twitter:card" content="summary_large_image">
+{FONTS}
+<link rel="stylesheet" href="/services/services.css?v={VER}">
+<style>{CSS}{KIT_CSS}{extra_css}</style>
+{GA}
+{ld}</head>
+<body>
+{header('writing','Kit')}{mobmenu('writing')}
+<script src="/services/bar.js?v={VER}" defer></script>
+<script src="/services/copy.js?v={VER}" defer></script>
+'''
+
+def kit_page(k, d):
+    url = f"https://inigoangulo.com/writing/kit/{k}/"
+    last = d["changelog"][0][1]
+    nice = datetime.date.fromisoformat(last).strftime("%B %-d, %Y")
+    blocks = "".join(
+        f'<div class="kb"><div class="kb__h"><span>{esc(label)}: <b>{esc(fn)}</b></span><a class="kb__dl" href="/writing/kit/{k}/{fn}" download="{fn}" data-dl="{k}">{DL_ICON}Download</a></div><pre><code>{esc(body.rstrip())}</code></pre></div>'
+        for label, fn, body in d["blocks"])
+    plabel, ptext = d["prompt"]
+    prompt = f'<h2>Prompt to use it</h2><div class="kb kb--prompt"><div class="kb__h"><span>{esc(plabel)}</span></div><pre><code>{esc(ptext.rstrip())}</code></pre></div>'
+    use = "".join(f"<li>{esc(x)}</li>" for x in d["use"])
+    log = "".join(f'<li><b>v{v}</b><em>{datetime.date.fromisoformat(dt).strftime("%b %-d, %Y")}</em>{esc(t)}</li>' for v, dt, t in d["changelog"])
+    aslug, atitle = d["article"]
+    rel = "".join(kit_card(r) for r in d["related"])
+    h, p, href, lab = CTA[KIT_CTA[d["cap"]]]
+    ld = {"@context":"https://schema.org","@type":"CreativeWork","name":d["title"],"description":d["desc"],"url":url,"version":d["version"],"dateModified":last,
+          "author":{"@type":"Person","@id":"https://inigoangulo.com/#person","name":"Inigo Angulo"},"isPartOf":{"@type":"CollectionPage","name":"Kit","url":"https://inigoangulo.com/writing/kit/"},"inLanguage":"en"}
+    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inigo Angulo","item":"https://inigoangulo.com/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://inigoangulo.com/writing/"},{"@type":"ListItem","position":3,"name":"Kit","item":"https://inigoangulo.com/writing/kit/"},{"@type":"ListItem","position":4,"name":d["short"],"item":url}]}
+    return kit_head(d["title"], d["desc"], url, "", [ld, bc]) + f'''<main><article class="art">
+<span class="k"><a href="/writing/" style="color:inherit">Writing</a> / <a href="/writing/kit/" style="color:inherit">Kit</a></span>
+<h1>{esc(d["title"])}</h1>
+<div class="kmeta"><span class="kpill kpill--ac">{esc(d["kind"])}</span><span class="kpill">{esc(KIT_CAPS[d["cap"]])}</span><span class="kpill">v{d["version"]}</span><span class="kpill">Updated {nice}</span></div>
+<p class="lede">{esc(d["desc"])}</p>
+<h2>How to use it</h2>
+<ol class="use">{use}</ol>
+{blocks}
+{prompt}
+<div class="box"><p>Why it looks like this, and where each part came from: <a href="/writing/{aslug}/">{esc(atitle)}</a>.</p></div>
+<h2>Changelog</h2>
+<ul class="log">{log}</ul>
+<h2>More from the kit</h2>
+<div class="krel">{rel}</div>
+<div class="cta"><h2>{esc(h)}</h2><p>{esc(p)} <a href="{href}">{esc(lab)} &#8594;</a> Or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
+</article></main>
+<script>document.querySelectorAll("[data-dl]").forEach(function(a){{a.addEventListener("click",function(){{if(window.siteSnack)siteSnack("Downloading "+a.getAttribute("download"));if(window.gtag)try{{gtag("event","kit_download",{{item:a.dataset.dl,file:a.getAttribute("download")}})}}catch(e){{}}}})}})</script>
+{FOOTER}
+</body>
+</html>
+'''
+
+def kit_index():
+    url = "https://inigoangulo.com/writing/kit/"
+    title = "Kit: templates, checklists and prompts for building with AI agents"
+    desc = f"{len(KIT)} templates, checklists and prompts from a method that ships products with AI agent teams: CLAUDE.md, ticket template, escalation format, release gates, MVP scope and a checkout audit. Free to copy."
+    groups = f'<div class="kgrid">{"".join(kit_card(k) for k in KIT_ORDER)}</div>'
+    chips = '<a class="chip on" href="#" data-f="">All</a>' + "".join(f'<a class="chip" href="#{c}" data-f="{c}">{esc(l)}</a>' for c, l in KIT_CAPS.items())
+    ld = {"@context":"https://schema.org","@type":"CollectionPage","name":title,"description":desc,"url":url,"hasPart":[{"@type":"CreativeWork","name":KIT[k]["title"],"url":f"{url}{k}/"} for k in KIT_ORDER]}
+    css = '''.list{max-width:900px;margin:0 auto;padding:110px 24px 40px}.list h1{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:14px}.intro{color:var(--t2);font-size:1.02rem;max-width:640px;margin:0 0 22px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 26px}.chip{font-family:var(--m);font-size:.72rem;color:var(--t2);border:1px solid var(--b2);border-radius:999px;padding:7px 12px;transition:color .2s,border-color .2s}.chip.on,.chip:hover{color:var(--ac2);border-color:var(--acb)}
+.grp{margin:0 0 34px}.grp.hide{display:none}.grp__h{font-family:var(--m);font-size:.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin:0 0 12px;display:flex;align-items:center;gap:10px}.grp__h::after{content:"";flex:1;height:1px;background:var(--b1)}.grp__h span{color:var(--ac2)}
+.kcard.hide{display:none}.kgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.kgrid .kcard{padding:22px}.kgrid .kcard h3{font-size:1.15rem}
+.knote{max-width:none;font-family:var(--m);font-size:.72rem;color:var(--t3);line-height:1.6;border-top:1px solid var(--b1);padding-top:18px;margin-top:10px}
+@media(max-width:700px){.kgrid{grid-template-columns:1fr}.list{padding-top:96px}}'''
+    return kit_head(title, desc, url, css, [ld]) + f'''<main><div class="list">
+<span class="k"><a href="/writing/" style="color:inherit">Writing</a> / Kit</span>
+<h1>The kit. What I actually use, ready to copy.</h1>
+<p class="intro">Templates, checklists and prompts from the way I scope, build and ship products with AI agent teams. Neutral versions of the real thing: copy them, adapt them, break them. Each one links to the article that explains why it looks the way it does, and keeps a changelog of what changed and what incident changed it.</p>
+<div class="chips">{chips}</div>
+{groups}
+<p class="knote">Free to use, no sign up. Every block has a copy button and a download. If something here stops working for you, <a href="mailto:inigoangulo@gmail.com" style="color:var(--ac2)">tell me</a> and it goes in the changelog.</p>
+</div></main>
+<script>(function(){{var chips=document.querySelectorAll(".chip"),grps=document.querySelectorAll(".grp"),f="";function apply(){{chips.forEach(function(c){{c.classList.toggle("on",c.dataset.f===f)}});document.querySelectorAll(".kgrid .kcard").forEach(function(g){{g.classList.toggle("hide",!!f&&g.dataset.cap!==f)}})}}
+chips.forEach(function(c){{c.addEventListener("click",function(e){{e.preventDefault();f=c.dataset.f;history.replaceState(null,"",f?"#"+f:"/writing/kit/");apply()}})}});var h=location.hash.slice(1);if(h&&document.querySelector('.chip[data-f="'+h+'"]'))f=h;apply()}})();</script>
+{FOOTER}
+</body>
+</html>
+'''
+
+def write_kit():
+    os.makedirs("writing/kit", exist_ok=True)
+    open("writing/kit/index.html", "w").write(kit_index())
+    for k in KIT_ORDER:
+        d = KIT[k]
+        os.makedirs(f"writing/kit/{k}", exist_ok=True)
+        open(f"writing/kit/{k}/index.html", "w").write(kit_page(k, d))
+        for label, fn, body in d["blocks"]:
+            open(f"writing/kit/{k}/{fn}", "w").write(body.rstrip() + "\n")
+
 if __name__ == "__main__":
+    write_kit()
     os.makedirs("writing", exist_ok=True)
     open("writing/feed.xml","w").write(feed())
     open("writing/index.html","w").write(index())

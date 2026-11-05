@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://inigoangulo.com/writing/tickets-for-ai-agents-template/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/services/services.css?v=d7b68ac">
+<link rel="stylesheet" href="/services/services.css?v=272dfbd">
 <style>.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
 .art .k{margin-bottom:12px}.art h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:none}
 .art .meta{font-family:var(--m);font-size:.74rem;color:var(--t3);margin:16px 0 34px;display:flex;gap:16px;flex-wrap:wrap}
@@ -52,8 +52,8 @@
 </head>
 <body>
 <header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn" href="/lab/">Lab</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a><div class="bar__ham" id="hamBtn" onclick="toggleMenu()"><span></span><span></span><span></span></div></div><div class="bar__mini" aria-hidden="true"><i></i><span>Building with AI agents</span></div></header><div class="mob-menu" id="mobMenu"><div class="mob-menu__bg" onclick="toggleMenu()"></div><div class="mob-menu__inner"><a class="mob-menu__link" href="/#work"><span>Work</span><span class="mob-menu__link-num">01</span></a><a class="mob-menu__link" href="/#how-i-think"><span>How I think</span><span class="mob-menu__link-num">02</span></a><a class="mob-menu__link" href="/#about"><span>About</span><span class="mob-menu__link-num">03</span></a><a class="mob-menu__link" href="/lab/"><span>Lab</span><span class="mob-menu__link-num">04</span></a><a class="mob-menu__link on" href="/writing/"><span>Writing</span><span class="mob-menu__link-num">05</span></a><div class="mob-menu__cta"><a href="/#contact">Get in touch &#8594;</a></div><div class="mob-menu__contact"><a href="mailto:inigoangulo@gmail.com">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank" rel="noopener">LinkedIn</a><a href="tel:+41799528321">Phone</a></div></div></div>
-<script src="/services/bar.js?v=d7b68ac" defer></script>
-<script src="/services/copy.js?v=1" defer></script>
+<script src="/services/bar.js?v=272dfbd" defer></script>
+<script src="/services/copy.js?v=272dfbd" defer></script>
 <main><article class="art">
 <span class="k">Writing</span>
 <h1>Writing tickets for AI agents: the template that stops them inventing requirements</h1>
@@ -116,6 +116,7 @@ One sentence linking this to the thesis.
 
 <div class="box"><p>This is step 3 of <a href="/writing/how-to-build-an-mvp-with-ai-agents/">how to build an MVP with AI agents</a>. The decisions log it cites is described in <a href="/writing/claude-md-example-project-rules-file/">the project rules file</a>; who takes the ticket from here is in <a href="/writing/ai-agent-team-structure-solo-builder/">the team structure</a>.</p></div>
 
+<div class="box kitbox"><span class="kitban__k">Kit</span><p>Copy the template: <a href="/writing/kit/ticket-template/">Ticket template for agents</a>, with a prompt to use it and its changelog.</p></div>
 <section class="faq"><h2>Questions people ask</h2><details><summary>How detailed should a ticket for an AI agent be?</summary><p>Detailed in the three places agents fail: what done looks like (measurable), what is out of scope (explicit), and which decisions are already taken (by id). Everything else can be short, because the agent reads the domain model and the rules file anyway.</p></details><details><summary>Who writes the tickets, the human or the lead agent?</summary><p>The human writes the ticket: intent, acceptance criterion, bounds. The lead agent decomposes it into work for the workers. An agent writing its own acceptance criterion is grading its own homework.</p></details><details><summary>What happens when a ticket is wrong?</summary><p>It goes back before any work starts. A ticket without a measurable criterion or with invalid frontmatter is returned, by rule. The cost of returning a ticket is minutes; the cost of building against a wrong one is the ticket plus everything that was built on top.</p></details></section>
 <div class="cta"><h2>Working on something like this?</h2><p>This is how I build products with AI agent teams, from scope to production. <a href="/ai-product-builder/">Discuss a product idea &#8594;</a> Or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
 </article></main>

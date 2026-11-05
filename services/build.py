@@ -126,7 +126,7 @@ def page(slug, d):
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">\n<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <meta property="og:title" content="{esc(d["title"].split(" / ")[0])}">
 <meta property="og:description" content="{esc(d["desc"])}">
-<meta property="og:image" content="https://inigoangulo.com/img/og.png">
+<meta property="og:image" content="https://inigoangulo.com/img/og-home.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary_large_image">

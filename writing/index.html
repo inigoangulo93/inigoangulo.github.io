@@ -11,7 +11,7 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/services/services.css?v=d7b68ac">
+<link rel="stylesheet" href="/services/services.css?v=272dfbd">
 <style>
 .list{max-width:760px;margin:0 auto;padding:110px 24px 40px}
 .intro{color:var(--t2);font-size:1.02rem;max-width:640px;margin:0 0 24px}
@@ -34,6 +34,7 @@
 .post--hub{border-color:var(--acb);background:var(--acg2)}
 .post.hide,.grp.hide{display:none}
 .empty{display:none;color:var(--t3);font-family:var(--m);font-size:.8rem;padding:30px 0}.empty.show{display:block}
+.kitban{display:flex;align-items:center;gap:14px;border:1px solid var(--acb);background:var(--acg2);border-radius:12px;padding:14px 18px;margin:0 0 22px;transition:border-color .2s,transform .2s}.kitban:hover{transform:translateY(-2px);border-color:var(--ac)}.kitban__k{flex:none;font-family:var(--m);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:#000;background:var(--ac);border-radius:6px;padding:4px 8px}.kitban__t{flex:1;font-size:.92rem;color:var(--t2);line-height:1.45}.kitban__t b{color:var(--t1);font-weight:600}.kitban__a{flex:none;font-family:var(--m);font-size:.72rem;color:var(--ac2)}@media(max-width:700px){.kitban{flex-wrap:wrap}.kitban__a{width:100%}}
 .count{font-family:var(--m);font-size:.68rem;color:var(--t3);margin:-14px 0 20px}
 mark{background:rgba(45,212,191,.22);color:var(--t1);border-radius:3px;padding:0 2px;box-shadow:0 0 0 1px rgba(45,212,191,.18)}
 @media(max-width:700px){.search kbd{display:none}.list{padding-top:96px}}
@@ -44,9 +45,10 @@ mark{background:rgba(45,212,191,.22);color:var(--t1);border-radius:3px;padding:0
 </head>
 <body>
 <header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/#about">About</a><a class="bar__btn" href="/lab/">Lab</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a><div class="bar__ham" id="hamBtn" onclick="toggleMenu()"><span></span><span></span><span></span></div></div><div class="bar__mini" aria-hidden="true"><i></i><span>Writing</span></div></header><div class="mob-menu" id="mobMenu"><div class="mob-menu__bg" onclick="toggleMenu()"></div><div class="mob-menu__inner"><a class="mob-menu__link" href="/#work"><span>Work</span><span class="mob-menu__link-num">01</span></a><a class="mob-menu__link" href="/#how-i-think"><span>How I think</span><span class="mob-menu__link-num">02</span></a><a class="mob-menu__link" href="/#about"><span>About</span><span class="mob-menu__link-num">03</span></a><a class="mob-menu__link" href="/lab/"><span>Lab</span><span class="mob-menu__link-num">04</span></a><a class="mob-menu__link on" href="/writing/"><span>Writing</span><span class="mob-menu__link-num">05</span></a><div class="mob-menu__cta"><a href="/#contact">Get in touch &#8594;</a></div><div class="mob-menu__contact"><a href="mailto:inigoangulo@gmail.com">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank" rel="noopener">LinkedIn</a><a href="tel:+41799528321">Phone</a></div></div></div>
-<script src="/services/bar.js?v=d7b68ac" defer></script>
-<script src="/services/copy.js?v=1" defer></script>
+<script src="/services/bar.js?v=272dfbd" defer></script>
+<script src="/services/copy.js?v=272dfbd" defer></script>
 <main><div class="list"><span class="k">Writing</span><h1 style="font-size:2rem;margin-bottom:14px">What I learned shipping, written down.</h1><p class="intro">17 articles in four series: building products with AI agent teams, the gates between an agent and production, conversion experiments on real funnels, and design systems that match the code. Each series has a place to start.</p>
+<a class="kitban" href="/writing/kit/"><span class="kitban__k">Kit</span><span class="kitban__t"><b>6 templates, checklists and prompts</b> from the method, ready to copy: CLAUDE.md, tickets, release gates, MVP scope, checkout audit.</span><span class="kitban__a">Open the kit &#8594;</span></a>
 <form class="search" role="search" onsubmit="return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search 17 articles: tickets, CLAUDE.md, checkout, RLS, cost..." aria-label="Search articles" autocomplete="off"><kbd>/</kbd></form>
 <div class="chips"><a class="chip on" href="#" data-f="">All</a><a class="chip" href="#build" data-f="build">Building with AI agents</a><a class="chip" href="#agents" data-f="agents">AI agent teams</a><a class="chip" href="#conversion" data-f="conversion">Conversion and funnels</a><a class="chip" href="#design" data-f="design">Design systems</a><a class="chip" href="#product" data-f="product">Product and consulting</a></div>
 <p class="count" id="count"></p>

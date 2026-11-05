@@ -27,6 +27,7 @@ cal.com/inigoangulo/30min · inigoangulo@gmail.com · CV: /inigo-angulo-cv-2026.
 
 ## Writing
 - https://inigoangulo.com/writing/ : index with search and series; RSS at /writing/feed.xml
+- https://inigoangulo.com/writing/kit/ : the Kit, copyable templates, checklists and prompts (CLAUDE.md, ticket template, escalation format, release gate, MVP scope, checkout audit), each with a .md download and changelog
 - https://inigoangulo.com/writing/ai-agent-teams-software-development/
 - https://inigoangulo.com/writing/human-in-the-loop-coding-agents/
 - https://inigoangulo.com/writing/one-person-ai-agent-team-445-prs/
