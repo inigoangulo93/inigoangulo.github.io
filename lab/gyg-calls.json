@@ -1,0 +1,79 @@
+{
+  "source": "GetYourGuide checkout programme, experiment log in /work/checkout.html. Same calls and numbers as the case study.",
+  "calls": [
+    {
+      "id": "EXP-01",
+      "call": "ship",
+      "title": "Hold-your-spot countdown: \"We'll hold your spot for 30:00\"",
+      "ctx": "A real reservation hold while the traveller pays. Not manufactured scarcity: the spot is actually held.",
+      "rows": [
+        {"type": "bar", "label": "Payment completion", "v": 3.1, "unit": "%", "tone": "good"},
+        {"type": "sig", "label": "Urgency related support tickets", "text": "zero", "tone": "good"}
+      ],
+      "lead": "Same call we made.",
+      "why": "Urgency reframed as service: we reserve for the user, not against them. The top single win of the programme."
+    },
+    {
+      "id": "EXP-06",
+      "call": "kill",
+      "title": "Price-expiry countdown: \"Book now, the price rises when the timer ends\"",
+      "ctx": "The hold-your-spot timer (EXP-01) had already shipped. This one tests the opposite framing of the same mechanic.",
+      "rows": [
+        {"type": "bar", "label": "Click through to payment", "v": 4.2, "unit": "%", "tone": "good"},
+        {"type": "bar", "label": "Trust survey", "v": -9, "unit": " pts", "tone": "bad"},
+        {"type": "sig", "label": "Refund intent proxy", "text": "up", "tone": "bad"}
+      ],
+      "lead": "Exactly the call.",
+      "why": "A win that spends trust is a loss with a delay. One timer serves the user, this one threatens them. Killed on principle and on data."
+    },
+    {
+      "id": "EXP-07",
+      "call": "ship",
+      "title": "Promo code as a quiet link instead of an open field",
+      "ctx": "The code field is still there, one tap away. It just stops being the first thing a traveller sees before paying.",
+      "rows": [
+        {"type": "bar", "label": "Exits to hunt for coupons", "v": -31, "unit": "%", "tone": "good"},
+        {"type": "sig", "label": "Net checkout completion", "text": "up", "tone": "good"}
+      ],
+      "lead": "You would have fit right in.",
+      "why": "An empty field is an invitation to leave and go coupon hunting. A link keeps the option without issuing the invitation. Shipped."
+    },
+    {
+      "id": "EXP-08",
+      "call": "kill",
+      "title": "Single-page checkout: collapse every step into one view",
+      "ctx": "Every step of checkout on one screen, no navigation between them.",
+      "rows": [
+        {"type": "bar", "label": "Desktop conversion", "v": 0.4, "unit": "%", "tone": "flat", "ns": true},
+        {"type": "bar", "label": "Mobile conversion", "v": -0.9, "unit": "%", "tone": "bad"},
+        {"type": "sig", "label": "Render time, mid range Android", "text": "about +1.2 s", "tone": "bad"}
+      ],
+      "lead": "Same call we made.",
+      "why": "72% of the programme's uplift lived on mobile. You do not trade your best segment for elegance. The principle survived the kill: unbroken context, shipped as two named steps (EXP-02)."
+    },
+    {
+      "id": "EXP-09",
+      "call": "iterate",
+      "title": "Email-first continue, account creation deferred",
+      "ctx": "Ask for an email to continue and leave the account for later, to cut the wall before payment for new travellers.",
+      "rows": [
+        {"type": "bar", "label": "New user conversion, v1", "v": 0, "unit": "%", "tone": "flat", "ns": true, "display": "flat"},
+        {"type": "sig", "label": "Session recordings", "text": "still hesitating at \"create account\"", "tone": "warn"}
+      ],
+      "lead": "Exactly the call.",
+      "why": "Flat is not dead when the qualitative signal survives. v2 paired email first with SSO and moved account creation after purchase: +1.1%, shipped."
+    },
+    {
+      "id": "EXP-10",
+      "call": "iterate",
+      "title": "Reorder payment methods to match each market",
+      "ctx": "The same checkout in four markets, with the payment methods ordered by local preference.",
+      "rows": [
+        {"type": "bar", "label": "2 of 4 markets", "v": 1.7, "unit": "%", "tone": "good"},
+        {"type": "bar", "label": "The other 2 markets", "v": 0, "unit": "%", "tone": "flat", "display": "flat"}
+      ],
+      "lead": "You would have fit right in.",
+      "why": "Not a global truth, a local one. It became a per market rollout with a shared default, instead of forcing one answer on four markets."
+    }
+  ]
+}
