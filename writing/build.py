@@ -488,6 +488,7 @@ def page(slug, d):
 <body>
 {header('writing',TAGS.get(d.get('tag',''),'Writing'))}{mobmenu('writing')}
 <script src="/services/bar.js?v={VER}" defer></script>
+<script src="/services/copy.js?v={VER}" defer></script>
 <main><article class="art">
 <span class="k">Writing</span>
 <h1>{esc(d["title"])}</h1>
@@ -563,6 +564,7 @@ mark{{background:rgba(45,212,191,.22);color:var(--t1);border-radius:3px;padding:
 <body>
 {header('writing','Writing')}{mobmenu('writing')}
 <script src="/services/bar.js?v={VER}" defer></script>
+<script src="/services/copy.js?v={VER}" defer></script>
 <main><div class="list"><span class="k">Writing</span><h1 style="font-size:2rem;margin-bottom:14px">What I learned shipping, written down.</h1><p class="intro">{n} articles in four series: building products with AI agent teams, the gates between an agent and production, conversion experiments on real funnels, and design systems that match the code. Each series has a place to start.</p>
 <form class="search" role="search" onsubmit="return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search {n} articles: tickets, CLAUDE.md, checkout, RLS, cost..." aria-label="Search articles" autocomplete="off"><kbd>/</kbd></form>
 <div class="chips">{chips}</div>

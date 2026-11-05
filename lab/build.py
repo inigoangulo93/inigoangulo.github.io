@@ -41,6 +41,7 @@ def head(title, desc, url, crumbs):
 <body>
 {header('lab', 'Lab')}{mobmenu('lab')}
 <script src="/services/bar.js?v={VER}" defer></script>
+<script src="/services/copy.js?v={VER}" defer></script>
 '''
 
 

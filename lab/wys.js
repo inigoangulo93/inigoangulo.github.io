@@ -210,7 +210,7 @@
     var copyBtn = end.querySelector('[data-act="copy"]');
     copyBtn.textContent = 'Copy your result';
     copyBtn.onclick = function () {
-      var ok = function () { copyBtn.textContent = 'Copied'; }, fail = function () { selectShare(); copyBtn.textContent = 'Selected, press Ctrl+C'; };
+      var ok = function () { copyBtn.textContent = 'Copied'; if (window.siteSnack) window.siteSnack('Result copied to clipboard'); }, fail = function () { selectShare(); copyBtn.textContent = 'Selected, press Ctrl+C'; };
       try { navigator.clipboard.writeText(share).then(ok, fail); } catch (e) { fail(); }
       track('lab_share', { lab: 'would_you_ship_it', via: 'copy' });
     };
