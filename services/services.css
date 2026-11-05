@@ -152,3 +152,13 @@ p+p{margin-top:12px}
 .path b{font-family:var(--s);font-size:1rem;font-weight:800;letter-spacing:-.02em;text-transform:uppercase;color:var(--t1)}
 .path span{font-family:var(--m);font-size:.72rem;color:var(--t3)}
 @media(max-width:768px){.paths{grid-template-columns:1fr}.first{padding:22px}}
+
+/* Page title: one system for the top of Work, How I think, Lab and Writing. Mirrors the home hero (.hero__tag, .hero__h, .hero__sub) one step smaller. */
+.pt{text-align:left;margin:0 0 48px}
+.pt__tag{font-family:var(--m);font-size:.72rem;color:var(--ac);text-transform:uppercase;letter-spacing:.18em;margin:0 0 26px;display:flex;align-items:center;gap:12px;font-weight:500}
+.pt__tag::before{content:"";width:40px;height:1px;background:var(--ac);box-shadow:0 0 8px var(--acg)}
+.pt__h{font-family:var(--s);font-size:clamp(2.5rem,5.6vw,4.4rem);font-weight:800;line-height:1.02;letter-spacing:-.05em;color:var(--t1);margin:0;max-width:16ch}
+.pt__h--wide{max-width:22ch}
+.pt__sub{font-family:var(--s);font-size:1.25rem;font-weight:300;color:var(--t2);letter-spacing:-.01em;line-height:1.45;margin:30px 0 0;padding-left:16px;border-left:2px solid var(--ac);max-width:640px}
+.pt__sub em{font-style:normal;color:var(--ac2)}
+@media(max-width:700px){.pt{margin-bottom:36px}.pt__tag{font-size:.62rem;margin-bottom:18px}.pt__h{letter-spacing:-.045em}.pt__sub{font-size:1rem;margin-top:22px}}

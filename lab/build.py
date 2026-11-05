@@ -51,9 +51,11 @@ def index():
                "Interactive pieces rebuilt from real case studies. Make the call on real experiments and workflows, then see what the team decided and why.",
                url, [("Inigo Angulo", "https://inigoangulo.com/"), ("Lab", url)])
     out += '''<main class="lab"><div class="mx">
-<span class="lab__k">Lab</span>
-<h1 class="lab__h1">Don&#8217;t take my word for it. <em>Make the call.</em></h1>
-<p class="lab__lead">Real decisions from my case studies, rebuilt so you make them first. A few minutes each, and you see the judgment behind the result, not only the result.</p>
+<div class="pt">
+<p class="pt__tag">Lab</p>
+<h1 class="pt__h pt__h--wide">Don&#8217;t take my word for it. Make the call.</h1>
+<p class="pt__sub">Real decisions from my case studies, rebuilt so you make them first. <em>A few minutes each, and you see the judgment behind the result.</em></p>
+</div>
 
 <div class="lab__grid">
 
@@ -128,9 +130,11 @@ def game():
 
     out += f'''<main class="lab"><div class="mx">
 <a class="lab__back" href="/lab/">&#8592; Lab</a>
-<span class="lab__k">Decide / 2 min / Growth and CRO</span>
-<h1 class="lab__h1">Would You Ship It?</h1>
-<p class="lab__sub">Six checkout decisions. Real trade-offs. No obvious answers.</p>
+<div class="pt" style="margin-bottom:0">
+<p class="pt__tag">Decide / 2 min / Growth and CRO</p>
+<h1 class="pt__h">Would You Ship It?</h1>
+<p class="pt__sub">Six checkout decisions. Real trade-offs. <em>No obvious answers.</em></p>
+</div>
 <p class="lab__lead">From the GetYourGuide checkout experiment programme. Make each call, then see what the team actually decided, and why.</p>
 <div class="lab__meta"><span>6 decisions</span><span>About 2 minutes</span><span>Real A/B tests</span><span class="lab__keys">Keys: S, I, K, Enter</span></div>
 <details class="more lab__data"><summary>About the data</summary><p>{esc(d["programme"])}</p></details>

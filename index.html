@@ -980,14 +980,21 @@ window.addEventListener('DOMContentLoaded',function(){
 <section class="v" id="v-about">
 <div class="layer"><div class="mx">
 
-<!-- Hero — typography-driven, no background box -->
-<div style="text-align:center;max-width:700px;margin:0 auto 64px;padding-top:24px">
-<p style="font-family:var(--m);font-size:.62rem;color:var(--ac);text-transform:uppercase;letter-spacing:.22em;margin-bottom:28px">How I think</p>
-<h2 style="font-family:var(--s);font-size:3rem;font-weight:300;letter-spacing:-.03em;line-height:1.12;margin-bottom:8px;color:var(--t2)">From ambiguity</h2>
-<h2 style="font-family:var(--s);font-size:3rem;font-weight:300;letter-spacing:-.03em;line-height:1.12;margin-bottom:28px;color:var(--t2)">to <span style="font-weight:800;color:var(--t1)">measurable</span> <em style="font-weight:800;font-style:italic;color:var(--ac2);text-shadow:0 0 40px var(--acg)">outcome.</em></h2>
+<!-- Page title: same system as Lab and Writing (see .pt in services.css) -->
+<style>/* Page title: one system for the top of Work, How I think, Lab and Writing. Mirrors the home hero (.hero__tag, .hero__h, .hero__sub) one step smaller. */
+.pt{text-align:left;margin:0 0 48px}
+.pt__tag{font-family:var(--m);font-size:.72rem;color:var(--ac);text-transform:uppercase;letter-spacing:.18em;margin:0 0 26px;display:flex;align-items:center;gap:12px;font-weight:500}
+.pt__tag::before{content:"";width:40px;height:1px;background:var(--ac);box-shadow:0 0 8px var(--acg)}
+.pt__h{font-family:var(--s);font-size:clamp(2.5rem,5.6vw,4.4rem);font-weight:800;line-height:1.02;letter-spacing:-.05em;color:var(--t1);margin:0;max-width:16ch}
+.pt__h--wide{max-width:22ch}
+.pt__sub{font-family:var(--s);font-size:1.25rem;font-weight:300;color:var(--t2);letter-spacing:-.01em;line-height:1.45;margin:30px 0 0;padding-left:16px;border-left:2px solid var(--ac);max-width:640px}
+.pt__sub em{font-style:normal;color:var(--ac2)}
+@media(max-width:700px){.pt{margin-bottom:36px}.pt__tag{font-size:.62rem;margin-bottom:18px}.pt__h{letter-spacing:-.045em}.pt__sub{font-size:1rem;margin-top:22px}}</style>
+<div class="pt">
+<p class="pt__tag">How I think</p>
+<h2 class="pt__h">From ambiguity to measurable outcome.</h2>
+<p class="pt__sub">Five steps, each one kills a layer of uncertainty. <em>Hover to watch each one think.</em></p>
 </div>
-
-
 
 <!-- HX-SECTION START, How I think, centered animated steps with expandable thinking, replaces the intro paragraph + 5 step blocks inside the existing #how-i-think section (keep the section wrapper and its H2) -->
 <div class="hx">
@@ -1112,7 +1119,7 @@ window.addEventListener('DOMContentLoaded',function(){
 }
 </style>
 
-  <p class="hx__lede">five steps, each kills one layer of uncertainty, <b>hover to watch each one think</b></p>
+  
 
   <div class="hx__step" tabindex="0">
     <div class="hx__link" aria-hidden="true"></div>

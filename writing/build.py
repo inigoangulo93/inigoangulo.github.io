@@ -568,7 +568,7 @@ mark{{background:rgba(45,212,191,.22);color:var(--t1);border-radius:3px;padding:
 {header('writing','Writing')}{mobmenu('writing')}
 <script src="/services/bar.js?v={VER}" defer></script>
 <script src="/services/copy.js?v={VER}" defer></script>
-<main><div class="list"><span class="k">Writing</span><h1 style="font-size:2rem;margin-bottom:14px">What I learned shipping, written down.</h1><p class="intro">{n} articles in four series: building products with AI agent teams, the gates between an agent and production, conversion experiments on real funnels, and design systems that match the code. Each series has a place to start.</p>
+<main><div class="list"><div class="pt" style="margin-bottom:22px"><p class="pt__tag">Writing</p><h1 class="pt__h">What I learned shipping, written down.</h1></div><p class="intro">{n} articles in four series: building products with AI agent teams, the gates between an agent and production, conversion experiments on real funnels, and design systems that match the code. Each series has a place to start.</p>
 <a class="kitban" href="/writing/kit/"><span class="kitban__k">Kit</span><span class="kitban__t"><b>{len(KIT)} templates, checklists and prompts</b> from the method, ready to copy: CLAUDE.md, tickets, release gates, MVP scope, checkout audit.</span><span class="kitban__a">Open the kit &#8594;</span></a>
 <form class="search" role="search" onsubmit="return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search {n} articles: tickets, CLAUDE.md, checkout, RLS, cost..." aria-label="Search articles" autocomplete="off"><kbd>/</kbd></form>
 <div class="chips">{chips}</div>
@@ -718,15 +718,14 @@ def kit_index():
     groups = f'<div class="kgrid">{"".join(kit_card(k) for k in KIT_ORDER)}</div>'
     chips = '<a class="chip on" href="#" data-f="">All</a>' + "".join(f'<a class="chip" href="#{c}" data-f="{c}">{esc(l)}</a>' for c, l in KIT_CAPS.items())
     ld = {"@context":"https://schema.org","@type":"CollectionPage","name":title,"description":desc,"url":url,"hasPart":[{"@type":"CreativeWork","name":KIT[k]["title"],"url":f"{url}{k}/"} for k in KIT_ORDER]}
-    css = '''.list{max-width:900px;margin:0 auto;padding:110px 24px 40px}.list h1{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:14px}.intro{color:var(--t2);font-size:1.02rem;max-width:640px;margin:0 0 22px}
+    css = '''.list{max-width:900px;margin:0 auto;padding:110px 24px 40px}.intro{color:var(--t2);font-size:1.02rem;max-width:640px;margin:0 0 22px}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 26px}.chip{font-family:var(--m);font-size:.72rem;color:var(--t2);border:1px solid var(--b2);border-radius:999px;padding:7px 12px;transition:color .2s,border-color .2s}.chip.on,.chip:hover{color:var(--ac2);border-color:var(--acb)}
 .grp{margin:0 0 34px}.grp.hide{display:none}.grp__h{font-family:var(--m);font-size:.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin:0 0 12px;display:flex;align-items:center;gap:10px}.grp__h::after{content:"";flex:1;height:1px;background:var(--b1)}.grp__h span{color:var(--ac2)}
 .kcard.hide{display:none}.kgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.kgrid .kcard{padding:22px}.kgrid .kcard h3{font-size:1.15rem}
 .knote{max-width:none;font-family:var(--m);font-size:.72rem;color:var(--t3);line-height:1.6;border-top:1px solid var(--b1);padding-top:18px;margin-top:10px}
 @media(max-width:700px){.kgrid{grid-template-columns:1fr}.list{padding-top:96px}}'''
     return kit_head(title, desc, url, css, [ld]) + f'''<main><div class="list">
-<span class="k"><a href="/writing/" style="color:inherit">Writing</a> / Kit</span>
-<h1>The kit. What I actually use, ready to copy.</h1>
+<div class="pt" style="margin-bottom:22px"><p class="pt__tag"><span><a href="/writing/" style="color:inherit">Writing</a> / Kit</span></p><h1 class="pt__h pt__h--wide">The kit. What I actually use, ready to copy.</h1></div>
 <p class="intro">Templates, checklists and prompts from the way I scope, build and ship products with AI agent teams. Neutral versions of the real thing: copy them, adapt them, break them. Each one links to the article that explains why it looks the way it does, and keeps a changelog of what changed and what incident changed it.</p>
 <div class="chips">{chips}</div>
 {groups}
