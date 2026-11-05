@@ -2,7 +2,7 @@
 
 **I decide what's worth building. Then I build it.**
 
-Product, strategy, design, build. Ten years shaping digital products across commerce and complex systems (GetYourGuide, ING, WPP, Crowdhouse). Since 2026 I ship the software myself, leading teams of AI coding agents under human gates.
+Product, strategy, design, build. 9+ years shaping digital products across commerce and complex systems (GetYourGuide, ING, WPP, Crowdhouse). Since 2026 I ship the software myself, leading teams of AI coding agents under human gates.
 
 - **Acervo**: a production platform for serious car collections, scoped, designed and shipped by one person with an AI engineering team. First commit to production in 17 days, 445 merged PRs and 15 gated releases in seven weeks. [Case study](https://inigoangulo.com/work/acervo.html?utm_source=github&utm_medium=readme)
 - **GetYourGuide checkout**: +11% conversion across four EU markets from the step nobody was measuring. [Case study](https://inigoangulo.com/work/checkout.html?utm_source=github&utm_medium=readme)
