@@ -66,7 +66,7 @@ def index():
 <div class="lc__body">
 <span class="lc__k">DECIDE / 2 MIN</span>
 <span class="lc__h">Would you ship it?</span>
-<span class="lc__p">Six real calls from a checkout programme. Read the result, choose ship, iterate or kill, then see what the team did and why.</span>
+<span class="lc__p">Six checkout decisions. Real trade-offs. No obvious answers. Make each call, then see what the team actually decided, and why.</span>
 <div class="lc__shows"><b>WHAT IT SHOWS</b><span>Experiment judgment: success criteria first, segments over averages.</span></div>
 <div class="lc__foot"><span>GetYourGuide checkout</span><span class="lc__go">Play &#8594;</span></div>
 </div>
@@ -105,49 +105,68 @@ def game():
     d = json.load(open(os.path.join(HERE, 'gyg-calls.json')))
     calls = d["calls"]
     url = "https://inigoangulo.com/lab/would-you-ship-it/"
-    out = head("Would you ship it? Six real checkout A/B test calls / Lab, Inigo Angulo",
-               "Six real experiments from the GetYourGuide checkout programme. Read the result, decide ship, iterate or kill, and compare your call with the team's.",
+    out = head("Would you ship it? Six real checkout A/B test decisions / Lab, Inigo Angulo",
+               "Six checkout decisions from the GetYourGuide experiment programme. Real trade-offs, no obvious answers. Make each call, then see what the team decided and why.",
                url, [("Inigo Angulo", "https://inigoangulo.com/"), ("Lab", "https://inigoangulo.com/lab/"), ("Would you ship it?", url)])
+
+    def ev(r):
+        if r["type"] == "sig":
+            return f'{r["label"]}: {r["text"]}'
+        v = r.get("display") or (("+" if r["v"] > 0 else "\u2212" if r["v"] < 0 else "") + str(abs(r["v"])) + r["unit"])
+        return f'{r["label"]} {v}' + (" (not significant)" if r.get("ns") else "")
     log = "".join(
-        f'<li><b>{esc(c["id"])}</b><span style="color:var(--t1)">{esc(c["title"])}</span>'
-        f'<span>{esc("; ".join((r.get("display") or ((("+" if r["v"] > 0 else "−" if r["v"] < 0 else "") + str(abs(r["v"])) + r["unit"]))) + (" (n.s.)" if r.get("ns") else "") + " " + r["label"].lower() if r["type"] == "bar" else r["label"] + ": " + r["text"] for r in c["rows"]))}</span>'
-        f'<span><em>{LABEL[c["call"]].upper()}</em> {esc(c["why"])}</span></li>' for c in calls)
+        f'<li><span class="lg__id">{esc(c["id"])}</span><div>'
+        f'<p class="lg__t">{esc(c["title"])}</p>'
+        f'<p><b>Context.</b> {esc(c["context"])} <b>We expected:</b> {esc(c["hypothesis"])}</p>'
+        f'<p><b>Evidence.</b> {esc("; ".join(ev(r) for r in c["rows"]))}.</p>'
+        f'<p><b>Decision: {LABEL[c["call"]]}.</b> {esc(c["why"])}</p>'
+        f'<p class="lg__l">{esc(c["lesson"])}</p></div></li>' for c in calls)
+
     out += f'''<main class="lab"><div class="mx">
 <a class="lab__back" href="/lab/">&#8592; Lab</a>
 <span class="lab__k">Decide / 2 min / Growth and CRO</span>
-<h1 class="lab__h1">Would you ship it? <em>Six real calls</em> from a checkout programme.</h1>
-<p class="lab__lead">GetYourGuide checkout: ten experiments, +11% conversion across four markets. Read each result, make your call, then see what the team decided and why.</p>
-<div class="lab__meta"><span>6 calls</span><span>About 2 minutes</span><span>Keys: S, I, K, Enter</span></div>
+<h1 class="lab__h1">Would you ship it?</h1>
+<p class="lab__sub">Six checkout decisions. Real trade-offs. No obvious answers.</p>
+<p class="lab__lead">From the GetYourGuide checkout experiment programme. Make each call, then see what the team actually decided, and why.</p>
+<div class="lab__meta"><span>6 decisions</span><span>About 2 minutes</span><span>Real A/B tests</span><span class="lab__keys">Keys: S, I, K, Enter</span></div>
 
 <section class="wys" id="wys" aria-label="Would you ship it?">
-<div class="wys__top"><span class="wys__count">Call 1 of {len(calls)}</span><div class="wys__rail" role="img"></div></div>
-<div class="wys__stage"><noscript><p>This piece needs JavaScript. The full log with every call is below.</p></noscript></div>
-<div class="wys__end" aria-live="polite"><div class="end">
-<div class="ring"><svg viewBox="0 0 200 200" aria-hidden="true"><circle class="bg" cx="100" cy="100" r="88"/><circle class="fg" cx="100" cy="100" r="88"/></svg><div class="ring__n"><b>0</b><span>of {len(calls)} calls</span></div></div>
-<div>
-<p class="end__h"></p><p class="end__p"></p>
-<div class="recap"></div>
+<div class="wys__top"><span class="wys__count">Decision 1 of {len(calls)}</span><div class="wys__rail" role="img"></div></div>
+<div class="wys__stage"><noscript><p>This piece needs JavaScript. All six decisions are listed below.</p></noscript></div>
+<div class="wys__end" hidden>
+<div class="ra"><p class="ra__n"></p><div class="ra__dots"></div><p class="ra__note">Alignment with what the team decided at the time, not a measure of product skill.</p></div>
+<div class="end__grid">
+<div class="tb">
+<span class="end__k">HOW YOU DECIDED</span>
+<p class="tb__h"></p><p class="tb__p"></p>
+<div class="tb__bars"></div>
+<details class="more tb__how"><summary>How this is read</summary><ul class="tb__rules"></ul><p class="tb__cav">Four lenses applied to six decisions with fixed rules. Read it as a pattern in these calls, not a profile of how you work.</p></details>
+</div>
+<div class="hl"><div class="hl__i hl__a"></div><div class="hl__i hl__d"></div></div>
+</div>
+<div class="share">
+<span class="end__k">SHARE</span>
+<pre class="share__txt"></pre>
 <div class="end__acts">
-<button type="button" class="wys__btn wys__btn--p" data-act="copy">Copy your result</button>
+<button type="button" class="wys__btn" data-act="copy">Copy result</button>
 <a class="wys__btn" data-act="li" href="#" target="_blank" rel="noopener">Share on LinkedIn</a>
-<a class="wys__btn" href="/work/checkout.html">Read the full case &#8594;</a>
-<button type="button" class="wys__btn" data-act="again">Play again</button>
 </div>
 </div>
-</div></div>
+<div class="end__cta">
+<a class="wys__btn wys__btn--p" href="/work/checkout.html#s06">See how I think about product decisions &#8594;</a>
+<button type="button" class="wys__btn" data-act="explore">Explore all six decisions</button>
+<button type="button" class="wys__btn" data-act="again">Retake</button>
+</div>
+</div>
 </section>
 
-<section class="shows">
-<span class="lab__k" style="color:var(--t3)">What this shows</span>
-<div class="shows__g">
-<div><b>Success criteria first</b><p>Every test had its winning rule written before launch. That is why a +4.2% could still be killed.</p></div>
-<div><b>The segment, not the average</b><p>72% of the uplift lived on mobile. A neutral desktop result never paid for a mobile loss.</p></div>
-<div><b>Kill the test, keep the principle</b><p>The single page lost. Unbroken context survived and shipped as two named steps.</p></div>
-</div>
-<div class="links"><a href="/work/checkout.html">Read the full case &#8594;</a><a href="/cro-ecommerce-consultant/">CRO and commerce &#8594;</a><a href="/writing/checkout-conversion-ten-experiments/">Ten checkout experiments, written up &#8594;</a></div>
+<section class="lg" id="wysLog" hidden aria-labelledby="lgH">
+<h2 id="lgH" class="lg__h">All six decisions</h2>
+<p class="lg__p">{esc(d["programme"])}</p>
+<ol>{log}</ol>
+<div class="links"><a href="/work/checkout.html">Read the full checkout case &#8594;</a><a href="/cro-ecommerce-consultant/">CRO and commerce &#8594;</a><a href="/writing/checkout-conversion-ten-experiments/">Ten checkout experiments, written up &#8594;</a></div>
 </section>
-
-<details class="log"><summary>The full log: all six calls, results and reasons</summary><ol>{log}</ol></details>
+<noscript><style>#wysLog{{display:block!important}}</style></noscript>
 </div></main>
 '''
     out += FOOTER + '\n'

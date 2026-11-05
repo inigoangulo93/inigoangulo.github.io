@@ -1,79 +1,141 @@
 {
-  "source": "GetYourGuide checkout programme, experiment log in /work/checkout.html. Same calls and numbers as the case study.",
+  "source": "GetYourGuide checkout programme. Every line comes from the checkout case study (/work/checkout.html): experiment log, key decisions, narrative and validation notes.",
+  "programme": "All experiments were A/B tests with statistical significance thresholds, 120K to 140K users per variant across the programme, guardrail metrics tracked throughout. Figures are directional reconstructions of relative effects; exact values are confidential.",
   "calls": [
     {
       "id": "EXP-01",
       "call": "ship",
       "title": "Hold-your-spot countdown: \"We'll hold your spot for 30:00\"",
-      "ctx": "A real reservation hold while the traveller pays. Not manufactured scarcity: the spot is actually held.",
+      "context": "Travellers reached the total, doubted the price and looped back to check it. 38% of eventual converters left checkout mid loop.",
+      "hypothesis": "Showing the real hold time would turn urgency into reassurance at the moment of paying.",
       "rows": [
         {"type": "bar", "label": "Payment completion", "v": 3.1, "unit": "%", "tone": "good"},
         {"type": "sig", "label": "Urgency related support tickets", "text": "zero", "tone": "good"}
       ],
-      "lead": "Same call we made.",
-      "why": "Urgency reframed as service: we reserve for the user, not against them. The top single win of the programme."
+      "gain": "More travellers finished paying.",
+      "risk": "Any countdown can read as pressure if it stops being honest.",
+      "more": [
+        "The timer showed the existing hold time. Artificial scarcity (\"only 2 left\") was the option the team rejected.",
+        "Still visible on the live checkout, captured on mobile in August 2026."
+      ],
+      "why": "Urgency reframed as service: the spot is reserved for the traveller, not used against them. It was the top single win of the programme.",
+      "lesson": "Urgency builds trust only when it is true and on the user's side.",
+      "alt": {
+        "iterate": "Testing copy or duration before a full rollout is reasonable caution with any urgency mechanic.",
+        "kill": "Being wary of countdowns in checkout is a sound instinct. What changed the call here is that the timer reflected a real hold."
+      }
     },
     {
       "id": "EXP-06",
       "call": "kill",
       "title": "Price-expiry countdown: \"Book now, the price rises when the timer ends\"",
-      "ctx": "The hold-your-spot timer (EXP-01) had already shipped. This one tests the opposite framing of the same mechanic.",
+      "context": "The hold-your-spot timer (EXP-01) was already live. This tested the opposite framing of the same mechanic.",
+      "hypothesis": "A price deadline would push hesitant travellers to pay sooner.",
       "rows": [
         {"type": "bar", "label": "Click through to payment", "v": 4.2, "unit": "%", "tone": "good"},
         {"type": "bar", "label": "Trust survey", "v": -9, "unit": " pts", "tone": "bad"},
         {"type": "sig", "label": "Refund intent proxy", "text": "up", "tone": "bad"}
       ],
-      "lead": "Exactly the call.",
-      "why": "A win that spends trust is a loss with a delay. One timer serves the user, this one threatens them. Killed on principle and on data."
+      "gain": "More clicks through to payment.",
+      "risk": "The trust guardrail fell and refund intent rose.",
+      "more": [
+        "Trust was one of the guardrail metrics tracked throughout the programme.",
+        "Same mechanic as EXP-01, opposite framing: one timer serves the user, this one threatens them."
+      ],
+      "why": "The click was won, but trust and refund intent moved the wrong way. A win that spends trust is a loss with a delay. Killed on principle and on data.",
+      "lesson": "Not every conversion gain creates business value.",
+      "alt": {
+        "ship": "A +4.2% lift is real, and many teams ship on the primary metric. The guardrail is what turned this one.",
+        "iterate": "Looking for a framing that keeps the click without the threat is reasonable. The team already had that version live as EXP-01."
+      }
     },
     {
       "id": "EXP-07",
       "call": "ship",
       "title": "Promo code as a quiet link instead of an open field",
-      "ctx": "The code field is still there, one tap away. It just stops being the first thing a traveller sees before paying.",
+      "context": "An open promo code field sat in the middle of checkout, just before paying.",
+      "hypothesis": "A quiet link would stop mid checkout coupon hunting without hiding the option.",
       "rows": [
         {"type": "bar", "label": "Exits to hunt for coupons", "v": -31, "unit": "%", "tone": "good"},
         {"type": "sig", "label": "Net checkout completion", "text": "up", "tone": "good"}
       ],
-      "lead": "You would have fit right in.",
-      "why": "An empty field is an invitation to leave and go coupon hunting. A link keeps the option without issuing the invitation. Shipped."
+      "gain": "Fewer exits, more completed checkouts.",
+      "risk": "Travellers who do have a code need one more tap.",
+      "more": [],
+      "why": "An empty field is an invitation to leave and go coupon hunting. A link keeps the option without issuing the invitation.",
+      "lesson": "Remove the invitation to leave, not the option.",
+      "alt": {
+        "iterate": "Checking that travellers with a code still find the link is a fair follow up.",
+        "kill": "Protecting people who have a discount is a fair concern. The code stayed one tap away, which is why the team saw no cost."
+      }
     },
     {
       "id": "EXP-08",
       "call": "kill",
       "title": "Single-page checkout: collapse every step into one view",
-      "ctx": "Every step of checkout on one screen, no navigation between them.",
+      "context": "On mobile each step was a separate page load, and every transition cost 8 to 12% of remaining users.",
+      "hypothesis": "If reloads broke the flow, removing the steps altogether would remove the leak.",
       "rows": [
         {"type": "bar", "label": "Desktop conversion", "v": 0.4, "unit": "%", "tone": "flat", "ns": true},
         {"type": "bar", "label": "Mobile conversion", "v": -0.9, "unit": "%", "tone": "bad"},
         {"type": "sig", "label": "Render time, mid range Android", "text": "about +1.2 s", "tone": "bad"}
       ],
-      "lead": "Same call we made.",
-      "why": "72% of the programme's uplift lived on mobile. You do not trade your best segment for elegance. The principle survived the kill: unbroken context, shipped as two named steps (EXP-02)."
+      "gain": "A cleaner flow, neutral on desktop.",
+      "risk": "Slower and worse on mobile, the segment that carried the programme.",
+      "more": [
+        "65% of traffic was mobile, and 72% of the programme's uplift came from mobile.",
+        "Responsive tweaks to the old three step flow were also rejected: the drop off at each transition was too large for tweaks.",
+        "What shipped instead: two named steps, with progress, timer and order summary kept across the boundary (EXP-02)."
+      ],
+      "why": "You do not trade your best segment for elegance. The idea was killed, but its principle survived: unbroken context, shipped as two named steps.",
+      "lesson": "Read the segment that carries the result, not the average.",
+      "alt": {
+        "ship": "A simpler flow that held on desktop is tempting, and simplicity has long term value. Mobile is where the cost landed.",
+        "iterate": "This is close to what happened. The single page died, but the principle behind it came back as two named steps."
+      }
     },
     {
       "id": "EXP-09",
       "call": "iterate",
       "title": "Email-first continue, account creation deferred",
-      "ctx": "Ask for an email to continue and leave the account for later, to cut the wall before payment for new travellers.",
+      "context": "New travellers met a create account step before they could pay.",
+      "hypothesis": "Asking only for an email to continue would lift new user conversion.",
       "rows": [
         {"type": "bar", "label": "New user conversion, v1", "v": 0, "unit": "%", "tone": "flat", "ns": true, "display": "flat"},
         {"type": "sig", "label": "Session recordings", "text": "still hesitating at \"create account\"", "tone": "warn"}
       ],
-      "lead": "Exactly the call.",
-      "why": "Flat is not dead when the qualitative signal survives. v2 paired email first with SSO and moved account creation after purchase: +1.1%, shipped."
+      "gain": "Nothing measurable yet.",
+      "risk": "Dropping an idea while its problem is still visible in the sessions.",
+      "more": [],
+      "why": "The number was flat, but the qualitative signal survived. v2 paired email first with SSO and moved account creation after purchase: +1.1%, shipped.",
+      "lesson": "Flat is not dead when the qualitative signal survives.",
+      "alt": {
+        "ship": "Shipping a neutral change that simplifies the flow is defensible when it costs nothing.",
+        "kill": "Killing a flat test is the textbook move. The recordings are what kept this one alive."
+      }
     },
     {
       "id": "EXP-10",
       "call": "iterate",
       "title": "Reorder payment methods to match each market",
-      "ctx": "The same checkout in four markets, with the payment methods ordered by local preference.",
+      "context": "Credit card showed first in every market. In the Netherlands 72% of online payments use iDEAL; in Poland, BLIK dominates.",
+      "hypothesis": "Leading with each market's preferred method would lift payment completion.",
       "rows": [
         {"type": "bar", "label": "2 of 4 markets", "v": 1.7, "unit": "%", "tone": "good"},
         {"type": "bar", "label": "The other 2 markets", "v": 0, "unit": "%", "tone": "flat", "display": "flat"}
       ],
-      "lead": "You would have fit right in.",
-      "why": "Not a global truth, a local one. It became a per market rollout with a shared default, instead of forcing one answer on four markets."
+      "gain": "A clean win where it worked.",
+      "risk": "A global rollout forces an answer only half the markets supported.",
+      "more": [
+        "Methods adapted per market, iDEAL in the Netherlands, BLIK in Poland, Sofort in Germany, with the preferred one expanded by default.",
+        "Built as geo IP ordering: one system, not four manually maintained market pages."
+      ],
+      "why": "Not a global truth, a local one. It became a per market rollout with a shared default, instead of forcing one answer on four markets.",
+      "lesson": "A local truth deserves a local rollout.",
+      "alt": {
+        "ship": "Shipping everywhere is defensible when the flat markets lose nothing. The team kept a shared default instead of one global answer.",
+        "kill": "Two flat markets out of four is a fair reason for doubt. The clean wins in the other two are what kept it."
+      }
     }
   ]
 }
