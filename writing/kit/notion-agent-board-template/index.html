@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notion board for an AI agent team: database schema and card template / Inigo Angulo</title>
+<meta name="description" content="Notion databases for an AI agent team: tasks, decisions and meetings with their properties, the card the orchestrator drafts, and the working agreement.">
+<link rel="canonical" href="https://inigoangulo.com/writing/kit/notion-agent-board-template/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta property="og:title" content="Notion board for an AI agent team: database schema and card template">
+<meta property="og:description" content="Notion databases for an AI agent team: tasks, decisions and meetings with their properties, the card the orchestrator drafts, and the working agreement.">
+<meta property="og:image" content="https://inigoangulo.com/img/og-home.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://inigoangulo.com/writing/kit/notion-agent-board-template/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/services/services.css?v=2a7bb04">
+<style>.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
+.art .k{margin-bottom:12px}.art h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:none}
+.art .meta{font-family:var(--m);font-size:.74rem;color:var(--t3);margin:16px 0 34px;display:flex;gap:16px;flex-wrap:wrap}
+.art p{max-width:none;font-size:1.05rem;line-height:1.7;margin:0 0 18px}
+.art h2{font-size:1.35rem;margin:38px 0 12px;max-width:none}
+.art ul,.art ol{margin:0 0 18px 22px;color:var(--t2);font-size:1.02rem;line-height:1.65}
+.art li{margin-bottom:6px}
+.art .num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0}
+.art .num div{border:1px solid var(--b1);border-radius:10px;padding:14px;background:var(--glass)}
+.art .num b{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--ac2);line-height:1}
+.art .num span{display:block;font-family:var(--m);font-size:.66rem;color:var(--t3);margin-top:7px;line-height:1.45}
+@media(max-width:700px){.art .num{grid-template-columns:1fr 1fr}}
+.art blockquote{border-left:3px solid var(--ac);padding:4px 0 4px 18px;margin:22px 0;color:var(--t1);font-size:1.1rem;font-weight:500}
+.art .box{border:1px solid var(--acb);border-radius:12px;padding:20px 22px;background:var(--acg2);margin:26px 0}
+.art .box p{margin:0;font-size:.98rem}
+.art .box a{color:var(--ac2);border-bottom:1px solid var(--acb)}
+.art a{color:var(--ac2)}
+.art .fig{margin:26px 0;border:1px solid var(--b1);border-radius:12px;padding:16px;background:var(--glass)}.art .fig svg{width:100%;height:auto;display:block}.art figcaption{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-top:10px}
+.art .series{border:1px solid var(--b1);border-radius:12px;padding:16px 20px;margin:0 0 30px;background:var(--glass)}.art .series__k{font-family:var(--m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);display:block;margin-bottom:8px}.art .series ul{list-style:none;margin:0;display:grid;gap:6px}.art .series li{font-size:.92rem;margin:0}.art .series em{font-style:normal;font-family:var(--m);font-size:.68rem;color:var(--t3)}
+.art .tag{font-family:var(--m);font-size:.7rem;color:var(--ac2);border:1px solid var(--acb);border-radius:999px;padding:3px 10px}
+.art table{width:100%;border-collapse:collapse;margin:22px 0;font-size:.92rem;line-height:1.5}.art th,.art td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--b1)}.art th{font-family:var(--m);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);font-weight:500}.art td{color:var(--t2)}.art td:first-child{color:var(--t1)}
+.art pre{background:#0b0b10;border:1px solid var(--b1);border-radius:12px;padding:18px 20px;margin:22px 0;overflow-x:auto;font-family:var(--m);font-size:.8rem;line-height:1.6;color:var(--t2)}.art pre code{font-family:inherit}
+.art .faq{margin:40px 0 0}.art .faq h2{margin-bottom:6px}.art .faq details{border-bottom:1px solid var(--b1);padding:14px 0}.art .faq summary{cursor:pointer;font-weight:600;color:var(--t1);font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}.art .faq summary::-webkit-details-marker{display:none}.art .faq summary::after{content:'';flex:none;width:10px;height:10px;border-right:2px solid var(--ac2);border-bottom:2px solid var(--ac2);transform:rotate(45deg) translate(-2px,-2px);transition:transform .3s cubic-bezier(.16,1,.3,1)}.art .faq details[open] summary::after{transform:rotate(225deg) translate(-2px,-2px)}.art .faq p{margin:10px 0 0;font-size:.98rem;color:var(--t2)}.art .faq details[open] p{animation:faqIn .32s cubic-bezier(.16,1,.3,1) both}@keyframes faqIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media(max-width:700px){.art table{display:block;overflow-x:auto;white-space:normal}}
+.art .cta{margin-top:40px}
+.art .cta h2{margin:0 0 6px}
+
+.kitbox{display:flex;gap:14px;align-items:center}.kitbox .kitban__k{flex:none;font-family:var(--m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#000;background:var(--ac);border-radius:6px;padding:4px 8px}
+.art .kmeta{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 26px}
+.art .kpill{font-family:var(--m);font-size:.68rem;color:var(--t2);border:1px solid var(--b2);border-radius:999px;padding:4px 10px}
+.art .kpill--ac{color:var(--ac2);border-color:var(--acb)}
+.art .lede{font-size:1.12rem;color:var(--t1)}
+.art ol.use{counter-reset:u;list-style:none;margin:0 0 10px;padding:0}
+.art ol.use li{counter-increment:u;position:relative;padding:0 0 0 38px;margin:0 0 12px}
+.art ol.use li::before{content:counter(u);position:absolute;left:0;top:1px;width:24px;height:24px;border-radius:7px;border:1px solid var(--acb);color:var(--ac2);font-family:var(--m);font-size:.7rem;display:grid;place-items:center}
+.kb{margin:24px 0 0}
+.kb__h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 -12px;padding:0 2px}
+.kb__h span{font-family:var(--m);font-size:.7rem;color:var(--t3);letter-spacing:.04em}
+.kb__h span b{color:var(--t1);font-weight:500}
+.kb__dl{display:inline-flex;align-items:center;gap:6px;font-family:var(--m);font-size:.7rem;color:var(--ac2)!important;border:none!important}
+.kb__dl svg{width:13px;height:13px}
+.art .kb pre{white-space:pre-wrap;word-break:break-word}.kb .cb>pre{padding-top:54px}
+.kb--prompt pre{background:linear-gradient(180deg,rgba(45,212,191,.05),rgba(45,212,191,.015));border-color:var(--acb)}
+.art .log{list-style:none;margin:0;padding:0;border-left:1px solid var(--b2)}
+.art .log li{position:relative;padding:0 0 14px 20px;margin:0}
+.art .log li::before{content:"";position:absolute;left:-4px;top:7px;width:7px;height:7px;border-radius:50%;background:var(--ac);box-shadow:0 0 10px var(--acg)}
+.art .log b{font-family:var(--m);font-size:.74rem;color:var(--ac2);font-weight:500;margin-right:8px}
+.art .log em{font-style:normal;font-family:var(--m);font-size:.7rem;color:var(--t3);margin-right:8px}
+.krel{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 0}
+.kcard{display:flex;flex-direction:column;gap:8px;border:1px solid var(--b1);border-radius:12px;padding:18px;background:var(--glass);color:inherit!important;transition:border-color .2s,transform .2s}
+.kcard:hover{border-color:var(--acb);transform:translateY(-2px)}
+.kcard__k{font-family:var(--m);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac)}
+.kcard h2,.kcard h3{font-size:1.02rem;margin:0;color:var(--t1);line-height:1.3;max-width:none}
+.kcard p{font-size:.88rem!important;color:var(--t2);margin:0!important;line-height:1.5!important}
+.kcard__f{margin-top:auto;padding-top:6px;font-family:var(--m);font-size:.66rem;color:var(--t3)}
+@media(max-width:700px){.krel{grid-template-columns:1fr}}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
+<script src="/analytics.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Notion board for an AI agent team: database schema and card template", "description": "Notion databases for an AI agent team: tasks, decisions and meetings with their properties, the card the orchestrator drafts, and the working agreement.", "url": "https://inigoangulo.com/writing/kit/notion-agent-board-template/", "version": "1.0", "dateModified": "2026-11-05", "author": {"@type": "Person", "@id": "https://inigoangulo.com/#person", "name": "Inigo Angulo"}, "isPartOf": {"@type": "CollectionPage", "name": "Kit", "url": "https://inigoangulo.com/writing/kit/"}, "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inigo Angulo", "item": "https://inigoangulo.com/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://inigoangulo.com/writing/"}, {"@type": "ListItem", "position": 3, "name": "Kit", "item": "https://inigoangulo.com/writing/kit/"}, {"@type": "ListItem", "position": 4, "name": "Notion board for an agent team", "item": "https://inigoangulo.com/writing/kit/notion-agent-board-template/"}]}</script>
+</head>
+<body>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/lab/">Lab</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a><div class="bar__ham" id="hamBtn" onclick="toggleMenu()"><span></span><span></span><span></span></div></div><div class="bar__mini" aria-hidden="true"><i></i><span>Kit</span></div></header><div class="mob-menu" id="mobMenu"><div class="mob-menu__bg" onclick="toggleMenu()"></div><div class="mob-menu__inner"><a class="mob-menu__link" href="/#work"><span>Work</span><span class="mob-menu__link-num">01</span></a><a class="mob-menu__link" href="/#how-i-think"><span>How I think</span><span class="mob-menu__link-num">02</span></a><a class="mob-menu__link" href="/lab/"><span>Lab</span><span class="mob-menu__link-num">03</span></a><a class="mob-menu__link on" href="/writing/"><span>Writing</span><span class="mob-menu__link-num">04</span></a><div class="mob-menu__cta"><a href="/#contact">Get in touch &#8594;</a></div><div class="mob-menu__contact"><a href="mailto:inigoangulo@gmail.com">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank" rel="noopener">LinkedIn</a><a href="tel:+41799528321">Phone</a></div></div></div>
+<script src="/services/bar.js?v=2a7bb04" defer></script>
+<script src="/services/copy.js?v=2a7bb04" defer></script>
+<main><article class="art">
+<span class="k"><a href="/writing/" style="color:inherit">Writing</a> / <a href="/writing/kit/" style="color:inherit">Kit</a></span>
+<h1>Notion board for an AI agent team: database schema and card template</h1>
+<div class="kmeta"><span class="kpill kpill--ac">Template</span><span class="kpill">Build</span><span class="kpill">v1.0</span><span class="kpill">Updated November 5, 2026</span></div>
+<p class="lede">The three Notion databases behind an AI agent team (tasks, decisions, meetings) with their properties, the card template the orchestrator fills in, and the working agreement that keeps the board accountable.</p>
+<h2>How to use it</h2>
+<ol class="use"><li>Create the three databases with these properties. Instructions for the agents stay in the repo, never in Notion.</li><li>Give the orchestrator write access to Tasks (through the API or MCP). It drafts cards; the owner field is always a real person.</li><li>Done only when the linked pull request is merged and the reviewer said PASS. A closed card is never reopened: create a new one.</li></ol>
+<div class="kb"><div class="kb__h"><span>Database schema: <b>notion-board.md</b></span><a class="kb__dl" href="/writing/kit/notion-agent-board-template/notion-board.md" download="notion-board.md" data-dl="notion-agent-board-template"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Download</a></div><pre><code># Tasks
+- Task (title): &quot;&lt;repo ticket number&gt; &lt;verb + object&gt;&quot;
+- Status (select): Backlog / To do / In progress / Blocked / Done / Archived
+- Owner (person): a real workspace member. Never an agent, never a typed name.
+- Area (select): Product and tech / Legal / Sales and growth / Brand /
+  Company and finance / Operations
+- Priority (select): P0 critical (no launch without it) / P1 high (needed
+  for the demo) / P2 medium (can wait a week) / P3 low
+- Expected result (text): one sentence. Without it the card does not move
+  to To do.
+- Acceptance criteria (text): optional summary; the full list is on the card.
+- Link (url): the pull request
+- Due (date)
+- ID (unique id, automatic)
+
+# Decisions
+- Decision (title): the question and the answer in one line
+- Status (select): In force / Under discussion / Revoked
+- Context (text): why it was decided this way
+- Proposed by (person)
+- Area (select): same options as Tasks
+- Date (date)
+
+# Meetings
+- Meeting (title), Date (date), Attendees (person)
+- Rule: notes are context only. Anything decided moves to Decisions,
+  anything to do moves to Tasks.
+
+# Working agreement
+- The repo instructs, Notion remembers. No agent instructions in Notion.
+- A decision that is not in Decisions does not exist.
+- At most 3 cards in progress per person.
+- Blocked is raised in chat when it happens, not at the meeting.
+- Weekly meeting, 30 minutes: walk the board per person, record decisions,
+  move cards. Everyone updates their cards before, not during.
+- Done = merged pull request + reviewer PASS.
+- A closed card is never reopened. Create a new one and link it.</code></pre></div><div class="kb"><div class="kb__h"><span>Card template: <b>notion-card.md</b></span><a class="kb__dl" href="/writing/kit/notion-agent-board-template/notion-card.md" download="notion-card.md" data-dl="notion-agent-board-template"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Download</a></div><pre><code>&lt;repo ticket number&gt; &lt;verb + object&gt;
+
+GOAL
+Two sentences: what we will know or be able to do, and why it matters.
+
+SCOPE
+1. &lt;step, with the boundary that matters: read only, no schema change...&gt;
+2. &lt;step&gt;
+3. &lt;step&gt;
+
+OUT OF SCOPE
+- &lt;adjacent thing&gt; (&lt;why, or the card where it lives&gt;)
+- &lt;adjacent thing&gt;
+
+ACCEPTANCE CRITERIA
+- &lt;a test that proves it, run as the role that must not get in&gt;
+- &lt;a measurable result&gt;
+- &lt;screenshots at the sizes that matter&gt;
+
+OPEN DECISIONS
+DECISION &lt;ticket&gt;-&lt;n&gt;: the question in one line
+A) option  B) option  C) option
+RECOMMENDATION: &lt;letter&gt;. WHY: one line. IF UNDECIDED: what happens
+
+DECIDED BY THE ORCHESTRATOR
+- &lt;technical calls that change nothing a user or a role would notice&gt;
+
+DECIDED BY THE OWNER, &lt;date&gt;
+- &lt;id&gt; &lt;letter&gt;. Recorded in the repo decisions log citing the id.</code></pre></div>
+<h2>Prompt to use it</h2><div class="kb kb--prompt"><div class="kb__h"><span>Paste for the orchestrator</span></div><pre><code>Draft a card in the Tasks database for repo ticket &lt;number&gt;, using the card template in docs/notion-card.md.
+Fill Goal, Scope, Out of scope, Acceptance criteria and Open decisions from the ticket. Do not invent scope that is not in the ticket.
+Set Status to To do, Area and Priority from the ticket, and Link once the pull request exists.
+Leave Owner empty for me to assign. Never set Status to Done: that happens after the merge and the reviewer&#x27;s PASS.
+Write your own technical calls under &quot;Decided by the orchestrator&quot;; everything a user or a role would notice goes under Open decisions in the escalation format.</code></pre></div>
+<div class="box"><p>Why it looks like this, and where each part came from: <a href="/writing/notion-ai-agent-team-task-board/">Notion for AI agent teams: the board is the control plane</a>.</p></div>
+<h2>Changelog</h2>
+<ul class="log"><li><b>v1.0</b><em>Nov 5, 2026</em>First public version. The structure behind a seven week build run on one Notion board: more than four hundred cards across product, legal, sales, brand, finance and operations, with the agents&#x27; instructions kept in the repo.</li></ul>
+<h2>More from the kit</h2>
+<div class="krel"><a class="kcard" href="/writing/kit/ticket-template/" data-cap="build"><span class="kcard__k">Template / Build</span><h3>Ticket template for agents</h3><p>Frontmatter a script can validate, plus the three fields that stop agents inventing requirements. Blank and filled versions.</p><span class="kcard__f">v1.0 / ticket.md</span></a><a class="kcard" href="/writing/kit/escalation-format/" data-cap="build"><span class="kcard__k">Format / Build</span><h3>Escalation and decision format</h3><p>How an agent stops at a real decision: an id, three options, a recommendation. You answer with a letter.</p><span class="kcard__f">v1.0 / escalation.md</span></a><a class="kcard" href="/writing/kit/claude-md-template/" data-cap="build"><span class="kcard__k">Template / Build</span><h3>CLAUDE.md template</h3><p>The seven sections every agent session inherits, in the order an agent reads them, with nine neutral hard rules to start from.</p><span class="kcard__f">v1.0 / CLAUDE.md</span></a></div>
+<div class="cta"><h2>Working on something like this?</h2><p>This is the method behind how I build: AI native development with human gates. <a href="/ai-product-builder/">Discuss a product idea &#8594;</a> Or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
+</article></main>
+<script>document.querySelectorAll("[data-dl]").forEach(function(a){a.addEventListener("click",function(){if(window.siteSnack)siteSnack("Downloading "+a.getAttribute("download"));if(window.gtag)try{gtag("event","kit_download",{item:a.dataset.dl,file:a.getAttribute("download")})}catch(e){}})})</script>
+<footer class="footer">
+<div class="footer__inner">
+<div><span class="footer__brand">Inigo Angulo</span><p class="footer__desc">Senior product designer and product builder. Strategy, design and AI native development, from scope to production. Based in Zurich, 9+ years building systems that move metrics.</p></div>
+<div><p class="footer__col-title">Navigation</p><div class="footer__links"><a href="/#work">Work</a><a href="/#how-i-think">How I think</a></div></div>
+<div><p class="footer__col-title">Connect</p><div class="footer__links"><a href="mailto:inigoangulo@gmail.com">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank" rel="noopener">LinkedIn</a><a href="tel:+41799528321">Phone</a><a href="https://github.com/inigoangulo93" target="_blank" rel="noopener">GitHub</a></div></div>
+<div><p class="footer__col-title">Work with me</p><div class="footer__links"><a href="/ai-product-builder/">Build: AI native development</a><a href="/product-consultant-zurich/">Lead: product strategy and design</a><a href="/cro-ecommerce-consultant/">Optimize: conversion and growth</a><a href="/ux-design-consultant/">Senior product design</a></div></div>
+<div><p class="footer__col-title">Resources</p><div class="footer__links"><a href="/lab/">Lab</a><a href="/writing/">Writing</a><a href="/inigo-angulo-cv-2026.pdf" download>Download CV</a></div></div>
+</div>
+<div class="footer__bottom"><span class="footer__copy">2026 Inigo Angulo</span><span class="footer__built">Built with code, not templates</span></div>
+</footer>
+</body>
+</html>

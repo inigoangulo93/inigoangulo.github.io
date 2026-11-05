@@ -407,9 +407,100 @@ State every assumption about event names. Do not invent columns that are not in 
 <paste the schema>"""),
   changelog=[("1.0", "2026-11-05", "First public version. The method behind ten experiments and +11% checkout conversion across four EU markets, where 38% of converters had left checkout and come back.")],
 ),
+"notion-agent-board-template": dict(
+  cap="build", kind="Template", file="notion-board.md", version="1.0",
+  title="Notion board for an AI agent team: database schema and card template",
+  short="Notion board for an agent team",
+  desc="The three Notion databases behind an AI agent team (tasks, decisions, meetings) with their properties, the card template the orchestrator fills in, and the working agreement that keeps the board accountable.",
+  meta="Notion databases for an AI agent team: tasks, decisions and meetings with their properties, the card the orchestrator drafts, and the working agreement.",
+  card="Tasks, decisions and meetings as Notion databases, plus the card the orchestrator drafts and a person owns.",
+  article=("notion-ai-agent-team-task-board", "Notion for AI agent teams: the board is the control plane"),
+  related=["ticket-template", "escalation-format", "claude-md-template"],
+  use=[
+    "Create the three databases with these properties. Instructions for the agents stay in the repo, never in Notion.",
+    "Give the orchestrator write access to Tasks (through the API or MCP). It drafts cards; the owner field is always a real person.",
+    "Done only when the linked pull request is merged and the reviewer said PASS. A closed card is never reopened: create a new one.",
+  ],
+  blocks=[
+("Database schema", "notion-board.md", r"""# Tasks
+- Task (title): "<repo ticket number> <verb + object>"
+- Status (select): Backlog / To do / In progress / Blocked / Done / Archived
+- Owner (person): a real workspace member. Never an agent, never a typed name.
+- Area (select): Product and tech / Legal / Sales and growth / Brand /
+  Company and finance / Operations
+- Priority (select): P0 critical (no launch without it) / P1 high (needed
+  for the demo) / P2 medium (can wait a week) / P3 low
+- Expected result (text): one sentence. Without it the card does not move
+  to To do.
+- Acceptance criteria (text): optional summary; the full list is on the card.
+- Link (url): the pull request
+- Due (date)
+- ID (unique id, automatic)
+
+# Decisions
+- Decision (title): the question and the answer in one line
+- Status (select): In force / Under discussion / Revoked
+- Context (text): why it was decided this way
+- Proposed by (person)
+- Area (select): same options as Tasks
+- Date (date)
+
+# Meetings
+- Meeting (title), Date (date), Attendees (person)
+- Rule: notes are context only. Anything decided moves to Decisions,
+  anything to do moves to Tasks.
+
+# Working agreement
+- The repo instructs, Notion remembers. No agent instructions in Notion.
+- A decision that is not in Decisions does not exist.
+- At most 3 cards in progress per person.
+- Blocked is raised in chat when it happens, not at the meeting.
+- Weekly meeting, 30 minutes: walk the board per person, record decisions,
+  move cards. Everyone updates their cards before, not during.
+- Done = merged pull request + reviewer PASS.
+- A closed card is never reopened. Create a new one and link it.
+"""),
+("Card template", "notion-card.md", r"""<repo ticket number> <verb + object>
+
+GOAL
+Two sentences: what we will know or be able to do, and why it matters.
+
+SCOPE
+1. <step, with the boundary that matters: read only, no schema change...>
+2. <step>
+3. <step>
+
+OUT OF SCOPE
+- <adjacent thing> (<why, or the card where it lives>)
+- <adjacent thing>
+
+ACCEPTANCE CRITERIA
+- <a test that proves it, run as the role that must not get in>
+- <a measurable result>
+- <screenshots at the sizes that matter>
+
+OPEN DECISIONS
+DECISION <ticket>-<n>: the question in one line
+A) option  B) option  C) option
+RECOMMENDATION: <letter>. WHY: one line. IF UNDECIDED: what happens
+
+DECIDED BY THE ORCHESTRATOR
+- <technical calls that change nothing a user or a role would notice>
+
+DECIDED BY THE OWNER, <date>
+- <id> <letter>. Recorded in the repo decisions log citing the id.
+""")],
+  prompt=("Paste for the orchestrator", r"""Draft a card in the Tasks database for repo ticket <number>, using the card template in docs/notion-card.md.
+Fill Goal, Scope, Out of scope, Acceptance criteria and Open decisions from the ticket. Do not invent scope that is not in the ticket.
+Set Status to To do, Area and Priority from the ticket, and Link once the pull request exists.
+Leave Owner empty for me to assign. Never set Status to Done: that happens after the merge and the reviewer's PASS.
+Write your own technical calls under "Decided by the orchestrator"; everything a user or a role would notice goes under Open decisions in the escalation format."""),
+  changelog=[("1.0", "2026-11-05", "First public version. The structure behind a seven week build run on one Notion board: more than four hundred cards across product, legal, sales, brand, finance and operations, with the agents' instructions kept in the repo.")],
+),
+
 }
 
-ORDER = ["claude-md-template", "ticket-template", "escalation-format", "release-gate-checklist", "mvp-scope-one-pager", "checkout-audit-checklist"]
+ORDER = ["claude-md-template", "ticket-template", "escalation-format", "notion-agent-board-template", "release-gate-checklist", "mvp-scope-one-pager", "checkout-audit-checklist"]
 
 # article slug -> kit slug, for the "copy the template" box inside articles
 ARTICLE_TO_KIT = {}

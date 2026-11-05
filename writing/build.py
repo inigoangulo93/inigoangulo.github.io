@@ -578,7 +578,7 @@ mark{{background:rgba(45,212,191,.22);color:var(--t1);border-radius:3px;padding:
 <script src="/services/bar.js?v={VER}" defer></script>
 <script src="/services/copy.js?v={VER}" defer></script>
 <main><div class="list"><div class="pt" style="margin-bottom:22px"><p class="pt__tag">Writing</p><h1 class="pt__h">What I learned shipping, written down.</h1></div><p class="intro">{n} articles in four series: building products with AI agent teams, the gates between an agent and production, conversion experiments on real funnels, and design systems that match the code. Each series has a place to start.</p>
-<a class="kitban" href="/writing/kit/"><span class="kitban__k">Kit</span><span class="kitban__t"><b>{len(KIT)} templates, checklists and prompts</b> from the method, ready to copy: CLAUDE.md, tickets, release gates, MVP scope, checkout audit.</span><span class="kitban__a">Open the kit &#8594;</span></a>
+<a class="kitban" href="/writing/kit/"><span class="kitban__k">Kit</span><span class="kitban__t"><b>{len(KIT)} templates, checklists and prompts</b> from the method, ready to copy: CLAUDE.md, tickets, Notion board, release gates, MVP scope, checkout audit.</span><span class="kitban__a">Open the kit &#8594;</span></a>
 <form class="search" role="search" onsubmit="return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search {n} articles: tickets, CLAUDE.md, checkout, RLS, cost..." aria-label="Search articles" autocomplete="off"><kbd>/</kbd></form>
 <div class="chips">{chips}</div>
 <p class="count" id="count"></p>
@@ -723,7 +723,7 @@ def kit_page(k, d):
 def kit_index():
     url = "https://inigoangulo.com/writing/kit/"
     title = "Kit: templates, checklists and prompts for building with AI agents"
-    desc = 'Six free templates, checklists and prompts for building with AI agent teams: CLAUDE.md, tickets, escalation, release gates, MVP scope, checkout audit.'
+    desc = 'Seven free templates, checklists and prompts for AI agent teams: CLAUDE.md, tickets, escalation, Notion board, release gates, MVP scope, checkout audit.'
     groups = f'<div class="kgrid">{"".join(kit_card(k) for k in KIT_ORDER)}</div>'
     chips = '<a class="chip on" href="#" data-f="">All</a>' + "".join(f'<a class="chip" href="#{c}" data-f="{c}">{esc(l)}</a>' for c, l in KIT_CAPS.items())
     ld = {"@context":"https://schema.org","@type":"CollectionPage","name":title,"description":desc,"url":url,"hasPart":[{"@type":"CreativeWork","name":KIT[k]["title"],"url":f"{url}{k}/"} for k in KIT_ORDER]}

@@ -373,3 +373,100 @@ One sentence linking this to the thesis.
 <div class="box"><p>This is the last section of <a href="/writing/how-to-build-an-mvp-with-ai-agents/">how to build an MVP with AI agents</a>. The gates in detail are in <a href="/writing/green-check-is-not-proof/">why a green check is not proof</a>; the rules file where each incident is recorded is in <a href="/writing/claude-md-example-project-rules-file/">the project rules file</a>.</p></div>
 """),
 }
+
+# Notion as the coordination layer for an agent team. Example card is neutral: no client, people or internal names.
+BUILD_POSTS["notion-ai-agent-team-task-board"] = dict(
+  tag="agents", title="Notion for AI agent teams: the board is the control plane, the repo is the source of truth",
+  desc="How to run an AI coding agent team from a Notion board without losing control: instructions only in the repo, decisions in their own database, cards drafted by the orchestrator and owned by a person, and Done only after a merged pull request with a reviewer PASS.",
+  meta="Run an AI agent team from Notion without losing control: instructions in the repo, decisions in their own database, people own cards, Done only after review.",
+  date="2026-11-05", read="9 min",
+  faq=[
+    ("Should the agents read their instructions from Notion?","No. Agents read the repository at the start of every session, so the rules file and the docs there are the only instructions that exist for them. Notion holds context, decisions and the work queue. A second set of instructions in Notion will eventually contradict the repo, and the agent will follow whichever it read last."),
+    ("Can an AI agent own a task on the board?","It can draft the card and do the work, but the owner field should always be a real person. The owner is who answers when the card is blocked, who decides the open questions and who is accountable for the outcome. An agent cannot be accountable."),
+    ("What does Done mean when agents do the work?","Done means the pull request linked from the card is merged and the reviewer said PASS on it. A card that moves to Done on an agent's say so is a status, not a fact. If something comes back, the card stays closed and a new one is opened, so the history stays readable."),
+    ("Do I need Notion's own agents for this?","No. Notion now ships agents that pick up a card when it moves to a column, which is useful for small, self contained tasks. The structure in this article works with any agent that can read and write the board through the API or MCP. The value is in who may write what, not in which agent does it."),
+  ],
+  body="""
+<p>Most guides to running AI agents from Notion stop at the satisfying part: a card moves to a column, an agent picks it up, a pull request appears, the card links to it. That part works, and Notion now ships it out of the box. It is also the easy half. The hard half is everything around it: where the agents get their instructions, who is allowed to write what on the board, how a decision taken on a card reaches the next session, and what Done means when nobody on the team wrote the code.</p>
+<p>This is the coordination layer behind a production build I ran for a private client: one person, a team of AI agents, a board of more than four hundred cards and a client team working on the same board in legal, sales, brand, finance and operations. None of it is clever. It is a handful of rules about which system owns which truth.</p>
+
+<div class="num"><div><b>1</b><span>source of instructions: the repo</span></div><div><b>3</b><span>databases: tasks, decisions, meetings</span></div><div><b>400+</b><span>cards on one board</span></div><div><b>0</b><span>cards owned by an agent</span></div></div>
+
+<h2>Rule 1: the repo instructs, Notion remembers</h2>
+<p>An agent session starts by reading the repository: the project rules file (CLAUDE.md in Claude Code) and the documents it points to. That is the only thing guaranteed to be in its context every time. So the operational reference lives there and only there, and Notion is explicitly not allowed to become a second one. The sentence at the top of the workspace home says exactly that: the reference for the agents lives in the repo; Notion keeps the institutional context and the decisions; there is no second set of instructions competing with the repository.</p>
+<p>The failure this prevents is slow and expensive. Someone writes a convention on a Notion page because it is quicker than a pull request. Two weeks later the repo says one thing, the page says another, and whichever the agent read last wins. With a single source of instructions that argument cannot start.</p>
+
+<table><thead><tr><th>Lives in</th><th>What</th><th>Why there</th></tr></thead><tbody>
+<tr><td>Repo</td><td>Rules file, architecture, domain model, permissions matrix, technical decisions, tickets by number</td><td>Read by every agent, every session; versioned with the code it governs</td></tr>
+<tr><td>Notion: Tasks</td><td>The work queue: owner, area, priority, expected result, link to the pull request</td><td>Readable by people who never open GitHub</td></tr>
+<tr><td>Notion: Decisions</td><td>Business decisions with their context and status (in force, under discussion, revoked)</td><td>"If it is not here, it was not decided"</td></tr>
+<tr><td>Notion: Meetings</td><td>Notes from the weekly meeting and kickoffs</td><td>Context only. Anything decided moves to Decisions, anything to do moves to Tasks</td></tr>
+</tbody></table>
+
+<h2>Rule 2: the orchestrator drafts, a person owns</h2>
+<p>Cards are drafted by the orchestrator agent, the one that decomposes work and never merges. It writes them the way it writes tickets, because that is what they are: the goal in two sentences, the scope as numbered steps, an explicit out of scope list, acceptance criteria an agent can prove, and the open decisions at the bottom. The <a href="/writing/tickets-for-ai-agents-template/">ticket template</a> and the card are the same document in two places, and the card's number is the repo's ticket number, so there is never a question of which one is meant.</p>
+<p>What the orchestrator never fills in is the owner. The owner field is always a real person in the workspace, never a name typed as a tag and never an agent. The owner is who answers when the card is blocked, who decides its open questions and who is accountable for what ships. An agent can do the work; it cannot be accountable for it.</p>
+
+<pre><code>Internal panel: active accounts (last sign in, item count)
+
+GOAL
+Know whether the accounts we accept actually use the product.
+An account that signs in once and never returns is a signal
+nobody sees today.
+
+SCOPE
+1. Read-only query: accepted accounts with workspace name,
+   acceptance date, last sign in and item count. Staff only,
+   second factor required, one audit log row per read.
+2. "Active accounts" section in the admin panel, sorted by last
+   sign in. Own empty state and error card.
+3. Plain text flag per row: "no sign in for N days".
+
+OUT OF SCOPE
+- Suspending or editing accounts: new state, migration, policies.
+  Not built until there is a real case.
+- Opening a customer's data beyond the count.
+
+ACCEPTANCE CRITERIA
+- Integration test on synthetic seed: two accounts with 0 and 3
+  items; correct counts and order; a normal user gets zero rows.
+- The count goes through a database function that returns only
+  the number, only to staff. Test that calls it as a normal
+  user and fails.
+- Screenshots at 390 and 1280.
+
+OPEN DECISIONS
+DECISION 214-1: threshold for "no sign in for N days"
+A) 14 days  B) 30 days  C) no flag
+RECOMMENDATION: A. WHY: early accounts; two quiet weeks is
+already a conversation. IF UNDECIDED: A
+
+DECIDED BY THE ORCHESTRATOR
+- Count in a database function, not a direct query, so the
+  privacy rule holds by construction, not by discipline.
+
+DECIDED BY THE OWNER, NOV 3
+- 214-1 A. Recorded in the decisions log citing the id.</code></pre>
+<p>The last two sections are the part I would keep if I could keep only one. The orchestrator is allowed to take technical decisions that change nothing a user or a role would notice, and it writes them down under its own heading. Everything else goes up as a numbered decision with three options and a recommendation, and the answer is written on the card, by the owner, as an id and a letter. The lead agent then records it in the repo's decisions log, citing the id. One decision, one id, findable from both sides. The format is in the kit as the <a href="/writing/kit/escalation-format/">escalation format</a>.</p>
+
+<h2>Rule 3: Done means merged and passed</h2>
+<p>The board's states are ordinary: backlog, to do, in progress, blocked, done, archived. What is not ordinary is the definition of the last real one. The rule on the workspace home is one line: nothing is marked done without a merged pull request and a PASS from the reviewer. The card links to the pull request, the pull request carries the evidence (the run ids, the test counts, the screenshots), and the board only reflects that the evidence exists.</p>
+<p>That keeps two vocabularies apart on purpose. The board tracks work: is it queued, moving, stuck, closed. The repo tracks proof, in stricter words (VERIFIED, IMPLEMENTED, NEEDS_REVIEW, BLOCKED, DECISION_REQUIRED) that an agent has to back with something a script produced. A card that moves to Done because an agent said "done" is a status, not a fact, and the whole point of the <a href="/writing/green-check-is-not-proof/">gates</a> is that statuses are not facts.</p>
+<p>One more rule from the team's working agreement saves a surprising amount of confusion: a closed card is never reopened. If something comes back, a new card is created and linked. The history of the old one stays true.</p>
+
+<h2>Rule 4: one board for the whole business, not only the code</h2>
+<p>The board is not an engineering board. The same database carries cards for product and tech, legal and import, sales and growth, brand, company and finance, and operations. That sounds like a detail and it changes the conversation: a legal blocker and a migration show up in the same weekly walk, with the same fields, and a product decision that depends on a pricing decision cannot quietly wait for it.</p>
+<p>The working agreement that makes this hold is short. Every card has an owner, an area and an expected result; without an expected result it does not move to next. At most three cards in progress per person. A blocked card is raised in chat the moment it blocks, not at the meeting. The weekly meeting is thirty minutes: walk the board person by person, record decisions, move cards, nothing else, and everyone updates their own cards before it, not during. A decision that is not in the Decisions database does not exist.</p>
+
+<h2>What I would not hand to an agent</h2>
+<ul>
+<li><strong>Moving a card to Done.</strong> It follows the merge and the review, not a message.</li>
+<li><strong>The owner field.</strong> Always a person.</li>
+<li><strong>Answers to open decisions.</strong> The agent recommends; the owner writes the letter.</li>
+<li><strong>Instructions.</strong> If an agent needs to know it, it goes in the repo through a pull request, where it is reviewed and versioned.</li>
+</ul>
+<p>Everything else, drafting the card, keeping the scope and criteria in shape, linking the pull request, writing down its own technical calls, is exactly the kind of tedious, structured writing agents are good at. That is the division: the agents keep the board honest and complete; the people keep it accountable.</p>
+
+<div class="box"><p>Part of the series on <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a>. The card format comes from <a href="/writing/tickets-for-ai-agents-template/">the ticket template</a>, the decisions from <a href="/writing/human-in-the-loop-coding-agents/">the two human gates</a>. The database schema and the card template are in the kit: <a href="/writing/kit/notion-agent-board-template/">Notion board for an agent team</a>.</p></div>
+"""
+)

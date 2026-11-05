@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notion for AI agent teams: the board is the control plane, the repo is the source of truth / Inigo Angulo</title>
+<meta name="description" content="Run an AI agent team from Notion without losing control: instructions in the repo, decisions in their own database, people own cards, Done only after review.">
+<link rel="canonical" href="https://inigoangulo.com/writing/notion-ai-agent-team-task-board/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta property="og:title" content="Notion for AI agent teams: the board is the control plane, the repo is the source of truth">
+<meta property="og:description" content="Run an AI agent team from Notion without losing control: instructions in the repo, decisions in their own database, people own cards, Done only after review.">
+<meta property="og:image" content="https://inigoangulo.com/img/og-home.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://inigoangulo.com/writing/notion-ai-agent-team-task-board/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/services/services.css?v=2a7bb04">
+<style>.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
+.art .k{margin-bottom:12px}.art h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:none}
+.art .meta{font-family:var(--m);font-size:.74rem;color:var(--t3);margin:16px 0 34px;display:flex;gap:16px;flex-wrap:wrap}
+.art p{max-width:none;font-size:1.05rem;line-height:1.7;margin:0 0 18px}
+.art h2{font-size:1.35rem;margin:38px 0 12px;max-width:none}
+.art ul,.art ol{margin:0 0 18px 22px;color:var(--t2);font-size:1.02rem;line-height:1.65}
+.art li{margin-bottom:6px}
+.art .num{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0}
+.art .num div{border:1px solid var(--b1);border-radius:10px;padding:14px;background:var(--glass)}
+.art .num b{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--ac2);line-height:1}
+.art .num span{display:block;font-family:var(--m);font-size:.66rem;color:var(--t3);margin-top:7px;line-height:1.45}
+@media(max-width:700px){.art .num{grid-template-columns:1fr 1fr}}
+.art blockquote{border-left:3px solid var(--ac);padding:4px 0 4px 18px;margin:22px 0;color:var(--t1);font-size:1.1rem;font-weight:500}
+.art .box{border:1px solid var(--acb);border-radius:12px;padding:20px 22px;background:var(--acg2);margin:26px 0}
+.art .box p{margin:0;font-size:.98rem}
+.art .box a{color:var(--ac2);border-bottom:1px solid var(--acb)}
+.art a{color:var(--ac2)}
+.art .fig{margin:26px 0;border:1px solid var(--b1);border-radius:12px;padding:16px;background:var(--glass)}.art .fig svg{width:100%;height:auto;display:block}.art figcaption{font-family:var(--m);font-size:.72rem;color:var(--t3);margin-top:10px}
+.art .series{border:1px solid var(--b1);border-radius:12px;padding:16px 20px;margin:0 0 30px;background:var(--glass)}.art .series__k{font-family:var(--m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);display:block;margin-bottom:8px}.art .series ul{list-style:none;margin:0;display:grid;gap:6px}.art .series li{font-size:.92rem;margin:0}.art .series em{font-style:normal;font-family:var(--m);font-size:.68rem;color:var(--t3)}
+.art .tag{font-family:var(--m);font-size:.7rem;color:var(--ac2);border:1px solid var(--acb);border-radius:999px;padding:3px 10px}
+.art table{width:100%;border-collapse:collapse;margin:22px 0;font-size:.92rem;line-height:1.5}.art th,.art td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--b1)}.art th{font-family:var(--m);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);font-weight:500}.art td{color:var(--t2)}.art td:first-child{color:var(--t1)}
+.art pre{background:#0b0b10;border:1px solid var(--b1);border-radius:12px;padding:18px 20px;margin:22px 0;overflow-x:auto;font-family:var(--m);font-size:.8rem;line-height:1.6;color:var(--t2)}.art pre code{font-family:inherit}
+.art .faq{margin:40px 0 0}.art .faq h2{margin-bottom:6px}.art .faq details{border-bottom:1px solid var(--b1);padding:14px 0}.art .faq summary{cursor:pointer;font-weight:600;color:var(--t1);font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}.art .faq summary::-webkit-details-marker{display:none}.art .faq summary::after{content:'';flex:none;width:10px;height:10px;border-right:2px solid var(--ac2);border-bottom:2px solid var(--ac2);transform:rotate(45deg) translate(-2px,-2px);transition:transform .3s cubic-bezier(.16,1,.3,1)}.art .faq details[open] summary::after{transform:rotate(225deg) translate(-2px,-2px)}.art .faq p{margin:10px 0 0;font-size:.98rem;color:var(--t2)}.art .faq details[open] p{animation:faqIn .32s cubic-bezier(.16,1,.3,1) both}@keyframes faqIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media(max-width:700px){.art table{display:block;overflow-x:auto;white-space:normal}}
+.art .cta{margin-top:40px}
+.art .cta h2{margin:0 0 6px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
+<script src="/analytics.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Notion for AI agent teams: the board is the control plane, the repo is the source of truth", "description": "Run an AI agent team from Notion without losing control: instructions in the repo, decisions in their own database, people own cards, Done only after review.", "datePublished": "2026-11-05", "dateModified": "2026-11-05", "author": {"@type": "Person", "@id": "https://inigoangulo.com/#person", "name": "Inigo Angulo", "url": "https://inigoangulo.com/"}, "publisher": {"@type": "Person", "name": "Inigo Angulo"}, "mainEntityOfPage": "https://inigoangulo.com/writing/notion-ai-agent-team-task-board/", "image": "https://inigoangulo.com/img/og-home.png", "keywords": "AI agent teams", "articleSection": "AI agent teams", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inigo Angulo", "item": "https://inigoangulo.com/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://inigoangulo.com/writing/"}, {"@type": "ListItem", "position": 3, "name": "Notion for AI agent teams: the board is the control plane, the repo is the source of truth", "item": "https://inigoangulo.com/writing/notion-ai-agent-team-task-board/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should the agents read their instructions from Notion?", "acceptedAnswer": {"@type": "Answer", "text": "No. Agents read the repository at the start of every session, so the rules file and the docs there are the only instructions that exist for them. Notion holds context, decisions and the work queue. A second set of instructions in Notion will eventually contradict the repo, and the agent will follow whichever it read last."}}, {"@type": "Question", "name": "Can an AI agent own a task on the board?", "acceptedAnswer": {"@type": "Answer", "text": "It can draft the card and do the work, but the owner field should always be a real person. The owner is who answers when the card is blocked, who decides the open questions and who is accountable for the outcome. An agent cannot be accountable."}}, {"@type": "Question", "name": "What does Done mean when agents do the work?", "acceptedAnswer": {"@type": "Answer", "text": "Done means the pull request linked from the card is merged and the reviewer said PASS on it. A card that moves to Done on an agent's say so is a status, not a fact. If something comes back, the card stays closed and a new one is opened, so the history stays readable."}}, {"@type": "Question", "name": "Do I need Notion's own agents for this?", "acceptedAnswer": {"@type": "Answer", "text": "No. Notion now ships agents that pick up a card when it moves to a column, which is useful for small, self contained tasks. The structure in this article works with any agent that can read and write the board through the API or MCP. The value is in who may write what, not in which agent does it."}}]}</script>
+</head>
+<body>
+<header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/lab/">Lab</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a><div class="bar__ham" id="hamBtn" onclick="toggleMenu()"><span></span><span></span><span></span></div></div><div class="bar__mini" aria-hidden="true"><i></i><span>AI agent teams</span></div></header><div class="mob-menu" id="mobMenu"><div class="mob-menu__bg" onclick="toggleMenu()"></div><div class="mob-menu__inner"><a class="mob-menu__link" href="/#work"><span>Work</span><span class="mob-menu__link-num">01</span></a><a class="mob-menu__link" href="/#how-i-think"><span>How I think</span><span class="mob-menu__link-num">02</span></a><a class="mob-menu__link" href="/lab/"><span>Lab</span><span class="mob-menu__link-num">03</span></a><a class="mob-menu__link on" href="/writing/"><span>Writing</span><span class="mob-menu__link-num">04</span></a><div class="mob-menu__cta"><a href="/#contact">Get in touch &#8594;</a></div><div class="mob-menu__contact"><a href="mailto:inigoangulo@gmail.com">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank" rel="noopener">LinkedIn</a><a href="tel:+41799528321">Phone</a></div></div></div>
+<script src="/services/bar.js?v=2a7bb04" defer></script>
+<script src="/services/copy.js?v=2a7bb04" defer></script>
+<main><article class="art">
+<span class="k">Writing</span>
+<h1>Notion for AI agent teams: the board is the control plane, the repo is the source of truth</h1>
+<div class="meta"><span>Inigo Angulo</span><span>November 5, 2026</span><span>9 min read</span><a class="tag" href="/writing/#agents">AI agent teams</a></div>
+<nav class="series" aria-label="In this series"><span class="series__k">In this series: AI agent teams</span><ul><li><a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development: what actually works in 2026</a> <em>(start here)</em></li><li><a href="/writing/human-in-the-loop-coding-agents/">Human in the loop for coding agents: the two gates that matter</a></li><li><a href="/writing/one-person-ai-agent-team-445-prs/">445 PRs in seven weeks: what a one person team with AI agents actually looks like</a></li><li><a href="/writing/green-check-is-not-proof/">Why a green check is not proof: the gates between an AI agent and production</a></li><li><a href="/writing/row-level-security-tests-ai-agents/">Row level security with AI agents: tests that run as the user who must not get in</a></li><li><a href="/writing/ticket-to-production-in-five-hours/">From ticket to production in five hours: a release process for a one person team</a></li></ul></nav>
+
+<p>Most guides to running AI agents from Notion stop at the satisfying part: a card moves to a column, an agent picks it up, a pull request appears, the card links to it. That part works, and Notion now ships it out of the box. It is also the easy half. The hard half is everything around it: where the agents get their instructions, who is allowed to write what on the board, how a decision taken on a card reaches the next session, and what Done means when nobody on the team wrote the code.</p>
+<p>This is the coordination layer behind a production build I ran for a private client: one person, a team of AI agents, a board of more than four hundred cards and a client team working on the same board in legal, sales, brand, finance and operations. None of it is clever. It is a handful of rules about which system owns which truth.</p>
+
+<div class="num"><div><b>1</b><span>source of instructions: the repo</span></div><div><b>3</b><span>databases: tasks, decisions, meetings</span></div><div><b>400+</b><span>cards on one board</span></div><div><b>0</b><span>cards owned by an agent</span></div></div>
+
+<h2>Rule 1: the repo instructs, Notion remembers</h2>
+<p>An agent session starts by reading the repository: the project rules file (CLAUDE.md in Claude Code) and the documents it points to. That is the only thing guaranteed to be in its context every time. So the operational reference lives there and only there, and Notion is explicitly not allowed to become a second one. The sentence at the top of the workspace home says exactly that: the reference for the agents lives in the repo; Notion keeps the institutional context and the decisions; there is no second set of instructions competing with the repository.</p>
+<p>The failure this prevents is slow and expensive. Someone writes a convention on a Notion page because it is quicker than a pull request. Two weeks later the repo says one thing, the page says another, and whichever the agent read last wins. With a single source of instructions that argument cannot start.</p>
+
+<table><thead><tr><th>Lives in</th><th>What</th><th>Why there</th></tr></thead><tbody>
+<tr><td>Repo</td><td>Rules file, architecture, domain model, permissions matrix, technical decisions, tickets by number</td><td>Read by every agent, every session; versioned with the code it governs</td></tr>
+<tr><td>Notion: Tasks</td><td>The work queue: owner, area, priority, expected result, link to the pull request</td><td>Readable by people who never open GitHub</td></tr>
+<tr><td>Notion: Decisions</td><td>Business decisions with their context and status (in force, under discussion, revoked)</td><td>"If it is not here, it was not decided"</td></tr>
+<tr><td>Notion: Meetings</td><td>Notes from the weekly meeting and kickoffs</td><td>Context only. Anything decided moves to Decisions, anything to do moves to Tasks</td></tr>
+</tbody></table>
+
+<h2>Rule 2: the orchestrator drafts, a person owns</h2>
+<p>Cards are drafted by the orchestrator agent, the one that decomposes work and never merges. It writes them the way it writes tickets, because that is what they are: the goal in two sentences, the scope as numbered steps, an explicit out of scope list, acceptance criteria an agent can prove, and the open decisions at the bottom. The <a href="/writing/tickets-for-ai-agents-template/">ticket template</a> and the card are the same document in two places, and the card's number is the repo's ticket number, so there is never a question of which one is meant.</p>
+<p>What the orchestrator never fills in is the owner. The owner field is always a real person in the workspace, never a name typed as a tag and never an agent. The owner is who answers when the card is blocked, who decides its open questions and who is accountable for what ships. An agent can do the work; it cannot be accountable for it.</p>
+
+<pre><code>Internal panel: active accounts (last sign in, item count)
+
+GOAL
+Know whether the accounts we accept actually use the product.
+An account that signs in once and never returns is a signal
+nobody sees today.
+
+SCOPE
+1. Read-only query: accepted accounts with workspace name,
+   acceptance date, last sign in and item count. Staff only,
+   second factor required, one audit log row per read.
+2. "Active accounts" section in the admin panel, sorted by last
+   sign in. Own empty state and error card.
+3. Plain text flag per row: "no sign in for N days".
+
+OUT OF SCOPE
+- Suspending or editing accounts: new state, migration, policies.
+  Not built until there is a real case.
+- Opening a customer's data beyond the count.
+
+ACCEPTANCE CRITERIA
+- Integration test on synthetic seed: two accounts with 0 and 3
+  items; correct counts and order; a normal user gets zero rows.
+- The count goes through a database function that returns only
+  the number, only to staff. Test that calls it as a normal
+  user and fails.
+- Screenshots at 390 and 1280.
+
+OPEN DECISIONS
+DECISION 214-1: threshold for "no sign in for N days"
+A) 14 days  B) 30 days  C) no flag
+RECOMMENDATION: A. WHY: early accounts; two quiet weeks is
+already a conversation. IF UNDECIDED: A
+
+DECIDED BY THE ORCHESTRATOR
+- Count in a database function, not a direct query, so the
+  privacy rule holds by construction, not by discipline.
+
+DECIDED BY THE OWNER, NOV 3
+- 214-1 A. Recorded in the decisions log citing the id.</code></pre>
+<p>The last two sections are the part I would keep if I could keep only one. The orchestrator is allowed to take technical decisions that change nothing a user or a role would notice, and it writes them down under its own heading. Everything else goes up as a numbered decision with three options and a recommendation, and the answer is written on the card, by the owner, as an id and a letter. The lead agent then records it in the repo's decisions log, citing the id. One decision, one id, findable from both sides. The format is in the kit as the <a href="/writing/kit/escalation-format/">escalation format</a>.</p>
+
+<h2>Rule 3: Done means merged and passed</h2>
+<p>The board's states are ordinary: backlog, to do, in progress, blocked, done, archived. What is not ordinary is the definition of the last real one. The rule on the workspace home is one line: nothing is marked done without a merged pull request and a PASS from the reviewer. The card links to the pull request, the pull request carries the evidence (the run ids, the test counts, the screenshots), and the board only reflects that the evidence exists.</p>
+<p>That keeps two vocabularies apart on purpose. The board tracks work: is it queued, moving, stuck, closed. The repo tracks proof, in stricter words (VERIFIED, IMPLEMENTED, NEEDS_REVIEW, BLOCKED, DECISION_REQUIRED) that an agent has to back with something a script produced. A card that moves to Done because an agent said "done" is a status, not a fact, and the whole point of the <a href="/writing/green-check-is-not-proof/">gates</a> is that statuses are not facts.</p>
+<p>One more rule from the team's working agreement saves a surprising amount of confusion: a closed card is never reopened. If something comes back, a new card is created and linked. The history of the old one stays true.</p>
+
+<h2>Rule 4: one board for the whole business, not only the code</h2>
+<p>The board is not an engineering board. The same database carries cards for product and tech, legal and import, sales and growth, brand, company and finance, and operations. That sounds like a detail and it changes the conversation: a legal blocker and a migration show up in the same weekly walk, with the same fields, and a product decision that depends on a pricing decision cannot quietly wait for it.</p>
+<p>The working agreement that makes this hold is short. Every card has an owner, an area and an expected result; without an expected result it does not move to next. At most three cards in progress per person. A blocked card is raised in chat the moment it blocks, not at the meeting. The weekly meeting is thirty minutes: walk the board person by person, record decisions, move cards, nothing else, and everyone updates their own cards before it, not during. A decision that is not in the Decisions database does not exist.</p>
+
+<h2>What I would not hand to an agent</h2>
+<ul>
+<li><strong>Moving a card to Done.</strong> It follows the merge and the review, not a message.</li>
+<li><strong>The owner field.</strong> Always a person.</li>
+<li><strong>Answers to open decisions.</strong> The agent recommends; the owner writes the letter.</li>
+<li><strong>Instructions.</strong> If an agent needs to know it, it goes in the repo through a pull request, where it is reviewed and versioned.</li>
+</ul>
+<p>Everything else, drafting the card, keeping the scope and criteria in shape, linking the pull request, writing down its own technical calls, is exactly the kind of tedious, structured writing agents are good at. That is the division: the agents keep the board honest and complete; the people keep it accountable.</p>
+
+<div class="box"><p>Part of the series on <a href="/writing/ai-agent-teams-software-development/">AI agent teams for software development</a>. The card format comes from <a href="/writing/tickets-for-ai-agents-template/">the ticket template</a>, the decisions from <a href="/writing/human-in-the-loop-coding-agents/">the two human gates</a>. The database schema and the card template are in the kit: <a href="/writing/kit/notion-agent-board-template/">Notion board for an agent team</a>.</p></div>
+
+<div class="box kitbox"><span class="kitban__k">Kit</span><p>Copy the template: <a href="/writing/kit/notion-agent-board-template/">Notion board for an agent team</a>, with a prompt to use it and its changelog.</p></div>
+<section class="faq"><h2>Questions people ask</h2><details><summary>Should the agents read their instructions from Notion?</summary><p>No. Agents read the repository at the start of every session, so the rules file and the docs there are the only instructions that exist for them. Notion holds context, decisions and the work queue. A second set of instructions in Notion will eventually contradict the repo, and the agent will follow whichever it read last.</p></details><details><summary>Can an AI agent own a task on the board?</summary><p>It can draft the card and do the work, but the owner field should always be a real person. The owner is who answers when the card is blocked, who decides the open questions and who is accountable for the outcome. An agent cannot be accountable.</p></details><details><summary>What does Done mean when agents do the work?</summary><p>Done means the pull request linked from the card is merged and the reviewer said PASS on it. A card that moves to Done on an agent&#x27;s say so is a status, not a fact. If something comes back, the card stays closed and a new one is opened, so the history stays readable.</p></details><details><summary>Do I need Notion&#x27;s own agents for this?</summary><p>No. Notion now ships agents that pick up a card when it moves to a column, which is useful for small, self contained tasks. The structure in this article works with any agent that can read and write the board through the API or MCP. The value is in who may write what, not in which agent does it.</p></details></section>
+<div class="cta"><h2>Working on something like this?</h2><p>This is the method behind how I build: AI native development with human gates. <a href="/ai-product-builder/">Discuss a product idea &#8594;</a> Or <a href="mailto:inigoangulo@gmail.com">email me</a>.</p></div>
+</article></main>
+<footer class="footer">
+<div class="footer__inner">
+<div><span class="footer__brand">Inigo Angulo</span><p class="footer__desc">Senior product designer and product builder. Strategy, design and AI native development, from scope to production. Based in Zurich, 9+ years building systems that move metrics.</p></div>
+<div><p class="footer__col-title">Navigation</p><div class="footer__links"><a href="/#work">Work</a><a href="/#how-i-think">How I think</a></div></div>
+<div><p class="footer__col-title">Connect</p><div class="footer__links"><a href="mailto:inigoangulo@gmail.com">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank" rel="noopener">LinkedIn</a><a href="tel:+41799528321">Phone</a><a href="https://github.com/inigoangulo93" target="_blank" rel="noopener">GitHub</a></div></div>
+<div><p class="footer__col-title">Work with me</p><div class="footer__links"><a href="/ai-product-builder/">Build: AI native development</a><a href="/product-consultant-zurich/">Lead: product strategy and design</a><a href="/cro-ecommerce-consultant/">Optimize: conversion and growth</a><a href="/ux-design-consultant/">Senior product design</a></div></div>
+<div><p class="footer__col-title">Resources</p><div class="footer__links"><a href="/lab/">Lab</a><a href="/writing/">Writing</a><a href="/inigo-angulo-cv-2026.pdf" download>Download CV</a></div></div>
+</div>
+<div class="footer__bottom"><span class="footer__copy">2026 Inigo Angulo</span><span class="footer__built">Built with code, not templates</span></div>
+</footer>
+</body>
+</html>
