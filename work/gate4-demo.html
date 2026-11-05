@@ -2,8 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ShelfFlow / Gate 4 — interactive demo / Inigo Angulo</title>
+<title>ShelfFlow Gate 4, interactive demo / Inigo Angulo</title>
 <link rel="canonical" href="https://inigoangulo.com/work/gate4-demo.html">
+<meta property="og:title" content="ShelfFlow Gate 4, interactive demo">
+<meta property="og:description" content="Hold Gate 4 yourself: an operable slice of ShelfFlow's decision architecture. Approve, reject, and meet the guardrail that blocks unreviewed batch approvals.">
+<meta property="og:image" content="https://inigoangulo.com/img/shelfflow/og.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://inigoangulo.com/work/gate4-demo.html">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <meta name="description" content="Hold Gate 4 yourself: an operable slice of ShelfFlow's decision architecture. Approve, reject, and meet the guardrail that blocks unreviewed batch approvals.">
@@ -86,7 +92,7 @@ body.embed .wrap{margin-top:0!important}
 <div class="wrap" style="margin-top:34px">
 <p class="tag">SHELFFLOW, INTERACTIVE DEMO, SYNTHETIC DATA</p>
 <h1>Gate 4: you hold launch authority.</h1>
-<p class="sub">AI agents produced the packages. Nothing ships until a human signs each cell. This slice shows 3 of the 6 SKUs — 9 of the 18 launch decisions.</p>
+<p class="sub">AI agents produced the packages. Nothing ships until a human signs each cell. This slice shows 3 of the 6 SKUs, 9 of the 18 launch decisions.</p>
 
 <div class="hint" id="hint"><b>In a hurry?</b> Try the fast way: hit "Batch approve all" and see what the system says.</div>
 
@@ -113,9 +119,9 @@ body.embed .wrap{margin-top:0!important}
 </div>
 <p class="msg" id="msg"></p>
 
-<div class="audit"><p class="al">AUDIT TRAIL — WHO APPROVED THIS?</p><div id="log"></div></div>
+<div class="audit"><p class="al">AUDIT TRAIL: WHO APPROVED THIS?</p><div id="log"></div></div>
 
-<p class="foot">A working slice of ShelfFlow's decision architecture, synthetic data. The guardrail is real: in v1 testing, operators rubber-stamped batch approvals to save time — so unreviewed packages block the batch. Speed without review is liability. <a href="shelfflow.html">Read the full case study →</a></p>
+<p class="foot">A working slice of ShelfFlow's decision architecture, synthetic data. The guardrail is real: in v1 testing, operators rubber-stamped batch approvals to save time, so unreviewed packages block the batch. Speed without review is liability. <a href="shelfflow.html">Read the full case study →</a></p>
 </div>
 
 <script>
@@ -123,9 +129,9 @@ body.embed .wrap{margin-top:0!important}
 var SKUS=['Vitamin C 30ml','Retinol Night','SPF 50 Glow'];
 var RET=['Amazon','Sephora','Walmart'];
 var COPY={
- 'Amazon':['Brightening serum with 15% vitamin C. Dermatologist tested, fragrance free.','Visibly brighter skin in 2 weeks — clinically measured radiance, zero irritation.'],
+ 'Amazon':['Brightening serum with 15% vitamin C. Dermatologist tested, fragrance free.','Visibly brighter skin in 2 weeks, clinically measured radiance, zero irritation.'],
  'Sephora':['A silky daily serum for luminous, even-toned skin.','Your glow ritual: antioxidant defense meets lit-from-within luminosity.'],
- 'Walmart':['Everyday brightening serum. Gentle formula, real results.','Radiant skin at an everyday price — dermatologist-grade brightening for all.']};
+ 'Walmart':['Everyday brightening serum. Gentle formula, real results.','Radiant skin at an everyday price, dermatologist-grade brightening for all.']};
 var N=9, cells=[], cur=-1, decided=0, ffRunning=false, launched=false;
 function ev(n,p){if(typeof gtag==='function')gtag('event',n,p||{})}
 function $(id){return document.getElementById(id)}
@@ -159,7 +165,7 @@ function refresh(){var n=approvedCount();
 function show(i){cur=i;paintAll();
  if(i<0){refresh();return}
  var c=cells[i];decide.style.display='flex';
- var regen=c.gen>1?'<p class="regen">Regenerated with your reviewer notes — v'+c.gen+'</p>':'';
+ var regen=c.gen>1?'<p class="regen">Regenerated with your reviewer notes (v'+c.gen+')</p>':'';
  card.innerHTML='<p class="cellid">'+c.sku+' × <b>'+c.ret+'</b></p>'
  +'<p class="qn">Decision '+(approvedCount()+1)+' of '+N+', which variant ships?</p>'+regen
  +'<div class="vars">'
@@ -193,17 +199,17 @@ $('batch').onclick=guard(function(){if(launched)return;
  var pend=N-approvedCount();
  if(pend>0){msg.className='msg';
   var b=$('batch');b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake');
-  msg.innerHTML='<b>BLOCKED</b> — '+pend+' packages not individually reviewed. <i>Speed without review is liability.</i>';
+  msg.innerHTML='<b>BLOCKED:</b> '+pend+' packages not individually reviewed. <i>Speed without review is liability.</i>';
   log('<span style="color:#ef4444">Batch approval BLOCKED: '+pend+' unreviewed packages</span>');
   ev('batch_blocked',{unreviewed:pend});
-  setHint('That guardrail shipped after v1 testing: operators rubber-stamped to save time. Review a cell — or <b>reject</b> one and watch where it goes.')}});
+  setHint('That guardrail shipped after v1 testing: operators rubber-stamped to save time. Review a cell, or <b>reject</b> one and watch where it goes.')}});
 $('ff').onclick=guard(function(){if(ffRunning||launched)return;ffRunning=true;ev('ff_used',{remaining:N-approvedCount()});
  var f=$('ff');f.disabled=true;f.style.opacity=.5;decide.style.display='none';
- setHint('Simulated reviewer session — every decision still gets an owner and a log line.');
+ setHint('Simulated reviewer session: every decision still gets an owner and a log line.');
  card.innerHTML='<p class="qn" style="margin:0">Reviewer session in progress…</p>';
  var t=setInterval(guard(function(){var n=nextPending();
   if(n<0){clearInterval(t);ffRunning=false;refresh();
-   setHint('9/9 on this slice — 18/18 on the full gate. One thing left: <b>Approve for Launch</b>.');return}
+   setHint('9/9 on this slice; 18/18 on the full gate. One thing left: <b>Approve for Launch</b>.');return}
   approve(n,Math.random()<.25?'A':'B',true);refresh()}),150)});
 $('launch').onclick=guard(function(){if(approvedCount()!==N||launched)return;launched=true;ev('launch_approved',{decisions:N});
  msg.textContent='';decide.style.display='none';
@@ -213,7 +219,7 @@ $('launch').onclick=guard(function(){if(approvedCount()!==N||launched)return;lau
  +'<span class="n">36 packages → Amazon, Sephora, Walmart</span></p></div>';
  ['batch','ff','launch'].forEach(function(id){$(id).style.display='none'});
  setHint('That is the whole thesis: <b>agents do the work, humans own what ships.</b>');
- log('<span style="color:#22c55e">LAUNCH APPROVED — 36 packages → 3 retailers</span>')});
+ log('<span style="color:#22c55e">LAUNCH APPROVED: 36 packages → 3 retailers</span>')});
 document.addEventListener('keydown',guard(function(e){if(cur<0||ffRunning||launched)return;
  if(!cells[cur]||cells[cur].st!=='pend')return;
  var k=(e.key||'').toLowerCase();

@@ -13,7 +13,7 @@ BUILD_POSTS = {
     ("What is the biggest mistake people make?","Starting to build before writing what the product must never do. Agents are excellent at adding features and terrible at knowing which feature breaks the thesis. Every expensive failure I have seen traces back to a missing invariant, not to a wrong line of code."),
   ],
   body="""
-<p>This is the method I use to build a production MVP with a team of AI coding agents, written as steps you can follow. It is not a weekend tutorial and it is not a warning. It is what produced 445 merged pull requests, 15 gated releases and a product with paying customers in seven weeks, with one person scoping, deciding and approving, and no engineers on payroll. Every step links to a deeper piece.</p>
+<p>This is the method I use to build a production MVP with a team of AI coding agents, written as steps you can follow. It is not a weekend tutorial and it is not a warning. It is what produced 445 merged pull requests, 15 gated releases and a product in production in seven weeks, with one person scoping, deciding and approving, and no engineers on payroll. Every step links to a deeper piece.</p>
 
 <div class="num"><div><b>7</b><span>steps, in the order they have to happen</span></div><div><b>1</b><span>page of scope before the first prompt</span></div><div><b>5</b><span>checks before main accepts a merge</span></div><div><b>0</b><span>agents with production credentials</span></div></div>
 

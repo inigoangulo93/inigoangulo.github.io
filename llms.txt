@@ -1,19 +1,19 @@
-# Inigo Angulo — Product Builder · AI Build & Deployment, Product & UX, CRO
+# Inigo Angulo: Product Builder / AI Build & Deployment, Product & UX, CRO
 
 Product builder, Zurich. 9+ years across commerce, fintech, PropTech, travel (GetYourGuide, ING, WPP, Crowdhouse). Since 2026: scopes, designs and ships production software solo with Claude Code agent teams. Three ways to work together: AI build sprints and deployment retainers; senior product/UX leadership (fractional, contract, permanent); CRO and experimentation programmes for commerce.
 
 ## Case studies
 
-- /work/acervo.html — Acervo (founder: product, design and engineering): private platform for automotive collections in Mexico. Built solo leading a Claude Code agent team (lead + 7 specialists, plus an independent verifier session; two human gates: decisions by id and letter, /aprobar per release): Next.js, Supabase, Claude API, Vercel. First commit to production in 17 days, 15 gated releases and 445 merged PRs in seven weeks, 228 of 424 tickets shipped. Interactive team map, ticket and promotion flows, architecture diagram, entity model, GitHub evidence (PRs, CI runs, promotion runs), weekly throughput chart, validation status (engineering outcomes separated from product outcomes, no paying customers yet), and the "seven greens that proved nothing" lessons. Live at app.acervogroup.com.
-- /work/checkout.html — GetYourGuide checkout: 10 A/B experiments, +11% conversion, experiment log with kills, receipts still live in production.
-- /work/shelfflow.html — Agentic content pipeline (confidential client): 6 AI agents, 4 human gates, 1 brief → 36 packages, launch cycle weeks → days. Includes an operable Gate 4 demo (/work/gate4-demo.html).
-- /work/enso.html — ENSO Co-Living: AI-enhanced onboarding, −22% friction, 4x adoption against projection; risk-based urgency cards, +34% booking conversion (A/B, 14,208 users); four cities in Spain and Portugal.
-- /work/kodo.html — KODO (founder): AI arbitrage bot for perpetual futures on Hyperliquid, 23 metrics → 1 decision, live.
-- /work/retailnorm.html — RetailNorm (founder): retail media analytics, 40x faster reporting, live.
+- /work/acervo.html: Acervo (consultant for a private collector in Mexico: product, design and engineering): private platform for automotive collections in Mexico. Built solo leading a Claude Code agent team (lead + 7 specialists, plus an independent verifier session; two human gates: decisions by id and letter, /aprobar per release): Next.js, Supabase, Claude API, Vercel. First commit to production in 17 days, 15 gated releases and 445 merged PRs in seven weeks, 228 of 424 tickets shipped. Interactive team map, ticket and promotion flows, architecture diagram, entity model, GitHub evidence (PRs, CI runs, promotion runs), weekly throughput chart, validation status (engineering outcomes separated from product outcomes, no paying customers yet), and the "seven greens that proved nothing" lessons. Live at app.acervogroup.com.
+- /work/checkout.html: GetYourGuide checkout: 10 A/B experiments, +11% conversion, experiment log with kills, receipts still live in production.
+- /work/shelfflow.html: Agentic content pipeline (confidential client): 6 AI agents, 4 human gates, 1 brief → 36 packages, launch cycle weeks → days. Includes an operable Gate 4 demo (/work/gate4-demo.html).
+- /work/enso.html: ENSO Co-Living: AI-enhanced onboarding, −22% friction, 4x adoption against projection; risk-based urgency cards, +34% booking conversion (A/B, 14,208 users); four cities in Spain and Portugal.
+- /work/kodo.html: KODO (founder): AI arbitrage bot for perpetual futures on Hyperliquid, 23 metrics → 1 decision, live.
+- /work/retailnorm.html: RetailNorm (founder): retail media analytics, 40x faster reporting, live.
 
 ## Contact
 
-cal.com/inigoangulo/30min · inigoangulo@gmail.com · CV: /inigo-angulo-cv-2026.pdf
+cal.com/inigoangulo/30min / inigoangulo@gmail.com / CV: /inigo-angulo-cv-2026.pdf
 
 ## Services
 - https://inigoangulo.com/product-consultant-zurich/ : fractional product management and product consulting, Zurich and remote

@@ -32,6 +32,10 @@
     if(a.hasAttribute('download')||/\.pdf(\?|$)/i.test(href)){
       ev(/cv/i.test(href)?'cv_download':'file_download_click',Object.assign({file_name:href.split('/').pop()},base));return}
     if(a.classList.contains('hero__cta')||a.classList.contains('hero__cta2')){ev('cta_click',base);return}
+    if(a.classList.contains('svc__main')){ev('service_open',Object.assign({},base,{service:(href.match(/^\/?([a-z-]+)/)||[])[1]||href}));return}
+    if(a.classList.contains('svc__pf')){ev('case_open',Object.assign({},base,{location:'services',case_name:href.replace(/^.*\/|\.html$/g,'')}));return}
+    if(/^\/?writing\/kit\//.test(href)&&caseName()!=='kit'){ev('kit_open',Object.assign({},base,{target:href}));return}
+    if(/^\/?lab\//.test(href)&&location.pathname.indexOf('/lab/')!==0){ev('lab_open',Object.assign({},base,{target:href}));return}
     if(a.classList.contains('cd')||a.closest('.cd')){var c=a.closest('.cd')||a;ev('case_open',Object.assign({},base,{case_name:(c.getAttribute('href')||'').replace(/^.*\/|\.html$/g,'')}));return}
     if(/^https?:\/\//.test(href)&&href.indexOf(location.host)===-1){ev('outbound',Object.assign({link_url:href},base))}
   },true);
@@ -45,7 +49,7 @@
     var _r=window.render,last=null;
     window.render=function(n){
       _r.apply(this,arguments);
-      var path={index:'/',logs:'/about',about:'/how-i-think'}[n]||('/'+n);
+      var path={index:'/',logs:'/how-i-think',about:'/how-i-think'}[n]||('/'+n);
       if(path!==last){last=path;if(typeof window.gtag==='function')window.gtag('event','page_view',{page_path:path,page_title:document.title,page_location:location.origin+path})}
     };
   }

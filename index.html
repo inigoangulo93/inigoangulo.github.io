@@ -913,7 +913,7 @@ window.addEventListener('DOMContentLoaded',function(){
 <div class="svc__i"><a class="svc__main" href="ai-product-builder/">
 <span class="svc__top"><svg class="svc__ic ic-b" viewBox="0 0 64 64" aria-hidden="true"><path class="f p1" d="M32 40 54 50 32 60 10 50Z"/><path class="f p2" d="M32 32 54 42 32 52 10 42Z"/><path class="f p3" d="M32 24 54 34 32 44 10 34Z"/></svg><span class="svc__n">01</span></span>
 <b>Build</b><span class="svc__d">AI native development. Ideas and opportunities taken into production, with human gates.</span><em class="svc__cta">Discuss a product idea &#8594;</em></a>
-<a class="svc__pf" href="work/acervo.html"><span class="svc__v">17 days</span><span class="svc__l">Idea to production</span><span class="svc__c">Acervo, one person with an AI agent team</span></a></div>
+<a class="svc__pf" href="work/acervo.html"><span class="svc__v">17 days</span><span class="svc__l">First commit to production</span><span class="svc__c">Acervo, one person with an AI agent team</span></a></div>
 
 <div class="svc__i"><a class="svc__main" href="product-consultant-zurich/">
 <span class="svc__top"><svg class="svc__ic ic-l" viewBox="0 0 64 64" aria-hidden="true"><circle cx="10" cy="32" r="4" fill="#2dd4bf"/><path class="g alt" d="M14 32C30 32 32 12 54 12"/><path class="g" d="M14 32H54"/><path class="g alt" d="M14 32C30 32 32 52 54 52"/><path class="ch" d="M14 32H54"/><circle class="alt" cx="56" cy="12" r="3.5" fill="#3a3a42"/><circle class="end" cx="56" cy="32" r="4.5"/><circle class="alt" cx="56" cy="52" r="3.5" fill="#3a3a42"/></svg><span class="svc__n">02</span></span>
@@ -928,7 +928,7 @@ window.addEventListener('DOMContentLoaded',function(){
 <div class="svc__i"><a class="svc__main" href="ux-design-consultant/">
 <span class="svc__top"><svg class="svc__ic ic-d" viewBox="0 0 64 64" aria-hidden="true"><rect class="g" x="6" y="6" width="52" height="52" rx="6" stroke-dasharray="3 4"/><path class="g" d="M12 48C22 48 24 16 34 16S50 40 52 40" opacity=".7"/><path class="cv" d="M12 48C22 48 24 16 34 16S50 40 52 40"/><g class="h"><line x1="12" y1="48" x2="24" y2="36"/><line x1="52" y1="40" x2="44" y2="26"/><rect x="9" y="45" width="6" height="6"/><rect x="31" y="13" width="6" height="6"/><rect x="49" y="37" width="6" height="6"/></g></svg><span class="svc__n">04</span></span>
 <b>Design</b><span class="svc__d">UX and product design, hands-on. Research, flows, interface and design systems, inside any of the three.</span><em class="svc__cta">Discuss a design problem &#8594;</em></a>
-<a class="svc__pf" href="work/enso.html"><span class="svc__v">+34%</span><span class="svc__l">Booking conversion</span><span class="svc__c">Enso, one platform, four cities</span></a></div>
+<a class="svc__pf" href="work/enso.html"><span class="svc__v">+34%</span><span class="svc__l">Booking conversion</span><span class="svc__c">Enso, A/B test on 14,208 users</span></a></div>
 
 </div>
 <script>(function(){if(!window.matchMedia||window.matchMedia('(hover:hover)').matches||!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('in',e.isIntersecting)})},{rootMargin:'-35% 0px -35% 0px'});document.querySelectorAll('.svc__i').forEach(function(c){io.observe(c)})})();</script>
@@ -1153,11 +1153,11 @@ window.addEventListener('DOMContentLoaded',function(){
 .hx .bar4{width:30px;position:relative}
 .hx .bar4 .face{width:100%;height:56px;background:#141418;border:1px solid #26262c;border-radius:3px 3px 0 0;transition:height .8s cubic-bezier(.22,1,.36,1),background .5s,border-color .5s,box-shadow .5s}
 .hx .bar4 em{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-style:normal;font-size:.54rem;color:#55555a;transition:color .4s}
-.hx .bar4 s{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);text-decoration:none;font-size:.5rem;color:transparent;transition:color .5s .3s;white-space:nowrap}
+.hx .bar4 .lbl{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);font-size:.5rem;color:transparent;transition:color .5s .3s;white-space:nowrap}
 .hx__step:hover .bar4--l .face{height:32px}
 .hx__step:hover .bar4--w .face{height:100px;background:#123c36;border-color:#2dd4bf;box-shadow:0 0 16px #2dd4bf22}
 .hx__step:hover .bar4--w em{color:#2dd4bf}
-.hx__step:hover .bar4 s{color:#55555a}
+.hx__step:hover .bar4 .lbl{color:#55555a}
 
 /* 05 CLOSE THE LOOP */
 .hx .orb{width:118px;height:118px;position:relative;transform:rotateX(62deg);transform-style:preserve-3d}
@@ -1187,7 +1187,7 @@ window.addEventListener('DOMContentLoaded',function(){
   .hx__step.hx-in .bar4--l .face{height:32px}
   .hx__step.hx-in .bar4--w .face{height:100px;background:#123c36;border-color:#2dd4bf;box-shadow:0 0 16px #2dd4bf22}
   .hx__step.hx-in .bar4--w em{color:#2dd4bf}
-  .hx__step.hx-in .bar4 s{color:#55555a}
+  .hx__step.hx-in .bar4 .lbl{color:#55555a}
   .hx__step.hx-in .orb .ring{border-color:#2dd4bf44}
   .hx__step.hx-in .orb .sat i{background:#2dd4bf;box-shadow:0 0 12px #2dd4bf99}
   .hx__step.hx-in .orb .core{border-color:#d9b45a}
@@ -1250,8 +1250,8 @@ window.addEventListener('DOMContentLoaded',function(){
     <div class="hx__link" aria-hidden="true"></div>
     <div class="hx__node">04</div>
     <div class="hx__viz"><div class="ab">
-      <div class="bar4 bar4--l"><em>A</em><div class="face"></div><s>control</s></div>
-      <div class="bar4 bar4--w"><em>B</em><div class="face"></div><s>earned it</s></div>
+      <div class="bar4 bar4--l"><em>A</em><div class="face"></div><span class="lbl">control</span></div>
+      <div class="bar4 bar4--w"><em>B</em><div class="face"></div><span class="lbl">earned it</span></div>
     </div></div>
     <h3 class="hx__st">Prove</h3>
     <p class="hx__sd">Every design ships with its measurement plan.</p>
@@ -1287,7 +1287,7 @@ window.addEventListener('DOMContentLoaded',function(){
 <img class="hm__pic" src="img/portrait-inigo.webp" width="832" height="1069" decoding="async" loading="lazy" alt="Inigo Angulo">
 <div><h2 class="hm__name">Inigo Angulo</h2><p class="hm__role">Senior product designer and product builder: I scope, design and ship</p><p class="hm__loc">Zurich, Switzerland / Remote or hybrid</p></div>
 </div>
-<p class="hm__p hm__bio">9+ years learning what makes products convert and what makes teams ship. In 2026 I started shipping the software myself, with AI agent teams instead of human ones. The judgment did not change; the distance between a decision and a shipped feature did. The judgment is the part that took 9+ years, and that is what the five steps above are made of.</p>
+<p class="hm__p hm__bio">9+ years learning what makes products convert and what makes teams ship. In 2026 I expanded my practice into AI native development, orchestrating specialised agent teams to take product decisions all the way into production. The judgment did not change; the distance between a decision and a shipped feature did. The judgment is the part that took 9+ years, and that is what the five steps above are made of.</p>
 <p class="hm__p hm__small">Outside of work, I&#8217;m deeply drawn to European medieval history, especially the symbolic weight, visual language, and cultural continuity of the period. I have a particular fascination with Gothic typography and the way form can carry identity, authority, and atmosphere across centuries.</p>
 <p class="hm__p hm__small">Art keeps my sense of composition and balance alive. Photography helps me slow down and notice what most people miss. Hiking through Swiss trails is how I reset, think clearly, and usually where new ideas begin to take shape.</p>
 <div class="hm__foot"><span class="bf-trigger" onclick="openBonfire()" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openBonfire()}"><i>&#128293;</i>rest here, weary traveller<em>&#10022; a quiet place</em></span><div class="hm__langs"><span>English</span><span>Spanish (native)</span><span>Russian</span><span>Portuguese</span><span>German (basic)</span></div></div>
@@ -1870,7 +1870,7 @@ Cal.ns.intro("ui", {"theme":"dark","cssVarsPerTheme":{"dark":{"cal-brand":"#2dd4
     pitcher:{r:"PITCHER, SALES ENABLEMENT",t:"Field tools live on tablets, offline, in front of a customer. Latency and failure states are the product, not an edge case.",v:"OFFLINE",l:"FIRST, ALWAYS"},
     crowd:{r:"CROWDHOUSE, PRODUCT LEAD, LUXURY TRADING",t:"Leading product for a trading platform taught me to reduce dozens of signals to the one decision the operator needs. KŌDO, my own bot, is the same lesson with my own money.",v:"23 → 1",l:"METRICS TO ONE DECISION"},
     wpp:{r:"WPP / VML, COMMERCE STUDIO",t:"Retail content at enterprise scale is a coordination problem, not a creativity problem. ShelfFlow: six agents drafting, four human gates deciding. The first time I designed a supervised agent system.",v:"1 → 36",l:"PACKAGES PER BRIEF"},
-    acervo:{r:"ACERVO, CONSULTANT, PRODUCT, DESIGN & ENGINEERING",t:"Everything above, applied to a team of agents. Scope, Figma system, data model, security gates, promotion workflow, production. First commit to production in 17 days.",v:"17 days",l:"IDEA TO PRODUCTION"}
+    acervo:{r:"ACERVO, CONSULTANT, PRODUCT, DESIGN & ENGINEERING",t:"Everything above, applied to a team of agents. Scope, Figma system, data model, security gates, promotion workflow, production. First commit to production in 17 days.",v:"17 days",l:"FIRST COMMIT TO PRODUCTION"}
   };
   const jd=document.getElementById("judg"); if(!jd)return;
   function setJ(k){jd.querySelectorAll(".jd__c").forEach(c=>c.classList.toggle("on",c.dataset.k===k));document.getElementById("jdRole").textContent=J[k].r;document.getElementById("jdText").textContent=J[k].t;document.getElementById("jdVal").textContent=J[k].v;document.getElementById("jdLab").textContent=J[k].l;}
