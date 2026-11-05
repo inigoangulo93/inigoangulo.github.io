@@ -67,8 +67,10 @@ a.lc:hover{border-color:var(--acb);transform:translateY(-3px);box-shadow:0 20px 
 .wys__seg.is-now{border-color:var(--ac);color:var(--ac);box-shadow:0 0 0 3px var(--acg)}
 .wys__seg.is-hit{background:var(--ac);border-color:var(--ac);color:#000}
 .wys__seg.is-diff{background:rgba(255,255,255,.07);border-color:var(--t2);color:var(--t1)}
-.wys__stage{position:relative;padding:36px 24px 32px;min-height:600px}
-.wys__card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);grid-template-areas:'head res' 'ask res';grid-template-rows:auto 1fr;gap:0 40px;align-items:start}
+.wys__stage{position:relative;padding:36px 32px 32px}
+.wys__card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);grid-template-areas:'head res' 'ask res' 'rev rev';grid-template-rows:auto 1fr auto;gap:0 40px;align-items:start}
+.wys__card>.wys__rev{grid-area:rev}
+.wys__ask{align-self:end}
 .wys__head{grid-area:head}.wys__ask{grid-area:ask}.wys__res{grid-area:res}
 .wys__card.is-in{animation:cardIn .6s var(--e) both}
 @keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -116,8 +118,8 @@ a.lc:hover{border-color:var(--acb);transform:translateY(-3px);box-shadow:0 20px 
 .is-shown .row,.is-shown .sig{opacity:1;transform:none}
 
 /* feedback after a decision */
-.wys__rev{margin-top:20px;border-radius:14px;border:1px solid var(--b2);padding:20px;display:none}
-.wys__rev.is-open{display:block;animation:revIn .45s var(--e) both}
+.wys__rev{margin-top:28px;border-radius:14px;border:1px solid var(--b2);padding:20px;display:none}
+.wys__rev.is-open{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:0 40px;align-items:start;animation:revIn .45s var(--e) both}
 @keyframes revIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .wys__rev.same{border-color:var(--acb)}
 .fb__calls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -130,7 +132,8 @@ a.lc:hover{border-color:var(--acb);transform:translateY(-3px);box-shadow:0 20px 
 .fb__why{color:var(--t1);font-size:.95rem;line-height:1.6;color:var(--t1)}
 .fb__alt{font-size:.9rem;line-height:1.6;color:var(--t2);margin-top:10px}
 .fb__alt b{color:var(--t1);font-weight:600}
-.fb__lesson{margin-top:16px;padding-top:14px;border-top:1px solid var(--b1)}
+.fb__lesson{margin-top:0;padding:0 0 0 22px;border-left:2px solid var(--ac)}
+.fb__r{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
 .fb__lesson span{font-family:var(--m);font-size:.6rem;letter-spacing:.14em;color:var(--ac)}
 .fb__lesson p{color:var(--t1);font-size:1.08rem;font-weight:700;letter-spacing:-.01em;line-height:1.35;margin-top:4px}
 .wys__next{margin-top:18px;min-height:46px;padding:0 22px;border-radius:999px;border:1px solid var(--ac);background:var(--ac);color:#000;font-family:var(--s);font-weight:700;font-size:.92rem;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:box-shadow .3s}
@@ -228,7 +231,9 @@ a.lc:hover{border-color:var(--acb);transform:translateY(-3px);box-shadow:0 20px 
 .end__grid{grid-template-columns:1fr}
 .ra__dots{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:14px}
 .lab__grid{grid-template-columns:1fr}
-.wys__card{grid-template-columns:1fr;grid-template-areas:'head' 'res' 'ask';gap:20px}
+.wys__card{grid-template-columns:1fr;grid-template-areas:'head' 'res' 'ask' 'rev';gap:20px}
+.wys__rev.is-open{grid-template-columns:1fr;gap:0}.wys__card>.wys__rev{margin-top:0}
+.fb__lesson{margin-top:16px;padding:14px 0 0;border-left:0;border-top:1px solid var(--b1)}
 .wys__q{margin-top:8px}
 }
 @media(max-width:560px){

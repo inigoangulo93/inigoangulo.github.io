@@ -101,8 +101,8 @@
         '<div class="wys__ask">' +
           '<span class="wys__q" id="wysQ">YOUR CALL: WHAT SHOULD WE DO NEXT?</span>' +
           '<div class="wys__btns" role="group" aria-labelledby="wysQ">' + btns + '</div>' +
-          '<div class="wys__rev" aria-live="polite"></div>' +
         '</div>' +
+        '<div class="wys__rev" aria-live="polite"></div>' +
       '</div>';
     var res = stage.querySelector('.wys__res');
     res.querySelectorAll('.row,.sig,.to').forEach(function (el, j) { el.style.transitionDelay = (0.1 + j * 0.1) + 's'; });
@@ -131,7 +131,7 @@
     var last = st.i === N - 1;
     rev.className = 'wys__rev is-open ' + (same ? 'same' : 'diff');
     rev.innerHTML =
-      '<div class="fb__calls">' +
+      '<div class="fb__l"><div class="fb__calls">' +
         '<div><span>YOUR CALL</span><b>' + LABEL[k] + '</b></div>' +
         '<div><span>THE TEAM’S DECISION</span><b class="t">' + LABEL[c.call] + '</b></div>' +
       '</div>' +
@@ -139,8 +139,8 @@
       '<span class="fb__k">WHY</span><p class="fb__why">' + esc(c.why) + '</p>' +
       (same ? (otherSide(c) ? '<p class="fb__alt"><b>The case for ' + LABEL[otherSide(c)].toLowerCase() + '.</b> ' + esc(c.alt[otherSide(c)]) + '</p>' : '')
             : '<p class="fb__alt"><b>The case for your call.</b> ' + esc(c.alt[k]) + '</p>') +
-      '<div class="fb__lesson"><span>THE PRODUCT LESSON</span><p>' + esc(c.lesson) + '</p></div>' +
-      '<button type="button" class="wys__next">' + (last ? 'See how you decided' : 'Next decision') + ' <kbd>Enter</kbd></button>';
+      '</div><div class="fb__r"><div class="fb__lesson"><span>THE PRODUCT LESSON</span><p>' + esc(c.lesson) + '</p></div>' +
+      '<button type="button" class="wys__next">' + (last ? 'See how you decided' : 'Next decision') + ' <kbd>Enter</kbd></button></div>';
     rev.querySelector('.wys__next').addEventListener('click', next);
     rev.querySelector('.wys__next').focus({ preventScroll: true });
     setTimeout(function () { var rb = rev.getBoundingClientRect(); if (rb.top > window.innerHeight * 0.75) window.scrollBy({ top: rb.top - window.innerHeight * 0.35, behavior: 'smooth' }); }, 60);
