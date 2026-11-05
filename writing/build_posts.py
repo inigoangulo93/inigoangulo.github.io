@@ -5,6 +5,7 @@ BUILD_POSTS = {
 "how-to-build-an-mvp-with-ai-agents": dict(
   tag="build", hub=True, title="How to build an MVP with AI agents: the full method, from scope to production",
   desc="A step by step method for building a real MVP with AI coding agents: how to scope it, the project rules file, tickets agents cannot misread, the team structure, the gates before production, and what it costs. From a build that shipped 445 PRs in seven weeks.",
+  meta='A step by step method to build an MVP with AI coding agents: scope, rules file, tickets, team, gates and cost. From a build that shipped 445 PRs in seven weeks.',
   date="2026-11-04", read="12 min",
   faq=[
     ("Can a non technical founder build an MVP with AI agents?","Yes, up to a point. Agents write the code; they do not decide what the product is, what it must never do, or whether a green check means anything. If you can write a one page scope and read a test result, you can run the method. If you cannot, you need one person who can, part time."),
@@ -74,6 +75,7 @@ BUILD_POSTS = {
 "scope-an-mvp-for-ai-agents": dict(
   tag="build", title="How to scope an MVP for AI agents: the one workflow rule and the list of what you will not build",
   desc="Scoping an MVP that AI coding agents will build is different from scoping one for a team. Four parts: the thesis, one workflow, invariants marked by where they are enforced, and the explicit list of what is not built. With a worked example.",
+  meta='Scoping an MVP for AI coding agents, not a team: the thesis, one workflow, invariants marked by where they are enforced, and what is not built.',
   date="2026-11-04", read="7 min",
   faq=[
     ("How many features should an MVP built with AI agents have?","One workflow, end to end, that proves the thesis. Not one feature: a workflow has several screens and a data model. But one. Agents make adding a second workflow feel free, and it is not: every workflow multiplies the states the gates have to cover."),
@@ -116,6 +118,7 @@ BUILD_POSTS = {
 "claude-md-example-project-rules-file": dict(
   tag="build", title="CLAUDE.md example: the project rules file that made 445 pull requests mergeable",
   desc="What goes in a CLAUDE.md, with a neutral example: thesis, fixed stack, numbered hard rules with the incident behind each, what counts as proof, task states and an escalation format. Why rules without reasons get argued with and rules with reasons get followed.",
+  meta='What goes in a CLAUDE.md, with a neutral example: thesis, closed stack, hard rules with the incident behind each, task states and an escalation format.',
   date="2026-11-04", read="8 min",
   faq=[
     ("What is CLAUDE.md?","The file at the root of a repository that Claude Code reads at the start of every session. It is where the rules of the project live: what the product is, which stack is allowed, what an agent may never do, and how it reports. Other agent tools read an equivalent file under another name."),
@@ -192,6 +195,7 @@ ACTIONS FOR YOU: open the preview at &lt;url&gt; and say what is off</code></pre
 "tickets-for-ai-agents-template": dict(
   tag="build", title="Writing tickets for AI agents: the template that stops them inventing requirements",
   desc="A ticket template for AI coding agents: a measurable acceptance criterion, the explicit out of scope list, decisions already taken, and frontmatter a script can validate. The three fields that prevent the most expensive failures, with an example ticket.",
+  meta='A ticket template for AI coding agents: measurable acceptance criteria, an explicit out of scope list, decisions already taken, and validated frontmatter.',
   date="2026-11-04", read="7 min",
   faq=[
     ("How detailed should a ticket for an AI agent be?","Detailed in the three places agents fail: what done looks like (measurable), what is out of scope (explicit), and which decisions are already taken (by id). Everything else can be short, because the agent reads the domain model and the rules file anyway."),
@@ -259,6 +263,7 @@ One sentence linking this to the thesis.
 "ai-agent-team-structure-solo-builder": dict(
   tag="build", title="AI agent team structure for a solo builder: roles, handoffs and who merges",
   desc="How to structure a team of AI coding agents when one human runs it: a lead that decomposes but does not merge, workers with a mandate and a file boundary each, a reviewer, a security agent and a verifier that can only read. Why the orchestrator never writes code and no agent holds production credentials.",
+  meta='How to structure an AI coding agent team run by one person: a lead that never merges, bounded workers, a reviewer, a security agent and a read only verifier.',
   date="2026-11-04", read="8 min",
   faq=[
     ("How many agents do you run at once?","Up to five on interface work, in parallel, each in its own worktree. Agents that touch the database run one at a time, because two of them on one local database reset each other. The number that matters is not how many run, it is how many share state: the answer should be none."),
@@ -320,6 +325,7 @@ One sentence linking this to the thesis.
 "where-ai-coding-agents-fail": dict(
   tag="build", title="Where AI coding agents fail on real products: the eight failures I hit and the gate for each",
   desc="Eight failure patterns from seven weeks of building a production product with AI coding agents, each with the gate that now catches it: the green check that did not run, the self contradicting ticket, the test that protected a bug, the fact declared instead of produced, and four more.",
+  meta='Eight ways AI coding agents fail in a real production build, each with the gate that now catches it, starting with the green check that never ran.',
   date="2026-11-04", read="9 min",
   faq=[
     ("Are AI coding agents reliable enough for production?","Yes, with gates; no, without them. None of the eight failures below was a wrong line of code. All were an agent, or a human, trusting something that looked like proof and was not. Reliability comes from the gates, not from the model."),

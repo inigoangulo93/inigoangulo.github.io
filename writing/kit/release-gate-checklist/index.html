@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Release gate checklist for AI agent teams: what counts as proof / Inigo Angulo</title>
-<meta name="description" content="A merge and release gate checklist for teams shipping with AI coding agents: required checks, skipped jobs that report green, the security verdict on the exact commit, and the human promotion step.">
+<meta name="description" content="Merge and release gate checklist for teams shipping with AI coding agents: skipped jobs that report green, the security verdict, the human promotion.">
 <link rel="canonical" href="https://inigoangulo.com/writing/kit/release-gate-checklist/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <meta property="og:title" content="Release gate checklist for AI agent teams: what counts as proof">
-<meta property="og:description" content="A merge and release gate checklist for teams shipping with AI coding agents: required checks, skipped jobs that report green, the security verdict on the exact commit, and the human promotion step.">
+<meta property="og:description" content="Merge and release gate checklist for teams shipping with AI coding agents: skipped jobs that report green, the security verdict, the human promotion.">
 <meta property="og:image" content="https://inigoangulo.com/img/og-home.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://inigoangulo.com/writing/kit/release-gate-checklist/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/services/services.css?v=33a25d0">
+<link rel="stylesheet" href="/services/services.css?v=b30eb4f">
 <style>.art{max-width:720px;margin:0 auto;padding:110px 24px 40px}
 .art .k{margin-bottom:12px}.art h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:none}
 .art .meta{font-family:var(--m);font-size:.74rem;color:var(--t3);margin:16px 0 34px;display:flex;gap:16px;flex-wrap:wrap}
@@ -76,13 +76,13 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW");</script>
 <script src="/analytics.js" defer></script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Release gate checklist for AI agent teams: what counts as proof", "description": "A merge and release gate checklist for teams shipping with AI coding agents: required checks, skipped jobs that report green, the security verdict on the exact commit, and the human promotion step.", "url": "https://inigoangulo.com/writing/kit/release-gate-checklist/", "version": "1.0", "dateModified": "2026-11-05", "author": {"@type": "Person", "@id": "https://inigoangulo.com/#person", "name": "Inigo Angulo"}, "isPartOf": {"@type": "CollectionPage", "name": "Kit", "url": "https://inigoangulo.com/writing/kit/"}, "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Release gate checklist for AI agent teams: what counts as proof", "description": "Merge and release gate checklist for teams shipping with AI coding agents: skipped jobs that report green, the security verdict, the human promotion.", "url": "https://inigoangulo.com/writing/kit/release-gate-checklist/", "version": "1.0", "dateModified": "2026-11-05", "author": {"@type": "Person", "@id": "https://inigoangulo.com/#person", "name": "Inigo Angulo"}, "isPartOf": {"@type": "CollectionPage", "name": "Kit", "url": "https://inigoangulo.com/writing/kit/"}, "inLanguage": "en"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inigo Angulo", "item": "https://inigoangulo.com/"}, {"@type": "ListItem", "position": 2, "name": "Writing", "item": "https://inigoangulo.com/writing/"}, {"@type": "ListItem", "position": 3, "name": "Kit", "item": "https://inigoangulo.com/writing/kit/"}, {"@type": "ListItem", "position": 4, "name": "Release gate checklist", "item": "https://inigoangulo.com/writing/kit/release-gate-checklist/"}]}</script>
 </head>
 <body>
 <header class="bar"><div class="bar__inner"><a class="bar__name" href="/">Inigo Angulo</a><nav class="bar__nav"><a class="bar__btn" href="/#work">Work</a><a class="bar__btn" href="/#how-i-think">How I think</a><a class="bar__btn" href="/lab/">Lab</a><a class="bar__btn on" href="/writing/">Writing</a></nav><a class="bar__cta" href="/#contact">Contact</a><div class="bar__ham" id="hamBtn" onclick="toggleMenu()"><span></span><span></span><span></span></div></div><div class="bar__mini" aria-hidden="true"><i></i><span>Kit</span></div></header><div class="mob-menu" id="mobMenu"><div class="mob-menu__bg" onclick="toggleMenu()"></div><div class="mob-menu__inner"><a class="mob-menu__link" href="/#work"><span>Work</span><span class="mob-menu__link-num">01</span></a><a class="mob-menu__link" href="/#how-i-think"><span>How I think</span><span class="mob-menu__link-num">02</span></a><a class="mob-menu__link" href="/lab/"><span>Lab</span><span class="mob-menu__link-num">03</span></a><a class="mob-menu__link on" href="/writing/"><span>Writing</span><span class="mob-menu__link-num">04</span></a><div class="mob-menu__cta"><a href="/#contact">Get in touch &#8594;</a></div><div class="mob-menu__contact"><a href="mailto:inigoangulo@gmail.com">Email</a><a href="https://www.linkedin.com/in/i%C3%B1igo-angulo-1ab25a134/" target="_blank" rel="noopener">LinkedIn</a><a href="tel:+41799528321">Phone</a></div></div></div>
-<script src="/services/bar.js?v=33a25d0" defer></script>
-<script src="/services/copy.js?v=33a25d0" defer></script>
+<script src="/services/bar.js?v=b30eb4f" defer></script>
+<script src="/services/copy.js?v=b30eb4f" defer></script>
 <main><article class="art">
 <span class="k"><a href="/writing/" style="color:inherit">Writing</a> / <a href="/writing/kit/" style="color:inherit">Kit</a></span>
 <h1>Release gate checklist for AI agent teams: what counts as proof</h1>

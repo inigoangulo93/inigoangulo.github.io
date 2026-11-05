@@ -14,7 +14,7 @@ PAGES = {
 "product-consultant-zurich": dict(
   title='Product Consultant in Zurich: strategy, discovery and product leadership / Inigo Angulo',
   h1='Senior product leadership, from strategy to execution.',
-  desc='Product consultant and product lead based in Zurich. Discovery, strategy, roadmapping and ownership of outcomes, in your team or on a project. 9+ years at GetYourGuide, ING, WPP and Crowdhouse.',
+  desc='Product consultant and product lead in Zurich: discovery, strategy, roadmap and ownership of outcomes. 9+ years at GetYourGuide, ING, WPP and Crowdhouse.',
   kicker='Lead: product strategy and leadership',
   lead='9+ years turning ambiguous, data heavy problems into products people trust: discovery and opportunity identification, strategy, roadmapping and prioritisation, ownership of the outcome, and the design and delivery that follow. At GetYourGuide, ING, WPP and Crowdhouse, in product teams of three to thirty. As a product lead or lead product designer in your organisation, or on an independent engagement when that is what the problem needs.',
   proof=[("10 yrs","product, design and growth across commerce and complex systems"),("+11%","checkout conversion at GetYourGuide, ten experiments, four markets"),("5","countries shipping from one design system at ING"),("17 days","first commit to production on Acervo, for a private client")],
@@ -35,7 +35,7 @@ PAGES = {
 "ux-design-consultant": dict(
   title='Senior UX and Product Designer, Zurich: research, flows, design systems / Inigo Angulo',
   h1='Product design that ships, from the first flow to the design system.',
-  desc='Senior product and UX designer in Zurich. Research, information architecture, interaction design for complex workflows, design systems and the hand off to engineering. GetYourGuide, ING, WPP, Enso, Acervo.',
+  desc='Senior product and UX designer in Zurich: research, information architecture, complex workflows and design systems engineering can build from.',
   kicker='Senior product design',
   lead='9+ years as a hands-on product designer: research and synthesis, product thinking, UX architecture, interaction design for complex workflows, design systems, Figma and prototyping, and the collaboration with engineering that gets the work built as designed. On Acervo I shipped it too, which is why the hand off is a spec and not a picture. Senior or lead product designer in a product organisation, or on a defined project.',
   proof=[("+34%","booking conversion at Enso across four European markets"),("4x","adoption of the Enso tenant platform after the redesign"),("5","countries on one design system at ING, tokens first"),("26","components in the Acervo library, built and shipped")],
@@ -55,7 +55,7 @@ PAGES = {
 "cro-ecommerce-consultant": dict(
   title="Conversion Optimization Consultant for E-commerce / Inigo Angulo",
   h1="Find where the funnel leaks. Prove the fix.",
-  desc="CRO consultant for e-commerce and marketplaces. Checkout, onboarding and catalogue audits, experiments with pre registered criteria. +11% checkout conversion at GetYourGuide.",
+  desc='CRO for e-commerce and marketplaces: checkout and funnel audits, experiments with pre registered criteria. +11% checkout conversion at GetYourGuide.',
   kicker='Optimize: conversion and growth',
   lead='Measurable product and commercial performance for e-commerce and marketplace teams: a funnel audit that finds the real leak, conversion research, a prioritised experiment plan, and fixes that ship A/B ready. Commerce work at GetYourGuide, WPP and Enso.',
   proof=[("+11%","checkout conversion at GetYourGuide, four EU markets"),("38%","of converters were leaving checkout and coming back: the leak nobody measured"),("10","experiments in the programme, each with a written hypothesis"),("+34%","booking conversion at Enso after the flow redesign")],
@@ -74,7 +74,7 @@ PAGES = {
 ),
 "ai-product-builder": dict(
   title='AI Product Builder: from opportunity to production with AI agent teams / Inigo Angulo',
-  desc='AI native product development: product definition and scope, agent orchestration, human review and quality gates, testing, security, deployment and handover. One person takes a product from opportunity to production. Acervo: first production deploy in 17 days.',
+  desc='AI native product development from opportunity to production: scope, agent orchestration, human gates, testing and security. Acervo: production in 17 days.',
   kicker='Build: AI native development',
   lead='For companies and founders who need to turn an idea, an opportunity or an internal problem into working software. The same product judgment I have applied for 9+ years, carried further: I define and scope the product, orchestrate a team of AI coding agents to build it under human review and quality gates, and own testing, security, deployment and the handover. Not a prototype: a system in production that your team can continue. I did it on Acervo first, for a private client.',
   proof=[('17 days', 'first commit to first production deploy on Acervo: a thin first version, not the finished product'), ('445', 'pull requests merged in seven weeks, every one through five checks'), ('15', 'gated releases, each with a security report and one human approval'), ('0', 'production incidents caused by an agent change')],
