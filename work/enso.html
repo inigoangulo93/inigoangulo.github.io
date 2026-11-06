@@ -116,11 +116,11 @@
 .sd-tx__el{font-size:.74rem;color:var(--t4);border:1px solid var(--b1);border-radius:6px;padding:7px 10px;transition:color .45s ease,border-color .45s ease,background-color .45s ease}
 .sd-tx__el.on{color:var(--t1);border-color:var(--acb);background:var(--acg2)}
 .sd-room{border:1px solid var(--b2);border-radius:14px;overflow:hidden;background:var(--bg3);transition:border-color .6s ease}
-.sd-room__img{height:120px;background:linear-gradient(135deg,#14141c,#0b0b10);position:relative}
-.sd-room__img::after{content:"";position:absolute;inset:auto 16px 16px auto;width:44px;height:30px;border:1px solid var(--b2);border-radius:4px}
+.sd-room__img{height:150px;background:#1a1712 url(/img/lab/room.svg) 50% 60%/cover no-repeat;position:relative}
+.sd-room__img::after{content:"Illustrative photo";position:absolute;right:8px;bottom:6px;font-family:var(--m);font-size:.52rem;color:rgba(255,255,255,.75);letter-spacing:.04em;text-shadow:0 1px 2px rgba(0,0,0,.6)}
 .sd-room__chips{position:absolute;top:10px;left:10px;right:4px;display:flex;row-gap:6px;flex-wrap:wrap}
-.sd-chip{font-family:var(--m);font-size:.58rem;padding:3px 8px;margin-right:6px;max-width:200px;border-radius:100px;background:rgba(0,0,0,.6);border:1px solid var(--b2);color:var(--t1);white-space:nowrap;overflow:hidden;display:inline-block;transition:max-width .55s var(--e),padding .55s var(--e),margin .55s var(--e),opacity .4s ease,transform .45s var(--e),border-color .4s ease}
-.sd-chip[hidden]{display:inline-block;max-width:0;padding-left:0;padding-right:0;margin-right:0;opacity:0;transform:scale(.92);border-color:transparent}
+.sd-chip{font-family:var(--m);font-size:.58rem;padding:3px 8px;margin-right:6px;max-width:200px;border-radius:100px;background:rgba(0,0,0,.6);border:1px solid var(--b2);color:var(--t1);white-space:nowrap;overflow:hidden;display:inline-block;transition:max-width .55s var(--e),padding .55s var(--e),margin .55s var(--e),opacity .4s ease,transform .45s var(--e),border-color .4s ease,border-width .4s ease,background-color .4s ease}
+.sd-chip[hidden]{display:inline-block;max-width:0;padding-left:0;padding-right:0;margin-right:0;opacity:0;transform:scale(.92);border-width:0;background:transparent}
 .sd-chip--deal{border-color:rgba(245,158,11,.4);color:var(--am)}
 .sd-chip--hot{border-color:rgba(239,68,68,.4);color:#f87171}
 .sd-room__b{padding:14px 16px}
@@ -590,7 +590,7 @@
       </div>
       <div>
         <div class="sd-room" id="sdRoom">
-          <div class="sd-room__img"><div class="sd-room__chips">
+          <div class="sd-room__img" role="img" aria-label="Illustrative photo of the room"><div class="sd-room__chips">
             <span class="sd-chip" data-k="date" id="sdChipDate">Available 15 Dec</span>
             <span class="sd-chip" data-k="viewers">3 people viewing</span>
             <span class="sd-chip sd-chip--deal" data-k="deal">ENSO Deal</span>

@@ -34,11 +34,11 @@
 
   // Illustrative rooms, mixed order so every round is a real call.
   var ROOMS = [
-    { city: 'Madrid', name: 'Double room, Malasaña', mates: 3, d: 21, last: false, price: 690 },
-    { city: 'Barcelona', name: 'Single room, Gràcia', mates: 4, d: 4, last: true, price: 720 },
-    { city: 'Lisbon', name: 'Double room, Arroios', mates: 3, d: 38, last: false, price: 640 },
-    { city: 'Valencia', name: 'Single room, Ruzafa', mates: 4, d: -6, last: false, price: 560 },
-    { city: 'Valencia', name: 'Double room, Benimaclet', mates: 2, d: 10, last: true, price: 610 }
+    { city: 'Madrid', name: 'Double room, Malasaña', mates: 3, d: 21, last: false, price: 690, px: '30%' },
+    { city: 'Barcelona', name: 'Single room, Gràcia', mates: 4, d: 4, last: true, price: 720, px: '85%' },
+    { city: 'Lisbon', name: 'Double room, Arroios', mates: 3, d: 38, last: false, price: 640, px: '55%' },
+    { city: 'Valencia', name: 'Single room, Ruzafa', mates: 4, d: -6, last: false, price: 560, px: '10%' },
+    { city: 'Valencia', name: 'Double room, Benimaclet', mates: 2, d: 10, last: true, price: 610, px: '70%' }
   ];
   var DAY = 140; // ~4.2K EUR a month per empty room
 
@@ -59,7 +59,7 @@
     ].map(function (c) { return '<span class="vcr__chip' + c[1] + '" data-k="' + c[0] + '"><span>' + c[2] + '</span></span>'; }).join('');
     var perks = ['clean', 'exit', 'member', 'flex'].map(function (k) { return '<span data-k="' + k + '"><span>+ ' + LBL[k] + '</span></span>'; }).join('');
     var html = '<div class="vcr" data-c="' + (opts && opts.tint ? 1 : 0) + '">' +
-      '<div class="vcr__img"><div class="vcr__chips">' + chips + '</div></div>' +
+      '<div class="vcr__img" role="img" aria-label="Illustrative photo of the room" style="--px:' + (room.px || '50%') + '"><div class="vcr__chips">' + chips + '</div></div>' +
       '<div class="vcr__b"><span class="vcr__t">' + esc(room.name) + '</span>' +
       '<span class="vcr__d">' + esc(room.city) + ', ' + room.mates + ' housemates</span>' +
       '<div class="vcr__p"><s data-k="strike"><span>' + eur(room.price) + '</span></s><span class="vcr__now"><span class="a">' + eur(room.price) + '</span><span class="b">' + eur(deal(room.price)) + '</span></span> <small>/ month</small></div>' +

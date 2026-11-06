@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 240" preserveAspectRatio="xMidYMid slice">
+  <!-- Synthetic co-living bedroom, used as the listing photo in the Vacancy Clock and the ENSO case. -->
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#e9e1d6"/><stop offset=".55" stop-color="#ddd3c6"/><stop offset="1" stop-color="#c9bdae"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a77b55"/><stop offset="1" stop-color="#7d5a3c"/>
+    </linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9fd4ea"/><stop offset="1" stop-color="#e6f2f3"/>
+    </linearGradient>
+    <linearGradient id="light" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff6e0" stop-opacity=".55"/><stop offset="1" stop-color="#fff6e0" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="duvet" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7f5f1"/><stop offset="1" stop-color="#d9d4cc"/>
+    </linearGradient>
+    <linearGradient id="throw" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3f8f86"/><stop offset="1" stop-color="#2c6b64"/>
+    </linearGradient>
+    <radialGradient id="lamp" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ffe7b0" stop-opacity=".9"/><stop offset="1" stop-color="#ffe7b0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset=".35" stop-color="#000" stop-opacity="0"/>
+      <stop offset=".8" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".25"/>
+    </linearGradient>
+  </defs>
+
+  <!-- wall and floor -->
+  <rect width="480" height="240" fill="url(#wall)"/>
+  <rect y="178" width="480" height="62" fill="url(#floor)"/>
+  <g stroke="#6e4f35" stroke-opacity=".35" stroke-width="1">
+    <path d="M0 192 H480 M0 208 H480 M0 226 H480"/>
+    <path d="M60 178 V192 M190 178 V192 M320 178 V192 M130 192 V208 M260 192 V208 M400 192 V208 M30 208 V226 M170 208 V226 M350 208 V226"/>
+  </g>
+  <rect y="174" width="480" height="5" fill="#f3ede4"/>
+
+  <!-- window -->
+  <rect x="34" y="40" width="112" height="112" rx="3" fill="#f6f2ec"/>
+  <rect x="41" y="47" width="98" height="98" fill="url(#sky)"/>
+  <path d="M41 145 V112 h18 v-14 h16 v47 Z" fill="#c7b8a6"/>
+  <path d="M82 145 V104 h22 v41 Z" fill="#d9cbb8"/>
+  <path d="M108 145 V120 h31 v25 Z" fill="#bfae99"/>
+  <g fill="#9fb7b0" opacity=".9"><rect x="45" y="116" width="4" height="5"/><rect x="52" y="116" width="4" height="5"/><rect x="87" y="110" width="4" height="5"/><rect x="95" y="110" width="4" height="5"/><rect x="87" y="120" width="4" height="5"/></g>
+  <path d="M90 47 V145 M41 96 H139" stroke="#f6f2ec" stroke-width="5"/>
+  <rect x="28" y="150" width="124" height="7" rx="2" fill="#efe9e0"/>
+  <!-- daylight on the floor -->
+  <path d="M41 157 L139 157 L250 240 L70 240 Z" fill="url(#light)"/>
+
+  <!-- plant on the sill -->
+  <path d="M128 150 l-6 -20 M128 150 l2 -24 M128 150 l9 -18 M128 150 l-12 -10 M128 150 l14 -8" stroke="#4f8a5b" stroke-width="5" stroke-linecap="round"/>
+  <rect x="120" y="142" width="16" height="10" rx="2" fill="#c96f4a"/>
+
+  <!-- framed print -->
+  <rect x="246" y="52" width="58" height="42" rx="2" fill="#f4efe7" stroke="#8d7a66" stroke-width="2"/>
+  <path d="M252 88 l14 -16 10 9 8 -7 14 14 Z" fill="#2dd4bf" opacity=".75"/>
+  <circle cx="290" cy="64" r="5" fill="#f59e0b" opacity=".8"/>
+
+  <!-- bed -->
+  <rect x="196" y="104" width="196" height="40" rx="6" fill="#8e6d52"/>
+  <rect x="186" y="140" width="216" height="38" rx="5" fill="url(#duvet)"/>
+  <rect x="208" y="122" width="62" height="24" rx="10" fill="#fbfaf7"/>
+  <rect x="280" y="122" width="62" height="24" rx="10" fill="#f1ede7"/>
+  <rect x="186" y="156" width="216" height="18" rx="4" fill="url(#throw)"/>
+  <rect x="190" y="174" width="8" height="8" fill="#6b5039"/><rect x="390" y="174" width="8" height="8" fill="#6b5039"/>
+
+  <!-- bedside table and lamp -->
+  <rect x="408" y="140" width="46" height="38" rx="3" fill="#b48a63"/>
+  <rect x="412" y="156" width="38" height="2" fill="#8e6d52"/>
+  <circle cx="431" cy="112" r="34" fill="url(#lamp)"/>
+  <path d="M419 120 h24 l-5 -18 h-14 Z" fill="#f3e2bf"/>
+  <rect x="429" y="120" width="4" height="20" fill="#5b4632"/>
+
+  <!-- rug -->
+  <ellipse cx="300" cy="214" rx="120" ry="14" fill="#d8cfc3" opacity=".85"/>
+  <ellipse cx="300" cy="214" rx="100" ry="10" fill="none" stroke="#bfb3a4" stroke-width="2"/>
+
+  <!-- legibility shade for chips on top -->
+  <rect width="480" height="240" fill="url(#shade)"/>
+</svg>
