@@ -162,6 +162,7 @@
 .sd-try{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:-8px 0 32px;padding:12px 16px;border:1px dashed var(--acb);border-radius:10px;font-size:.84rem;color:var(--t2);text-decoration:none;transition:border-color .3s}
 .sd-try:hover{border-color:var(--ac)}.sd-try b{color:var(--ac2);font-weight:600;white-space:nowrap}
 @media(max-width:600px){.sd-lab{grid-template-columns:1fr;gap:14px}.sd-lab__clock{display:none}.sd-lab__go{justify-self:start}.sd-try{flex-direction:column;align-items:flex-start}}
+@media(max-width:900px){.sd-tx{display:flex;flex-direction:column;align-items:stretch}.sd-tx>div:first-child{display:contents}.sd-tx>div:first-child>label{order:1}.sd-tx__range{order:2}.sd-tx__scale{order:3}.sd-tx__now{order:4;margin-bottom:14px}.sd-tx>div:last-child{order:5}.sd-tx__why{order:6;margin-top:16px;min-height:0}.sd-tx__els{order:7}}
 @media(max-width:900px){.sd-loop,.sd-tx{grid-template-columns:1fr}.sd-out,.sd-gr{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.sd-card{padding:18px}.sd-bp__scroll{margin:0 -18px;padding:0 18px}.sd-trust,.sd-out,.sd-gr{grid-template-columns:1fr}.sd-ly__row{grid-template-columns:1fr}.sd-tx__els{gap:5px}.sd-tx__el{font-size:.7rem;padding:6px 8px}}
 @media(prefers-reduced-motion:reduce){.sd *{transition:none!important;animation:none!important}}
@@ -1057,7 +1058,7 @@ if(navLinks.length){
     function upd(){
       var d=+r.value,t=T5.find(function(x){return d>=x.min});
       var cd=document.getElementById("sdChipDate");if(d<=0){cd.textContent="Available now"}else{var dt=new Date();dt.setDate(dt.getDate()+d);cd.textContent="Available from "+dt.getDate()+" "+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][dt.getMonth()]}
-      document.getElementById("sdDays").textContent=d<0?(-d)+" days overdue":(d===0?"Today":d+" days");
+      document.getElementById("sdDays").textContent=d<0?(-d)+(d===-1?" day overdue":" days overdue"):(d===0?"Today":d+(d===1?" day":" days"));
       var tb=document.getElementById("sdTier");tb.textContent=t.n;tb.style.color=t.c;tb.style.borderColor=t.c;
       document.getElementById("sdWhy").textContent=t.why;
       els.querySelectorAll(".sd-tx__el").forEach(function(e){e.classList.toggle("on",t.on.indexOf(e.dataset.k)>-1)});

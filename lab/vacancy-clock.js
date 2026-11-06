@@ -45,7 +45,7 @@
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function track(n, p) { if (typeof window.gtag === 'function') window.gtag('event', n, p || {}); }
   function eur(n) { return '€' + Math.round(n).toLocaleString('en-US'); }
-  function dayLabel(d) { return d < 0 ? (-d) + ' days overdue' : d === 0 ? 'Today' : d + ' days'; }
+  function dayLabel(d) { return d < 0 ? (-d) + (d === -1 ? ' day overdue' : ' days overdue') : d === 0 ? 'Today' : d + (d === 1 ? ' day' : ' days'); }
   // What the tenant sees: a calendar move-in date, never the internal days-to-target clock.
   var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   function availLabel(d) {
