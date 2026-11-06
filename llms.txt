@@ -24,6 +24,7 @@ cal.com/inigoangulo/30min / inigoangulo@gmail.com / CV: /inigo-angulo-cv-2026.pd
 ## Lab
 - https://inigoangulo.com/lab/ : interactive pieces rebuilt from the case studies
 - https://inigoangulo.com/lab/would-you-ship-it/ : six real GetYourGuide checkout experiments; decide ship, iterate or kill and compare with the team
+- https://inigoangulo.com/lab/vacancy-clock/ : the ENSO Co-Living risk tier system; decide which urgency signals five listing cards may show and compare with what shipped
 
 ## Writing
 - https://inigoangulo.com/writing/ : index with search and series; RSS at /writing/feed.xml

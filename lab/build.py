@@ -75,6 +75,21 @@ def index():
 </div>
 </a>
 
+<a class="lc" href="/lab/vacancy-clock/">
+<div class="lc__art" aria-hidden="true"><div class="mini-vc">
+<div class="mini-vc__clock"><b>4 days</b><span>Risk tier</span></div>
+<div class="mini-vc__track"><i></i></div>
+<div class="mini-vc__chips"><span>Available soon</span><span>3 viewing</span><span>ENSO Deal</span><span>Last room</span></div>
+</div></div>
+<div class="lc__body">
+<span class="lc__k">DESIGN / 3 MIN</span>
+<span class="lc__h">The Vacancy Clock</span>
+<span class="lc__p">Five rooms, five clocks. Decide what each listing card is allowed to show, then compare it with the risk engine that lifted bookings 34%.</span>
+<div class="lc__shows"><b>WHAT IT SHOWS</b><span>Ethical urgency: signals calibrated to real risk, never invented.</span></div>
+<div class="lc__foot"><span>ENSO Co-Living catalogue</span><span class="lc__go">Play &#8594;</span></div>
+</div>
+</a>
+
 <div class="lc lc--soon">
 <div class="lc__art" aria-hidden="true"><div class="gates"><span>G1</span><i></i><span>G2</span><i></i><span>G3</span><i></i><span class="on">G4</span></div></div>
 <div class="lc__body">
@@ -190,7 +205,55 @@ def game():
     return out
 
 
+def clock():
+    url = "https://inigoangulo.com/lab/vacancy-clock/"
+    out = head("The Vacancy Clock: design ethical urgency for real listings / Lab, Inigo Angulo",
+               "Five co-living rooms, five vacancy clocks. Decide what each listing card may show, then compare with the risk tier system that lifted ENSO bookings 34% without hurting trust.",
+               url, [("Inigo Angulo", "https://inigoangulo.com/"), ("Lab", "https://inigoangulo.com/lab/"), ("The Vacancy Clock", url)])
+    tiers = [("L1 Calm", "30+ days", "date"), ("L2 Watch", "15 to 30", "date viewers"),
+             ("L3 Deals", "7 to 14", "date viewers deal strike last clean"),
+             ("L4 High", "0 to 6", "date viewers deal strike last clean exit member"),
+             ("L5 Overdue", "past date", "date viewers deal strike clean flex")]
+    sigs = [("date", "Availability date"), ("viewers", "Live viewer count"), ("deal", "ENSO Deal tag"), ("strike", "Strikethrough price"),
+            ("last", "Last room in flat"), ("clean", "Free cleaning"), ("exit", "No exit fee"), ("member", "Free membership"), ("flex", "Flexible entry date")]
+    mx = '<table class="vc__mx"><thead><tr><th>Signal</th>' + "".join(f"<th>{n}<br><small>{d}</small></th>" for n, d, _ in tiers) + "</tr></thead><tbody>"
+    mx += "".join("<tr><td>" + l + "</td>" + "".join("<td>" + ("&#10003;" if k in on.split() else "&#8211;") + "</td>" for _, _, on in tiers) + "</tr>" for k, l in sigs)
+    mx += "</tbody></table>"
+    out += f'''<main class="lab"><div class="mx">
+<a class="lab__back" href="/lab/">&#8592; Lab</a>
+<div class="pt" style="margin-bottom:0">
+<p class="pt__tag">Design / 3 min / Conversion and trust</p>
+<h1 class="pt__h">The Vacancy Clock</h1>
+<p class="pt__sub">Every empty room costs about &#8364;4.2K a month. <em>How much urgency is honest?</em></p>
+</div>
+<p class="lab__lead">From the ENSO Co-Living catalogue. Five rooms, each with its own clock. Decide what each listing card is allowed to show, then compare it with the risk tier system that shipped and lifted booking conversion 34% in a 14,208 user A/B test.</p>
+<div class="lab__meta"><span>5 rooms</span><span>About 3 minutes</span><span>Real tier system</span><span>Illustrative rooms and prices</span></div>
+<details class="more lab__data"><summary>About the data</summary><p>The five tiers and which signals each one activates are the system that shipped at ENSO Co-Living across Lisbon, Valencia, Madrid and Barcelona. Rooms, prices and viewer counts here are illustrative. The daily cost is the average of about &#8364;4.2K a month per empty room, spread over 30 days.</p></details>
+
+<section class="vc" id="vc" aria-label="The Vacancy Clock">
+<p class="vc__sec">Your call: five rooms</p>
+<div class="vc__game" aria-live="polite"><p class="vc__count">Loading the first room</p></div>
+<p class="vc__sec">Free mode: run the clock</p>
+<div class="vc__free"></div>
+<div class="vc__fail">
+<p class="wys__fail-h">The interactive version did not start.</p>
+<p class="wys__fail-p">It needs JavaScript. <button type="button" class="wys__retry" onclick="location.reload()">Try again</button> or read the system below. The full story is in the <a href="/work/enso.html#s11">ENSO case study</a>.</p>
+{mx}
+</div>
+</section>
+<noscript><style>#vc .vc__fail{{display:block}}#vc .vc__game,#vc .vc__free,#vc .vc__sec{{display:none}}</style></noscript>
+</div></main>
+'''
+    out += FOOTER + '\n'
+    out += f'<script src="/lab/vacancy-clock.js?v={VER}" defer onerror="var v=document.getElementById(\'vc\');if(v)v.classList.add(\'is-failed\')"></script>\n'
+    out += '<script>setTimeout(function(){var v=document.getElementById("vc");if(v&&!v.classList.contains("is-live"))v.classList.add("is-failed")},9000)</script>\n'
+    out += '</body>\n</html>\n'
+    return out
+
+
 os.makedirs(os.path.join(HERE, 'would-you-ship-it'), exist_ok=True)
 open(os.path.join(HERE, 'index.html'), 'w').write(index())
 open(os.path.join(HERE, 'would-you-ship-it', 'index.html'), 'w').write(game())
-print('built lab/index.html and lab/would-you-ship-it/index.html')
+os.makedirs(os.path.join(HERE, 'vacancy-clock'), exist_ok=True)
+open(os.path.join(HERE, 'vacancy-clock', 'index.html'), 'w').write(clock())
+print('built lab/index.html, lab/would-you-ship-it/index.html and lab/vacancy-clock/index.html')
