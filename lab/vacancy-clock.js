@@ -46,13 +46,20 @@
   function track(n, p) { if (typeof window.gtag === 'function') window.gtag('event', n, p || {}); }
   function eur(n) { return '€' + Math.round(n).toLocaleString('en-US'); }
   function dayLabel(d) { return d < 0 ? (-d) + ' days overdue' : d === 0 ? 'Today' : d + ' days'; }
+  // What the tenant sees: a calendar move-in date, never the internal days-to-target clock.
+  var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  function availLabel(d) {
+    if (d <= 0) return 'Available now';
+    var t = new Date(); t.setDate(t.getDate() + d);
+    return 'Available from ' + t.getDate() + ' ' + MON[t.getMonth()];
+  }
   function deal(p) { return Math.round(p * 0.875 / 10) * 10; }
 
   // The card is rendered once with every element present. Updates only toggle .on, so each
   // chip, perk and price fades and resizes in place instead of the whole card re-rendering.
   function card(room, on, opts) {
     var chips = [
-      ['date', '', room.d < 0 ? 'Available now' : 'Available in ' + room.d + ' days'],
+      ['date', '', availLabel(room.d)],
       ['viewers', '', '3 people viewing'],
       ['deal', ' vcr__chip--deal', 'ENSO Deal'],
       ['last', ' vcr__chip--hot' + (room.last ? '' : ' is-false'), 'Last room in this flat']
@@ -72,7 +79,7 @@
     el.querySelectorAll('[data-k]').forEach(function (e) { e.classList.toggle('on', on.indexOf(e.dataset.k) > -1); });
     el.classList.toggle('is-deal', on.indexOf('strike') > -1);
     var d = el.querySelector('[data-k="date"] > span');
-    if (d) d.textContent = room.d < 0 ? 'Available now' : room.d === 0 ? 'Available today' : 'Available in ' + room.d + ' days';
+    if (d) d.textContent = availLabel(room.d);
     if (opts && opts.tint) el.style.borderColor = tierOf(room.d).c + '66';
   }
   function mount(host, el) { host.innerHTML = ''; host.appendChild(el); return el; }
@@ -111,7 +118,7 @@
       '<div class="vc__top"><span class="vc__count">Room ' + (st.i + 1) + ' of ' + ROOMS.length + '</span>' + rail() + '</div>' +
       '<div class="vc__round is-in">' +
         '<div class="vc__ask">' +
-          '<span class="vc__k">' + esc(room.city) + '</span>' +
+          '<span class="vc__k">' + esc(room.city) + ' / internal clock, only ENSO sees this</span>' +
           '<p class="vc__clock">' + dayLabel(room.d) + '<small>' + (room.d < 0 ? 'past its target move-in date' : 'until its target move-in date') + '</small></p>' +
           cost +
           '<p class="vc__fact">' + (room.last ? 'It is the last free room in its flat.' : 'Other rooms in the flat are also free.') + ' 3 people are viewing it right now.</p>' +
@@ -121,7 +128,7 @@
           }).join('') + '</div>' +
           '<button type="button" class="vc__go">Lock it in</button>' +
         '</div>' +
-        '<div class="vc__prev"><span class="vc__k">Your card</span><div class="vc__card"></div></div>' +
+        '<div class="vc__prev"><span class="vc__k">Your card, as the tenant sees it</span><div class="vc__card"></div></div>' +
       '</div>';
     var cel = mount(game.querySelector('.vc__card'), card(room, pick));
     var go = game.querySelector('.vc__go');
@@ -217,7 +224,7 @@
   fr.innerHTML =
     '<div class="vcf">' +
       '<div class="vcf__l">' +
-        '<div class="vcf__row"><label class="vc__k" for="vcRange">Days until the target move-in date</label>' +
+        '<div class="vcf__row"><label class="vc__k" for="vcRange">Internal clock: days until the target move-in date</label>' +
         '<button type="button" class="vc__btn vcf__play" aria-pressed="false">&#9654; Run the clock</button></div>' +
         '<input type="range" id="vcRange" min="-14" max="45" step="1" value="40">' +
         '<div class="vcf__scale"><span>overdue</span><span>0</span><span>15</span><span>30</span><span>45 days</span></div>' +

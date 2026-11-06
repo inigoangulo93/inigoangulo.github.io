@@ -581,7 +581,7 @@
     <div class="sd-head"><span class="sd-title">Try it: move the vacancy clock</span></div>
     <div class="sd-tx" id="sdTx">
       <div>
-        <label for="sdRange" class="sd-title" style="display:block">Days until the room&#8217;s target move-in date</label>
+        <label for="sdRange" class="sd-title" style="display:block">Internal clock: days until the room&#8217;s target move-in date</label>
         <input type="range" id="sdRange" class="sd-tx__range" min="-10" max="45" value="40" step="1">
         <div class="sd-tx__scale"><span>overdue</span><span>0</span><span>15</span><span>30</span><span>45 days</span></div>
         <div class="sd-tx__now"><span class="sd-tx__days" id="sdDays">40 days</span><span class="sd-tx__tier" id="sdTier">L1 Calm</span></div>
@@ -608,7 +608,7 @@
             </div>
           </div>
         </div>
-        <p class="sd-room__note">Illustrative card and values</p>
+        <p class="sd-room__note">What the tenant sees. Illustrative card and values</p>
       </div>
     </div>
   </div>
@@ -1056,6 +1056,7 @@ if(navLinks.length){
     var room=document.getElementById("sdRoom");
     function upd(){
       var d=+r.value,t=T5.find(function(x){return d>=x.min});
+      var cd=document.getElementById("sdChipDate");if(d<=0){cd.textContent="Available now"}else{var dt=new Date();dt.setDate(dt.getDate()+d);cd.textContent="Available from "+dt.getDate()+" "+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][dt.getMonth()]}
       document.getElementById("sdDays").textContent=d<0?(-d)+" days overdue":(d===0?"Today":d+" days");
       var tb=document.getElementById("sdTier");tb.textContent=t.n;tb.style.color=t.c;tb.style.borderColor=t.c;
       document.getElementById("sdWhy").textContent=t.why;
