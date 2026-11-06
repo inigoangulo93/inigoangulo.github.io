@@ -48,24 +48,34 @@
   function dayLabel(d) { return d < 0 ? (-d) + ' days overdue' : d === 0 ? 'Today' : d + ' days'; }
   function deal(p) { return Math.round(p * 0.875 / 10) * 10; }
 
+  // The card is rendered once with every element present. Updates only toggle .on, so each
+  // chip, perk and price fades and resizes in place instead of the whole card re-rendering.
   function card(room, on, opts) {
-    opts = opts || {};
-    var has = function (k) { return on.indexOf(k) > -1; };
-    var t = tierOf(room.d);
-    var chips = '';
-    if (has('date')) chips += '<span class="vcr__chip">' + (room.d < 0 ? 'Available now' : 'Available in ' + room.d + ' days') + '</span>';
-    if (has('viewers')) chips += '<span class="vcr__chip">3 people viewing</span>';
-    if (has('deal')) chips += '<span class="vcr__chip vcr__chip--deal">ENSO Deal</span>';
-    if (has('last')) chips += '<span class="vcr__chip vcr__chip--hot' + (room.last ? '' : ' is-false') + '">Last room in this flat</span>';
-    var perks = ['clean', 'exit', 'member', 'flex'].filter(has).map(function (k) { return '<span>+ ' + LBL[k] + '</span>'; }).join('');
-    var price = has('strike') ? '<s>' + eur(room.price) + '</s>' + eur(deal(room.price)) : eur(room.price);
-    return '<div class="vcr"' + (opts.tint ? ' style="border-color:' + t.c + '66"' : '') + '>' +
+    var chips = [
+      ['date', '', room.d < 0 ? 'Available now' : 'Available in ' + room.d + ' days'],
+      ['viewers', '', '3 people viewing'],
+      ['deal', ' vcr__chip--deal', 'ENSO Deal'],
+      ['last', ' vcr__chip--hot' + (room.last ? '' : ' is-false'), 'Last room in this flat']
+    ].map(function (c) { return '<span class="vcr__chip' + c[1] + '" data-k="' + c[0] + '"><span>' + c[2] + '</span></span>'; }).join('');
+    var perks = ['clean', 'exit', 'member', 'flex'].map(function (k) { return '<span data-k="' + k + '"><span>+ ' + LBL[k] + '</span></span>'; }).join('');
+    var html = '<div class="vcr" data-c="' + (opts && opts.tint ? 1 : 0) + '">' +
       '<div class="vcr__img"><div class="vcr__chips">' + chips + '</div></div>' +
       '<div class="vcr__b"><span class="vcr__t">' + esc(room.name) + '</span>' +
       '<span class="vcr__d">' + esc(room.city) + ', ' + room.mates + ' housemates</span>' +
-      '<div class="vcr__p">' + price + ' <small>/ month</small></div>' +
+      '<div class="vcr__p"><s data-k="strike"><span>' + eur(room.price) + '</span></s><span class="vcr__now"><span class="a">' + eur(room.price) + '</span><span class="b">' + eur(deal(room.price)) + '</span></span> <small>/ month</small></div>' +
       '<div class="vcr__perks">' + perks + '</div></div></div>';
+    var w = document.createElement('div'); w.innerHTML = html;
+    var el = w.firstChild; setCard(el, room, on, opts);
+    return el;
   }
+  function setCard(el, room, on, opts) {
+    el.querySelectorAll('[data-k]').forEach(function (e) { e.classList.toggle('on', on.indexOf(e.dataset.k) > -1); });
+    el.classList.toggle('is-deal', on.indexOf('strike') > -1);
+    var d = el.querySelector('[data-k="date"] > span');
+    if (d) d.textContent = room.d < 0 ? 'Available now' : room.d === 0 ? 'Available today' : 'Available in ' + room.d + ' days';
+    if (opts && opts.tint) el.style.borderColor = tierOf(room.d).c + '66';
+  }
+  function mount(host, el) { host.innerHTML = ''; host.appendChild(el); return el; }
 
   /* ---------------- Game ---------------- */
   var game = root.querySelector('.vc__game');
@@ -111,15 +121,16 @@
           }).join('') + '</div>' +
           '<button type="button" class="vc__go">Lock it in</button>' +
         '</div>' +
-        '<div class="vc__prev"><span class="vc__k">Your card</span><div class="vc__card">' + card(room, pick) + '</div></div>' +
+        '<div class="vc__prev"><span class="vc__k">Your card</span><div class="vc__card"></div></div>' +
       '</div>';
+    var cel = mount(game.querySelector('.vc__card'), card(room, pick));
     var go = game.querySelector('.vc__go');
     game.querySelectorAll('.vc__sig').forEach(function (b) {
       b.addEventListener('click', function () {
         var k = b.dataset.k, i = pick.indexOf(k);
         if (i > -1) pick.splice(i, 1); else pick.push(k);
         b.setAttribute('aria-pressed', i < 0);
-        game.querySelector('.vc__card').innerHTML = card(room, pick);
+        setCard(cel, room, pick);
       });
     });
     go.addEventListener('click', function () { reveal(room, pick.slice()); });
@@ -149,10 +160,12 @@
           '<button type="button" class="vc__go">' + (last ? 'See your result' : 'Next room') + ' &#8594;</button>' +
         '</div>' +
         '<div class="vc__prev vc__prev--two">' +
-          '<div><span class="vc__k">Your card</span>' + card(room, pick) + '</div>' +
-          '<div><span class="vc__k" style="color:' + v.t.c + '">What ENSO showed</span>' + card(room, v.t.on, { tint: 1 }) + '</div>' +
+          '<div><span class="vc__k">Your card</span><div class="vc__c1"></div></div>' +
+          '<div><span class="vc__k" style="color:' + v.t.c + '">What ENSO showed</span><div class="vc__c2"></div></div>' +
         '</div>' +
       '</div>';
+    mount(game.querySelector('.vc__c1'), card(room, pick));
+    mount(game.querySelector('.vc__c2'), card(room, v.t.on, { tint: 1 }));
     game.querySelector('.vc__go').addEventListener('click', function () {
       if (last) return end();
       st.i++; ask(); scroll();
@@ -215,7 +228,7 @@
       '</div>' +
       '<div class="vcf__card"></div>' +
     '</div>';
-  var r = fr.querySelector('#vcRange'), play = fr.querySelector('.vcf__play'), timer = null, lastTier = '';
+  var r = fr.querySelector('#vcRange'), play = fr.querySelector('.vcf__play'), timer = null, fcard = null;
   function upd() {
     free.d = +r.value; var t = tierOf(free.d);
     fr.querySelector('.vcf__days').textContent = dayLabel(free.d);
@@ -226,8 +239,8 @@
     fr.querySelector('.vcf__cost small').textContent = lost ? 'and ' + eur(DAY) + ' more every day it stays empty' : 'Nothing lost yet. Losses start at the target date, about ' + eur(DAY) + ' a day.';
     fr.querySelector('.vcf__why').textContent = t.why;
     fr.querySelectorAll('.vcf__els span').forEach(function (e) { e.classList.toggle('on', t.on.indexOf(e.dataset.k) > -1); });
-    fr.querySelector('.vcf__card').innerHTML = card(free, t.on, { tint: 1 });
-    if (t.n !== lastTier) { fr.querySelector('.vcf__card').classList.remove('pulse'); void fr.offsetWidth; fr.querySelector('.vcf__card').classList.add('pulse'); lastTier = t.n; }
+    if (!fcard) fcard = mount(fr.querySelector('.vcf__card'), card(free, t.on, { tint: 1 }));
+    else setCard(fcard, free, t.on, { tint: 1 });
   }
   function stop() { clearInterval(timer); timer = null; play.innerHTML = '&#9654; Run the clock'; play.setAttribute('aria-pressed', 'false'); }
   play.addEventListener('click', function () {
