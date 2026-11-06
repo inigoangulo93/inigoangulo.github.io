@@ -76,10 +76,10 @@ def index():
 </a>
 
 <a class="lc" href="/lab/vacancy-clock/">
-<div class="lc__art" aria-hidden="true"><div class="mini-vc">
-<div class="mini-vc__clock"><b>4 days</b><span>Risk tier</span></div>
-<div class="mini-vc__track"><i></i></div>
-<div class="mini-vc__chips"><span>Available soon</span><span>3 viewing</span><span>ENSO Deal</span><span>Last room</span></div>
+<div class="lc__art lc__art--vc" aria-hidden="true"><div class="mvc">
+<div class="mvc__img"><span class="mvc__tier"></span><div class="mvc__chips"><span class="c1">Available from 27 Nov</span><span class="c2">3 viewing</span><span class="c3">ENSO Deal</span><span class="c4">Last room</span></div></div>
+<div class="mvc__b"><span class="mvc__t">Double room, shared flat</span><span class="mvc__d">Valencia, 4 housemates</span>
+<span class="mvc__p"><s>&#8364;640</s><span class="pn"><span class="pa">&#8364;640</span><span class="pb">&#8364;560</span></span><small>/ month</small></span></div>
 </div></div>
 <div class="lc__body">
 <span class="lc__k">DESIGN / 3 MIN</span>

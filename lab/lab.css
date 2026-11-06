@@ -417,3 +417,34 @@ a.lc:hover{border-color:var(--acb);transform:translateY(-3px);box-shadow:0 20px 
 .lc__soon{position:absolute;top:14px;right:14px;z-index:2;font-family:var(--m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t1);background:rgba(10,10,14,.9);border:1px solid var(--b3);border-radius:999px;padding:5px 11px;display:inline-flex;align-items:center;gap:7px}
 .lc__soon::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--t3)}
 .lc--soon .lc__pill{border-style:dashed;color:var(--t3)}
+
+/* Lab index: Vacancy Clock thumbnail as a live listing card */
+.lc__art--vc{padding:18px 24px}
+.mvc{width:100%;max-width:250px;border:1px solid var(--b2);border-radius:12px;overflow:hidden;background:var(--bg2);box-shadow:0 14px 40px rgba(0,0,0,.45);animation:mvcB 9s infinite}
+.mvc__img{height:92px;background:#1a1712 url(/img/lab/room.svg) 45% 60%/cover no-repeat;position:relative}
+.mvc__chips{position:absolute;top:7px;left:7px;right:7px;display:flex;flex-wrap:wrap;gap:4px}
+.mvc__chips span{font-family:var(--m);font-size:.5rem;padding:2px 6px;border-radius:999px;background:rgba(0,0,0,.68);border:1px solid var(--b2);color:var(--t1);opacity:0;transform:translateY(3px);animation:9s infinite var(--e)}
+.mvc__chips .c1{animation-name:mvc1}.mvc__chips .c2{animation-name:mvc2}
+.mvc__chips .c3{color:var(--am);border-color:rgba(245,158,11,.45);animation-name:mvc3}
+.mvc__chips .c4{color:#f87171;border-color:rgba(239,68,68,.45);animation-name:mvc4}
+.mvc__tier{position:absolute;right:7px;bottom:7px;white-space:nowrap;font-family:var(--m);font-size:.5rem;padding:2px 7px;border-radius:999px;background:rgba(0,0,0,.7);border:1px solid}
+.mvc__tier::after{content:"L1 Calm";animation:mvcT 9s infinite steps(1)}
+.mvc__tier{animation:mvcTc 9s infinite steps(1)}
+.mvc__b{padding:9px 11px 11px;display:flex;flex-direction:column;gap:2px}
+.mvc__t{font-size:.72rem;font-weight:600;color:var(--t1)}
+.mvc__d{font-family:var(--m);font-size:.52rem;color:var(--t3)}
+.mvc__p{margin-top:4px;font-size:.74rem;font-weight:600;color:var(--t1);display:flex;align-items:baseline;gap:5px}
+.mvc__p s{font-size:.6rem;font-weight:400;color:var(--t4);opacity:0;max-width:0;overflow:hidden;display:inline-block;white-space:nowrap;margin-right:-5px;animation:mvcS 9s infinite var(--e)}
+@keyframes mvcS{0%,50%{opacity:0;max-width:0;margin-right:-5px}55%,92%{opacity:1;max-width:40px;margin-right:0}100%{opacity:0;max-width:0;margin-right:-5px}}
+.mvc__p .pn{display:inline-grid}.mvc__p .pa,.mvc__p .pb{grid-area:1/1}
+.mvc__p .pa{animation:mvcOut 9s infinite}.mvc__p .pb{opacity:0;animation:mvc3 9s infinite}
+@keyframes mvcOut{0%,50%{opacity:1}55%,92%{opacity:0}100%{opacity:1}}
+.mvc__p small{font-weight:400;color:var(--t3);font-size:.56rem}
+@keyframes mvc1{0%,4%{opacity:0;transform:translateY(3px)}9%,92%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes mvc2{0%,26%{opacity:0;transform:translateY(3px)}31%,92%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes mvc3{0%,50%{opacity:0;transform:translateY(3px)}55%,92%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes mvc4{0%,72%{opacity:0;transform:translateY(3px)}77%,92%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes mvcT{0%{content:"L1 Calm"}28%{content:"L2 Watch"}52%{content:"L3 Deals"}74%{content:"L4 High"}}
+@keyframes mvcTc{0%{color:#5eead4;border-color:#5eead4}28%{color:#a3e635;border-color:#a3e635}52%{color:#f59e0b;border-color:#f59e0b}74%{color:#fb923c;border-color:#fb923c}}
+@keyframes mvcB{0%,50%{border-color:var(--b2)}55%,92%{border-color:rgba(245,158,11,.45)}100%{border-color:var(--b2)}}
+@media(prefers-reduced-motion:reduce){.mvc__p s{max-width:40px;margin-right:0}.mvc__chips span,.mvc__p s,.mvc__p .pb{opacity:1;transform:none}.mvc__p .pa{opacity:0}}
