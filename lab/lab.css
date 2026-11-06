@@ -408,3 +408,12 @@ a.lc:hover{border-color:var(--acb);transform:translateY(-3px);box-shadow:0 20px 
 .vc__mx th:first-child,.vc__mx td:first-child{text-align:left;color:var(--t1)}
 @media(max-width:900px){.vc__round,.vc__round--rev,.vcf{grid-template-columns:1fr}.vc__prev{max-width:320px}.vc__prev--two{max-width:none}}
 @media(max-width:560px){.vc__game,.vc__free{padding:18px;border-radius:12px}.vc__prev--two{grid-template-columns:1fr 1fr;gap:8px}.vc__prev--two .vcr__img{height:96px}.vc__prev--two .vcr__b{padding:10px}.vc__prev--two .vcr__img::after{display:none}.vc__prev--two .vcr__img{height:110px}.vc__round:not(.vc__round--rev) .vc__prev{position:sticky;bottom:10px;z-index:5;background:var(--bg2);padding-top:8px;max-width:none}.vc__round:not(.vc__round--rev) .vcr__img{height:auto;min-height:96px}.vc__round:not(.vc__round--rev) .vcr__img::after{display:none}.vc__round:not(.vc__round--rev) .vcr__chips{position:static;padding:10px}.vc__round:not(.vc__round--rev) .vcr__b{padding:10px 14px 12px}.vc__round:not(.vc__round--rev) .vcr__p{margin-top:6px}.vc__clock{font-size:2rem}.vcf__els{grid-template-columns:1fr 1fr}.vc__bars div{grid-template-columns:100px 1fr 24px}}
+
+/* Unavailable Lab pieces: clearly not playable yet */
+.lc--soon{position:relative;cursor:default;opacity:.62}
+.lc--soon .lc__art{filter:grayscale(1) brightness(.75)}
+.lc--soon .lc__h,.lc--soon .lc__shows span{color:var(--t2)}
+.lc--soon .lc__p{color:var(--t3)}
+.lc__soon{position:absolute;top:14px;right:14px;z-index:2;font-family:var(--m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t1);background:rgba(10,10,14,.9);border:1px solid var(--b3);border-radius:999px;padding:5px 11px;display:inline-flex;align-items:center;gap:7px}
+.lc__soon::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--t3)}
+.lc--soon .lc__pill{border-style:dashed;color:var(--t3)}

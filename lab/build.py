@@ -90,25 +90,25 @@ def index():
 </div>
 </a>
 
-<div class="lc lc--soon">
+<div class="lc lc--soon" aria-disabled="true"><span class="lc__soon">Coming soon</span>
 <div class="lc__art" aria-hidden="true"><div class="gates"><span>G1</span><i></i><span>G2</span><i></i><span>G3</span><i></i><span class="on">G4</span></div></div>
 <div class="lc__body">
-<span class="lc__k">REVIEW / NEXT</span>
+<span class="lc__k">REVIEW / COMING SOON</span>
 <span class="lc__h">Gate 4</span>
 <span class="lc__p">The fourth gate of a brief to content pipeline. You see what the system flagged and decide whether it moves on.</span>
 <div class="lc__shows"><b>WHAT IT SHOWS</b><span>Workflow design: exception first review and human gates on AI output.</span></div>
-<div class="lc__foot"><span>ShelfFlow</span><span class="lc__pill">Next</span></div>
+<div class="lc__foot"><span>ShelfFlow</span><span class="lc__pill">Not available yet</span></div>
 </div>
 </div>
 
-<div class="lc lc--soon">
+<div class="lc lc--soon" aria-disabled="true"><span class="lc__soon">Coming soon</span>
 <div class="lc__art" aria-hidden="true"><div class="calc"><b>CONVERSIONS PER MONTH</b><i style="--w:62%"></i><b>EXPECTED LIFT</b><i style="--w:28%"></i><strong>? weeks</strong></div></div>
 <div class="lc__body">
-<span class="lc__k">CALCULATE / IN THE WORKSHOP</span>
+<span class="lc__k">CALCULATE / COMING SOON</span>
 <span class="lc__h">Is your traffic enough to test?</span>
 <span class="lc__p">Your monthly conversions and the lift you hope for. It tells you how long a test needs, or that it is not worth running.</span>
 <div class="lc__shows"><b>WHAT IT SHOWS</b><span>When experimentation pays, and when it does not.</span></div>
-<div class="lc__foot"><span>CRO toolkit</span><span class="lc__pill">Later</span></div>
+<div class="lc__foot"><span>CRO toolkit</span><span class="lc__pill">Not available yet</span></div>
 </div>
 </div>
 
