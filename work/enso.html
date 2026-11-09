@@ -571,10 +571,10 @@
 
   <div class="cs__section" id="s11" data-reveal>
     <span class="cs__section-num">11 Risk Framework</span>
-    <h2 class="cs__section-h">Five risk tiers. Progressive urgency. Ethical by design.</h2>
+    <h2 class="cs__section-h">Five risk tiers. Progressive urgency, calibrated to real risk.</h2>
     <div class="cs__section-text">
       <p>Five risk tiers drive the progressive addition of urgency elements. Each tier maps to <strong>days remaining before vacancy becomes a financial liability</strong>. Levels 1 to 4 are <strong>additive</strong>: each inherits the elements of the level below. Level 5 does not add pressure: it swaps the heaviest perks for a flexible entry date.</p>
-      <p>Three design principles: progressive disclosure (start clean), truthful signals (live data, not fabricated), scarcity not pressure (context, not panic).</p>
+      <p>Three design principles: progressive disclosure (start clean), truthful signals (real dates, real deals, real perks), scarcity not pressure (context, not panic).</p>
     </div>
   </div>
 
@@ -639,7 +639,7 @@
       <div class="sd-ly__arrow">&#8595; renders</div>
       <div class="sd-ly__row"><span class="sd-ly__n" style="color:var(--am)">Business logic</span><div class="sd-ly__c"><span>Risk score per room</span><span>Tier assignment</span><span>Signal composer, additive</span><span>Server side card template</span></div></div>
       <div class="sd-ly__arrow">&#8595; reads</div>
-      <div class="sd-ly__row"><span class="sd-ly__n" style="color:#a78bfa">Data</span><div class="sd-ly__c"><span>Inventory and target move-in dates</span><span>Pricing and tier discount rules</span><span>Live sessions from PostHog</span><span>Daily risk recalculation</span><span>15-minute cache</span></div></div>
+      <div class="sd-ly__row"><span class="sd-ly__n" style="color:#a78bfa">Data</span><div class="sd-ly__c"><span>Inventory and target move-in dates</span><span>Pricing and tier discount rules</span><span>Funnel and experiment data from PostHog</span><span>Daily risk recalculation</span><span>15-minute cache</span></div></div>
       <div class="sd-ly__arrow">&#8595; measured by</div>
       <div class="sd-ly__row"><span class="sd-ly__n" style="color:var(--up)">Feedback</span><div class="sd-ly__c"><span>Feature flagged A/B test</span><span>CTR, booking rate, time to book</span><span>Per tier, city and device</span><span>Guardrails: cancellations, tickets, NPS, discount depth</span></div></div>
     </div>
@@ -882,7 +882,7 @@
     <p class="cs__img-cap">Control vs variant, same 28-day experiment.</p>
     <div class="cs__evidence cs__evidence--am">
       <span class="cs__evidence-label">The test that shaped the principles</span>
-      <span class="cs__evidence-text">Early explorations used countdown timers. Four out of five testers said it felt like a hotel booking site pushing them. That is where &#8220;scarcity, not pressure&#8221; came from: show what is real, like live viewers, real deals and real availability, and never invent time pressure.</span>
+      <span class="cs__evidence-text">Early explorations used countdown timers. Four out of five testers said it felt like a hotel booking site pushing them. That is where &#8220;scarcity, not pressure&#8221; came from: show what is real, like real deals and real availability, and never invent time pressure.</span>
     </div>
   </div>
 
@@ -906,6 +906,10 @@
     <div class="cs__reflection" style="border-color:var(--dn);background:var(--dng)">
       <span class="cs__reflection-h" style="color:var(--dn)">What failed</span>
       <span class="cs__reflection-text">AI powered roommate matching failed because operators felt it undermined their trust relationship with tenants. "Smart" features that remove human judgment from high-trust decisions create resistance, not efficiency. Also underestimated design system investment, and custom components couldn't be reused when supporting the expansion to London.</span>
+    </div>
+    <div class="cs__reflection">
+      <span class="cs__reflection-h" style="color:var(--dn)">The line I crossed</span>
+      <span class="cs__reflection-text">One signal was not true. The viewer count was a pressure element the CEO asked for, not live session data. I accepted it, and I know it crossed an ethical line. The test measured the whole bundle, so I cannot say how much of the lift it carried. Today I would replace it with signals that stay true when nobody is watching: calendar scarcity, saves this month, a deal with a real end date.</span>
     </div>
     <div class="cs__reflection">
       <span class="cs__reflection-h">What I'd do differently</span>
@@ -1027,7 +1031,7 @@ if(navLinks.length){
     var S=[
       {t:"Phase 2",c:"p2",h:"A room gets a target move-in date",x:"The moment a room is set to free up, it enters the catalogue with a deadline. From here, every day without a booking moves it closer to costing money."},
       {t:"Phase 2",c:"p2",h:"The vacancy clock assigns a tier",x:"Risk is recalculated daily from days to the target date. The tier decides which signals the room is allowed to show, and nothing more."},
-      {t:"Phase 2",c:"p2",h:"The card shows only what is true",x:"Availability, live viewers, real deals and perks appear progressively as risk rises. A calm room stays calm."},
+      {t:"Phase 2",c:"p2",h:"The card shows only what the risk allows",x:"Availability, a viewer count, real deals and perks appear progressively as risk rises. A calm room stays calm."},
       {t:"Both",c:"x",h:"A qualified applicant books",x:"The person booking was already verified and matched by the onboarding flow. That is why urgency could be pushed further without hurting trust: the demand was already trusted."},
       {t:"Phase 1",c:"p1",h:"Trusted demand is built upstream",x:"Register, preferences, a 1-minute video and an operator review produce applicants whom operators already said yes to. Applicants with no fitting room stay qualified for the next one."},
       {t:"Phase 1",c:"p1",h:"The operator keeps the human decision",x:"Every applicant passes one async review answering three questions. The operator protects the flat, the product removes the admin around that decision."}
@@ -1046,12 +1050,12 @@ if(navLinks.length){
   if(r){
     var T5=[
       {n:"L1 Calm",c:"#5eead4",min:31,why:"More than 30 days out. The card stays clean: just the availability date. No reason to push.",on:["date"]},
-      {n:"L2 Watch",c:"#a3e635",min:15,why:"Interest matters now, so the card shows how many people are viewing it live. Real sessions, never invented numbers.",on:["date","viewers"]},
+      {n:"L2 Watch",c:"#a3e635",min:15,why:"Two to four weeks out, a viewer count appears. Honest note: in production it was a pressure element, not live data, and it is the one signal I would replace.",on:["date","viewers"]},
       {n:"L3 Deals",c:"#f59e0b",min:7,why:"One to two weeks out. A real ENSO Deal unlocks: strikethrough price and free cleaning, plus last room context when it is true.",on:["date","viewers","deal","strike","last","clean"]},
       {n:"L4 High",c:"#fb923c",min:0,why:"Under a week. The full stack: deal, no exit fee and free membership. This tier drove the largest uplift in the test.",on:["date","viewers","deal","strike","last","clean","exit","member"]},
       {n:"L5 Overdue",c:"#ef4444",min:-999,why:"Past the target date, the room is losing money every day. Perks shift to what removes friction to move in now: a flexible entry date.",on:["date","viewers","deal","strike","clean","flex"]}
     ];
-    var LBL={date:"Availability date",viewers:"Live viewer count",deal:"ENSO Deal tag",strike:"Strikethrough price",last:"Last room in flat",clean:"Free cleaning",exit:"No exit fee",member:"Free membership",flex:"Flexible entry date"};
+    var LBL={date:"Availability date",viewers:"Viewer count",deal:"ENSO Deal tag",strike:"Strikethrough price",last:"Last room in flat",clean:"Free cleaning",exit:"No exit fee",member:"Free membership",flex:"Flexible entry date"};
     var els=document.getElementById("sdEls");
     Object.keys(LBL).forEach(function(k){var d=document.createElement("div");d.className="sd-tx__el";d.dataset.k=k;d.textContent=LBL[k];els.appendChild(d)});
     var room=document.getElementById("sdRoom");

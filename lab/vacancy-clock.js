@@ -7,7 +7,7 @@
 
   var SIG = [
     { k: 'date', l: 'Availability date', chip: 1 },
-    { k: 'viewers', l: 'Live viewer count', chip: 1 },
+    { k: 'viewers', l: 'Viewer count', chip: 1 },
     { k: 'deal', l: 'ENSO Deal tag', chip: 1 },
     { k: 'strike', l: 'Strikethrough price' },
     { k: 'last', l: 'Last room in flat', chip: 1 },
@@ -22,7 +22,7 @@
     { n: 'L1', name: 'Calm', c: '#5eead4', min: 31, on: ['date'],
       why: 'More than 30 days out. Nothing is at risk yet, so the card stays clean: just the date. Pushing now spends trust you will need later.' },
     { n: 'L2', name: 'Watch', c: '#a3e635', min: 15, on: ['date', 'viewers'],
-      why: 'Two to four weeks out. Real interest becomes useful context, so live viewers appear. Real sessions, never an invented number.' },
+      why: 'Two to four weeks out, a viewer count appears. Honest note: in production this count was a pressure element the business asked for, not live data. It is the one signal I would replace with something true, like how many people saved the room this month.' },
     { n: 'L3', name: 'Deals', c: '#f59e0b', min: 7, on: ['date', 'viewers', 'deal', 'strike', 'last', 'clean'],
       why: 'One to two weeks out. A real ENSO Deal unlocks: strikethrough price and free cleaning, plus last room context when it is true.' },
     { n: 'L4', name: 'High', c: '#fb923c', min: 0, on: ['date', 'viewers', 'deal', 'strike', 'last', 'clean', 'exit', 'member'],
