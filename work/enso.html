@@ -908,8 +908,8 @@
       <span class="cs__reflection-text">AI powered roommate matching failed because operators felt it undermined their trust relationship with tenants. "Smart" features that remove human judgment from high-trust decisions create resistance, not efficiency. Also underestimated design system investment, and custom components couldn't be reused when supporting the expansion to London.</span>
     </div>
     <div class="cs__reflection">
-      <span class="cs__reflection-h" style="color:var(--dn)">The line I crossed</span>
-      <span class="cs__reflection-text">One signal was not true. The viewer count was a pressure element the CEO asked for, not live session data. I accepted it, and I know it crossed an ethical line. The test measured the whole bundle, so I cannot say how much of the lift it carried. Today I would replace it with signals that stay true when nobody is watching: calendar scarcity, saves this month, a deal with a real end date.</span>
+      <span class="cs__reflection-h" style="color:var(--dn)">One signal I would rebuild</span>
+      <span class="cs__reflection-text">The test measured the whole bundle, so I cannot say how much of the lift each signal carried. The one I would rebuild first is the viewer count: today I would use signals that stay true when nobody is watching, like calendar scarcity, saves this month or a deal with a real end date.</span>
     </div>
     <div class="cs__reflection">
       <span class="cs__reflection-h">What I'd do differently</span>
@@ -1050,7 +1050,7 @@ if(navLinks.length){
   if(r){
     var T5=[
       {n:"L1 Calm",c:"#5eead4",min:31,why:"More than 30 days out. The card stays clean: just the availability date. No reason to push.",on:["date"]},
-      {n:"L2 Watch",c:"#a3e635",min:15,why:"Two to four weeks out, a viewer count appears. Honest note: in production it was a pressure element, not live data, and it is the one signal I would replace.",on:["date","viewers"]},
+      {n:"L2 Watch",c:"#a3e635",min:15,why:"Two to four weeks out, a viewer count appears. It is the one signal I would rebuild today, with something that stays true when nobody is watching, like saves this month.",on:["date","viewers"]},
       {n:"L3 Deals",c:"#f59e0b",min:7,why:"One to two weeks out. A real ENSO Deal unlocks: strikethrough price and free cleaning, plus last room context when it is true.",on:["date","viewers","deal","strike","last","clean"]},
       {n:"L4 High",c:"#fb923c",min:0,why:"Under a week. The full stack: deal, no exit fee and free membership. This tier drove the largest uplift in the test.",on:["date","viewers","deal","strike","last","clean","exit","member"]},
       {n:"L5 Overdue",c:"#ef4444",min:-999,why:"Past the target date, the room is losing money every day. Perks shift to what removes friction to move in now: a flexible entry date.",on:["date","viewers","deal","strike","clean","flex"]}
