@@ -70,21 +70,22 @@
 
 <h2>What moved the number</h2>
 <ul>
-<li><b>Re-entry.</b> A returning visitor lands on the step they left, with their choices intact and one line acknowledging it. The single largest lift.</li>
-<li><b>Trust at the moment of commitment.</b> Cancellation terms and what happens after booking, shown where the decision is made, not in a tab.</li>
-<li><b>Fewer fields, asked later.</b> Everything that could be asked after payment was moved after payment.</li>
-<li><b>Price without surprises.</b> The total the user saw on the product page is the total at the end. Any change is explained before the button, not on the receipt.</li>
+<li><b>An honest timer.</b> &#8220;We&#8217;ll hold your spot for 30:00&#8221;: the real hold time, framed as a service, not a threat. The single largest lift, +3.1% payment completion (EXP-01).</li>
+<li><b>Unbroken context.</b> Three page loads collapsed into two named steps, with timer, progress and order summary persisting across them. Step drop-off down 18% (EXP-02).</li>
+<li><b>Price without surprises.</b> An itemized total with &#8220;all taxes and fees included&#8221;, and free cancellation restated in the summary, where the decision is made (EXP-03, EXP-04).</li>
+<li><b>Fewer fields, asked later.</b> SSO first, email first, account creation deferred until after payment (EXP-05, EXP-09).</li>
 </ul>
 
 <h2>What did not</h2>
 <ul>
-<li>A redesigned payment method selector. Flat. Payment was never the problem.</li>
-<li>Urgency messaging on the last step. Slight negative on returns, and it felt wrong; killed.</li>
-<li>A progress bar. Flat. People knew where they were; they did not know where their cart was.</li>
+<li>A price expiry countdown, &#8220;the price rises when the timer ends&#8221;. It won the click and lost the trust guardrail; killed (EXP-06).</li>
+<li>A fully single page checkout. Cleaner on paper, 1.2s slower on mid range Android, and mobile conversion fell 0.9%; killed (EXP-08). Its principle came back as the two named steps.</li>
+<li>Email first, on its own. Flat until it was paired with SSO and a post purchase account prompt (EXP-09).</li>
+<li>Payment methods ordered per market. A clear win in 2 of 4 markets and flat in the rest, so it rolled out per market, not globally (EXP-10).</li>
 </ul>
 
 <h2>The lesson I reuse on every funnel</h2>
-<p>Instrument the gaps, not the stages. Most analytics setups count people at each step and lose them between steps: the back button, the tab switch, the return visit three hours later. The leak is almost always there, and it is invisible until you rebuild the funnel per user. I have found the same shape since in a co-living booking flow (+34% after the redesign) and in a B2B onboarding. Different products, same blind spot.</p>
+<p>Instrument the gaps, not the stages. Most analytics setups count people at each step and lose them between steps: the back button, the tab switch, the return visit three hours later. The leak is almost always there, and it is invisible until you rebuild the funnel per user. I have found the same shape since in a co-living booking flow (+34% booking conversion) and in a B2B onboarding. Different products, same blind spot.</p>
 
 <div class="box"><p>The full case with all ten experiments is here: <a href="/work/checkout.html">GetYourGuide checkout redesign</a>. If your funnel has a leak you cannot find: <a href="/cro-ecommerce-consultant/">how a CRO engagement runs</a>.</p></div>
 

@@ -6,7 +6,7 @@
       "id": "EXP-01",
       "call": "ship",
       "title": "Hold-your-spot countdown: \"We'll hold your spot for 30:00\"",
-      "context": "Travellers reached the total, doubted the price and looped back to check it. 38% of eventual converters left checkout mid loop.",
+      "context": "Travellers reached the total, doubted the price and looped back to check it. 38% of eventual converters left checkout at least once mid loop.",
       "hypothesis": "Showing the real hold time would turn urgency into reassurance at the moment of paying.",
       "rows": [
         {"type": "bar", "label": "Payment completion", "v": 3.1, "unit": "%", "tone": "good"},
