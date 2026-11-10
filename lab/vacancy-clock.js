@@ -57,20 +57,26 @@
 
   // The card is rendered once with every element present. Updates only toggle .on, so each
   // chip, perk and price fades and resizes in place instead of the whole card re-rendering.
+  var EYE = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>';
+  var HOUSE = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>';
+  var TICK = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 12.5l5 5 11-11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   function card(room, on, opts) {
     var chips = [
-      ['date', '', availLabel(room.d)],
-      ['viewers', '', '3 people viewing'],
+      ['date', ' vcr__chip--date', availLabel(room.d)],
       ['deal', ' vcr__chip--deal', 'ENSO Deal'],
-      ['last', ' vcr__chip--hot' + (room.last ? '' : ' is-false'), 'Last room in this flat']
+      ['flex', ' vcr__chip--flex', 'Flexible entry']
     ].map(function (c) { return '<span class="vcr__chip' + c[1] + '" data-k="' + c[0] + '"><span>' + c[2] + '</span></span>'; }).join('');
-    var perks = ['clean', 'exit', 'member', 'flex'].map(function (k) { return '<span data-k="' + k + '"><span>+ ' + LBL[k] + '</span></span>'; }).join('');
+    var sig = '<span data-k="viewers" class="vcr__s"><span>' + EYE + '3 people viewing</span></span>' +
+      '<span data-k="last" class="vcr__s' + (room.last ? '' : ' is-false') + '"><span>' + HOUSE + 'Last room in this flat</span></span>';
+    var perks = ['clean', 'exit', 'member'].map(function (k) { return '<span data-k="' + k + '"><span>' + TICK + LBL[k] + '</span></span>'; }).join('');
     var html = '<div class="vcr" data-c="' + (opts && opts.tint ? 1 : 0) + '">' +
-      '<div class="vcr__img" role="img" aria-label="Illustrative photo of the room" style="--px:' + (room.px || '50%') + '"><div class="vcr__chips">' + chips + '</div></div>' +
-      '<div class="vcr__b"><span class="vcr__t">' + esc(room.name) + '</span>' +
-      '<span class="vcr__d">' + esc(room.city) + ', ' + room.mates + ' housemates</span>' +
-      '<div class="vcr__p"><s data-k="strike"><span>' + eur(room.price) + '</span></s><span class="vcr__now"><span class="a">' + eur(room.price) + '</span><span class="b">' + eur(deal(room.price)) + '</span></span> <small>/ month</small></div>' +
-      '<div class="vcr__perks">' + perks + '</div></div></div>';
+      '<div class="vcr__h"><span class="vcr__t">' + esc(room.name) + '</span><div class="vcr__chips">' + chips + '</div></div>' +
+      '<div class="vcr__img" role="img" aria-label="Illustrative photo of the room" style="--px:' + (room.px || '50%') + '"></div>' +
+      '<div class="vcr__b"><span class="vcr__d">' + esc(room.city) + ', ' + room.mates + ' housemates</span>' +
+      '<div class="vcr__p"><small>From</small> <s data-k="strike"><span>' + eur(room.price) + '</span></s><span class="vcr__now"><span class="a">' + eur(room.price) + '</span><span class="b">' + eur(deal(room.price)) + '</span></span> <small>/ month</small></div>' +
+      '<div class="vcr__sig">' + sig + '</div>' +
+      '<div class="vcr__perks">' + perks + '</div>' +
+      '<span class="vcr__cta">View rooms</span></div></div>';
     var w = document.createElement('div'); w.innerHTML = html;
     var el = w.firstChild; setCard(el, room, on, opts);
     return el;
@@ -80,6 +86,7 @@
     el.classList.toggle('is-deal', on.indexOf('strike') > -1);
     var d = el.querySelector('[data-k="date"] > span');
     if (d) d.textContent = availLabel(room.d);
+    var dc = el.querySelector('[data-k="date"]'); if (dc) dc.classList.toggle('is-now', room.d <= 0);
     if (opts && opts.tint) el.style.borderColor = tierOf(room.d).c + '66';
   }
   function mount(host, el) { host.innerHTML = ''; host.appendChild(el); return el; }
