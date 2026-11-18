@@ -84,11 +84,12 @@
 
   <!-- Metrics -->
   <div class="cs__metrics" data-reveal>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">6</span><span class="cs__metric-label">Embedded AI agents, zero autonomous shipping</span></div>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">4</span><span class="cs__metric-label">Mandatory human gates, no bypass</span></div>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">36</span><span class="cs__metric-label">Content packages from 1 brief</span></div>
-    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">18</span><span class="cs__metric-label">Granular human approvals per launch</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">2h 22m</span><span class="cs__metric-label">From brief to launch sign-off, in the launch shown here</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">18</span><span class="cs__metric-label">Human decisions to ship 36 packages</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">6 &#8594; 4</span><span class="cs__metric-label">Gates, after testing showed two were rubber stamps</span></div>
+    <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">0</span><span class="cs__metric-label">Packages that can ship without a named approver</span></div>
   </div>
+  <p class="cs__sub" style="margin:-16px 0 32px;font-size:.78rem;color:var(--t3)">Client figures are under NDA. The numbers on this page come from the demo launch in the screens: Lumina Glow, 6 SKUs, 3 retailers, 2 variants.</p>
 
   <!-- Hero visual -->
   <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/cover.png" alt="ShelfFlow board: agents work in the top lane, people decide in the bottom lane"></div>
@@ -618,8 +619,8 @@
     </div>
 
     <div class="cs__reflection" style="border-color:var(--ac);background:var(--acg2)">
-      <span class="cs__reflection-h" style="color:var(--ac)">What success looks like</span>
-      <span class="cs__reflection-text">A content team launches a new product across 3 retailers in days instead of weeks. Every approval has a timestamp and an owner. Every AI-generated draft has been reviewed by a human before it reaches a retailer portal. When compliance asks "who approved this claim for Walmart?", the answer takes seconds, not a forensic email search. The system doesn't make the work disappear. It makes the work structured enough to scale.</span>
+      <span class="cs__reflection-h" style="color:var(--ac)">What changed</span>
+      <span class="cs__reflection-text">Before, a launch moved through file names and email threads, and nobody could say who had approved what. In the launch shown here, the brief is locked at 13:02 and Sofia signs the launch at 15:24. Six agents produce and check all 36 packages in between, and four people make 18 decisions instead of reading 36 documents. The four compliance flags reach Daniel with the evidence attached, and the three drafts Maya sends back return rewritten, not restarted. When compliance asks "who approved this claim for Walmart?", the answer is one row in the audit trail, with a name and a time. The system doesn't make the work disappear. It makes the work structured enough to scale.</span>
     </div>
   </div>
 
@@ -672,7 +673,7 @@ const metricObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting
   e.target.dataset.counted="1";
   const el=e.target.querySelector(".cs__metric-val");if(!el)return;
   const raw=el.textContent.trim();
-  const match=raw.match(/^([^\d]*?)([\d.]+)(.*)$/);
+  const match=/^\d+$/.test(raw)&&raw!=="0"?raw.match(/^([^\d]*?)([\d.]+)(.*)$/):null;
   if(match){const prefix=match[1],num=parseFloat(match[2]),suffix=match[3];
     animateValue(el,num,suffix,prefix,800);
   }
