@@ -69,7 +69,7 @@
       <span class="cs__tldr-value">Agentic pipeline &amp; supervision UI</span>
     </div>
     <div class="cs__tldr-item">
-      <span class="cs__tldr-label">Key outcome</span>
+      <span class="cs__tldr-label">Design target</span>
       <span class="cs__tldr-value cs__tldr-value--ac">Launch cycle: weeks &#8594; days</span>
     </div>
   </div>
@@ -90,7 +90,7 @@
     <div class="cs__metric"><span class="cs__metric-val cs__metric-val--ac">6 &#8594; 4</span><span class="cs__metric-label">Gates, after testing showed two were rubber stamps</span></div>
     <div class="cs__metric"><span class="cs__metric-val cs__metric-val--am">0</span><span class="cs__metric-label">Packages that can ship without a named approver</span></div>
   </div>
-  <p class="cs__sub" style="margin:-16px 0 32px;font-size:.78rem;color:var(--t3)">Client figures are under NDA. The numbers on this page come from the demo launch in the screens: Lumina Glow, 6 SKUs, 3 retailers, 2 variants.</p>
+  <p class="cs__sub" style="margin:-16px 0 32px;font-size:.78rem;color:var(--t3)">How to read the numbers: client figures are under NDA. "Weeks to days" is the target the product was designed for, not a published result. The numbers in the cards come from the demo launch shown in the screens: Lumina Glow, 6 SKUs, 3 retailers, 2 variants.</p>
 
   <!-- Hero visual -->
   <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/cover.png" alt="ShelfFlow canvas in Build mode: a library of agents and gates, and the pipeline as a graph with a split per retailer and a sent back loop"></div>
@@ -107,7 +107,7 @@
 
     <div class="cs__evidence">
       <span class="cs__evidence-label">Evidence</span>
-      <span class="cs__evidence-text">Stakeholder interviews revealed that roughly 70% of launch delays originated not in content creation, but in approval ambiguity. "Who needs to sign off on this?" was the most frequently asked question. The workflow needed explicit gates with clear ownership, not faster drafting tools.</span>
+      <span class="cs__evidence-text">In stakeholder interviews, roughly 70% of the launch delays people described started in approval ambiguity, not in content creation. That is what people reported, not an instrumented measurement. "Who needs to sign off on this?" was the most frequently asked question. The workflow needed explicit gates with clear ownership, not faster drafting tools.</span>
     </div>
 
   <div class="cs__img cs__img--wide" data-reveal><div class="dgD"><svg viewBox="0 0 1160 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="One brief explodes into thirty-six packages requiring eighteen human decisions and one launch" style="font-family:var(--m)">
@@ -394,6 +394,8 @@
     <div class="cs__screen"><img src="../img/shelfflow/v4/run-live.webp" alt="The same graph in Run mode, with retailer branches in progress" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Run / the same drawing, live</span></div>
   </div>
   <p class="cs__img-cap">A gate with no owner blocks the launch. Once every gate has a name, the pipeline locks and runs: here Amazon is checked, Sephora and Walmart are in progress.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/zoom-split.webp" alt="Close view of the split per retailer: three parallel Spec Checker nodes and a merge" width="1520" height="800" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">The split, up close. One line leaves Gate 2 and becomes three parallel checks, one per retailer. Each finishes at its own pace, and the merge waits for all three.</p>
   <div data-reveal style="background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:24px 28px;margin:28px 0">
     <span style="font-family:var(--m);font-size:11px;color:var(--ac);letter-spacing:2px">&#9670; INTERACTIVE, SYNTHETIC DATA</span>
     <p style="font-family:var(--s);font-size:1.15rem;font-weight:700;color:var(--t1);margin:10px 0 6px">Build the pipeline. Then hold the gate.</p>
@@ -454,6 +456,8 @@
 
   <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/run-gate3.webp" alt="Gate 3 on the canvas, Daniel Reyes turn, with four flags listed" width="1920" height="1080" loading="lazy" decoding="async"></div>
   <p class="cs__img-cap">Gate 3, Daniel's turn. The Compliance Scanner raised four flags; the other 32 packages are clear. The gate opens where it sits on the graph.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/zoom-gate3.webp" alt="Close view of Gate 3: the scanner node shows 4 flags, a red line carries them to the gate, and the gate lists the four flagged phrases" width="1500" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">Up close. These four phrases are what the agent caught, not what shipped. The scanner carries the count, the red line carries the flags to the gate, and the gate names each phrase and its product.</p>
 
   <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/gate1.webp" alt="Gate 1: the submitted brief next to what the agent structured, field by field" width="1920" height="1080" loading="lazy" decoding="async"></div>
   <p class="cs__img-cap">Gate 1. The brief as the agent read it, field by field, with every difference marked. The agent asks what it cannot settle. The Content Lead answers, then locks.</p>
@@ -550,6 +554,8 @@
 
   <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/run-loop.webp" alt="The sent back loop lit on the canvas: three drafts return to the Copy Drafter" width="1920" height="1080" loading="lazy" decoding="async"></div>
   <p class="cs__img-cap">Sent back is a loop, not an error. Three drafts return to the Copy Drafter with the note attached, the loop lights up, and everything downstream waits.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/zoom-loop.webp" alt="Close view of the sent back loop between Gate 2 and the Copy Drafter" width="1360" height="680" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">The loop, up close. Gate 2 reads "3 sent back", the line back to the Copy Drafter turns solid, and the drafter is the only node working.</p>
 
     <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
       <p style="font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px">Content package states</p>
