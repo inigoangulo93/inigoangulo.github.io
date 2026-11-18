@@ -43,12 +43,13 @@
 <nav class="cs-nav" id="csNav">
 <a href="#s01" class="cs-nav__link"><span class="cs-nav__num">01</span>Problem</a>
 <a href="#s02" class="cs-nav__link"><span class="cs-nav__num">02</span>Reframe</a>
-<a href="#s03" class="cs-nav__link"><span class="cs-nav__num">03</span>Agents</a>
-<a href="#s04" class="cs-nav__link"><span class="cs-nav__num">04</span>People</a>
-<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>The Loop</a>
-<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>Scale</a>
-<a href="#s07" class="cs-nav__link"><span class="cs-nav__num">07</span>Mistakes</a>
-<a href="#s08" class="cs-nav__link"><span class="cs-nav__num">08</span>Reflection</a>
+<a href="#s03" class="cs-nav__link"><span class="cs-nav__num">03</span>Canvas</a>
+<a href="#s04" class="cs-nav__link"><span class="cs-nav__num">04</span>Agents</a>
+<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>People</a>
+<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>The Loop</a>
+<a href="#s07" class="cs-nav__link"><span class="cs-nav__num">07</span>Scale</a>
+<a href="#s08" class="cs-nav__link"><span class="cs-nav__num">08</span>Mistakes</a>
+<a href="#s09" class="cs-nav__link"><span class="cs-nav__num">09</span>Reflection</a>
 <a href="#" class="cs-nav__top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">&#8593; Top</a>
 </nav>
 <article class="cs">
@@ -92,8 +93,8 @@
   <p class="cs__sub" style="margin:-16px 0 32px;font-size:.78rem;color:var(--t3)">Client figures are under NDA. The numbers on this page come from the demo launch in the screens: Lumina Glow, 6 SKUs, 3 retailers, 2 variants.</p>
 
   <!-- Hero visual -->
-  <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/cover.png" alt="ShelfFlow board: agents work in the top lane, people decide in the bottom lane"></div>
-  <p class="cs__img-cap">The board. Agents work on their own in the top lane. People decide in the bottom lane, and the gate that needs you is the largest thing on screen.</p>
+  <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/cover.png" alt="ShelfFlow canvas in Build mode: a library of agents and gates, and the pipeline as a graph with a split per retailer and a sent back loop"></div>
+  <p class="cs__img-cap">The canvas. Agents are the violet nodes, people are the black gates. The work splits per retailer, merges back, and loops to the agent when a person sends it back.</p>
 
 
   <div class="cs__section" id="s01" data-reveal>
@@ -373,21 +374,44 @@
   </div>
 
   <div class="cs__section" id="s03" data-reveal>
-    <span class="cs__section-num">03 Agents in the Background</span>
+    <span class="cs__section-num">03 The Canvas</span>
+    <h2 class="cs__section-h">You build the pipeline on the canvas. Then the same drawing runs.</h2>
+    <div class="cs__section-text">
+      <p>A canvas only earns its place when someone composes on it. Otherwise it is a progress bar with zoom. In Build mode the operator lays out the launch from a library: agents, human gates, a split per retailer, a merge, a loop that returns rejected drafts to the agent that wrote them, and a condition that sends regulated claims down an extra legal branch. The pipeline is a graph, not a line.</p>
+      <p>The canvas also carries the rule the whole product rests on. You can add gates, but the four core ones cannot be removed. A gate cannot run without a named person. An agent cannot be wired to Publish without a gate in between. "AI assists, never ships" stops being a principle and becomes something the tool refuses to let you draw.</p>
+      <p>Switch to Run and nothing is redrawn. The same graph fills in as the work happens, stops at the person whose turn it is, and every node opens.</p>
+    </div>
+
+  <div class="cs__screens" data-reveal>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/build-place.webp" alt="Dragging a condition from the library onto an edge of the pipeline" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Place a node / the edge shows where it fits</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/build-connect.webp" alt="Pulling a connection from the condition to a new legal review gate" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Connect a node / the socket shows where it lands</span></div>
+  </div>
+  <p class="cs__img-cap">Adding a branch. A condition dropped between Gate 3 and Gate 4 forks the path: regulated claims go through a new legal gate, everything else goes straight on.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/build-refuse.webp" alt="The canvas refusing a connection from an agent straight to Publish" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">A connection the canvas refuses. An agent cannot reach Publish without a gate in between, and the canvas says why.</p>
+  <div class="cs__screens" data-reveal>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/build-assign.webp" alt="Assigning a named person to the new gate" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Assign / one named person per gate</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/run-live.webp" alt="The same graph in Run mode, with retailer branches in progress" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Run / the same drawing, live</span></div>
+  </div>
+  <p class="cs__img-cap">A gate with no owner blocks the launch. Once every gate has a name, the pipeline locks and runs: here Amazon is checked, Walmart and Target are in progress.</p>
+  </div>
+
+  <div class="cs__section" id="s04" data-reveal>
+    <span class="cs__section-num">04 Agents in the Background</span>
     <h2 class="cs__section-h">Agents work on their own, so they should not compete for your attention.</h2>
     <div class="cs__section-text">
-      <p>The board has two lanes. Agents sit in the top one as single rows: a name and one fact. An agent that finished without trouble nearly disappears. The only one that asks for attention is the one that needs a person.</p>
-      <p>The detail is still there, one click at a time: a short peek, then the essentials, then the full record of what the agent did and why.</p>
+      <p>On the canvas an agent is a small violet node: a name and one fact. An agent that finished without trouble nearly disappears. The only one that asks for attention is the one that needs a person.</p>
+      <p>The detail is still there, one click at a time: the essentials in a side panel, then the full record of what the agent did and why.</p>
       <p>ShelfFlow embeds 6 specialised agents across the pipeline, coordinated by a workflow orchestrator that routes tasks, schedules generation jobs and enforces gate rules. Each agent operates within a clearly defined boundary: it can draft, suggest, check or flag, but it cannot approve or publish. No agent can bypass a gate.</p>
     </div>
 
   <div class="cs__screens" data-reveal>
-    <div class="cs__screen"><img src="../img/shelfflow/v3/agent-peek.webp" alt="Clicking an agent shows a short summary card" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Click an agent / a short peek</span></div>
-    <div class="cs__screen"><img src="../img/shelfflow/v3/agent-drawer.webp" alt="Opening an agent slides its details in from the right" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Open it / the essentials slide in</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/run-agent.webp" alt="Clicking the Compliance Scanner opens its essentials in a side panel" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Click an agent / the essentials slide in</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/run-node.webp" alt="The Copy Drafter node expanded to full size over the canvas" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Expand a node / the full record</span></div>
   </div>
-  <p class="cs__img-cap">Agents stay in the background until you ask. One click gives a short peek. A second opens the essentials: what it flagged, what it can and cannot do, and how often it is right.</p>
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/agent-full.webp" alt="Full view of the Compliance Scanner agent with inputs, findings, rule coverage and run log" width="1920" height="1080" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">The full view, one more click in. The Compliance Scanner's inputs, the four claims it flagged with the rule behind each, coverage across 412 checks, and its run log. The board stays simple; the depth lives here.</p>
+  <p class="cs__img-cap">Agents stay in the background until you ask. A click opens the essentials: what it flagged, what it can and cannot do, and how often it is right. Any node also expands to full size.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/agent-full.webp" alt="Full view of the Compliance Scanner agent with inputs, findings, rule coverage and run log" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">The full view, one more click in. The Compliance Scanner's inputs, the four claims it flagged with the rule behind each, coverage across 412 checks, and its run log. The canvas stays simple; the depth lives here.</p>
 
     <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
       <p style="font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px">Embedded AI agents</p>
@@ -403,12 +427,12 @@
     </div>
   </div>
 
-  <div class="cs__section" id="s04" data-reveal>
-    <span class="cs__section-num">04 People in Front</span>
+  <div class="cs__section" id="s05" data-reveal>
+    <span class="cs__section-num">05 People in Front</span>
     <h2 class="cs__section-h">A gate is a named person, not a step.</h2>
     <div class="cs__section-text">
       <p>In enterprise commerce, shipping wrong content is more expensive than a delayed launch: incorrect claims create regulatory exposure, mismatched specs trigger portal rejections. So the counterweight to agent speed is a hard gate model. Four mandatory gates, no bypass, each owned by a role with <strong>explicit authority enforced by the system</strong>, not by process docs. A Content Lead approves briefs and drafts but can't sign off compliance. A Compliance Officer owns Gate 3 but has no launch authority.</p>
-      <p>On the board that becomes literal. The gate that needs you is the largest thing on the screen, and it says it is your turn. Everyone else sees who has it and how long it has waited. The operator who runs the workflow can nudge the owner but cannot sign.</p>
+      <p>On the canvas that becomes literal. Gates are the black nodes, each with a name on it. The one that needs you says it is your turn and opens where it sits. Everyone else sees who has it and how long it has waited. The operator who runs the workflow can nudge the owner but cannot sign.</p>
     </div>
 
     <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
@@ -421,8 +445,8 @@
       </div>
     </div>
 
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/operator.webp" alt="The same board from the operator seat, with a nudge button instead of an approval" width="1920" height="1080" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">The same board from the operator's seat. They run the workflow and can nudge the owner. They cannot sign the gate.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/run-gate3.webp" alt="Gate 3 on the canvas, Daniel Reyes turn, with four flags listed" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">Gate 3, Daniel's turn. The Compliance Scanner raised four flags; the other 32 packages are clear. The gate opens where it sits on the graph.</p>
 
   <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/gate1.webp" alt="Gate 1: the submitted brief next to what the agent structured, field by field" width="1920" height="1080" loading="lazy" decoding="async"></div>
   <p class="cs__img-cap">Gate 1. The brief as the agent read it, field by field, with every difference marked. The agent asks what it cannot settle. The Content Lead answers, then locks.</p>
@@ -503,22 +527,22 @@
     </table></div>
   </div>
 
-  <div class="cs__section" id="s05" data-reveal>
-    <span class="cs__section-num">05 The Loop</span>
+  <div class="cs__section" id="s06" data-reveal>
+    <span class="cs__section-num">06 The Loop</span>
     <h2 class="cs__section-h">Sent back is a loop, not a failure.</h2>
     <div class="cs__section-text">
       <p>Each of the 36 packages runs as an independent state machine: Draft, In Review, Approved, Published, Rejected or Blocked. Nothing else. The interface says the same thing in plainer words: a rejected package reads "Sent back", a published one "Live". Every transition requires an explicit human action or a system event, and every change is logged with who triggered it and why. This replaced the ambiguous in-between states of the old workflow: "probably approved", "waiting on someone", "I think legal saw it". Rejected packages route back to the previous stage carrying reviewer notes, which agents use to regenerate. Supervision, not babysitting.</p>
-      <p>So a rejection never leaves the reviewer holding the problem. They say what is wrong in a sentence, the work goes back up to the agent, and the board tells them they are free until it returns.</p>
+      <p>So a rejection never leaves the reviewer holding the problem. They say what is wrong in a sentence, the work goes back to the agent, and the canvas shows the loop running until it returns.</p>
     </div>
 
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/gate3-review.webp" alt="Gate 3 opened in place on the board, showing one flagged sentence" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/gate3-review.webp" alt="Gate 3 opened over the canvas, showing one flagged sentence" width="1920" height="1080" loading="lazy" decoding="async"></div>
   <p class="cs__img-cap">Gate 3 opens in place, one flag at a time: the sentence, the reason, a note for the agent, and two answers with a keyboard shortcut each.</p>
 
   <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/gate3-evidence.webp" alt="The full evidence view for one flag, with the decision panel" width="1920" height="1080" loading="lazy" decoding="async"></div>
   <p class="cs__img-cap">See evidence. The whole case behind one flag: why the agent raised it, a suggested rewrite that is never applied on its own, the source in the brief, the three packages one decision covers, and the three outcomes.</p>
 
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/after.webp" alt="The board after the decision: work returns to the Copy Drafter and the reviewer is free" width="1920" height="1080" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">Sent back is a loop, not an error. The work returns to the agent with the note attached, and the reviewer is free until it comes back.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/run-loop.webp" alt="The sent back loop lit on the canvas: three drafts return to the Copy Drafter" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">Sent back is a loop, not an error. Three drafts return to the Copy Drafter with the note attached, the loop lights up, and everything downstream waits.</p>
 
     <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
       <p style="font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px">Content package states</p>
@@ -540,8 +564,8 @@
     </div>
   </div>
 
-  <div class="cs__section" id="s06" data-reveal>
-    <span class="cs__section-num">06 Scale</span>
+  <div class="cs__section" id="s07" data-reveal>
+    <span class="cs__section-num">07 Scale</span>
     <h2 class="cs__section-h">One decision at a time, however many there are.</h2>
     <div class="cs__section-text">
       <p>The core complexity of ShelfFlow isn't any single content package. It's the <strong>combinatorial explosion</strong> when you multiply SKUs by retailers by variants. This is where manual workflows break. Not at package #1, but at package #27, when reviewer fatigue sets in and the differences between Amazon and Walmart specs blur together. ShelfFlow's job is to make package #36 as reviewable as package #1: urgency signals, comparison tools and batch operations all exist to fight decision quality decay.</p>
@@ -552,14 +576,14 @@
   <p class="cs__img-cap">Home, from the Content Lead's seat. What needs a decision comes first. Below it, every launch by stage: dark columns wait on a person, violet ones are agents working.</p>
 
   <div class="cs__screens" data-reveal>
-    <div class="cs__screen"><img src="../img/shelfflow/v3/gate4-board.webp" alt="Gate 4 on the board: eighteen choices presented as one card" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Gate 4 / 18 choices, one card</span></div>
-    <div class="cs__screen"><img src="../img/shelfflow/v3/live.webp" alt="The board after launch: every gate signed, 18 packages live" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Live / every gate signed</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/run-g4.webp" alt="Gate 4 on the canvas: the legal branch is skipped and it is Sofia Lindqvist turn" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Gate 4 / the branch resolves, your turn</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/run-done.webp" alt="The canvas after launch: every gate signed, 18 packages live" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Live / every gate signed</span></div>
   </div>
-  <p class="cs__img-cap">Scale without a wall of cells. Eighteen decisions arrive as one card, and the launch closes with every gate signed and a name on each.</p>
+  <p class="cs__img-cap">No regulated claim was found, so the legal branch is skipped and Gate 4 is next. The launch closes with every gate signed and a name on each.</p>
 
   <div class="cs__screens" data-reveal>
-    <div class="cs__screen"><img src="../img/shelfflow/v3/gate4-choose.webp" alt="Gate 4: choosing between version A and B for one product and retailer" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Gate 4 / one choice at a time</span></div>
-    <div class="cs__screen"><img src="../img/shelfflow/v3/gate4-batch.webp" alt="Gate 4: the batch shortcut stays locked until every choice has been opened" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Gate 4 / the batch guardrail</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/gate4-choose.webp" alt="Gate 4: choosing between version A and B for one product and retailer" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Gate 4 / one choice at a time</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/gate4-batch.webp" alt="Gate 4: the batch shortcut stays locked until every choice has been opened" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Gate 4 / the batch guardrail</span></div>
   </div>
   <p class="cs__img-cap">Gate 4. Eighteen choices, one at a time, A or B. The batch shortcut stays locked until every remaining choice has been opened.</p>
 
@@ -583,8 +607,8 @@
     </div>
   </div>
 
-  <div class="cs__section" id="s07" data-reveal>
-    <span class="cs__section-num">07 What I Got Wrong</span>
+  <div class="cs__section" id="s08" data-reveal>
+    <span class="cs__section-num">08 What I Got Wrong</span>
     <h2 class="cs__section-h">Two things I got wrong before I got them right.</h2>
     <div class="cs__section-text">
       <p>Both mistakes had the same root. I treated control as something you add, when it is something people have to be able to carry.</p>
@@ -606,8 +630,8 @@
     </div>
   </div>
 
-  <div class="cs__section" id="s08" data-reveal>
-    <span class="cs__section-num">08 Reflection</span>
+  <div class="cs__section" id="s09" data-reveal>
+    <span class="cs__section-num">09 Reflection</span>
     <h2 class="cs__section-h">The hardest problem wasn't the AI. It was making 18 approval moments feel fast instead of bureaucratic.</h2>
     <div class="cs__section-text">
       <p>Five operational guardrails constrained every decision: AI assists, never ships. Every transition is auditable. The pipeline is the single source of truth: no side channels, no email approvals. Design for reviewer fatigue, not enthusiasm. Absorb the combinatorial complexity so humans can focus on judgement calls.</p>
