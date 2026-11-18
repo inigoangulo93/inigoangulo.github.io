@@ -77,7 +77,7 @@
     <h1 class="cs__h">The supervision interface for an agentic content pipeline.</h1>
     <p class="cs__sub">One brief in, 36 retailer-ready packages out. Six AI agents do the repetitive work. Humans own every decision that ships.</p>
     <p class="cs__sub" style="margin-top:16px;color:var(--t3)">ShelfFlow turns a single product brief into retailer-ready content through an orchestrated pipeline: AI agents parse, draft, adapt and flag; four mandatory human gates decide what advances. The product problem wasn't generating content. It was making agentic work supervisable at enterprise scale.</p>
-    <p class="cs__sub" style="margin-top:12px;color:var(--t3)">I owned the product end to end: strategy and pipeline architecture, agent orchestration boundaries, state machine design, decision authority mapping and the full operator interface.</p>
+    <p class="cs__sub" style="margin-top:12px;color:var(--t3)">I owned the product end to end: strategy and pipeline architecture, agent orchestration boundaries, state machine design, decision authority mapping and the full supervision interface.</p>
   </div>
 
   <!-- Metrics -->
@@ -89,11 +89,12 @@
   </div>
 
   <!-- Hero visual -->
-  <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/cover.png" alt="ShelfFlow platform overview"></div>
+  <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/cover.png" alt="ShelfFlow board: agents work in the top lane, people decide in the bottom lane"></div>
+  <p class="cs__img-cap">The board. Agents work on their own in the top lane. People decide in the bottom lane, and the gate that needs you is the largest thing on screen.</p>
 
   <!-- Commerce Workspace -->
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/ui-7.png" alt="ShelfFlow Commerce Workspace dashboard"></div>
-  <p class="cs__img-cap">The supervision surface. Operators track active briefs, pipeline status and AI agent activity across all launches from a single screen.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/home.webp" alt="ShelfFlow home: three decisions waiting, and a board of every launch by stage" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">Home, from the Content Lead's seat. What needs a decision comes first. Below it, every launch by stage: dark columns wait on a person, violet ones are agents working.</p>
 
   <!-- 01: Pipeline -->
   <div class="cs__section" id="s01" data-reveal>
@@ -112,12 +113,12 @@
     <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
       <p style="font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px">Six-stage pipeline</p>
       <div style="display:flex;flex-direction:column;gap:6px">
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(45,212,191,.03);border:1px solid rgba(45,212,191,.08)"><span style="font-family:var(--m);font-size:12px;color:var(--ac);min-width:20px;font-weight:700">S1</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Brief Intake</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">Product brief parsed, SKU matrix generated</span></div>
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.12)"><span style="font-family:var(--m);font-size:12px;color:var(--ac);min-width:20px;font-weight:700">S2</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">AI Draft Generation</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 1: Brief approval</span></div>
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.1)"><span style="font-family:var(--m);font-size:12px;color:var(--am);min-width:20px;font-weight:700">S3</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Human Review &amp; Edit</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 2: Draft quality</span></div>
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.12)"><span style="font-family:var(--m);font-size:12px;color:var(--am);min-width:20px;font-weight:700">S4</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Retailer Adaptation</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">Specs, character limits, compliance</span></div>
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(167,139,250,.04);border:1px solid rgba(167,139,250,.1)"><span style="font-family:var(--m);font-size:12px;color:#a78bfa;min-width:20px;font-weight:700">S5</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Compliance &amp; Legal</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 3: Compliance sign-off</span></div>
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.1)"><span style="font-family:var(--m);font-size:12px;color:var(--up);min-width:20px;font-weight:700">S6</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Publish &amp; Distribute</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 4: Final launch approval</span></div>
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(45,212,191,.03);border:1px solid rgba(45,212,191,.08)"><span style="font-family:var(--m);font-size:12px;color:var(--ac);min-width:20px;font-weight:700">S1</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Brief</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">Brief Parser structures it: 6 SKUs, 36 packages</span></div>
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.12)"><span style="font-family:var(--m);font-size:12px;color:var(--ac);min-width:20px;font-weight:700">S2</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Drafts</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 1: Brief</span></div>
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.1)"><span style="font-family:var(--m);font-size:12px;color:var(--am);min-width:20px;font-weight:700">S3</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Checks</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 2: Drafts</span></div>
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.12)"><span style="font-family:var(--m);font-size:12px;color:var(--am);min-width:20px;font-weight:700">S4</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Compliance scan</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">Claims checked, flags raised with evidence</span></div>
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(167,139,250,.04);border:1px solid rgba(167,139,250,.1)"><span style="font-family:var(--m);font-size:12px;color:#a78bfa;min-width:20px;font-weight:700">S5</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Launch choices</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 3: Compliance</span></div>
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.1)"><span style="font-family:var(--m);font-size:12px;color:var(--up);min-width:20px;font-weight:700">S6</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Publish</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 4: Launch</span></div>
       </div>
     </div>
 
@@ -149,10 +150,12 @@
 
   <!-- Agents at work -->
   <div class="cs__screens" data-reveal>
-    <div class="cs__screen"><img src="../img/shelfflow/ui-14.png" alt="Generate content empty state"><span class="cs__screen-label">S4 / Generate / select SKUs, trigger agents</span></div>
-    <div class="cs__screen"><img src="../img/shelfflow/ui-15.png" alt="Building PDPs in progress"><span class="cs__screen-label">S4 / Generating / A/B variants per retailer</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v3/agent-peek.webp" alt="Clicking an agent shows a short summary card" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Click an agent / a short peek</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v3/agent-drawer.webp" alt="Opening an agent slides its details in from the right" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Open it / the essentials slide in</span></div>
   </div>
-  <p class="cs__img-cap">Agents at work. The operator triggers generation and supervises progress in real time: per-package status, confidence signals and flags surfaced as they happen.</p>
+  <p class="cs__img-cap">Agents stay in the background until you ask. One click gives a short peek. A second opens the essentials: what it flagged, what it can and cannot do, and how often it is right.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/agent-full.webp" alt="Full view of the Compliance Scanner agent with inputs, findings, rule coverage and run log" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">The full view, one more click in. The Compliance Scanner's inputs, the four claims it flagged with the rule behind each, coverage across 412 checks, and its run log. The board stays simple; the depth lives here.</p>
 
   <!-- Agent orchestration & authority swimlanes (responsive inline SVG) -->
   <style>
@@ -173,8 +176,8 @@
   <div class="wf-swim wf-swim--d" data-reveal>
 <svg viewBox="0 0 1440 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Agent orchestration and human authority: six AI agents in the top lane, six-stage pipeline with four human gates in the middle, gate owners below" style="font-family:var(--m)">
 <rect x="48" y="48" width="1344" height="220" rx="10" fill="rgba(45,212,191,.025)" stroke="rgba(45,212,191,.14)" stroke-dasharray="4 4"/>
-<text x="64" y="76" fill="#2dd4bf" font-size="12" letter-spacing="2.5">AI LAYER &#8212; SIX AGENTS, ONE ORCHESTRATOR</text>
-<text x="64" y="94" fill="#5f5f70" font-size="11">the orchestrator routes tasks and enforces gate rules / agents draft, adapt, scan and flag &#8212; never approve, never publish</text>
+<text x="64" y="76" fill="#2dd4bf" font-size="12" letter-spacing="2.5">AI LAYER, SIX AGENTS, ONE ORCHESTRATOR</text>
+<text x="64" y="94" fill="#5f5f70" font-size="11">the orchestrator routes tasks and enforces gate rules / agents draft, adapt, scan and flag, never approve, never publish</text>
 <rect x="54" y="108" width="192" height="44" rx="8" fill="#15151f" stroke="rgba(45,212,191,.4)"/>
 <text x="150" y="135" fill="#7de8d8" font-size="13" text-anchor="middle">BRIEF PARSER</text>
 <rect x="274" y="108" width="192" height="44" rx="8" fill="#15151f" stroke="rgba(45,212,191,.4)"/>
@@ -186,7 +189,7 @@
 <rect x="934" y="108" width="192" height="44" rx="8" fill="#15151f" stroke="rgba(245,158,11,.4)"/>
 <text x="1030" y="135" fill="#f5c56b" font-size="13" text-anchor="middle">COMPLIANCE SCANNER</text>
 <rect x="494" y="176" width="632" height="36" rx="7" fill="#15151f" stroke="rgba(245,158,11,.4)" stroke-dasharray="5 3"/>
-<text x="810" y="199" fill="#f5c56b" font-size="12.5" text-anchor="middle">CONSISTENCY AUDITOR &#8212; cross-checks all 36 packages</text>
+<text x="810" y="199" fill="#f5c56b" font-size="12.5" text-anchor="middle">CONSISTENCY AUDITOR, cross-checks all 36 packages</text>
 <line x1="150" y1="152" x2="150" y2="296" stroke="rgba(45,212,191,.35)" stroke-dasharray="2 4"/>
 <circle cx="150" cy="296" r="2.5" fill="rgb(45,212,191)"/>
 <line x1="370" y1="152" x2="370" y2="296" stroke="rgba(45,212,191,.35)" stroke-dasharray="2 4"/>
@@ -203,19 +206,19 @@
 <text x="20" y="312" fill="#c8c8d4" font-size="12">1 brief</text>
 <line x1="20" y1="326" x2="69" y2="326" stroke="#3a3a48" marker-end="url(#wfah)"/>
 <rect x="75" y="300" width="150" height="52" rx="9" fill="#15151f" stroke="#2b2b38"/>
-<text x="150" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S1 / Intake</text>
+<text x="150" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S1 / Brief</text>
 <line x1="225" y1="326" x2="295" y2="326" stroke="#2b2b38"/>
 <rect x="295" y="300" width="150" height="52" rx="9" fill="#15151f" stroke="#2b2b38"/>
-<text x="370" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S2 / Draft</text>
+<text x="370" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S2 / Drafts</text>
 <line x1="445" y1="326" x2="515" y2="326" stroke="#2b2b38"/>
 <rect x="515" y="300" width="150" height="52" rx="9" fill="#15151f" stroke="#2b2b38"/>
-<text x="590" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S3 / Review</text>
+<text x="590" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S3 / Checks</text>
 <line x1="665" y1="326" x2="735" y2="326" stroke="#2b2b38"/>
 <rect x="735" y="300" width="150" height="52" rx="9" fill="#15151f" stroke="#2b2b38"/>
-<text x="810" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S4 / Adapt</text>
+<text x="810" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S4 / Scan</text>
 <line x1="885" y1="326" x2="955" y2="326" stroke="#2b2b38"/>
 <rect x="955" y="300" width="150" height="52" rx="9" fill="#15151f" stroke="#2b2b38"/>
-<text x="1030" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S5 / Legal</text>
+<text x="1030" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S5 / Launch</text>
 <line x1="1105" y1="326" x2="1175" y2="326" stroke="#2b2b38"/>
 <rect x="1175" y="300" width="150" height="52" rx="9" fill="#15151f" stroke="#2b2b38"/>
 <text x="1250" y="331" fill="#e8e8ee" font-size="13.5" text-anchor="middle">S6 / Publish</text>
@@ -230,7 +233,7 @@
 <line x1="1325" y1="326" x2="1371" y2="326" stroke="#22c55e" marker-end="url(#wfag)"/>
 <text x="1430" y="314" fill="#22c55e" font-size="12" text-anchor="end">36 packages</text><text x="1430" y="352" fill="#5f5f70" font-size="11" text-anchor="end">18 approvals</text>
 <rect x="48" y="412" width="1344" height="152" rx="10" fill="rgba(245,158,11,.02)" stroke="rgba(245,158,11,.14)" stroke-dasharray="4 4"/>
-<text x="64" y="552" fill="#f59e0b" font-size="12" letter-spacing="2.5">HUMAN AUTHORITY &#8212; NOTHING SHIPS WITHOUT A GATE OWNER</text>
+<text x="64" y="552" fill="#f59e0b" font-size="12" letter-spacing="2.5">HUMAN AUTHORITY, NOTHING SHIPS WITHOUT A GATE OWNER</text>
 <line x1="260" y1="338" x2="260" y2="362" stroke="#3a3a48"/><line x1="260" y1="388" x2="260" y2="458" stroke="#3a3a48"/><line x1="260" y1="458" x2="370" y2="458" stroke="#3a3a48"/>
 <line x1="480" y1="338" x2="480" y2="362" stroke="#3a3a48"/><line x1="480" y1="388" x2="480" y2="458" stroke="#3a3a48"/><line x1="480" y1="458" x2="370" y2="458" stroke="#3a3a48"/>
 <line x1="370" y1="458" x2="370" y2="478" stroke="#3a3a48"/>
@@ -248,7 +251,7 @@
 <circle cx="96" cy="602" r="4" fill="#2dd4bf"/><text x="108" y="606" fill="#8a8a98" font-size="11.5">generate &amp; validate</text>
 <circle cx="275" cy="602" r="4" fill="#f59e0b"/><text x="287" y="606" fill="#8a8a98" font-size="11.5">risk &amp; consistency flags</text>
 <circle cx="489" cy="602" r="4" fill="#a78bfa"/><text x="501" y="606" fill="#8a8a98" font-size="11.5">change reporting</text>
-<rect x="647" y="596" width="11" height="11" transform="rotate(45 652 602)" fill="#e8e8ee"/><text x="665" y="606" fill="#8a8a98" font-size="11.5">mandatory human gate &#8212; no bypass</text>
+<rect x="647" y="596" width="11" height="11" transform="rotate(45 652 602)" fill="#e8e8ee"/><text x="665" y="606" fill="#8a8a98" font-size="11.5">mandatory human gate, no bypass</text>
 <defs><marker id="wfah" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7" fill="none" stroke="#3a3a48" stroke-width="1.4"/></marker><marker id="wfag" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7" fill="none" stroke="#22c55e" stroke-width="1.4"/></marker></defs>
 </svg>
   </div>
@@ -262,26 +265,26 @@
 <line x1="210" y1="56" x2="210" y2="68" stroke="#3a3a48" marker-end="url(#wfmah)"/>
 <rect x="162" y="70" width="96" height="44" rx="8" fill="#15151f" stroke="#2b2b38"/>
 <text x="210" y="88" fill="#e8e8ee" font-size="12" text-anchor="middle">S1</text>
-<text x="210" y="103" fill="#8a8a98" font-size="10" text-anchor="middle">Intake</text>
+<text x="210" y="103" fill="#8a8a98" font-size="10" text-anchor="middle">Brief</text>
 <line x1="210" y1="114" x2="210" y2="170" stroke="#2b2b38"/>
 <g class="wfgp" style="animation-delay:0.0s"><rect x="204" y="136" width="12" height="12" transform="rotate(45 210 142)" fill="#2dd4bf"/></g>
 <rect x="162" y="170" width="96" height="44" rx="8" fill="#15151f" stroke="#2b2b38"/>
 <text x="210" y="188" fill="#e8e8ee" font-size="12" text-anchor="middle">S2</text>
-<text x="210" y="203" fill="#8a8a98" font-size="10" text-anchor="middle">Draft</text>
+<text x="210" y="203" fill="#8a8a98" font-size="10" text-anchor="middle">Drafts</text>
 <line x1="210" y1="214" x2="210" y2="270" stroke="#2b2b38"/>
 <g class="wfgp" style="animation-delay:0.5s"><rect x="204" y="236" width="12" height="12" transform="rotate(45 210 242)" fill="#f59e0b"/></g>
 <rect x="162" y="270" width="96" height="44" rx="8" fill="#15151f" stroke="#2b2b38"/>
 <text x="210" y="288" fill="#e8e8ee" font-size="12" text-anchor="middle">S3</text>
-<text x="210" y="303" fill="#8a8a98" font-size="10" text-anchor="middle">Review</text>
+<text x="210" y="303" fill="#8a8a98" font-size="10" text-anchor="middle">Checks</text>
 <line x1="210" y1="314" x2="210" y2="370" stroke="#2b2b38"/>
 <rect x="162" y="370" width="96" height="44" rx="8" fill="#15151f" stroke="#2b2b38"/>
 <text x="210" y="388" fill="#e8e8ee" font-size="12" text-anchor="middle">S4</text>
-<text x="210" y="403" fill="#8a8a98" font-size="10" text-anchor="middle">Adapt</text>
+<text x="210" y="403" fill="#8a8a98" font-size="10" text-anchor="middle">Scan</text>
 <line x1="210" y1="414" x2="210" y2="470" stroke="#2b2b38"/>
 <g class="wfgp" style="animation-delay:1.0s"><rect x="204" y="436" width="12" height="12" transform="rotate(45 210 442)" fill="#a78bfa"/></g>
 <rect x="162" y="470" width="96" height="44" rx="8" fill="#15151f" stroke="#2b2b38"/>
 <text x="210" y="488" fill="#e8e8ee" font-size="12" text-anchor="middle">S5</text>
-<text x="210" y="503" fill="#8a8a98" font-size="10" text-anchor="middle">Legal</text>
+<text x="210" y="503" fill="#8a8a98" font-size="10" text-anchor="middle">Launch</text>
 <line x1="210" y1="514" x2="210" y2="570" stroke="#2b2b38"/>
 <g class="wfgp" style="animation-delay:1.5s"><rect x="204" y="536" width="12" height="12" transform="rotate(45 210 542)" fill="#22c55e"/></g>
 <rect x="162" y="570" width="96" height="44" rx="8" fill="#15151f" stroke="#2b2b38"/>
@@ -327,7 +330,7 @@
 <circle cx="20" cy="698" r="3.5" fill="#2dd4bf"/><text x="30" y="702">generate &amp; validate</text>
 <circle cx="176" cy="698" r="3.5" fill="#f59e0b"/><text x="186" y="702">risk flags</text>
 <circle cx="276" cy="698" r="3.5" fill="#a78bfa"/><text x="286" y="702">change reports</text>
-<rect x="16" y="716" width="9" height="9" transform="rotate(45 20.5 720.5)" fill="#e8e8ee"/><text x="30" y="724">mandatory human gate &#8212; no bypass</text>
+<rect x="16" y="716" width="9" height="9" transform="rotate(45 20.5 720.5)" fill="#e8e8ee"/><text x="30" y="724">mandatory human gate, no bypass</text>
 <text x="16" y="744" fill="#5f5f70" font-size="9.5">OPERATOR runs the workflow / no gate authority</text>
 </g>
 <defs><marker id="wfmah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#3a3a48" stroke-width="1.3"/></marker><marker id="wfmag" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#22c55e" stroke-width="1.3"/></marker></defs>
@@ -390,7 +393,7 @@
   <!-- Decision authority map -->
   <div class="cs__img cs__img--wide" data-reveal><div class="dgD"><svg viewBox="0 0 1160 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Decision authority: agents draft and flag, four humans own the gates, the operator runs the workflow without gate authority" style="font-family:var(--m)">
 <rect x="200" y="34" width="760" height="61" rx="10" fill="#13131b" stroke="#a78bfa" stroke-opacity="0.5" stroke-dasharray="5 5"/>
-<text x="580" y="56" fill="#a78bfa" font-size="12.5" text-anchor="middle">AI AGENTS &#8212; draft, adapt, flag</text>
+<text x="580" y="56" fill="#a78bfa" font-size="12.5" text-anchor="middle">AI AGENTS, draft, adapt, flag</text>
 <text x="580" y="74" fill="#8a8a98" font-size="10.5" text-anchor="middle" font-family="var(--s)">never approve / never publish</text>
 <rect x="55" y="190" width="230" height="61" rx="10" fill="#13131b" stroke="#3a3a48" stroke-opacity="1"/>
 <text x="170" y="212" fill="#c8c8d4" font-size="12.5" text-anchor="middle">Operator</text>
@@ -411,7 +414,7 @@
 <text x="580" y="308" fill="#f59e0b" font-size="11" letter-spacing="2" text-anchor="middle">NOTHING SHIPS WITHOUT A GATE OWNER</text>
 <defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7" fill="none" stroke="#3a3a48" stroke-width="1.4"/></marker></defs></svg></div><div class="dgM"><svg viewBox="0 0 420 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Decision authority map, mobile layout" style="font-family:var(--m)">
 <rect x="30" y="30" width="360" height="61" rx="10" fill="#13131b" stroke="#a78bfa" stroke-opacity="0.5" stroke-dasharray="5 5"/>
-<text x="210" y="52" fill="#a78bfa" font-size="12.5" text-anchor="middle">AI AGENTS &#8212; draft &amp; flag</text>
+<text x="210" y="52" fill="#a78bfa" font-size="12.5" text-anchor="middle">AI AGENTS, draft &amp; flag</text>
 <text x="210" y="70" fill="#8a8a98" font-size="10.5" text-anchor="middle" font-family="var(--s)">never approve / never publish</text>
 <rect x="45" y="148" width="330" height="61" rx="10" fill="#13131b" stroke="#3a3a48" stroke-opacity="1"/>
 <text x="210" y="170" fill="#c8c8d4" font-size="12.5" text-anchor="middle">Operator</text>
@@ -435,7 +438,7 @@
     <span class="cs__section-num">04 Supervision &amp; States</span>
     <h2 class="cs__section-h">Every package is a state machine. Rejection isn't an error state. It's a structured feedback loop back to the agents.</h2>
     <div class="cs__section-text">
-      <p>Each of the 36 packages runs as an independent state machine: Draft, In Review, Approved, Published, Rejected or Blocked. Nothing else. Every transition requires an explicit human action or a system event, and every change is logged with who triggered it and why. This replaced the ambiguous in-between states of the old workflow: "probably approved", "waiting on someone", "I think legal saw it". Rejected packages route back to the previous stage carrying reviewer notes, which agents use to regenerate. Supervision, not babysitting.</p>
+      <p>Each of the 36 packages runs as an independent state machine: Draft, In Review, Approved, Published, Rejected or Blocked. Nothing else. The interface says the same thing in plainer words: a rejected package reads "Sent back", a published one "Live". Every transition requires an explicit human action or a system event, and every change is logged with who triggered it and why. This replaced the ambiguous in-between states of the old workflow: "probably approved", "waiting on someone", "I think legal saw it". Rejected packages route back to the previous stage carrying reviewer notes, which agents use to regenerate. Supervision, not babysitting.</p>
     </div>
 
     <!-- State machine component -->
@@ -460,22 +463,38 @@
 
     <div class="cs__evidence">
       <span class="cs__evidence-label">System rationale</span>
-      <span class="cs__evidence-text"><strong>How we measured the agents.</strong> Agent quality was tracked against human outcomes, not benchmarks: flag precision (how often a compliance flag survived human review), per-gate rejection rate as a drift signal, regeneration acceptance (how often a v2 shipped without further notes), and a review-time floor per cell &#8212; the rubber-stamp detector that triggered the batch guardrail. When rejection rates fell too low, we treated it as reviewer fatigue, not agent excellence.</span>
+      <span class="cs__evidence-text"><strong>How we measured the agents.</strong> Agent quality was tracked against human outcomes, not benchmarks: flag precision (how often a compliance flag survived human review), per-gate rejection rate as a drift signal, regeneration acceptance (how often a v2 shipped without further notes), and a review-time floor per cell, the rubber-stamp detector that triggered the batch guardrail. When rejection rates fell too low, we treated it as reviewer fatigue, not agent excellence.</span>
     </div>
 
   <!-- Gate 1 diff review -->
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/ui-10.png" alt="Brief validation side-by-side diff"></div>
-  <p class="cs__img-cap">Gate 1: Brief validation. Side-by-side diff showing user brief vs. AI-enriched brief. Human confirms or edits before lock.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/gate1.webp" alt="Gate 1: the submitted brief next to what the agent structured, field by field" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">Gate 1. The brief as the agent read it, field by field, with every difference marked. The agent asks what it cannot settle. The Content Lead answers, then locks.</p>
 
   <!-- Review and approve -->
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/ui-5.png" alt="Review and approve matrix"></div>
-  <p class="cs__img-cap">Gate 4: Full matrix review. Per-cell approval across 18 human decisions, every SKU &#215; retailer combination. "Approve for Launch" is the final gate.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/gate3-review.webp" alt="Gate 3 opened in place on the board, showing one flagged sentence" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">Gate 3 opens in place, one flag at a time: the sentence, the reason, a note for the agent, and two answers with a keyboard shortcut each.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/gate3-evidence.webp" alt="The full evidence view for one flag, with the decision panel" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">See evidence. The whole case behind one flag: why the agent raised it, a suggested rewrite that is never applied on its own, the source in the brief, the three packages one decision covers, and the three outcomes.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/after.webp" alt="The board after the decision: work returns to the Copy Drafter and the reviewer is free" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">Sent back is a loop, not an error. The work returns to the agent with the note attached, and the reviewer is free until it comes back.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/operator.webp" alt="The same board from the operator seat, with a nudge button instead of an approval" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">The same board from the operator's seat. They run the workflow and can nudge the owner. They cannot sign the gate.</p>
+  <div class="cs__screens" data-reveal>
+    <div class="cs__screen"><img src="../img/shelfflow/v3/matrix.webp" alt="Matrix view: every package by product and retailer" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Matrix / every package</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v3/audit.webp" alt="Audit trail view: every step in order, people in bold" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Audit trail / every step</span></div>
+  </div>
+  <p class="cs__img-cap">The same launch, the same moment, in the two other views. Matrix shows where every package stands. Audit trail shows every step in order, with people in bold and each gate decision tagged.</p>
+  <div class="cs__screens" data-reveal>
+    <div class="cs__screen"><img src="../img/shelfflow/v3/gate4-choose.webp" alt="Gate 4: choosing between version A and B for one product and retailer" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Gate 4 / one choice at a time</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v3/gate4-batch.webp" alt="Gate 4: the batch shortcut stays locked until every choice has been opened" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Gate 4 / the batch guardrail</span></div>
+  </div>
+  <p class="cs__img-cap">Gate 4. Eighteen choices, one at a time, A or B. The batch shortcut stays locked until every remaining choice has been opened.</p>
 
   <!-- Interactive demo CTA -->
   <div data-reveal style="background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:24px 28px;margin:28px 0">
-    <span style="font-family:var(--m);font-size:11px;color:var(--ac);letter-spacing:2px">&#9670; INTERACTIVE &#8212; SYNTHETIC DATA</span>
+    <span style="font-family:var(--m);font-size:11px;color:var(--ac);letter-spacing:2px">&#9670; INTERACTIVE, SYNTHETIC DATA</span>
     <p style="font-family:var(--s);font-size:1.15rem;font-weight:700;color:var(--t1);margin:10px 0 6px">Hold Gate 4 yourself.</p>
-    <p style="font-family:var(--s);font-size:.9rem;color:var(--t2);line-height:1.65;margin:0 0 14px">A working slice of the decision architecture: approve variants, reject and watch the feedback loop, and try to batch-skip the review &#8212; the guardrails are live.</p>
+    <p style="font-family:var(--s);font-size:.9rem;color:var(--t2);line-height:1.65;margin:0 0 14px">A working slice of the decision architecture: approve variants, reject and watch the feedback loop, and try to batch-skip the review: the guardrails are live.</p>
     <iframe id="g4frame" src="gate4-demo.html?embed=1" title="Interactive Gate 4 demo" loading="lazy" style="width:100%;border:0;border-radius:10px;height:760px;background:#0a0a0f"></iframe>
     <p style="margin:10px 0 0"><a href="gate4-demo.html" style="font-family:var(--m);font-size:.78rem;color:var(--t3);text-decoration:none">Open full screen &#8599;</a></p>
   </div>
@@ -544,12 +563,12 @@
 <defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7" fill="none" stroke="#3a3a48" stroke-width="1.4"/></marker></defs></svg></div></div>
   <p class="cs__img-cap">The content matrix explosion: 1 brief &#8594; 6 SKUs &#215; 3 retailers &#215; 2 variants = 36 content packages &#8594; 18 approval decisions &#8594; 1 launch.</p>
 
-  <!-- Retailer previews -->
+  <!-- Scale screens -->
   <div class="cs__screens" data-reveal>
-    <div class="cs__screen"><img src="../img/shelfflow/ui-1.png" alt="Amazon PDP preview"><span class="cs__screen-label">Amazon / Full-fidelity PDP preview</span></div>
-    <div class="cs__screen"><img src="../img/shelfflow/ui-3.png" alt="Sephora PDP preview"><span class="cs__screen-label">Sephora / Adapted to retailer format</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v3/gate4-board.webp" alt="Gate 4 on the board: eighteen choices presented as one card" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Gate 4 / 18 choices, one card</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v3/live.webp" alt="The board after launch: every gate signed, 18 packages live" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Live / every gate signed</span></div>
   </div>
-  <p class="cs__img-cap">Same SKU, different retailers, completely different specs. Previews render in each retailer's actual page layout so operators review what the customer will see, not an abstraction.</p>
+  <p class="cs__img-cap">Scale without a wall of cells. Eighteen decisions arrive as one card, and the launch closes with every gate signed and a name on each.</p>
   </div>
 
   <!-- 06: Reflection -->
