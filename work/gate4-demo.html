@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ShelfFlow Gate 4, interactive demo / Inigo Angulo</title>
+<title>ShelfFlow, build the pipeline and hold the gate / Inigo Angulo</title>
 <link rel="canonical" href="https://inigoangulo.com/work/gate4-demo.html">
-<meta property="og:title" content="ShelfFlow Gate 4, interactive demo">
-<meta property="og:description" content="Hold Gate 4 yourself: choose which version ships, send one back to the agent, and meet the guardrail that blocks approving what you have not opened.">
+<meta property="og:title" content="ShelfFlow, build the pipeline and hold the gate">
+<meta property="og:description" content="Build the pipeline on the canvas: drop in two agents and watch each one fork the flow. Then run it and hold Gate 4 yourself. What you leave out, you meet at the gate.">
 <meta property="og:image" content="https://inigoangulo.com/img/shelfflow/og.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://inigoangulo.com/work/gate4-demo.html">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
-<meta name="description" content="Hold Gate 4 yourself: choose which version ships, send one back to the agent, and meet the guardrail that blocks approving what you have not opened.">
+<meta name="description" content="Build the pipeline on the canvas: drop in two agents and watch each one fork the flow. Then run it and hold Gate 4 yourself. What you leave out, you meet at the gate.">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW",{send_page_view:window.parent===window});</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,34 +39,53 @@ h1{font-size:clamp(22px,4vw,30px);font-weight:600;letter-spacing:-.02em;margin-b
 .pill.live{background:var(--ok50);color:var(--ok);box-shadow:inset 0 0 0 1px var(--ok2)}
 .dia{width:8px;height:8px;background:currentColor;transform:rotate(45deg);border-radius:1px;flex:none}
 .body{padding:16px;display:grid;gap:14px}
-/* lanes */
-.lane{border-radius:14px;padding:10px 12px}
-.agents{background:rgba(242,240,254,.6);border:1px dashed var(--brand3);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.cap{font-family:var(--m);font-size:10px;letter-spacing:.08em;color:var(--brand7)}
-.agents .say{font-size:12px;color:var(--brand7);margin-right:auto}
-.chip{display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 10px;border-radius:9px;background:var(--surface);border:1px solid var(--brand3);font-size:12px;font-weight:500;color:var(--t2)}
-.chip .ti{width:16px;height:16px;border-radius:5px;background:var(--brand50);display:grid;place-content:center;color:var(--brand7);font-size:10px}
-.chip.run{border-color:var(--brand);color:var(--ink);animation:pulse 1.4s ease-out 1}
-.chip .st{font-family:var(--m);font-size:10.5px;color:var(--mut)}
-.chip.run .st{color:var(--brand7)}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(108,92,231,.45)}100%{box-shadow:0 0 0 10px rgba(108,92,231,0)}}
-.people{background:var(--surface);border:1px solid var(--line);box-shadow:0 1px 2px rgba(16,24,40,.05);display:flex;align-items:center;gap:0;overflow-x:auto}
-.people .cap{color:var(--ink);margin-right:12px}
-.g{display:flex;align-items:center;gap:7px;height:32px;padding:0 11px;border-radius:9px;background:var(--ink);color:#fff;font-size:12px;font-weight:500;white-space:nowrap;flex:none}
-.g .k{font-family:var(--m);font-size:9.5px;letter-spacing:.08em;opacity:.7}
-.g.you{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ink)}
-.g .ck{font-size:11px}
-.sp{flex:1 0 14px;height:2px;background:var(--ink);min-width:14px}
-.sp.pend{background:repeating-linear-gradient(90deg,var(--line2) 0 5px,transparent 5px 10px)}
-.out{display:flex;align-items:center;gap:7px;height:32px;padding:0 11px;border-radius:9px;background:var(--subtle);border:1px solid var(--line);font-size:12px;font-weight:500;color:var(--t2);white-space:nowrap;flex:none;transition:all .3s}
-.out.live{background:var(--ok50);border-color:var(--ok2);color:var(--ok)}
+/* build */
+.mode{display:inline-flex;background:var(--subtle);border-radius:9px;padding:3px;font-size:12px;font-weight:500;color:var(--t3);margin-left:auto}
+.mode span{padding:4px 12px;border-radius:7px}.mode span.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(16,24,40,.12)}
+.bar .pill{margin-left:0}
+.build{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.lib .cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lib .top{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.lib{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 1px 2px rgba(16,24,40,.05)}
+.lib h3{font-size:13px;font-weight:600}.lib .hint{font-size:12px;color:var(--t3)}
+.card{display:block;width:100%;text-align:left;background:var(--surface);border:1px solid var(--brand3);border-radius:11px;padding:10px 11px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:border-color .2s,box-shadow .2s,opacity .2s}
+.card:hover{border-color:var(--brand);box-shadow:0 4px 12px -4px rgba(108,92,231,.35)}
+.card .nm{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600}
+.card .ti{width:20px;height:20px;border-radius:6px;background:var(--brand50);color:var(--brand7);display:grid;place-content:center;font-size:11px;flex:none}
+.card .ds{display:block;font-size:11.5px;color:var(--t2);line-height:1.45;margin-top:5px}
+.card .fk{display:block;font-family:var(--m);font-size:9.5px;letter-spacing:.06em;color:var(--brand7);margin-top:6px}
+.card.in{border-style:dashed;cursor:pointer;opacity:.75}.card.in .fk{color:var(--t3)}
+.lib.locked .card{pointer-events:none;opacity:.5}
+.ghost{position:fixed;z-index:50;pointer-events:none;background:var(--surface);border:1px solid var(--brand);border-radius:10px;padding:8px 11px;font-size:12.5px;font-weight:600;box-shadow:0 12px 28px -8px rgba(16,24,40,.35);transform:translate(-50%,-50%) rotate(-2deg)}
+.cvwrap{background-color:var(--canvas);border:1px solid var(--line);border-radius:14px;overflow-x:auto;background-image:radial-gradient(#d5d9e0 1px,transparent 1px);background-size:20px 20px}
+.cvwrap svg{display:block;width:100%;min-width:760px;height:auto}
+.cvbar{display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap}
+.status{font-size:12.5px;color:var(--t2);flex:1;min-width:200px;line-height:1.5}
+.status b{color:var(--ink);font-weight:600}.status.bad,.status.bad b{color:var(--bad)}
+.status .dot{display:inline-block;width:8px;height:8px;border-radius:9px;background:var(--brand);margin-right:8px}
+.bypass{background:none;border:0;font-size:12px;color:var(--t3);text-decoration:underline;text-underline-offset:3px;padding:6px 0}
+.bypass:hover{color:var(--ink)}
+.runb{height:38px;padding:0 16px;border-radius:10px;border:0;background:var(--ink);color:#fff;font-size:13.5px;font-weight:600;display:inline-flex;align-items:center;gap:8px}
+.runb[disabled]{background:var(--track);color:var(--t3);cursor:default}
+svg text{font-family:var(--s)}svg .mono{font-family:var(--m)}
+@keyframes pop{0%{opacity:0;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}
+.pop{animation:pop .35s cubic-bezier(.2,.9,.3,1.3) both;transform-box:fill-box;transform-origin:center}
+@keyframes dash{to{stroke-dashoffset:-18}}.flow{stroke-dasharray:5 4;animation:dash .7s linear infinite}
+@keyframes blink{50%{opacity:.35}}.blink{animation:blink 1s ease-in-out infinite}
+.gate[hidden]{display:none}
+.fine.w,.fine.w i{color:var(--warn)}
+#log .av{font-size:8.5px}
+.done ul{list-style:none;padding:0;margin:14px auto 0;max-width:520px;text-align:left;display:grid;gap:8px}
+.done li{font-size:13.5px;line-height:1.5;padding:10px 12px;border-radius:10px;background:#fef3f2;border:1px solid #fecdca;color:#912018}
+.done li.ok{background:var(--ok50);border-color:var(--ok2);color:var(--ok)}
+@media(max-width:620px){.card .ds{display:none}}
 /* gate card */
 .gate{background:var(--surface);border:2px solid var(--ink);border-radius:16px;overflow:hidden;box-shadow:0 6px 14px -4px rgba(16,24,40,.08),0 20px 40px -12px rgba(16,24,40,.16)}
 .band{display:flex;align-items:center;gap:8px;height:40px;padding:0 16px;background:var(--ink);color:#fff}
 .band .k{font-family:var(--m);font-size:10.5px;letter-spacing:.08em}
 .band .n{font-size:13px;font-weight:500}
 .band .c{margin-left:auto;font-size:12px;color:var(--mut)}
-.gb{display:grid;grid-template-columns:232px 1fr}
+.gb{display:grid;grid-template-columns:212px 1fr}
 .left{padding:18px 16px;background:var(--hover);border-right:1px solid var(--line)}
 .mx{display:grid;grid-template-columns:auto repeat(3,1fr);gap:5px;align-items:center}
 .mh{font-family:var(--m);font-size:10px;color:var(--t3);text-align:center}
@@ -148,36 +167,37 @@ body.embed .app{box-shadow:none}
 <nav><a href="shelfflow.html">&#8592; Back to the ShelfFlow case study</a></nav>
 <div class="wrap">
 <p class="tag">SHELFFLOW, INTERACTIVE DEMO, SYNTHETIC DATA</p>
-<h1>Gate 4 is yours.</h1>
-<p class="sub">The agents wrote two versions of every package. Nothing ships until a person picks one. This slice is 3 of the 6 products: 9 of the 18 choices.</p>
+<h1>Build the pipeline. Then hold the gate.</h1>
+<p class="sub">Drop agents onto the canvas and watch each one fork the flow. Then run the launch and take Gate 4 yourself. What you leave out, you meet at the gate.</p>
 
 <div class="app">
   <div class="bar">
     <span class="logo"><i></i><i></i><i></i></span><b>ShelfFlow</b><span class="ln">Lumina Glow, Vitamin C line</span>
-    <span class="pill" id="pill"><span class="dia"></span><span id="pillt">Your turn at Gate 4</span></span>
+    <span class="mode" aria-hidden="true"><span id="mB" class="on">Build</span><span id="mR">Run</span></span>
+    <span class="pill" id="pill"><span class="dia"></span><span id="pillt">You are the operator</span></span>
   </div>
   <div class="body">
-    <div class="lane agents" aria-label="Agents">
-      <span class="cap">AGENTS</span><span class="say" id="say">work on their own. All done.</span>
-      <span class="chip" id="drafter"><span class="ti">&#9998;</span>Copy Drafter<span class="st" id="dst">&#10003;</span></span>
-      <span class="chip"><span class="ti">&#177;</span>Diff Reporter<span class="st">&#10003;</span></span>
-    </div>
-    <div class="lane people" aria-label="People">
-      <span class="cap">PEOPLE</span>
-      <span class="g"><span class="dia"></span><span class="k">G1</span>Brief<span class="ck">&#10003;</span></span><span class="sp"></span>
-      <span class="g"><span class="dia"></span><span class="k">G2</span>Drafts<span class="ck">&#10003;</span></span><span class="sp"></span>
-      <span class="g"><span class="dia"></span><span class="k">G3</span>Compliance<span class="ck">&#10003;</span></span><span class="sp"></span>
-      <span class="g you" id="g4"><span class="dia"></span><span class="k">G4</span>Launch<span class="ck" id="g4ck"></span></span><span class="sp pend" id="sp4"></span>
-      <span class="out" id="out">Publish, <span id="outn">0 of 9 live</span></span>
+    <div class="build">
+      <div class="lib" id="lib">
+        <div class="top"><h3>Library</h3><p class="hint" id="libhint">Drag an agent onto the canvas, or click it.</p></div>
+        <div class="cards">
+        <button class="card" id="cSpec" data-a="spec"><span class="nm"><span class="ti">&#8644;</span>Spec Checker</span><span class="ds">Checks every title against each retailer's limits.</span><span class="fk" id="fSpec">ADDS A SPLIT PER RETAILER</span></button>
+        <button class="card" id="cScan" data-a="scan"><span class="nm"><span class="ti">&#9873;</span>Compliance Scanner</span><span class="ds">Checks every claim. Flags risk, never clears it.</span><span class="fk" id="fScan">ADDS A BRANCH TO A PERSON</span></button>
+        </div>
+      </div>
+      <div>
+        <div class="cvwrap" id="cvwrap"><svg id="cv" viewBox="0 0 960 276" role="img" aria-label="Pipeline canvas"></svg></div>
+        <div class="cvbar"><span class="status" id="status"></span><button class="bypass" id="bypass">Try wiring the agent straight to Publish</button><button class="runb" id="runb">&#9656; Run launch</button></div>
+      </div>
     </div>
 
-    <div class="gate" id="gate">
-      <div class="band"><span class="dia"></span><span class="k">GATE 4</span><span class="n">Launch</span><span class="c" id="bandc">1 of 9</span></div>
+    <div class="gate" id="gate" hidden>
+      <div class="band"><span class="dia"></span><span class="k">GATE 4</span><span class="n">Launch</span><span class="c" id="bandc">1 of 6</span></div>
       <div id="stage">
       <div class="gb">
         <div class="left">
           <div class="mx" id="mx"><div></div><div class="mh">AMZ</div><div class="mh">SEP</div><div class="mh">WMT</div></div>
-          <p class="prog" id="prog">0 chosen, 9 to go</p>
+          <p class="prog" id="prog">0 chosen, 6 to go</p>
           <p class="legend">Click any square to open it. Arrow keys work too.</p>
         </div>
         <div class="right">
@@ -187,46 +207,145 @@ body.embed .app{box-shadow:none}
             <div class="var"><div class="vh"><span class="bdg">A</span>Plain<span class="cnt" id="cA"></span></div><p id="tA"></p><button class="use" id="useA">Use A <kbd>A</kbd></button></div>
             <div class="var"><div class="vh"><span class="bdg">B</span>Richer<span class="cnt" id="cB"></span></div><p id="tB"></p><button class="use" id="useB">Use B <kbd>B</kbd></button></div>
           </div>
-          <div class="row"><span class="fine"><i>&#10003;</i><span id="fits"></span></span><span class="fine"><i>&#10003;</i>Cleared at Gate 3</span><button class="back" id="back">Neither, send both back <kbd>S</kbd></button></div>
-          <div class="why" id="why">What should the agent fix?<button data-r="Too salesy">Too salesy</button><button data-r="Too long">Too long</button><button data-r="Off brand">Off brand</button></div>
-          <div class="guard" id="guard"><span class="lk" id="lk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><div class="tx" id="gtx">In a hurry? Try the shortcut.<span id="gsub">It opens once you have looked at each one.</span></div><button class="batch" id="batch">Use B for the rest</button></div>
+          <div class="row"><span class="fine" id="f1"><i>&#10003;</i><span id="fits"></span></span><span class="fine" id="f2"><i>&#10003;</i><span id="clr"></span></span><button class="back" id="back">Neither, send both back <kbd>S</kbd></button></div>
+          <div class="why" id="why">What should the agent fix?<button data-r="Too salesy">Too salesy</button><button data-r="Too long">Too long</button><button data-r="Unproven claim">Unproven claim</button></div>
+          <div class="guard" id="guard"><span class="lk" id="lk"></span><div class="tx" id="gtx">In a hurry? Try the shortcut.<span id="gsub">It opens once you have looked at each one.</span></div><button class="batch" id="batch">Use B for the rest</button></div>
         </div>
       </div>
       </div>
-      <div class="foot2"><button class="ff" id="ff">Skip ahead &#9656;</button><span class="fnote" id="fnote">Launch unlocks at 9 of 9. No bypass.</span><button class="launch" id="launch" disabled>Approve for launch</button></div>
+      <div class="foot2"><button class="ff" id="ff">Skip ahead &#9656;</button><span class="fnote" id="fnote">Launch unlocks at 6 of 6. No bypass.</span><button class="launch" id="launch" disabled>Approve for launch</button></div>
     </div>
 
-    <div class="audit"><div class="ah">Audit trail<span id="an">0</span><em>Who decided, and when</em></div><div id="log"><div class="empty">Nothing yet. Every choice you make lands here with your name on it.</div></div></div>
+    <div class="audit"><div class="ah">Audit trail<span id="an">0</span><em>Who did what, and when</em></div><div id="log"><div class="empty">Nothing yet. Every block you add and every choice you make lands here.</div></div></div>
   </div>
 </div>
 
-<p class="foot">A working slice of ShelfFlow's decision architecture, on synthetic data. The guardrail is real: in early testing, reviewers approved in bulk to save time, so the shortcut now stays locked until each remaining choice has been opened. <a href="shelfflow.html">Read the full case study</a></p>
+<p class="foot">A working slice of ShelfFlow on synthetic data. The rules are the real ones: an agent cannot reach Publish without a gate, and the batch shortcut stays locked until each remaining choice has been opened. <a href="shelfflow.html">Read the full case study</a></p>
 </div>
-
 <script>
 (function(){
 var SKUS=[['Vitamin C 30ml','Lumina Glow Vitamin C Serum 30ml','Brightening Face Serum','20% Vitamin C for Dull, Uneven Skin','with 20% Vitamin C'],
-          ['Retinol Night','Lumina Glow Retinol Night Cream 50ml','Overnight Moisturizer','for Smoother-Looking Skin by Morning','for Smoother-Looking Skin'],
-          ['SPF 50 Glow','Lumina Glow SPF 50 Glow 50ml','Daily Sunscreen Moisturizer','Lightweight Daily Sunscreen with a Dewy Finish','Lightweight Daily Sunscreen']];
+          ['Retinol Night','Lumina Glow Retinol Night Cream 50ml','Overnight Moisturizer','for Smoother-Looking Skin by Morning','for Smoother-Looking Skin']];
 var RET=[['Amazon',200],['Sephora',120],['Walmart',150]];
-var LK='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',UL='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#067647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>';var N=9,cells=[],cur=0,launched=false,ffRunning=false,nlog=0;
+var LONG=' and a Visibly Brighter, More Even, Healthier-Looking Complexion';
+var LK='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',UL='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#067647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>';
+var S={spec:false,scan:false,phase:'build',st:{},hover:null,dragging:null,bypass:false,loop:false};
+var N=6,cells=[],cur=0,launched=false,ffRunning=false,nlog=0,justDragged=false;
+var INK='#101828',VIO='#a78bfa',V7='#5b4bd6',GREY='#d0d5dd',CY=120;
 function ev(n,p){if(typeof gtag==='function')gtag('event',n,p||{})}
 function $(id){return document.getElementById(id)}
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
-var mx=$('mx'),logEl=$('log');
+function size(){if(window.parent!==window){try{window.parent.postMessage({type:'g4h',h:document.documentElement.scrollHeight},'*')}catch(_){}}}
+var logEl=$('log');
+function now(){return new Date().toTimeString().slice(0,5)}
+function log(kind,html,who){var e=logEl.querySelector('.empty');if(e)e.remove();var d=document.createElement('div');
+ var ic=kind==='a'?'<span class="ag">&#10022;</span>':'<span class="av">'+(who||'Y')+'</span>';
+ d.innerHTML='<span class="ts">'+now()+'</span>'+ic+'<span class="'+(kind==='a'?'':kind==='x'?'x':'h')+'">'+html+'</span>';
+ logEl.prepend(d);while(logEl.children.length>7)logEl.removeChild(logEl.lastChild);nlog++;$('an').textContent=nlog;size();}
+
+/* ---------- canvas ---------- */
+function done(k){return S.phase==='build'||S.st[k]==='done'}
+function ecol(k,kind){return done(k)?(kind==='g'?INK:VIO):GREY}
+function line(d,col,extra){return '<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="1.6" stroke-linecap="round" '+(extra||'')+'/>'}
+function curve(x1,y1,x2,y2){var m=(x1+x2)/2;return 'M'+x1+' '+y1+'C'+m+' '+y1+' '+m+' '+y2+' '+x2+' '+y2}
+function agent(k,x,y,w,label,sub,pop){var st=S.st[k],run=S.phase!=='build',dim=run&&!st,ok=st==='done',flag=st==='flag',h=sub?38:34;
+ return '<g class="nd'+(pop?' pop':'')+'" opacity="'+(dim?.5:1)+'"><rect x="'+x+'" y="'+(y-h/2)+'" width="'+w+'" height="'+h+'" rx="9" fill="#fff" stroke="'+(st==='run'?'#8b5cf6':flag?'#fda29b':'#c4b5fd')+'" stroke-width="'+(st==='run'?2:1)+'"/>'
+ +'<rect x="'+(x+7)+'" y="'+(y-10)+'" width="20" height="20" rx="6" fill="'+(ok?'#ecfdf3':flag?'#fef3f2':'#f2f0fe')+'"'+(st==='run'?' class="blink"':'')+'/>'
+ +(ok?'<path transform="translate('+(x+11)+','+(y-6)+')" d="M2 6.5l2.8 2.8L10 3.5" fill="none" stroke="#067647" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>'
+     :'<path transform="translate('+(x+11)+','+(y-5.5)+')" d="M6 1l1.3 3.2L10.5 5.5 7.3 6.8 6 10 4.7 6.8 1.5 5.5l3.2-1.3z" fill="'+(flag?'#b42318':V7)+'"/>')
+ +'<text x="'+(x+33)+'" y="'+(sub?y-2:y+4)+'" font-size="11.5" font-weight="500" fill="#475467">'+label+'</text>'
+ +(sub?'<text x="'+(x+33)+'" y="'+(y+11)+'" font-size="9.5" fill="'+(flag?'#b42318':'#667085')+'" font-weight="'+(flag?600:400)+'">'+sub+'</text>':'')+'</g>'}
+function gate(k,x,y,w,num,name,person,pop){var st=S.st[k],run=S.phase!=='build',dim=run&&!st,turn=st==='turn';
+ return '<g class="nd'+(pop?' pop':'')+'"><rect x="'+x+'" y="'+(y-26)+'" width="'+w+'" height="52" rx="9" fill="#fff" stroke="'+(turn?INK:'#e4e7ec')+'" stroke-width="'+(turn?2:1)+'"/>'
+ +'<path d="M'+x+' '+(y-8)+'V'+(y-17)+'a9 9 0 0 1 9-9H'+(x+w-9)+'a9 9 0 0 1 9 9V'+(y-8)+'Z" fill="'+(dim?'#98a2b3':INK)+'"/>'
+ +'<path transform="translate('+(x+8)+','+(y-21)+')" d="M4 0l4 4-4 4-4-4z" fill="#fff"/><text class="mono" x="'+(x+21)+'" y="'+(y-13.5)+'" font-size="8.5" fill="#fff" letter-spacing=".5">'+num+'</text>'
+ +(st==='done'?'<path transform="translate('+(x+w-18)+','+(y-23)+')" d="M2 6.5l2.8 2.8L10 3.5" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>':'')
+ +'<text x="'+(x+9)+'" y="'+(y+6)+'" font-size="11.5" font-weight="600" fill="'+INK+'">'+name+'</text><text x="'+(x+9)+'" y="'+(y+19)+'" font-size="10" fill="'+(turn?INK:'#667085')+'" font-weight="'+(turn?600:400)+'"'+(turn?' class="blink"':'')+'>'+(turn&&k==='g4'?'Your turn':person)+'</text></g>'}
+function slot(x,w,label,a){var on=S.hover===a,dr=S.dragging===a;
+ return '<g'+(dr&&!on?' class="blink"':'')+'><rect x="'+x+'" y="98" width="'+w+'" height="44" rx="10" fill="'+(on?'#f2f0fe':'#f7f8fa')+'" stroke="'+(on||dr?'#8b5cf6':'#c4b5fd')+'" stroke-width="'+(on?2:1.2)+'" stroke-dasharray="5 4"/><text x="'+(x+w/2)+'" y="124" text-anchor="middle" font-size="10.5" font-weight="500" fill="'+V7+'">'+label+'</text></g>'}
+function logic(x,kind){var p=kind==='split'?'M2 7h3M5 7c2 0 2-4 5-4h2M5 7c2 0 2 4 5 4h2M5 7h7':'M12 7H9M9 7C7 7 7 3 4 3H2M9 7c-2 0-2 4-5 4H2M9 7H2';
+ return '<rect x="'+x+'" y="109" width="22" height="22" rx="7" fill="#fff" stroke="#98a2b3"/><path transform="translate('+(x+4)+',113)" d="'+p+'" fill="none" stroke="#475467" stroke-width="1.4" stroke-linecap="round"/>'}
+function render(pop){var h='',sk=[],b=S.phase==='build';
+ function so(x,y,c){sk.push('<circle cx="'+x+'" cy="'+y+'" r="3.6" fill="#fff" stroke="'+c+'" stroke-width="1.5"/>')}
+ var c1=b||S.st.brief==='done'?INK:GREY;h+=line('M70 120H92',c1);so(70,120,c1);so(92,120,c1);
+ var c2=ecol('dr','a');h+=line('M208 120H230',c2);so(208,120,c2);so(230,120,c2);
+ h+=line('M268 94C268 46 150 46 150 103','#dc6803',S.loop?'class="flow" stroke-width="2.2"':'stroke-dasharray="4 4"');so(268,94,'#dc6803');so(150,103,'#dc6803');
+ h+='<rect x="177" y="40" width="64" height="18" rx="9" fill="#fffaeb" stroke="#fedf89"/><text x="209" y="52.5" text-anchor="middle" font-size="9.5" font-weight="'+(S.loop?600:500)+'" fill="#b54708">sent back</text>';
+ var cg2=ecol('g2','g'),k1='g2',ys=[56,120,184];
+ if(S.spec){h+=line('M330 120H352',cg2);so(330,120,cg2);
+  for(var i=0;i<3;i++){h+=line(curve(374,120,396,ys[i]),cg2);var cb=ecol('b'+i,'a');h+=line(curve(508,ys[i],532,120),cb);so(396,ys[i],cg2);so(508,ys[i],cb)}
+  h+='<g'+(pop==='spec'?' class="pop"':'')+'>'+logic(352,'split')+logic(532,'merge')+'</g>';k1='mg';h+=line('M554 120H568',ecol('mg','g'));
+ }else{h+=line('M330 120H568',cg2);so(330,120,cg2);if(b)h+=slot(356,186,'Drop Spec Checker here','spec')}
+ var ck1=ecol(k1,'g'),k2=k1;
+ if(S.scan){so(568,120,ck1);var cs=S.st.sc==='flag'?'#d92d20':ecol('sc','a');h+=line('M696 120H709',cs);so(696,120,cs);
+  var cc=ecol('cond','g');h+=line('M731 120H756',cc);var cy3=b?'#f79009':(S.st.g3?'#f79009':GREY);h+=line('M720 131V188',cy3);so(720,188,cy3);
+  var c3=ecol('g3','g');h+=line('M772 214C806 214 806 190 806 146',c3);so(772,214,c3);so(806,146,c3);
+  h+='<g'+(pop==='scan'?' class="pop"':'')+'><path d="M720 109l11 11-11 11-11-11z" fill="#fffaeb" stroke="#f79009" stroke-width="1.4" stroke-linejoin="round"/></g>';
+  h+='<text x="738" y="113" font-size="9" fill="#667085">No</text><text x="726" y="164" font-size="9" fill="#b54708">Flagged</text>';k2='cond';
+ }else{h+=line('M568 120H756',ck1);if(b)h+=slot(574,176,'Drop Compliance Scanner here','scan')}
+ var ck2=ecol(k2,'g');so(756,120,ck2);var c4=ecol('g4','g');h+=line('M856 120H882',c4);so(856,120,c4);so(882,120,c4);
+ if(S.bypass){h+=line('M150 138C150 268 913 268 913 142','#d92d20','stroke-width="2" stroke-dasharray="6 5"')}
+ /* nodes */
+ h+='<rect x="16" y="103" width="54" height="34" rx="9" fill="#f3f4f6" stroke="#e4e7ec"/><text x="43" y="124" text-anchor="middle" font-size="11.5" font-weight="500" fill="'+INK+'">Brief</text>';
+ h+=agent('dr',92,120,116,'Copy Drafter');h+=gate('g2',230,120,100,'GATE 2','Drafts','Maya Okafor');
+ if(S.spec)for(var j=0;j<3;j++)h+=agent('b'+j,396,ys[j],112,RET[j][0],'Spec Checker',pop==='spec');
+ if(S.scan){h+=agent('sc',568,120,128,'Compliance',S.st.sc==='flag'?'1 flag':'Scanner',pop==='scan');h+=gate('g3',668,214,104,'GATE 3','Compliance','Daniel Reyes',pop==='scan')}
+ h+=gate('g4',756,120,100,'GATE 4','Launch','You');
+ var live=S.st.pub==='done';h+='<rect x="882" y="103" width="62" height="34" rx="9" fill="'+(live?'#ecfdf3':'#f3f4f6')+'" stroke="'+(live?'#abefc6':'#e4e7ec')+'"/><text x="913" y="124" text-anchor="middle" font-size="11.5" font-weight="500" fill="'+(live?'#067647':INK)+'">'+(live?'6 live':'Publish')+'</text>';
+ h+=sk.join('');
+ if(S.bypass)h+='<circle cx="913" cy="146" r="9" fill="#fef3f2" stroke="#d92d20" stroke-width="2"/><path d="M909.5 142.5l7 7m0-7l-7 7" stroke="#d92d20" stroke-width="1.8" stroke-linecap="round"/>';
+ $('cv').innerHTML=h;status();size();}
+function status(){var s=$('status');if(s.dataset.hold)return;s.className='status';
+ if(S.phase==='build'){s.innerHTML=S.spec&&S.scan?'<b>Ready to run.</b> Limits and claims are checked before anything reaches you.':S.spec?'<b>It will run.</b> Limits are checked per retailer. Nobody is checking claims.':S.scan?'<b>It will run.</b> Claims are checked. Nobody is checking retailer limits.':'<b>It will run.</b> One agent, two gates, and nobody checking limits or claims.'}
+ else if(S.phase==='run')s.innerHTML='<span class="dot blink"></span><b>Running.</b> Agents work on their own.';
+ else if(S.phase==='gate')s.innerHTML='<span class="dot"></span><b>Waiting on you.</b> Gate 4 is open below.';
+ else s.innerHTML='<b>Live.</b> Every gate signed.'}
+function cards(){[['spec','cSpec','fSpec','ADDS A SPLIT PER RETAILER'],['scan','cScan','fScan','ADDS A BRANCH TO A PERSON']].forEach(function(c){$(c[1]).classList.toggle('in',S[c[0]]);$(c[2]).textContent=S[c[0]]?'ON THE CANVAS. CLICK TO REMOVE':c[3]})}
+function add(a,via){if(S.phase!=='build'||S[a])return;S[a]=true;cards();render(a);
+ log('h',a==='spec'?'<b>You</b> added Spec Checker. The flow splits per retailer.':'<b>You</b> added Compliance Scanner. Flagged claims branch to Gate 3.');ev('agent_added',{agent:a,via:via})}
+function removeA(a){if(S.phase!=='build'||!S[a])return;S[a]=false;cards();render();log('h','<b>You</b> removed '+(a==='spec'?'Spec Checker':'Compliance Scanner')+'.')}
+function inCanvas(e){var r=$('cvwrap').getBoundingClientRect();return e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom}
+function bindCard(el){var a=el.getAttribute('data-a'),sx,sy,drag=false,gh=null,down=false;
+ el.addEventListener('pointerdown',function(e){if(S.phase!=='build'||S[a])return;down=true;sx=e.clientX;sy=e.clientY;drag=false;try{el.setPointerCapture(e.pointerId)}catch(_){}});
+ el.addEventListener('pointermove',function(e){if(!down)return;
+  if(!drag&&Math.hypot(e.clientX-sx,e.clientY-sy)>8){drag=true;gh=document.createElement('div');gh.className='ghost';gh.textContent=el.querySelector('.nm').textContent;document.body.appendChild(gh);S.dragging=a;render()}
+  if(drag){gh.style.left=e.clientX+'px';gh.style.top=e.clientY+'px';var o=inCanvas(e)?a:null;if(o!==S.hover){S.hover=o;render()}}});
+ function end(e){if(!down)return;down=false;if(!drag)return;gh.remove();gh=null;drag=false;var over=inCanvas(e);S.hover=null;S.dragging=null;justDragged=true;setTimeout(function(){justDragged=false},50);if(over)add(a,'drag');else render()}
+ el.addEventListener('pointerup',end);el.addEventListener('pointercancel',end);
+ el.addEventListener('click',function(){if(justDragged||S.phase!=='build')return;if(S[a])removeA(a);else add(a,'click')});}
+bindCard($('cSpec'));bindCard($('cScan'));
+$('bypass').onclick=function(){if(S.phase!=='build'||S.bypass)return;S.bypass=true;render();var s=$('status');s.dataset.hold='1';s.className='status bad';s.innerHTML='<b>Can’t connect.</b> An agent can’t reach Publish without a gate in between.';
+ var w=$('cvwrap');w.classList.remove('shake');void w.offsetWidth;w.classList.add('shake');log('x','Connection refused: Copy Drafter to Publish, no gate in between');ev('bypass_blocked',{});
+ setTimeout(function(){S.bypass=false;delete s.dataset.hold;render()},2800)};
+
+/* ---------- run ---------- */
+function runLaunch(){if(S.phase!=='build')return;S.phase='run';S.st={};$('lib').classList.add('locked');$('libhint').textContent='Locked while the launch runs.';$('mB').classList.remove('on');$('mR').classList.add('on');
+ $('runb').disabled=true;$('bypass').style.display='none';$('pillt').textContent='Running';ev('run_started',{spec:S.spec,scan:S.scan});log('h','<b>You</b> started the launch');
+ var q=[];function st(ms,fn){q.push([ms,fn])}
+ st(300,function(){S.st.brief='done';S.st.dr='run'});
+ st(800,function(){S.st.dr='done';log('a','Copy Drafter wrote 2 versions of 6 packages')});
+ st(600,function(){S.st.g2='done';log('h','<b>Maya Okafor</b> approved the drafts at Gate 2','MO')});
+ if(S.spec){st(400,function(){S.st.b0=S.st.b1=S.st.b2='run'});st(600,function(){S.st.b0='done'});st(350,function(){S.st.b2='done'});
+  st(450,function(){S.st.b1='done';S.st.mg='done';log('a','Spec Checker trimmed 1 Sephora title to fit 120 characters')})}
+ if(S.scan){st(400,function(){S.st.sc='run'});st(800,function(){S.st.sc='flag';log('a','Compliance Scanner flagged “clinically proven”: no study on file')});
+  st(600,function(){S.st.g3='turn'});st(900,function(){S.loop=true;S.st.dr='run';log('h','<b>Daniel Reyes</b> sent the claim back at Gate 3','DR')});
+  st(1100,function(){S.loop=false;S.st.dr='done';log('a','Copy Drafter removed the claim from 3 packages')});
+  st(600,function(){S.st.sc='done';S.st.g3='done';S.st.cond='done';log('h','<b>Daniel Reyes</b> signed Gate 3','DR')})}
+ st(500,function(){S.st.g4='turn';S.phase='gate';$('pillt').textContent='Your turn at Gate 4';$('gate').hidden=false;show(0)});
+ (function go(i){if(i>=q.length)return;setTimeout(function(){q[i][1]();render();go(i+1)},q[i][0])})(0);render();}
+$('runb').onclick=runLaunch;
+
+/* ---------- gate 4 ---------- */
+var mx=$('mx');
 SKUS.forEach(function(s,si){var l=document.createElement('div');l.className='ms';l.textContent=s[0];mx.appendChild(l);
  RET.forEach(function(r,ri){var b=document.createElement('button');b.className='cell';b.setAttribute('aria-label',s[0]+', '+r[0]);
-  var i=cells.length;b.onclick=function(){if(!launched&&!ffRunning)show(i)};mx.appendChild(b);
-  cells.push({s:si,r:ri,v:null,seen:false,gen:1,el:b});});});
-function texts(c){var s=SKUS[c.s];var a=s[1]+', '+s[2];var tail=c.gen>1?s[4]:s[3];return [a,s[1]+', ',tail]}
+  var i=cells.length;b.onclick=function(){if(!launched&&!ffRunning)show(i)};mx.appendChild(b);cells.push({s:si,r:ri,v:null,seen:false,gen:1,el:b});});});
+function texts(c){var s=SKUS[c.s],a=s[1]+', '+s[2],tail;
+ if(c.gen>1)tail=s[4];else{tail=s[3];if(c.s===0&&!S.scan)tail='Clinically Proven '+tail;if(c.s===0&&c.r===1&&!S.spec)tail+=LONG}
+ return [a,s[1]+', ',tail]}
 function count(){var n=0;cells.forEach(function(c){if(c.v)n++});return n}
 function unopened(){var n=0;cells.forEach(function(c){if(!c.v&&!c.seen)n++});return n}
 function pending(){return N-count()}
-function now(){return new Date().toTimeString().slice(0,5)}
-function log(kind,html){var e=logEl.querySelector('.empty');if(e)e.remove();var d=document.createElement('div');
- var ic=kind==='a'?'<span class="ag">&#9998;</span>':'<span class="av">SL</span>';
- d.innerHTML='<span class="ts">'+now()+'</span>'+ic+'<span class="'+(kind==='a'?'':kind==='x'?'x':'h')+'">'+html+'</span>';
- logEl.prepend(d);while(logEl.children.length>6)logEl.removeChild(logEl.lastChild);nlog++;$('an').textContent=nlog;}
 function name(c){return SKUS[c.s][0]+', '+RET[c.r][0]}
 function paint(){cells.forEach(function(c,i){c.el.className='cell'+(i===cur&&!launched?' cur':c.v?' ok':c.seen?' seen':'');c.el.textContent=c.v||'';});
  var n=count();$('prog').textContent=n+' chosen, '+(N-n)+' to go';$('bandc').textContent=(n<N?(Math.min(n+1,N))+' of '+N:'All '+N+' chosen');
@@ -234,31 +353,34 @@ function paint(){cells.forEach(function(c,i){c.el.className='cell'+(i===cur&&!la
  b.textContent=p>1?'Use B for the rest':'Use B';b.classList.toggle('on',u===0&&p>0);$('lk').innerHTML=u===0?UL:LK;
  if(!tx.classList.contains('blocked')){tx.firstChild.nodeValue=u===0&&p>0?'You have opened every one.':'In a hurry? Try the shortcut.';$('gsub').textContent=u===0&&p>0?'The shortcut is open for the '+p+' left.':u+' still unopened. It opens once you have looked at each one.';}
  $('guard').style.display=p>0?'flex':'none';
- var L=$('launch');L.disabled=n<N;L.classList.toggle('on',n===N);$('fnote').textContent=n===N?'Every choice is made. This one is yours too.':'Launch unlocks at '+N+' of '+N+'. No bypass.';
- size();}
-function show(i){cur=i;var c=cells[i];c.seen=true;var t=texts(c),lim=RET[c.r][1];
+ var L=$('launch');L.disabled=n<N;L.classList.toggle('on',n===N);$('fnote').textContent=n===N?'Every choice is made. This one is yours too.':'Launch unlocks at '+N+' of '+N+'. No bypass.';size();}
+function show(i){cur=i;var c=cells[i];c.seen=true;var t=texts(c),lim=RET[c.r][1],la=t[0].length,lb=(t[1]+t[2]).length;
  $('where').textContent=SKUS[c.s][1].replace('Lumina Glow ','')+', '+RET[c.r][0];$('v2').hidden=c.gen<2;
  $('tA').textContent=t[0];$('tB').innerHTML=esc(t[1])+'<mark>'+esc(t[2])+'</mark>';
- $('cA').textContent=t[0].length+' / '+lim;$('cB').textContent=(t[1]+t[2]).length+' / '+lim;$('fits').textContent='Fits '+RET[c.r][0]+'’s limit';
+ $('cA').textContent=S.spec?la+' / '+lim:la+' chars';$('cB').textContent=S.spec?lb+' / '+lim:lb+' chars';
+ $('f1').className='fine'+(S.spec?'':' w');$('f1').firstChild.innerHTML=S.spec?'&#10003;':'!';$('fits').textContent=S.spec?'Fits '+RET[c.r][0]+'’s limit':'Limits not checked';
+ $('f2').className='fine'+(S.scan?'':' w');$('f2').firstChild.innerHTML=S.scan?'&#10003;':'!';$('clr').textContent=S.scan?'Cleared at Gate 3':'Claims not checked';
  $('why').classList.remove('on');$('gtx').classList.remove('blocked');paint();}
 function next(){for(var k=1;k<=N;k++){var j=(cur+k)%N;if(!cells[j].v)return j}return -1}
-function choose(v,quiet){var c=cells[cur];if(launched)return;c.v=v;log('h','<b>You</b> chose '+v+' for '+name(c));
+function choose(v,quiet){var c=cells[cur];if(launched||S.phase!=='gate')return;c.v=v;log('h','<b>You</b> chose '+v+' for '+name(c));
  var n=count();if(n>=2&&n<N)$('ff').classList.add('on');if(n===N)$('ff').classList.remove('on');
  var j=next();if(j>=0&&!quiet)show(j);else paint();}
-function sendBack(reason){var c=cells[cur];if(launched)return;c.v=null;c.gen++;
- log('h','<b>You</b> sent '+name(c)+' back: “'+reason+'”');log('a','Copy Drafter rewrote it. Diff Reporter marked what changed.');
- ev('reject_used',{cell:name(c),reason:reason});
- var d=$('drafter');d.classList.remove('run');void d.offsetWidth;d.classList.add('run');$('dst').textContent='v'+c.gen;$('say').textContent='work on their own. Copy Drafter just rewrote one.';
- show(cur);}
+function sendBack(reason){var c=cells[cur];if(launched||S.phase!=='gate')return;c.v=null;c.gen++;
+ log('h','<b>You</b> sent '+name(c)+' back: “'+reason+'”');log('a','Copy Drafter rewrote it. The loop ran once.');ev('reject_used',{cell:name(c),reason:reason});
+ S.loop=true;S.st.dr='run';render();setTimeout(function(){S.loop=false;S.st.dr='done';render()},1300);show(cur);}
 function guardTry(){if(launched)return;var u=unopened(),p=pending();if(!p)return;
  if(u>0){var tx=$('gtx');tx.classList.add('blocked');tx.firstChild.nodeValue='Not yet.';$('gsub').textContent=u+' not opened. Open each one first: click the grey squares.';
   var g=$('guard');g.classList.remove('shake');void g.offsetWidth;g.classList.add('shake');log('x','Shortcut blocked: '+u+' choices not opened');ev('batch_blocked',{pending:u});size();return;}
  cells.forEach(function(c){if(!c.v){c.v='B';}});log('h','<b>You</b> chose B for the last '+p+', after opening each');$('ff').classList.remove('on');paint();}
-function launch(){if(count()<N||launched)return;launched=true;ev('launch_approved',{});log('h','<b>You</b> approved the launch');
- var a=0;cells.forEach(function(c){if(c.v==='A')a++});
- $('pill').classList.add('live');$('pill').firstChild.style.display='none';$('pillt').textContent='Live on 3 retailers';$('g4').classList.remove('you');$('g4ck').innerHTML='&#10003;';$('sp4').classList.remove('pend');
- $('out').classList.add('live');$('outn').textContent=N+' of '+N+' live';$('gate').style.borderColor='var(--line)';
- $('stage').innerHTML='<div class="done"><h2>Four gates signed. '+N+' packages out.</h2><p>'+a+' went out as version A, '+(N-a)+' as version B. Every choice has your name and a time on it.</p><button id="again">Start over</button></div>';
+function launch(){if(count()<N||launched)return;launched=true;log('h','<b>You</b> approved the launch');
+ var over=0,claims=0;cells.forEach(function(c){if(c.v==='B'&&c.gen===1&&c.s===0){if(!S.scan)claims++;if(!S.spec&&c.r===1)over=(texts(c)[1]+texts(c)[2]).length}});
+ ev('launch_approved',{spec:S.spec,scan:S.scan,issues:(over?1:0)+(claims?1:0)});
+ S.phase='live';S.st.g4='done';S.st.pub='done';render();
+ var clean=!over&&!claims;$('pill').classList.toggle('live',clean);$('pill').firstChild.style.display='none';$('pillt').textContent=clean?'Live on 3 retailers':'Live, with problems';$('gate').style.borderColor='var(--line)';
+ var li='';if(over)li+='<li>Sephora rejected 1 title: '+over+' characters, limit 120. No agent was checking limits.</li>';
+ if(claims)li+='<li>'+claims+' '+(claims>1?'packages':'package')+' went live saying “clinically proven”. There is no study on file, and nobody flagged it.</li>';
+ if(clean)li='<li class="ok">'+(S.spec&&S.scan?'Limits and claims were checked before anything reached you.':'Nothing slipped through this time. The pipeline did not guarantee that: you did.')+'</li>';
+ $('stage').innerHTML='<div class="done"><h2>'+(clean?'Every gate signed. 6 packages out.':'6 packages out. Not all of them should be.')+'</h2><p>'+(clean?'Every choice has your name and a time on it.':'You signed it, so it has your name on it. The pipeline you built is why you could not see it.')+'</p><ul>'+li+'</ul><button id="again">'+(S.spec&&S.scan?'Start over':'Rebuild the pipeline')+'</button></div>';
  $('again').onclick=function(){location.reload()};document.querySelector('.foot2').style.display='none';size();}
 function ffwd(){if(ffRunning||launched)return;ffRunning=true;ev('ff_used',{at:count()});$('ff').classList.remove('on');
  (function step(){var j=cells[cur].v?next():cur;if(j<0){ffRunning=false;paint();return}show(j);setTimeout(function(){if(launched)return;choose(j%2?'A':'B',true);setTimeout(step,260)},340)})();}
@@ -266,14 +388,14 @@ $('useA').onclick=function(){if(!ffRunning)choose('A')};$('useB').onclick=functi
 $('back').onclick=function(){if(!ffRunning&&!launched){$('why').classList.toggle('on');size()}};
 $('why').addEventListener('click',function(e){var r=e.target.getAttribute&&e.target.getAttribute('data-r');if(r&&!ffRunning)sendBack(r)});
 $('batch').onclick=guardTry;$('launch').onclick=launch;$('ff').onclick=ffwd;
-document.addEventListener('keydown',function(e){if(launched||ffRunning||e.metaKey||e.ctrlKey||e.altKey)return;var k=e.key.toLowerCase();
+document.addEventListener('keydown',function(e){if(S.phase!=='gate'||launched||ffRunning||e.metaKey||e.ctrlKey||e.altKey)return;var k=e.key.toLowerCase();
  if(k==='a')choose('A');else if(k==='b')choose('B');else if(k==='s'){$('why').classList.add('on');size()}
  else if(k==='arrowright'){e.preventDefault();show((cur+1)%N)}else if(k==='arrowleft'){e.preventDefault();show((cur+N-1)%N)}
  else if(k==='arrowdown'){e.preventDefault();show((cur+3)%N)}else if(k==='arrowup'){e.preventDefault();show((cur+N-3)%N)}});
-function size(){if(window.parent!==window){try{window.parent.postMessage({type:'g4h',h:document.documentElement.scrollHeight},'*')}catch(_){}}}
 window.addEventListener('load',size);window.addEventListener('resize',size);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(size);
-show(0);
+$('lk').innerHTML=LK;render();
 })();
+
 </script>
 </body>
 </html>

@@ -393,7 +393,14 @@
     <div class="cs__screen"><img src="../img/shelfflow/v4/build-assign.webp" alt="Assigning a named person to the new gate" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Assign / one named person per gate</span></div>
     <div class="cs__screen"><img src="../img/shelfflow/v4/run-live.webp" alt="The same graph in Run mode, with retailer branches in progress" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Run / the same drawing, live</span></div>
   </div>
-  <p class="cs__img-cap">A gate with no owner blocks the launch. Once every gate has a name, the pipeline locks and runs: here Amazon is checked, Walmart and Target are in progress.</p>
+  <p class="cs__img-cap">A gate with no owner blocks the launch. Once every gate has a name, the pipeline locks and runs: here Amazon is checked, Sephora and Walmart are in progress.</p>
+  <div data-reveal style="background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:24px 28px;margin:28px 0">
+    <span style="font-family:var(--m);font-size:11px;color:var(--ac);letter-spacing:2px">&#9670; INTERACTIVE, SYNTHETIC DATA</span>
+    <p style="font-family:var(--s);font-size:1.15rem;font-weight:700;color:var(--t1);margin:10px 0 6px">Build the pipeline. Then hold the gate.</p>
+    <p style="font-family:var(--s);font-size:.9rem;color:var(--t2);line-height:1.65;margin:0 0 14px">A working slice of the canvas. Drag the two agents in and watch each one fork the flow, or leave them out. Then run the launch and take Gate 4 yourself: what you did not build, you meet at the gate.</p>
+    <iframe id="g4frame" src="gate4-demo.html?embed=1" title="Interactive ShelfFlow canvas demo" loading="lazy" style="width:100%;border:0;border-radius:10px;height:600px;background:#f7f8fa"></iframe>
+    <p style="margin:10px 0 0"><a href="gate4-demo.html" style="font-family:var(--m);font-size:.78rem;color:var(--t3);text-decoration:none">Open full screen &#8599;</a></p>
+  </div>
   </div>
 
   <div class="cs__section" id="s04" data-reveal>
@@ -587,13 +594,6 @@
   </div>
   <p class="cs__img-cap">Gate 4. Eighteen choices, one at a time, A or B. The batch shortcut stays locked until every remaining choice has been opened.</p>
 
-  <div data-reveal style="background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:24px 28px;margin:28px 0">
-    <span style="font-family:var(--m);font-size:11px;color:var(--ac);letter-spacing:2px">&#9670; INTERACTIVE, SYNTHETIC DATA</span>
-    <p style="font-family:var(--s);font-size:1.15rem;font-weight:700;color:var(--t1);margin:10px 0 6px">Hold Gate 4 yourself.</p>
-    <p style="font-family:var(--s);font-size:.9rem;color:var(--t2);line-height:1.65;margin:0 0 14px">A working slice of the decision architecture, in the same interface as the screens above. Choose which version ships, send one back and watch the agent rewrite it, and try the shortcut: the guardrail is live.</p>
-    <iframe id="g4frame" src="gate4-demo.html?embed=1" title="Interactive Gate 4 demo" loading="lazy" style="width:100%;border:0;border-radius:10px;height:860px;background:#f7f8fa"></iframe>
-    <p style="margin:10px 0 0"><a href="gate4-demo.html" style="font-family:var(--m);font-size:.78rem;color:var(--t3);text-decoration:none">Open full screen &#8599;</a></p>
-  </div>
 
   <div class="cs__screens" data-reveal>
     <div class="cs__screen"><img src="../img/shelfflow/v3/matrix.webp" alt="Matrix view: every package by product and retailer" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Matrix / every package</span></div>
