@@ -10,7 +10,7 @@
 <meta name="description" content="The supervision interface for an agentic content pipeline. Six AI agents, four human gates, 36 retailer-ready packages per brief. A case study by Inigo Angulo.">
 <meta property="og:title" content="ShelfFlow / Inigo Angulo">
 <meta property="og:description" content="The supervision interface for an agentic content pipeline. Six AI agents, four human gates, 36 retailer-ready packages per brief.">
-<meta property="og:image" content="https://inigoangulo.com/img/shelfflow/og.png?v=1118c">
+<meta property="og:image" content="https://inigoangulo.com/img/shelfflow/og.png?v=1118e">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="article">
@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ShelfFlow / Inigo Angulo">
 <meta name="twitter:description" content="The supervision interface for an agentic content pipeline. Six AI agents, four human gates, 36 retailer-ready packages per brief.">
-<meta name="twitter:image" content="https://inigoangulo.com/img/shelfflow/og.png?v=1118c">
+<meta name="twitter:image" content="https://inigoangulo.com/img/shelfflow/og.png?v=1118e">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -42,15 +42,11 @@
 <div class="cs-wrap">
 <nav class="cs-nav" id="csNav">
 <a href="#s01" class="cs-nav__link"><span class="cs-nav__num">01</span>Problem</a>
-<a href="#s02" class="cs-nav__link"><span class="cs-nav__num">02</span>Reframe</a>
+<a href="#s02" class="cs-nav__link"><span class="cs-nav__num">02</span>Insight</a>
 <a href="#s03" class="cs-nav__link"><span class="cs-nav__num">03</span>Canvas</a>
-<a href="#s04" class="cs-nav__link"><span class="cs-nav__num">04</span>Per brief</a>
-<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>Agents</a>
-<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>People</a>
-<a href="#s07" class="cs-nav__link"><span class="cs-nav__num">07</span>The Loop</a>
-<a href="#s08" class="cs-nav__link"><span class="cs-nav__num">08</span>Scale</a>
-<a href="#s09" class="cs-nav__link"><span class="cs-nav__num">09</span>Mistakes</a>
-<a href="#s10" class="cs-nav__link"><span class="cs-nav__num">10</span>Reflection</a>
+<a href="#s04" class="cs-nav__link"><span class="cs-nav__num">04</span>One launch</a>
+<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>Mistakes</a>
+<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>Outcome</a>
 <a href="#" class="cs-nav__top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">&#8593; Top</a>
 </nav>
 <article class="cs">
@@ -80,7 +76,6 @@
     <span class="cs__type">B2B SaaS / Agentic Pipeline / Content Operations</span>
     <h1 class="cs__h">The AI could already write the content. Nobody would let it ship.</h1>
     <p class="cs__sub">ShelfFlow makes agent work supervisable. Six agents carry the volume, four named people own every decision, and the system can always answer one question: who approved this?</p>
-    <p class="cs__sub" style="margin-top:16px;color:var(--t3)">ShelfFlow turns a single product brief into retailer-ready content through an orchestrated pipeline: AI agents parse, draft, adapt and flag; four mandatory human gates decide what advances. The product problem wasn't generating content. It was making agentic work supervisable at enterprise scale.</p>
     <p class="cs__sub" style="margin-top:12px;color:var(--t3)">I owned the product end to end: strategy and pipeline architecture, agent orchestration boundaries, state machine design, decision authority mapping and the full supervision interface.</p>
   </div>
 
@@ -94,21 +89,20 @@
   <p class="cs__sub" style="margin:-16px 0 32px;font-size:.78rem;color:var(--t3)">How to read the numbers: client figures are under NDA. "Weeks to days" is the target the product was designed for, not a published result. The numbers in the cards come from the demo launch shown in the screens: Lumina Glow, 6 SKUs, 3 retailers, 2 variants.</p>
 
   <!-- Hero visual -->
-  <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/cover.png?v=1118c" alt="ShelfFlow canvas in Build mode: a library of agents and gates, and the pipeline as a graph with a split per retailer and a sent back loop"></div>
-  <p class="cs__img-cap">The canvas. Agents are the violet nodes, people are the black gates. The work splits per retailer, merges back, and loops to the agent when a person sends it back.</p>
+  <div class="cs__img cs__img--wide" data-reveal><img src="../img/shelfflow/cover.png?v=1118e" alt="ShelfFlow canvas in Build mode: a library of agents and gates, and the pipeline as a graph with a split per retailer and a sent back loop"></div>
+  <p class="cs__img-cap">The canvas for one launch. Violet nodes are agents, black ones are gates with a person's name on them.</p>
 
 
   <div class="cs__section" id="s01" data-reveal>
     <span class="cs__section-num">01 The Problem</span>
     <h2 class="cs__section-h">Launches took weeks. Writing was never the slow part.</h2>
     <div class="cs__section-text">
-      <p>A single product launch at an enterprise CPG company means <strong>6 SKUs &#215; 3 retailers &#215; 2 variants = 36 content packages</strong>, each with its own spec requirements, character limits and compliance rules. Producing this by hand took weeks: versioning lived in file names, approvals moved through email threads no one could reconstruct, and generative AI existed but wasn't trusted because nothing defined what it was allowed to decide.</p>
-      <p>Generative AI was already in the building. It sat unused for anything that mattered, because nobody had written down what it was allowed to decide.</p>
+      <p>One product launch at an enterprise CPG company means <strong>6 SKUs &#215; 3 retailers &#215; 2 variants = 36 content packages</strong>, each with its own character limits, spec sheet and compliance rules. Doing this by hand took weeks. Versions lived in file names, and approvals moved through email threads nobody could reconstruct.</p>
     </div>
 
     <div class="cs__evidence">
-      <span class="cs__evidence-label">Evidence</span>
-      <span class="cs__evidence-text">In stakeholder interviews, roughly 70% of the launch delays people described started in approval ambiguity, not in content creation. That is what people reported, not an instrumented measurement. "Who needs to sign off on this?" was the most frequently asked question. The workflow needed explicit gates with clear ownership, not faster drafting tools.</span>
+      <span class="cs__evidence-label">From the interviews</span>
+      <span class="cs__evidence-text">In stakeholder interviews, roughly 70% of the launch delays people described started in approval ambiguity, not in content creation. That is what people reported, not an instrumented measurement. The question they kept asking was "who needs to sign off on this?"</span>
     </div>
 
   <div class="cs__img cs__img--wide" data-reveal><div class="dgD"><svg viewBox="0 0 1160 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="One brief explodes into thirty-six packages requiring eighteen human decisions and one launch" style="font-family:var(--m)">
@@ -155,32 +149,15 @@
 <line x1="210" y1="435" x2="210" y2="481" stroke="#3a3a48" marker-end="url(#ar)"/>
 <line x1="210" y1="527" x2="210" y2="555" stroke="#3a3a48" marker-end="url(#ar)"/>
 <defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7" fill="none" stroke="#3a3a48" stroke-width="1.4"/></marker></defs></svg></div></div>
-  <p class="cs__img-cap">The content matrix explosion: 1 brief &#8594; 6 SKUs &#215; 3 retailers &#215; 2 variants = 36 content packages &#8594; 18 approval decisions &#8594; 1 launch.</p>
-
-    <div class="cs__evidence">
-      <span class="cs__evidence-label">Scale math</span>
-      <span class="cs__evidence-text"><strong>6 SKUs &#215; 3 retailers &#215; 2 variants = 36 packages.</strong> Each package passes through 4 gates. That's 144 gate evaluations per launch. With roughly 50% requiring at least one revision cycle, the system manages 200+ state transitions per product launch. Without structured workflow, this volume becomes untrackable within the first week.</span>
-    </div>
+  <p class="cs__img-cap">One brief becomes 36 packages. Each product and retailer gets two variants, so someone has to choose which one ships: 18 choices before a single launch.</p>
   </div>
 
   <div class="cs__section" id="s02" data-reveal>
-    <span class="cs__section-num">02 The Reframe</span>
-    <h2 class="cs__section-h">The fix wasn't a faster content tool. It was deciding what the AI is allowed to decide.</h2>
+    <span class="cs__section-num">02 The Insight</span>
+    <h2 class="cs__section-h">A faster writer would not have helped. The team needed to know who decides.</h2>
     <div class="cs__section-text">
-      <p>Faster drafting wouldn't have solved it. The strategic insight: <strong>design the decision architecture first, then embed AI as an accelerator within it.</strong> ShelfFlow structures the pipeline as 6 stages with 4 mandatory human gates. Agents operate freely between gates. Nothing crosses a gate without a human.</p>
-      <p>That one decision set the shape of everything after it. Agents do the work between gates. A person owns each gate. The interface has one job: make that split obvious at a glance.</p>
-    </div>
-
-    <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
-      <p style="font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px">Six-stage pipeline</p>
-      <div style="display:flex;flex-direction:column;gap:6px">
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(45,212,191,.03);border:1px solid rgba(45,212,191,.08)"><span style="font-family:var(--m);font-size:12px;color:var(--ac);min-width:20px;font-weight:700">S1</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Brief</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">Brief Parser structures it: 6 SKUs, 36 packages</span></div>
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.12)"><span style="font-family:var(--m);font-size:12px;color:var(--ac);min-width:20px;font-weight:700">S2</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Drafts</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 1: Brief</span></div>
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.1)"><span style="font-family:var(--m);font-size:12px;color:var(--am);min-width:20px;font-weight:700">S3</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Checks</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 2: Drafts</span></div>
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.12)"><span style="font-family:var(--m);font-size:12px;color:var(--am);min-width:20px;font-weight:700">S4</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Compliance scan</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">Claims checked, flags raised with evidence</span></div>
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(167,139,250,.04);border:1px solid rgba(167,139,250,.1)"><span style="font-family:var(--m);font-size:12px;color:#a78bfa;min-width:20px;font-weight:700">S5</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Launch choices</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 3: Compliance</span></div>
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.1)"><span style="font-family:var(--m);font-size:12px;color:var(--up);min-width:20px;font-weight:700">S6</span><span style="font-family:var(--s);font-size:14px;color:var(--t1);font-weight:600">Publish</span><span style="font-family:var(--s);font-size:13px;color:var(--t3);margin-left:auto">&#9670; Gate 4: Launch</span></div>
-      </div>
+      <p>Generative AI was already in the building, and it went unused for anything that mattered. The drafts were not the issue. Nobody had written down what the AI could decide on its own, what needed a person, and which person.</p>
+      <p>So I designed the decisions first and put the AI inside them. Six agents do the work: they parse, draft, check and flag. Four gates stand between them and the retailer, and each gate belongs to one named person. Maya Okafor, Content Lead, signs the brief and the drafts. Daniel Reyes, Compliance Officer, signs the claims. Sofia Lindqvist, Brand Manager, signs the launch. Alex Mar&#237;n, the operator, runs the workflow and signs nothing. No agent can approve or publish.</p>
     </div>
 
   <style>
@@ -361,42 +338,37 @@
 <defs><marker id="wfmah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#3a3a48" stroke-width="1.3"/></marker><marker id="wfmag" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#22c55e" stroke-width="1.3"/></marker></defs>
 </svg>
   </div>
-  <p class="cs__img-cap">Agent orchestration and authority in one map. Six agents work the lanes between gates; four humans own the gates. The vertical axis is the trust architecture: AI drafts and flags above the line, human accountability signs below it. The operator runs the workflow but holds no gate authority.</p>
-
-    <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
-      <p style="font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px">Four principles I designed against</p>
-      <div style="display:flex;flex-direction:column;gap:6px">
-        <div style="display:flex;gap:14px;align-items:baseline;padding:12px 14px;border-radius:6px;background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.1)"><span style="font-family:var(--m);font-size:12px;color:var(--ac);font-weight:700">01</span><span style="font-family:var(--s);font-size:15px;color:var(--t1);font-weight:600">Agents work in the background. People stay in front.</span></div>
-        <div style="display:flex;gap:14px;align-items:baseline;padding:12px 14px;border-radius:6px;background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.1)"><span style="font-family:var(--m);font-size:12px;color:var(--ac);font-weight:700">02</span><span style="font-family:var(--s);font-size:15px;color:var(--t1);font-weight:600">A gate is a named person, not a step.</span></div>
-        <div style="display:flex;gap:14px;align-items:baseline;padding:12px 14px;border-radius:6px;background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.1)"><span style="font-family:var(--m);font-size:12px;color:var(--ac);font-weight:700">03</span><span style="font-family:var(--s);font-size:15px;color:var(--t1);font-weight:600">Sent back is a loop, not a failure.</span></div>
-        <div style="display:flex;gap:14px;align-items:baseline;padding:12px 14px;border-radius:6px;background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.1)"><span style="font-family:var(--m);font-size:12px;color:var(--ac);font-weight:700">04</span><span style="font-family:var(--s);font-size:15px;color:var(--t1);font-weight:600">One decision at a time, however many there are.</span></div>
-      </div>
-    </div>
+  <p class="cs__img-cap">The arrangement in one map: six agents above the line, the four gates and their owners below it.</p>
   </div>
 
   <div class="cs__section" id="s03" data-reveal>
-    <span class="cs__section-num">03 The Canvas</span>
-    <h2 class="cs__section-h">You build the pipeline on the canvas. Then the same drawing runs.</h2>
+    <span class="cs__section-num">03 The Product Decision</span>
+    <h2 class="cs__section-h">One canvas. The workflow is built on it, and then it runs there.</h2>
     <div class="cs__section-text">
-      <p>A canvas only earns its place when someone composes on it. Otherwise it is a progress bar with zoom. In Build mode the operator lays out the launch from a library: agents, human gates, a split per retailer, a merge, a loop that returns rejected drafts to the agent that wrote them, and a condition that sends regulated claims down an extra legal branch. The pipeline is a graph, not a line.</p>
-      <p>The canvas also carries the rule the whole product rests on. You can add gates, but the four core ones cannot be removed. A gate cannot run without a named person. An agent cannot be wired to Publish without a gate in between. "AI assists, never ships" stops being a principle and becomes something the tool refuses to let you draw.</p>
-      <p>Switch to Run and nothing is redrawn. The same graph fills in as the work happens, stops at the person whose turn it is, and every node opens.</p>
+      <p>The obvious interface was a progress view: stages on a line and a bar that fills. It would have hidden what the team most needed to see, which is how the work is wired and where each person stands in it. So the canvas does two jobs. The operator composes the pipeline on it, and the same drawing then executes.</p>
+      <p>In Build mode the operator works from a library: agents, human gates, a split per retailer, a merge, a loop for work that is sent back, and a condition that routes regulated claims to an extra legal gate. The rules live in the canvas instead of a policy document. A gate needs a named owner before the launch can run, the four core gates cannot be deleted, and an agent cannot be wired to Publish.</p>
     </div>
 
   <div class="cs__screens" data-reveal>
-    <div class="cs__screen"><img src="../img/shelfflow/v4/build-place.webp?v=1118c" alt="Dragging a condition from the library onto an edge of the pipeline" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Place a node / the edge shows where it fits</span></div>
-    <div class="cs__screen"><img src="../img/shelfflow/v4/build-connect.webp?v=1118c" alt="Pulling a connection from the condition to a new legal review gate" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Connect a node / the socket shows where it lands</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/build-place.webp?v=1118e" alt="Dragging a condition from the library onto an edge of the pipeline" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Place a node / the edge shows where it fits</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/build-connect.webp?v=1118e" alt="Pulling a connection from the condition to a new legal review gate" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Connect a node / the socket shows where it lands</span></div>
   </div>
-  <p class="cs__img-cap">Adding a branch. A condition dropped between Gate 3 and Gate 4 forks the path: regulated claims go through a new legal gate, everything else goes straight on.</p>
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/build-refuse.webp?v=1118c" alt="The canvas refusing a connection from an agent straight to Publish" width="1920" height="1080" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">A connection the canvas refuses. An agent cannot reach Publish without a gate in between, and the canvas says why.</p>
+  <p class="cs__img-cap">Adding a branch. A condition dropped between Gate 3 and Gate 4 sends regulated claims through a legal gate, and the launch cannot run until that gate has an owner.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/build-refuse.webp?v=1118e" alt="The canvas refusing a connection from an agent straight to Publish" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">A line from an agent to Publish. The canvas refuses it and says why.</p>
+    <div class="cs__section-text">
+      <p>The drawing also changes with the brief. A copy refresh on two retailers needs four agents. A seasonal promo needs new visuals, so the operator brings in an optional Image Generator that runs beside the Copy Drafter and arrives at the same gate. A new product line needs every check. ShelfFlow reads the brief and suggests the closest shape.</p>
+    </div>
+
   <div class="cs__screens" data-reveal>
-    <div class="cs__screen"><img src="../img/shelfflow/v4/build-assign.webp?v=1118c" alt="Assigning a named person to the new gate" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Assign / one named person per gate</span></div>
-    <div class="cs__screen"><img src="../img/shelfflow/v4/run-live.webp?v=1118c" alt="The same graph in Run mode, with retailer branches in progress" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Run / the same drawing, live</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/brief-templates.webp?v=1118e" alt="Starting a launch: four pipeline templates, with Promo campaign suggested from the brief" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Start from the brief / a shape is suggested</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/promo-canvas.webp?v=1118e" alt="The canvas for a promo campaign, with an optional Image Generator node beside the Copy Drafter" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Promo canvas / an optional agent joins</span></div>
   </div>
-  <p class="cs__img-cap">A gate with no owner blocks the launch. Once every gate has a name, the pipeline locks and runs: here Amazon is checked, Sephora and Walmart are in progress.</p>
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/zoom-split.webp?v=1118c" alt="Close view of the split per retailer: three parallel Spec Checker nodes and a merge" width="1520" height="800" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">The split, up close. One line leaves Gate 2 and becomes three parallel checks, one per retailer. Each finishes at its own pace, and the merge waits for all three.</p>
+  <p class="cs__img-cap">Holiday Gift Sets needs new visuals and carries no regulated claims, so the promo shape is suggested.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/zoom-image-node.webp?v=1118e" alt="Generated visuals for gift sets by retailer format: some ready, one redone, two still generating" width="1800" height="1194" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">Optional agents work under the same limits. The Image Generator composes from approved packshots, cannot add a claim or a price, and its output still waits for a person. One visual here was redone for being off brand. These images were generated for the demo.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/three-canvases.webp?v=1118e" alt="Three canvases compared: a copy refresh with four agents, a promo campaign with five, and a full launch with six and a legal branch" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">Three briefs, three canvases: four, five and six agents. The gates do not move.</p>
   <div data-reveal style="background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:24px 28px;margin:28px 0">
     <span style="font-family:var(--m);font-size:11px;color:var(--ac);letter-spacing:2px">&#9670; INTERACTIVE, SYNTHETIC DATA</span>
     <p style="font-family:var(--s);font-size:1.15rem;font-weight:700;color:var(--t1);margin:10px 0 6px">Build the pipeline. Then hold the gate.</p>
@@ -407,253 +379,83 @@
   </div>
 
   <div class="cs__section" id="s04" data-reveal>
-    <span class="cs__section-num">04 The Brief Shapes the Canvas</span>
-    <h2 class="cs__section-h">Same four gates. A different canvas for every brief.</h2>
+    <span class="cs__section-num">04 One Launch, Start to Finish</span>
+    <h2 class="cs__section-h">Lumina Glow, from brief to live in 2 hours 22 minutes.</h2>
     <div class="cs__section-text">
-      <p>If every launch ran through the same drawing, the canvas would be a diagram again. Launches are not alike. A copy refresh changes a few lines of text on two retailers. A seasonal promo needs new visuals for four. A new product line needs every check and a legal branch.</p>
-      <p>So a launch starts from its brief. ShelfFlow reads it, suggests the closest shape, and the operator brings in only the nodes that brief needs. The gates are the part that never changes: every template arrives with all four, and none of them can be removed.</p>
-      <p>Image generation is the clearest case. It is an optional agent. It joins the canvas only when the brief asks for visuals, runs beside the Copy Drafter, and both arrive together at Gate 2, where one person reviews words and images side by side. It lives by the same rules as every other agent: it composes from approved packshots, it never adds a claim or a price, and it never ships.</p>
+      <p>The rest of the page follows one launch from the demo data: Lumina Glow, a Vitamin C line, six products on Amazon, Sephora and Walmart. The times come from its audit trail.</p>
+    </div>
+
+    <p style="font-family:var(--m);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);margin:44px 0 10px">Before the brief / Home</p>
+    <div class="cs__section-text">
+      <p>Maya runs sixteen launches at once, so her day starts on Home. Her queue comes first, then every launch by stage. A card shows what separates one launch from the next: days to launch, progress inside its stage and, when something is wrong, what.</p>
+    </div>
+
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/home-dashboard.webp?v=1118e" alt="ShelfFlow home: the decision queue, launches by stage, packages live this week and agent quality, above a board of sixteen launches" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">Home, from the Content Lead's seat. Black is waiting on her, grey on someone else, violet is an agent working, red is an error.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/zoom-home-cards.webp?v=1118e" alt="Close view of launch cards with days to launch, progress bars and error states" width="1800" height="681" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">Three kinds of trouble on the board: a check blocked by a missing spec sheet, an agent that timed out and is retrying, and a launch two days late.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/home-filter.webp?v=1118e" alt="The board filtered to launches with an error: two cards remain, with the filter conditions open" width="1864" height="500" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">Finding one launch among sixteen: search by name, SKU or retailer, or filter by condition.</p>
+    <p style="font-family:var(--m);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);margin:44px 0 10px">13:02 to 13:14 / Gate 1, the brief</p>
+    <div class="cs__section-text">
+      <p>Alex submits the brief. The Brief Parser structures it into 6 SKUs and 36 packages, and stops on what it cannot settle: the brief names three markets, but every retailer and SKU is US only. Maya answers the question and locks the brief. From here it cannot change silently.</p>
+    </div>
+
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/gate1.webp?v=1118e" alt="Gate 1: the submitted brief next to what the agent structured, field by field" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">Gate 1. On the left, what Alex wrote. On the right, what the agent read, with every difference marked.</p>
+    <p style="font-family:var(--m);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);margin:44px 0 10px">13:17 to 13:52 / Gate 2, drafts and a loop</p>
+    <div class="cs__section-text">
+      <p>The Copy Drafter writes two versions of all 36 packages. Maya sends three back as too long for Sephora. She says what is wrong in one sentence, the work returns to the agent, and she is free until it comes back. Minutes later the rewrites return with the changes marked, and she approves all 36.</p>
+    </div>
+
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/zoom-loop.webp?v=1118e" alt="Close view of the sent back loop between Gate 2 and the Copy Drafter" width="1360" height="680" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">A rejection is a loop, not a dead end. Three drafts are back with the Copy Drafter and everything downstream waits.</p>
+    <p style="font-family:var(--m);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);margin:44px 0 10px">14:10 to 14:21 / The checks</p>
+    <div class="cs__section-text">
+      <p>Past Gate 2 the work splits by retailer. Three Spec Checkers run in parallel against each retailer's limits, and the merge waits for all of them. Then the Compliance Scanner reads every claim. Agents stay quiet on the canvas: a small node, a name and one fact. The detail is one click away.</p>
+    </div>
+
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/zoom-split.webp?v=1118e" alt="Close view of the split per retailer: three parallel Spec Checker nodes and a merge" width="1520" height="800" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">The split while it runs. Amazon is done, Sephora and Walmart are still being checked.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/run-agent.webp?v=1118e" alt="Clicking the Compliance Scanner opens its essentials in a side panel" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">Clicking the scanner: what it flagged, what it may and may not do, and how often its flags hold up once a person checks them.</p>
+    <p style="font-family:var(--m);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);margin:44px 0 10px">14:21 to 14:52 / Gate 3, compliance</p>
+    <div class="cs__section-text">
+      <p>The scanner raises four flags: "clinically proven", "results in 14 days", "dermatologist approved" and "all-day protection". The other 32 packages are clear. The flags are what the agent caught, not what shipped. Daniel takes them one at a time.</p>
+    </div>
+
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/zoom-gate3.webp?v=1118e" alt="Close view of Gate 3: the scanner node shows 4 flags, a red line carries them to the gate, and the gate lists the four flagged phrases" width="1500" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">Gate 3 opens where it sits on the graph and says whose turn it is.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/gate3-review.webp?v=1118e" alt="Gate 3 opened over the canvas, showing one flagged sentence" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">One flag: the sentence, the reason, a note for the agent, and a keyboard shortcut per answer. This decision also covers the same claim in two other packages.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/gate3-evidence.webp?v=1118e" alt="The full evidence view for one flag, with the decision panel" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">The evidence behind it: the rule, the source sentence in the brief, and a suggested rewrite that is never applied on its own.</p>
+    <p style="font-family:var(--m);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);margin:44px 0 10px">14:52 to 15:24 / Gate 4, the launch</p>
+    <div class="cs__section-text">
+      <p>No regulated claim is left, so the legal branch is skipped. Sofia now chooses which of the two variants ships for each product and retailer: 18 choices, taken one at a time. A shortcut can apply her choice to the rest, and it stays locked until she has opened each one.</p>
     </div>
 
   <div class="cs__screens" data-reveal>
-    <div class="cs__screen"><img src="../img/shelfflow/v4/brief-templates.webp?v=1118d" alt="Starting a launch: four pipeline templates, with Promo campaign suggested from the brief" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Start from the brief / the closest shape, suggested</span></div>
-    <div class="cs__screen"><img src="../img/shelfflow/v4/promo-canvas.webp?v=1118d" alt="The canvas for a promo campaign, with an optional Image Generator node beside the Copy Drafter" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Promo canvas / Image Generator beside the Copy Drafter</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/gate4-choose.webp?v=1118e" alt="Gate 4: choosing between version A and B for one product and retailer" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Gate 4 / one choice</span></div>
+    <div class="cs__screen"><img src="../img/shelfflow/v4/gate4-batch.webp?v=1118e" alt="Gate 4: the batch shortcut stays locked until every choice has been opened" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Gate 4 / the shortcut, still locked</span></div>
   </div>
-  <p class="cs__img-cap">Holiday Gift Sets needs new visuals and has no regulated claims, so ShelfFlow suggests the promo shape. On the canvas, the Image Generator is marked optional and runs in parallel with the copy.</p>
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/image-node.webp?v=1118d" alt="The Image Generator node expanded: inputs, generated visuals per retailer format, boundaries and track record" width="1920" height="1080" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">The node opens like every other: what it used, what it made, and what it is not allowed to do. One visual was redone for being off brand before any person saw it.</p>
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/zoom-image-node.webp?v=1118d" alt="Close view of the generated visuals: gift sets by retailer format, some ready, one redone, two still generating" width="1800" height="1194" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">The output, up close. Rows are gift sets, columns are retailer formats. These visuals were generated for this demo launch.</p>
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/three-canvases.webp?v=1118d" alt="Three canvases compared: a copy refresh with four agents, a promo campaign with five, and a full launch with six and a legal branch" width="1920" height="1080" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">Three briefs, three shapes. Four agents for a copy refresh, five for a promo, six for a full launch. The rest of this page follows the full launch, Lumina Glow.</p>
+  <p class="cs__img-cap">Two versions side by side with their character counts. On the right, the shortcut waits for six choices she has not opened yet.</p>
+    <p style="font-family:var(--m);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);margin:44px 0 10px">15:24 / Live</p>
+    <div class="cs__section-text">
+      <p>Sofia approves. One variant of each product goes live on each retailer: 18 packages, 2 hours and 22 minutes after the brief arrived.</p>
+    </div>
+
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/run-done.webp?v=1118e" alt="The canvas after launch: every gate signed, 18 packages live" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">The same drawing Alex built, with every node done.</p>
+  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/audit.webp?v=1118e" alt="Audit trail view: every step in order, people in bold" width="1920" height="1080" loading="lazy" decoding="async"></div>
+  <p class="cs__img-cap">The audit trail for this launch. People are in bold and each gate decision is tagged, so "who approved this claim?" is one row with a name and a time.</p>
   </div>
 
   <div class="cs__section" id="s05" data-reveal>
-    <span class="cs__section-num">05 Agents in the Background</span>
-    <h2 class="cs__section-h">Agents work on their own, so they should not compete for your attention.</h2>
+    <span class="cs__section-num">05 What I Got Wrong</span>
+    <h2 class="cs__section-h">Two things v1 got wrong, and what testing showed.</h2>
     <div class="cs__section-text">
-      <p>On the canvas an agent is a small violet node: a name and one fact. An agent that finished without trouble nearly disappears. The only one that asks for attention is the one that needs a person.</p>
-      <p>The detail is still there, one click at a time: the essentials in a side panel, then the full record of what the agent did and why.</p>
-      <p>A full launch uses 6 specialised agents across the pipeline, coordinated by a workflow orchestrator that routes tasks, schedules generation jobs and enforces gate rules. Each agent operates within a clearly defined boundary: it can draft, suggest, check or flag, but it cannot approve or publish. No agent can bypass a gate.</p>
-    </div>
-
-  <div class="cs__screens" data-reveal>
-    <div class="cs__screen"><img src="../img/shelfflow/v4/run-agent.webp?v=1118c" alt="Clicking the Compliance Scanner opens its essentials in a side panel" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Click an agent / the essentials slide in</span></div>
-    <div class="cs__screen"><img src="../img/shelfflow/v4/run-node.webp?v=1118c" alt="The Copy Drafter node expanded to full size over the canvas" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Expand a node / the full record</span></div>
-  </div>
-  <p class="cs__img-cap">Agents stay in the background until you ask. A click opens the essentials: what it flagged, what it can and cannot do, and how often it is right. Any node also expands to full size.</p>
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/agent-full.webp?v=1118c" alt="Full view of the Compliance Scanner agent with inputs, findings, rule coverage and run log" width="1920" height="1080" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">The full view, one more click in. The Compliance Scanner's inputs, the four claims it flagged with the rule behind each, coverage across 412 checks, and its run log. The canvas stays simple; the depth lives here.</p>
-
-    <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
-      <p style="font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px">Embedded AI agents</p>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-        <div style="padding:14px;border-radius:6px;border:1px solid rgba(45,212,191,.12);background:rgba(45,212,191,.04)"><span style="font-family:var(--m);font-size:11px;color:var(--ac);display:block;margin-bottom:6px;font-weight:600">BRIEF PARSER</span><span style="font-family:var(--s);font-size:13px;color:var(--t2)">Extracts SKU matrix, claims, and key messages from product brief</span></div>
-        <div style="padding:14px;border-radius:6px;border:1px solid rgba(45,212,191,.12);background:rgba(45,212,191,.04)"><span style="font-family:var(--m);font-size:11px;color:var(--ac);display:block;margin-bottom:6px;font-weight:600">COPY DRAFTER</span><span style="font-family:var(--s);font-size:13px;color:var(--t2)">Generates retailer-adapted copy per SKU. Respects character limits and tone.</span></div>
-        <div style="padding:14px;border-radius:6px;border:1px solid rgba(45,212,191,.12);background:rgba(45,212,191,.04)"><span style="font-family:var(--m);font-size:11px;color:var(--ac);display:block;margin-bottom:6px;font-weight:600">SPEC CHECKER</span><span style="font-family:var(--s);font-size:13px;color:var(--t2)">Validates against retailer spec sheets. Flags violations before human review.</span></div>
-        <div style="padding:14px;border-radius:6px;border:1px solid rgba(245,158,11,.12);background:rgba(245,158,11,.04)"><span style="font-family:var(--m);font-size:11px;color:var(--am);display:block;margin-bottom:6px;font-weight:600">COMPLIANCE SCANNER</span><span style="font-family:var(--s);font-size:13px;color:var(--t2)">Checks claims against regulatory databases. Flags risk, never clears it.</span></div>
-        <div style="padding:14px;border-radius:6px;border:1px solid rgba(245,158,11,.12);background:rgba(245,158,11,.04)"><span style="font-family:var(--m);font-size:11px;color:var(--am);display:block;margin-bottom:6px;font-weight:600">CONSISTENCY AUDITOR</span><span style="font-family:var(--s);font-size:13px;color:var(--t2)">Cross-checks messaging across all 36 packages. Detects contradictions.</span></div>
-        <div style="padding:14px;border-radius:6px;border:1px solid rgba(167,139,250,.12);background:rgba(167,139,250,.04)"><span style="font-family:var(--m);font-size:11px;color:#a78bfa;display:block;margin-bottom:6px;font-weight:600">DIFF REPORTER</span><span style="font-family:var(--s);font-size:13px;color:var(--t2)">Summarises what changed between versions. Enables faster re-approval.</span></div>
-      </div>
-      <p style="font-family:var(--s);font-size:13px;color:var(--t3);margin-top:12px;text-align:center">Every agent drafts or flags. No agent approves. Zero autonomous shipping. Optional agents, like the Image Generator, join when a brief needs them and follow the same rule.</p>
-    </div>
-  </div>
-
-  <div class="cs__section" id="s06" data-reveal>
-    <span class="cs__section-num">06 People in Front</span>
-    <h2 class="cs__section-h">A gate is a named person, not a step.</h2>
-    <div class="cs__section-text">
-      <p>In enterprise commerce, shipping wrong content is more expensive than a delayed launch: incorrect claims create regulatory exposure, mismatched specs trigger portal rejections. So the counterweight to agent speed is a hard gate model. Four mandatory gates, no bypass, each owned by a role with <strong>explicit authority enforced by the system</strong>, not by process docs. A Content Lead approves briefs and drafts but can't sign off compliance. A Compliance Officer owns Gate 3 but has no launch authority.</p>
-      <p>On the canvas that becomes literal. Gates are the black nodes, each with a name on it. The one that needs you says it is your turn and opens where it sits. Everyone else sees who has it and how long it has waited. The operator who runs the workflow can nudge the owner but cannot sign.</p>
-    </div>
-
-    <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
-      <p style="font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px">Authority mapping</p>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
-        <div style="padding:14px;border-radius:6px;border:1px solid rgba(45,212,191,.12);background:rgba(45,212,191,.04);text-align:center"><span style="font-family:var(--m);font-size:11px;color:var(--ac);display:block;margin-bottom:4px;font-weight:600">CONTENT LEAD</span><span style="font-family:var(--s);font-size:12px;color:var(--t2)">Owns briefs, approves drafts (G1, G2)</span></div>
-        <div style="padding:14px;border-radius:6px;border:1px solid rgba(245,158,11,.12);background:rgba(245,158,11,.04);text-align:center"><span style="font-family:var(--m);font-size:11px;color:var(--am);display:block;margin-bottom:4px;font-weight:600">COMPLIANCE</span><span style="font-family:var(--s);font-size:12px;color:var(--t2)">Owns regulatory review (G3)</span></div>
-        <div style="padding:14px;border-radius:6px;border:1px solid rgba(167,139,250,.12);background:rgba(167,139,250,.04);text-align:center"><span style="font-family:var(--m);font-size:11px;color:#a78bfa;display:block;margin-bottom:4px;font-weight:600">BRAND MANAGER</span><span style="font-family:var(--s);font-size:12px;color:var(--t2)">Final launch authority (G4)</span></div>
-        <div style="padding:14px;border-radius:6px;border:1px solid rgba(34,197,94,.12);background:rgba(34,197,94,.04);text-align:center"><span style="font-family:var(--m);font-size:11px;color:var(--up);display:block;margin-bottom:4px;font-weight:600">OPERATOR</span><span style="font-family:var(--s);font-size:12px;color:var(--t2)">Manages workflow, no gate authority</span></div>
-      </div>
-    </div>
-
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/run-gate3.webp?v=1118c" alt="Gate 3 on the canvas, Daniel Reyes turn, with four flags listed" width="1920" height="1080" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">Gate 3, Daniel's turn. The Compliance Scanner raised four flags; the other 32 packages are clear. The gate opens where it sits on the graph.</p>
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/zoom-gate3.webp?v=1118c" alt="Close view of Gate 3: the scanner node shows 4 flags, a red line carries them to the gate, and the gate lists the four flagged phrases" width="1500" height="1080" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">Up close. These four phrases are what the agent caught, not what shipped. The scanner carries the count, the red line carries the flags to the gate, and the gate names each phrase and its product.</p>
-
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/gate1.webp?v=1118c" alt="Gate 1: the submitted brief next to what the agent structured, field by field" width="1920" height="1080" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">Gate 1. The brief as the agent read it, field by field, with every difference marked. The agent asks what it cannot settle. The Content Lead answers, then locks.</p>
-
-  <div class="cs__img cs__img--wide" data-reveal><div class="dgD"><svg viewBox="0 0 1160 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Decision authority: agents draft and flag, four humans own the gates, the operator runs the workflow without gate authority" style="font-family:var(--m)">
-<rect x="200" y="34" width="760" height="61" rx="10" fill="#13131b" stroke="#a78bfa" stroke-opacity="0.5" stroke-dasharray="5 5"/>
-<text x="580" y="56" fill="#a78bfa" font-size="12.5" text-anchor="middle">AI AGENTS, draft, adapt, flag</text>
-<text x="580" y="74" fill="#8a8a98" font-size="10.5" text-anchor="middle" font-family="var(--s)">never approve / never publish</text>
-<rect x="55" y="190" width="230" height="61" rx="10" fill="#13131b" stroke="#3a3a48" stroke-opacity="1"/>
-<text x="170" y="212" fill="#c8c8d4" font-size="12.5" text-anchor="middle">Operator</text>
-<text x="170" y="230" fill="#8a8a98" font-size="10.5" text-anchor="middle" font-family="var(--s)">runs the workflow / no authority</text>
-<rect x="353" y="190" width="230" height="61" rx="10" fill="#13131b" stroke="#2dd4bf" stroke-opacity="0.5"/>
-<text x="468" y="212" fill="#2dd4bf" font-size="12.5" text-anchor="middle">Content Lead</text>
-<text x="468" y="230" fill="#8a8a98" font-size="10.5" text-anchor="middle" font-family="var(--s)">owns G1 brief / G2 draft</text>
-<rect x="640" y="190" width="240" height="61" rx="10" fill="#13131b" stroke="#a78bfa" stroke-opacity="0.5"/>
-<text x="760" y="212" fill="#a78bfa" font-size="12.5" text-anchor="middle">Compliance Officer</text>
-<text x="760" y="230" fill="#8a8a98" font-size="10.5" text-anchor="middle" font-family="var(--s)">owns G3 compliance</text>
-<rect x="914" y="190" width="220" height="61" rx="10" fill="#13131b" stroke="#22c55e" stroke-opacity="0.5"/>
-<text x="1024" y="212" fill="#22c55e" font-size="12.5" text-anchor="middle">Brand Manager</text>
-<text x="1024" y="230" fill="#8a8a98" font-size="10.5" text-anchor="middle" font-family="var(--s)">owns G4 / launch</text>
-<line x1="468" y1="102" x2="468" y2="185" stroke="#3a3a48" stroke-dasharray="4 4" marker-end="url(#ar)"/>
-<line x1="760" y1="102" x2="760" y2="185" stroke="#3a3a48" stroke-dasharray="4 4" marker-end="url(#ar)"/>
-<line x1="1024" y1="102" x2="1024" y2="185" stroke="#3a3a48" stroke-dasharray="4 4" marker-end="url(#ar)"/>
-<text x="580" y="152" fill="#8a8a98" font-size="10" text-anchor="middle">hand-off at the gates</text>
-<text x="580" y="308" fill="#f59e0b" font-size="11" letter-spacing="2" text-anchor="middle">NOTHING SHIPS WITHOUT A GATE OWNER</text>
-<defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7" fill="none" stroke="#3a3a48" stroke-width="1.4"/></marker></defs></svg></div><div class="dgM"><svg viewBox="0 0 420 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Decision authority map, mobile layout" style="font-family:var(--m)">
-<rect x="30" y="30" width="360" height="61" rx="10" fill="#13131b" stroke="#a78bfa" stroke-opacity="0.5" stroke-dasharray="5 5"/>
-<text x="210" y="52" fill="#a78bfa" font-size="12.5" text-anchor="middle">AI AGENTS, draft &amp; flag</text>
-<text x="210" y="70" fill="#8a8a98" font-size="10.5" text-anchor="middle" font-family="var(--s)">never approve / never publish</text>
-<rect x="45" y="148" width="330" height="61" rx="10" fill="#13131b" stroke="#3a3a48" stroke-opacity="1"/>
-<text x="210" y="170" fill="#c8c8d4" font-size="12.5" text-anchor="middle">Operator</text>
-<text x="210" y="188" fill="#8a8a98" font-size="10.5" text-anchor="middle" font-family="var(--s)">runs workflow / no authority</text>
-<rect x="45" y="256" width="330" height="61" rx="10" fill="#13131b" stroke="#2dd4bf" stroke-opacity="0.5"/>
-<text x="210" y="278" fill="#2dd4bf" font-size="12.5" text-anchor="middle">Content Lead</text>
-<text x="210" y="296" fill="#8a8a98" font-size="10.5" text-anchor="middle" font-family="var(--s)">owns G1 brief / G2 draft</text>
-<rect x="45" y="364" width="330" height="61" rx="10" fill="#13131b" stroke="#a78bfa" stroke-opacity="0.5"/>
-<text x="210" y="386" fill="#a78bfa" font-size="12.5" text-anchor="middle">Compliance Officer</text>
-<text x="210" y="404" fill="#8a8a98" font-size="10.5" text-anchor="middle" font-family="var(--s)">owns G3 compliance</text>
-<rect x="45" y="472" width="330" height="61" rx="10" fill="#13131b" stroke="#22c55e" stroke-opacity="0.5"/>
-<text x="210" y="494" fill="#22c55e" font-size="12.5" text-anchor="middle">Brand Manager</text>
-<text x="210" y="512" fill="#8a8a98" font-size="10.5" text-anchor="middle" font-family="var(--s)">owns G4 / launch</text>
-<line x1="210" y1="98" x2="210" y2="143" stroke="#3a3a48" stroke-dasharray="4 4" marker-end="url(#ar)"/>
-<defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7" fill="none" stroke="#3a3a48" stroke-width="1.4"/></marker></defs></svg></div></div>
-  <p class="cs__img-cap">Decision authority map: who owns which decisions across the pipeline. Agents act autonomously between gates. Humans own every approval that ships.</p>
-
-    <div class="cs__section-text">
-      <p>The decisions below defined the boundary between agent autonomy and human authority. Each one responded to a specific failure mode observed during research.</p>
-    </div>
-
-    <div class="cs__decisions-wrap"><table class="cs__decisions">
-      <thead><tr><th>Decision</th><th>Chosen</th><th>Rejected</th><th>Why</th></tr></thead>
-      <tbody>
-        <tr>
-          <td>AI authority</td>
-          <td>Draft-only (never ships)</td>
-          <td>Auto-publish with confidence threshold</td>
-          <td>Enterprise compliance requires human sign-off on every claim that reaches the shelf. AI that ships autonomously creates regulatory liability. The value of AI here is speed-to-draft, not autonomy.</td>
-        </tr>
-        <tr>
-          <td>Gate model</td>
-          <td>4 mandatory gates, no bypass</td>
-          <td>Flexible approval chains</td>
-          <td>Flexibility introduces ambiguity. When a retailer or legal team asks "who approved this?", the system must return one unambiguous answer. Configurable chains make that impossible to guarantee.</td>
-        </tr>
-        <tr>
-          <td>Staged generation</td>
-          <td>Brief &#8594; Draft &#8594; Adapt &#8594; Review</td>
-          <td>Single-step generation</td>
-          <td>Generating retailer-adapted content in one pass produces output that looks right but fails spec validation. Staged generation lets operators catch problems at each layer before they compound.</td>
-        </tr>
-        <tr>
-          <td>Batch operations</td>
-          <td>Batch approve only after individual review</td>
-          <td>Unrestricted batch approval</td>
-          <td>v1 allowed batch-approving packages that hadn't been individually reviewed. Testing revealed operators rubber-stamped to save time. Added a "reviewed" flag requirement. Speed without review is liability.</td>
-        </tr>
-      </tbody>
-    </table></div>
-  </div>
-
-  <div class="cs__section" id="s07" data-reveal>
-    <span class="cs__section-num">07 The Loop</span>
-    <h2 class="cs__section-h">Sent back is a loop, not a failure.</h2>
-    <div class="cs__section-text">
-      <p>Each of the 36 packages runs as an independent state machine: Draft, In Review, Approved, Published, Rejected or Blocked. Nothing else. The interface says the same thing in plainer words: a rejected package reads "Sent back", a published one "Live". Every transition requires an explicit human action or a system event, and every change is logged with who triggered it and why. This replaced the ambiguous in-between states of the old workflow: "probably approved", "waiting on someone", "I think legal saw it". Rejected packages route back to the previous stage carrying reviewer notes, which agents use to regenerate. Supervision, not babysitting.</p>
-      <p>So a rejection never leaves the reviewer holding the problem. They say what is wrong in a sentence, the work goes back to the agent, and the canvas shows the loop running until it returns.</p>
-    </div>
-
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/gate3-review.webp?v=1118c" alt="Gate 3 opened over the canvas, showing one flagged sentence" width="1920" height="1080" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">Gate 3 opens in place, one flag at a time: the sentence, the reason, a note for the agent, and two answers with a keyboard shortcut each.</p>
-
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v3/gate3-evidence.webp?v=1118c" alt="The full evidence view for one flag, with the decision panel" width="1920" height="1080" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">See evidence. The whole case behind one flag: why the agent raised it, a suggested rewrite that is never applied on its own, the source in the brief, the three packages one decision covers, and the three outcomes.</p>
-
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/run-loop.webp?v=1118c" alt="The sent back loop lit on the canvas: three drafts return to the Copy Drafter" width="1920" height="1080" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">Sent back is a loop, not an error. Three drafts return to the Copy Drafter with the note attached, the loop lights up, and everything downstream waits.</p>
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/zoom-loop.webp?v=1118c" alt="Close view of the sent back loop between Gate 2 and the Copy Drafter" width="1360" height="680" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">The loop, up close. Gate 2 reads "3 sent back", the line back to the Copy Drafter turns solid, and the drafter is the only node working.</p>
-
-    <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
-      <p style="font-family:var(--s);font-size:1rem;font-weight:700;margin-bottom:16px">Content package states</p>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
-        <div style="padding:14px;border-radius:6px;background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.12);text-align:center"><span style="font-family:var(--s);font-size:14px;font-weight:700;color:#5eead4;display:block">Draft</span><span style="font-family:var(--m);font-size:12px;color:var(--t3)">AI-generated</span><span style="font-family:var(--s);font-size:12px;color:var(--t2);display:block;margin-top:4px">Awaiting review</span></div>
-        <div style="padding:14px;border-radius:6px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.12);text-align:center"><span style="font-family:var(--s);font-size:14px;font-weight:700;color:#f59e0b;display:block">In Review</span><span style="font-family:var(--m);font-size:12px;color:var(--t3)">Human editing</span><span style="font-family:var(--s);font-size:12px;color:var(--t2);display:block;margin-top:4px">Owner assigned</span></div>
-        <div style="padding:14px;border-radius:6px;background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.12);text-align:center"><span style="font-family:var(--s);font-size:14px;font-weight:700;color:#a78bfa;display:block">Approved</span><span style="font-family:var(--m);font-size:12px;color:var(--t3)">Gate passed</span><span style="font-family:var(--s);font-size:12px;color:var(--t2);display:block;margin-top:4px">Ready for next stage</span></div>
-        <div style="padding:14px;border-radius:6px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.12);text-align:center"><span style="font-family:var(--s);font-size:14px;font-weight:700;color:#22c55e;display:block">Published</span><span style="font-family:var(--m);font-size:12px;color:var(--t3)">Retailer-live</span><span style="font-family:var(--s);font-size:12px;color:var(--t2);display:block;margin-top:4px">Audit trail complete</span></div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px">
-        <div style="padding:14px;border-radius:6px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.12);text-align:center"><span style="font-family:var(--s);font-size:14px;font-weight:700;color:#ef4444;display:block">Rejected</span><span style="font-family:var(--m);font-size:12px;color:var(--t3)">Gate failed</span><span style="font-family:var(--s);font-size:12px;color:var(--t2);display:block;margin-top:4px">Returns to previous stage with notes</span></div>
-        <div style="padding:14px;border-radius:6px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.08);text-align:center"><span style="font-family:var(--s);font-size:14px;font-weight:700;color:#ef4444;display:block">Blocked</span><span style="font-family:var(--m);font-size:12px;color:var(--t3)">Dependency unmet</span><span style="font-family:var(--s);font-size:12px;color:var(--t2);display:block;margin-top:4px">Waiting on external input</span></div>
-      </div>
-    </div>
-
-    <div class="cs__evidence">
-      <span class="cs__evidence-label">System rationale</span>
-      <span class="cs__evidence-text">Every state transition is logged: who, when, why. Rejected packages carry reviewer notes back to the previous stage. No silent failures. No packages stuck in limbo. The state machine is the accountability layer.</span>
-    </div>
-  </div>
-
-  <div class="cs__section" id="s08" data-reveal>
-    <span class="cs__section-num">08 Scale</span>
-    <h2 class="cs__section-h">One decision at a time, however many there are.</h2>
-    <div class="cs__section-text">
-      <p>The core complexity of ShelfFlow isn't any single content package. It's the <strong>combinatorial explosion</strong> when you multiply SKUs by retailers by variants. This is where manual workflows break. Not at package #1, but at package #27, when reviewer fatigue sets in and the differences between Amazon and Walmart specs blur together. ShelfFlow's job is to make package #36 as reviewable as package #1: urgency signals, comparison tools and batch operations all exist to fight decision quality decay.</p>
-      <p>The answer to volume was not a bigger table. Eighteen launch decisions arrive as one card and are taken one at a time, with the grid kept small on the side to show progress. The dense views exist for the people who want them: every package in Matrix, every step in Audit trail.</p>
-    </div>
-
-    <div class="cs__section-text">
-      <p style="font-family:var(--s);font-size:1.05rem;font-weight:700;color:var(--t1);margin-bottom:10px">Sixteen launches, one home</p>
-      <p>A content lead never runs one launch. She runs many at once, each at a different stage. Home is built for that and answers three questions in order: what needs me, how is everything going, and where is that one launch.</p>
-      <p>The queue is the only dark panel in the top row, because it is the only one asking for something. The charts beside it stay grey. Colour means the same thing everywhere: black waits on you, grey waits on someone else, violet is an agent working, amber is a warning and red is an error. Nothing is coloured for decoration.</p>
-      <p>Every launch on the board opens its own canvas. The rest of this page follows one of them, Lumina Glow, from brief to live.</p>
-    </div>
-
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/home-dashboard.webp?v=1118c" alt="ShelfFlow home: a dashboard with the decision queue, launches by stage, packages live this week and agent quality, above a board of every launch" width="1920" height="1080" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">Home, from the Content Lead's seat. Her queue comes first, then the state of the whole operation. Below it, sixteen launches on a board. Each card shows what sets it apart: days to launch, progress inside its stage, and what is wrong when something is: a missing spec sheet, an agent that timed out, a package a retailer rejected.</p>
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/zoom-home-top.webp?v=1118c" alt="Close view of the Home top row: decision queue, launches by stage, packages live this week and agent quality" width="2200" height="396" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">The top row, up close. One panel asks, three inform: launches by stage, what went live this week, and how the agents are doing, with the one number worth worrying about in amber.</p>
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/zoom-home-cards.webp?v=1118c" alt="Close view of launch cards with days to launch, progress bars and error states" width="1800" height="681" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">The cards, up close. Days to launch on the right, progress inside the stage, one line of status. Red is kept for errors: a blocked check, a late launch, a package a retailer rejected.</p>
-  <div class="cs__img" data-reveal><img src="../img/shelfflow/v4/home-filter.webp?v=1118c" alt="The board filtered to launches with an error: two cards remain, with the filter conditions open" width="1864" height="500" loading="lazy" decoding="async"></div>
-  <p class="cs__img-cap">Finding one launch among many. Search by name, SKU or retailer, or filter by condition: needs me, has an error, has open flags, is late or at risk. Here, the two launches with an error.</p>
-
-  <div class="cs__screens" data-reveal>
-    <div class="cs__screen"><img src="../img/shelfflow/v4/run-g4.webp?v=1118c" alt="Gate 4 on the canvas: the legal branch is skipped and it is Sofia Lindqvist turn" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Gate 4 / the branch resolves, your turn</span></div>
-    <div class="cs__screen"><img src="../img/shelfflow/v4/run-done.webp?v=1118c" alt="The canvas after launch: every gate signed, 18 packages live" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Live / every gate signed</span></div>
-  </div>
-  <p class="cs__img-cap">No regulated claim was found, so the legal branch is skipped and Gate 4 is next. The launch closes with every gate signed and a name on each.</p>
-
-  <div class="cs__screens" data-reveal>
-    <div class="cs__screen"><img src="../img/shelfflow/v4/gate4-choose.webp?v=1118c" alt="Gate 4: choosing between version A and B for one product and retailer" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Gate 4 / one choice at a time</span></div>
-    <div class="cs__screen"><img src="../img/shelfflow/v4/gate4-batch.webp?v=1118c" alt="Gate 4: the batch shortcut stays locked until every choice has been opened" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Gate 4 / the batch guardrail</span></div>
-  </div>
-  <p class="cs__img-cap">Gate 4. Eighteen choices, one at a time, A or B. The batch shortcut stays locked until every remaining choice has been opened.</p>
-
-
-  <div class="cs__screens" data-reveal>
-    <div class="cs__screen"><img src="../img/shelfflow/v3/matrix.webp?v=1118c" alt="Matrix view: every package by product and retailer" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Matrix / every package</span></div>
-    <div class="cs__screen"><img src="../img/shelfflow/v3/audit.webp?v=1118c" alt="Audit trail view: every step in order, people in bold" width="1920" height="1080" loading="lazy" decoding="async"><span class="cs__screen-label">Audit trail / every step</span></div>
-  </div>
-  <p class="cs__img-cap">The same launch, the same moment, in the two other views. Matrix shows where every package stands. Audit trail shows every step in order, with people in bold and each gate decision tagged.</p>
-
-    <div class="cs__evidence cs__evidence--am">
-      <span class="cs__evidence-label">Edge cases and constraints</span>
-      <span class="cs__evidence-text">The system had to handle partial approvals (2 of 3 retailers ready, 1 still in review), mid-cycle brief changes (product claims updated after generation), and cross-package dependencies (a compliance flag on one SKU potentially affecting all packages sharing the same claim). These weren't theoretical scenarios. They were weekly occurrences in the existing workflow.</span>
-    </div>
-  </div>
-
-  <div class="cs__section" id="s09" data-reveal>
-    <span class="cs__section-num">09 What I Got Wrong</span>
-    <h2 class="cs__section-h">Two things I got wrong before I got them right.</h2>
-    <div class="cs__section-text">
-      <p>Both mistakes had the same root. I treated control as something you add, when it is something people have to be able to carry.</p>
+      <p>The launch above is the second version. Both mistakes in the first one had the same root: I treated control as something you add, when it is something people have to be able to carry.</p>
     </div>
 
     <div class="cs__reflection" style="border-color:var(--dn);background:var(--dng)">
@@ -674,22 +476,14 @@
     </div>
   </div>
 
-  <div class="cs__section" id="s10" data-reveal>
-    <span class="cs__section-num">10 Reflection</span>
-    <h2 class="cs__section-h">The hardest problem wasn't the AI. It was making 18 approval moments feel fast instead of bureaucratic.</h2>
+  <div class="cs__section" id="s06" data-reveal>
+    <span class="cs__section-num">06 What It Demonstrates</span>
+    <h2 class="cs__section-h">The work did not get smaller. Every step of it got an owner.</h2>
     <div class="cs__section-text">
-      <p>Five operational guardrails constrained every decision: AI assists, never ships. Every transition is auditable. The pipeline is the single source of truth: no side channels, no email approvals. Design for reviewer fatigue, not enthusiasm. Absorb the combinatorial complexity so humans can focus on judgement calls.</p>
+      <p>Before, a launch moved through file names and email threads, and nobody could say who had approved what. In the demo launch the brief arrives at 13:02 and Sofia signs at 15:24. Six agents produce and check 36 packages in between, and three people make the decisions instead of reading 36 documents: Maya settles one question and three rewrites, Daniel resolves four flags, Sofia makes 18 choices.</p>
+      <p>Those figures come from the demo launch; the client's are under NDA. What the case can show is the mechanism. The AI did not earn trust here by writing better. It earned it once the team could see what it was allowed to decide, and who answered for everything else.</p>
     </div>
 
-    <div class="cs__reflection">
-      <span class="cs__reflection-h">The pattern</span>
-      <span class="cs__reflection-text">AI in enterprise workflows fails when it's positioned as a replacement for human judgement. It succeeds when it's positioned as an accelerator within an explicit decision architecture. The value of ShelfFlow isn't that AI writes copy. It's that the system makes the coordination overhead of 36 packages manageable, traceable and auditable. The workflow is the product. The AI is infrastructure.</span>
-    </div>
-
-    <div class="cs__reflection" style="border-color:var(--ac);background:var(--acg2)">
-      <span class="cs__reflection-h" style="color:var(--ac)">What changed</span>
-      <span class="cs__reflection-text">Before, a launch moved through file names and email threads, and nobody could say who had approved what. In the launch shown here, the brief is locked at 13:02 and Sofia signs the launch at 15:24. Six agents produce and check all 36 packages in between, and four people make 18 decisions instead of reading 36 documents. The four compliance flags reach Daniel with the evidence attached, and the three drafts Maya sends back return rewritten, not restarted. When compliance asks "who approved this claim for Walmart?", the answer is one row in the audit trail, with a name and a time. The system doesn't make the work disappear. It makes the work structured enough to scale.</span>
-    </div>
   </div>
 
   <!-- Next project -->
