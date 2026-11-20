@@ -23,6 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="showcase.css">
 <style>/* Critical */body{background:#000;color:#f4f4f6;font-family:sans-serif;margin:0;overflow-x:hidden}[data-reveal]{opacity:1!important;transform:none!important}.js [data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}.js [data-reveal].vis{opacity:1;transform:none}.cs{max-width:960px;margin:0 auto;padding:100px 32px 96px;overflow-x:hidden}img{max-width:100%;height:auto}.cs-bar{position:fixed;top:0;left:0;right:0;height:48px;background:rgba(0,0,0,.85);z-index:100;display:flex;align-items:center;padding:0 32px}.cs-progress{position:fixed;top:0;left:0;height:2px;background:#2dd4bf;z-index:200;width:0}@media(max-width:768px){.cs__mobile-pair{overflow-x:auto;scroll-snap-type:x mandatory;flex-wrap:nowrap;gap:12px;margin:28px -16px;padding:0 16px}.cs__mobile-pair::-webkit-scrollbar{display:none}.cs__mobile-pair .cs__screen{min-width:200px;max-width:200px;scroll-snap-align:start}}</style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
@@ -43,16 +44,16 @@
 
 <div class="cs-wrap">
 <nav class="cs-nav" id="csNav">
-<a href="#s01" class="cs-nav__link"><span class="cs-nav__num">01</span>Context</a>
-<a href="#s02" class="cs-nav__link"><span class="cs-nav__num">02</span>Problem</a>
-<a href="#s03" class="cs-nav__link"><span class="cs-nav__num">03</span>Insight</a>
-<a href="#s03b" class="cs-nav__link"><span class="cs-nav__num">03b</span>Radar</a>
-<a href="#s04" class="cs-nav__link"><span class="cs-nav__num">04</span>Solution</a>
-<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">05</span>Decisions</a>
-<a href="#s05b" class="cs-nav__link"><span class="cs-nav__num">05b</span>Blueprint</a>
-<a href="#s05c" class="cs-nav__link"><span class="cs-nav__num">05c</span>Journeys</a>
-<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">06</span>Results</a>
-<a href="#s07" class="cs-nav__link"><span class="cs-nav__num">07</span>Takeaway</a>
+<a href="#s01" class="cs-nav__link"><span class="cs-nav__num">01</span>The strategy</a>
+<a href="#s02" class="cs-nav__link"><span class="cs-nav__num">02</span>23 metrics</a>
+<a href="#s03" class="cs-nav__link"><span class="cs-nav__num">03</span>One number</a>
+<a href="#s03b" class="cs-nav__link"><span class="cs-nav__num">04</span>The radar</a>
+<a href="#s04" class="cs-nav__link"><span class="cs-nav__num">05</span>Decision system</a>
+<a href="#s05b" class="cs-nav__link"><span class="cs-nav__num">06</span>Architecture</a>
+<a href="#s05c" class="cs-nav__link"><span class="cs-nav__num">07</span>2am scenarios</a>
+<a href="#s05" class="cs-nav__link"><span class="cs-nav__num">08</span>Hard calls</a>
+<a href="#s06" class="cs-nav__link"><span class="cs-nav__num">09</span>Results</a>
+<a href="#s07" class="cs-nav__link"><span class="cs-nav__num">10</span>Takeaway</a>
 <a href="#" class="cs-nav__top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">&#8593; Top</a>
 </nav>
 <article class="cs">
@@ -77,7 +78,7 @@
   <div class="cs__hero" data-reveal>
     <span class="cs__type">Crypto / DeFi / Trading Systems / Decision Architecture</span>
     <h1 class="cs__h">A decision system for operating under noise, incomplete information, and capital risk. Runs 24/7. Zero margin for error.</h1>
-    <p class="cs__sub">Autonomous statistical arbitrage across correlated crypto pairs on Hyperliquid (DeFi perpetuals DEX). Real capital, 7x leverage, 24/7 on-chain execution. I led product and design end-to-end: signal detection, validation cascade, risk escalation, execution logic, and two operator surfaces. Built end to end with an AI-native workflow &#8212; Claude-accelerated development, from signal logic to the operator surfaces.</p>
+    <p class="cs__sub">Autonomous statistical arbitrage across correlated crypto pairs on Hyperliquid (DeFi perpetuals DEX). Real capital, 7x leverage, 24/7 on-chain execution. I led product and design end-to-end: signal detection, validation cascade, risk escalation, execution logic, and two operator surfaces. Built end to end with an AI native workflow: Claude accelerated development, from signal logic to the operator surfaces.</p>
   </div>
 
   <!-- Metrics -->
@@ -93,7 +94,7 @@
 
   <!-- 01: Context -->
   <div class="cs__section" id="s01" data-reveal>
-    <span class="cs__section-num">01 Context</span>
+    <span class="cs__section-num">01 The strategy</span>
     <h2 class="cs__section-h">Mean-reversion on correlated crypto pairs.</h2>
     <div class="cs__section-text">
       <p>Spread deviates beyond a statistical threshold, system trades the convergence. 24/7 crypto markets on Hyperliquid, a decentralised perpetuals exchange. 7x leverage, 7 simultaneous pairs (ETH/BTC, SOL/ETH, LINK/ETH, and other correlated tokens), non-stationary on-chain data. Every decision has immediate, real-money consequences.</p>
@@ -106,7 +107,7 @@
         <strong>Platform:</strong> Hyperliquid (DeFi perps DEX, on-chain order book)<br>
         <strong>Stack:</strong> Python, Flask, Telegram Bot API, Web3 / REST APIs<br>
         <strong>Work:</strong> System design, dashboard, Telegram bot, risk framework<br>
-        <strong>Collaboration:</strong> Solo build, AI-native workflow (Claude)
+        <strong>Collaboration:</strong> Solo build, AI native workflow (Claude)
       </span>
     </div>
       <p class="cs__img-cap">Live capital deployment. 7x leverage, 5 pairs max, 3 open positions max. ~60-second tick cycle. 24/7.</p>
@@ -116,7 +117,7 @@
 
   <!-- 02: Problem -->
   <div class="cs__section" id="s02" data-reveal>
-    <span class="cs__section-num">02 The Real Problem</span>
+    <span class="cs__section-num">02 The real problem</span>
     <h2 class="cs__section-h">v1 was a terminal log with 23 metrics per pair.</h2>
     <div class="cs__section-text">
       <p>Complete information, zero decision clarity. At 2am with leveraged capital moving against the operator, the question isn't analytical. It's binary: "Am I okay right now?" The problem was never information. It was architecture.</p>
@@ -130,7 +131,7 @@
 
   <!-- 03: Insight -->
   <div class="cs__section" id="s03" data-reveal>
-    <span class="cs__section-num">03 Key Insight</span>
+    <span class="cs__section-num">03 One number</span>
     <h2 class="cs__section-h">Most systems fail not because of bad signals. They fail because of bad decision architecture.</h2>
     <div class="cs__section-text">
       <p>The entire 23-metric pipeline needed to collapse into one question: <strong>what's the z-score?</strong> Entry at 2.4&#963;, exit at 0.8&#963;, stop at 4.5&#963;. At 2am, one glance. Not a lecture.</p>
@@ -139,16 +140,14 @@
       <span class="cs__evidence-label">Evidence</span>
       <span class="cs__evidence-text">v1 had perfect information, 23 metrics per pair including z-scores, half-lives, funding rates, and on-chain liquidity depth, and the operator couldn't act. v2 has a gate that decides autonomously and only surfaces what requires intervention. The shift: from "here's all the data" to "the system is handling it, here's what needs your attention."</span>
     </div>
-      <p class="cs__img-cap">6-step signal pipeline. One number drives every decision: the z-score.</p>
 
-      <p class="cs__img-cap">Four domains: Core, Data, Decision+Risk, Feedback+Interface. 12 modules.</p>
   <div class="cs__img" data-reveal><img src="../img/kodo/pair-scanner.png" alt="KODO pair scanner"></div>
   <p class="cs__img-cap">The Pair Scanner: correlation, z-score, half-life, and funding rate across all pairs.</p>
   </div>
 
   <!-- 03b: Pair Radar -->
   <div class="cs__section" id="s03b" data-reveal>
-    <span class="cs__section-num">03b Pair Radar</span>
+    <span class="cs__section-num">04 The radar</span>
     <h2 class="cs__section-h">The radar scans 24/7. The operator only sees what matters.</h2>
     <div class="cs__section-text">
       <p>The pair scanner evaluates every pair across four dimensions: <strong>correlation coefficient</strong>, <strong>z-score deviation</strong>, <strong>half-life</strong>, and <strong>funding rate differential</strong>. Only pairs passing all four filters surface to the operator.</p>
@@ -163,15 +162,14 @@
 
   <!-- 04: Solution -->
   <div class="cs__section" id="s04" data-reveal>
-    <span class="cs__section-num">04 What I Changed</span>
+    <span class="cs__section-num">05 The decision system</span>
     <h2 class="cs__section-h">Three design interventions. From raw data to decision architecture.</h2>
 
     <div class="cs__section-text">
       <p><strong>1. Designed a 5-layer decision architecture</strong></p>
       <p>Signal emergence &#8594; validation &#8594; decision &#8594; execution &#8594; survival. Each layer has one responsibility.</p>
     </div>
-  <div class="cs__img" data-reveal><img src="../img/kodo/active-pairs.png" alt="KODO active state"></div>
-  <p class="cs__img-cap">Active state: 5 pairs, spread convergence in real-time. The system entered autonomously and manages toward exit.</p>
+
 
     <!-- Decision Gate - HTML component -->
     <div data-reveal style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;margin:28px 0">
@@ -224,55 +222,12 @@
       <p style="font-family:var(--s);font-size:13px;color:var(--t3);margin-top:12px">95% of interaction is one question answered via Telegram. The 2am interface.</p>
     </div>
 
-  <div class="cs__img" data-reveal><img src="../img/kodo/override-state.png" alt="KODO override"></div>
-  <p class="cs__img-cap">Override state: operator intervened. Risk parameters adjusted. System respects override but keeps monitoring.</p>
-  <div class="cs__img" data-reveal><img src="../img/kodo/single-pair.png" alt="KODO single pair"></div>
-  <p class="cs__img-cap">Single pair deep view: full spread history, convergence trajectory.</p>
-  <div class="cs__img" data-reveal><img src="../img/kodo/trade-log.png" alt="KODO trade log"></div>
-  <p class="cs__img-cap">Trade log: every entry, exit, P&L. Full accountability.</p>
-  </div>
-
-  <!-- 05: Decisions -->
-  <div class="cs__section" id="s05" data-reveal>
-    <span class="cs__section-num">05 Key Decisions</span>
-    <h2 class="cs__section-h">What trade-offs did I make?</h2>
-    <div class="cs__section-text">
-      <p>Every decision involved choosing between flexibility and determinism under capital risk. These were the most consequential:</p>
-    </div>
-    <div class="cs__decisions-wrap"><table class="cs__decisions">
-      <thead><tr><th>Decision</th><th>Chosen</th><th>Rejected</th><th>Why</th></tr></thead>
-      <tbody>
-        <tr>
-          <td>Gate logic</td>
-          <td>Deterministic cascade</td>
-          <td>Probabilistic model</td>
-          <td>Under capital risk, "73% confident" is not a useful post-mortem. Hard thresholds = complete traceability.</td>
-        </tr>
-        <tr>
-          <td>Kill switch</td>
-          <td>Sticky (manual reset + 10 recovery trades)</td>
-          <td>Auto-reset</td>
-          <td>Prevents re-entry after drawdown driven by emotional bias.</td>
-        </tr>
-        <tr>
-          <td>Primary surface</td>
-          <td>Telegram</td>
-          <td>Dashboard</td>
-          <td>95% of interaction is "am I okay?" A phone notification answers it in 5 seconds.</td>
-        </tr>
-        <tr>
-          <td>Infrastructure</td>
-          <td>Local-only (no cloud)</td>
-          <td>Cloud deployment</td>
-          <td>Zero execution latency, complete runtime control. Third-party infra fails at worst possible moment.</td>
-        </tr>
-      </tbody>
-    </table></div>
+  <div class="dz gal" data-reveal><div class="dz__hd"><div><div class="dz__k">The terminal, live</div><div class="dz__t">Four states of the same screen</div></div><div class="dz__tabs" role="tablist"><button class="dz__tab" type="button" role="tab" data-dz="gal" data-v="active-pairs" aria-selected="true">Active</button><button class="dz__tab" type="button" role="tab" data-dz="gal" data-v="override-state" aria-selected="false">Override</button><button class="dz__tab" type="button" role="tab" data-dz="gal" data-v="single-pair" aria-selected="false">Single pair</button><button class="dz__tab" type="button" role="tab" data-dz="gal" data-v="trade-log" aria-selected="false">Trade log</button></div></div><div class="dz__stage"><div class="dz__pane" data-dzp="gal" data-v="active-pairs"><div class="cs__img"><img src="../img/kodo/active-pairs.png" alt="KODO terminal, active" loading="lazy"></div><p class="gal__cap"><b>Active state.</b> 5 pairs, spread convergence in real time. The system entered autonomously and manages toward exit.</p></div><div class="dz__pane" data-dzp="gal" data-v="override-state" hidden><div class="cs__img"><img src="../img/kodo/override-state.png" alt="KODO terminal, override" loading="lazy"></div><p class="gal__cap"><b>Override state.</b> The operator intervened and risk parameters were adjusted. The system respects the override and keeps monitoring.</p></div><div class="dz__pane" data-dzp="gal" data-v="single-pair" hidden><div class="cs__img"><img src="../img/kodo/single-pair.png" alt="KODO terminal, single pair" loading="lazy"></div><p class="gal__cap"><b>Single pair deep view.</b> Full spread history and convergence trajectory.</p></div><div class="dz__pane" data-dzp="gal" data-v="trade-log" hidden><div class="cs__img"><img src="../img/kodo/trade-log.png" alt="KODO terminal, trade log" loading="lazy"></div><p class="gal__cap"><b>Trade log.</b> Every entry, exit and P&amp;L. Full accountability.</p></div></div></div>
   </div>
 
   <!-- 05b: System Architecture -->
   <div class="cs__section" id="s05b" data-reveal>
-    <span class="cs__section-num">05b System Architecture</span>
+    <span class="cs__section-num">06 Architecture</span>
     <h2 class="cs__section-h">Three surfaces, one decision engine, zero gaps.</h2>
     <div class="cs__section-text">
       <p>KODO operates across three interfaces: the <strong>Terminal</strong> (full dashboard for deep analysis), <strong>Telegram</strong> (mobile alerts and quick commands for 2am checks), and <strong>Hyperliquid</strong> (the on-chain execution layer). A single decision engine sits between all three, ensuring every surface shows the same truth.</p>
@@ -372,7 +327,7 @@
 
   <!-- 05c: Operator Journey Map -->
   <div class="cs__section" id="s05c" data-reveal>
-    <span class="cs__section-num">05c Operator Journey Map</span>
+    <span class="cs__section-num">07 The 2am scenarios</span>
     <h2 class="cs__section-h">Every scenario the system was designed for.</h2>
     <div class="cs__section-text">
       <p>The map below traces <strong>six critical operator scenarios</strong> across three layers: what the operator experiences, what the system does autonomously, and where the operator surface (Terminal or Telegram) sits in the flow. Each scenario was designed for the worst version of itself.</p>
@@ -611,9 +566,47 @@
   </div>
   </div>
 
+  <!-- 05: Decisions -->
+  <div class="cs__section" id="s05" data-reveal>
+    <span class="cs__section-num">08 The hard calls</span>
+    <h2 class="cs__section-h">Four calls where determinism beat flexibility.</h2>
+    <div class="cs__section-text">
+      <p>Every decision involved choosing between flexibility and determinism under capital risk. These were the most consequential:</p>
+    </div>
+    <div class="cs__decisions-wrap"><table class="cs__decisions">
+      <thead><tr><th>Decision</th><th>Chosen</th><th>Rejected</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Gate logic</td>
+          <td>Deterministic cascade</td>
+          <td>Probabilistic model</td>
+          <td>Under capital risk, "73% confident" is not a useful post-mortem. Hard thresholds = complete traceability.</td>
+        </tr>
+        <tr>
+          <td>Kill switch</td>
+          <td>Sticky (manual reset + 10 recovery trades)</td>
+          <td>Auto-reset</td>
+          <td>Prevents re-entry after drawdown driven by emotional bias.</td>
+        </tr>
+        <tr>
+          <td>Primary surface</td>
+          <td>Telegram</td>
+          <td>Dashboard</td>
+          <td>95% of interaction is "am I okay?" A phone notification answers it in 5 seconds.</td>
+        </tr>
+        <tr>
+          <td>Infrastructure</td>
+          <td>Local-only (no cloud)</td>
+          <td>Cloud deployment</td>
+          <td>Zero execution latency, complete runtime control. Third-party infra fails at worst possible moment.</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </div>
+
   <!-- 06: Impact -->
   <div class="cs__section" id="s06" data-reveal>
-    <span class="cs__section-num">06 Results</span>
+    <span class="cs__section-num">09 Results</span>
     <h2 class="cs__section-h">From 23 metrics to one question. From terminal to autonomous.</h2>
     <div class="cs__metrics">
       <div class="cs__metric"><span class="cs__metric-val cs__metric-val--g">24/7</span><span class="cs__metric-label">Autonomous, live capital</span></div>
@@ -629,7 +622,7 @@
 
   <!-- 07: Reflection -->
   <div class="cs__section" id="s07" data-reveal>
-    <span class="cs__section-num">07 Takeaway</span>
+    <span class="cs__section-num">10 What I took from it</span>
     <h2 class="cs__section-h">Design for the worst moment, not the average one. The interface checked at 2am is the real product.</h2>
     <div class="cs__reflection">
       <span class="cs__reflection-h">The pattern</span>
@@ -657,7 +650,7 @@
 document.body.classList.add("js");
 
 // ── Scroll reveal ──
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("vis");obs.unobserve(e.target)}})},{threshold:.1});
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("vis");obs.unobserve(e.target)}})},{threshold:0,rootMargin:"0px 0px -8% 0px"});
 document.querySelectorAll("[data-reveal]").forEach(el=>obs.observe(el));
 
 // ── Reading progress bar ──
@@ -696,6 +689,15 @@ const metricObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting
   }
 }})},{threshold:.3});
 document.querySelectorAll(".cs__metric").forEach(m=>metricObs.observe(m));
+
+
+// Design blocks: tabs
+document.querySelectorAll("[data-dz]").forEach(function(b){b.addEventListener("click",function(){
+  var g=b.getAttribute("data-dz"),v=b.getAttribute("data-v");
+  document.querySelectorAll('[data-dz="'+g+'"]').forEach(function(x){x.setAttribute("aria-selected",x===b?"true":"false")});
+  document.querySelectorAll('[data-dzp="'+g+'"]').forEach(function(p){p.hidden=p.getAttribute("data-v")!==v});
+  if(typeof gtag==="function")gtag("event","kodo_design_tab",{group:g,value:v});
+})});
 
 // ── Lightbox ──
 const lb=document.getElementById("lb");
