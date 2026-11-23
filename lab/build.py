@@ -263,8 +263,8 @@ def htg():
 <h1 class="pt__h">Hold the Gate</h1>
 <p class="pt__sub">Six agents can do the work. <em>Who is allowed to say yes?</em></p>
 </div>
-<p class="lab__lead">From ShelfFlow, a content pipeline for an enterprise CPG team. Build the pipeline on the canvas, give its flagged branch a gate and an owner, run the launch and take the last gate yourself. Then compare your pipeline with the one that shipped.</p>
-<div class="lab__meta"><span>1 launch, 6 choices</span><span>About 4 minutes</span><span>Real rules</span><span>Synthetic data</span></div>
+<p class="lab__lead">From ShelfFlow, a content pipeline for an enterprise CPG team. Set the scope, build the pipeline on the canvas, give its flagged branch a gate and an owner, run the launch and take the last gate yourself. Then compare your pipeline with the one that shipped.</p>
+<div class="lab__meta"><span>1 launch, up to 6 choices</span><span>About 4 minutes</span><span>Real rules</span><span>Synthetic data</span></div>
 <details class="more lab__data"><summary>About the data</summary><p>The rules are the ones the product enforces: an agent cannot reach Publish without a gate, a gate cannot run without a named owner, and the batch shortcut stays locked until each choice has been opened. The launch, the products and the copy are synthetic, and the client is under NDA.</p></details>
 
 <section class="htg" id="htg" aria-label="Hold the Gate">
