@@ -48,7 +48,7 @@ h1{font-size:clamp(22px,4vw,30px);font-weight:600;letter-spacing:-.02em;margin-b
 .mode span{padding:4px 12px;border-radius:7px}.mode span.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(16,24,40,.12)}
 .bar .pill{margin-left:0}
 .build{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
-.lib .cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lib .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .lib .top{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;flex-wrap:wrap}
 .lib{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 1px 2px rgba(16,24,40,.05)}
 .lib h3{font-size:13px;font-weight:600}.lib .hint{font-size:12px;color:var(--t3)}
@@ -60,6 +60,14 @@ h1{font-size:clamp(22px,4vw,30px);font-weight:600;letter-spacing:-.02em;margin-b
 .card .fk{display:block;font-family:var(--m);font-size:9.5px;letter-spacing:.06em;color:var(--brand7);margin-top:6px}
 .card.in{border-style:dashed;cursor:pointer;opacity:.75}.card.in .fk{color:var(--t3)}
 .lib.locked .card{pointer-events:none;opacity:.5}
+.card.gatec{border-color:var(--line2)}.card.gatec:hover{border-color:var(--ink);box-shadow:0 4px 12px -4px rgba(16,24,40,.3)}
+.card .tig{background:var(--ink);color:#fff;font-size:9px}.card.gatec .fk{color:var(--t2)}.card.off{opacity:.55}
+.cvwrap{position:relative}#cv{user-select:none;-webkit-user-select:none}#cv [data-h]{touch-action:none}
+.own{position:absolute;z-index:5;width:206px;background:var(--surface);border:1px solid var(--line2);border-radius:12px;padding:6px;box-shadow:0 12px 28px -8px rgba(16,24,40,.3)}
+.own[hidden]{display:none}.own p{font-size:11px;color:var(--t3);padding:4px 8px 6px}
+.own button{display:flex;align-items:center;gap:9px;width:100%;text-align:left;background:none;border:0;border-radius:8px;padding:6px 8px}
+.own button:hover{background:var(--subtle)}.own .av{width:22px;height:22px;border-radius:999px;background:var(--ink);color:#fff;font-size:9px;font-weight:600;display:grid;place-content:center;flex:none}
+.own b{display:block;font-size:12.5px;font-weight:600}.own i{display:block;font-style:normal;font-size:11px;color:var(--t3)}
 .ghost{position:fixed;z-index:50;pointer-events:none;background:var(--surface);border:1px solid var(--brand);border-radius:10px;padding:8px 11px;font-size:12.5px;font-weight:600;box-shadow:0 12px 28px -8px rgba(16,24,40,.35);transform:translate(-50%,-50%) rotate(-2deg)}
 .cvwrap{background-color:var(--canvas);border:1px solid var(--line);border-radius:14px;overflow-x:auto;background-image:radial-gradient(#d5d9e0 1px,transparent 1px);background-size:20px 20px}
 .cvwrap svg{display:block;width:100%;min-width:760px;height:auto}
@@ -172,7 +180,7 @@ body.embed .app{box-shadow:none}
 <div class="wrap">
 <p class="tag">SHELFFLOW, INTERACTIVE DEMO, SYNTHETIC DATA</p>
 <h1>Build the pipeline. Then hold the gate.</h1>
-<p class="sub">Drop agents onto the canvas and watch each one fork the flow. Then run the launch and take Gate 4 yourself. What you leave out, you meet at the gate.</p>
+<p class="sub">Drag agents onto the line, wire the flagged branch to a gate and give it an owner. Then run the launch and take Gate 4 yourself. What you leave out, you meet at the gate.</p>
 
 <div class="app">
   <div class="bar">
@@ -183,15 +191,16 @@ body.embed .app{box-shadow:none}
   <div class="body">
     <div class="build">
       <div class="lib" id="lib">
-        <div class="top"><h3>Library</h3><p class="hint" id="libhint">Drag an agent onto the canvas, or click it.</p></div>
+        <div class="top"><h3>Library</h3><p class="hint" id="libhint">Drag a block onto the line. Pull a socket to connect it.</p></div>
         <div class="cards">
         <button class="card" id="cSpec" data-a="spec"><span class="nm"><span class="ti">&#8644;</span>Spec Checker</span><span class="ds">Checks every title against each retailer's limits.</span><span class="fk" id="fSpec">ADDS A SPLIT PER RETAILER</span></button>
         <button class="card" id="cScan" data-a="scan"><span class="nm"><span class="ti">&#9873;</span>Compliance Scanner</span><span class="ds">Checks every claim. Flags risk, never clears it.</span><span class="fk" id="fScan">ADDS A BRANCH TO A PERSON</span></button>
+        <button class="card gatec off" id="cGate" data-a="gate"><span class="nm"><span class="ti tig">&#9670;</span>Human gate</span><span class="ds">A person decides here. It needs a wire and a name.</span><span class="fk" id="fGate">NEEDS A WIRE AND AN OWNER</span></button>
         </div>
       </div>
       <div>
-        <div class="cvwrap" id="cvwrap"><svg id="cv" viewBox="0 0 960 276" role="img" aria-label="Pipeline canvas"></svg></div>
-        <div class="cvbar"><span class="status" id="status"></span><button class="bypass" id="bypass">Try wiring the agent straight to Publish</button><button class="runb" id="runb">&#9656; Run launch</button></div>
+        <div class="cvwrap" id="cvwrap"><svg id="cv" viewBox="0 0 960 320" role="img" aria-label="Pipeline canvas"></svg><div class="own" id="own" hidden></div></div>
+        <div class="cvbar"><span class="status" id="status"></span><button class="bypass" id="bypass">Or pull a socket from an agent to Publish</button><button class="runb" id="runb">&#9656; Run launch</button></div>
       </div>
     </div>
 
@@ -224,7 +233,7 @@ body.embed .app{box-shadow:none}
   </div>
 </div>
 
-<p class="foot">A working slice of ShelfFlow on synthetic data. The rules are the real ones: an agent cannot reach Publish without a gate, and the batch shortcut stays locked until each remaining choice has been opened. <a href="shelfflow.html">Read the full case study</a></p>
+<p class="foot">A working slice of ShelfFlow on synthetic data. The rules are the real ones: an agent cannot reach Publish without a gate, a gate cannot run without an owner, and the batch shortcut stays locked until each remaining choice has been opened. <a href="shelfflow.html">Read the full case study</a></p>
 </div>
 <script>
 (function(){
@@ -233,7 +242,7 @@ var SKUS=[['Vitamin C 30ml','Lumina Glow Vitamin C Serum 30ml','Brightening Face
 var RET=[['Amazon',200],['Sephora',120],['Walmart',150]];
 var LONG=' and a Visibly Brighter, More Even, Healthier-Looking Complexion';
 var LK='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',UL='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#067647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>';
-var S={spec:false,scan:false,phase:'build',st:{},hover:null,dragging:null,bypass:false,loop:false};
+var S={spec:false,scan:false,gate:null,wired:false,owner:null,wire:null,gprev:null,pulse:null,phase:'build',st:{},hover:null,dragging:null,bypass:false,loop:false};
 var N=6,cells=[],cur=0,launched=false,ffRunning=false,nlog=0,justDragged=false;
 var INK='#101828',VIO='#a78bfa',V7='#5b4bd6',GREY='#d0d5dd',CY=120;
 function ev(n,p){if(typeof gtag==='function')gtag('event',n,p||{})}
@@ -248,10 +257,16 @@ function log(kind,html,who){var e=logEl.querySelector('.empty');if(e)e.remove();
  logEl.prepend(d);while(logEl.children.length>7)logEl.removeChild(logEl.lastChild);nlog++;$('an').textContent=nlog;size();}
 
 /* ---------- canvas ---------- */
+var VH=320,GX0=540,GX1=690,GY0=204,GY1=280,holdT=null,pulseT=null;
+var OWN=[['Daniel Reyes','Compliance Officer','DR'],['Maya Okafor','Content Lead','MO'],['Sofia Lindqvist','Brand Manager','SL']];
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+function has(a){return a==='gate'?!!S.gate:S[a]}
+function ready(){return !S.scan||(S.gate&&S.wired&&S.owner)}
 function done(k){return S.phase==='build'||S.st[k]==='done'}
 function ecol(k,kind){return done(k)?(kind==='g'?INK:VIO):GREY}
 function line(d,col,extra){return '<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="1.6" stroke-linecap="round" '+(extra||'')+'/>'}
 function curve(x1,y1,x2,y2){var m=(x1+x2)/2;return 'M'+x1+' '+y1+'C'+m+' '+y1+' '+m+' '+y2+' '+x2+' '+y2}
+function vcurve(x1,y1,x2,y2){var d=Math.max(18,Math.abs(y2-y1)/2);return 'M'+x1+' '+y1+'C'+x1+' '+(y1+d)+' '+x2+' '+(y2-d)+' '+x2+' '+y2}
 function agent(k,x,y,w,label,sub,pop){var st=S.st[k],run=S.phase!=='build',dim=run&&!st,ok=st==='done',flag=st==='flag',h=sub?38:34;
  return '<g class="nd'+(pop?' pop':'')+'" opacity="'+(dim?.5:1)+'"><rect x="'+x+'" y="'+(y-h/2)+'" width="'+w+'" height="'+h+'" rx="9" fill="#fff" stroke="'+(st==='run'?'#8b5cf6':flag?'#fda29b':'#c4b5fd')+'" stroke-width="'+(st==='run'?2:1)+'"/>'
  +'<rect x="'+(x+7)+'" y="'+(y-10)+'" width="20" height="20" rx="6" fill="'+(ok?'#ecfdf3':flag?'#fef3f2':'#f2f0fe')+'"'+(st==='run'?' class="blink"':'')+'/>'
@@ -259,17 +274,19 @@ function agent(k,x,y,w,label,sub,pop){var st=S.st[k],run=S.phase!=='build',dim=r
      :'<path transform="translate('+(x+11)+','+(y-5.5)+')" d="M6 1l1.3 3.2L10.5 5.5 7.3 6.8 6 10 4.7 6.8 1.5 5.5l3.2-1.3z" fill="'+(flag?'#b42318':V7)+'"/>')
  +'<text x="'+(x+33)+'" y="'+(sub?y-2:y+4)+'" font-size="11.5" font-weight="500" fill="#475467">'+label+'</text>'
  +(sub?'<text x="'+(x+33)+'" y="'+(y+11)+'" font-size="9.5" fill="'+(flag?'#b42318':'#667085')+'" font-weight="'+(flag?600:400)+'">'+sub+'</text>':'')+'</g>'}
-function gate(k,x,y,w,num,name,person,pop){var st=S.st[k],run=S.phase!=='build',dim=run&&!st,turn=st==='turn';
- return '<g class="nd'+(pop?' pop':'')+'"><rect x="'+x+'" y="'+(y-26)+'" width="'+w+'" height="52" rx="9" fill="#fff" stroke="'+(turn?INK:'#e4e7ec')+'" stroke-width="'+(turn?2:1)+'"/>'
+function gate(k,x,y,w,num,name,person,pop,warn){var st=S.st[k],run=S.phase!=='build',dim=run&&!st,turn=st==='turn';
+ return '<g class="nd'+(pop?' pop':'')+'"><rect x="'+x+'" y="'+(y-26)+'" width="'+w+'" height="52" rx="9" fill="#fff" stroke="'+(turn?INK:warn?'#fedf89':'#e4e7ec')+'" stroke-width="'+(turn?2:1)+'"/>'
  +'<path d="M'+x+' '+(y-8)+'V'+(y-17)+'a9 9 0 0 1 9-9H'+(x+w-9)+'a9 9 0 0 1 9 9V'+(y-8)+'Z" fill="'+(dim?'#98a2b3':INK)+'"/>'
  +'<path transform="translate('+(x+8)+','+(y-21)+')" d="M4 0l4 4-4 4-4-4z" fill="#fff"/><text class="mono" x="'+(x+21)+'" y="'+(y-13.5)+'" font-size="8.5" fill="#fff" letter-spacing=".5">'+num+'</text>'
  +(st==='done'?'<path transform="translate('+(x+w-18)+','+(y-23)+')" d="M2 6.5l2.8 2.8L10 3.5" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>':'')
- +'<text x="'+(x+9)+'" y="'+(y+6)+'" font-size="11.5" font-weight="600" fill="'+INK+'">'+name+'</text><text x="'+(x+9)+'" y="'+(y+19)+'" font-size="10" fill="'+(turn?INK:'#667085')+'" font-weight="'+(turn?600:400)+'"'+(turn?' class="blink"':'')+'>'+(turn&&k==='g4'?'Your turn':person)+'</text></g>'}
-function slot(x,w,label,a){var on=S.hover===a,dr=S.dragging===a;
- return '<g'+(dr&&!on?' class="blink"':'')+'><rect x="'+x+'" y="98" width="'+w+'" height="44" rx="10" fill="'+(on?'#f2f0fe':'#f7f8fa')+'" stroke="'+(on||dr?'#8b5cf6':'#c4b5fd')+'" stroke-width="'+(on?2:1.2)+'" stroke-dasharray="5 4"/><text x="'+(x+w/2)+'" y="124" text-anchor="middle" font-size="10.5" font-weight="500" fill="'+V7+'">'+label+'</text></g>'}
+ +'<text x="'+(x+9)+'" y="'+(y+6)+'" font-size="11.5" font-weight="600" fill="'+INK+'">'+name+'</text><text x="'+(x+9)+'" y="'+(y+19)+'" font-size="10" fill="'+(turn?INK:warn?'#b54708':'#667085')+'" font-weight="'+(turn||warn?600:400)+'"'+(turn?' class="blink"':'')+(warn?' text-decoration="underline"':'')+'>'+(turn&&k==='g4'?'Your turn':person)+'</text></g>'}
+function slot(x,w,a){var on=S.hover===a;
+ return '<g'+(on?'':' class="blink"')+'><rect x="'+x+'" y="98" width="'+w+'" height="44" rx="10" fill="'+(on?'#f2f0fe':'#f7f8fa')+'" stroke="#8b5cf6" stroke-width="'+(on?2:1.2)+'" stroke-dasharray="5 4"/><text x="'+(x+w/2)+'" y="124" text-anchor="middle" font-size="10.5" font-weight="500" fill="'+V7+'">'+(on?'Release to insert':'Drop it on this line')+'</text></g>'}
 function logic(x,kind){var p=kind==='split'?'M2 7h3M5 7c2 0 2-4 5-4h2M5 7c2 0 2 4 5 4h2M5 7h7':'M12 7H9M9 7C7 7 7 3 4 3H2M9 7c-2 0-2 4-5 4H2M9 7H2';
  return '<rect x="'+x+'" y="109" width="22" height="22" rx="7" fill="#fff" stroke="#98a2b3"/><path transform="translate('+(x+4)+',113)" d="'+p+'" fill="none" stroke="#475467" stroke-width="1.4" stroke-linecap="round"/>'}
-function render(pop){var h='',sk=[],b=S.phase==='build';
+function tip(x,y,t,col){var w=t.length*5.6+16;x=clamp(x,6,954-w);y=clamp(y,6,VH-26);return '<g pointer-events="none"><rect x="'+x+'" y="'+y+'" width="'+w+'" height="20" rx="7" fill="'+col+'"/><text x="'+(x+8)+'" y="'+(y+13.5)+'" font-size="10" font-weight="500" fill="#fff">'+t+'</text></g>'}
+function hot(h,x,y,r,cur,extra){return '<circle data-h="'+h+'" cx="'+x+'" cy="'+y+'" r="'+r+'" fill="transparent" style="cursor:'+cur+'" '+(extra||'')+'/>'}
+function render(pop){var h='',sk=[],top='',b=S.phase==='build',G=S.gate,want=S.dragging||S.pulse;
  function so(x,y,c){sk.push('<circle cx="'+x+'" cy="'+y+'" r="3.6" fill="#fff" stroke="'+c+'" stroke-width="1.5"/>')}
  var c1=b||S.st.brief==='done'?INK:GREY;h+=line('M70 120H92',c1);so(70,120,c1);so(92,120,c1);
  var c2=ecol('dr','a');h+=line('M208 120H230',c2);so(208,120,c2);so(230,120,c2);
@@ -279,51 +296,122 @@ function render(pop){var h='',sk=[],b=S.phase==='build';
  if(S.spec){h+=line('M330 120H352',cg2);so(330,120,cg2);
   for(var i=0;i<3;i++){h+=line(curve(374,120,396,ys[i]),cg2);var cb=ecol('b'+i,'a');h+=line(curve(508,ys[i],532,120),cb);so(396,ys[i],cg2);so(508,ys[i],cb)}
   h+='<g'+(pop==='spec'?' class="pop"':'')+'>'+logic(352,'split')+logic(532,'merge')+'</g>';k1='mg';h+=line('M554 120H568',ecol('mg','g'));
- }else{h+=line('M330 120H568',cg2);so(330,120,cg2);if(b)h+=slot(356,186,'Drop Spec Checker here','spec')}
+ }else{h+=line('M330 120H568',cg2);so(330,120,cg2);if(b&&want==='spec')h+=slot(356,186,'spec')}
  var ck1=ecol(k1,'g'),k2=k1;
  if(S.scan){so(568,120,ck1);var cs=S.st.sc==='flag'?'#d92d20':ecol('sc','a');h+=line('M696 120H709',cs);so(696,120,cs);
-  var cc=ecol('cond','g');h+=line('M731 120H756',cc);var cy3=b?'#f79009':(S.st.g3?'#f79009':GREY);h+=line('M720 131V188',cy3);so(720,188,cy3);
-  var c3=ecol('g3','g');h+=line('M772 214C806 214 806 190 806 146',c3);so(772,214,c3);so(806,146,c3);
+  var cc=ecol('cond','g');h+=line('M731 120H756',cc);var cy3=b?'#f79009':(S.st.g3?'#f79009':GREY);
+  if(G&&S.wired){var gix=G.x+52,giy=G.y-26;h+=line(vcurve(720,131,gix,giy),cy3,pop==='wire'?'class="pop"':'');so(gix,giy,cy3);
+   var c3=ecol('g3','g'),gox=G.x+104;h+=line('M'+gox+' '+G.y+'C806 '+G.y+' 806 '+G.y+' 806 146',c3);so(gox,G.y,c3);so(806,146,c3);
+  }else{h+=line('M720 131V161','#f79009','stroke-dasharray="4 4"');
+   if(b&&!S.wire)top+='<circle cx="720" cy="166" r="9" fill="none" stroke="#f79009" stroke-width="1.4" class="blink" pointer-events="none"/>';
+   top+='<circle cx="720" cy="166" r="4.6" fill="#fff" stroke="#f79009" stroke-width="1.6" pointer-events="none"/>';
+   if(b)top+=hot('flag',720,166,14,'crosshair');
+   if(G)so(G.x+52,G.y-26,'#f79009')}
   h+='<g'+(pop==='scan'?' class="pop"':'')+'><path d="M720 109l11 11-11 11-11-11z" fill="#fffaeb" stroke="#f79009" stroke-width="1.4" stroke-linejoin="round"/></g>';
-  h+='<text x="738" y="113" font-size="9" fill="#667085">No</text><text x="726" y="164" font-size="9" fill="#b54708">Flagged</text>';k2='cond';
- }else{h+=line('M568 120H756',ck1);if(b)h+=slot(574,176,'Drop Compliance Scanner here','scan')}
+  h+='<text x="738" y="113" font-size="9" fill="#667085">No</text><text x="728" y="150" font-size="9" fill="#b54708">Flagged</text>';k2='cond';
+ }else{h+=line('M568 120H756',ck1);if(b&&want==='scan')h+=slot(574,176,'scan')}
  var ck2=ecol(k2,'g');so(756,120,ck2);var c4=ecol('g4','g');h+=line('M856 120H882',c4);so(856,120,c4);so(882,120,c4);
- if(S.bypass){h+=line('M150 138C150 268 913 268 913 142','#d92d20','stroke-width="2" stroke-dasharray="6 5"')}
+ if(S.bypass){h+=line('M'+S.bypass.x+' '+S.bypass.y+'C'+S.bypass.x+' 306 913 306 913 142','#d92d20','stroke-width="2" stroke-dasharray="6 5"')}
  /* nodes */
  h+='<rect x="16" y="103" width="54" height="34" rx="9" fill="#f3f4f6" stroke="#e4e7ec"/><text x="43" y="124" text-anchor="middle" font-size="11.5" font-weight="500" fill="'+INK+'">Brief</text>';
  h+=agent('dr',92,120,116,'Copy Drafter');h+=gate('g2',230,120,100,'GATE 2','Drafts','Maya Okafor');
  if(S.spec)for(var j=0;j<3;j++)h+=agent('b'+j,396,ys[j],112,RET[j][0],'Spec Checker',pop==='spec');
- if(S.scan){h+=agent('sc',568,120,128,'Compliance',S.st.sc==='flag'?'1 flag':'Scanner',pop==='scan');h+=gate('g3',668,214,104,'GATE 3','Compliance','Daniel Reyes',pop==='scan')}
+ if(S.scan)h+=agent('sc',568,120,128,'Compliance',S.st.sc==='flag'?'1 flag':'Scanner',pop==='scan');
+ if(G)h+=gate('g3',G.x,G.y,104,'GATE 3','Compliance',S.owner?S.owner[0]:'No owner',pop==='gate',b&&!S.owner);
  h+=gate('g4',756,120,100,'GATE 4','Launch','You');
  var live=S.st.pub==='done';h+='<rect x="882" y="103" width="62" height="34" rx="9" fill="'+(live?'#ecfdf3':'#f3f4f6')+'" stroke="'+(live?'#abefc6':'#e4e7ec')+'"/><text x="913" y="124" text-anchor="middle" font-size="11.5" font-weight="500" fill="'+(live?'#067647':INK)+'">'+(live?'6 live':'Publish')+'</text>';
  h+=sk.join('');
  if(S.bypass)h+='<circle cx="913" cy="146" r="9" fill="#fef3f2" stroke="#d92d20" stroke-width="2"/><path d="M909.5 142.5l7 7m0-7l-7 7" stroke="#d92d20" stroke-width="1.8" stroke-linecap="round"/>';
+ /* build-only layer: previews, handles, the wire in hand */
+ if(b){
+  if(S.dragging==='gate'&&S.gprev)h+='<g pointer-events="none"><rect x="'+S.gprev.x+'" y="'+(S.gprev.y-26)+'" width="104" height="52" rx="9" fill="'+(S.hover==='gate'?'#f9fafb':'none')+'" stroke="'+INK+'" stroke-width="1.4" stroke-dasharray="5 4"/><text x="'+(S.gprev.x+52)+'" y="'+(S.gprev.y+4)+'" text-anchor="middle" font-size="10.5" font-weight="500" fill="'+INK+'">'+(S.hover==='gate'?'Release to place':'Human gate')+'</text></g>';
+  if(G){h+='<rect data-h="g3" x="'+G.x+'" y="'+(G.y-26)+'" width="104" height="52" rx="9" fill="transparent" style="cursor:grab"/>';
+   h+='<rect data-h="owner" x="'+(G.x+4)+'" y="'+(G.y+8)+'" width="96" height="17" rx="4" fill="transparent" style="cursor:pointer"/>'}
+  h+=hot('out',208,120,11,'crosshair','data-n="Copy Drafter"');
+  if(S.spec)for(var q=0;q<3;q++)h+=hot('out',508,ys[q],10,'crosshair','data-n="Spec Checker"');
+  if(S.scan)h+=hot('out',696,120,10,'crosshair','data-n="Compliance Scanner"');
+  h+=top;
+  if(S.wire){var w=S.wire,fl=w.from==='flag',ok=fl&&w.over==='g3',bad=w.over==='pub'||(fl&&w.over==='g4'),cw=ok?'#f79009':bad?'#d92d20':'#98a2b3';
+   if(fl&&G)h+='<rect x="'+(G.x-5)+'" y="'+(G.y-31)+'" width="114" height="62" rx="13" fill="none" stroke="#f79009" stroke-width="'+(ok?2:1.2)+'" stroke-dasharray="5 4" pointer-events="none"'+(ok?'':' class="blink"')+'/>';
+   h+='<g pointer-events="none">'+line(fl?vcurve(w.x0,w.y0,w.x,w.y):curve(w.x0,w.y0,w.x,w.y),cw,'stroke-width="2" stroke-dasharray="5 4"')+'<circle cx="'+w.x+'" cy="'+w.y+'" r="4.2" fill="#fff" stroke="'+cw+'" stroke-width="1.8"/></g>';
+   if(ok)h+=tip(w.x+12,w.y-26,'Release to connect',INK);else if(bad)h+=tip(w.x+12,w.y-26,'Not allowed','#b42318')}
+ }else h+=top;
  $('cv').innerHTML=h;status();size();}
-function status(){var s=$('status');if(s.dataset.hold)return;s.className='status';
- if(S.phase==='build'){s.innerHTML=S.spec&&S.scan?'<b>Ready to run.</b> Limits and claims are checked before anything reaches you.':S.spec?'<b>It will run.</b> Limits are checked per retailer. Nobody is checking claims.':S.scan?'<b>It will run.</b> Claims are checked. Nobody is checking retailer limits.':'<b>It will run.</b> One agent, two gates, and nobody checking limits or claims.'}
+function hold(html,cls,ms){var s=$('status');s.dataset.hold='1';s.className='status'+(cls?' '+cls:'');s.innerHTML=html;clearTimeout(holdT);holdT=setTimeout(function(){delete s.dataset.hold;status()},ms||2600)}
+function status(){var s=$('status');if(S.phase==='build')$('runb').disabled=!ready();if(s.dataset.hold)return;s.className='status';
+ if(S.phase==='build'){s.innerHTML=S.scan&&!S.gate?'<b>Not ready.</b> Flagged claims go nowhere. Drag a human gate onto the canvas.':S.scan&&!S.wired?'<b>Not ready.</b> Pull the Flagged socket to Gate 3.':S.scan&&!S.owner?'<b>Not ready.</b> Gate 3 has no owner. Click its name to pick one.':S.spec&&S.scan?'<b>Ready to run.</b> Limits and claims are checked before anything reaches you.':S.spec?'<b>It will run.</b> Limits are checked per retailer. Nobody is checking claims.':S.scan?'<b>It will run.</b> Claims are checked. Nobody is checking retailer limits.':'<b>It will run.</b> One agent, two gates, and nobody checking limits or claims.'}
  else if(S.phase==='run')s.innerHTML='<span class="dot blink"></span><b>Running.</b> Agents work on their own.';
  else if(S.phase==='gate')s.innerHTML='<span class="dot"></span><b>Waiting on you.</b> Gate 4 is open below.';
  else s.innerHTML='<b>Live.</b> Every gate signed.'}
-function cards(){[['spec','cSpec','fSpec','ADDS A SPLIT PER RETAILER'],['scan','cScan','fScan','ADDS A BRANCH TO A PERSON']].forEach(function(c){$(c[1]).classList.toggle('in',S[c[0]]);$(c[2]).textContent=S[c[0]]?'ON THE CANVAS. CLICK TO REMOVE':c[3]})}
-function add(a,via){if(S.phase!=='build'||S[a])return;S[a]=true;cards();render(a);
- log('h',a==='spec'?'<b>You</b> added Spec Checker. The flow splits per retailer.':'<b>You</b> added Compliance Scanner. Flagged claims branch to Gate 3.');ev('agent_added',{agent:a,via:via})}
-function removeA(a){if(S.phase!=='build'||!S[a])return;S[a]=false;cards();render();log('h','<b>You</b> removed '+(a==='spec'?'Spec Checker':'Compliance Scanner')+'.')}
+function cards(){[['spec','cSpec','fSpec','ADDS A SPLIT PER RETAILER'],['scan','cScan','fScan','ADDS A BRANCH TO A PERSON'],['gate','cGate','fGate','NEEDS A WIRE AND AN OWNER']].forEach(function(c){var on=has(c[0]);$(c[1]).classList.toggle('in',on);$(c[2]).textContent=on?'ON THE CANVAS. CLICK TO REMOVE':c[3]});
+ $('cGate').classList.toggle('off',!S.scan&&!S.gate)}
+function gpos(p){return{x:clamp(p.x-52,GX0,GX1),y:clamp(p.y,GY0,GY1)}}
+function add(a,via,p){if(S.phase!=='build'||has(a))return;
+ if(a==='gate'){if(!S.scan)return;S.gate=gpos(p||{x:720,y:226});cards();render('gate');log('h','<b>You</b> placed a human gate. No wire and no owner yet.')}
+ else{S[a]=true;cards();render(a);log('h',a==='spec'?'<b>You</b> added Spec Checker. The flow splits per retailer.':'<b>You</b> added Compliance Scanner. Its flagged branch goes nowhere yet.')}
+ ev('agent_added',{agent:a,via:via})}
+function removeA(a){if(S.phase!=='build'||!has(a))return;closeOwner();
+ if(a==='gate'||a==='scan'){S.gate=null;S.wired=false;S.owner=null}
+ if(a!=='gate')S[a]=false;cards();render();log('h','<b>You</b> removed '+(a==='spec'?'Spec Checker':a==='scan'?'Compliance Scanner':'Gate 3')+'.')}
+var cvEl=$('cv');
+function pt(e){var r=cvEl.getBoundingClientRect();return{x:(e.clientX-r.left)*960/r.width,y:(e.clientY-r.top)*VH/r.height}}
 function inCanvas(e){var r=$('cvwrap').getBoundingClientRect();return e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom}
+function zone(a,e){if(!inCanvas(e))return false;var p=pt(e);return a==='gate'?S.scan:(p.x>=318&&p.x<=768&&Math.abs(p.y-120)<=48)}
+function pulse(a){S.pulse=a;render();clearTimeout(pulseT);pulseT=setTimeout(function(){S.pulse=null;render()},1700)}
+function why(a){if(a==='gate')hold(S.scan?'<b>Drag it in.</b> Drop the gate anywhere on the canvas.':'<b>Nothing needs a gate yet.</b> Add the Compliance Scanner first.');
+ else{hold('<b>Drag it onto the line.</b> It fits between Gate 2 and Gate 4.');pulse(a)}}
 function bindCard(el){var a=el.getAttribute('data-a'),sx,sy,drag=false,gh=null,down=false;
- el.addEventListener('pointerdown',function(e){if(S.phase!=='build'||S[a])return;down=true;sx=e.clientX;sy=e.clientY;drag=false;try{el.setPointerCapture(e.pointerId)}catch(_){}});
+ el.addEventListener('pointerdown',function(e){if(S.phase!=='build'||has(a))return;down=true;sx=e.clientX;sy=e.clientY;drag=false;try{el.setPointerCapture(e.pointerId)}catch(_){}});
  el.addEventListener('pointermove',function(e){if(!down)return;
-  if(!drag&&Math.hypot(e.clientX-sx,e.clientY-sy)>8){drag=true;gh=document.createElement('div');gh.className='ghost';gh.textContent=el.querySelector('.nm').textContent;document.body.appendChild(gh);S.dragging=a;render()}
-  if(drag){gh.style.left=e.clientX+'px';gh.style.top=e.clientY+'px';var o=inCanvas(e)?a:null;if(o!==S.hover){S.hover=o;render()}}});
- function end(e){if(!down)return;down=false;if(!drag)return;gh.remove();gh=null;drag=false;var over=inCanvas(e);S.hover=null;S.dragging=null;justDragged=true;setTimeout(function(){justDragged=false},50);if(over)add(a,'drag');else render()}
+  if(!drag&&Math.hypot(e.clientX-sx,e.clientY-sy)>8){drag=true;gh=document.createElement('div');gh.className='ghost';gh.textContent=el.querySelector('.nm').textContent;document.body.appendChild(gh);S.dragging=a;S.pulse=null;closeOwner();render()}
+  if(drag){gh.style.left=e.clientX+'px';gh.style.top=e.clientY+'px';var o=zone(a,e)?a:null,ch=o!==S.hover;S.hover=o;
+   if(a==='gate'){S.gprev=inCanvas(e)?gpos(pt(e)):null;ch=true}if(ch)render()}});
+ function end(e){if(!down)return;down=false;if(!drag)return;gh.remove();gh=null;drag=false;var ok=zone(a,e),p=pt(e),inside=inCanvas(e);S.hover=null;S.dragging=null;S.gprev=null;justDragged=true;setTimeout(function(){justDragged=false},50);
+  if(ok)add(a,'drag',p);else{render();if(inside)why(a)}}
  el.addEventListener('pointerup',end);el.addEventListener('pointercancel',end);
- el.addEventListener('click',function(){if(justDragged||S.phase!=='build')return;if(S[a])removeA(a);else add(a,'click')});}
-bindCard($('cSpec'));bindCard($('cScan'));
-$('bypass').onclick=function(){if(S.phase!=='build'||S.bypass)return;S.bypass=true;render();var s=$('status');s.dataset.hold='1';s.className='status bad';s.innerHTML='<b>Can’t connect.</b> An agent can’t reach Publish without a gate in between.';
- var w=$('cvwrap');w.classList.remove('shake');void w.offsetWidth;w.classList.add('shake');log('x','Connection refused: Copy Drafter to Publish, no gate in between');ev('bypass_blocked',{});
- setTimeout(function(){S.bypass=false;delete s.dataset.hold;render()},2800)};
+ el.addEventListener('click',function(e){if(justDragged||S.phase!=='build')return;if(has(a))removeA(a);else if(e.detail===0){if(a==='gate'&&!S.scan)why(a);else add(a,'key')}else why(a)});}
+bindCard($('cSpec'));bindCard($('cScan'));bindCard($('cGate'));
+/* wires, the movable gate and its owner */
+function hitT(p){var G=S.gate;if(G&&p.x>=G.x-10&&p.x<=G.x+114&&p.y>=G.y-36&&p.y<=G.y+36)return 'g3';
+ if(p.x>=872&&p.x<=952&&p.y>=92&&p.y<=148)return 'pub';if(p.x>=748&&p.x<=864&&p.y>=86&&p.y<=154)return 'g4';return null}
+function shake(){var w=$('cvwrap');w.classList.remove('shake');void w.offsetWidth;w.classList.add('shake')}
+function refuse(n,x,y){if(S.phase!=='build'||S.bypass)return;S.bypass={x:x,y:y};render();hold('<b>Can’t connect.</b> An agent can’t reach Publish without a gate in between.','bad',2800);shake();
+ log('x','Connection refused: '+n+' to Publish, no gate in between');ev('bypass_blocked',{from:n});setTimeout(function(){S.bypass=false;render()},2800)}
+function connect(){S.wired=true;render('wire');log('h','<b>You</b> wired flagged claims to Gate 3.');ev('gate_wired',{})}
+var act=null;
+cvEl.addEventListener('pointerdown',function(e){if(S.phase!=='build')return;var t=e.target&&e.target.getAttribute?e.target:null,h=t&&t.getAttribute('data-h');if(!h)return;var p=pt(e);
+ if(h==='flag')act={t:'wire',from:'flag',n:'Compliance Scanner',x0:720,y0:166,sx:p.x,sy:p.y};
+ else if(h==='out')act={t:'wire',from:'agent',n:t.getAttribute('data-n'),x0:+t.getAttribute('cx'),y0:+t.getAttribute('cy'),sx:p.x,sy:p.y};
+ else if(h==='g3')act={t:'gate',dx:p.x-S.gate.x,dy:p.y-S.gate.y,sx:p.x,sy:p.y};
+ else if(h==='owner')act={t:'own',sx:p.x,sy:p.y};
+ e.preventDefault();try{cvEl.setPointerCapture(e.pointerId)}catch(_){}});
+cvEl.addEventListener('pointermove',function(e){if(!act)return;var p=pt(e);if(!act.moved&&Math.hypot(p.x-act.sx,p.y-act.sy)<4)return;act.moved=true;
+ if(act.t==='own'){act={t:'gate',dx:p.x-S.gate.x,dy:p.y-S.gate.y,sx:p.x,sy:p.y,moved:true}}
+ if(act.t==='wire')S.wire={from:act.from,x0:act.x0,y0:act.y0,x:p.x,y:p.y,over:hitT(p)};
+ else{closeOwner();S.gate={x:clamp(p.x-act.dx,GX0,GX1),y:clamp(p.y-act.dy,GY0,GY1)}}
+ render()});
+function up(e){if(!act)return;var a=act;act=null;try{cvEl.releasePointerCapture(e.pointerId)}catch(_){}
+ if(a.t==='own'){openOwner();return}
+ if(a.t==='gate'){render();return}
+ var w=S.wire;S.wire=null;
+ if(!a.moved){render();hold(a.from==='flag'?(S.gate?'<b>Pull it.</b> Drag from this socket to Gate 3.':'<b>Flagged claims need a person.</b> Drag a human gate in, then pull this socket to it.'):'<b>Pull it.</b> Drag from a socket to the node you want to reach.');return}
+ var o=w.over;
+ if(a.from==='flag'&&o==='g3'){connect();return}
+ render();
+ if(o==='pub')refuse(a.n,a.x0,a.y0);
+ else if(a.from==='flag'&&o==='g4'){hold('<b>Can’t connect.</b> Gate 4 picks versions. A flagged claim needs its own gate.','bad');shake();log('x','Connection refused: flagged claims to Gate 4')}
+ else if(a.from==='flag'&&!S.gate)hold('<b>Nowhere to land.</b> Drag a human gate onto the canvas first.')}
+cvEl.addEventListener('pointerup',up);cvEl.addEventListener('pointercancel',up);
+function closeOwner(){var o=$('own');if(o)o.hidden=true}
+function openOwner(){if(S.phase!=='build'||!S.gate)return;var o=$('own'),k=cvEl.getBoundingClientRect().width/960,html='<p>Who signs Gate 3?</p>';
+ OWN.forEach(function(w,i){html+='<button data-o="'+i+'"><span class="av">'+w[2]+'</span><span><b>'+w[0]+'</b><i>'+w[1]+'</i></span></button>'});o.innerHTML=html;o.hidden=false;
+ var ph=o.offsetHeight,pw=o.offsetWidth,wrap=$('cvwrap');o.style.left=clamp(S.gate.x*k-(pw-104*k)/2,6,cvEl.getBoundingClientRect().width-pw-6)+'px';o.style.top=Math.max(6,(S.gate.y-26)*k-ph-8)+'px';size()}
+$('own').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var w=OWN[+b.getAttribute('data-o')];S.owner=w;closeOwner();render();log('h','<b>You</b> made '+w[0]+' the owner of Gate 3.');ev('gate_owner',{owner:w[2]})});
+document.addEventListener('pointerdown',function(e){var o=$('own');if(o&&!o.hidden&&!o.contains(e.target)&&!(e.target.getAttribute&&e.target.getAttribute('data-h')==='owner'))closeOwner()});
+$('bypass').onclick=function(){refuse('Copy Drafter',208,120)};
 
 /* ---------- run ---------- */
-function runLaunch(){if(S.phase!=='build')return;S.phase='run';S.st={};$('lib').classList.add('locked');$('libhint').textContent='Locked while the launch runs.';$('mB').classList.remove('on');$('mR').classList.add('on');
+function runLaunch(){if(S.phase!=='build'||!ready())return;closeOwner();S.wire=null;S.phase='run';S.st={};$('lib').classList.add('locked');$('libhint').textContent='Locked while the launch runs.';$('mB').classList.remove('on');$('mR').classList.add('on');
  $('runb').disabled=true;$('bypass').style.display='none';$('pill').className='pill agent';$('pill').firstChild.style.display='none';$('pillt').textContent='Running';ev('run_started',{spec:S.spec,scan:S.scan});log('h','<b>You</b> started the launch');
  var q=[];function st(ms,fn){q.push([ms,fn])}
  st(300,function(){S.st.brief='done';S.st.dr='run'});
@@ -332,9 +420,9 @@ function runLaunch(){if(S.phase!=='build')return;S.phase='run';S.st={};$('lib').
  if(S.spec){st(400,function(){S.st.b0=S.st.b1=S.st.b2='run'});st(600,function(){S.st.b0='done'});st(350,function(){S.st.b2='done'});
   st(450,function(){S.st.b1='done';S.st.mg='done';log('a','Spec Checker trimmed 1 Sephora title to fit 120 characters')})}
  if(S.scan){st(400,function(){S.st.sc='run'});st(800,function(){S.st.sc='flag';log('a','Compliance Scanner flagged “clinically proven”: no study on file')});
-  st(600,function(){S.st.g3='turn'});st(900,function(){S.loop=true;S.st.dr='run';log('h','<b>Daniel Reyes</b> sent the claim back at Gate 3','DR')});
+  st(600,function(){S.st.g3='turn'});st(900,function(){S.loop=true;S.st.dr='run';log('h','<b>'+S.owner[0]+'</b> sent the claim back at Gate 3',S.owner[2])});
   st(1100,function(){S.loop=false;S.st.dr='done';log('a','Copy Drafter removed the claim from 3 packages')});
-  st(600,function(){S.st.sc='done';S.st.g3='done';S.st.cond='done';log('h','<b>Daniel Reyes</b> signed Gate 3','DR')})}
+  st(600,function(){S.st.sc='done';S.st.g3='done';S.st.cond='done';log('h','<b>'+S.owner[0]+'</b> signed Gate 3',S.owner[2])})}
  st(500,function(){S.st.g4='turn';S.phase='gate';$('pill').className='pill';$('pill').firstChild.style.display='';$('pillt').textContent='Your turn at Gate 4';$('gate').hidden=false;show(0)});
  (function go(i){if(i>=q.length)return;setTimeout(function(){q[i][1]();render();go(i+1)},q[i][0])})(0);render();}
 $('runb').onclick=runLaunch;
