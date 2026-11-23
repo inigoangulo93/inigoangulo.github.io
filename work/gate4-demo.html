@@ -36,7 +36,11 @@ h1{font-size:clamp(22px,4vw,30px);font-weight:600;letter-spacing:-.02em;margin-b
 .bar b{font-weight:600;font-size:14.5px;letter-spacing:-.01em}
 .bar .ln{font-size:13px;color:var(--t2)}
 .pill{margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px;border-radius:999px;background:var(--ink);color:#fff;font-size:12px;font-weight:500;transition:all .3s}
-.pill.live{background:var(--ok50);color:var(--ok);box-shadow:inset 0 0 0 1px var(--ok2)}
+.pill.live{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.pill.agent{background:var(--brand50);color:var(--brand7)}
+.pill.warnp{background:var(--warn50);color:var(--warn);box-shadow:inset 0 0 0 1px var(--warn2)}
+.pill.live::before,.pill.agent::before,.pill.warnp::before{content:"";width:6px;height:6px;border-radius:9px;flex:none}
+.pill.live::before{background:var(--ok)}.pill.agent::before{background:var(--brand)}.pill.warnp::before{background:var(--warn)}
 .dia{width:8px;height:8px;background:currentColor;transform:rotate(45deg);border-radius:1px;flex:none}
 .body{padding:16px;display:grid;gap:14px}
 /* build */
@@ -320,7 +324,7 @@ $('bypass').onclick=function(){if(S.phase!=='build'||S.bypass)return;S.bypass=tr
 
 /* ---------- run ---------- */
 function runLaunch(){if(S.phase!=='build')return;S.phase='run';S.st={};$('lib').classList.add('locked');$('libhint').textContent='Locked while the launch runs.';$('mB').classList.remove('on');$('mR').classList.add('on');
- $('runb').disabled=true;$('bypass').style.display='none';$('pillt').textContent='Running';ev('run_started',{spec:S.spec,scan:S.scan});log('h','<b>You</b> started the launch');
+ $('runb').disabled=true;$('bypass').style.display='none';$('pill').className='pill agent';$('pill').firstChild.style.display='none';$('pillt').textContent='Running';ev('run_started',{spec:S.spec,scan:S.scan});log('h','<b>You</b> started the launch');
  var q=[];function st(ms,fn){q.push([ms,fn])}
  st(300,function(){S.st.brief='done';S.st.dr='run'});
  st(800,function(){S.st.dr='done';log('a','Copy Drafter wrote 2 versions of 6 packages')});
@@ -331,7 +335,7 @@ function runLaunch(){if(S.phase!=='build')return;S.phase='run';S.st={};$('lib').
   st(600,function(){S.st.g3='turn'});st(900,function(){S.loop=true;S.st.dr='run';log('h','<b>Daniel Reyes</b> sent the claim back at Gate 3','DR')});
   st(1100,function(){S.loop=false;S.st.dr='done';log('a','Copy Drafter removed the claim from 3 packages')});
   st(600,function(){S.st.sc='done';S.st.g3='done';S.st.cond='done';log('h','<b>Daniel Reyes</b> signed Gate 3','DR')})}
- st(500,function(){S.st.g4='turn';S.phase='gate';$('pillt').textContent='Your turn at Gate 4';$('gate').hidden=false;show(0)});
+ st(500,function(){S.st.g4='turn';S.phase='gate';$('pill').className='pill';$('pill').firstChild.style.display='';$('pillt').textContent='Your turn at Gate 4';$('gate').hidden=false;show(0)});
  (function go(i){if(i>=q.length)return;setTimeout(function(){q[i][1]();render();go(i+1)},q[i][0])})(0);render();}
 $('runb').onclick=runLaunch;
 
@@ -376,7 +380,7 @@ function launch(){if(count()<N||launched)return;launched=true;log('h','<b>You</b
  var over=0,claims=0;cells.forEach(function(c){if(c.v==='B'&&c.gen===1&&c.s===0){if(!S.scan)claims++;if(!S.spec&&c.r===1)over=(texts(c)[1]+texts(c)[2]).length}});
  ev('launch_approved',{spec:S.spec,scan:S.scan,issues:(over?1:0)+(claims?1:0)});
  S.phase='live';S.st.g4='done';S.st.pub='done';render();
- var clean=!over&&!claims;$('pill').classList.toggle('live',clean);$('pill').firstChild.style.display='none';$('pillt').textContent=clean?'Live on 3 retailers':'Live, with problems';$('gate').style.borderColor='var(--line)';
+ var clean=!over&&!claims;$('pill').className='pill '+(clean?'live':'warnp');$('pill').firstChild.style.display='none';$('pillt').textContent=clean?'Live on 3 retailers':'Live, with problems';$('gate').style.borderColor='var(--line)';
  var li='';if(over)li+='<li>Sephora rejected 1 title: '+over+' characters, limit 120. No agent was checking limits.</li>';
  if(claims)li+='<li>'+claims+' '+(claims>1?'packages':'package')+' went live saying “clinically proven”. There is no study on file, and nobody flagged it.</li>';
  if(clean)li='<li class="ok">'+(S.spec&&S.scan?'Limits and claims were checked before anything reached you.':'Nothing slipped through this time. The pipeline did not guarantee that: you did.')+'</li>';
