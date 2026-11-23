@@ -90,16 +90,16 @@ def index():
 </div>
 </a>
 
-<div class="lc lc--soon" aria-disabled="true"><span class="lc__soon">Coming soon</span>
+<a class="lc" href="/lab/hold-the-gate/">
 <div class="lc__art" aria-hidden="true"><div class="gates"><span>G1</span><i></i><span>G2</span><i></i><span>G3</span><i></i><span class="on">G4</span></div></div>
 <div class="lc__body">
-<span class="lc__k">REVIEW / COMING SOON</span>
-<span class="lc__h">Gate 4</span>
-<span class="lc__p">The fourth gate of a brief to content pipeline. You see what the system flagged and decide whether it moves on.</span>
-<div class="lc__shows"><b>WHAT IT SHOWS</b><span>Workflow design: exception first review and human gates on AI output.</span></div>
-<div class="lc__foot"><span>ShelfFlow</span><span class="lc__pill">Not available yet</span></div>
+<span class="lc__k">BUILD / 4 MIN</span>
+<span class="lc__h">Hold the Gate</span>
+<span class="lc__p">Build an agent pipeline on a canvas, wire its flagged branch to a gate and name who signs it. Then run the launch, take the last gate yourself and compare with the pipeline that shipped.</span>
+<div class="lc__shows"><b>WHAT IT SHOWS</b><span>Supervisable AI: agents carry the work, a named person owns each decision.</span></div>
+<div class="lc__foot"><span>ShelfFlow</span><span class="lc__go">Play &#8594;</span></div>
 </div>
-</div>
+</a>
 
 <div class="lc lc--soon" aria-disabled="true"><span class="lc__soon">Coming soon</span>
 <div class="lc__art" aria-hidden="true"><div class="calc"><b>CONVERSIONS PER MONTH</b><i style="--w:62%"></i><b>EXPECTED LIFT</b><i style="--w:28%"></i><strong>? weeks</strong></div></div>
@@ -251,9 +251,40 @@ def clock():
     return out
 
 
+def htg():
+    url = "https://inigoangulo.com/lab/hold-the-gate/"
+    out = head("Hold the Gate: build an agent pipeline, then sign for it / Lab, Inigo Angulo",
+               "Build a content pipeline on a canvas, wire the flagged branch to a human gate and name its owner. Run the launch, take the last gate yourself, then compare with the pipeline that shipped.",
+               url, [("Inigo Angulo", "https://inigoangulo.com/"), ("Lab", "https://inigoangulo.com/lab/"), ("Hold the Gate", url)])
+    out += f'''<main class="lab"><div class="mx">
+<a class="lab__back" href="/lab/">&#8592; Lab</a>
+<div class="pt" style="margin-bottom:0">
+<p class="pt__tag">Build / 4 min / Agentic workflows</p>
+<h1 class="pt__h">Hold the Gate</h1>
+<p class="pt__sub">Six agents can do the work. <em>Who is allowed to say yes?</em></p>
+</div>
+<p class="lab__lead">From ShelfFlow, a content pipeline for an enterprise CPG team. Build the pipeline on the canvas, give its flagged branch a gate and an owner, run the launch and take the last gate yourself. Then compare your pipeline with the one that shipped.</p>
+<div class="lab__meta"><span>1 launch, 6 choices</span><span>About 4 minutes</span><span>Real rules</span><span>Synthetic data</span></div>
+<details class="more lab__data"><summary>About the data</summary><p>The rules are the ones the product enforces: an agent cannot reach Publish without a gate, a gate cannot run without a named owner, and the batch shortcut stays locked until each choice has been opened. The launch, the products and the copy are synthetic, and the client is under NDA.</p></details>
+
+<section class="htg" id="htg" aria-label="Hold the Gate">
+<iframe id="htgFrame" src="/lab/hold-the-gate/app.html?embed=1&amp;v={{VER}}" title="Hold the Gate, the ShelfFlow canvas" style="display:block;width:100%;border:0;border-radius:16px;height:820px;background:transparent"></iframe>
+<noscript><p class="wys__fail-p">The interactive version needs JavaScript. The full story is in the <a href="/work/shelfflow.html">ShelfFlow case study</a>.</p></noscript>
+</section>
+<p class="lab__lead" style="margin-top:28px">Best with a mouse or trackpad: blocks are dragged onto the line and sockets are pulled to connect. The design behind it is in the <a href="/work/shelfflow.html#s03">ShelfFlow case study</a>.</p>
+</div></main>
+'''.replace('{VER}', VER)
+    out += FOOTER + '\n'
+    out += '<script>window.addEventListener("message",function(e){if(!e.data||e.data.type!=="g4h")return;var f=document.getElementById("htgFrame");if(!f)return;var h=Math.max(480,Math.min(2600,parseInt(e.data.h,10)||0));if(h)f.style.height=h+"px"});</script>\n'
+    out += '</body>\n</html>\n'
+    return out
+
+
 os.makedirs(os.path.join(HERE, 'would-you-ship-it'), exist_ok=True)
 open(os.path.join(HERE, 'index.html'), 'w').write(index())
 open(os.path.join(HERE, 'would-you-ship-it', 'index.html'), 'w').write(game())
 os.makedirs(os.path.join(HERE, 'vacancy-clock'), exist_ok=True)
 open(os.path.join(HERE, 'vacancy-clock', 'index.html'), 'w').write(clock())
-print('built lab/index.html, lab/would-you-ship-it/index.html and lab/vacancy-clock/index.html')
+os.makedirs(os.path.join(HERE, 'hold-the-gate'), exist_ok=True)
+open(os.path.join(HERE, 'hold-the-gate', 'index.html'), 'w').write(htg())
+print('built lab/index.html, lab/would-you-ship-it/index.html, lab/vacancy-clock/index.html and lab/hold-the-gate/index.html')

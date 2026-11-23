@@ -389,13 +389,14 @@
   <p class="cs__img-cap">The library. The team's templates carry a state, a version and how long they take to reach Live. The three shapes that ship with ShelfFlow can be duplicated, not edited.</p>
   <div class="cs__img" data-reveal><img src="../img/shelfflow/v5/chip-system.webp?v=1123a" alt="The chip system: five kinds of label, each answering one question, with the life cycle of a launch, a template and a gate" width="1920" height="1080" loading="lazy" decoding="async"></div>
   <p class="cs__img-cap">Templates added a second thing that could be a draft, so every label in the product was sorted again. A chip now answers one question: where it is, what the agent is doing, what rule applies, where it came from, or how many.</p>
-  <div data-reveal style="background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:24px 28px;margin:28px 0">
-    <span style="font-family:var(--m);font-size:11px;color:var(--ac);letter-spacing:2px">&#9670; INTERACTIVE, SYNTHETIC DATA</span>
-    <p style="font-family:var(--s);font-size:1.15rem;font-weight:700;color:var(--t1);margin:10px 0 6px">Build the pipeline. Then hold the gate.</p>
-    <p style="font-family:var(--s);font-size:.9rem;color:var(--t2);line-height:1.65;margin:0 0 14px">A working slice of the canvas. Drag agents onto the line, pull the flagged branch to a gate and give that gate an owner, or leave them out. Then run the launch and take Gate 4 yourself: what you did not build, you meet at the gate.</p>
-    <iframe id="g4frame" src="gate4-demo.html?embed=1&amp;v=1123b" title="Interactive ShelfFlow canvas demo" loading="lazy" style="width:100%;border:0;border-radius:10px;height:600px;background:#f7f8fa"></iframe>
-    <p style="margin:10px 0 0"><a href="gate4-demo.html" style="font-family:var(--m);font-size:.78rem;color:var(--t3);text-decoration:none">Open full screen &#8599;</a></p>
-  </div>
+  <a href="/lab/hold-the-gate/" data-reveal style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:22px 26px;margin:28px 0;text-decoration:none">
+    <span style="flex:1;min-width:240px">
+      <span style="display:block;font-family:var(--m);font-size:11px;color:var(--ac);letter-spacing:2px">&#9670; IN THE LAB, 4 MIN</span>
+      <span style="display:block;font-family:var(--s);font-size:1.15rem;font-weight:700;color:var(--t1);margin:10px 0 6px">Build the pipeline. Then hold the gate.</span>
+      <span style="display:block;font-family:var(--s);font-size:.9rem;color:var(--t2);line-height:1.65">A working canvas on synthetic data. Place the agents, wire the flagged branch to a gate, name who signs it and run the launch. At the end you see your pipeline next to the one that shipped.</span>
+    </span>
+    <span style="font-family:var(--m);font-size:.8rem;color:var(--ac);white-space:nowrap">Open Hold the Gate &#8594;</span>
+  </a>
   </div>
 
   <div class="cs__section" id="s04" data-reveal>
@@ -485,7 +486,7 @@
 
     <div class="cs__reflection" style="border-color:var(--dn);background:var(--dng)">
       <span class="cs__reflection-h" style="color:var(--dn)">Approving in bulk</span>
-      <span class="cs__reflection-text" style="display:block"><span style="display:grid;grid-template-columns:92px 1fr;gap:12px;margin-top:10px"><span style="font-family:var(--m);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);padding-top:4px">Saw</span><span>v1 let reviewers approve packages in bulk without opening them. In testing they did exactly that to save time.</span></span><span style="display:grid;grid-template-columns:92px 1fr;gap:12px;margin-top:10px"><span style="font-family:var(--m);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);padding-top:4px">Changed</span><span>The shortcut stays locked until each remaining package has been opened, and a review-time floor per cell marks approvals that come too fast.</span></span><span style="display:grid;grid-template-columns:92px 1fr;gap:12px;margin-top:10px"><span style="font-family:var(--m);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);padding-top:4px">Now</span><span>You can test it in the demo in section 03: press the shortcut early and it refuses, and the refusal is written to the audit trail.</span></span></span>
+      <span class="cs__reflection-text" style="display:block"><span style="display:grid;grid-template-columns:92px 1fr;gap:12px;margin-top:10px"><span style="font-family:var(--m);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);padding-top:4px">Saw</span><span>v1 let reviewers approve packages in bulk without opening them. In testing they did exactly that to save time.</span></span><span style="display:grid;grid-template-columns:92px 1fr;gap:12px;margin-top:10px"><span style="font-family:var(--m);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);padding-top:4px">Changed</span><span>The shortcut stays locked until each remaining package has been opened, and a review-time floor per cell marks approvals that come too fast.</span></span><span style="display:grid;grid-template-columns:92px 1fr;gap:12px;margin-top:10px"><span style="font-family:var(--m);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);padding-top:4px">Now</span><span>You can test it in <a href="/lab/hold-the-gate/" style="color:inherit">the Lab</a>: press the shortcut early and it refuses, and the refusal is written to the audit trail.</span></span></span>
     </div>
 
     <p class="cs__img-cap" style="text-align:left;margin:0 0 20px">The test sessions are under NDA, so this page shows the mechanism each finding produced, not the recordings.</p>
@@ -561,14 +562,6 @@ const metricObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting
   }
 }})},{threshold:.3});
 document.querySelectorAll(".cs__metric").forEach(m=>metricObs.observe(m));
-
-// Gate 4 embed: follow the demo's reported height (no inner scroll, no CLS)
-window.addEventListener('message',function(e){
-  if(!e.data||e.data.type!=='g4h')return;
-  var f=document.getElementById('g4frame');if(!f)return;
-  var h=Math.max(400,Math.min(1800,parseInt(e.data.h,10)||0));
-  if(h)f.style.height=h+'px';
-});
 
 // SVG diagram expander
 var svglb=document.createElement('div');svglb.className='svglb';

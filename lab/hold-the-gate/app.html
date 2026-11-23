@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hold the Gate, the ShelfFlow canvas / Lab, Inigo Angulo</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://inigoangulo.com/lab/hold-the-gate/">
+<meta property="og:title" content="ShelfFlow, build the pipeline and hold the gate">
+<meta property="og:description" content="Build the pipeline on the canvas: drop in two agents and watch each one fork the flow. Then run it and hold Gate 4 yourself. What you leave out, you meet at the gate.">
+<meta property="og:image" content="https://inigoangulo.com/img/shelfflow/og.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://inigoangulo.com/lab/hold-the-gate/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta name="description" content="Build the pipeline on the canvas: drop in two agents and watch each one fork the flow. Then run it and hold Gate 4 yourself. What you leave out, you meet at the gate.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWCZNNK7YW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-WWCZNNK7YW",{send_page_view:window.parent===window});</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--canvas:#f7f8fa;--surface:#fff;--subtle:#f3f4f6;--hover:#f9fafb;--line:#e4e7ec;--line2:#d0d5dd;--ink:#101828;--t2:#475467;--t3:#667085;--mut:#98a2b3;--brand:#6c5ce7;--brand7:#5b4bd6;--brand3:#c4b5fd;--brand50:#f2f0fe;--ok:#067647;--ok50:#ecfdf3;--ok2:#abefc6;--warn:#b54708;--warn50:#fffaeb;--warn2:#fedf89;--bad:#b42318;--track:#eaecf0;--s:'Inter',system-ui,sans-serif;--m:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0}
+body{background:var(--canvas);color:var(--ink);font-family:var(--s);padding:64px 16px 48px;display:flex;justify-content:center;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;cursor:pointer;color:inherit}
+button:focus-visible,.cell:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.wrap{width:100%;max-width:920px}
+nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 16px;z-index:10;font-size:13px}
+nav a{color:var(--t2);text-decoration:none}
+.tag{font-family:var(--m);font-size:10.5px;letter-spacing:.08em;color:var(--t3);margin-bottom:8px}
+h1{font-size:clamp(22px,4vw,30px);font-weight:600;letter-spacing:-.02em;margin-bottom:6px}
+.sub{font-size:15px;color:var(--t2);line-height:1.55;margin-bottom:20px;max-width:640px}
+.app{background:var(--canvas);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.05),0 12px 32px -12px rgba(16,24,40,.12)}
+.bar{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--surface);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.logo{width:26px;height:26px;border-radius:8px;background:var(--ink);display:grid;place-content:center;gap:2.5px}
+.logo i{display:block;height:2.5px;width:13px;border-radius:2px;background:#fff}.logo i:nth-child(2){width:8px;background:#a78bfa}
+.bar b{font-weight:600;font-size:14.5px;letter-spacing:-.01em}
+.bar .ln{font-size:13px;color:var(--t2)}
+.pill{margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px;border-radius:999px;background:var(--ink);color:#fff;font-size:12px;font-weight:500;transition:all .3s}
+.pill.live{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.pill.agent{background:var(--brand50);color:var(--brand7)}
+.pill.warnp{background:var(--warn50);color:var(--warn);box-shadow:inset 0 0 0 1px var(--warn2)}
+.pill.live::before,.pill.agent::before,.pill.warnp::before{content:"";width:6px;height:6px;border-radius:9px;flex:none}
+.pill.live::before{background:var(--ok)}.pill.agent::before{background:var(--brand)}.pill.warnp::before{background:var(--warn)}
+.dia{width:8px;height:8px;background:currentColor;transform:rotate(45deg);border-radius:1px;flex:none}
+.body{padding:16px;display:grid;gap:14px}
+/* build */
+.mode{display:inline-flex;background:var(--subtle);border-radius:9px;padding:3px;font-size:12px;font-weight:500;color:var(--t3);margin-left:auto}
+.mode span{padding:4px 12px;border-radius:7px}.mode span.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(16,24,40,.12)}
+.bar .pill{margin-left:0}
+.build{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.lib .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.lib .top{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.lib{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 1px 2px rgba(16,24,40,.05)}
+.lib h3{font-size:13px;font-weight:600}.lib .hint{font-size:12px;color:var(--t3)}
+.card{display:block;width:100%;text-align:left;background:var(--surface);border:1px solid var(--brand3);border-radius:11px;padding:10px 11px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:border-color .2s,box-shadow .2s,opacity .2s}
+.card:hover{border-color:var(--brand);box-shadow:0 4px 12px -4px rgba(108,92,231,.35)}
+.card .nm{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600}
+.card .ti{width:20px;height:20px;border-radius:6px;background:var(--brand50);color:var(--brand7);display:grid;place-content:center;font-size:11px;flex:none}
+.card .ds{display:block;font-size:11.5px;color:var(--t2);line-height:1.45;margin-top:5px}
+.card .fk{display:block;font-family:var(--m);font-size:9.5px;letter-spacing:.06em;color:var(--brand7);margin-top:6px}
+.card.in{border-style:dashed;cursor:pointer;opacity:.75}.card.in .fk{color:var(--t3)}
+.lib.locked .card{pointer-events:none;opacity:.5}
+.card.gatec{border-color:var(--line2)}.card.gatec:hover{border-color:var(--ink);box-shadow:0 4px 12px -4px rgba(16,24,40,.3)}
+.card .tig{background:var(--ink);color:#fff;font-size:9px}.card.gatec .fk{color:var(--t2)}.card.off{opacity:.55}
+.cvwrap{position:relative}#cv{user-select:none;-webkit-user-select:none}#cv [data-h]{touch-action:none}
+.own{position:absolute;z-index:5;width:206px;background:var(--surface);border:1px solid var(--line2);border-radius:12px;padding:6px;box-shadow:0 12px 28px -8px rgba(16,24,40,.3)}
+.own[hidden]{display:none}.own p{font-size:11px;color:var(--t3);padding:4px 8px 6px}
+.own button{display:flex;align-items:center;gap:9px;width:100%;text-align:left;background:none;border:0;border-radius:8px;padding:6px 8px}
+.own button:hover{background:var(--subtle)}.own .av{width:22px;height:22px;border-radius:999px;background:var(--ink);color:#fff;font-size:9px;font-weight:600;display:grid;place-content:center;flex:none}
+.own b{display:block;font-size:12.5px;font-weight:600}.own i{display:block;font-style:normal;font-size:11px;color:var(--t3)}
+.ghost{position:fixed;z-index:50;pointer-events:none;background:var(--surface);border:1px solid var(--brand);border-radius:10px;padding:8px 11px;font-size:12.5px;font-weight:600;box-shadow:0 12px 28px -8px rgba(16,24,40,.35);transform:translate(-50%,-50%) rotate(-2deg)}
+.cvwrap{background-color:var(--canvas);border:1px solid var(--line);border-radius:14px;overflow-x:auto;background-image:radial-gradient(#d5d9e0 1px,transparent 1px);background-size:20px 20px}
+.cvwrap svg{display:block;width:100%;min-width:760px;height:auto}
+.cvbar{display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap}
+.status{font-size:12.5px;color:var(--t2);flex:1;min-width:200px;line-height:1.5}
+.status b{color:var(--ink);font-weight:600}.status.bad,.status.bad b{color:var(--bad)}
+.status .dot{display:inline-block;width:8px;height:8px;border-radius:9px;background:var(--brand);margin-right:8px}
+.bypass{background:none;border:0;font-size:12px;color:var(--t3);text-decoration:underline;text-underline-offset:3px;padding:6px 0}
+.bypass:hover{color:var(--ink)}
+.runb{height:38px;padding:0 16px;border-radius:10px;border:0;background:var(--ink);color:#fff;font-size:13.5px;font-weight:600;display:inline-flex;align-items:center;gap:8px}
+.runb[disabled]{background:var(--track);color:var(--t3);cursor:default}
+svg text{font-family:var(--s)}svg .mono{font-family:var(--m)}
+@keyframes pop{0%{opacity:0;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}
+.pop{animation:pop .35s cubic-bezier(.2,.9,.3,1.3) both;transform-box:fill-box;transform-origin:center}
+@keyframes dash{to{stroke-dashoffset:-18}}.flow{stroke-dasharray:5 4;animation:dash .7s linear infinite}
+@keyframes blink{50%{opacity:.35}}.blink{animation:blink 1s ease-in-out infinite}
+.gate[hidden]{display:none}
+.fine.w,.fine.w i{color:var(--warn)}
+#log .av{font-size:8.5px}
+.done ul{list-style:none;padding:0;margin:14px auto 0;max-width:520px;text-align:left;display:grid;gap:8px}
+.done li{font-size:13.5px;line-height:1.5;padding:10px 12px;border-radius:10px;background:#fef3f2;border:1px solid #fecdca;color:#912018}
+.done li.ok{background:var(--ok50);border-color:var(--ok2);color:var(--ok)}
+@media(max-width:620px){.card .ds{display:none}}
+/* gate card */
+.gate{background:var(--surface);border:2px solid var(--ink);border-radius:16px;overflow:hidden;box-shadow:0 6px 14px -4px rgba(16,24,40,.08),0 20px 40px -12px rgba(16,24,40,.16)}
+.band{display:flex;align-items:center;gap:8px;height:40px;padding:0 16px;background:var(--ink);color:#fff}
+.band .k{font-family:var(--m);font-size:10.5px;letter-spacing:.08em}
+.band .n{font-size:13px;font-weight:500}
+.band .c{margin-left:auto;font-size:12px;color:var(--mut)}
+.gb{display:grid;grid-template-columns:212px 1fr}
+.left{padding:18px 16px;background:var(--hover);border-right:1px solid var(--line)}
+.mx{display:grid;grid-template-columns:auto repeat(3,1fr);gap:5px;align-items:center}
+.mh{font-family:var(--m);font-size:10px;color:var(--t3);text-align:center}
+.ms{font-size:12px;color:var(--t2);padding-right:6px;white-space:nowrap}
+.cell{height:26px;border-radius:7px;background:var(--subtle);border:2px solid transparent;font-size:11px;font-weight:600;color:var(--ink);display:grid;place-content:center;transition:background .2s,border-color .2s,color .2s;padding:0}
+.cell.seen{background:#e4e7ec}
+.cell.ok{background:var(--ink);color:#fff}
+.cell.cur{background:var(--surface);border-color:var(--ink);color:var(--ink)}
+.prog{font-size:12.5px;color:var(--t3);margin-top:12px}
+.legend{font-size:11.5px;color:var(--t3);margin-top:10px;line-height:1.5}
+.right{padding:20px 22px 20px}
+.where{font-size:13px;color:var(--t3);margin-bottom:4px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.v2{font-size:11.5px;font-weight:500;color:var(--warn);background:var(--warn50);border:1px solid var(--warn2);border-radius:999px;padding:1px 8px}
+.q{font-size:21px;font-weight:600;letter-spacing:-.02em;margin-bottom:14px}
+.vars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.var{border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.vh{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600}
+.bdg{width:22px;height:22px;border-radius:7px;background:var(--ink);color:#fff;font-size:11.5px;display:grid;place-content:center}
+.vh .cnt{margin-left:auto;font-family:var(--m);font-size:10.5px;font-weight:500;color:var(--t3)}
+.var p{font-size:15px;line-height:1.5;flex:1}
+.var p mark{background:none;color:var(--brand7);font-weight:500}
+.use{height:42px;border-radius:10px;border:0;background:var(--ink);color:#fff;font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:9px}
+.use:hover{background:#1d2939}
+kbd{font-family:var(--m);font-size:10.5px;padding:1px 6px;border-radius:5px;background:rgba(255,255,255,.16)}
+.row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap}
+.fine{font-size:12.5px;color:var(--t2);display:inline-flex;gap:6px;align-items:center}
+.fine i{color:var(--ok);font-style:normal}
+.back{margin-left:auto;background:none;border:0;font-size:12.5px;font-weight:500;color:var(--t2);padding:6px 0}
+.back:hover{color:var(--ink)}
+.back kbd{background:var(--subtle);color:var(--t2)}
+.why{display:none;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center;font-size:12.5px;color:var(--t2)}
+.why.on{display:flex}
+.why button{height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--line2);background:var(--surface);font-size:12.5px;font-weight:500}
+.why button:hover{border-color:var(--ink)}
+.guard{display:flex;align-items:center;gap:12px;margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--subtle);flex-wrap:wrap}
+.guard .tx{flex:1;min-width:180px;font-size:13px;font-weight:500}
+.guard .tx span{display:block;font-weight:400;font-size:12.5px;color:var(--t3);margin-top:1px}
+.guard .tx.blocked span{color:var(--bad)}
+.batch{height:36px;padding:0 14px;border-radius:8px;border:0;background:var(--track);color:var(--t3);font-size:13px;font-weight:500;transition:all .2s}
+.batch.on{background:var(--ink);color:#fff}
+.lk{display:grid;place-content:center}
+.foot2{display:flex;align-items:center;gap:12px;padding:12px 16px;border-top:1px solid var(--line);background:var(--hover);flex-wrap:wrap}
+.ff{display:none;height:34px;padding:0 12px;border-radius:8px;border:1px solid var(--line2);background:var(--surface);font-size:12.5px;font-weight:500}
+.ff.on{display:inline-flex;align-items:center}
+.launch{margin-left:auto;height:40px;padding:0 16px;border-radius:10px;border:0;background:var(--track);color:var(--t3);font-size:13.5px;font-weight:600;cursor:not-allowed}
+.launch.on{background:var(--ink);color:#fff;cursor:pointer}
+.fnote{font-size:12px;color:var(--t3)}
+/* audit */
+.audit{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.ah{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12.5px;font-weight:600}
+.ah span{font-family:var(--m);font-size:10.5px;font-weight:500;color:var(--t2);background:var(--subtle);border-radius:5px;padding:1px 6px}
+.ah em{margin-left:auto;font-style:normal;font-weight:400;font-size:12px;color:var(--t3)}
+#log div{display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--line);font-size:13px;color:var(--t2)}
+#log div:last-child{border-bottom:0}
+#log .ts{font-family:var(--m);font-size:10.5px;color:var(--t3);flex:none}
+#log .av{width:22px;height:22px;border-radius:999px;background:var(--ink);color:#fff;font-size:9px;font-weight:600;display:grid;place-content:center;flex:none}
+#log .ag{width:22px;height:22px;border-radius:7px;background:var(--brand50);color:var(--brand7);font-size:11px;display:grid;place-content:center;flex:none}
+#log .h{color:var(--ink)}#log .h b{font-weight:600}
+#log .x{color:var(--bad)}
+#log .empty{color:var(--t3)}
+/* done */
+.done{padding:34px 20px 30px;text-align:center}
+.done h2{font-size:24px;font-weight:600;letter-spacing:-.02em;margin-bottom:6px}
+.done p{font-size:15px;color:var(--t2);line-height:1.55}
+.done .mt{font-size:15px;font-weight:600;color:var(--ink);margin-top:26px}
+.cmp{max-width:720px;margin:12px auto 0;text-align:left;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+.cr{display:grid;grid-template-columns:1.05fr 1.25fr 1.25fr;gap:12px;padding:10px 14px;border-top:1px solid var(--line);font-size:13px;line-height:1.45;align-items:start}
+.cr.ch{border-top:0;background:var(--hover);font-family:var(--m);font-size:10px;letter-spacing:.08em;color:var(--t3)}
+.cr .ck{color:var(--t2)}.cr .cs{color:var(--t3)}
+.cr .cy{display:flex;gap:7px;font-weight:500;color:var(--ink)}.cr .cy i{font-style:normal;flex:none;width:16px;height:16px;border-radius:99px;font-size:10px;display:grid;place-content:center;margin-top:1px}
+.cr .cy.ok i{background:var(--ok50);color:var(--ok)}.cr .cy.no i{background:var(--warn50);color:var(--warn)}.cr .cy.no{color:var(--warn)}
+.done .mnote{font-size:12px;color:var(--t3);margin-top:10px}
+.shr{max-width:720px;margin:22px auto 0;text-align:left;background:var(--hover);border:1px solid var(--line);border-radius:12px;padding:14px}
+.shr pre{font-family:var(--m);font-size:11.5px;line-height:1.6;color:var(--t2);white-space:pre-wrap;margin:0 0 12px}
+.acts{display:flex;gap:10px;flex-wrap:wrap}.acts.end{justify-content:center;margin-top:22px}
+.acts button,.acts a{height:36px;padding:0 14px;border-radius:8px;border:1px solid var(--line2);background:var(--surface);font-size:13px;font-weight:500;display:inline-flex;align-items:center;color:var(--ink);text-decoration:none}
+.acts a.pri{background:var(--ink);border-color:var(--ink);color:#fff}
+@media(max-width:620px){.cr{grid-template-columns:1fr;gap:3px}.cr.ch{display:none}.cr .cs::before{content:"Shipped: "}}
+.foot{font-size:13px;color:var(--t3);margin-top:16px;line-height:1.6;max-width:680px}
+.foot a{color:var(--ink)}
+.shake{animation:sh .4s}
+@keyframes sh{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@media(max-width:700px){.gb{grid-template-columns:1fr}.left{border-right:0;border-bottom:1px solid var(--line)}.vars{grid-template-columns:1fr}.back{margin-left:0}}
+body.embed nav,body.embed .tag,body.embed h1,body.embed .sub,body.embed .foot{display:none}
+body.embed{padding:0;background:transparent}
+body.embed .app{box-shadow:none}
+body.embed .wrap{max-width:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<script>if(new URLSearchParams(location.search).get('embed')==='1')document.body.classList.add('embed');</script>
+<nav><a href="/lab/hold-the-gate/" target="_top">&#8592; Back to the Lab</a></nav>
+<div class="wrap">
+<p class="tag">SHELFFLOW, INTERACTIVE DEMO, SYNTHETIC DATA</p>
+<h1>Build the pipeline. Then hold the gate.</h1>
+<p class="sub">Drag agents onto the line, wire the flagged branch to a gate and give it an owner. Then run the launch and take Gate 4 yourself. What you leave out, you meet at the gate.</p>
+
+<div class="app">
+  <div class="bar">
+    <span class="logo"><i></i><i></i><i></i></span><b>ShelfFlow</b><span class="ln">Lumina Glow, Vitamin C line</span>
+    <span class="mode" aria-hidden="true"><span id="mB" class="on">Build</span><span id="mR">Run</span></span>
+    <span class="pill" id="pill"><span class="dia"></span><span id="pillt">You are the operator</span></span>
+  </div>
+  <div class="body">
+    <div class="build">
+      <div class="lib" id="lib">
+        <div class="top"><h3>Library</h3><p class="hint" id="libhint">Drag a block onto the line. Pull a socket to connect it.</p></div>
+        <div class="cards">
+        <button class="card" id="cSpec" data-a="spec"><span class="nm"><span class="ti">&#8644;</span>Spec Checker</span><span class="ds">Checks every title against each retailer's limits.</span><span class="fk" id="fSpec">ADDS A SPLIT PER RETAILER</span></button>
+        <button class="card" id="cScan" data-a="scan"><span class="nm"><span class="ti">&#9873;</span>Compliance Scanner</span><span class="ds">Checks every claim. Flags risk, never clears it.</span><span class="fk" id="fScan">ADDS A BRANCH TO A PERSON</span></button>
+        <button class="card gatec off" id="cGate" data-a="gate"><span class="nm"><span class="ti tig">&#9670;</span>Human gate</span><span class="ds">A person decides here. It needs a wire and a name.</span><span class="fk" id="fGate">NEEDS A WIRE AND AN OWNER</span></button>
+        </div>
+      </div>
+      <div>
+        <div class="cvwrap" id="cvwrap"><svg id="cv" viewBox="0 0 960 320" role="img" aria-label="Pipeline canvas"></svg><div class="own" id="own" hidden></div></div>
+        <div class="cvbar"><span class="status" id="status"></span><button class="bypass" id="bypass">Or pull a socket from an agent to Publish</button><button class="runb" id="runb">&#9656; Run launch</button></div>
+      </div>
+    </div>
+
+    <div class="gate" id="gate" hidden>
+      <div class="band"><span class="dia"></span><span class="k">GATE 4</span><span class="n">Launch</span><span class="c" id="bandc">1 of 6</span></div>
+      <div id="stage">
+      <div class="gb">
+        <div class="left">
+          <div class="mx" id="mx"><div></div><div class="mh">AMZ</div><div class="mh">SEP</div><div class="mh">WMT</div></div>
+          <p class="prog" id="prog">0 chosen, 6 to go</p>
+          <p class="legend">Click any square to open it. Arrow keys work too.</p>
+        </div>
+        <div class="right">
+          <p class="where"><span id="where"></span><span class="v2" id="v2" hidden>Rewritten from your note</span></p>
+          <p class="q">Which version ships?</p>
+          <div class="vars">
+            <div class="var"><div class="vh"><span class="bdg">A</span>Plain<span class="cnt" id="cA"></span></div><p id="tA"></p><button class="use" id="useA">Use A <kbd>A</kbd></button></div>
+            <div class="var"><div class="vh"><span class="bdg">B</span>Richer<span class="cnt" id="cB"></span></div><p id="tB"></p><button class="use" id="useB">Use B <kbd>B</kbd></button></div>
+          </div>
+          <div class="row"><span class="fine" id="f1"><i>&#10003;</i><span id="fits"></span></span><span class="fine" id="f2"><i>&#10003;</i><span id="clr"></span></span><button class="back" id="back">Neither, send both back <kbd>S</kbd></button></div>
+          <div class="why" id="why">What should the agent fix?<button data-r="Too salesy">Too salesy</button><button data-r="Too long">Too long</button><button data-r="Unproven claim">Unproven claim</button></div>
+          <div class="guard" id="guard"><span class="lk" id="lk"></span><div class="tx" id="gtx">In a hurry? Try the shortcut.<span id="gsub">It opens once you have looked at each one.</span></div><button class="batch" id="batch">Use B for the rest</button></div>
+        </div>
+      </div>
+      </div>
+      <div class="foot2"><button class="ff" id="ff">Skip ahead &#9656;</button><span class="fnote" id="fnote">Launch unlocks at 6 of 6. No bypass.</span><button class="launch" id="launch" disabled>Approve for launch</button></div>
+    </div>
+
+    <div class="audit"><div class="ah">Audit trail<span id="an">0</span><em>Who did what, and when</em></div><div id="log"><div class="empty">Nothing yet. Every block you add and every choice you make lands here.</div></div></div>
+  </div>
+</div>
+
+<p class="foot">A working slice of ShelfFlow on synthetic data. The rules are the real ones: an agent cannot reach Publish without a gate, a gate cannot run without an owner, and the batch shortcut stays locked until each remaining choice has been opened. <a href="/work/shelfflow.html" target="_top">Read the full case study</a></p>
+</div>
+<script>
+(function(){
+var SKUS=[['Vitamin C 30ml','Lumina Glow Vitamin C Serum 30ml','Brightening Face Serum','20% Vitamin C for Dull, Uneven Skin','with 20% Vitamin C'],
+          ['Retinol Night','Lumina Glow Retinol Night Cream 50ml','Overnight Moisturizer','for Smoother-Looking Skin by Morning','for Smoother-Looking Skin']];
+var RET=[['Amazon',200],['Sephora',120],['Walmart',150]];
+var LONG=' and a Visibly Brighter, More Even, Healthier-Looking Complexion';
+var LK='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',UL='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#067647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>';
+var S={spec:false,scan:false,gate:null,wired:false,owner:null,wire:null,gprev:null,pulse:null,phase:'build',st:{},hover:null,dragging:null,bypass:false,loop:false};
+var N=6,cells=[],cur=0,launched=false,ffRunning=false,nlog=0,justDragged=false,T={bypass:0,batchBlocked:0,batchUsed:false,sent:0,ff:false,t0:0};
+function ownerOK(){return !!(S.owner&&S.owner[2]==='DR')}
+function claimsOK(){return S.scan&&ownerOK()}
+var INK='#101828',VIO='#a78bfa',V7='#5b4bd6',GREY='#d0d5dd',CY=120;
+function ev(n,p){if(typeof gtag==='function')gtag('event',n,p||{})}
+function $(id){return document.getElementById(id)}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function size(){if(window.parent!==window){try{var w=document.querySelector('.wrap');window.parent.postMessage({type:'g4h',h:Math.ceil(w.getBoundingClientRect().height)+2},'*')}catch(_){}}}
+var logEl=$('log');
+function now(){return new Date().toTimeString().slice(0,5)}
+function log(kind,html,who){var e=logEl.querySelector('.empty');if(e)e.remove();var d=document.createElement('div');
+ var ic=kind==='a'?'<span class="ag">&#10022;</span>':'<span class="av">'+(who||'Y')+'</span>';
+ d.innerHTML='<span class="ts">'+now()+'</span>'+ic+'<span class="'+(kind==='a'?'':kind==='x'?'x':'h')+'">'+html+'</span>';
+ logEl.prepend(d);while(logEl.children.length>7)logEl.removeChild(logEl.lastChild);nlog++;$('an').textContent=nlog;size();}
+
+/* ---------- canvas ---------- */
+var VH=320,GX0=540,GX1=690,GY0=204,GY1=280,holdT=null,pulseT=null;
+var OWN=[['Daniel Reyes','Compliance Officer','DR'],['Maya Okafor','Content Lead','MO'],['Sofia Lindqvist','Brand Manager','SL']];
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+function has(a){return a==='gate'?!!S.gate:S[a]}
+function ready(){return !S.scan||(S.gate&&S.wired&&S.owner)}
+function done(k){return S.phase==='build'||S.st[k]==='done'}
+function ecol(k,kind){return done(k)?(kind==='g'?INK:VIO):GREY}
+function line(d,col,extra){return '<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="1.6" stroke-linecap="round" '+(extra||'')+'/>'}
+function curve(x1,y1,x2,y2){var m=(x1+x2)/2;return 'M'+x1+' '+y1+'C'+m+' '+y1+' '+m+' '+y2+' '+x2+' '+y2}
+function vcurve(x1,y1,x2,y2){var d=Math.max(18,Math.abs(y2-y1)/2);return 'M'+x1+' '+y1+'C'+x1+' '+(y1+d)+' '+x2+' '+(y2-d)+' '+x2+' '+y2}
+function agent(k,x,y,w,label,sub,pop){var st=S.st[k],run=S.phase!=='build',dim=run&&!st,ok=st==='done',flag=st==='flag',h=sub?38:34;
+ return '<g class="nd'+(pop?' pop':'')+'" opacity="'+(dim?.5:1)+'"><rect x="'+x+'" y="'+(y-h/2)+'" width="'+w+'" height="'+h+'" rx="9" fill="#fff" stroke="'+(st==='run'?'#8b5cf6':flag?'#fda29b':'#c4b5fd')+'" stroke-width="'+(st==='run'?2:1)+'"/>'
+ +'<rect x="'+(x+7)+'" y="'+(y-10)+'" width="20" height="20" rx="6" fill="'+(ok?'#ecfdf3':flag?'#fef3f2':'#f2f0fe')+'"'+(st==='run'?' class="blink"':'')+'/>'
+ +(ok?'<path transform="translate('+(x+11)+','+(y-6)+')" d="M2 6.5l2.8 2.8L10 3.5" fill="none" stroke="#067647" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>'
+     :'<path transform="translate('+(x+11)+','+(y-5.5)+')" d="M6 1l1.3 3.2L10.5 5.5 7.3 6.8 6 10 4.7 6.8 1.5 5.5l3.2-1.3z" fill="'+(flag?'#b42318':V7)+'"/>')
+ +'<text x="'+(x+33)+'" y="'+(sub?y-2:y+4)+'" font-size="11.5" font-weight="500" fill="#475467">'+label+'</text>'
+ +(sub?'<text x="'+(x+33)+'" y="'+(y+11)+'" font-size="9.5" fill="'+(flag?'#b42318':'#667085')+'" font-weight="'+(flag?600:400)+'">'+sub+'</text>':'')+'</g>'}
+function gate(k,x,y,w,num,name,person,pop,warn){var st=S.st[k],run=S.phase!=='build',dim=run&&!st,turn=st==='turn';
+ return '<g class="nd'+(pop?' pop':'')+'"><rect x="'+x+'" y="'+(y-26)+'" width="'+w+'" height="52" rx="9" fill="#fff" stroke="'+(turn?INK:warn?'#fedf89':'#e4e7ec')+'" stroke-width="'+(turn?2:1)+'"/>'
+ +'<path d="M'+x+' '+(y-8)+'V'+(y-17)+'a9 9 0 0 1 9-9H'+(x+w-9)+'a9 9 0 0 1 9 9V'+(y-8)+'Z" fill="'+(dim?'#98a2b3':INK)+'"/>'
+ +'<path transform="translate('+(x+8)+','+(y-21)+')" d="M4 0l4 4-4 4-4-4z" fill="#fff"/><text class="mono" x="'+(x+21)+'" y="'+(y-13.5)+'" font-size="8.5" fill="#fff" letter-spacing=".5">'+num+'</text>'
+ +(st==='done'?'<path transform="translate('+(x+w-18)+','+(y-23)+')" d="M2 6.5l2.8 2.8L10 3.5" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>':'')
+ +'<text x="'+(x+9)+'" y="'+(y+6)+'" font-size="11.5" font-weight="600" fill="'+INK+'">'+name+'</text><text x="'+(x+9)+'" y="'+(y+19)+'" font-size="10" fill="'+(turn?INK:warn?'#b54708':'#667085')+'" font-weight="'+(turn||warn?600:400)+'"'+(turn?' class="blink"':'')+(warn?' text-decoration="underline"':'')+'>'+(turn&&k==='g4'?'Your turn':person)+'</text></g>'}
+function slot(x,w,a){var on=S.hover===a;
+ return '<g'+(on?'':' class="blink"')+'><rect x="'+x+'" y="98" width="'+w+'" height="44" rx="10" fill="'+(on?'#f2f0fe':'#f7f8fa')+'" stroke="#8b5cf6" stroke-width="'+(on?2:1.2)+'" stroke-dasharray="5 4"/><text x="'+(x+w/2)+'" y="124" text-anchor="middle" font-size="10.5" font-weight="500" fill="'+V7+'">'+(on?'Release to insert':'Drop it on this line')+'</text></g>'}
+function logic(x,kind){var p=kind==='split'?'M2 7h3M5 7c2 0 2-4 5-4h2M5 7c2 0 2 4 5 4h2M5 7h7':'M12 7H9M9 7C7 7 7 3 4 3H2M9 7c-2 0-2 4-5 4H2M9 7H2';
+ return '<rect x="'+x+'" y="109" width="22" height="22" rx="7" fill="#fff" stroke="#98a2b3"/><path transform="translate('+(x+4)+',113)" d="'+p+'" fill="none" stroke="#475467" stroke-width="1.4" stroke-linecap="round"/>'}
+function tip(x,y,t,col){var w=t.length*5.6+16;x=clamp(x,6,954-w);y=clamp(y,6,VH-26);return '<g pointer-events="none"><rect x="'+x+'" y="'+y+'" width="'+w+'" height="20" rx="7" fill="'+col+'"/><text x="'+(x+8)+'" y="'+(y+13.5)+'" font-size="10" font-weight="500" fill="#fff">'+t+'</text></g>'}
+function hot(h,x,y,r,cur,extra){return '<circle data-h="'+h+'" cx="'+x+'" cy="'+y+'" r="'+r+'" fill="transparent" style="cursor:'+cur+'" '+(extra||'')+'/>'}
+function render(pop){var h='',sk=[],top='',b=S.phase==='build',G=S.gate,want=S.dragging||S.pulse;
+ function so(x,y,c){sk.push('<circle cx="'+x+'" cy="'+y+'" r="3.6" fill="#fff" stroke="'+c+'" stroke-width="1.5"/>')}
+ var c1=b||S.st.brief==='done'?INK:GREY;h+=line('M70 120H92',c1);so(70,120,c1);so(92,120,c1);
+ var c2=ecol('dr','a');h+=line('M208 120H230',c2);so(208,120,c2);so(230,120,c2);
+ h+=line('M268 94C268 46 150 46 150 103','#dc6803',S.loop?'class="flow" stroke-width="2.2"':'stroke-dasharray="4 4"');so(268,94,'#dc6803');so(150,103,'#dc6803');
+ h+='<rect x="177" y="40" width="64" height="18" rx="9" fill="#fffaeb" stroke="#fedf89"/><text x="209" y="52.5" text-anchor="middle" font-size="9.5" font-weight="'+(S.loop?600:500)+'" fill="#b54708">sent back</text>';
+ var cg2=ecol('g2','g'),k1='g2',ys=[56,120,184];
+ if(S.spec){h+=line('M330 120H352',cg2);so(330,120,cg2);
+  for(var i=0;i<3;i++){h+=line(curve(374,120,396,ys[i]),cg2);var cb=ecol('b'+i,'a');h+=line(curve(508,ys[i],532,120),cb);so(396,ys[i],cg2);so(508,ys[i],cb)}
+  h+='<g'+(pop==='spec'?' class="pop"':'')+'>'+logic(352,'split')+logic(532,'merge')+'</g>';k1='mg';h+=line('M554 120H568',ecol('mg','g'));
+ }else{h+=line('M330 120H568',cg2);so(330,120,cg2);if(b&&want==='spec')h+=slot(356,186,'spec')}
+ var ck1=ecol(k1,'g'),k2=k1;
+ if(S.scan){so(568,120,ck1);var cs=S.st.sc==='flag'?'#d92d20':ecol('sc','a');h+=line('M696 120H709',cs);so(696,120,cs);
+  var cc=ecol('cond','g');h+=line('M731 120H756',cc);var cy3=b?'#f79009':(S.st.g3?'#f79009':GREY);
+  if(G&&S.wired){var gix=G.x+52,giy=G.y-26;h+=line(vcurve(720,131,gix,giy),cy3,pop==='wire'?'class="pop"':'');so(gix,giy,cy3);
+   var c3=ecol('g3','g'),gox=G.x+104;h+=line('M'+gox+' '+G.y+'C806 '+G.y+' 806 '+G.y+' 806 146',c3);so(gox,G.y,c3);so(806,146,c3);
+  }else{h+=line('M720 131V161','#f79009','stroke-dasharray="4 4"');
+   if(b&&!S.wire)top+='<circle cx="720" cy="166" r="9" fill="none" stroke="#f79009" stroke-width="1.4" class="blink" pointer-events="none"/>';
+   top+='<circle cx="720" cy="166" r="4.6" fill="#fff" stroke="#f79009" stroke-width="1.6" pointer-events="none"/>';
+   if(b)top+=hot('flag',720,166,14,'crosshair');
+   if(G)so(G.x+52,G.y-26,'#f79009')}
+  h+='<g'+(pop==='scan'?' class="pop"':'')+'><path d="M720 109l11 11-11 11-11-11z" fill="#fffaeb" stroke="#f79009" stroke-width="1.4" stroke-linejoin="round"/></g>';
+  h+='<text x="738" y="113" font-size="9" fill="#667085">No</text><text x="728" y="150" font-size="9" fill="#b54708">Flagged</text>';k2='cond';
+ }else{h+=line('M568 120H756',ck1);if(b&&want==='scan')h+=slot(574,176,'scan')}
+ var ck2=ecol(k2,'g');so(756,120,ck2);var c4=ecol('g4','g');h+=line('M856 120H882',c4);so(856,120,c4);so(882,120,c4);
+ if(S.bypass){h+=line('M'+S.bypass.x+' '+S.bypass.y+'C'+S.bypass.x+' 306 913 306 913 142','#d92d20','stroke-width="2" stroke-dasharray="6 5"')}
+ /* nodes */
+ h+='<rect x="16" y="103" width="54" height="34" rx="9" fill="#f3f4f6" stroke="#e4e7ec"/><text x="43" y="124" text-anchor="middle" font-size="11.5" font-weight="500" fill="'+INK+'">Brief</text>';
+ h+=agent('dr',92,120,116,'Copy Drafter');h+=gate('g2',230,120,100,'GATE 2','Drafts','Maya Okafor');
+ if(S.spec)for(var j=0;j<3;j++)h+=agent('b'+j,396,ys[j],112,RET[j][0],'Spec Checker',pop==='spec');
+ if(S.scan)h+=agent('sc',568,120,128,'Compliance',S.st.sc==='flag'?'1 flag':'Scanner',pop==='scan');
+ if(G)h+=gate('g3',G.x,G.y,104,'GATE 3','Compliance',S.owner?S.owner[0]:'No owner',pop==='gate',b&&!S.owner);
+ h+=gate('g4',756,120,100,'GATE 4','Launch','You');
+ var live=S.st.pub==='done';h+='<rect x="882" y="103" width="62" height="34" rx="9" fill="'+(live?'#ecfdf3':'#f3f4f6')+'" stroke="'+(live?'#abefc6':'#e4e7ec')+'"/><text x="913" y="124" text-anchor="middle" font-size="11.5" font-weight="500" fill="'+(live?'#067647':INK)+'">'+(live?'6 live':'Publish')+'</text>';
+ h+=sk.join('');
+ if(S.bypass)h+='<circle cx="913" cy="146" r="9" fill="#fef3f2" stroke="#d92d20" stroke-width="2"/><path d="M909.5 142.5l7 7m0-7l-7 7" stroke="#d92d20" stroke-width="1.8" stroke-linecap="round"/>';
+ /* build-only layer: previews, handles, the wire in hand */
+ if(b){
+  if(S.dragging==='gate'&&S.gprev)h+='<g pointer-events="none"><rect x="'+S.gprev.x+'" y="'+(S.gprev.y-26)+'" width="104" height="52" rx="9" fill="'+(S.hover==='gate'?'#f9fafb':'none')+'" stroke="'+INK+'" stroke-width="1.4" stroke-dasharray="5 4"/><text x="'+(S.gprev.x+52)+'" y="'+(S.gprev.y+4)+'" text-anchor="middle" font-size="10.5" font-weight="500" fill="'+INK+'">'+(S.hover==='gate'?'Release to place':'Human gate')+'</text></g>';
+  if(G){h+='<rect data-h="g3" x="'+G.x+'" y="'+(G.y-26)+'" width="104" height="52" rx="9" fill="transparent" style="cursor:grab"/>';
+   h+='<rect data-h="owner" x="'+(G.x+4)+'" y="'+(G.y+8)+'" width="96" height="17" rx="4" fill="transparent" style="cursor:pointer"/>'}
+  h+=hot('out',208,120,11,'crosshair','data-n="Copy Drafter"');
+  if(S.spec)for(var q=0;q<3;q++)h+=hot('out',508,ys[q],10,'crosshair','data-n="Spec Checker"');
+  if(S.scan)h+=hot('out',696,120,10,'crosshair','data-n="Compliance Scanner"');
+  h+=top;
+  if(S.wire){var w=S.wire,fl=w.from==='flag',ok=fl&&w.over==='g3',bad=w.over==='pub'||(fl&&w.over==='g4'),cw=ok?'#f79009':bad?'#d92d20':'#98a2b3';
+   if(fl&&G)h+='<rect x="'+(G.x-5)+'" y="'+(G.y-31)+'" width="114" height="62" rx="13" fill="none" stroke="#f79009" stroke-width="'+(ok?2:1.2)+'" stroke-dasharray="5 4" pointer-events="none"'+(ok?'':' class="blink"')+'/>';
+   h+='<g pointer-events="none">'+line(fl?vcurve(w.x0,w.y0,w.x,w.y):curve(w.x0,w.y0,w.x,w.y),cw,'stroke-width="2" stroke-dasharray="5 4"')+'<circle cx="'+w.x+'" cy="'+w.y+'" r="4.2" fill="#fff" stroke="'+cw+'" stroke-width="1.8"/></g>';
+   if(ok)h+=tip(w.x+12,w.y-26,'Release to connect',INK);else if(bad)h+=tip(w.x+12,w.y-26,'Not allowed','#b42318')}
+ }else h+=top;
+ $('cv').innerHTML=h;status();size();}
+function hold(html,cls,ms){var s=$('status');s.dataset.hold='1';s.className='status'+(cls?' '+cls:'');s.innerHTML=html;clearTimeout(holdT);holdT=setTimeout(function(){delete s.dataset.hold;status()},ms||2600)}
+function status(){var s=$('status');if(S.phase==='build')$('runb').disabled=!ready();if(s.dataset.hold)return;s.className='status';
+ if(S.phase==='build'){s.innerHTML=S.scan&&!S.gate?'<b>Not ready.</b> Flagged claims go nowhere. Drag a human gate onto the canvas.':S.scan&&!S.wired?'<b>Not ready.</b> Pull the Flagged socket to Gate 3.':S.scan&&!S.owner?'<b>Not ready.</b> Gate 3 has no owner. Click its name to pick one.':S.spec&&S.scan?'<b>Ready to run.</b> Limits and claims are checked before anything reaches you.':S.spec?'<b>It will run.</b> Limits are checked per retailer. Nobody is checking claims.':S.scan?'<b>It will run.</b> Claims are checked. Nobody is checking retailer limits.':'<b>It will run.</b> One agent, two gates, and nobody checking limits or claims.'}
+ else if(S.phase==='run')s.innerHTML='<span class="dot blink"></span><b>Running.</b> Agents work on their own.';
+ else if(S.phase==='gate')s.innerHTML='<span class="dot"></span><b>Waiting on you.</b> Gate 4 is open below.';
+ else s.innerHTML='<b>Live.</b> Every gate signed.'}
+function cards(){[['spec','cSpec','fSpec','ADDS A SPLIT PER RETAILER'],['scan','cScan','fScan','ADDS A BRANCH TO A PERSON'],['gate','cGate','fGate','NEEDS A WIRE AND AN OWNER']].forEach(function(c){var on=has(c[0]);$(c[1]).classList.toggle('in',on);$(c[2]).textContent=on?'ON THE CANVAS. CLICK TO REMOVE':c[3]});
+ $('cGate').classList.toggle('off',!S.scan&&!S.gate)}
+function gpos(p){return{x:clamp(p.x-52,GX0,GX1),y:clamp(p.y,GY0,GY1)}}
+function add(a,via,p){if(S.phase!=='build'||has(a))return;
+ if(a==='gate'){if(!S.scan)return;S.gate=gpos(p||{x:720,y:226});cards();render('gate');log('h','<b>You</b> placed a human gate. No wire and no owner yet.')}
+ else{S[a]=true;cards();render(a);log('h',a==='spec'?'<b>You</b> added Spec Checker. The flow splits per retailer.':'<b>You</b> added Compliance Scanner. Its flagged branch goes nowhere yet.')}
+ ev('agent_added',{agent:a,via:via})}
+function removeA(a){if(S.phase!=='build'||!has(a))return;closeOwner();
+ if(a==='gate'||a==='scan'){S.gate=null;S.wired=false;S.owner=null}
+ if(a!=='gate')S[a]=false;cards();render();log('h','<b>You</b> removed '+(a==='spec'?'Spec Checker':a==='scan'?'Compliance Scanner':'Gate 3')+'.')}
+var cvEl=$('cv');
+function pt(e){var r=cvEl.getBoundingClientRect();return{x:(e.clientX-r.left)*960/r.width,y:(e.clientY-r.top)*VH/r.height}}
+function inCanvas(e){var r=$('cvwrap').getBoundingClientRect();return e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom}
+function zone(a,e){if(!inCanvas(e))return false;var p=pt(e);return a==='gate'?S.scan:(p.x>=318&&p.x<=768&&Math.abs(p.y-120)<=48)}
+function pulse(a){S.pulse=a;render();clearTimeout(pulseT);pulseT=setTimeout(function(){S.pulse=null;render()},1700)}
+function why(a){if(a==='gate')hold(S.scan?'<b>Drag it in.</b> Drop the gate anywhere on the canvas.':'<b>Nothing needs a gate yet.</b> Add the Compliance Scanner first.');
+ else{hold('<b>Drag it onto the line.</b> It fits between Gate 2 and Gate 4.');pulse(a)}}
+function bindCard(el){var a=el.getAttribute('data-a'),sx,sy,drag=false,gh=null,down=false;
+ el.addEventListener('pointerdown',function(e){if(S.phase!=='build'||has(a))return;down=true;sx=e.clientX;sy=e.clientY;drag=false;try{el.setPointerCapture(e.pointerId)}catch(_){}});
+ el.addEventListener('pointermove',function(e){if(!down)return;
+  if(!drag&&Math.hypot(e.clientX-sx,e.clientY-sy)>8){drag=true;gh=document.createElement('div');gh.className='ghost';gh.textContent=el.querySelector('.nm').textContent;document.body.appendChild(gh);S.dragging=a;S.pulse=null;closeOwner();render()}
+  if(drag){gh.style.left=e.clientX+'px';gh.style.top=e.clientY+'px';var o=zone(a,e)?a:null,ch=o!==S.hover;S.hover=o;
+   if(a==='gate'){S.gprev=inCanvas(e)?gpos(pt(e)):null;ch=true}if(ch)render()}});
+ function end(e){if(!down)return;down=false;if(!drag)return;gh.remove();gh=null;drag=false;var ok=zone(a,e),p=pt(e),inside=inCanvas(e);S.hover=null;S.dragging=null;S.gprev=null;justDragged=true;setTimeout(function(){justDragged=false},50);
+  if(ok)add(a,'drag',p);else{render();if(inside)why(a)}}
+ el.addEventListener('pointerup',end);el.addEventListener('pointercancel',end);
+ el.addEventListener('click',function(e){if(justDragged||S.phase!=='build')return;if(has(a))removeA(a);else if(e.detail===0){if(a==='gate'&&!S.scan)why(a);else add(a,'key')}else why(a)});}
+bindCard($('cSpec'));bindCard($('cScan'));bindCard($('cGate'));
+/* wires, the movable gate and its owner */
+function hitT(p){var G=S.gate;if(G&&p.x>=G.x-10&&p.x<=G.x+114&&p.y>=G.y-36&&p.y<=G.y+36)return 'g3';
+ if(p.x>=872&&p.x<=952&&p.y>=92&&p.y<=148)return 'pub';if(p.x>=748&&p.x<=864&&p.y>=86&&p.y<=154)return 'g4';return null}
+function shake(){var w=$('cvwrap');w.classList.remove('shake');void w.offsetWidth;w.classList.add('shake')}
+function refuse(n,x,y){if(S.phase!=='build'||S.bypass)return;S.bypass={x:x,y:y};render();hold('<b>Can’t connect.</b> An agent can’t reach Publish without a gate in between.','bad',2800);shake();
+ T.bypass++;log('x','Connection refused: '+n+' to Publish, no gate in between');ev('bypass_blocked',{from:n});setTimeout(function(){S.bypass=false;render()},2800)}
+function connect(){S.wired=true;render('wire');log('h','<b>You</b> wired flagged claims to Gate 3.');ev('gate_wired',{})}
+var act=null;
+cvEl.addEventListener('pointerdown',function(e){if(S.phase!=='build')return;var t=e.target&&e.target.getAttribute?e.target:null,h=t&&t.getAttribute('data-h');if(!h)return;var p=pt(e);
+ if(h==='flag')act={t:'wire',from:'flag',n:'Compliance Scanner',x0:720,y0:166,sx:p.x,sy:p.y};
+ else if(h==='out')act={t:'wire',from:'agent',n:t.getAttribute('data-n'),x0:+t.getAttribute('cx'),y0:+t.getAttribute('cy'),sx:p.x,sy:p.y};
+ else if(h==='g3')act={t:'gate',dx:p.x-S.gate.x,dy:p.y-S.gate.y,sx:p.x,sy:p.y};
+ else if(h==='owner')act={t:'own',sx:p.x,sy:p.y};
+ e.preventDefault();try{cvEl.setPointerCapture(e.pointerId)}catch(_){}});
+cvEl.addEventListener('pointermove',function(e){if(!act)return;var p=pt(e);if(!act.moved&&Math.hypot(p.x-act.sx,p.y-act.sy)<4)return;act.moved=true;
+ if(act.t==='own'){act={t:'gate',dx:p.x-S.gate.x,dy:p.y-S.gate.y,sx:p.x,sy:p.y,moved:true}}
+ if(act.t==='wire')S.wire={from:act.from,x0:act.x0,y0:act.y0,x:p.x,y:p.y,over:hitT(p)};
+ else{closeOwner();S.gate={x:clamp(p.x-act.dx,GX0,GX1),y:clamp(p.y-act.dy,GY0,GY1)}}
+ render()});
+function up(e){if(!act)return;var a=act;act=null;try{cvEl.releasePointerCapture(e.pointerId)}catch(_){}
+ if(a.t==='own'){openOwner();return}
+ if(a.t==='gate'){render();return}
+ var w=S.wire;S.wire=null;
+ if(!a.moved){render();hold(a.from==='flag'?(S.gate?'<b>Pull it.</b> Drag from this socket to Gate 3.':'<b>Flagged claims need a person.</b> Drag a human gate in, then pull this socket to it.'):'<b>Pull it.</b> Drag from a socket to the node you want to reach.');return}
+ var o=w.over;
+ if(a.from==='flag'&&o==='g3'){connect();return}
+ render();
+ if(o==='pub')refuse(a.n,a.x0,a.y0);
+ else if(a.from==='flag'&&o==='g4'){hold('<b>Can’t connect.</b> Gate 4 picks versions. A flagged claim needs its own gate.','bad');shake();log('x','Connection refused: flagged claims to Gate 4')}
+ else if(a.from==='flag'&&!S.gate)hold('<b>Nowhere to land.</b> Drag a human gate onto the canvas first.')}
+cvEl.addEventListener('pointerup',up);cvEl.addEventListener('pointercancel',up);
+function closeOwner(){var o=$('own');if(o)o.hidden=true}
+function openOwner(){if(S.phase!=='build'||!S.gate)return;var o=$('own'),k=cvEl.getBoundingClientRect().width/960,html='<p>Who signs Gate 3?</p>';
+ OWN.forEach(function(w,i){html+='<button data-o="'+i+'"><span class="av">'+w[2]+'</span><span><b>'+w[0]+'</b><i>'+w[1]+'</i></span></button>'});o.innerHTML=html;o.hidden=false;
+ var ph=o.offsetHeight,pw=o.offsetWidth,wrap=$('cvwrap');o.style.left=clamp(S.gate.x*k-(pw-104*k)/2,6,cvEl.getBoundingClientRect().width-pw-6)+'px';o.style.top=Math.max(6,(S.gate.y-26)*k-ph-8)+'px';size()}
+$('own').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var w=OWN[+b.getAttribute('data-o')];S.owner=w;closeOwner();render();log('h','<b>You</b> made '+w[0]+' the owner of Gate 3.');ev('gate_owner',{owner:w[2]})});
+document.addEventListener('pointerdown',function(e){var o=$('own');if(o&&!o.hidden&&!o.contains(e.target)&&!(e.target.getAttribute&&e.target.getAttribute('data-h')==='owner'))closeOwner()});
+$('bypass').onclick=function(){refuse('Copy Drafter',208,120)};
+
+/* ---------- run ---------- */
+function runLaunch(){if(S.phase!=='build'||!ready())return;closeOwner();S.wire=null;S.phase='run';S.st={};$('lib').classList.add('locked');$('libhint').textContent='Locked while the launch runs.';$('mB').classList.remove('on');$('mR').classList.add('on');
+ $('runb').disabled=true;$('bypass').style.display='none';$('pill').className='pill agent';$('pill').firstChild.style.display='none';$('pillt').textContent='Running';ev('run_started',{spec:S.spec,scan:S.scan});log('h','<b>You</b> started the launch');
+ var q=[];function st(ms,fn){q.push([ms,fn])}
+ st(300,function(){S.st.brief='done';S.st.dr='run'});
+ st(800,function(){S.st.dr='done';log('a','Copy Drafter wrote 2 versions of 6 packages')});
+ st(600,function(){S.st.g2='done';log('h','<b>Maya Okafor</b> approved the drafts at Gate 2','MO')});
+ if(S.spec){st(400,function(){S.st.b0=S.st.b1=S.st.b2='run'});st(600,function(){S.st.b0='done'});st(350,function(){S.st.b2='done'});
+  st(450,function(){S.st.b1='done';S.st.mg='done';log('a','Spec Checker trimmed 1 Sephora title to fit 120 characters')})}
+ if(S.scan){st(400,function(){S.st.sc='run'});st(800,function(){S.st.sc='flag';log('a','Compliance Scanner flagged “clinically proven”: no study on file')});
+  st(600,function(){S.st.g3='turn'});
+  if(ownerOK()){st(900,function(){S.loop=true;S.st.dr='run';log('h','<b>'+S.owner[0]+'</b> sent the claim back at Gate 3',S.owner[2])});
+   st(1100,function(){S.loop=false;S.st.dr='done';log('a','Copy Drafter removed the claim from 3 packages')});
+   st(600,function(){S.st.sc='done';S.st.g3='done';S.st.cond='done';log('h','<b>'+S.owner[0]+'</b> signed Gate 3',S.owner[2])})}
+  else st(500,function(){S.st.sc='done';S.st.g3='done';S.st.cond='done';log('x','<b>'+S.owner[0]+'</b> signed Gate 3 in 4 seconds. The flagged claim stayed in.')})}
+ st(500,function(){S.st.g4='turn';S.phase='gate';T.t0=Date.now();$('pill').className='pill';$('pill').firstChild.style.display='';$('pillt').textContent='Your turn at Gate 4';$('gate').hidden=false;show(0)});
+ (function go(i){if(i>=q.length)return;setTimeout(function(){q[i][1]();render();go(i+1)},q[i][0])})(0);render();}
+$('runb').onclick=runLaunch;
+
+/* ---------- gate 4 ---------- */
+var mx=$('mx');
+SKUS.forEach(function(s,si){var l=document.createElement('div');l.className='ms';l.textContent=s[0];mx.appendChild(l);
+ RET.forEach(function(r,ri){var b=document.createElement('button');b.className='cell';b.setAttribute('aria-label',s[0]+', '+r[0]);
+  var i=cells.length;b.onclick=function(){if(!launched&&!ffRunning)show(i)};mx.appendChild(b);cells.push({s:si,r:ri,v:null,seen:false,gen:1,el:b});});});
+function texts(c){var s=SKUS[c.s],a=s[1]+', '+s[2],tail;
+ if(c.gen>1)tail=s[4];else{tail=s[3];if(c.s===0&&!claimsOK())tail='Clinically Proven '+tail;if(c.s===0&&c.r===1&&!S.spec)tail+=LONG}
+ return [a,s[1]+', ',tail]}
+function count(){var n=0;cells.forEach(function(c){if(c.v)n++});return n}
+function unopened(){var n=0;cells.forEach(function(c){if(!c.v&&!c.seen)n++});return n}
+function pending(){return N-count()}
+function name(c){return SKUS[c.s][0]+', '+RET[c.r][0]}
+function paint(){cells.forEach(function(c,i){c.el.className='cell'+(i===cur&&!launched?' cur':c.v?' ok':c.seen?' seen':'');c.el.textContent=c.v||'';});
+ var n=count();$('prog').textContent=n+' chosen, '+(N-n)+' to go';$('bandc').textContent=(n<N?(Math.min(n+1,N))+' of '+N:'All '+N+' chosen');
+ var u=unopened(),p=pending(),b=$('batch'),tx=$('gtx');
+ b.textContent=p>1?'Use B for the rest':'Use B';b.classList.toggle('on',u===0&&p>0);$('lk').innerHTML=u===0?UL:LK;
+ if(!tx.classList.contains('blocked')){tx.firstChild.nodeValue=u===0&&p>0?'You have opened every one.':'In a hurry? Try the shortcut.';$('gsub').textContent=u===0&&p>0?'The shortcut is open for the '+p+' left.':u+' still unopened. It opens once you have looked at each one.';}
+ $('guard').style.display=p>0?'flex':'none';
+ var L=$('launch');L.disabled=n<N;L.classList.toggle('on',n===N);$('fnote').textContent=n===N?'Every choice is made. This one is yours too.':'Launch unlocks at '+N+' of '+N+'. No bypass.';size();}
+function show(i){cur=i;var c=cells[i];c.seen=true;var t=texts(c),lim=RET[c.r][1],la=t[0].length,lb=(t[1]+t[2]).length;
+ $('where').textContent=SKUS[c.s][1].replace('Lumina Glow ','')+', '+RET[c.r][0];$('v2').hidden=c.gen<2;
+ $('tA').textContent=t[0];$('tB').innerHTML=esc(t[1])+'<mark>'+esc(t[2])+'</mark>';
+ $('cA').textContent=S.spec?la+' / '+lim:la+' chars';$('cB').textContent=S.spec?lb+' / '+lim:lb+' chars';
+ $('f1').className='fine'+(S.spec?'':' w');$('f1').firstChild.innerHTML=S.spec?'&#10003;':'!';$('fits').textContent=S.spec?'Fits '+RET[c.r][0]+'’s limit':'Limits not checked';
+ $('f2').className='fine'+(claimsOK()?'':' w');$('f2').firstChild.innerHTML=claimsOK()?'&#10003;':'!';$('clr').textContent=claimsOK()?'Cleared at Gate 3':S.scan?'Gate 3 signed in 4 seconds':'Claims not checked';
+ $('why').classList.remove('on');$('gtx').classList.remove('blocked');paint();}
+function next(){for(var k=1;k<=N;k++){var j=(cur+k)%N;if(!cells[j].v)return j}return -1}
+function choose(v,quiet){var c=cells[cur];if(launched||S.phase!=='gate')return;c.v=v;log('h','<b>You</b> chose '+v+' for '+name(c));
+ var n=count();if(n>=2&&n<N)$('ff').classList.add('on');if(n===N)$('ff').classList.remove('on');
+ var j=next();if(j>=0&&!quiet)show(j);else paint();}
+function sendBack(reason){var c=cells[cur];if(launched||S.phase!=='gate')return;c.v=null;c.gen++;
+ T.sent++;log('h','<b>You</b> sent '+name(c)+' back: “'+reason+'”');log('a','Copy Drafter rewrote it. The loop ran once.');ev('reject_used',{cell:name(c),reason:reason});
+ S.loop=true;S.st.dr='run';render();setTimeout(function(){S.loop=false;S.st.dr='done';render()},1300);show(cur);}
+function guardTry(){if(launched)return;var u=unopened(),p=pending();if(!p)return;
+ if(u>0){var tx=$('gtx');tx.classList.add('blocked');tx.firstChild.nodeValue='Not yet.';$('gsub').textContent=u+' not opened. Open each one first: click the grey squares.';
+  var g=$('guard');g.classList.remove('shake');void g.offsetWidth;g.classList.add('shake');T.batchBlocked++;log('x','Shortcut blocked: '+u+' choices not opened');ev('batch_blocked',{pending:u});size();return;}
+ cells.forEach(function(c){if(!c.v){c.v='B';}});T.batchUsed=true;log('h','<b>You</b> chose B for the last '+p+', after opening each');$('ff').classList.remove('on');paint();}
+function launch(){if(count()<N||launched)return;launched=true;log('h','<b>You</b> approved the launch');
+ var over=0,claims=0;cells.forEach(function(c){if(c.v==='B'&&c.gen===1&&c.s===0){if(!claimsOK())claims++;if(!S.spec&&c.r===1)over=(texts(c)[1]+texts(c)[2]).length}});
+ ev('launch_approved',{spec:S.spec,scan:S.scan,owner:S.owner?S.owner[2]:'none',issues:(over?1:0)+(claims?1:0)});
+ S.phase='live';S.st.g4='done';S.st.pub='done';render();
+ var clean=!over&&!claims;$('pill').className='pill '+(clean?'live':'warnp');$('pill').firstChild.style.display='none';$('pillt').textContent=clean?'Live on 3 retailers':'Live, with problems';$('gate').style.borderColor='var(--line)';
+ var li='';if(over)li+='<li>Sephora rejected 1 title: '+over+' characters, limit 120. No agent was checking limits.</li>';
+ if(claims)li+='<li>'+claims+' '+(claims>1?'packages':'package')+' went live saying “clinically proven”. There is no study on file. '+(S.scan?'The scanner flagged it, and the gate was signed in 4 seconds by someone who could not judge it.':'Nobody flagged it.')+'</li>';
+ var full=S.spec&&claimsOK();
+ if(clean)li='<li class="ok">'+(full?'Limits and claims were checked before anything reached you.':'Nothing slipped through this time. The pipeline did not guarantee that: you did.')+'</li>';
+ var match=(S.spec?1:0)+(S.scan?1:0)+(ownerOK()?1:0),sec=Math.max(1,Math.round((Date.now()-T.t0)/1000)),tm=Math.floor(sec/60)+':'+('0'+sec%60).slice(-2);
+ function row(k,y,ok,sh){return '<div class="cr"><span class="ck">'+k+'</span><span class="cy'+(ok?' ok':' no')+'"><i>'+(ok?'&#10003;':'!')+'</i>'+y+'</span><span class="cs">'+sh+'</span></div>'}
+ var cmp='<div class="cmp"><div class="cr ch"><span></span><span>YOUR PIPELINE</span><span>THE ONE THAT SHIPPED</span></div>'
+  +row('Retailer limits',S.spec?'Spec Checker, one per retailer':'Nobody',S.spec,'Spec Checker, one per retailer')
+  +row('Claims',S.scan?'Compliance Scanner':'Nobody',S.scan,'Compliance Scanner')
+  +row('Who signs a flagged claim',S.owner?S.owner[0]+', '+S.owner[1]:'No gate',ownerOK(),'The Compliance Officer')
+  +row('Agent straight to Publish',T.bypass?'You tried. Refused':'Not tried',true,'Always refused')
+  +row('Approving in bulk',T.batchBlocked?'You tried early. Blocked':T.batchUsed?'Used after opening each':'Not used',true,'Locked until each is opened')
+  +row('Your time at Gate 4',tm+' for 6 choices'+(T.ff?', skipped ahead':''),true,'A floor per choice marks rushed approvals')+'</div>';
+ var share='Hold the Gate, a ShelfFlow canvas you build and run\n'+'My pipeline: limits '+(S.spec?'checked':'unchecked')+', claims '+(S.scan?'checked':'unchecked')+', Gate 3 signed by '+(S.owner?S.owner[1]:'nobody')+'.\n'+(clean?'6 packages out, nothing slipped through.':'6 packages out, '+((over?1:0)+(claims?1:0))+' problem'+(((over?1:0)+(claims?1:0))>1?'s':'')+' with my name on '+(((over?1:0)+(claims?1:0))>1?'them':'it')+'.')+'\nhttps://inigoangulo.com/lab/hold-the-gate/';
+ $('stage').innerHTML='<div class="done"><h2>'+(clean?'Every gate signed. 6 packages out.':'6 packages out. Not all of them should be.')+'</h2><p>'+(clean?'Every choice has your name and a time on it.':'You signed it, so it has your name on it. The pipeline you built is why you could not see it.')+'</p><ul>'+li+'</ul>'
+  +'<p class="mt">'+match+' of 3 design calls match the pipeline that shipped.</p>'+cmp+'<p class="mnote">A match with what shipped, not a measure of skill. The launch and its copy are synthetic.</p>'
+  +'<div class="shr"><pre id="shtx"></pre><div class="acts"><button id="cpy">Copy your result</button><a id="lnk" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent('https://inigoangulo.com/lab/hold-the-gate/')+'">Share on LinkedIn</a></div></div>'
+  +'<div class="acts end"><a class="pri" href="/work/shelfflow.html" target="_top">Read the ShelfFlow case &#8594;</a><button id="again">'+(full?'Start over':'Rebuild the pipeline')+'</button></div></div>';
+ $('shtx').textContent=share;
+ $('cpy').onclick=function(){var b=this;function ok(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy your result'},1600)}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(share).then(ok,function(){});ev('result_copied',{match:match})};
+ $('lnk').onclick=function(){ev('result_shared',{match:match})};
+ $('again').onclick=function(){location.reload()};document.querySelector('.foot2').style.display='none';ev('debrief_seen',{match:match,clean:clean});size();}
+function ffwd(){if(ffRunning||launched)return;ffRunning=true;T.ff=true;ev('ff_used',{at:count()});$('ff').classList.remove('on');
+ (function step(){var j=cells[cur].v?next():cur;if(j<0){ffRunning=false;paint();return}show(j);setTimeout(function(){if(launched)return;choose(j%2?'A':'B',true);setTimeout(step,260)},340)})();}
+$('useA').onclick=function(){if(!ffRunning)choose('A')};$('useB').onclick=function(){if(!ffRunning)choose('B')};
+$('back').onclick=function(){if(!ffRunning&&!launched){$('why').classList.toggle('on');size()}};
+$('why').addEventListener('click',function(e){var r=e.target.getAttribute&&e.target.getAttribute('data-r');if(r&&!ffRunning)sendBack(r)});
+$('batch').onclick=guardTry;$('launch').onclick=launch;$('ff').onclick=ffwd;
+document.addEventListener('keydown',function(e){if(S.phase!=='gate'||launched||ffRunning||e.metaKey||e.ctrlKey||e.altKey)return;var k=e.key.toLowerCase();
+ if(k==='a')choose('A');else if(k==='b')choose('B');else if(k==='s'){$('why').classList.add('on');size()}
+ else if(k==='arrowright'){e.preventDefault();show((cur+1)%N)}else if(k==='arrowleft'){e.preventDefault();show((cur+N-1)%N)}
+ else if(k==='arrowdown'){e.preventDefault();show((cur+3)%N)}else if(k==='arrowup'){e.preventDefault();show((cur+N-3)%N)}});
+window.addEventListener('load',size);window.addEventListener('resize',size);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(size);
+$('lk').innerHTML=LK;render();
+})();
+
+</script>
+</body>
+</html>
