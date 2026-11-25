@@ -58,7 +58,7 @@ h1{font-size:clamp(22px,4vw,30px);font-weight:600;letter-spacing:-.02em;margin-b
 .scope .sdiv{width:1px;height:18px;background:var(--line);margin:0 4px}
 .scope .scnt{margin-left:auto;font-size:12.5px;color:var(--t2)}.scope .scnt b{color:var(--ink);font-weight:600}
 .scope.locked button{pointer-events:none;opacity:.6}
-.lib .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.lib .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .lib .top{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;flex-wrap:wrap}
 .lib{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 1px 2px rgba(16,24,40,.05)}
 .lib h3{font-size:13px;font-weight:600}.lib .hint{font-size:12px;color:var(--t3)}
@@ -80,9 +80,23 @@ h1{font-size:clamp(22px,4vw,30px);font-weight:600;letter-spacing:-.02em;margin-b
 .own b{display:block;font-size:12.5px;font-weight:600}.own i{display:block;font-style:normal;font-size:11px;color:var(--t3)}
 .ghost{position:fixed;z-index:50;pointer-events:none;background:var(--surface);border:1px solid var(--brand);border-radius:10px;padding:8px 11px;font-size:12.5px;font-weight:600;box-shadow:0 12px 28px -8px rgba(16,24,40,.35);transform:translate(-50%,-50%) rotate(-2deg)}
 .cvwrap{background-color:var(--canvas);border:1px solid var(--line);border-radius:14px;overflow-x:auto;background-image:radial-gradient(#d5d9e0 1px,transparent 1px);background-size:20px 20px}
-.cvwrap svg{display:block;width:100%;min-width:760px;height:auto}
+.cvin{position:relative;min-width:680px}.cvwrap svg{display:block;width:100%;height:auto;touch-action:pan-y;cursor:grab}
+.step{display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 10px;border:1px solid var(--line);border-radius:8px;font-size:12px;color:var(--t2);white-space:nowrap}.step.warn{color:var(--warn);border-color:var(--warn2);background:var(--warn50)}
+.pill[hidden]{display:none}.bar .runb{height:32px;font-size:13px;padding:0 13px}
+.insp{position:absolute;top:10px;right:10px;width:218px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:0 12px 28px -10px rgba(16,24,40,.28);z-index:4}
+.insp[hidden]{display:none}.ih{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.ik{width:24px;height:24px;border-radius:7px;background:var(--brand50);color:var(--brand7);display:grid;place-content:center;font-size:11px;flex:none}.ik.g{background:var(--ink);color:#fff;font-size:9px}.ik.d{background:var(--subtle);color:var(--t2)}
+.ih b{display:block;font-size:13px;font-weight:600;line-height:1.25}.ih i{display:block;font-style:normal;font-family:var(--m);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--t3)}
+.ih button{margin-left:auto;width:24px;height:24px;border:0;border-radius:6px;background:none;font-size:16px;line-height:1;color:var(--t3)}.ih button:hover{background:var(--subtle);color:var(--ink)}
+.insp p{font-size:12px;line-height:1.5;color:var(--t2)}
+.insp dl{margin:10px 0 0;display:grid;grid-template-columns:auto 1fr;gap:5px 10px;font-size:12px}.insp dt{color:var(--t3)}.insp dd{margin:0;color:var(--ink);font-weight:500}
+.insp dd.ok{color:var(--ok)}.insp dd.bad{color:var(--bad)}.insp dd.warn,.insp dd.turn{color:var(--warn)}.insp dd.run{color:var(--brand7)}
+.ib{margin-top:11px;width:100%;height:32px;border-radius:8px;border:0;background:var(--ink);color:#fff;font-size:12.5px;font-weight:600}
+.mini{position:absolute;right:10px;bottom:10px;width:138px;height:50px;padding:5px;background:var(--surface);border:1px solid var(--line);border-radius:9px;box-shadow:0 4px 12px -6px rgba(16,24,40,.25);cursor:pointer;touch-action:none;z-index:3}
+.mini svg{width:100%;height:100%;min-width:0;cursor:pointer}
+.cvhint{font-size:12px;color:var(--t3);flex:1;min-width:200px}
 .cvbar{display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap}
-.status{font-size:12.5px;color:var(--t2);flex:1;min-width:200px;line-height:1.5}
+.status{position:absolute;left:10px;bottom:10px;max-width:calc(100% - 176px);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:7px 11px;box-shadow:0 4px 12px -6px rgba(16,24,40,.25);font-size:12px;color:var(--t2);line-height:1.45;z-index:3}
 .status b{color:var(--ink);font-weight:600}.status.bad,.status.bad b{color:var(--bad)}
 .status .dot{display:inline-block;width:8px;height:8px;border-radius:9px;background:var(--brand);margin-right:8px}
 .bypass{background:none;border:0;font-size:12px;color:var(--t3);text-decoration:underline;text-underline-offset:3px;padding:6px 0}
@@ -204,13 +218,15 @@ body.embed .wrap{max-width:none}
 <div class="wrap">
 <p class="tag">SHELFFLOW, INTERACTIVE DEMO, SYNTHETIC DATA</p>
 <h1>Build the pipeline. Then hold the gate.</h1>
-<p class="sub">Drag agents onto the line, wire the flagged branch to a gate and give it an owner. Then run the launch and take Gate 4 yourself. What you leave out, you meet at the gate.</p>
+<p class="sub">Drag agents onto the line, wire the flagged branch to a gate and give it an owner. Then run the launch and take Gate 4 yourself. What you leave out, you meet at the gate. The canvas pans like the real one, and every node opens.</p>
 
 <div class="app">
   <div class="bar">
     <span class="logo"><i></i><i></i><i></i></span><b>ShelfFlow</b><span class="ln">Lumina Glow, Vitamin C line</span>
+    <span class="step" id="step"></span>
     <span class="mode" aria-hidden="true"><span id="mB" class="on">Build</span><span id="mR">Run</span></span>
-    <span class="pill" id="pill"><span class="dia"></span><span id="pillt">You are the operator</span></span>
+    <button class="runb" id="runb">&#9656; Run launch</button>
+    <span class="pill" id="pill" hidden><span class="dia"></span><span id="pillt"></span></span>
   </div>
   <div class="body">
     <div class="build">
@@ -224,8 +240,11 @@ body.embed .wrap{max-width:none}
         </div>
       </div>
       <div>
-        <div class="cvwrap" id="cvwrap"><svg id="cv" viewBox="0 0 960 320" role="img" aria-label="Pipeline canvas"></svg><div class="own" id="own" hidden></div></div>
-        <div class="cvbar"><span class="status" id="status"></span><button class="bypass" id="bypass">Or pull a socket from an agent to Publish</button><button class="runb" id="runb">&#9656; Run launch</button></div>
+        <div class="cvwrap" id="cvwrap"><div class="cvin"><svg id="cv" viewBox="0 0 640 320" role="img" aria-label="Pipeline canvas"></svg><div class="own" id="own" hidden></div>
+          <div class="status" id="status" role="status"></div>
+          <div class="insp" id="insp" hidden></div>
+          <div class="mini" id="mini" title="Drag to move around the canvas"><svg id="minis" viewBox="0 0 960 320" preserveAspectRatio="none" aria-hidden="true"></svg></div></div></div>
+        <div class="cvbar"><span class="cvhint">Drag the canvas to move around. Click a node to open it.</span><button class="bypass" id="bypass">Or pull a socket from an agent to Publish</button></div>
       </div>
     </div>
 
@@ -271,7 +290,7 @@ var S={spec:false,scan:false,gate:null,wired:false,owner:null,wire:null,gprev:nu
 var N=6,cells=[],cur=0,launched=false,ffRunning=false,nlog=0,justDragged=false,T={bypass:0,batchBlocked:0,batchUsed:false,sent:0,ff:false,t0:0};
 function ownerOK(){return !!(S.owner&&S.owner[2]==='DR')}
 function claimsOK(){return S.scan&&ownerOK()}
-var INK='#101828',VIO='#a78bfa',V7='#5b4bd6',GREY='#d0d5dd',CY=120;
+var INK='#101828',VIO='#8b78f5',V7='#5b4bd6',GREY='#d0d5dd',CY=120,VW=640,pan=0,BOX={},panRaf=null;
 function ev(n,p){if(typeof gtag==='function')gtag('event',n,p||{})}
 function $(id){return document.getElementById(id)}
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
@@ -294,32 +313,66 @@ function ecol(k,kind){return done(k)?(kind==='g'?INK:VIO):GREY}
 function line(d,col,extra){return '<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="1.6" stroke-linecap="round" '+(extra||'')+'/>'}
 function curve(x1,y1,x2,y2){var m=(x1+x2)/2;return 'M'+x1+' '+y1+'C'+m+' '+y1+' '+m+' '+y2+' '+x2+' '+y2}
 function vcurve(x1,y1,x2,y2){var d=Math.max(18,Math.abs(y2-y1)/2);return 'M'+x1+' '+y1+'C'+x1+' '+(y1+d)+' '+x2+' '+(y2-d)+' '+x2+' '+y2}
-function agent(k,x,y,w,label,sub,pop){var st=S.st[k],run=S.phase!=='build',dim=run&&!st,ok=st==='done',flag=st==='flag',h=sub?38:34;
- return '<g class="nd'+(pop?' pop':'')+'" opacity="'+(dim?.5:1)+'"><rect x="'+x+'" y="'+(y-h/2)+'" width="'+w+'" height="'+h+'" rx="9" fill="#fff" stroke="'+(st==='run'?'#8b5cf6':flag?'#fda29b':'#c4b5fd')+'" stroke-width="'+(st==='run'?2:1)+'"/>'
- +'<rect x="'+(x+7)+'" y="'+(y-10)+'" width="20" height="20" rx="6" fill="'+(ok?'#ecfdf3':flag?'#fef3f2':'#f2f0fe')+'"'+(st==='run'?' class="blink"':'')+'/>'
- +(ok?'<path transform="translate('+(x+11)+','+(y-6)+')" d="M2 6.5l2.8 2.8L10 3.5" fill="none" stroke="#067647" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>'
-     :'<path transform="translate('+(x+11)+','+(y-5.5)+')" d="M6 1l1.3 3.2L10.5 5.5 7.3 6.8 6 10 4.7 6.8 1.5 5.5l3.2-1.3z" fill="'+(flag?'#b42318':V7)+'"/>')
- +'<text x="'+(x+33)+'" y="'+(sub?y-2:y+4)+'" font-size="11.5" font-weight="500" fill="#475467">'+label+'</text>'
- +(sub?'<text x="'+(x+33)+'" y="'+(y+11)+'" font-size="9.5" fill="'+(flag?'#b42318':'#667085')+'" font-weight="'+(flag?600:400)+'">'+sub+'</text>':'')+'</g>'}
-function gate(k,x,y,w,num,name,person,pop,warn){var st=S.st[k],run=S.phase!=='build',dim=run&&!st,turn=st==='turn';
- return '<g class="nd'+(pop?' pop':'')+'"><rect x="'+x+'" y="'+(y-26)+'" width="'+w+'" height="52" rx="9" fill="#fff" stroke="'+(turn?INK:warn?'#fedf89':'#e4e7ec')+'" stroke-width="'+(turn?2:1)+'"/>'
- +'<path d="M'+(x+.5)+' '+(y-8)+'V'+(y-17)+'a8.5 8.5 0 0 1 8.5-8.5H'+(x+w-9)+'a8.5 8.5 0 0 1 8.5 8.5V'+(y-8)+'Z" fill="'+(dim?'#fff':st==='done'?'#eef0f3':INK)+'"/>'
- +(dim?'<path d="M'+x+' '+(y-8)+'H'+(x+w)+'" stroke="#e4e7ec"/>':'')
- +'<path transform="translate('+(x+8)+','+(y-21)+')" d="M4 0l4 4-4 4-4-4z" fill="'+(dim?'none':st==='done'?INK:'#fff')+'"'+(dim?' stroke="#667085"':'')+'/><text class="mono" x="'+(x+21)+'" y="'+(y-13.5)+'" font-size="8.5" fill="'+(dim?'#667085':st==='done'?INK:'#fff')+'" letter-spacing=".5">'+num+'</text>'
- +(st==='done'?'<path transform="translate('+(x+w-18)+','+(y-23)+')" d="M2 6.5l2.8 2.8L10 3.5" fill="none" stroke="#067647" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>':'')
- +'<text x="'+(x+9)+'" y="'+(y+6)+'" font-size="11.5" font-weight="600" fill="'+INK+'">'+name+'</text><text x="'+(x+9)+'" y="'+(y+19)+'" font-size="10" fill="'+(turn?INK:warn?'#b54708':'#667085')+'" font-weight="'+(turn||warn?600:400)+'"'+(turn?' class="blink"':'')+(warn?' text-decoration="underline"':'')+'>'+(turn&&k==='g4'?'Your turn':person)+'</text></g>'}
+function agent(k,x,y,w,label,sub,pop){var st=S.st[k],run=S.phase!=='build',dim=run&&!st,ok=st==='done',flag=st==='flag',h=38,t=y-19;BOX[k]={x:x,y:t,w:w,h:h};
+ return '<g class="nd'+(pop?' pop':'')+'" opacity="'+(dim?.55:1)+'"><rect x="'+x+'" y="'+t+'" width="'+w+'" height="'+h+'" rx="8" fill="#fff" stroke="'+(flag?'#dc6803':'#8b78f5')+'" stroke-width="'+(st==='run'||flag?1.8:1.1)+'"/>'
+ +'<rect x="'+(x+6)+'" y="'+(t+5)+'" width="13" height="13" rx="4" fill="'+(flag?'#fffaeb':'#f2f0fe')+'"/><path transform="translate('+(x+8.5)+','+(t+7.6)+') scale(.67)" d="M6 1l1.3 3.2L10.5 5.5 7.3 6.8 6 10 4.7 6.8 1.5 5.5l3.2-1.3z" fill="'+(flag?'#b54708':V7)+'"/>'
+ +'<text x="'+(x+24)+'" y="'+(t+14.6)+'" font-size="8.4" font-weight="600" fill="'+INK+'">'+label+'</text>'
+ +(ok?'<path transform="translate('+(x+w-16)+','+(t+7)+') scale(.72)" d="M2 6.5l2.8 2.8L10 3.5" fill="none" stroke="#067647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+   :st==='run'?'<circle cx="'+(x+w-11)+'" cy="'+(t+11.5)+'" r="2.6" fill="'+V7+'" class="blink"/>'
+   :flag?'<path transform="translate('+(x+w-17)+','+(t+6.4)+') scale(.8)" d="M6 1.5l5 9H1z" fill="none" stroke="#dc6803" stroke-width="1.6" stroke-linejoin="round"/>':'')
+ +'<text x="'+(x+7)+'" y="'+(t+29.8)+'" font-size="7" fill="'+(flag?'#b54708':'#667085')+'" font-weight="'+(flag?600:400)+'">'+(st==='run'?'Working':sub)+'</text></g>'}
+function gate(k,x,y,w,num,name,person,pop,warn,ini){var st=S.st[k],run=S.phase!=='build',nx=run&&!st,turn=st==='turn',dn=st==='done',t=y-26;BOX[k]={x:x,y:t,w:w,h:52};
+ var hf=warn?'#d92d20':nx?'#fff':dn?'#eef0f3':INK,fg=nx?'#667085':dn?INK:'#fff';
+ var tag=warn?'<rect x="'+(x+w-37)+'" y="'+(t+4)+'" width="31" height="9.6" rx="4.8" fill="#fff"/><text x="'+(x+w-21.5)+'" y="'+(t+11)+'" text-anchor="middle" font-size="6.2" font-weight="600" fill="#b42318">Blocked</text>'
+  :turn?'<rect x="'+(x+w-41)+'" y="'+(t+4)+'" width="35" height="9.6" rx="4.8" fill="#fdb022"/><text x="'+(x+w-23.5)+'" y="'+(t+11)+'" text-anchor="middle" font-size="6.2" font-weight="600" fill="'+INK+'">Your turn</text>'
+  :dn?'<path transform="translate('+(x+w-44)+','+(t+4.6)+') scale(.62)" d="M2 6.5l2.8 2.8L10 3.5" fill="none" stroke="#067647" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><text x="'+(x+w-6)+'" y="'+(t+11.2)+'" text-anchor="end" font-size="6.4" font-weight="500" fill="#067647">Approved</text>'
+  :nx?'<text x="'+(x+w-6)+'" y="'+(t+11.2)+'" text-anchor="end" font-size="6.4" fill="#667085">Not started</text>':'';
+ return '<g class="nd'+(pop?' pop':'')+'"><rect x="'+x+'" y="'+t+'" width="'+w+'" height="52" rx="8" fill="#fff" stroke="'+(turn?'#dc6803':warn?'#d92d20':'#e4e7ec')+'" stroke-width="'+(turn||warn?1.8:1)+'"/>'
+ +'<path d="M'+(x+.5)+' '+(t+17)+'V'+(t+8.5)+'a8 8 0 0 1 8-8H'+(x+w-8.5)+'a8 8 0 0 1 8 8V'+(t+17)+'Z" fill="'+hf+'"/>'
+ +(nx?'<path d="M'+x+' '+(t+17)+'H'+(x+w)+'" stroke="#e4e7ec"/>':'')
+ +'<path transform="translate('+(x+7)+','+(t+5.6)+') scale(.78)" d="M4 0l4 4-4 4-4-4z" fill="'+(nx?'none':fg)+'"'+(nx?' stroke="#667085" stroke-width="1.2"':'')+'/>'
+ +'<text class="mono" x="'+(x+17)+'" y="'+(t+11.4)+'" font-size="6.2" fill="'+fg+'" letter-spacing=".5">'+num+'</text>'+tag
+ +'<text x="'+(x+8)+'" y="'+(t+30)+'" font-size="8.6" font-weight="600" fill="'+INK+'">'+name+'</text>'
+ +(warn?'<circle cx="'+(x+12.5)+'" cy="'+(t+41.5)+'" r="4.4" fill="none" stroke="#98a2b3" stroke-dasharray="2 1.6"/>':'<circle cx="'+(x+12.5)+'" cy="'+(t+41.5)+'" r="4.8" fill="#e9d7fe"/><text x="'+(x+12.5)+'" y="'+(t+43.2)+'" text-anchor="middle" font-size="4.3" font-weight="600" fill="'+INK+'">'+(ini||'')+'</text>')
+ +'<text x="'+(x+21)+'" y="'+(t+44)+'" font-size="7.2" fill="'+(warn?'#b42318':'#475467')+'" font-weight="'+(warn?600:400)+'">'+person+'</text></g>'}
 function slot(x,w,a){var on=S.hover===a;
- return '<g'+(on?'':' class="blink"')+'><rect x="'+x+'" y="98" width="'+w+'" height="44" rx="10" fill="'+(on?'#f2f0fe':'#f7f8fa')+'" stroke="#8b5cf6" stroke-width="'+(on?2:1.2)+'" stroke-dasharray="5 4"/><text x="'+(x+w/2)+'" y="124" text-anchor="middle" font-size="10.5" font-weight="500" fill="'+V7+'">'+(on?'Release to insert':'Drop it on this line')+'</text></g>'}
+ return '<g'+(on?'':' class="blink"')+'><rect x="'+x+'" y="98" width="'+w+'" height="44" rx="10" fill="'+(on?'#f2f0fe':'#f7f8fa')+'" stroke="#8b5cf6" stroke-width="'+(on?2:1.2)+'" stroke-dasharray="5 4"/><text x="'+(x+w/2)+'" y="124" text-anchor="middle" font-size="8" font-weight="500" fill="'+V7+'">'+(on?'Release to insert':'Drop it on this line')+'</text></g>'}
 function logic(x,kind){var p=kind==='split'?'M2 7h3M5 7c2 0 2-4 5-4h2M5 7c2 0 2 4 5 4h2M5 7h7':'M12 7H9M9 7C7 7 7 3 4 3H2M9 7c-2 0-2 4-5 4H2M9 7H2';
  return '<rect x="'+x+'" y="109" width="22" height="22" rx="7" fill="#fff" stroke="#98a2b3"/><path transform="translate('+(x+4)+',113)" d="'+p+'" fill="none" stroke="#475467" stroke-width="1.4" stroke-linecap="round"/>'}
-function tip(x,y,t,col){var w=t.length*5.6+16;x=clamp(x,6,954-w);y=clamp(y,6,VH-26);return '<g pointer-events="none"><rect x="'+x+'" y="'+y+'" width="'+w+'" height="20" rx="7" fill="'+col+'"/><text x="'+(x+8)+'" y="'+(y+13.5)+'" font-size="10" font-weight="500" fill="#fff">'+t+'</text></g>'}
+function tip(x,y,t,col){var w=t.length*4.1+12;x=clamp(x,pan+6,pan+VW-6-w);y=clamp(y,6,VH-22);return '<g pointer-events="none"><rect x="'+x+'" y="'+y+'" width="'+w+'" height="15" rx="5.5" fill="'+col+'"/><text x="'+(x+6)+'" y="'+(y+10.2)+'" font-size="7.4" font-weight="500" fill="#fff">'+t+'</text></g>'}
 function hot(h,x,y,r,cur,extra){return '<circle data-h="'+h+'" cx="'+x+'" cy="'+y+'" r="'+r+'" fill="transparent" style="cursor:'+cur+'" '+(extra||'')+'/>'}
-function render(pop){var h='',sk=[],top='',b=S.phase==='build',G=S.gate,want=S.dragging||S.pulse;
- function so(x,y,c){sk.push('<circle cx="'+x+'" cy="'+y+'" r="3.6" fill="#fff" stroke="'+c+'" stroke-width="1.5"/>')}
+function applyPan(){cvEl.setAttribute('viewBox',pan+' 0 '+VW+' '+VH);var v=document.getElementById('mvp');if(v)v.setAttribute('x',pan)}
+function setPan(v,anim){v=clamp(v,0,960-VW);cancelAnimationFrame(panRaf);closeOwner();
+ if(!anim||(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)){pan=v;applyPan();return}
+ (function step(){pan+=(v-pan)*.16;if(Math.abs(v-pan)<.6)pan=v;applyPan();if(pan!==v)panRaf=requestAnimationFrame(step)})()}
+function follow(){if(S.loop){setPan(40,true);return}var k=null;['brief','dr','g2','b0','sc','g3','g4','pub'].forEach(function(x){if(S.st[x]&&BOX[x])k=x});if(k)setPan(BOX[k].x+BOX[k].w/2-VW/2,true)}
+function selLayer(){var s='';if(S.sel&&BOX[S.sel]){var q=BOX[S.sel];s+='<rect x="'+(q.x-3)+'" y="'+(q.y-3)+'" width="'+(q.w+6)+'" height="'+(q.h+6)+'" rx="11" fill="none" stroke="'+INK+'" stroke-width="1.6" pointer-events="none"/>'}
+ Object.keys(BOX).forEach(function(k){var q=BOX[k];s+='<rect data-s="'+k+'" x="'+q.x+'" y="'+q.y+'" width="'+q.w+'" height="'+q.h+'" rx="8" fill="transparent" style="cursor:pointer"/>'});return s}
+function mini(){var s='',b=S.phase==='build';Object.keys(BOX).forEach(function(k){var q=BOX[k],g=k.charAt(0)==='g',st=S.st[k],f=g?(k==='g3'&&b&&!S.owner?'#d92d20':b||st==='turn'?INK:st==='done'?'#98a2b3':'#fff'):(k==='brief'||k==='pub')?'#d0d5dd':'#8b78f5';
+  s+='<rect x="'+q.x+'" y="'+q.y+'" width="'+q.w+'" height="'+q.h+'" rx="9" fill="'+f+'"'+(f==='#fff'?' stroke="#667085" stroke-width="5"':'')+'/>'});
+ s+='<rect id="mvp" x="'+pan+'" y="5" width="'+VW+'" height="310" rx="16" fill="rgba(91,75,214,.08)" stroke="#5b4bd6" stroke-width="7"/>';$('minis').innerHTML=s}
+var INFO={brief:['Brief','Data','What the launch starts from.'],dr:['Copy Drafter','Agent','Writes title, bullets and description. Two versions per package.'],g2:['Drafts','Gate 2','Signs off the copy before any check runs.'],sc:['Compliance Scanner','Agent','Checks every claim. Flags risk, never clears it.'],g3:['Compliance','Gate 3','Reviews the claims the scanner flagged.'],g4:['Launch','Gate 4','Picks which version ships. This one is yours.'],pub:['Publish','Data','Sends the approved packages to each retailer.']};
+function stLabel(k){var st=S.st[k],g=k.charAt(0)==='g';if(S.phase==='build')return k==='g3'&&!S.owner?['Blocked','bad']:k==='g3'&&!S.wired?['Not connected','warn']:['In the pipeline',''];
+ return st==='done'?[g?'Approved':k==='pub'?'Live':'Done','ok']:st==='run'?['Working','run']:st==='turn'?['Your turn','turn']:st==='flag'?['1 claim flagged','warn']:['Not started','']}
+function insp(){var el=$('insp'),k=S.sel;if(!k||!BOX[k]){el.hidden=true;return}var g=k.charAt(0)==='g',ri=k.charAt(0)==='b'?RET[R[+k.slice(1)]]:null;
+ var i=INFO[k]||['Spec Checker','Agent','Checks every title against '+ri[0]+'’s limit of '+ri[1]+' characters.'],s=stLabel(k);
+ var own=k==='g2'?'Maya Okafor, Content Lead':k==='g4'?'You':k==='g3'?(S.owner?S.owner[0]+', '+S.owner[1]:'No owner yet'):null;
+ var ex=k==='brief'?['Scope',SKUS.length+' products, '+R.length+' retailer'+(R.length>1?'s':'')+', '+N+' packages']:k==='sc'&&S.st.sc==='flag'?['Flag','“clinically proven”: no study on file']:k==='dr'&&S.st.dr==='done'?['Output','2 versions of '+N+' packages']:k==='pub'&&S.st.pub==='done'?['Output',N+' packages live']:null;
+ el.innerHTML='<div class="ih"><span class="ik'+(g?' g':k==='brief'||k==='pub'?' d':'')+'">'+(g?'&#9670;':k==='brief'||k==='pub'?'&#9643;':'&#10022;')+'</span><div><b>'+i[0]+'</b><i>'+i[1]+'</i></div><button data-x="1" aria-label="Close panel">&#215;</button></div><p>'+i[2]+'</p>'
+ +'<dl><dt>State</dt><dd class="'+s[1]+'">'+s[0]+'</dd>'+(own?'<dt>Owner</dt><dd>'+own+'</dd>':'')+(ex?'<dt>'+ex[0]+'</dt><dd>'+ex[1]+'</dd>':'')+'</dl>'
+ +(k==='g3'&&S.phase==='build'?'<button class="ib" data-own="1">'+(S.owner?'Change owner':'Pick an owner')+'</button>':'');el.hidden=false}
+function stepper(){var g=['g2'];if(S.gate)g.push('g3');g.push('g4');var b=S.phase==='build',blk=b&&S.gate&&(!S.owner||!S.wired),s='',x=0,nxt=null;
+ g.forEach(function(k){var st=S.st[k],f,sk='';if(b)f=k==='g3'&&blk?'#d92d20':INK;else if(st==='done')f='#079455';else{if(!nxt)nxt=k;if(st==='turn')f=INK;else{f='none';sk=' stroke="#667085" stroke-width="1.2"'}}
+  s+='<path d="M'+(x+5)+' 1l4 4-4 4-4-4z" fill="'+f+'"'+sk+'/>';x+=13});
+ var bad=S.phase==='live'&&S.clean===false,t=b?g.length+' gates, '+(blk?'Gate 3 is not ready':'all have an owner'):S.phase==='live'?(bad?'Live, with problems':'Live, '+g.length+' of '+g.length+' signed'):S.phase==='gate'?'Gate 4, Launch, your turn':'Agents working, Gate '+(nxt||'g4').slice(1)+(S.st[nxt]==='turn'?' is open':' is next');
+ $('step').className='step'+(bad?' warn':'');$('step').innerHTML='<svg width="'+(x-3)+'" height="10" viewBox="0 0 '+(x-3)+' 10" aria-hidden="true">'+s+'</svg><span>'+t+'</span>'}
+function select(k){S.sel=k||null;render()}
+function render(pop){var h='',sk=[],top='',b=S.phase==='build',G=S.gate,want=S.dragging||S.pulse;BOX={};
+ function so(x,y,c){sk.push('<circle cx="'+x+'" cy="'+y+'" r="2.8" fill="#fff" stroke="'+c+'" stroke-width="1.3"/>')}
  var c1=b||S.st.brief==='done'?INK:GREY;h+=line('M70 120H92',c1);so(70,120,c1);so(92,120,c1);
  var c2=ecol('dr','a');h+=line('M208 120H230',c2);so(208,120,c2);so(230,120,c2);
- h+=line('M268 94C268 46 150 46 150 103','#dc6803',S.loop?'class="flow" stroke-width="2.2"':'stroke-dasharray="4 4"');so(268,94,'#dc6803');so(150,103,'#dc6803');
- h+='<rect x="177" y="40" width="64" height="18" rx="9" fill="#fffaeb" stroke="#fedf89"/><text x="209" y="52.5" text-anchor="middle" font-size="9.5" font-weight="'+(S.loop?600:500)+'" fill="#b54708">sent back</text>';
+ var lc=S.loop?'#dc6803':'#98a2b3';h+=line('M268 94C268 46 150 46 150 101',lc,S.loop?'class="flow" stroke-width="2"':'stroke-dasharray="4 4" stroke-width="1.3"');so(268,94,lc);so(150,101,lc);
+ h+='<rect x="'+(S.loop?181:186)+'" y="42" width="'+(S.loop?56:46)+'" height="13" rx="6.5" fill="'+(S.loop?'#fffaeb':'#fff')+'" stroke="'+(S.loop?'#fedf89':'#e4e7ec')+'"/><text x="209" y="51.2" text-anchor="middle" font-size="7" font-weight="'+(S.loop?600:500)+'" fill="'+(S.loop?'#b54708':'#667085')+'">'+(S.loop?'1 sent back':'Sent back')+'</text>';
  var cg2=ecol('g2','g'),k1='g2',ys=R.length===3?[56,120,184]:R.length===2?[88,152]:[120];
  if(S.spec){h+=line('M330 120H352',cg2);so(330,120,cg2);
   for(var i=0;i<ys.length;i++){h+=line(curve(374,120,396,ys[i]),cg2);var cb=ecol('b'+i,'a');h+=line(curve(508,ys[i],532,120),cb);so(396,ys[i],cg2);so(508,ys[i],cb)}
@@ -336,23 +389,23 @@ function render(pop){var h='',sk=[],top='',b=S.phase==='build',G=S.gate,want=S.d
    if(b)top+=hot('flag',720,166,14,'crosshair');
    if(G)so(G.x+52,G.y-26,'#f79009')}
   h+='<g'+(pop==='scan'?' class="pop"':'')+'><path d="M720 109l11 11-11 11-11-11z" fill="#fffaeb" stroke="#f79009" stroke-width="1.4" stroke-linejoin="round"/></g>';
-  h+='<text x="738" y="113" font-size="9" fill="#667085">No</text><text x="728" y="150" font-size="9" fill="#b54708">Flagged</text>';k2='cond';
+  h+='<text x="736" y="114" font-size="7" fill="#667085">No</text><text x="727" y="148" font-size="7" fill="#b54708">Flagged</text>';k2='cond';
  }else{h+=line('M568 120H756',ck1);if(b&&want==='scan')h+=slot(574,176,'scan')}
  var ck2=ecol(k2,'g');so(756,120,ck2);var c4=ecol('g4','g');h+=line('M856 120H882',c4);so(856,120,c4);so(882,120,c4);
  if(S.bypass){h+=line('M'+S.bypass.x+' '+S.bypass.y+'C'+S.bypass.x+' 306 913 306 913 142','#d92d20','stroke-width="2" stroke-dasharray="6 5"')}
  /* nodes */
- h+='<rect x="16" y="103" width="54" height="34" rx="9" fill="#f3f4f6" stroke="#e4e7ec"/><text x="43" y="124" text-anchor="middle" font-size="11.5" font-weight="500" fill="'+INK+'">Brief</text>';
- h+=agent('dr',92,120,116,'Copy Drafter');h+=gate('g2',230,120,100,'GATE 2','Drafts','Maya Okafor');
- if(S.spec)for(var j=0;j<ys.length;j++)h+=agent('b'+j,396,ys[j],112,RET[R[j]][0],'Spec Checker',pop==='spec');
- if(S.scan)h+=agent('sc',568,120,128,'Compliance',S.st.sc==='flag'?'1 flag':'Scanner',pop==='scan');
- if(G)h+=gate('g3',G.x,G.y,104,'GATE 3','Compliance',S.owner?S.owner[0]:'No owner',pop==='gate',b&&!S.owner);
- h+=gate('g4',756,120,100,'GATE 4','Launch','You');
- var live=S.st.pub==='done';h+='<rect x="882" y="103" width="62" height="34" rx="9" fill="'+(live?'#ecfdf3':'#f3f4f6')+'" stroke="'+(live?'#abefc6':'#e4e7ec')+'"/><text x="913" y="124" text-anchor="middle" font-size="11.5" font-weight="500" fill="'+(live?'#067647':INK)+'">'+(live?N+' live':'Publish')+'</text>';
- h+=sk.join('');
+ BOX.brief={x:16,y:101,w:54,h:38};h+='<rect x="16" y="101" width="54" height="38" rx="8" fill="#f3f4f6" stroke="#e4e7ec"/><text x="24" y="116.5" font-size="8.4" font-weight="600" fill="'+INK+'">Brief</text><text x="24" y="130" font-size="6.6" fill="#667085">'+N+' packages</text>';
+ h+=agent('dr',92,120,116,'Copy Drafter','Two versions per package');h+=gate('g2',230,120,100,'GATE 2','Drafts','Maya Okafor',0,0,'MO');
+ if(S.spec)for(var j=0;j<ys.length;j++)h+=agent('b'+j,396,ys[j],112,'Spec Checker',RET[R[j]][0]+', up to '+RET[R[j]][1],pop==='spec');
+ if(S.scan)h+=agent('sc',568,120,128,'Compliance Scanner',S.st.sc==='flag'?'1 claim flagged':'Checks claims, US rules',pop==='scan');
+ if(G)h+=gate('g3',G.x,G.y,104,'GATE 3','Compliance',S.owner?S.owner[0]:'Pick an owner',pop==='gate',b&&!S.owner,S.owner?S.owner[2]:'');
+ h+=gate('g4',756,120,100,'GATE 4','Launch','You',0,0,'Y');
+ var live=S.st.pub==='done';BOX.pub={x:882,y:101,w:62,h:38};h+='<rect x="882" y="101" width="62" height="38" rx="8" fill="'+(live?'#ecfdf3':'#f3f4f6')+'" stroke="'+(live?'#079455':'#e4e7ec')+'" stroke-width="'+(live?1.6:1)+'"/><text x="890" y="116.5" font-size="8.4" font-weight="600" fill="'+INK+'">Publish</text><text x="890" y="130" font-size="6.6" fill="'+(live?'#067647':'#667085')+'" font-weight="'+(live?600:400)+'">'+(live?N+' live':R.length+' retailer'+(R.length>1?'s':''))+'</text>';
+ h+=sk.join('');h+=selLayer();
  if(S.bypass)h+='<circle cx="913" cy="146" r="9" fill="#fef3f2" stroke="#d92d20" stroke-width="2"/><path d="M909.5 142.5l7 7m0-7l-7 7" stroke="#d92d20" stroke-width="1.8" stroke-linecap="round"/>';
  /* build-only layer: previews, handles, the wire in hand */
  if(b){
-  if(S.dragging==='gate'&&S.gprev)h+='<g pointer-events="none"><rect x="'+S.gprev.x+'" y="'+(S.gprev.y-26)+'" width="104" height="52" rx="9" fill="'+(S.hover==='gate'?'#f9fafb':'none')+'" stroke="'+INK+'" stroke-width="1.4" stroke-dasharray="5 4"/><text x="'+(S.gprev.x+52)+'" y="'+(S.gprev.y+4)+'" text-anchor="middle" font-size="10.5" font-weight="500" fill="'+INK+'">'+(S.hover==='gate'?'Release to place':'Human gate')+'</text></g>';
+  if(S.dragging==='gate'&&S.gprev)h+='<g pointer-events="none"><rect x="'+S.gprev.x+'" y="'+(S.gprev.y-26)+'" width="104" height="52" rx="9" fill="'+(S.hover==='gate'?'#f9fafb':'none')+'" stroke="'+INK+'" stroke-width="1.4" stroke-dasharray="5 4"/><text x="'+(S.gprev.x+52)+'" y="'+(S.gprev.y+4)+'" text-anchor="middle" font-size="8" font-weight="500" fill="'+INK+'">'+(S.hover==='gate'?'Release to place':'Human gate')+'</text></g>';
   if(G){h+='<rect data-h="g3" x="'+G.x+'" y="'+(G.y-26)+'" width="104" height="52" rx="9" fill="transparent" style="cursor:grab"/>';
    h+='<rect data-h="owner" x="'+(G.x+4)+'" y="'+(G.y+8)+'" width="96" height="17" rx="4" fill="transparent" style="cursor:pointer"/>'}
   h+=hot('out',208,120,11,'crosshair','data-n="Copy Drafter"');
@@ -364,17 +417,17 @@ function render(pop){var h='',sk=[],top='',b=S.phase==='build',G=S.gate,want=S.d
    h+='<g pointer-events="none">'+line(fl?vcurve(w.x0,w.y0,w.x,w.y):curve(w.x0,w.y0,w.x,w.y),cw,'stroke-width="2" stroke-dasharray="5 4"')+'<circle cx="'+w.x+'" cy="'+w.y+'" r="4.2" fill="#fff" stroke="'+cw+'" stroke-width="1.8"/></g>';
    if(ok)h+=tip(w.x+12,w.y-26,'Release to connect',INK);else if(bad)h+=tip(w.x+12,w.y-26,'Not allowed','#b42318')}
  }else h+=top;
- $('cv').innerHTML=h;status();size();}
+ $('cv').innerHTML=h;mini();insp();stepper();status();size();}
 function hold(html,cls,ms){var s=$('status');s.dataset.hold='1';s.className='status'+(cls?' '+cls:'');s.innerHTML=html;clearTimeout(holdT);holdT=setTimeout(function(){delete s.dataset.hold;status()},ms||2600)}
 function status(){var s=$('status');if(S.phase==='build')$('runb').disabled=!ready();if(s.dataset.hold)return;s.className='status';
- if(S.phase==='build'){s.innerHTML=S.scan&&!S.gate?'<b>Not ready.</b> Flagged claims go nowhere. Drag a human gate onto the canvas.':S.scan&&!S.wired?'<b>Not ready.</b> Pull the Flagged socket to Gate 3.':S.scan&&!S.owner?'<b>Not ready.</b> Gate 3 has no owner. Click its name to pick one.':S.spec&&S.scan?'<b>Ready to run.</b> Limits and claims are checked before anything reaches you.':S.spec?'<b>It will run.</b> Limits are checked per retailer. Nobody is checking claims.':S.scan?'<b>It will run.</b> Claims are checked. Nobody is checking retailer limits.':'<b>It will run.</b> One agent, two gates, and nobody checking limits or claims.'}
+ if(S.phase==='build'){s.innerHTML=S.scan&&!S.gate?'<b>Can’t run yet.</b> Flagged claims go nowhere. Drag a human gate onto the canvas.':S.scan&&!S.wired?'<b>Can’t run yet.</b> Pull the Flagged socket to Gate 3.':S.scan&&!S.owner?'<b>Can’t run yet.</b> Gate 3 has no owner. Click its name to pick one.':S.spec&&S.scan?'<b>Ready to run.</b> Limits and claims are checked before anything reaches you.':S.spec?'<b>It will run.</b> Limits are checked per retailer. Nobody is checking claims.':S.scan?'<b>It will run.</b> Claims are checked. Nobody is checking retailer limits.':'<b>It will run.</b> One agent, two gates, and nobody checking limits or claims.'}
  else if(S.phase==='run')s.innerHTML='<span class="dot blink"></span><b>Running.</b> Agents work on their own.';
  else if(S.phase==='gate')s.innerHTML='<span class="dot"></span><b>Waiting on you.</b> Gate 4 is open below.';
  else s.innerHTML='<b>Live.</b> Every gate signed.'}
 function cards(){[['spec','cSpec','fSpec','ADDS A SPLIT PER RETAILER'],['scan','cScan','fScan','ADDS A BRANCH TO A PERSON'],['gate','cGate','fGate','NEEDS A WIRE AND AN OWNER']].forEach(function(c){var on=has(c[0]);$(c[1]).classList.toggle('in',on);$(c[2]).textContent=on?'ON THE CANVAS. CLICK TO REMOVE':c[3]});
  $('cGate').classList.toggle('off',!S.scan&&!S.gate)}
 function gpos(p){return{x:clamp(p.x-52,GX0,GX1),y:clamp(p.y,GY0,GY1)}}
-function add(a,via,p){if(S.phase!=='build'||has(a))return;
+function add(a,via,p){if(S.phase!=='build'||has(a))return;if(via!=='drag')setPan(300,true);
  if(a==='gate'){if(!S.scan)return;S.gate=gpos(p||{x:720,y:226});cards();render('gate');log('h','<b>You</b> placed a human gate. No wire and no owner yet.')}
  else{S[a]=true;cards();render(a);log('h',a==='spec'?'<b>You</b> added Spec Checker. The flow splits per retailer.':'<b>You</b> added Compliance Scanner. Its flagged branch goes nowhere yet.')}
  ev('agent_added',{agent:a,via:via})}
@@ -382,16 +435,16 @@ function removeA(a){if(S.phase!=='build'||!has(a))return;closeOwner();
  if(a==='gate'||a==='scan'){S.gate=null;S.wired=false;S.owner=null}
  if(a!=='gate')S[a]=false;cards();render();log('h','<b>You</b> removed '+(a==='spec'?'Spec Checker':a==='scan'?'Compliance Scanner':'Gate 3')+'.')}
 var cvEl=$('cv');
-function pt(e){var r=cvEl.getBoundingClientRect();return{x:(e.clientX-r.left)*960/r.width,y:(e.clientY-r.top)*VH/r.height}}
+function pt(e){var r=cvEl.getBoundingClientRect();return{x:pan+(e.clientX-r.left)*VW/r.width,y:(e.clientY-r.top)*VH/r.height}}
 function inCanvas(e){var r=$('cvwrap').getBoundingClientRect();return e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom}
 function zone(a,e){if(!inCanvas(e))return false;var p=pt(e);return a==='gate'?S.scan:(p.x>=318&&p.x<=768&&Math.abs(p.y-120)<=48)}
 function pulse(a){S.pulse=a;render();clearTimeout(pulseT);pulseT=setTimeout(function(){S.pulse=null;render()},1700)}
 function why(a){if(a==='gate')hold(S.scan?'<b>Drag it in.</b> Drop the gate anywhere on the canvas.':'<b>Nothing needs a gate yet.</b> Add the Compliance Scanner first.');
- else{hold('<b>Drag it onto the line.</b> It fits between Gate 2 and Gate 4.');pulse(a)}}
+ else{hold('<b>Drag it onto the line.</b> It fits between Gate 2 and Gate 4.');setPan(300,true);pulse(a)}}
 function bindCard(el){var a=el.getAttribute('data-a'),sx,sy,drag=false,gh=null,down=false;
  el.addEventListener('pointerdown',function(e){if(S.phase!=='build'||has(a))return;down=true;sx=e.clientX;sy=e.clientY;drag=false;try{el.setPointerCapture(e.pointerId)}catch(_){}});
  el.addEventListener('pointermove',function(e){if(!down)return;
-  if(!drag&&Math.hypot(e.clientX-sx,e.clientY-sy)>8){drag=true;gh=document.createElement('div');gh.className='ghost';gh.textContent=el.querySelector('.nm').textContent;document.body.appendChild(gh);S.dragging=a;S.pulse=null;closeOwner();render()}
+  if(!drag&&Math.hypot(e.clientX-sx,e.clientY-sy)>8){drag=true;gh=document.createElement('div');gh.className='ghost';gh.textContent=el.querySelector('.nm').textContent;document.body.appendChild(gh);S.dragging=a;setPan(300,true);S.pulse=null;closeOwner();render()}
   if(drag){gh.style.left=e.clientX+'px';gh.style.top=e.clientY+'px';var o=zone(a,e)?a:null,ch=o!==S.hover;S.hover=o;
    if(a==='gate'){S.gprev=inCanvas(e)?gpos(pt(e)):null;ch=true}if(ch)render()}});
  function end(e){if(!down)return;down=false;if(!drag)return;gh.remove();gh=null;drag=false;var ok=zone(a,e),p=pt(e),inside=inCanvas(e);S.hover=null;S.dragging=null;S.gprev=null;justDragged=true;setTimeout(function(){justDragged=false},50);
@@ -407,20 +460,25 @@ function refuse(n,x,y){if(S.phase!=='build'||S.bypass)return;S.bypass={x:x,y:y};
  T.bypass++;log('x','Connection refused: '+n+' to Publish, no gate in between');ev('bypass_blocked',{from:n});setTimeout(function(){S.bypass=false;render()},2800)}
 function connect(){S.wired=true;render('wire');log('h','<b>You</b> wired flagged claims to Gate 3.');ev('gate_wired',{})}
 var act=null;
-cvEl.addEventListener('pointerdown',function(e){if(S.phase!=='build')return;var t=e.target&&e.target.getAttribute?e.target:null,h=t&&t.getAttribute('data-h');if(!h)return;var p=pt(e);
+cvEl.addEventListener('pointerdown',function(e){var t=e.target&&e.target.getAttribute?e.target:null,h=t&&t.getAttribute('data-h');
+ if(!h||S.phase!=='build'){act={t:'pan',cx:e.clientX,p0:pan,sel:t&&t.getAttribute('data-s')};cancelAnimationFrame(panRaf);e.preventDefault();try{cvEl.setPointerCapture(e.pointerId)}catch(_){}return}
+ var p=pt(e);
  if(h==='flag')act={t:'wire',from:'flag',n:'Compliance Scanner',x0:720,y0:166,sx:p.x,sy:p.y};
  else if(h==='out')act={t:'wire',from:'agent',n:t.getAttribute('data-n'),x0:+t.getAttribute('cx'),y0:+t.getAttribute('cy'),sx:p.x,sy:p.y};
  else if(h==='g3')act={t:'gate',dx:p.x-S.gate.x,dy:p.y-S.gate.y,sx:p.x,sy:p.y};
  else if(h==='owner')act={t:'own',sx:p.x,sy:p.y};
  e.preventDefault();try{cvEl.setPointerCapture(e.pointerId)}catch(_){}});
-cvEl.addEventListener('pointermove',function(e){if(!act)return;var p=pt(e);if(!act.moved&&Math.hypot(p.x-act.sx,p.y-act.sy)<4)return;act.moved=true;
+cvEl.addEventListener('pointermove',function(e){if(!act)return;
+ if(act.t==='pan'){if(!act.moved&&Math.abs(e.clientX-act.cx)<5)return;act.moved=true;cvEl.style.cursor='grabbing';setPan(act.p0-(e.clientX-act.cx)*VW/cvEl.getBoundingClientRect().width);return}
+ var p=pt(e);if(!act.moved&&Math.hypot(p.x-act.sx,p.y-act.sy)<4)return;act.moved=true;
  if(act.t==='own'){act={t:'gate',dx:p.x-S.gate.x,dy:p.y-S.gate.y,sx:p.x,sy:p.y,moved:true}}
  if(act.t==='wire')S.wire={from:act.from,x0:act.x0,y0:act.y0,x:p.x,y:p.y,over:hitT(p)};
  else{closeOwner();S.gate={x:clamp(p.x-act.dx,GX0,GX1),y:clamp(p.y-act.dy,GY0,GY1)}}
  render()});
 function up(e){if(!act)return;var a=act;act=null;try{cvEl.releasePointerCapture(e.pointerId)}catch(_){}
+ if(a.t==='pan'){cvEl.style.cursor='';if(!a.moved)select(a.sel);return}
  if(a.t==='own'){openOwner();return}
- if(a.t==='gate'){render();return}
+ if(a.t==='gate'){if(a.moved)render();else select('g3');return}
  var w=S.wire;S.wire=null;
  if(!a.moved){render();hold(a.from==='flag'?(S.gate?'<b>Pull it.</b> Drag from this socket to Gate 3.':'<b>Flagged claims need a person.</b> Drag a human gate in, then pull this socket to it.'):'<b>Pull it.</b> Drag from a socket to the node you want to reach.');return}
  var o=w.over;
@@ -431,12 +489,16 @@ function up(e){if(!act)return;var a=act;act=null;try{cvEl.releasePointerCapture(
  else if(a.from==='flag'&&!S.gate)hold('<b>Nowhere to land.</b> Drag a human gate onto the canvas first.')}
 cvEl.addEventListener('pointerup',up);cvEl.addEventListener('pointercancel',up);
 function closeOwner(){var o=$('own');if(o)o.hidden=true}
-function openOwner(){if(S.phase!=='build'||!S.gate)return;var o=$('own'),k=cvEl.getBoundingClientRect().width/960,html='<p>Who signs Gate 3?</p>';
+function openOwner(){if(S.phase!=='build'||!S.gate)return;var o=$('own'),k=cvEl.getBoundingClientRect().width/VW,html='<p>Who signs Gate 3?</p>';
  OWN.forEach(function(w,i){html+='<button data-o="'+i+'"><span class="av">'+w[2]+'</span><span><b>'+w[0]+'</b><i>'+w[1]+'</i></span></button>'});o.innerHTML=html;o.hidden=false;
- var ph=o.offsetHeight,pw=o.offsetWidth,wrap=$('cvwrap');o.style.left=clamp(S.gate.x*k-(pw-104*k)/2,6,cvEl.getBoundingClientRect().width-pw-6)+'px';o.style.top=Math.max(6,(S.gate.y-26)*k-ph-8)+'px';size()}
+ var ph=o.offsetHeight,pw=o.offsetWidth,wrap=$('cvwrap');o.style.left=clamp((S.gate.x-pan)*k-(pw-104*k)/2,6,cvEl.getBoundingClientRect().width-pw-6)+'px';o.style.top=Math.max(6,(S.gate.y-26)*k-ph-8)+'px';size()}
 $('own').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var w=OWN[+b.getAttribute('data-o')];S.owner=w;closeOwner();render();log('h','<b>You</b> made '+w[0]+' the owner of Gate 3.');ev('gate_owner',{owner:w[2]})});
 document.addEventListener('pointerdown',function(e){var o=$('own');if(o&&!o.hidden&&!o.contains(e.target)&&!(e.target.getAttribute&&e.target.getAttribute('data-h')==='owner'))closeOwner()});
-$('bypass').onclick=function(){refuse('Copy Drafter',208,120)};
+$('bypass').onclick=function(){setPan(320,true);refuse('Copy Drafter',208,120)};
+$('insp').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.getAttribute('data-x'))select(null);else if(b.getAttribute('data-own')){setPan(S.gate.x+52-VW/2);openOwner()}});
+(function(){var m=$('mini'),dn=false;function go(e){var r=m.getBoundingClientRect();setPan((e.clientX-r.left)/r.width*960-VW/2)}
+ m.addEventListener('pointerdown',function(e){dn=true;try{m.setPointerCapture(e.pointerId)}catch(_){}go(e);e.preventDefault()});m.addEventListener('pointermove',function(e){if(dn)go(e)});m.addEventListener('pointerup',function(){dn=false});m.addEventListener('pointercancel',function(){dn=false})})();
+$('cvwrap').addEventListener('wheel',function(e){if(Math.abs(e.deltaX)>Math.abs(e.deltaY)){e.preventDefault();setPan(pan+e.deltaX*.5)}},{passive:false});
 
 /* ---------- run ---------- */
 function runLaunch(){if(S.phase!=='build'||!ready())return;closeOwner();S.wire=null;S.phase='run';S.st={};$('lib').classList.add('locked');$('scope').classList.add('locked');$('libhint').textContent='Locked while the launch runs.';$('mB').classList.remove('on');$('mR').classList.add('on');
@@ -454,7 +516,7 @@ function runLaunch(){if(S.phase!=='build'||!ready())return;closeOwner();S.wire=n
    st(600,function(){S.st.sc='done';S.st.g3='done';S.st.cond='done';log('h','<b>'+S.owner[0]+'</b> signed Gate 3',S.owner[2])})}
   else st(500,function(){S.st.sc='done';S.st.g3='done';S.st.cond='done';log('x','<b>'+S.owner[0]+'</b> signed Gate 3 in 4 seconds. The flagged claim stayed in.')})}
  st(500,function(){S.st.g4='turn';S.phase='gate';T.t0=Date.now();$('pill').className='pill';$('pill').firstChild.style.display='';$('pillt').textContent='Your turn at Gate 4';$('gate').hidden=false;show(0)});
- (function go(i){if(i>=q.length)return;setTimeout(function(){q[i][1]();render();go(i+1)},q[i][0])})(0);render();}
+ (function go(i){if(i>=q.length)return;setTimeout(function(){q[i][1]();render();follow();go(i+1)},q[i][0])})(0);S.sel=null;render();setPan(0,true);}
 $('runb').onclick=runLaunch;
 
 /* ---------- gate 4 ---------- */
@@ -497,7 +559,7 @@ function choose(v,quiet){var c=cells[cur];if(launched||S.phase!=='gate')return;c
  var j=next();if(j>=0&&!quiet)show(j);else paint();}
 function sendBack(reason){var c=cells[cur];if(launched||S.phase!=='gate')return;c.v=null;c.gen++;
  T.sent++;log('h','<b>You</b> sent '+name(c)+' back: “'+reason+'”');log('a','Copy Drafter rewrote it. The loop ran once.');ev('reject_used',{cell:name(c),reason:reason});
- S.loop=true;S.st.dr='run';render();setTimeout(function(){S.loop=false;S.st.dr='done';render()},1300);show(cur);}
+ S.loop=true;S.st.dr='run';render();follow();setTimeout(function(){S.loop=false;S.st.dr='done';render();follow()},1300);show(cur);}
 function guardTry(){if(launched)return;var u=unopened(),p=pending();if(!p)return;
  if(u>0){var tx=$('gtx');tx.classList.add('blocked');tx.firstChild.nodeValue='Not yet.';$('gsub').textContent=u+' not opened. Open each one first: click the grey squares.';
   var g=$('guard');g.classList.remove('shake');void g.offsetWidth;g.classList.add('shake');T.batchBlocked++;log('x','Shortcut blocked: '+u+' choices not opened');ev('batch_blocked',{pending:u});size();return;}
@@ -506,7 +568,7 @@ function launch(){if(count()<N||launched)return;launched=true;log('h','<b>You</b
  var over=0,claims=0;cells.forEach(function(c){if(c.v==='B'&&c.gen===1&&c.s===0){if(!claimsOK())claims++;if(!S.spec&&c.r===1)over=(texts(c)[1]+texts(c)[2]).length}});
  ev('launch_approved',{spec:S.spec,scan:S.scan,owner:S.owner?S.owner[2]:'none',issues:(over?1:0)+(claims?1:0)});
  S.phase='live';S.st.g4='done';S.st.pub='done';render();
- var clean=!over&&!claims;$('pill').className='pill '+(clean?'live':'warnp');$('pill').firstChild.style.display='none';$('pillt').textContent=clean?'Live on 3 retailers':'Live, with problems';$('gate').style.borderColor='var(--line)';
+ var clean=!over&&!claims;S.clean=clean;stepper();$('pill').className='pill '+(clean?'live':'warnp');$('pill').firstChild.style.display='none';$('pillt').textContent=clean?'Live on 3 retailers':'Live, with problems';$('gate').style.borderColor='var(--line)';
  var li='';if(over)li+='<li>Sephora rejected 1 title: '+over+' characters, limit 120. No agent was checking limits.</li>';
  if(claims)li+='<li>'+claims+' '+(claims>1?'packages':'package')+' went live saying “clinically proven”. There is no study on file. '+(S.scan?'The scanner flagged it, and the gate was signed in 4 seconds by someone who could not judge it.':'Nobody flagged it.')+'</li>';
  var full=S.spec&&claimsOK();
