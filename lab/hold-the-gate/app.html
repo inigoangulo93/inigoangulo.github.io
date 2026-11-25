@@ -303,9 +303,10 @@ function agent(k,x,y,w,label,sub,pop){var st=S.st[k],run=S.phase!=='build',dim=r
  +(sub?'<text x="'+(x+33)+'" y="'+(y+11)+'" font-size="9.5" fill="'+(flag?'#b42318':'#667085')+'" font-weight="'+(flag?600:400)+'">'+sub+'</text>':'')+'</g>'}
 function gate(k,x,y,w,num,name,person,pop,warn){var st=S.st[k],run=S.phase!=='build',dim=run&&!st,turn=st==='turn';
  return '<g class="nd'+(pop?' pop':'')+'"><rect x="'+x+'" y="'+(y-26)+'" width="'+w+'" height="52" rx="9" fill="#fff" stroke="'+(turn?INK:warn?'#fedf89':'#e4e7ec')+'" stroke-width="'+(turn?2:1)+'"/>'
- +'<path d="M'+x+' '+(y-8)+'V'+(y-17)+'a9 9 0 0 1 9-9H'+(x+w-9)+'a9 9 0 0 1 9 9V'+(y-8)+'Z" fill="'+(dim?'#98a2b3':INK)+'"/>'
- +'<path transform="translate('+(x+8)+','+(y-21)+')" d="M4 0l4 4-4 4-4-4z" fill="#fff"/><text class="mono" x="'+(x+21)+'" y="'+(y-13.5)+'" font-size="8.5" fill="#fff" letter-spacing=".5">'+num+'</text>'
- +(st==='done'?'<path transform="translate('+(x+w-18)+','+(y-23)+')" d="M2 6.5l2.8 2.8L10 3.5" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>':'')
+ +'<path d="M'+(x+.5)+' '+(y-8)+'V'+(y-17)+'a8.5 8.5 0 0 1 8.5-8.5H'+(x+w-9)+'a8.5 8.5 0 0 1 8.5 8.5V'+(y-8)+'Z" fill="'+(dim?'#fff':st==='done'?'#eef0f3':INK)+'"/>'
+ +(dim?'<path d="M'+x+' '+(y-8)+'H'+(x+w)+'" stroke="#e4e7ec"/>':'')
+ +'<path transform="translate('+(x+8)+','+(y-21)+')" d="M4 0l4 4-4 4-4-4z" fill="'+(dim?'none':st==='done'?INK:'#fff')+'"'+(dim?' stroke="#667085"':'')+'/><text class="mono" x="'+(x+21)+'" y="'+(y-13.5)+'" font-size="8.5" fill="'+(dim?'#667085':st==='done'?INK:'#fff')+'" letter-spacing=".5">'+num+'</text>'
+ +(st==='done'?'<path transform="translate('+(x+w-18)+','+(y-23)+')" d="M2 6.5l2.8 2.8L10 3.5" fill="none" stroke="#067647" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>':'')
  +'<text x="'+(x+9)+'" y="'+(y+6)+'" font-size="11.5" font-weight="600" fill="'+INK+'">'+name+'</text><text x="'+(x+9)+'" y="'+(y+19)+'" font-size="10" fill="'+(turn?INK:warn?'#b54708':'#667085')+'" font-weight="'+(turn||warn?600:400)+'"'+(turn?' class="blink"':'')+(warn?' text-decoration="underline"':'')+'>'+(turn&&k==='g4'?'Your turn':person)+'</text></g>'}
 function slot(x,w,a){var on=S.hover===a;
  return '<g'+(on?'':' class="blink"')+'><rect x="'+x+'" y="98" width="'+w+'" height="44" rx="10" fill="'+(on?'#f2f0fe':'#f7f8fa')+'" stroke="#8b5cf6" stroke-width="'+(on?2:1.2)+'" stroke-dasharray="5 4"/><text x="'+(x+w/2)+'" y="124" text-anchor="middle" font-size="10.5" font-weight="500" fill="'+V7+'">'+(on?'Release to insert':'Drop it on this line')+'</text></g>'}
